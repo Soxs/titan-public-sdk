@@ -55,6 +55,9 @@ contains `controller.exe`:
 titanClientRoot=C:/Program Files/TitanClient
 ```
 
+That TitanClient folder must include the Java worker runtime at
+`java/titan-java-worker.jar`.
+
 Then run:
 
 ```powershell

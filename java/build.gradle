@@ -162,6 +162,51 @@ def resolveTitanController = {
     throw new GradleException(titanClientRootHelp(null))
 }
 
+def titanWorkerJarFromEnvironment = {
+    def value = providers.environmentVariable('TITAN_JAVA_WORKER_JAR').orNull
+    if (value == null || value.trim().isEmpty()) {
+        return null
+    }
+    return new File(value.trim())
+}
+
+def titanWorkerHelp = { File controller, File checkedWorker = null ->
+    def lines = []
+    lines << 'TitanClient Java worker runtime was not found.'
+    if (checkedWorker != null) {
+        lines << "Checked: ${checkedWorker.absolutePath}"
+    }
+    lines << ''
+    lines << 'Java plugins need titan-java-worker.jar before the controller can read plugin metadata.'
+    lines << 'Use an installed TitanClient build that includes the Java runtime, or point titanClientRoot at a source build staged with Java enabled.'
+    lines << ''
+    lines << 'For a local TitanClient source build:'
+    lines << '  cmake -S . -B build -DTITAN_BUILD_JAVA_RUNTIME=ON'
+    lines << '  cmake --build build --config Release --target controller'
+    lines << '  titanClientRoot=C:/path/to/SoxClientOSRS/build/controller/Release'
+    lines << ''
+    lines << 'Expected installed/source-build layout:'
+    lines << "  ${new File(controller.parentFile, 'java/titan-java-worker.jar').absolutePath}"
+    lines << ''
+    lines << 'Maintainers can also set TITAN_JAVA_WORKER_JAR to an absolute worker JAR path.'
+    lines.join(System.lineSeparator())
+}
+
+def verifyTitanJavaWorker = { File controller ->
+    def envWorker = titanWorkerJarFromEnvironment()
+    if (envWorker != null) {
+        if (!envWorker.isFile()) {
+            throw new GradleException(titanWorkerHelp(controller, envWorker))
+        }
+        return
+    }
+
+    def colocatedWorker = new File(controller.parentFile, 'java/titan-java-worker.jar')
+    if (!colocatedWorker.isFile()) {
+        throw new GradleException(titanWorkerHelp(controller, colocatedWorker))
+    }
+}
+
 tasks.register('stageTitanApiOverride', Copy) {
     group = 'titan dev'
     description = 'Build and stage this SDK JAR for the installed TitanClient worker.'
@@ -183,6 +228,7 @@ tasks.register('runTitanClient', Exec) {
             throw new GradleException('TitanClient DEV launch currently requires Windows.')
         }
         def controller = resolveTitanController()
+        verifyTitanJavaWorker(controller)
         workingDir controller.parentFile
         commandLine controller, '--dev-mode', '--launch-new-client'
         environment 'TITAN_JAVA_API_JAR', titanApiOverrideJar.absolutePath
