@@ -35,17 +35,17 @@ publishing {
     }
 
     repositories {
-        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL')
-        def repositoryUsername = providers.environmentVariable('TITAN_MAVEN_USERNAME')
-        def repositoryPassword = providers.environmentVariable('TITAN_MAVEN_PASSWORD')
-        if (repositoryUrl.isPresent()) {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL').orNull
+        def repositoryUsername = providers.environmentVariable('TITAN_MAVEN_USERNAME').orNull
+        def repositoryPassword = providers.environmentVariable('TITAN_MAVEN_PASSWORD').orNull
+        if (repositoryUrl) {
             maven {
                 name = 'titan'
-                url = uri(repositoryUrl.get())
-                if (repositoryUsername.isPresent() || repositoryPassword.isPresent()) {
+                url = uri(repositoryUrl)
+                if (repositoryUsername != null || repositoryPassword != null) {
                     credentials {
-                        username = repositoryUsername.orElse('').get()
-                        password = repositoryPassword.orElse('').get()
+                        username = repositoryUsername ?: ''
+                        password = repositoryPassword ?: ''
                     }
                 }
             }
@@ -54,7 +54,7 @@ publishing {
 }
 
 def isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
-def titanClientRoot = providers.gradleProperty('titanClientRoot')
+def titanClientRootProvider = providers.gradleProperty('titanClientRoot')
     .orElse(providers.environmentVariable('TITAN_CLIENT_ROOT'))
 def titanApiOverrideDir = file(providers.gradleProperty('titanApiOverrideDir')
     .orElse(providers.environmentVariable('TITAN_JAVA_API_OVERRIDE_DIR'))
@@ -82,11 +82,12 @@ tasks.register('runTitanClient', Exec) {
         if (!isWindows) {
             throw new GradleException('TitanClient DEV launch currently requires Windows.')
         }
-        if (!titanClientRoot.isPresent()) {
+        def titanClientRoot = titanClientRootProvider.orNull
+        if (!titanClientRoot) {
             throw new GradleException(
                 'Set TITAN_CLIENT_ROOT or -PtitanClientRoot to the directory containing controller.exe.')
         }
-        def controller = new File(titanClientRoot.get(), 'controller.exe')
+        def controller = new File(titanClientRoot, 'controller.exe')
         if (!controller.isFile()) {
             throw new GradleException("TitanClient controller.exe not found at ${controller}")
         }
