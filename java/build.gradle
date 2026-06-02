@@ -1,0 +1,97 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'net.titan'
+version = providers.gradleProperty('titanSdkVersion').orElse('0.1.0').get()
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.google.inject:guice:7.0.0'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = 'titan-plugin-api'
+        }
+    }
+
+    repositories {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL')
+        def repositoryUsername = providers.environmentVariable('TITAN_MAVEN_USERNAME')
+        def repositoryPassword = providers.environmentVariable('TITAN_MAVEN_PASSWORD')
+        if (repositoryUrl.isPresent()) {
+            maven {
+                name = 'titan'
+                url = uri(repositoryUrl.get())
+                if (repositoryUsername.isPresent() || repositoryPassword.isPresent()) {
+                    credentials {
+                        username = repositoryUsername.orElse('').get()
+                        password = repositoryPassword.orElse('').get()
+                    }
+                }
+            }
+        }
+    }
+}
+
+def isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
+def titanClientRoot = providers.gradleProperty('titanClientRoot')
+    .orElse(providers.environmentVariable('TITAN_CLIENT_ROOT'))
+def titanApiOverrideDir = file(providers.gradleProperty('titanApiOverrideDir')
+    .orElse(providers.environmentVariable('TITAN_JAVA_API_OVERRIDE_DIR'))
+    .orElse(new File(System.getProperty('user.home'), '.titanclient/java-dev').absolutePath)
+    .get())
+def titanApiOverrideJar = new File(titanApiOverrideDir, 'titan-plugin-api.jar')
+
+tasks.register('stageTitanApiOverride', Copy) {
+    group = 'titan dev'
+    description = 'Build and stage this SDK JAR for the installed TitanClient worker.'
+    dependsOn tasks.named('jar')
+    from tasks.named('jar').flatMap { it.archiveFile }
+    into titanApiOverrideDir
+    rename { 'titan-plugin-api.jar' }
+    doLast {
+        logger.lifecycle("Staged Java API override into ${titanApiOverrideJar}")
+    }
+}
+
+tasks.register('runTitanClient', Exec) {
+    group = 'titan dev'
+    description = 'Stage this SDK JAR and launch installed TitanClient in DEV mode.'
+    dependsOn tasks.named('stageTitanApiOverride')
+    doFirst {
+        if (!isWindows) {
+            throw new GradleException('TitanClient DEV launch currently requires Windows.')
+        }
+        if (!titanClientRoot.isPresent()) {
+            throw new GradleException(
+                'Set TITAN_CLIENT_ROOT or -PtitanClientRoot to the directory containing controller.exe.')
+        }
+        def controller = new File(titanClientRoot.get(), 'controller.exe')
+        if (!controller.isFile()) {
+            throw new GradleException("TitanClient controller.exe not found at ${controller}")
+        }
+        workingDir controller.parentFile
+        commandLine controller, '--dev-mode', '--launch-new-client'
+        environment 'TITAN_JAVA_API_JAR', titanApiOverrideJar.absolutePath
+    }
+}

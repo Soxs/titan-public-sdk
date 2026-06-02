@@ -1,0 +1,69 @@
+# Titan Public SDK
+
+Public Java and JavaScript/TypeScript SDK surface for TitanClient plugins.
+
+This repository is auto-mirrored from the canonical TitanClient source tree.
+Direct commits to `main` may be overwritten by the next outbound sync.
+
+## Contents
+
+| Path | Purpose |
+| --- | --- |
+| `java/` | Public Java plugin API source, Gradle build, sources JAR, and Javadoc JAR. |
+| `maven/releases/` | Generated Maven repository for `net.titan:titan-plugin-api`. |
+| `titan-plugin-sdk.d.ts` | TypeScript declarations for QuickJS plugins. |
+
+The native C++ SDK, ABI internals, loader handoff schemas, and controller/client
+IPC headers are intentionally not published here.
+
+## Java Plugins
+
+Use the API as a `compileOnly` dependency. TitanClient's Java worker supplies
+the API and Guice classes at runtime.
+
+```gradle
+repositories {
+    maven {
+        url = uri('https://raw.githubusercontent.com/Soxs/titan-public-sdk/main/maven/releases')
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'net.titan:titan-plugin-api:0.1.0'
+}
+```
+
+For a runnable project to copy or fork, start from
+[`Soxs/titan-java-sample-plugin`](https://github.com/Soxs/titan-java-sample-plugin).
+
+## Java SDK Development
+
+SDK contributors can work directly inside `java/`:
+
+```powershell
+cd java
+.\gradlew.bat clean build
+.\gradlew.bat publishToMavenLocal
+```
+
+To test an API-compatible SDK change against an installed TitanClient, set
+`TITAN_CLIENT_ROOT` to the directory containing `controller.exe`, then run:
+
+```powershell
+.\gradlew.bat runTitanClient
+```
+
+Changes that require new worker behavior or RPC methods still need a
+TitanClient maintainer to update the private worker.
+
+## JavaScript And TypeScript Plugins
+
+Use `titan-plugin-sdk.d.ts` for IntelliSense and type checking:
+
+```js
+/// <reference path="./titan-plugin-sdk.d.ts" />
+```
+
+JavaScript plugins still run in TitanClient's QuickJS runtime; this repository
+only publishes the type declarations and public Java SDK.

@@ -1,0 +1,84 @@
+# Titan Java Plugin API
+
+Public Java SDK for TitanClient plugins.
+
+For a runnable standalone starter that plugin authors can copy or fork, see
+[`Soxs/titan-java-sample-plugin`](https://github.com/Soxs/titan-java-sample-plugin).
+
+## Consume The SDK
+
+Published releases use Maven coordinates:
+
+```gradle
+repositories {
+    maven { url = uri('https://raw.githubusercontent.com/Soxs/titan-public-sdk/main/maven/releases') }
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'net.titan:titan-plugin-api:0.1.0'
+}
+```
+
+Use `compileOnly`: TitanClient's Java worker supplies the API classes at
+runtime. Plugin JARs should contain plugin classes annotated with
+`@PluginDescriptor`, not their own copy of the SDK or Guice.
+
+The SDK exposes Guice as a compile dependency so plugin authors can use:
+
+```java
+import com.google.inject.Inject;
+```
+
+TitanClient's worker provides the Guice runtime.
+
+## Package Layout
+
+- `net.titan.api`: game-facing services and types such as `Client`, `Player`,
+  and `Logger`.
+- `net.titan.api.plugins`: `Plugin` and `PluginDescriptor`.
+- `net.titan.api.config`: config interfaces, annotations, sections, and
+  setting metadata.
+- `net.titan.api.events`: event classes such as `GameTick`.
+- `net.titan.api.eventbus`: `EventBus` and `Subscribe`.
+
+## Build And Publish
+
+```powershell
+.\gradlew.bat clean build
+.\gradlew.bat publishToMavenLocal
+```
+
+Set `TITAN_MAVEN_REPOSITORY_URL`, `TITAN_MAVEN_USERNAME`, and
+`TITAN_MAVEN_PASSWORD` to enable the configured remote Maven publication.
+The canonical outbound sync publishes releases into
+`Soxs/titan-public-sdk/maven/releases` automatically.
+
+## Test Modified SDK Sources In TitanClient
+
+Set `TITAN_CLIENT_ROOT` to an installed TitanClient directory containing
+`controller.exe`, then run:
+
+```powershell
+.\gradlew.bat runTitanClient
+```
+
+The task builds this public API JAR, stages it under
+`%USERPROFILE%\.titanclient\java-dev`, and launches:
+
+```text
+controller.exe --dev-mode --launch-new-client
+```
+
+TitanClient starts its installed worker with the staged API JAR first on the
+Java classpath. This lets SDK contributors test API-compatible changes without
+access to the private worker source.
+
+You can also provide the installed location as a Gradle property:
+
+```powershell
+.\gradlew.bat runTitanClient -PtitanClientRoot=C:\Program Files\TitanClient
+```
+
+Changes that require new worker behavior or RPC methods still need a
+TitanClient maintainer to update and distribute the worker.
