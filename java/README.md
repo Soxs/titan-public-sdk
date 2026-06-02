@@ -56,12 +56,21 @@ The canonical outbound sync publishes releases into
 
 ## Test Modified SDK Sources In TitanClient
 
-Set `TITAN_CLIENT_ROOT` to an installed TitanClient directory containing
-`controller.exe`, then run:
+Edit the included `gradle.properties` file and set `titanClientRoot` to the
+folder that directly contains `controller.exe`:
+
+```properties
+titanClientRoot=C:/Program Files/TitanClient
+```
+
+Then run:
 
 ```powershell
 .\gradlew.bat runTitanClient
 ```
+
+`runTitanClient` will also try common TitanClient install folders and local
+source-build output folders if `titanClientRoot` is left blank.
 
 The task builds this public API JAR, stages it under
 `%USERPROFILE%\.titanclient\java-dev`, and launches:
@@ -74,10 +83,24 @@ TitanClient starts its installed worker with the staged API JAR first on the
 Java classpath. This lets SDK contributors test API-compatible changes without
 access to the private worker source.
 
-You can also provide the installed location as a Gradle property:
+You can also provide the installed location as a one-off Gradle property:
 
 ```powershell
-.\gradlew.bat runTitanClient -PtitanClientRoot=C:\Program Files\TitanClient
+.\gradlew.bat runTitanClient "-PtitanClientRoot=C:\Program Files\TitanClient"
+```
+
+Or set it for the current PowerShell session:
+
+```powershell
+$env:TITAN_CLIENT_ROOT = "C:\Program Files\TitanClient"
+.\gradlew.bat runTitanClient
+```
+
+For a local TitanClient source build, build `controller` first and use the
+build output folder, for example:
+
+```powershell
+.\gradlew.bat runTitanClient "-PtitanClientRoot=C:\path\to\SoxClientOSRS\build\controller\Debug"
 ```
 
 Changes that require new worker behavior or RPC methods still need a

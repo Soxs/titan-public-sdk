@@ -54,13 +54,113 @@ publishing {
 }
 
 def isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
-def titanClientRootProvider = providers.gradleProperty('titanClientRoot')
-    .orElse(providers.environmentVariable('TITAN_CLIENT_ROOT'))
 def titanApiOverrideDir = file(providers.gradleProperty('titanApiOverrideDir')
     .orElse(providers.environmentVariable('TITAN_JAVA_API_OVERRIDE_DIR'))
     .orElse(new File(System.getProperty('user.home'), '.titanclient/java-dev').absolutePath)
     .get())
 def titanApiOverrideJar = new File(titanApiOverrideDir, 'titan-plugin-api.jar')
+def titanLaunchTaskName = 'runTitanClient'
+
+def configuredTitanClientRoot = {
+    def gradleProperty = providers.gradleProperty('titanClientRoot').orNull
+    if (gradleProperty != null && !gradleProperty.trim().isEmpty()) {
+        return gradleProperty.trim()
+    }
+
+    def environmentVariable = providers.environmentVariable('TITAN_CLIENT_ROOT').orNull
+    if (environmentVariable != null && !environmentVariable.trim().isEmpty()) {
+        return environmentVariable.trim()
+    }
+
+    return null
+}
+
+def titanClientRootCandidates = {
+    def candidates = []
+    def addCandidate = { File candidate ->
+        if (candidate != null) {
+            candidates.add(candidate)
+        }
+    }
+
+    if (isWindows) {
+        def programFiles = System.getenv('ProgramFiles')
+        if (programFiles) {
+            addCandidate(new File(programFiles, 'TitanClient'))
+        }
+
+        def programFilesX86 = System.getenv('ProgramFiles(x86)')
+        if (programFilesX86) {
+            addCandidate(new File(programFilesX86, 'TitanClient'))
+        }
+
+        def localAppData = System.getenv('LOCALAPPDATA')
+        if (localAppData) {
+            addCandidate(new File(localAppData, 'TitanClient'))
+            addCandidate(new File(localAppData, 'Programs/TitanClient'))
+        }
+    }
+
+    def cursor = projectDir
+    while (cursor != null) {
+        addCandidate(new File(cursor, 'build/controller/Debug'))
+        addCandidate(new File(cursor, 'build/controller/RelWithDebInfo'))
+        addCandidate(new File(cursor, 'build/controller/Release'))
+        cursor = cursor.parentFile
+    }
+
+    def seen = [] as Set
+    candidates.findAll { seen.add(it.absolutePath.toLowerCase(Locale.ROOT)) }
+}
+
+def titanClientRootHelp = { File checkedController = null ->
+    def lines = []
+    if (checkedController != null) {
+        lines << "TitanClient controller.exe was not found."
+        lines << "Checked: ${checkedController.absolutePath}"
+    } else {
+        lines << "TitanClient install path is not configured, and no common install/source-build location was auto-detected."
+    }
+    lines << ''
+    lines << 'runTitanClient needs the folder that directly contains controller.exe.'
+    lines << 'Use the folder path, not controller.exe itself and not the plugins folder.'
+    lines << ''
+    lines << 'Edit the titanClientRoot entry in gradle.properties:'
+    lines << '  titanClientRoot=C:/Program Files/TitanClient'
+    lines << "  .\\gradlew.bat ${titanLaunchTaskName}"
+    lines << ''
+    lines << 'Or set it for this PowerShell session:'
+    lines << '  $env:TITAN_CLIENT_ROOT = "C:\\Program Files\\TitanClient"'
+    lines << "  .\\gradlew.bat ${titanLaunchTaskName}"
+    lines << ''
+    lines << 'One-off Gradle property:'
+    lines << "  .\\gradlew.bat ${titanLaunchTaskName} \"-PtitanClientRoot=C:\\Program Files\\TitanClient\""
+    lines << ''
+    lines << 'For a local TitanClient source build, build controller first and use:'
+    lines << "  .\\gradlew.bat ${titanLaunchTaskName} \"-PtitanClientRoot=C:\\path\\to\\SoxClientOSRS\\build\\controller\\Debug\""
+    lines.join(System.lineSeparator())
+}
+
+def resolveTitanController = {
+    def configuredRoot = configuredTitanClientRoot()
+    if (configuredRoot) {
+        def controller = new File(configuredRoot, 'controller.exe')
+        if (!controller.isFile()) {
+            throw new GradleException(titanClientRootHelp(controller))
+        }
+        return controller
+    }
+
+    def controller = titanClientRootCandidates()
+        .collect { new File(it, 'controller.exe') }
+        .find { it.isFile() }
+    if (controller != null) {
+        logger.lifecycle("Auto-detected TitanClient at ${controller.parentFile}")
+        return controller
+    }
+
+    throw new GradleException(titanClientRootHelp(null))
+}
 
 tasks.register('stageTitanApiOverride', Copy) {
     group = 'titan dev'
@@ -82,15 +182,7 @@ tasks.register('runTitanClient', Exec) {
         if (!isWindows) {
             throw new GradleException('TitanClient DEV launch currently requires Windows.')
         }
-        def titanClientRoot = titanClientRootProvider.orNull
-        if (!titanClientRoot) {
-            throw new GradleException(
-                'Set TITAN_CLIENT_ROOT or -PtitanClientRoot to the directory containing controller.exe.')
-        }
-        def controller = new File(titanClientRoot, 'controller.exe')
-        if (!controller.isFile()) {
-            throw new GradleException("TitanClient controller.exe not found at ${controller}")
-        }
+        def controller = resolveTitanController()
         workingDir controller.parentFile
         commandLine controller, '--dev-mode', '--launch-new-client'
         environment 'TITAN_JAVA_API_JAR', titanApiOverrideJar.absolutePath

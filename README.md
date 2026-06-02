@@ -47,11 +47,27 @@ cd java
 .\gradlew.bat publishToMavenLocal
 ```
 
-To test an API-compatible SDK change against an installed TitanClient, set
-`TITAN_CLIENT_ROOT` to the directory containing `controller.exe`, then run:
+To test an API-compatible SDK change against an installed TitanClient, edit
+`java/gradle.properties` and set `titanClientRoot` to the folder that directly
+contains `controller.exe`:
+
+```properties
+titanClientRoot=C:/Program Files/TitanClient
+```
+
+Then run:
 
 ```powershell
 .\gradlew.bat runTitanClient
+```
+
+`runTitanClient` will also try common install folders if `titanClientRoot` is
+left blank.
+
+You can also use a one-off Gradle property:
+
+```powershell
+.\gradlew.bat runTitanClient "-PtitanClientRoot=C:\Program Files\TitanClient"
 ```
 
 Changes that require new worker behavior or RPC methods still need a
