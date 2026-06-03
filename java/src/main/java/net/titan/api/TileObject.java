@@ -3,7 +3,7 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public final class TileObject implements Locatable<TileObject>, ClientBacked {
+public final class TileObject implements Locatable<TileObject> {
     private transient Client client;
     private int tileX;
     private int tileY;
@@ -20,12 +20,6 @@ public final class TileObject implements Locatable<TileObject>, ClientBacked {
     private int layer = -1;
     private int worldX;
     private int worldY;
-
-    @Override
-    public void bindClient(Client client) { this.client = client; }
-
-    @Override
-    public Client client() { return client; }
 
     @Override
     public int tileX() { return tileX; }
@@ -65,7 +59,7 @@ public final class TileObject implements Locatable<TileObject>, ClientBacked {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client();
+        Client value = client;
         return value != null && value.interactTileObject(action, this);
     }
 }

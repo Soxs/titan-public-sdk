@@ -20,7 +20,7 @@ dependencies {
 }
 ```
 
-Use `compileOnly`: TitanClient's Java worker supplies the API classes at
+Use `compileOnly`: TitanClient's embedded Java runtime supplies the API classes at
 runtime. Plugin JARs should contain plugin classes annotated with
 `@PluginDescriptor`, not their own copy of the SDK or Guice.
 
@@ -30,7 +30,7 @@ The SDK exposes Guice as a compile dependency so plugin authors can use:
 import com.google.inject.Inject;
 ```
 
-TitanClient's worker provides the Guice runtime.
+TitanClient's embedded runtime provides the Guice runtime.
 
 ## Package Layout
 
@@ -63,10 +63,10 @@ folder that directly contains `controller.exe`:
 titanClientRoot=C:/Program Files/TitanClient
 ```
 
-That TitanClient folder must include the Java worker runtime at:
+That TitanClient folder must include the embedded Java runtime at:
 
 ```text
-java/titan-java-worker.jar
+java/titan-java-embedded.jar
 ```
 
 Then run:
@@ -85,9 +85,9 @@ The task builds this public API JAR, stages it under
 controller.exe --dev-mode --launch-new-client
 ```
 
-TitanClient starts its installed worker with the staged API JAR first on the
-Java classpath. This lets SDK contributors test API-compatible changes without
-access to the private worker source.
+TitanClient starts its embedded JVM with the staged API JAR first on the Java
+classpath. This lets SDK contributors test API-compatible changes without
+access to the private runtime source.
 
 You can also provide the installed location as a one-off Gradle property:
 
@@ -111,5 +111,5 @@ cmake --build build --config Release --target controller
 .\gradlew.bat runTitanClient "-PtitanClientRoot=C:\path\to\SoxClientOSRS\build\controller\Release"
 ```
 
-Changes that require new worker behavior or RPC methods still need a
-TitanClient maintainer to update and distribute the worker.
+Changes that require new embedded runtime behavior or native bridge methods
+still need a TitanClient maintainer to update and distribute the runtime.

@@ -1,6 +1,6 @@
 package net.titan.api;
 
-public final class GroundItem implements Locatable<GroundItem>, ClientBacked {
+public final class GroundItem implements Locatable<GroundItem> {
     private transient Client client;
     private int tileX;
     private int tileY;
@@ -11,12 +11,6 @@ public final class GroundItem implements Locatable<GroundItem>, ClientBacked {
     private int worldX;
     private int worldY;
     private long ownershipType;
-
-    @Override
-    public void bindClient(Client client) { this.client = client; }
-
-    @Override
-    public Client client() { return client; }
 
     @Override
     public int tileX() { return tileX; }
@@ -36,7 +30,7 @@ public final class GroundItem implements Locatable<GroundItem>, ClientBacked {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client();
+        Client value = client;
         return value != null && value.interactGroundItem(action, id, tileX, tileY);
     }
 }

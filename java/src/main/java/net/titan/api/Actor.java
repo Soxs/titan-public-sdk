@@ -3,7 +3,7 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public interface Actor extends ClientBacked {
+public interface Actor {
     long entityPtr();
     int hashIndex();
     int tileX();

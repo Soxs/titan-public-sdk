@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 
 public final class Player implements Actor, Locatable<Player> {
-    private transient Client client;
     private long entityPtr;
     private int hashIndex;
     private int tileX;
@@ -29,12 +28,6 @@ public final class Player implements Actor, Locatable<Player> {
     private int healthScale;
     private boolean hasHealthBar;
     private List<WorldPoint> pathQueue;
-
-    @Override
-    public void bindClient(Client client) { this.client = client; }
-
-    @Override
-    public Client client() { return client; }
 
     @Override
     public long entityPtr() { return entityPtr; }
@@ -90,6 +83,10 @@ public final class Player implements Actor, Locatable<Player> {
     public boolean hasHealthBar() { return hasHealthBar; }
 
     public boolean isOverheadActive() { return overheadIcon >= 0; }
+    public boolean isOverheadActive(HeadIcon icon) {
+        return icon != null && overheadIcon == icon.id();
+    }
+    public HeadIcon overheadHeadIcon() { return HeadIcon.fromId(overheadIcon); }
     public boolean isSkulled() { return skullIcon >= 0; }
     public boolean isStationary() { return stationary; }
     @Override

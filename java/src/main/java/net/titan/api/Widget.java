@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public final class Widget implements ClientBacked {
+public final class Widget {
     private transient Client client;
     private int screenX;
     private int screenY;
@@ -29,12 +29,6 @@ public final class Widget implements ClientBacked {
     private int dynamicChildSlot = -1;
     private int rootPackedId;
     private List<Integer> dynamicPath;
-
-    @Override
-    public void bindClient(Client client) { this.client = client; }
-
-    @Override
-    public Client client() { return client; }
 
     public int screenX() { return screenX; }
     public int screenY() { return screenY; }
@@ -81,12 +75,12 @@ public final class Widget implements ClientBacked {
     }
 
     public boolean interact(int opcode, int identifier, int param0, int param1) {
-        Client value = client();
+        Client value = client;
         return value != null && value.widgetInteract(opcode, identifier, param0, param1);
     }
 
     public boolean interact(int opcode, int identifier, int childSlot) {
-        Client value = client();
+        Client value = client;
         if (value == null) return false;
         if (isDynamic()) {
             return value.widgetInteractAtPath(address(), opcode, identifier, childSlot);
@@ -96,7 +90,7 @@ public final class Widget implements ClientBacked {
 
     public boolean interact(int opcode, int identifier) {
         int slot = dynamicChildSlot >= 0 ? dynamicChildSlot : -1;
-        Client value = client();
+        Client value = client;
         if (value == null) return false;
         if (isDynamic()) {
             return value.widgetInteractAtPath(address(), opcode, identifier, -1);
@@ -105,11 +99,11 @@ public final class Widget implements ClientBacked {
     }
 
     public boolean setText(String value) {
-        Client client = client();
-        if (client == null) return false;
+        Client bridge = client;
+        if (bridge == null) return false;
         if (isDynamic()) {
-            return client.setWidgetTextAtPath(address(), value);
+            return bridge.setWidgetTextAtPath(address(), value);
         }
-        return client.setWidgetText(packedId, value);
+        return bridge.setWidgetText(packedId, value);
     }
 }

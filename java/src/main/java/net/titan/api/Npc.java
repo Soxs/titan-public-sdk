@@ -33,8 +33,6 @@ public final class Npc implements Actor, Locatable<Npc> {
     private List<String> actions;
     private List<WorldPoint> pathQueue;
 
-    @Override public void bindClient(Client client) { this.client = client; }
-    @Override public Client client() { return client; }
     @Override public long entityPtr() { return entityPtr; }
     public long definitionPtr() { return definitionPtr; }
     @Override public int hashIndex() { return hashIndex; }
@@ -58,7 +56,14 @@ public final class Npc implements Actor, Locatable<Npc> {
     public int sizeX() { return sizeX; }
     public int sizeY() { return sizeY; }
     public int overheadIcon() { return overheadIcon; }
+    public HeadIcon overheadHeadIcon() { return HeadIcon.fromId(overheadIcon); }
     public boolean hasHeadIconOverride() { return hasHeadIconOverride; }
+    public boolean isOverheadActive() {
+        return overheadIcon >= 0 || hasHeadIconOverride;
+    }
+    public boolean isOverheadActive(HeadIcon icon) {
+        return icon != null && overheadIcon == icon.id();
+    }
     @Override public int healthRatio() { return healthRatio; }
     @Override public int healthScale() { return healthScale; }
     @Override public boolean hasHealthBar() { return hasHealthBar; }
@@ -89,7 +94,7 @@ public final class Npc implements Actor, Locatable<Npc> {
     @Override
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client();
+        Client value = client;
         return value != null && value.interactNpcByIndex(action, hashIndex);
     }
 }
