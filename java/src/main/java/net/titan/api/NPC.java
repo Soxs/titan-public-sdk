@@ -3,7 +3,7 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public final class Npc implements Actor, Locatable<Npc> {
+public final class NPC implements Actor, Locatable<NPC> {
     private transient Client client;
     private long entityPtr;
     private long definitionPtr;

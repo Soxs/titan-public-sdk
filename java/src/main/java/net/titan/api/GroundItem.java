@@ -1,6 +1,8 @@
 package net.titan.api;
 
 public final class GroundItem implements Locatable<GroundItem> {
+    private static final int ACCOUNT_TYPE_VARBIT = 1777;
+
     private transient Client client;
     private int tileX;
     private int tileY;
@@ -27,6 +29,23 @@ public final class GroundItem implements Locatable<GroundItem> {
     public int worldY() { return worldY; }
     public long ownershipType() { return ownershipType; }
     public GroundItemOwnership ownership() { return GroundItemOwnership.fromId(ownershipType); }
+    public boolean canLoot() {
+        Client value = client;
+        int accountType = value == null ? 0 : value.varbit(ACCOUNT_TYPE_VARBIT);
+        boolean ironman = accountType >= 1 && accountType <= 6;
+        boolean groupIronman = accountType == 4 || accountType == 5 || accountType == 6;
+        switch ((int) ownershipType) {
+        case 0:
+        case 1:
+            return true;
+        case 2:
+            return !ironman;
+        case 3:
+            return groupIronman;
+        default:
+            return !ironman;
+        }
+    }
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;

@@ -29,7 +29,7 @@ public final class InventoryItem {
             slot, id, target.slot(), target.id());
     }
 
-    public boolean useOn(Npc target) {
+    public boolean useOn(NPC target) {
         if (target == null) return false;
         Client value = client;
         return value != null && value.useInventoryItemOnNpc(slot, id, target.hashIndex());

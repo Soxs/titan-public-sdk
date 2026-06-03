@@ -1,5 +1,8 @@
 package net.titan.api;
 
+import net.titan.api.queries.Queries;
+import net.titan.api.queries.WidgetQuerySnapshot;
+
 import java.util.Optional;
 import java.util.OptionalInt;
 import java.util.OptionalLong;
@@ -19,7 +22,8 @@ public interface Client {
     boolean loggedIn();
     Optional<Player> localPlayer();
     List<Player> players();
-    List<Npc> npcs();
+    List<NPC> npcs();
+    default Queries queries() { return new Queries(this); }
     List<TileObject> tileObjects(int radius);
     default List<TileObject> tileObjects() { return tileObjects(10); }
     List<TileObject> tileObjectsOnTile(int plane, int tileX, int tileY);
@@ -113,11 +117,11 @@ public interface Client {
     boolean interactObject(String action, int locIdOrNeg1, String nameOrNull);
     boolean interactTileObject(String action, TileObject object);
     boolean interactGroundItem(String action, int itemId, int tileX, int tileY);
-    Optional<Npc> findNearestNpc(int npcIdOrNeg1, String nameOrNull);
-    default Optional<Npc> findNearestNpc(int npcId) {
+    Optional<NPC> findNearestNpc(int npcIdOrNeg1, String nameOrNull);
+    default Optional<NPC> findNearestNpc(int npcId) {
         return findNearestNpc(npcId, null);
     }
-    default Optional<Npc> findNearestNpc(String name) {
+    default Optional<NPC> findNearestNpc(String name) {
         return findNearestNpc(-1, name);
     }
     Optional<TileObject> findNearestObject(int locIdOrNeg1, String nameOrNull);
@@ -141,7 +145,16 @@ public interface Client {
     Optional<ItemComposition> itemComposition(int itemId);
 
     Optional<Widget> widget(int packedId);
+    List<Widget> widgets(int groupId);
+    default List<Widget> widgets() { return widgets(-1); }
+    default WidgetQuerySnapshot widgetQuery(int groupId) {
+        return new WidgetQuerySnapshot(widgets(groupId), false);
+    }
     List<Widget> widgetChildren(int parentPackedId);
+    List<Widget> widgetChildrenAtPath(WidgetAddress address);
+    default WidgetQuerySnapshot widgetChildrenQueryAtPath(WidgetAddress address) {
+        return new WidgetQuerySnapshot(widgetChildrenAtPath(address), false);
+    }
     Optional<Widget> widgetByText(String query);
     boolean widgetInteract(int opcode, int identifier, int param0, int param1);
     boolean widgetInteractAtPath(WidgetAddress address, int opcode, int identifier, int childSlot);

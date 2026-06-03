@@ -1,13 +1,13 @@
 package net.titan.api.events;
 
-import net.titan.api.Npc;
+import net.titan.api.NPC;
 
 public final class NpcSpawned {
-    private final Npc npc;
+    private final NPC npc;
 
-    public NpcSpawned(Npc npc) {
+    public NpcSpawned(NPC npc) {
         this.npc = npc;
     }
 
-    public Npc npc() { return npc; }
+    public NPC npc() { return npc; }
 }
