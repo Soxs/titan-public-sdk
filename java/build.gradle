@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'net.titan'
-version = providers.gradleProperty('titanSdkVersion').orElse('0.1.0').get()
+version = providers.gradleProperty('titanSdkVersion').orElse('0.1.1').get()
 
 java {
     sourceCompatibility = JavaVersion.VERSION_11
