@@ -1,0 +1,83 @@
+package net.titan.api;
+
+import java.util.Objects;
+
+public final class WorldArea {
+    private int x;
+    private int y;
+    private int width = 1;
+    private int height = 1;
+    private int plane;
+
+    public WorldArea() {}
+
+    public WorldArea(int x, int y, int width, int height, int plane) {
+        this.x = x;
+        this.y = y;
+        this.width = Math.max(1, width);
+        this.height = Math.max(1, height);
+        this.plane = plane;
+    }
+
+    public int x() { return x; }
+    public int y() { return y; }
+    public int width() { return width; }
+    public int height() { return height; }
+    public int plane() { return plane; }
+
+    public boolean contains(WorldPoint point) {
+        return point != null && point.z() == plane && contains2D(point);
+    }
+
+    public boolean contains2D(WorldPoint point) {
+        return point != null
+            && point.x() >= x && point.x() < x + width
+            && point.y() >= y && point.y() < y + height;
+    }
+
+    public int distanceTo(WorldPoint point) {
+        if (point == null || point.z() != plane) return Integer.MAX_VALUE;
+        int dx = 0;
+        int dy = 0;
+        if (point.x() < x) dx = x - point.x();
+        else if (point.x() >= x + width) dx = point.x() - (x + width - 1);
+        if (point.y() < y) dy = y - point.y();
+        else if (point.y() >= y + height) dy = point.y() - (y + height - 1);
+        return Math.max(dx, dy);
+    }
+
+    public int distanceTo(WorldArea other) {
+        if (other == null || other.plane != plane) return Integer.MAX_VALUE;
+        int dx = 0;
+        int dy = 0;
+        if (other.x + other.width <= x) dx = x - (other.x + other.width - 1);
+        else if (other.x >= x + width) dx = other.x - (x + width - 1);
+        if (other.y + other.height <= y) dy = y - (other.y + other.height - 1);
+        else if (other.y >= y + height) dy = other.y - (y + height - 1);
+        return Math.max(dx, dy);
+    }
+
+    public WorldPoint center() {
+        return new WorldPoint(x + width / 2, y + height / 2, plane);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof WorldArea)) return false;
+        WorldArea other = (WorldArea) object;
+        return x == other.x && y == other.y && width == other.width
+            && height == other.height && plane == other.plane;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, width, height, plane);
+    }
+
+    @Override
+    public String toString() {
+        return "WorldArea{" + x + "," + y + "," + width + "x" + height
+            + "," + plane + "}";
+    }
+}

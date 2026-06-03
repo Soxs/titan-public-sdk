@@ -3,7 +3,8 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public final class Npc implements Actor {
+public final class Npc implements Actor, Locatable<Npc> {
+    private transient Client client;
     private long entityPtr;
     private long definitionPtr;
     private int hashIndex;
@@ -32,6 +33,8 @@ public final class Npc implements Actor {
     private List<String> actions;
     private List<WorldPoint> pathQueue;
 
+    @Override public void bindClient(Client client) { this.client = client; }
+    @Override public Client client() { return client; }
     @Override public long entityPtr() { return entityPtr; }
     public long definitionPtr() { return definitionPtr; }
     @Override public int hashIndex() { return hashIndex; }
@@ -43,6 +46,9 @@ public final class Npc implements Actor {
     @Override public int worldY() { return worldY; }
     @Override public int preciseX() { return preciseX; }
     @Override public int preciseY() { return preciseY; }
+    @Override public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY); }
+    @Override public Tile tile() { return Locatable.super.tile(); }
+    @Override public WorldPoint worldPoint() { return Locatable.super.worldPoint(); }
     @Override public int orientation() { return orientation; }
     @Override public int animation() { return animation; }
     @Override public int interactingIndex() { return interactingIndex; }
@@ -62,6 +68,15 @@ public final class Npc implements Actor {
         return pathQueue == null ? Collections.emptyList() : Collections.unmodifiableList(pathQueue);
     }
 
+    @Override
+    public WorldArea worldArea() {
+        return new WorldArea(worldX(), worldY(), Math.max(1, sizeX()), Math.max(1, sizeY()), plane());
+    }
+
+    @Override public int distanceTo(Tile other) { return Locatable.super.distanceTo(other); }
+    @Override public int distanceTo(WorldPoint other) { return Locatable.super.distanceTo(other); }
+    @Override public int distanceTo(Locatable<?> other) { return Locatable.super.distanceTo(other); }
+
     public boolean hasAction(String action) {
         if (action == null || action.isEmpty()) return false;
         String needle = action.toLowerCase();
@@ -69,5 +84,12 @@ public final class Npc implements Actor {
             if (value != null && value.toLowerCase().contains(needle)) return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean interact(String action) {
+        if (action == null || action.isEmpty()) return false;
+        Client value = client();
+        return value != null && value.interactNpcByIndex(action, hashIndex);
     }
 }

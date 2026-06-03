@@ -3,7 +3,7 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public interface Actor {
+public interface Actor extends ClientBacked {
     long entityPtr();
     int hashIndex();
     int tileX();
@@ -22,7 +22,17 @@ public interface Actor {
     int healthScale();
     boolean hasHealthBar();
 
+    Tile tile();
+    WorldPoint worldPoint();
+    LocalPoint localPoint();
+    WorldArea worldArea();
+    int distanceTo(Tile other);
+    int distanceTo(WorldPoint other);
+    int distanceTo(Locatable<?> other);
+
     default boolean isAnimating() { return animation() != -1; }
+
+    default boolean interact(String action) { return false; }
 
     default boolean isInteracting() {
         if (interactingPhase() == 0xFF) return interactingIndex() != -1 && interactingIndex() != 0;

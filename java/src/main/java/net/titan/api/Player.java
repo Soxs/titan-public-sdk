@@ -3,7 +3,8 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public final class Player implements Actor {
+public final class Player implements Actor, Locatable<Player> {
+    private transient Client client;
     private long entityPtr;
     private int hashIndex;
     private int tileX;
@@ -30,6 +31,12 @@ public final class Player implements Actor {
     private List<WorldPoint> pathQueue;
 
     @Override
+    public void bindClient(Client client) { this.client = client; }
+
+    @Override
+    public Client client() { return client; }
+
+    @Override
     public long entityPtr() { return entityPtr; }
     public String name() { return name == null ? "" : name; }
     @Override
@@ -46,6 +53,20 @@ public final class Player implements Actor {
     public int preciseX() { return preciseX; }
     @Override
     public int preciseY() { return preciseY; }
+    @Override
+    public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY); }
+    @Override
+    public Tile tile() { return Locatable.super.tile(); }
+    @Override
+    public WorldPoint worldPoint() { return Locatable.super.worldPoint(); }
+    @Override
+    public WorldArea worldArea() { return Locatable.super.worldArea(); }
+    @Override
+    public int distanceTo(Tile other) { return Locatable.super.distanceTo(other); }
+    @Override
+    public int distanceTo(WorldPoint other) { return Locatable.super.distanceTo(other); }
+    @Override
+    public int distanceTo(Locatable<?> other) { return Locatable.super.distanceTo(other); }
     @Override
     public int orientation() { return orientation; }
     @Override

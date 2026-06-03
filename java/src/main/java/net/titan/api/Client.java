@@ -21,15 +21,52 @@ public interface Client {
     List<Player> players();
     List<Npc> npcs();
     List<TileObject> tileObjects(int radius);
+    default List<TileObject> tileObjects() { return tileObjects(10); }
     List<TileObject> tileObjectsOnTile(int plane, int tileX, int tileY);
+    default List<TileObject> tileObjectsOnTile(Tile tile) {
+        return tile == null
+            ? java.util.Collections.emptyList()
+            : tileObjectsOnTile(tile.plane(), tile.x(), tile.y());
+    }
+    default List<TileObject> tileObjectsOnTile(Locatable<?> locatable) {
+        return locatable == null
+            ? java.util.Collections.emptyList()
+            : tileObjectsOnTile(locatable.plane(), locatable.tileX(), locatable.tileY());
+    }
     List<GroundItem> groundItems(int radius);
+    default List<GroundItem> groundItems() { return groundItems(10); }
     List<GroundItem> groundItemsOnTile(int plane, int tileX, int tileY);
+    default List<GroundItem> groundItemsOnTile(Tile tile) {
+        return tile == null
+            ? java.util.Collections.emptyList()
+            : groundItemsOnTile(tile.plane(), tile.x(), tile.y());
+    }
+    default List<GroundItem> groundItemsOnTile(Locatable<?> locatable) {
+        return locatable == null
+            ? java.util.Collections.emptyList()
+            : groundItemsOnTile(locatable.plane(), locatable.tileX(), locatable.tileY());
+    }
     List<Projectile> projectiles();
     List<GraphicsObject> graphicsObjects();
     Optional<Camera> camera();
     Optional<ScreenPoint> mousePosition();
     Optional<ScreenPoint> worldToScreen(int worldX, int worldY, int worldZ);
+    default Optional<ScreenPoint> worldToScreen(WorldPoint point) {
+        return point == null
+            ? Optional.empty()
+            : worldToScreen(point.x(), point.y(), point.z());
+    }
+    default Optional<ScreenPoint> worldToScreen(Locatable<?> locatable) {
+        return locatable == null
+            ? Optional.empty()
+            : worldToScreen(locatable.worldX(), locatable.worldY(), locatable.plane());
+    }
     Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane, int heightOffset);
+    default Optional<ScreenPoint> tileToScreen(Tile tile, int heightOffset) {
+        return tile == null
+            ? Optional.empty()
+            : tileToScreen(tile.x(), tile.y(), tile.plane(), heightOffset);
+    }
     int tileHeight(int preciseX, int preciseY, int plane);
 
     int varbit(int id);
@@ -50,10 +87,24 @@ public interface Client {
     default int skillExperience(Skill skill) { return skillExperience(skill.id()); }
 
     int collisionFlag(int plane, int tileX, int tileY);
+    default int collisionFlag(Tile tile) {
+        return tile == null ? 0 : collisionFlag(tile.plane(), tile.x(), tile.y());
+    }
+    default int collisionFlag(Locatable<?> locatable) {
+        return locatable == null ? 0
+            : collisionFlag(locatable.plane(), locatable.tileX(), locatable.tileY());
+    }
     boolean entityHidden(int entityType);
     boolean setEntityHidden(int entityType, boolean hidden);
     boolean walkTo(int sceneX, int sceneY);
     boolean walkToWorld(int worldX, int worldY, int plane);
+    default boolean walkTo(WorldPoint point) {
+        return point != null && walkToWorld(point.x(), point.y(), point.z());
+    }
+    default boolean walkTo(Locatable<?> locatable) {
+        return locatable != null && walkToWorld(
+            locatable.worldX(), locatable.worldY(), locatable.plane());
+    }
     boolean invokeMenuAction(long opcode, int identifier, int param0, int param1,
                              long worldViewId, int clickX, int clickY,
                              String actionText, String targetText, boolean skipClick);
@@ -63,7 +114,19 @@ public interface Client {
     boolean interactTileObject(String action, TileObject object);
     boolean interactGroundItem(String action, int itemId, int tileX, int tileY);
     Optional<Npc> findNearestNpc(int npcIdOrNeg1, String nameOrNull);
+    default Optional<Npc> findNearestNpc(int npcId) {
+        return findNearestNpc(npcId, null);
+    }
+    default Optional<Npc> findNearestNpc(String name) {
+        return findNearestNpc(-1, name);
+    }
     Optional<TileObject> findNearestObject(int locIdOrNeg1, String nameOrNull);
+    default Optional<TileObject> findNearestObject(int locId) {
+        return findNearestObject(locId, null);
+    }
+    default Optional<TileObject> findNearestObject(String name) {
+        return findNearestObject(-1, name);
+    }
 
     List<InventoryItem> inventoryItems();
     boolean containsInventoryItem(int itemId);
@@ -81,7 +144,9 @@ public interface Client {
     List<Widget> widgetChildren(int parentPackedId);
     Optional<Widget> widgetByText(String query);
     boolean widgetInteract(int opcode, int identifier, int param0, int param1);
+    boolean widgetInteractAtPath(WidgetAddress address, int opcode, int identifier, int childSlot);
     boolean setWidgetText(int packedId, String text);
+    boolean setWidgetTextAtPath(WidgetAddress address, String text);
 
     OptionalInt currentWorld();
     List<World> worlds();

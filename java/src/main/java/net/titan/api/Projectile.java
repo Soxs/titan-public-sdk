@@ -1,6 +1,6 @@
 package net.titan.api;
 
-public final class Projectile {
+public final class Projectile implements Locatable<Projectile> {
     private long basePtr;
     private int plane;
     private int startX;
@@ -37,11 +37,20 @@ public final class Projectile {
     public int sceneX() { return sceneX; }
     public int sceneY() { return sceneY; }
     public int sceneZ() { return sceneZ; }
+    @Override
     public int tileX() { return tileX; }
+    @Override
     public int tileY() { return tileY; }
+    @Override
     public int worldX() { return worldX; }
+    @Override
     public int worldY() { return worldY; }
     public long yaw() { return yaw; }
     public long pitch() { return pitch; }
     public boolean hasMoved() { return hasMoved; }
+
+    @Override
+    public LocalPoint localPoint() {
+        return new LocalPoint(sceneX, sceneZ);
+    }
 }

@@ -1,6 +1,6 @@
 package net.titan.api;
 
-public final class GraphicsObject {
+public final class GraphicsObject implements Locatable<GraphicsObject> {
     private long basePtr;
     private int plane;
     private int spotAnimId;
@@ -27,11 +27,20 @@ public final class GraphicsObject {
     public int preciseZ() { return preciseZ; }
     public int sceneX() { return sceneX; }
     public int sceneZ() { return sceneZ; }
+    @Override
     public int tileX() { return tileX; }
+    @Override
     public int tileY() { return tileY; }
+    @Override
     public int worldX() { return worldX; }
+    @Override
     public int worldY() { return worldY; }
     public long worldViewPtr() { return worldViewPtr; }
     public long seqStateAddr() { return seqStateAddr; }
     public long seqTypePtr() { return seqTypePtr; }
+
+    @Override
+    public LocalPoint localPoint() {
+        return new LocalPoint(preciseX, preciseZ);
+    }
 }
