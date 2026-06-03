@@ -27,6 +27,10 @@ public interface Client {
     List<Projectile> projectiles();
     List<GraphicsObject> graphicsObjects();
     Optional<Camera> camera();
+    Optional<ScreenPoint> mousePosition();
+    Optional<ScreenPoint> worldToScreen(int worldX, int worldY, int worldZ);
+    Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane, int heightOffset);
+    int tileHeight(int preciseX, int preciseY, int plane);
 
     int varbit(int id);
     int varp(int id);
@@ -46,8 +50,13 @@ public interface Client {
     default int skillExperience(Skill skill) { return skillExperience(skill.id()); }
 
     int collisionFlag(int plane, int tileX, int tileY);
+    boolean entityHidden(int entityType);
+    boolean setEntityHidden(int entityType, boolean hidden);
     boolean walkTo(int sceneX, int sceneY);
     boolean walkToWorld(int worldX, int worldY, int plane);
+    boolean invokeMenuAction(long opcode, int identifier, int param0, int param1,
+                             long worldViewId, int clickX, int clickY,
+                             String actionText, String targetText, boolean skipClick);
     boolean interactNpc(String action, int npcIdOrNeg1, String nameOrNull);
     boolean interactNpcByIndex(String action, int hashIndex);
     boolean interactObject(String action, int locIdOrNeg1, String nameOrNull);
@@ -60,6 +69,11 @@ public interface Client {
     boolean containsInventoryItem(int itemId);
     boolean interactInventoryItem(int itemId, String action);
     boolean interactInventoryItemAtSlot(int slot, int itemId, String action);
+    boolean useInventoryItemOnItem(int srcSlot, int srcItemId,
+                                   int targetSlot, int targetItemId);
+    boolean useInventoryItemOnNpc(int srcSlot, int srcItemId, int npcHashIndex);
+    boolean useInventoryItemOnObject(int srcSlot, int srcItemId,
+                                     int objectId, int tileX, int tileY);
     Optional<ItemContainer> itemContainer(int containerId);
     Optional<ItemComposition> itemComposition(int itemId);
 
@@ -76,4 +90,10 @@ public interface Client {
 
     int idleTimeRemaining();
     void resetIdleTimer();
+
+    int questState(int questId);
+    boolean addChatMessage(int type, String name, String message, String sender);
+    boolean sendKeyboardString(String text);
+    boolean sendKeyboardKey(int key, int modifiers);
+    default boolean sendKeyboardKey(int key) { return sendKeyboardKey(key, 0); }
 }
