@@ -76,12 +76,13 @@ public final class Widget {
 
     public boolean interact(int opcode, int identifier, int param0, int param1) {
         Client value = client;
-        return value != null && value.widgetInteract(opcode, identifier, param0, param1);
+        if (value == null) value = Titan.client();
+        return value.widgetInteract(opcode, identifier, param0, param1);
     }
 
     public boolean interact(int opcode, int identifier, int childSlot) {
         Client value = client;
-        if (value == null) return false;
+        if (value == null) value = Titan.client();
         if (isDynamic()) {
             return value.widgetInteractAtPath(address(), opcode, identifier, childSlot);
         }
@@ -91,7 +92,7 @@ public final class Widget {
     public boolean interact(int opcode, int identifier) {
         int slot = dynamicChildSlot >= 0 ? dynamicChildSlot : -1;
         Client value = client;
-        if (value == null) return false;
+        if (value == null) value = Titan.client();
         if (isDynamic()) {
             return value.widgetInteractAtPath(address(), opcode, identifier, -1);
         }
@@ -100,7 +101,7 @@ public final class Widget {
 
     public boolean setText(String value) {
         Client bridge = client;
-        if (bridge == null) return false;
+        if (bridge == null) bridge = Titan.client();
         if (isDynamic()) {
             return bridge.setWidgetTextAtPath(address(), value);
         }

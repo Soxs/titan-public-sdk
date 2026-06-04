@@ -95,6 +95,7 @@ public final class NPC implements Actor, Locatable<NPC> {
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         Client value = client;
-        return value != null && value.interactNpcByIndex(action, hashIndex);
+        if (value == null) value = Titan.client();
+        return value.interactNpcByIndex(action, hashIndex);
     }
 }

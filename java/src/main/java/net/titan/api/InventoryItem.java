@@ -15,7 +15,7 @@ public final class InventoryItem {
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         Client value = client;
-        if (value == null) return false;
+        if (value == null) value = Titan.client();
         if (slot >= 0 && value.interactInventoryItemAtSlot(slot, id, action)) {
             return true;
         }
@@ -25,20 +25,22 @@ public final class InventoryItem {
     public boolean useOn(InventoryItem target) {
         if (target == null) return false;
         Client value = client;
-        return value != null && value.useInventoryItemOnItem(
-            slot, id, target.slot(), target.id());
+        if (value == null) value = Titan.client();
+        return value.useInventoryItemOnItem(slot, id, target.slot(), target.id());
     }
 
     public boolean useOn(NPC target) {
         if (target == null) return false;
         Client value = client;
-        return value != null && value.useInventoryItemOnNpc(slot, id, target.hashIndex());
+        if (value == null) value = Titan.client();
+        return value.useInventoryItemOnNpc(slot, id, target.hashIndex());
     }
 
     public boolean useOn(TileObject target) {
         if (target == null) return false;
         Client value = client;
-        return value != null && value.useInventoryItemOnObject(
+        if (value == null) value = Titan.client();
+        return value.useInventoryItemOnObject(
             slot, id, target.id(), target.tileX(), target.tileY());
     }
 }

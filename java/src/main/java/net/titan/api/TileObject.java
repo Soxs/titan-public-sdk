@@ -60,6 +60,7 @@ public final class TileObject implements Locatable<TileObject> {
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         Client value = client;
-        return value != null && value.interactTileObject(action, this);
+        if (value == null) value = Titan.client();
+        return value.interactTileObject(action, this);
     }
 }

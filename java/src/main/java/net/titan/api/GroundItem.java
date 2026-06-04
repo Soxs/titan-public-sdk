@@ -31,7 +31,8 @@ public final class GroundItem implements Locatable<GroundItem> {
     public GroundItemOwnership ownership() { return GroundItemOwnership.fromId(ownershipType); }
     public boolean canLoot() {
         Client value = client;
-        int accountType = value == null ? 0 : value.varbit(ACCOUNT_TYPE_VARBIT);
+        if (value == null) value = Titan.client();
+        int accountType = value.varbit(ACCOUNT_TYPE_VARBIT);
         boolean ironman = accountType >= 1 && accountType <= 6;
         boolean groupIronman = accountType == 4 || accountType == 5 || accountType == 6;
         switch ((int) ownershipType) {
@@ -50,6 +51,7 @@ public final class GroundItem implements Locatable<GroundItem> {
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         Client value = client;
-        return value != null && value.interactGroundItem(action, id, tileX, tileY);
+        if (value == null) value = Titan.client();
+        return value.interactGroundItem(action, id, tileX, tileY);
     }
 }
