@@ -8,15 +8,16 @@ import net.titan.api.Widget;
 import java.util.Optional;
 
 public final class Dialogue {
+    // Mirrors C++ InterfaceIds::ContinueCandidates (order matters).
     private static final int[] CONTINUE_CANDIDATES = {
-        InterfaceId.pack(231, 5),
-        InterfaceId.pack(217, 5),
-        InterfaceId.pack(11, 4),
-        InterfaceId.pack(229, 2),
-        InterfaceId.pack(193, 2),
-        InterfaceId.pack(633, 0),
-        InterfaceId.pack(162, 42),
-        InterfaceId.pack(162, 43),
+        InterfaceId.pack(233, 3),   // LEVEL_UP_CONTINUE
+        InterfaceId.pack(229, 2),   // MINIGAME_DIALOG_CONTINUE
+        InterfaceId.pack(231, 5),   // DIALOG_NPC_CONTINUE
+        InterfaceId.pack(217, 5),   // DIALOG_PLAYER_CONTINUE
+        InterfaceId.pack(11, 4),    // DIALOG2_SPRITE_CONTINUE
+        InterfaceId.pack(229, 1),   // DIALOG_NOTIFICATION_CONTINUE
+        InterfaceId.pack(162, 42),  // tutorial-island continue (text-gated)
+        InterfaceId.pack(162, 43),  // tutorial-island continue (text-gated)
     };
 
     private Dialogue() {}
@@ -62,26 +63,29 @@ public final class Dialogue {
             clickWholeWidget(InterfaceId.QUESTSCROLL_CLOSE, MenuAction.CC_OP, 1);
     }
 
-    public static boolean hasOption(String text) {
-        return optionSlot(text) >= 0;
+    public static boolean hasOption(String... needles) {
+        return optionSlot(needles) >= 0;
     }
 
-    public static boolean selectOption(String text) {
-        int slot = optionSlot(text);
+    public static boolean selectOption(String... needles) {
+        int slot = optionSlot(needles);
         return slot >= 0 && Titan.client().widgetInteract(
             MenuAction.WIDGET_CONTINUE, 0, slot, InterfaceId.DIALOG_OPTIONS);
     }
 
-    public static boolean handleDialogue(String text) {
-        if (selectOption(text)) return true;
+    public static boolean handleDialogue(String... needles) {
+        if (selectOption(needles)) return true;
         return continueDialogue();
     }
 
-    private static int optionSlot(String text) {
-        for (Widget child : Titan.client().widgetChildren(InterfaceId.DIALOG_OPTIONS)) {
-            if (child.isVisible() && containsIgnoreCase(child.text(), text)) {
-                int slot = child.dynamicChildSlot();
-                return slot >= 0 ? slot : child.packedId() & 0xffff;
+    private static int optionSlot(String... needles) {
+        if (needles == null || needles.length == 0) return -1;
+        for (String needle : needles) {
+            for (Widget child : Titan.client().widgetChildren(InterfaceId.DIALOG_OPTIONS)) {
+                if (child.isVisible() && containsIgnoreCase(child.text(), needle)) {
+                    int slot = child.dynamicChildSlot();
+                    return slot >= 0 ? slot : child.packedId() & 0xffff;
+                }
             }
         }
         return -1;

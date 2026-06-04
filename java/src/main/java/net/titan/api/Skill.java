@@ -23,7 +23,11 @@ public enum Skill {
     FARMING(19),
     RUNECRAFT(20),
     HUNTER(21),
-    CONSTRUCTION(22);
+    CONSTRUCTION(22),
+    SAILING(23);
+
+    /// Total number of trainable skills. Mirrors C++ {@code SkillInfo::MAX_SKILLS}.
+    public static final int COUNT = 24;
 
     private final int id;
 
@@ -33,5 +37,17 @@ public enum Skill {
 
     public int id() {
         return id;
+    }
+
+    public static Skill fromId(int id) {
+        for (Skill skill : values()) {
+            if (skill.id == id) return skill;
+        }
+        return null;
+    }
+
+    public String displayName() {
+        String lower = name().toLowerCase();
+        return Character.toUpperCase(lower.charAt(0)) + lower.substring(1);
     }
 }

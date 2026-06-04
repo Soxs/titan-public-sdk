@@ -88,6 +88,11 @@ public final class Inventory {
         return Queries.inventory().nameContains(name).totalQuantity();
     }
 
+    public static int count(int... ids) {
+        if (ids == null || ids.length == 0) return 0;
+        return Queries.inventory().ids(ids).totalQuantity();
+    }
+
     public static boolean containsAny(int... ids) {
         return ids != null && Queries.inventory().ids(ids).any();
     }
@@ -96,6 +101,22 @@ public final class Inventory {
         if (ids == null) return true;
         for (int id : ids) {
             if (!contains(id)) return false;
+        }
+        return true;
+    }
+
+    public static boolean containsAnyName(String... names) {
+        if (names == null) return false;
+        for (String name : names) {
+            if (contains(name)) return true;
+        }
+        return false;
+    }
+
+    public static boolean containsAllNames(String... names) {
+        if (names == null) return true;
+        for (String name : names) {
+            if (!contains(name)) return false;
         }
         return true;
     }

@@ -91,7 +91,6 @@ public final class NPC implements Actor, Locatable<NPC> {
         return false;
     }
 
-    @Override
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         Client value = client;

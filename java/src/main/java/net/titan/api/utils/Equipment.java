@@ -83,6 +83,13 @@ public final class Equipment {
             .collect(Collectors.toList());
     }
 
+    public static List<EquippedItem> getByNames(String... names) {
+        if (names == null || names.length == 0) return Collections.emptyList();
+        return getAll().stream()
+            .filter(item -> containsAnyIgnoreCase(item.name(), names))
+            .collect(Collectors.toList());
+    }
+
     public static boolean contains(EquipmentSlot slot) {
         return find(slot).isPresent();
     }
@@ -91,14 +98,59 @@ public final class Equipment {
         return find(itemId).isPresent();
     }
 
+    public static boolean contains(int itemId, int minQuantity) {
+        return find(itemId).map(item -> item.quantity() >= minQuantity).orElse(false);
+    }
+
     public static boolean contains(String name) {
         return find(name).isPresent();
+    }
+
+    public static boolean containsAny(int... ids) {
+        if (ids == null) return false;
+        for (int id : ids) {
+            if (contains(id)) return true;
+        }
+        return false;
+    }
+
+    public static boolean containsAll(int... ids) {
+        if (ids == null) return true;
+        for (int id : ids) {
+            if (!contains(id)) return false;
+        }
+        return true;
+    }
+
+    public static boolean containsAnyName(String... names) {
+        if (names == null) return false;
+        for (String name : names) {
+            if (contains(name)) return true;
+        }
+        return false;
+    }
+
+    public static boolean containsAllNames(String... names) {
+        if (names == null) return true;
+        for (String name : names) {
+            if (!contains(name)) return false;
+        }
+        return true;
     }
 
     public static int count(int itemId) {
         int total = 0;
         for (EquippedItem item : getAll()) {
             if (item.itemId() == itemId) total += item.quantity();
+        }
+        return total;
+    }
+
+    public static int count(int... ids) {
+        if (ids == null || ids.length == 0) return 0;
+        int total = 0;
+        for (EquippedItem item : getAll()) {
+            if (contains(ids, item.itemId())) total += item.quantity();
         }
         return total;
     }
@@ -132,5 +184,13 @@ public final class Equipment {
         if (needle == null || needle.isEmpty()) return true;
         return haystack != null &&
             haystack.toLowerCase().contains(needle.toLowerCase());
+    }
+
+    private static boolean containsAnyIgnoreCase(String haystack, String... needles) {
+        if (needles == null) return false;
+        for (String needle : needles) {
+            if (containsIgnoreCase(haystack, needle)) return true;
+        }
+        return false;
     }
 }

@@ -163,13 +163,57 @@ public interface Client {
     List<World> worlds();
     boolean hopToWorldId(int worldId);
     boolean hopToWorldIngame(int worldId);
+    boolean hopToListIndex(int listIndex);
 
     int idleTimeRemaining();
     void resetIdleTimer();
 
     int questState(int questId);
+
+    // --- CS2 client scripts ---
+    Optional<Cs2Result> runClientScript(int scriptId, int[] intArgs);
+    default Optional<Cs2Result> runClientScript(int scriptId) {
+        return runClientScript(scriptId, new int[0]);
+    }
+    default OptionalInt runClientScriptForInt(int scriptId, int[] intArgs) {
+        return runClientScript(scriptId, intArgs)
+            .filter(Cs2Result::success)
+            .map(Cs2Result::firstInt)
+            .orElse(OptionalInt.empty());
+    }
+
+    // --- Cache definition lookups ---
+    Optional<ItemDefinition> itemDefinition(int itemId);
+    Optional<NpcDefinition> npcDefinition(int npcId);
+    Optional<ObjectDefinition> objectDefinition(int objectId);
+    Optional<VarbitDefinition> varbitDefinition(int varbitId);
+
+    // --- Plugin manager ---
+    List<PluginInfo> plugins();
+    Optional<PluginInfo> plugin(String pluginId);
+    boolean setPluginEnabled(String pluginId, boolean enabled);
+    /// 1 = enabled, 0 = disabled, -1 = unknown id.
+    int pluginEnabledState(String pluginId);
+
+    // --- Login / account state ---
+    Optional<LoginState> loginState();
+    boolean setLoginUsername(String username);
+    boolean setLoginPassword(String password);
+    boolean setLoginAuthenticator(String code);
+    boolean setLoginIndex(int loginIndex);
+    boolean setLoginDisplayName(String displayName);
+    boolean setLoginOAuth2Credentials(String accessToken, String refreshToken);
+    boolean setLoginGameSessionCredentials(String sessionId, String characterId);
+    boolean setLoginCharacter(String displayName, String characterId, String sessionId);
+    boolean resetLoginCharacter();
+
     boolean addChatMessage(int type, String name, String message, String sender);
     boolean sendKeyboardString(String text);
     boolean sendKeyboardKey(int key, int modifiers);
     default boolean sendKeyboardKey(int key) { return sendKeyboardKey(key, 0); }
+
+    // --- Human-like delayed keyboard typing ---
+    boolean typeKeyboardString(String text);
+    void cancelKeyboardType();
+    boolean isKeyboardTyping();
 }

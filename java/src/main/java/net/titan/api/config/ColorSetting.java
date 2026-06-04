@@ -1,23 +1,20 @@
 package net.titan.api.config;
 
-public final class BoolSetting implements ConfigSetting {
+/// Color (0xRRGGBB / 0xAARRGGBB) plugin setting. The value is the packed
+/// integer color. Mirrors the C++ {@code titan::ColorSetting}.
+public final class ColorSetting implements ConfigSetting {
     private final String key;
     private final String name;
     private final String section;
     private final String description;
     private final int position;
     private final boolean hidden;
-    private final boolean defaultValue;
-    private volatile boolean value;
+    private final int defaultValue;
+    private volatile int value;
 
-    public BoolSetting(String key, String name, String section,
-                       boolean defaultValue) {
-        this(key, name, section, "", 0, false, defaultValue);
-    }
-
-    public BoolSetting(String key, String name, String section,
-                       String description, int position,
-                       boolean hidden, boolean defaultValue) {
+    public ColorSetting(String key, String name, String section,
+                        String description, int position, boolean hidden,
+                        int defaultValue) {
         this.key = key;
         this.name = name;
         this.section = section;
@@ -34,10 +31,10 @@ public final class BoolSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
-    public boolean defaultValue() { return defaultValue; }
-    public boolean get() { return value; }
-    public void set(boolean value) { this.value = value; }
+    public int defaultValue() { return defaultValue; }
+    public int get() { return value; }
+    public void set(int value) { this.value = value; }
 
     @Override
-    public Kind kind() { return Kind.BOOLEAN; }
+    public Kind kind() { return Kind.COLOR; }
 }

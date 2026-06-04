@@ -32,7 +32,11 @@ public interface Actor {
 
     default boolean isAnimating() { return animation() != -1; }
 
-    default boolean interact(String action) { return false; }
+    // NOTE: No generic interact(String) is declared here. The canonical
+    // C++/TS SDKs only expose interaction on NPC / TileObject / item
+    // surfaces -- there is no Player.interact -- so Actor deliberately
+    // does not advertise an interact method that would be a silent no-op
+    // for Player. NPC declares its own interact(String).
 
     default boolean isInteracting() {
         if (interactingPhase() == 0xFF) return interactingIndex() != -1 && interactingIndex() != 0;
