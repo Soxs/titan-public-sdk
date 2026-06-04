@@ -1,6 +1,5 @@
 package net.titan.api;
 
-import net.titan.api.queries.Queries;
 import net.titan.api.queries.WidgetQuerySnapshot;
 
 import java.util.Optional;
@@ -23,7 +22,6 @@ public interface Client {
     Optional<Player> localPlayer();
     List<Player> players();
     List<NPC> npcs();
-    default Queries queries() { return new Queries(this); }
     List<TileObject> tileObjects(int radius);
     default List<TileObject> tileObjects() { return tileObjects(10); }
     List<TileObject> tileObjectsOnTile(int plane, int tileX, int tileY);
