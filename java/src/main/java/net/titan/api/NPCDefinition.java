@@ -5,7 +5,7 @@ import java.util.List;
 
 /// Cache NPC definition snapshot. Mirrors the C++ {@code titan::NpcDef}
 /// returned by {@code state::cache().npc(id)}.
-public final class NpcDefinition {
+public final class NPCDefinition {
     private int id;
     private String name;
     private int combatLevel;

@@ -184,7 +184,7 @@ public interface Client {
 
     // --- Cache definition lookups ---
     Optional<ItemDefinition> itemDefinition(int itemId);
-    Optional<NpcDefinition> npcDefinition(int npcId);
+    Optional<NPCDefinition> npcDefinition(int npcId);
     Optional<ObjectDefinition> objectDefinition(int objectId);
     Optional<VarbitDefinition> varbitDefinition(int varbitId);
 

@@ -1,7 +1,7 @@
 package net.titan.api.utils;
 
 import net.titan.api.ItemDefinition;
-import net.titan.api.NpcDefinition;
+import net.titan.api.NPCDefinition;
 import net.titan.api.ObjectDefinition;
 import net.titan.api.Titan;
 import net.titan.api.VarbitDefinition;
@@ -16,7 +16,7 @@ public final class Cache {
         return Titan.client().itemDefinition(itemId);
     }
 
-    public static Optional<NpcDefinition> npc(int npcId) {
+    public static Optional<NPCDefinition> npc(int npcId) {
         return Titan.client().npcDefinition(npcId);
     }
 
