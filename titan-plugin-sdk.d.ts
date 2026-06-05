@@ -937,8 +937,13 @@ interface PluginHandle {
 declare class TitanPlugin {
     id: string;
     name: string;
-    hasPanel?: boolean;
-    panelTitle?: string;
+    /**
+     * Side panels exposed by this plugin. Each entry becomes its own nav
+     * button in the controller's right-hand rail. A plugin may declare
+     * several. Replaces the SDK <= 64 singular `hasPanel` / `panelTitle` /
+     * `buildPanel` / `onPanelAction` model.
+     */
+    panels?: PanelDef[];
     isEnabled: boolean;
     /** One-line description shown as a tooltip in the plugin list. */
     description?: string;
@@ -998,15 +1003,38 @@ declare class TitanPlugin {
     onGraphicsObjectSpawned?(g: GraphicsObject): void;
     onGraphicsObjectDespawned?(g: GraphicsObject): void;
     onGraphicsObjectMoved?(g: GraphicsObject): void;
-
-    // Panel hook (only when hasPanel == true).
-    buildPanel?(panel: Panel): void;
-    onPanelAction?(actionId: number, value: SettingValue): void;
 }
 
 // ---------------------------------------------------------------------------
 // Panel builder
 // ---------------------------------------------------------------------------
+
+/**
+ * One side panel definition. Supply via `panels` on a TitanPlugin or
+ * PluginDefinition. A plugin may declare multiple panels; each gets its own
+ * nav button in the controller side rail.
+ */
+interface PanelDef {
+    /** Stable per-plugin id used to route panel content and actions. */
+    id: string;
+    /** Display title shown on the nav button tooltip / header. */
+    title: string;
+    /**
+     * Optional Font Awesome glyph (UTF-8 string, e.g. "\uf013") for the nav
+     * button. Ignored when `image` is set.
+     */
+    icon?: string;
+    /**
+     * Optional custom image icon as a base64-encoded PNG (RuneLite-style).
+     * A `data:image/png;base64,` prefix is allowed. Takes precedence over
+     * `icon`.
+     */
+    image?: string;
+    /** Build the panel's contents (called whenever the panel is visible). */
+    build(panel: Panel): void;
+    /** Handle a control interaction inside this panel. */
+    onAction?(actionId: number, value: SettingValue): void;
+}
 
 interface Panel {
     text(s: string): Panel;
@@ -1122,8 +1150,12 @@ interface PluginDefinition {
     name: string;
     /** Default enabled state for first install; runtime starts disabled until the controller applies saved/default state. */
     enabled?: boolean;
-    hasPanel?: boolean;
-    panelTitle?: string;
+    /**
+     * Side panels exposed by this plugin (each becomes its own nav button).
+     * Replaces the SDK <= 64 singular `hasPanel` / `panelTitle` /
+     * `getPanelElements` / `onPanelAction` fields.
+     */
+    panels?: PanelDef[];
     /** One-line description shown as a tooltip in the plugin list. */
     description?: string;
     /** Plugin author name. */
@@ -1137,9 +1169,6 @@ interface PluginDefinition {
     onClientTick?(): void;
     onGameTick?(tick: number): void;
     renderOverlay?(): void;
-
-    getPanelElements?(outElements: PanelElement[], maxElements: number): number;
-    onPanelAction?(actionId: number, value: SettingValue): void;
 
     onProjectileSpawned?(proj: Projectile): void;
     onProjectileDespawned?(proj: Projectile): void;
