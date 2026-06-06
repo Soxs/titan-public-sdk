@@ -2259,8 +2259,8 @@ declare namespace titan {
          * detect the GraphNode / AABB offsets on this revision, or on
          * pre-SDK-33 hosts.
          *
-         * @param outline ABGR colour for the 12 edges (0 hides edges).
-         * @param fill    Optional ABGR colour for the 6 faces (0 hides fills).
+         * @param outline ARGB colour (0xAARRGGBB) for the 12 edges (0 hides edges).
+         * @param fill    Optional ARGB colour (0xAARRGGBB) for the 6 faces (0 hides fills).
          */
         entityClickbox(entity: Npc | Player, outline: number, fill?: number): void;
         /**
