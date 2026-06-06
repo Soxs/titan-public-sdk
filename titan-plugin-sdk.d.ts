@@ -346,6 +346,20 @@ interface Projectile {
     hasLineOfSight(other: LineOfSightTarget): boolean;
 }
 
+interface Sequence {
+    readonly ptr: bigint;
+    readonly id: number;
+    readonly flags: number;
+    readonly frameCount: number;
+    readonly numFrames: number;
+    readonly frameIds: bigint;
+    readonly frameIDs: bigint;
+    readonly frameLengths: bigint;
+    readonly totalDuration: number;
+    readonly frameStep: number;
+    readonly repeatLimit: number;
+}
+
 /**
  * Active map-tile spot animation (RuneLite's `GraphicsObject`). Materialised
  * from `WorldView::GraphicsObjectList` and dispatched through
@@ -364,6 +378,14 @@ interface GraphicsObject {
     readonly tileY: number;
     readonly worldX: number;
     readonly worldY: number;
+    readonly seqPtr: bigint;
+    readonly seqTypePtr: bigint;
+    readonly animationId: number;
+    readonly frameCycle: number;
+    readonly currentFrame: number;
+    readonly loopCount: number;
+    readonly totalCycle: number;
+    readonly animation: Sequence | null;
     readonly tile: Tile;
     readonly worldPoint: WorldPoint;
     readonly localPoint: LocalPoint;

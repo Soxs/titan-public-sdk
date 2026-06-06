@@ -17,6 +17,13 @@ public final class GraphicsObject implements Locatable<GraphicsObject> {
     private long worldViewPtr;
     private long seqStateAddr;
     private long seqTypePtr;
+    private long seqPtr;
+    private int animationId = -1;
+    private int frameCycle;
+    private int currentFrame;
+    private int loopCount;
+    private int totalCycle;
+    private Sequence animation;
 
     public long basePtr() { return basePtr; }
     public int plane() { return plane; }
@@ -37,7 +44,14 @@ public final class GraphicsObject implements Locatable<GraphicsObject> {
     public int worldY() { return worldY; }
     public long worldViewPtr() { return worldViewPtr; }
     public long seqStateAddr() { return seqStateAddr; }
-    public long seqTypePtr() { return seqTypePtr; }
+    public long seqPtr() { return seqPtr != 0 ? seqPtr : seqTypePtr; }
+    public long seqTypePtr() { return seqPtr(); }
+    public int animationId() { return seqPtr() != 0 ? animationId : -1; }
+    public int frameCycle() { return frameCycle; }
+    public int currentFrame() { return currentFrame; }
+    public int loopCount() { return loopCount; }
+    public int totalCycle() { return totalCycle; }
+    public Sequence animation() { return seqPtr() == 0 ? null : animation; }
 
     @Override
     public LocalPoint localPoint() {
