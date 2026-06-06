@@ -2262,7 +2262,7 @@ declare namespace titan {
         get(id: string): PluginHandle;
         /** Like `get` but returns `null` for unknown ids. */
         find(id: string): PluginHandle | null;
-        readonly self: PluginHandle;
+        readonly self: PluginHandle & (() => PluginHandle);
     };
 
     // Overlay draw API — call from inside Overlay::render or renderOverlay.
