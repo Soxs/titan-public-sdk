@@ -98,6 +98,22 @@ public interface Client {
     }
     boolean entityHidden(int entityType);
     boolean setEntityHidden(int entityType, boolean hidden);
+
+    /**
+     * Whether global sound-effect playback is currently suppressed. Added in
+     * SDK 69.
+     */
+    boolean audioPlaybackDisabled();
+
+    /**
+     * Globally suppress (or re-enable) sound playback. When disabled, the
+     * sound hooks still fire {@code onSoundPlayed} but skip the native playback
+     * call. To mute a single sound instead, call {@code event.consume()} from
+     * {@code onSoundPlayed}. Added in SDK 69.
+     *
+     * @return true if the toggle request was accepted.
+     */
+    boolean setAudioPlaybackDisabled(boolean disabled);
     boolean walkTo(int sceneX, int sceneY);
     boolean walkToWorld(int worldX, int worldY, int plane);
     default boolean walkTo(WorldPoint point) {

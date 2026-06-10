@@ -773,6 +773,36 @@ interface ChatMessageEvent {
     readonly gameTick: number;
 }
 
+/** Discriminates the source of a `SoundPlayedEvent`. */
+declare const enum SoundKind {
+    /** Queued JagFX/wave sound effect (combat, spells, NPCs, area sounds). */
+    Synth = 0,
+    /** MIDI jingle (level-ups, quests, music stings). */
+    Jingle = 1,
+}
+
+/** Delivered to `onSoundPlayed` when the native client plays a sound. Covers
+ * queued synth sound effects (captured at the queue drain) and MIDI jingles
+ * (captured at `PlayJingle`); check `kind`. Set `consumed = true` to suppress
+ * that single sound; use `titan.state.audio.playbackDisabled = true` to mute
+ * all of them. Added in SDK 69. */
+interface SoundPlayedEvent {
+    /** Source of the sound (synth sound effect or MIDI jingle). */
+    readonly kind: SoundKind;
+    /** Synth JagFX id or jingle id. */
+    readonly soundId: number;
+    /** Synth loop count; -1 for jingles. */
+    readonly loops: number;
+    /** Jingle duration in ms; -1 for synths. */
+    readonly durationMs: number;
+    /** Synth packed position/range; -1 for jingles. */
+    readonly packedPos: number;
+    /** Current game tick captured at dispatch, or 0 if unavailable. */
+    readonly gameTick: number;
+    /** Set to true to suppress this single sound's native playback. */
+    consumed: boolean;
+}
+
 /** Single occupied slot in an item container snapshot. Added in SDK 26. */
 interface ItemContainerSlot {
     readonly slot: number;
@@ -1009,6 +1039,10 @@ declare class TitanPlugin {
     onVarbitChanged?(event: VarbitChangedEvent): void;
     /** Fired for every chat line added to the chatbox (server + local + injected). Added in SDK 22. */
     onChatMessage?(event: ChatMessageEvent): void;
+    /** Fired when the native client plays a sound (synth effect or jingle; see
+     * `event.kind`). Set `event.consumed = true` to suppress that single sound.
+     * Added in SDK 69. */
+    onSoundPlayed?(event: SoundPlayedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick. Detection is tick-level diff. Added in SDK 26. */
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;
@@ -1210,6 +1244,10 @@ interface PluginDefinition {
     onVarbitChanged?(event: VarbitChangedEvent): void;
     /** Fired for every chat line added to the chatbox. Added in SDK 22. */
     onChatMessage?(event: ChatMessageEvent): void;
+    /** Fired when the native client plays a sound (synth effect or jingle; see
+     * `event.kind`). Set `event.consumed = true` to suppress that single sound.
+     * Added in SDK 69. */
+    onSoundPlayed?(event: SoundPlayedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick's snapshot. Added in SDK 26. */
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;
@@ -1423,6 +1461,14 @@ declare namespace titan {
             npcs: boolean;
             self: boolean;
             scene: boolean;
+        };
+
+        /** Global sound playback suppression. When true, the sound hooks
+         * still fire `onSoundPlayed` but skip the native playback call (synth
+         * entries are dropped from the queue; jingles are not played).
+         * Added in SDK 69. */
+        const audio: {
+            playbackDisabled: boolean;
         };
     }
 
@@ -2626,7 +2672,7 @@ declare namespace titan {
     //   - `titan.queries.npcs() / players() / objects() / groundItems() /
     //     inventory() / projectiles()` for entity enumeration.
     //   - `titan.state.client / camera / widgets / skills / prayers / vars /
-    //     script / walk / idle / login / hider / cache / collisions /
+    //     script / walk / idle / login / hider / audio / cache / collisions /
     //     itemContainer / itemDef / world.*` for subsystem state.
     //   - `titan.utils.inventory / equipment / combat / dialogue` for
     //     composition helpers.
