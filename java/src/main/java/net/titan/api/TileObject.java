@@ -20,6 +20,9 @@ public final class TileObject implements Locatable<TileObject> {
     private int layer = -1;
     private int worldX;
     private int worldY;
+    private int sceneTypecode = -1;
+    private int sceneObjectType = -1;
+    private int orientation = -1;
 
     @Override
     public int tileX() { return tileX; }
@@ -38,6 +41,10 @@ public final class TileObject implements Locatable<TileObject> {
     public String name() { return name == null ? "" : name; }
     public List<String> actions() { return actions == null ? Collections.emptyList() : Collections.unmodifiableList(actions); }
     public int layer() { return layer; }
+    public int sceneTypecode() { return sceneTypecode; }
+    public int sceneObjectType() { return sceneObjectType; }
+    public int shape() { return sceneObjectType(); }
+    public int orientation() { return orientation; }
     @Override
     public int worldX() { return worldX; }
     @Override

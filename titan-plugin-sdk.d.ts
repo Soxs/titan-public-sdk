@@ -262,6 +262,14 @@ interface TileObject {
      * `-1` when the host couldn't classify. Populated by SDK v34+.
      */
     readonly layer: number;
+    /** Raw 1-byte TypeCode2 value, or -1 when unavailable. */
+    readonly sceneTypecode: number;
+    /** Derived scene object type/shape (sceneTypecode & 0x1f), or -1. */
+    readonly sceneObjectType: number;
+    /** Alias for sceneObjectType. */
+    readonly shape: number;
+    /** Derived orientation ((sceneTypecode >> 6) & 3), or -1. */
+    readonly orientation: number;
     readonly actions: string[];
     readonly tile: Tile;
     readonly worldPoint: WorldPoint;
