@@ -311,7 +311,11 @@ interface Item {
     readonly quantity: number;
     readonly name: string;
 
-    /** Dispatch an inventory action (e.g. "Eat", "Bury", "Drop"). */
+    /**
+     * Dispatch an inventory action (e.g. "Eat", "Bury", "Drop").
+     * Returns true when the action was accepted / queued; inventory or
+     * equipment state changes are confirmed later via `onItemContainerChanged`.
+     */
     interact(action: string): boolean;
 
     /**
@@ -2030,11 +2034,14 @@ declare namespace titan {
              *  equipped. */
             containsAll(arr: Array<number | string>): boolean;
             /** Unequip the item identified by @p query. Numbers are
-             *  item ids; strings are case-insensitive name substrings. */
+             *  item ids; strings are case-insensitive name substrings.
+             *  Returns true when the remove action was accepted / queued;
+             *  confirm the state change via `onItemContainerChanged`. */
             unequip(query: number | string): boolean;
             /** Unequip the item occupying the given `titan.EquipmentSlot`
              *  ordinal. No-op (returns false) when the slot is empty or
-             *  has no clickable widget (ARMS / HAIR / JAW). */
+             *  has no clickable widget (ARMS / HAIR / JAW). A true return
+             *  means the remove action was accepted / queued. */
             unequipSlot(slot: number): boolean;
         };
 
@@ -2153,7 +2160,9 @@ declare namespace titan {
          *                   widget packed id.
          * @param childSlot Optional direct dynamic-child slot beneath this
          *                  snapshot.
-         * @returns true when the action was queued.
+         * @returns true when the action was accepted / queued. Widget-driven
+         *          game state changes are confirmed later by events such as
+         *          `onItemContainerChanged`.
          */
         interact(opcode: number, identifier: number, childSlot?: number): boolean;
     }
@@ -2189,8 +2198,9 @@ declare namespace titan {
              * @param param0   Dynamic-child slot on the target widget,
              *                 or -1 for "whole widget / no slot".
              * @param param1   Packed widget id: `(group << 16) | child`.
-             * @returns true when the action was queued for the next
-             *          client tick.
+             * @returns true when the action was accepted / queued. Widget-
+             *          driven game state changes are confirmed later by
+             *          events such as `onItemContainerChanged`.
              */
             interact(opcode: number, identifier: number,
                      param0: number, param1: number): boolean;
@@ -2321,12 +2331,12 @@ declare namespace titan {
 
     // Overlay draw API — call from inside Overlay::render or renderOverlay.
     const overlay: {
-        tileQuad(tileX: number, tileZ: number, plane: number,
+        tileQuad(tileX: number, tileY: number, plane: number,
                  fillColor: number, outlineColor: number): void;
-        tileRegion(minTX: number, minTZ: number, maxTX: number, maxTZ: number,
+        tileRegion(minTileX: number, minTileY: number, maxTileX: number, maxTileY: number,
                    plane: number, fillColor: number, outlineColor: number): void;
         entityBox(entity: Npc | Player, color: number, height?: number): void;
-        entityBoxAt(preciseX: number, preciseZ: number, plane: number,
+        entityBoxAt(preciseX: number, preciseY: number, plane: number,
                     tileSize: number, height: number, color: number): void;
         /**
          * Draw the accurate world-space AABB clickbox around an entity. Reads
@@ -2370,9 +2380,9 @@ declare namespace titan {
         screenLine(x1: number, y1: number, x2: number, y2: number,
                    color: number, thickness?: number): void;
         worldToScreen(worldX: number, worldY: number, worldZ: number): ScreenPoint | null;
-        tileToScreen(tileX: number, tileZ: number, plane: number,
+        tileToScreen(tileX: number, tileY: number, plane: number,
                      heightOffset?: number): ScreenPoint | null;
-        tileHeight(preciseX: number, preciseZ: number, plane: number): number;
+        tileHeight(preciseX: number, preciseY: number, plane: number): number;
     };
 
     // Frame-phase schedulers.

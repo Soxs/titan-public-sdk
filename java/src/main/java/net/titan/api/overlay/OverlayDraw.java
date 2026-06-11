@@ -18,22 +18,22 @@ public final class OverlayDraw {
         return INSTANCE;
     }
 
-    public void tileQuad(int tileX, int tileZ, int plane,
+    public void tileQuad(int tileX, int tileY, int plane,
                          int fillColor, int outlineColor) {
         TitanRuntime.getOverlayBackend().tileQuad(
-            tileX, tileZ, plane, fillColor, outlineColor);
+            tileX, tileY, plane, fillColor, outlineColor);
     }
 
-    public void tileRegion(int minTileX, int minTileZ, int maxTileX, int maxTileZ,
+    public void tileRegion(int minTileX, int minTileY, int maxTileX, int maxTileY,
                            int plane, int fillColor, int outlineColor) {
         TitanRuntime.getOverlayBackend().tileRegion(
-            minTileX, minTileZ, maxTileX, maxTileZ, plane, fillColor, outlineColor);
+            minTileX, minTileY, maxTileX, maxTileY, plane, fillColor, outlineColor);
     }
 
-    public void entityBox(int preciseX, int preciseZ, int plane,
+    public void entityBox(int preciseX, int preciseY, int plane,
                           int tileSize, int height, int color) {
         TitanRuntime.getOverlayBackend().entityBox(
-            preciseX, preciseZ, plane, tileSize, height, color);
+            preciseX, preciseY, plane, tileSize, height, color);
     }
 
     public void entityBox(NPC npc, int color) {
@@ -180,37 +180,37 @@ public final class OverlayDraw {
         return point == null ? Optional.empty() : worldToScreen(point.x(), point.y(), point.z());
     }
 
-    public Optional<ScreenPoint> tileToScreen(int tileX, int tileZ, int plane) {
-        return tileToScreen(tileX, tileZ, plane, 0);
+    public Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane) {
+        return tileToScreen(tileX, tileY, plane, 0);
     }
 
-    public Optional<ScreenPoint> tileToScreen(int tileX, int tileZ, int plane, int heightOffset) {
-        return TitanRuntime.getOverlayBackend().tileToScreen(tileX, tileZ, plane, heightOffset);
+    public Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane, int heightOffset) {
+        return TitanRuntime.getOverlayBackend().tileToScreen(tileX, tileY, plane, heightOffset);
     }
 
-    public int tileHeight(int preciseX, int preciseZ, int plane) {
-        return TitanRuntime.getOverlayBackend().tileHeight(preciseX, preciseZ, plane);
+    public int tileHeight(int preciseX, int preciseY, int plane) {
+        return TitanRuntime.getOverlayBackend().tileHeight(preciseX, preciseY, plane);
     }
 
     public static long buildActorTypecode(int entityType, int hashIndex,
-                                          int tileX, int tileZ, int plane) {
+                                          int tileX, int tileY, int plane) {
         if (hashIndex < 0) return 0L;
         long tx = tileX & 0x7FL;
-        long tz = tileZ & 0x7FL;
+        long tileYBits = tileY & 0x7FL;
         long pl = plane & 0x3L;
-        long ty = entityType & 0x7L;
+        long typeBits = entityType & 0x7L;
         long id = hashIndex & 0xFFFFFFFFL;
-        return tx | (tz << 7) | (pl << 14) | (ty << 16) | (id << 20);
+        return tx | (tileYBits << 7) | (pl << 14) | (typeBits << 16) | (id << 20);
     }
 
     public static long buildLocTypecode(int locId, int layer,
-                                        int tileX, int tileZ, int plane) {
+                                        int tileX, int tileY, int plane) {
         if (locId < 0) return 0L;
         long tx = tileX & 0x7FL;
-        long tz = tileZ & 0x7FL;
+        long tileYBits = tileY & 0x7FL;
         long pl = plane & 0x3L;
         long id = locId & 0xFFFFFFFFL;
         long ly = layer < 0 ? 0L : layer & 0x3L;
-        return tx | (tz << 7) | (pl << 14) | (2L << 16) | (id << 20) | (ly << 52);
+        return tx | (tileYBits << 7) | (pl << 14) | (2L << 16) | (id << 20) | (ly << 52);
     }
 }
