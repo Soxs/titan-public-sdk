@@ -15,6 +15,8 @@ public final class Player implements Actor, Locatable<Player> {
     private int preciseY;
     private int orientation;
     private int animation;
+    private int movementPose;
+    private int idlePose;
     private int interactingIndex;
     private int interactingType = EntityType.NONE;
     private int interactingPhase = 0xFF;
@@ -64,6 +66,10 @@ public final class Player implements Actor, Locatable<Player> {
     public int orientation() { return orientation; }
     @Override
     public int animation() { return animation; }
+    @Override
+    public int movementPose() { return movementPose; }
+    @Override
+    public int idlePose() { return idlePose; }
     public int combatLevel() { return combatLevel; }
     @Override
     public int hashIndex() { return hashIndex; }
@@ -88,7 +94,8 @@ public final class Player implements Actor, Locatable<Player> {
     }
     public HeadIcon overheadHeadIcon() { return HeadIcon.fromId(overheadIcon); }
     public boolean isSkulled() { return skullIcon >= 0; }
-    public boolean isStationary() { return stationary; }
+    @Override
+    public boolean isStationary() { return movementPose == idlePose; }
     @Override
     public boolean isAnimating() { return animation != -1; }
     public boolean isIdle() { return isStationary() && !isAnimating(); }

@@ -15,6 +15,8 @@ public interface Actor {
     int preciseY();
     int orientation();
     int animation();
+    int movementPose();
+    int idlePose();
     int interactingIndex();
     int interactingType();
     int interactingPhase();
@@ -31,6 +33,8 @@ public interface Actor {
     int distanceTo(Locatable<?> other);
 
     default boolean isAnimating() { return animation() != -1; }
+
+    default boolean isStationary() { return movementPose() == idlePose(); }
 
     // NOTE: No generic interact(String) is declared here. The canonical
     // C++/TS SDKs only expose interaction on NPC / TileObject / item

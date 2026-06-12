@@ -144,6 +144,10 @@ interface ActorBase {
     readonly preciseY: number;
     readonly orientation: number;
     readonly animation: number;
+    /** Current movement pose id. Offset bundles still call this MovementState. SDK 73+. */
+    readonly movementPose: number;
+    /** Idle/rest pose id. Offset bundles still call this IdleState. SDK 73+. */
+    readonly idlePose: number;
     readonly interactingIndex: number;
     readonly interactingType: number;
     /** Interaction lifecycle phase (0 = active, non-zero = stale, 0xFF = unavailable). SDK v44+. */
@@ -161,6 +165,8 @@ interface ActorBase {
 
     readonly isPlayer: boolean;
     readonly isNpc: boolean;
+    /** No pending movement (`movementPose === idlePose`). A stationary actor can still be animating. SDK 73+. */
+    readonly isStationary: boolean;
 
     /** Cast to Player, or null if not a player. */
     toPlayer(): Player | null;
@@ -183,9 +189,6 @@ interface ActorBase {
 interface Player extends ActorBase {
     readonly combatLevel: number;
     readonly isHidden: boolean;
-    /** No pending movement (movementState == idleState). A stationary
-     *  player can still be animating -- see `isAnimating` / `isIdle`. */
-    readonly isStationary: boolean;
     /** `animation !== -1`. */
     readonly isAnimating: boolean;
     /** Fully idle: `isStationary && !isAnimating`. */
@@ -490,6 +493,8 @@ interface NpcQuery extends NamedLocatableQuery<Npc> {
     notAnimating(): this;
     /** Keep only NPCs playing the exact animation ID. */
     animation(animId: number): this;
+    /** Keep only NPCs with no pending movement. SDK 73+. */
+    isStationary(): this;
     /** Keep only NPCs with any (or exact) active overhead icon. */
     overheadActive(icon?: number): this;
     /** Keep only NPCs whose overrideTransform matches (morphing NPCs). */
@@ -523,6 +528,8 @@ interface PlayerQuery extends NamedLocatableQuery<Player> {
     notAnimating(): this;
     /** Keep only players playing the exact animation ID. */
     animation(animId: number): this;
+    /** Keep only players with no pending movement. SDK 73+. */
+    isStationary(): this;
     /** Keep only fully idle players (stationary and not animating). */
     isIdle(): this;
     /** Keep only skulled players. */

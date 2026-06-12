@@ -18,6 +18,8 @@ public final class NPC implements Actor, Locatable<NPC> {
     private int preciseY;
     private int orientation;
     private int animation;
+    private int movementPose;
+    private int idlePose;
     private int interactingIndex = -1;
     private int interactingType = EntityType.NONE;
     private int interactingPhase = 0xFF;
@@ -49,6 +51,8 @@ public final class NPC implements Actor, Locatable<NPC> {
     @Override public WorldPoint worldPoint() { return Locatable.super.worldPoint(); }
     @Override public int orientation() { return orientation; }
     @Override public int animation() { return animation; }
+    @Override public int movementPose() { return movementPose; }
+    @Override public int idlePose() { return idlePose; }
     @Override public int interactingIndex() { return interactingIndex; }
     @Override public int interactingType() { return interactingType; }
     @Override public int interactingPhase() { return interactingPhase; }

@@ -40,6 +40,10 @@ public final class PlayerQuery extends NamedLocatableQuery<Player, PlayerQuery> 
         return where(player -> player.animation() == animationId);
     }
 
+    public PlayerQuery isStationary() {
+        return where(Player::isStationary);
+    }
+
     public PlayerQuery isIdle() {
         return where(Player::isIdle);
     }

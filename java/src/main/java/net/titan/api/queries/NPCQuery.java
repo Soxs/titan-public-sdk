@@ -69,6 +69,10 @@ public final class NPCQuery extends NamedLocatableQuery<NPC, NPCQuery> {
         return where(npc -> npc.animation() == animationId);
     }
 
+    public NPCQuery isStationary() {
+        return where(NPC::isStationary);
+    }
+
     public NPCQuery overheadActive() {
         return where(NPC::isOverheadActive);
     }
