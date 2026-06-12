@@ -4,9 +4,10 @@ package net.titan.api.events;
  * Fired when the native client plays a sound. Covers two kinds (see
  * {@link #kind()}): queued synth/wave sound effects (captured at the queue
  * drain) and MIDI jingles (captured at {@code PlayJingle}). Call
- * {@link #consume()} to suppress that single sound's native playback. To mute
- * all sounds globally, use {@code client.setAudioPlaybackDisabled(true)}
- * instead. Added in SDK 69.
+ * {@link #consume()} to mark the event handled and stop later sound handlers.
+ * Per-sound playback suppression is not supported by the current hook; use
+ * {@code client.setAudioPlaybackDisabled(true)} to mute sounds globally. Added
+ * in SDK 69.
  *
  * <p>Field meaning by kind:
  * <ul>
@@ -62,7 +63,7 @@ public final class SoundPlayed {
     /** Current game tick captured at dispatch, or 0 if unavailable. */
     public int gameTick() { return gameTick; }
 
-    /** Suppress this single sound: the native game playback call is skipped. */
+    /** Mark this event consumed for handler ordering; does not suppress playback. */
     public void consume() { consumed = true; }
     public boolean consumed() { return consumed; }
 }

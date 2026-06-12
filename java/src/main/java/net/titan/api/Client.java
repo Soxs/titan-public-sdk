@@ -108,8 +108,9 @@ public interface Client {
     /**
      * Globally suppress (or re-enable) sound playback. When disabled, the
      * sound hooks still fire {@code onSoundPlayed} but skip the native playback
-     * call. To mute a single sound instead, call {@code event.consume()} from
-     * {@code onSoundPlayed}. Added in SDK 69.
+     * call. Per-sound playback suppression is not supported by the current
+     * hook; {@code event.consume()} only affects handler ordering. Added in
+     * SDK 69.
      *
      * @return true if the toggle request was accepted.
      */

@@ -270,6 +270,8 @@ interface TileObject {
     readonly shape: number;
     /** Derived orientation ((sceneTypecode >> 6) & 3), or -1. */
     readonly orientation: number;
+    /** Active dynamic scenery animation id, or -1 when static/unavailable. SDK 71+. */
+    readonly animation: number;
     readonly actions: string[];
     readonly tile: Tile;
     readonly worldPoint: WorldPoint;
@@ -278,6 +280,8 @@ interface TileObject {
     hasAction(action: string): boolean;
     /** RuneLite-style line of sight from this object's footprint to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** RuneLite-style dynamic scenery animation id lookup. SDK 71+. */
+    getAnimation(): number;
     /** Dispatch against this exact object instance, preserving its scene tile. */
     interact(action: string): boolean;
 }
@@ -795,9 +799,10 @@ declare const enum SoundKind {
 
 /** Delivered to `onSoundPlayed` when the native client plays a sound. Covers
  * queued synth sound effects (captured at the queue drain) and MIDI jingles
- * (captured at `PlayJingle`); check `kind`. Set `consumed = true` to suppress
- * that single sound; use `titan.state.audio.playbackDisabled = true` to mute
- * all of them. Added in SDK 69. */
+ * (captured at `PlayJingle`); check `kind`. Set `consumed = true` to mark the
+ * event handled and stop later sound handlers in the same dispatch. Current
+ * playback suppression is global-only; use
+ * `titan.state.audio.playbackDisabled = true` to mute sounds. Added in SDK 69. */
 interface SoundPlayedEvent {
     /** Source of the sound (synth sound effect or MIDI jingle). */
     readonly kind: SoundKind;
@@ -811,7 +816,7 @@ interface SoundPlayedEvent {
     readonly packedPos: number;
     /** Current game tick captured at dispatch, or 0 if unavailable. */
     readonly gameTick: number;
-    /** Set to true to suppress this single sound's native playback. */
+    /** Set to true to mark this sound event consumed for handler ordering. */
     consumed: boolean;
 }
 
@@ -1008,13 +1013,19 @@ declare class TitanPlugin {
      * `buildPanel` / `onPanelAction` model.
      */
     panels?: PanelDef[];
-    isEnabled: boolean;
+    readonly isEnabled: boolean;
     /** One-line description shown as a tooltip in the plugin list. */
     description?: string;
     /** Plugin author name. */
     author?: string;
     /** Short version string (e.g. "1.0.0"). */
     version?: string;
+    /** Default enabled state for first install; runtime starts disabled until the controller applies saved/default state. */
+    enabled?: boolean;
+    /** Legacy single-overlay layer. Prefer `overlay({ layer, render })` for multiple overlays. */
+    renderLayer?: OverlayLayer;
+    /** Legacy single-overlay callback. Prefer `overlay({ layer, render })` for new plugins. */
+    renderOverlay?(): void;
 
     // Setting helpers — each returns a Setting<T> that auto-registers.
     boolSetting(init: BoolSettingInit): Setting<boolean>;
@@ -1052,8 +1063,9 @@ declare class TitanPlugin {
     /** Fired for every chat line added to the chatbox (server + local + injected). Added in SDK 22. */
     onChatMessage?(event: ChatMessageEvent): void;
     /** Fired when the native client plays a sound (synth effect or jingle; see
-     * `event.kind`). Set `event.consumed = true` to suppress that single sound.
-     * Added in SDK 69. */
+     * `event.kind`). Set `event.consumed = true` to stop later sound handlers;
+     * use `titan.state.audio.playbackDisabled` for playback suppression. Added
+     * in SDK 69. */
     onSoundPlayed?(event: SoundPlayedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick. Detection is tick-level diff. Added in SDK 26. */
@@ -1104,16 +1116,41 @@ interface PanelDef {
     onAction?(actionId: number, value: SettingValue): void;
 }
 
+declare enum PanelTone {
+    neutral = 0,
+    accent = 1,
+    success = 2,
+    warning = 3,
+    danger = 4,
+    info = 5,
+}
+
+declare enum PanelButtonStyle {
+    normal = 0,
+    primary = 1,
+    secondary = 2,
+    danger = 3,
+    ghost = 4,
+}
+
+declare enum PanelInputFlags {
+    none = 0,
+    password = 1,
+    multiline = 2,
+}
+
 interface Panel {
     text(s: string): Panel;
     wrapped(s: string): Panel;
     disabled(s: string): Panel;
     bullet(s: string): Panel;
     colored(s: string, color: number): Panel;
+    status(s: string, tone?: PanelTone): Panel;
     label(label: string, value: string): Panel;
 
     separator(): Panel;
     separatorText(s: string): Panel;
+    section(s: string): Panel;
     spacing(): Panel;
     sameLine(offset?: number, spacing?: number): Panel;
     newLine(): Panel;
@@ -1122,16 +1159,27 @@ interface Panel {
     dummy(w: number, h: number): Panel;
 
     button(label: string, actionId: number): Panel;
+    button(label: string, actionId: number, style: PanelButtonStyle, width?: number, height?: number): Panel;
     smallButton(label: string, actionId: number): Panel;
+    smallButton(label: string, actionId: number, style: PanelButtonStyle): Panel;
+    primaryButton(label: string, actionId: number, width?: number, height?: number): Panel;
+    secondaryButton(label: string, actionId: number, width?: number, height?: number): Panel;
+    dangerButton(label: string, actionId: number, width?: number, height?: number): Panel;
     selectable(label: string, actionId: number, selected?: boolean): Panel;
     checkbox(label: string, actionId: number, value: boolean): Panel;
     sliderInt(label: string, actionId: number, value: number, min: number, max: number): Panel;
     sliderFloat(label: string, actionId: number, value: number, min: number, max: number): Panel;
     inputText(label: string, actionId: number, value: string): Panel;
+    inputText(label: string, actionId: number, value: string, flags: PanelInputFlags): Panel;
     inputText(label: string, actionId: number, submitActionId: number, value: string): Panel;
+    inputText(label: string, actionId: number, submitActionId: number, value: string, flags: PanelInputFlags): Panel;
+    inputPassword(label: string, actionId: number, value: string): Panel;
+    inputPassword(label: string, actionId: number, submitActionId: number, value: string): Panel;
 
     progress(fraction: number, overlay?: string): Panel;
     collapsing(label: string): Panel;
+    beginCollapsible(label: string, defaultOpen?: boolean): Panel;
+    endCollapsible(): Panel;
     treeNode(label: string): Panel;
     treePop(): Panel;
     beginTable(id: string, columns: number, flags?: number): Panel;
@@ -1257,8 +1305,9 @@ interface PluginDefinition {
     /** Fired for every chat line added to the chatbox. Added in SDK 22. */
     onChatMessage?(event: ChatMessageEvent): void;
     /** Fired when the native client plays a sound (synth effect or jingle; see
-     * `event.kind`). Set `event.consumed = true` to suppress that single sound.
-     * Added in SDK 69. */
+     * `event.kind`). Set `event.consumed = true` to stop later sound handlers;
+     * use `titan.state.audio.playbackDisabled` for playback suppression. Added
+     * in SDK 69. */
     onSoundPlayed?(event: SoundPlayedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick's snapshot. Added in SDK 26. */
@@ -1303,6 +1352,29 @@ declare namespace titan {
     const OverlayLayer: {
         readonly ABOVE_SCENE: "AboveScene";
         readonly ABOVE_WIDGETS: "AboveWidgets";
+    };
+
+    const PanelTone: {
+        readonly neutral: PanelTone.neutral;
+        readonly accent: PanelTone.accent;
+        readonly success: PanelTone.success;
+        readonly warning: PanelTone.warning;
+        readonly danger: PanelTone.danger;
+        readonly info: PanelTone.info;
+    };
+
+    const PanelButtonStyle: {
+        readonly normal: PanelButtonStyle.normal;
+        readonly primary: PanelButtonStyle.primary;
+        readonly secondary: PanelButtonStyle.secondary;
+        readonly danger: PanelButtonStyle.danger;
+        readonly ghost: PanelButtonStyle.ghost;
+    };
+
+    const PanelInputFlags: {
+        readonly none: PanelInputFlags.none;
+        readonly password: PanelInputFlags.password;
+        readonly multiline: PanelInputFlags.multiline;
     };
 
     /**

@@ -27,6 +27,16 @@ public final class Panel {
         return this;
     }
 
+    public Panel status(String s) {
+        return status(s, PanelTone.NEUTRAL);
+    }
+
+    public Panel status(String s, PanelTone tone) {
+        PanelElement el = push(PanelElementType.TEXT_COLORED, s);
+        el.intVal3 = (tone == null ? PanelTone.NEUTRAL.protocolId() : tone.protocolId()) + 1;
+        return this;
+    }
+
     public Panel label(String label, String value) {
         PanelElement el = push(PanelElementType.LABEL_TEXT, label);
         el.textSecondary = value == null ? "" : value;
@@ -36,6 +46,7 @@ public final class Panel {
     // --- Layout ---
     public Panel separator() { push(PanelElementType.SEPARATOR, ""); return this; }
     public Panel separatorText(String s) { push(PanelElementType.SEPARATOR_TEXT, s); return this; }
+    public Panel section(String s) { return separatorText(s); }
     public Panel spacing() { push(PanelElementType.SPACING, ""); return this; }
     public Panel sameLine() { push(PanelElementType.SAME_LINE, ""); return this; }
     public Panel newLine() { push(PanelElementType.NEW_LINE, ""); return this; }
@@ -51,15 +62,56 @@ public final class Panel {
 
     // --- Interactive controls ---
     public Panel button(String label, int actionId) {
+        return button(label, actionId, PanelButtonStyle.NORMAL, 0.0f, 0.0f);
+    }
+
+    public Panel button(String label, int actionId, PanelButtonStyle style) {
+        return button(label, actionId, style, 0.0f, 0.0f);
+    }
+
+    public Panel button(String label, int actionId, PanelButtonStyle style,
+                        float width, float height) {
         PanelElement el = push(PanelElementType.BUTTON, label);
         el.actionId = actionId;
+        el.intVal3 = style == null ? PanelButtonStyle.NORMAL.protocolId() : style.protocolId();
+        el.widthVal = width;
+        el.heightVal = height;
         return this;
     }
 
     public Panel smallButton(String label, int actionId) {
+        return smallButton(label, actionId, PanelButtonStyle.NORMAL);
+    }
+
+    public Panel smallButton(String label, int actionId, PanelButtonStyle style) {
         PanelElement el = push(PanelElementType.SMALL_BUTTON, label);
         el.actionId = actionId;
+        el.intVal3 = style == null ? PanelButtonStyle.NORMAL.protocolId() : style.protocolId();
         return this;
+    }
+
+    public Panel primaryButton(String label, int actionId) {
+        return primaryButton(label, actionId, -1.0f, 0.0f);
+    }
+
+    public Panel primaryButton(String label, int actionId, float width, float height) {
+        return button(label, actionId, PanelButtonStyle.PRIMARY, width, height);
+    }
+
+    public Panel secondaryButton(String label, int actionId) {
+        return secondaryButton(label, actionId, -1.0f, 0.0f);
+    }
+
+    public Panel secondaryButton(String label, int actionId, float width, float height) {
+        return button(label, actionId, PanelButtonStyle.SECONDARY, width, height);
+    }
+
+    public Panel dangerButton(String label, int actionId) {
+        return dangerButton(label, actionId, -1.0f, 0.0f);
+    }
+
+    public Panel dangerButton(String label, int actionId, float width, float height) {
+        return button(label, actionId, PanelButtonStyle.DANGER, width, height);
     }
 
     public Panel selectable(String label, int actionId) {
@@ -99,17 +151,34 @@ public final class Panel {
     }
 
     public Panel inputText(String label, int actionId, String value) {
-        return inputText(label, actionId, NO_SUBMIT, value);
+        return inputText(label, actionId, NO_SUBMIT, value, PanelInputFlags.NONE);
+    }
+
+    public Panel inputText(String label, int actionId, String value, int flags) {
+        return inputText(label, actionId, NO_SUBMIT, value, flags);
     }
 
     /// Same as {@link #inputText(String, int, String)} but additionally fires
     /// {@code submitActionId} when the user presses Enter inside the field.
     public Panel inputText(String label, int actionId, int submitActionId, String value) {
+        return inputText(label, actionId, submitActionId, value, PanelInputFlags.NONE);
+    }
+
+    public Panel inputText(String label, int actionId, int submitActionId, String value, int flags) {
         PanelElement el = push(PanelElementType.INPUT_TEXT, label);
         el.actionId = actionId;
         el.intVal2 = submitActionId;
+        el.intVal3 = flags;
         el.textSecondary = value == null ? "" : value;
         return this;
+    }
+
+    public Panel inputPassword(String label, int actionId, String value) {
+        return inputText(label, actionId, value, PanelInputFlags.PASSWORD);
+    }
+
+    public Panel inputPassword(String label, int actionId, int submitActionId, String value) {
+        return inputText(label, actionId, submitActionId, value, PanelInputFlags.PASSWORD);
     }
 
     // --- Progress ---
@@ -125,6 +194,18 @@ public final class Panel {
 
     // --- Tree / collapsing ---
     public Panel collapsing(String label) { push(PanelElementType.COLLAPSING_HEADER, label); return this; }
+    public Panel beginCollapsible(String label) { return beginCollapsible(label, false); }
+    public Panel beginCollapsible(String label, boolean defaultOpen) {
+        PanelElement el = push(PanelElementType.COLLAPSING_HEADER, label);
+        el.intVal3 = COLLAPSIBLE_BLOCK_MARKER;
+        el.boolVal = defaultOpen;
+        return this;
+    }
+    public Panel endCollapsible() {
+        PanelElement el = push(PanelElementType.TREE_POP, "");
+        el.intVal3 = COLLAPSIBLE_BLOCK_MARKER;
+        return this;
+    }
     public Panel treeNode(String label) { push(PanelElementType.TREE_NODE, label); return this; }
     public Panel treePop() { push(PanelElementType.TREE_POP, ""); return this; }
 
@@ -173,4 +254,5 @@ public final class Panel {
     }
 
     private static final int NO_SUBMIT = -1;
+    private static final int COLLAPSIBLE_BLOCK_MARKER = 0x54434F4C;
 }

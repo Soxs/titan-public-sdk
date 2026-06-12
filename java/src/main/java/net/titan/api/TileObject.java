@@ -23,6 +23,7 @@ public final class TileObject implements Locatable<TileObject> {
     private int sceneTypecode = -1;
     private int sceneObjectType = -1;
     private int orientation = -1;
+    private int animation = -1;
 
     @Override
     public int tileX() { return tileX; }
@@ -45,6 +46,8 @@ public final class TileObject implements Locatable<TileObject> {
     public int sceneObjectType() { return sceneObjectType; }
     public int shape() { return sceneObjectType(); }
     public int orientation() { return orientation; }
+    public int animation() { return animation; }
+    public int getAnimation() { return animation(); }
     @Override
     public int worldX() { return worldX; }
     @Override
