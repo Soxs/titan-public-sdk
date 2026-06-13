@@ -34,6 +34,7 @@ public final class NPC implements Actor, Locatable<NPC> {
     private String name;
     private List<String> actions;
     private List<WorldPoint> pathQueue;
+    private List<ActorSpotAnim> currentSpotAnims;
 
     @Override public long entityPtr() { return entityPtr; }
     public long definitionPtr() { return definitionPtr; }
@@ -75,6 +76,11 @@ public final class NPC implements Actor, Locatable<NPC> {
     public List<String> actions() { return actions == null ? Collections.emptyList() : Collections.unmodifiableList(actions); }
     @Override public List<WorldPoint> pathQueue() {
         return pathQueue == null ? Collections.emptyList() : Collections.unmodifiableList(pathQueue);
+    }
+    @Override public List<ActorSpotAnim> currentSpotAnims() {
+        return currentSpotAnims == null
+            ? Collections.emptyList()
+            : Collections.unmodifiableList(currentSpotAnims);
     }
 
     @Override

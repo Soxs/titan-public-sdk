@@ -59,4 +59,8 @@ public interface Actor {
     default List<WorldPoint> pathQueue() {
         return Collections.emptyList();
     }
+
+    default List<ActorSpotAnim> currentSpotAnims() {
+        return Collections.emptyList();
+    }
 }

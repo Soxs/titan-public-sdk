@@ -133,6 +133,13 @@ type MagicTarget = Npc | Player | GroundItem | TileObject | titan.WidgetState | 
 // Entity wrappers — fluent methods on live game entities.
 // ---------------------------------------------------------------------------
 
+interface ActorSpotAnim {
+    readonly slot: number;
+    readonly id: number;
+    readonly height: number;
+    readonly expireCycle: number;
+}
+
 interface ActorBase {
     readonly hashIndex: number;
     readonly tileX: number;
@@ -162,6 +169,8 @@ interface ActorBase {
     readonly localPoint: LocalPoint;
     /** Valid actor path queue entries as world points. Index 0 is the logical/server tile. SDK 59+. */
     readonly pathQueue: WorldPoint[];
+    /** Active actor-attached spot animations. Empty when unavailable or none are active. SDK 76+. */
+    readonly currentSpotAnims: ActorSpotAnim[];
 
     readonly isPlayer: boolean;
     readonly isNpc: boolean;
@@ -342,8 +351,18 @@ interface Projectile {
     readonly startZ: number;
     readonly targetX: number;
     readonly targetZ: number;
+    /** Decoded source actor hash index, or -1 when no actor source is encoded. */
     readonly sourceEntity: number;
+    /** Decoded target actor hash index, or -1 when no actor target is encoded. */
     readonly targetEntity: number;
+    /** Raw packed signed game source value. */
+    readonly rawSourceEntity: number;
+    /** Raw packed signed game target value. */
+    readonly rawTargetEntity: number;
+    /** EntityType.PLAYER / NPC / NONE for sourceEntity. */
+    readonly sourceEntityType: number;
+    /** EntityType.PLAYER / NPC / NONE for targetEntity. */
+    readonly targetEntityType: number;
     readonly spotAnimId: number;
     readonly startTick: number;
     readonly endTick: number;
@@ -360,6 +379,9 @@ interface Projectile {
     readonly yaw: number;
     readonly pitch: number;
     readonly hasMoved: boolean;
+
+    sourceActor(): ActorBase | null;
+    targetActor(): ActorBase | null;
 
     /** RuneLite-style line of sight from this projectile tile to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
@@ -599,10 +621,14 @@ interface InventoryQuery extends NamedQuery<Item> {
 
 interface ProjectileQuery extends LocatableQuery<Projectile> {
     spotAnim(animId: number): this;
-    /** Keep only projectiles targeting the given entity index. */
+    /** Keep only projectiles targeting the given decoded actor hash index. */
     targetingEntity(entityIndex: number): this;
-    /** Keep only projectiles from the given source entity index. */
+    /** Keep only projectiles from the given decoded actor hash index. */
     fromEntity(entityIndex: number): this;
+    /** Keep only projectiles targeting the exact player/NPC actor. */
+    targetingActor(actor: ActorBase): this;
+    /** Keep only projectiles from the exact player/NPC actor. */
+    fromActor(actor: ActorBase): this;
     /** Keep only projectiles that started on or after the given tick. */
     startedAfterTick(tick: number): this;
     /** Keep only projectiles that end on or before the given tick. */
@@ -825,6 +851,86 @@ interface SoundPlayedEvent {
     readonly gameTick: number;
     /** Set to true to mark this sound event consumed for handler ordering. */
     consumed: boolean;
+}
+
+/** Delivered to `onHitsplatApplied` when the native client applies a visible
+ * hitsplat to a player or NPC. Added in SDK 74; native signature corrected in
+ * SDK 76. */
+interface HitsplatAppliedEvent {
+    /** Resolved actor object, or null if the actor no longer resolves. */
+    readonly actor: Actor | null;
+    /** Entity type constant: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
+    readonly actorType: number;
+    /** Lowercase actor kind: "player", "npc", or "none". */
+    readonly kind: "player" | "npc" | "none";
+    /** Player hash index for players, NPC id for NPCs, or -1 when unresolved. */
+    readonly indexOrId: number;
+    /** Resolved actor name, or empty when unresolved. */
+    readonly actorName: string;
+    /** Native hitsplat type id. */
+    readonly type: number;
+    /** Damage/value payload. */
+    readonly value: number;
+    /** Alias for value. */
+    readonly damage: number;
+    /** Native limit field from the real hitsplat adder. */
+    readonly limit: number;
+    /** Native delay field. */
+    readonly delay: number;
+    /** Native cycle field. */
+    readonly cycle: number;
+    /** Current game tick captured at dispatch, or 0 if unavailable. */
+    readonly gameTick: number;
+}
+
+/** Delivered to `onActorSpotAnim` when the native client applies an actor-attached
+ * spot animation. Clear/removal ids are filtered before dispatch. Added in
+ * SDK 76. */
+interface ActorSpotAnimEvent {
+    /** Resolved actor object, or null if the actor no longer resolves. */
+    readonly actor: Actor | null;
+    /** Entity type constant: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
+    readonly actorType: number;
+    /** Lowercase actor kind: "player", "npc", or "none". */
+    readonly kind: "player" | "npc" | "none";
+    /** Player hash index for players, NPC id for NPCs, or -1 when unresolved. */
+    readonly indexOrId: number;
+    /** Resolved actor name, or empty when unresolved. */
+    readonly actorName: string;
+    /** Native actor spotanim slot. */
+    readonly slot: number;
+    /** SpotAnim definition id. */
+    readonly id: number;
+    /** Native spotanim height field. */
+    readonly height: number;
+    /** Native delay field. */
+    readonly delay: number;
+    /** Native cycle field. */
+    readonly cycle: number;
+    /** Current game tick captured at dispatch, or 0 if unavailable. */
+    readonly gameTick: number;
+}
+
+/** Delivered to `onAnimationChanged` when the native client accepts an actor
+ * animation field change. Same-animation resets and rejected native requests
+ * are filtered before dispatch. Added in SDK 78. */
+interface AnimationChangedEvent {
+    /** Resolved actor object, or null if the actor no longer resolves. */
+    readonly actor: Actor | null;
+    /** Entity type constant: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
+    readonly actorType: number;
+    /** Lowercase actor kind: "player", "npc", or "none". */
+    readonly kind: "player" | "npc" | "none";
+    /** Player hash index for players, NPC id for NPCs, or -1 when unresolved. */
+    readonly indexOrId: number;
+    /** Resolved actor name, or empty when unresolved. */
+    readonly actorName: string;
+    /** Previous raw Actor.Animation id. */
+    readonly oldAnimation: number;
+    /** New raw Actor.Animation id accepted by the native setter. */
+    readonly newAnimation: number;
+    /** Current game tick captured at dispatch, or 0 if unavailable. */
+    readonly gameTick: number;
 }
 
 /** Single occupied slot in an item container snapshot. Added in SDK 26. */
@@ -1074,6 +1180,12 @@ declare class TitanPlugin {
      * use `titan.state.audio.playbackDisabled` for playback suppression. Added
      * in SDK 69. */
     onSoundPlayed?(event: SoundPlayedEvent): void;
+    /** Fired when a visible hitsplat is applied to a resolved actor. Added in SDK 74. */
+    onHitsplatApplied?(event: HitsplatAppliedEvent): void;
+    /** Fired when an actor-attached spot animation is applied. Added in SDK 76. */
+    onActorSpotAnim?(event: ActorSpotAnimEvent): void;
+    /** Fired when an actor animation field actually changes. Added in SDK 78. */
+    onAnimationChanged?(event: AnimationChangedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick. Detection is tick-level diff. Added in SDK 26. */
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;
@@ -1316,6 +1428,12 @@ interface PluginDefinition {
      * use `titan.state.audio.playbackDisabled` for playback suppression. Added
      * in SDK 69. */
     onSoundPlayed?(event: SoundPlayedEvent): void;
+    /** Fired when a visible hitsplat is applied to a resolved actor. Added in SDK 74. */
+    onHitsplatApplied?(event: HitsplatAppliedEvent): void;
+    /** Fired when an actor-attached spot animation is applied. Added in SDK 76. */
+    onActorSpotAnim?(event: ActorSpotAnimEvent): void;
+    /** Fired when an actor animation field actually changes. Added in SDK 78. */
+    onAnimationChanged?(event: AnimationChangedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick's snapshot. Added in SDK 26. */
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;

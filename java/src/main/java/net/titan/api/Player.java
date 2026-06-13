@@ -30,6 +30,7 @@ public final class Player implements Actor, Locatable<Player> {
     private int healthScale;
     private boolean hasHealthBar;
     private List<WorldPoint> pathQueue;
+    private List<ActorSpotAnim> currentSpotAnims;
 
     @Override
     public long entityPtr() { return entityPtr; }
@@ -103,6 +104,12 @@ public final class Player implements Actor, Locatable<Player> {
     @Override
     public List<WorldPoint> pathQueue() {
         return pathQueue == null ? Collections.emptyList() : Collections.unmodifiableList(pathQueue);
+    }
+    @Override
+    public List<ActorSpotAnim> currentSpotAnims() {
+        return currentSpotAnims == null
+            ? Collections.emptyList()
+            : Collections.unmodifiableList(currentSpotAnims);
     }
 
     @Override
