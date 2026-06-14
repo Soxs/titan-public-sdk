@@ -18,8 +18,8 @@ IPC headers are intentionally not published here.
 
 ## Java Plugins
 
-Use the API as a `compileOnly` dependency. TitanClient's Java worker supplies
-the API and Guice classes at runtime.
+Use the API as a `compileOnly` dependency. TitanClient's embedded Java runtime
+supplies the API and Guice classes at runtime.
 
 ```gradle
 repositories {
@@ -30,9 +30,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'net.titan:titan-plugin-api:0.1.0'
+    compileOnly 'net.titan:titan-plugin-api:latest.release'
 }
 ```
+
+Use `latest.release` while developing to pick up the newest published SDK.
+For reproducible plugin releases, pin an exact SDK version such as `0.1.2`.
 
 For a runnable project to copy or fork, start from
 [`Soxs/titan-java-sample-plugin`](https://github.com/Soxs/titan-java-sample-plugin).
@@ -55,8 +58,8 @@ contains `controller.exe`:
 titanClientRoot=C:/Program Files/TitanClient
 ```
 
-That TitanClient folder must include the Java worker runtime at
-`java/titan-java-worker.jar`.
+That TitanClient folder must include the embedded Java runtime at
+`java/titan-java-embedded.jar`.
 
 Then run:
 
@@ -73,8 +76,8 @@ You can also use a one-off Gradle property:
 .\gradlew.bat runTitanClient "-PtitanClientRoot=C:\Program Files\TitanClient"
 ```
 
-Changes that require new worker behavior or RPC methods still need a
-TitanClient maintainer to update the private worker.
+Changes that require new embedded runtime behavior or native bridge methods
+still need a TitanClient maintainer to update the private runtime.
 
 ## JavaScript And TypeScript Plugins
 

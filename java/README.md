@@ -16,13 +16,16 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'net.titan:titan-plugin-api:0.1.0'
+    compileOnly 'net.titan:titan-plugin-api:latest.release'
 }
 ```
 
 Use `compileOnly`: TitanClient's embedded Java runtime supplies the API classes at
 runtime. Plugin JARs should contain plugin classes annotated with
 `@PluginDescriptor`, not their own copy of the SDK or Guice.
+
+Use `latest.release` while developing to pick up the newest published SDK.
+For reproducible plugin releases, pin an exact SDK version such as `0.1.2`.
 
 The SDK exposes Guice as a compile dependency so plugin authors can use:
 
