@@ -18,7 +18,8 @@ import java.lang.annotation.Target;
 ///
 /// @code
 ///   @PluginDescriptor(id = "stats", name = "Stats", ...)
-///   @SidePanel(id = "main", title = "Statistics", icon = "\uf080")
+///   @SidePanel(id = "main", title = "Statistics",
+///              icon = "awesome:chart-bar", iconColor = 0xFF68CC92)
 ///   @SidePanel(id = "about", title = "About", image = "icons/about.png")
 ///   public class StatsPlugin implements Plugin { ... }
 /// @endcode
@@ -33,8 +34,14 @@ public @interface SidePanel {
     /// Display title shown on the navigation button tooltip / header.
     String title();
 
-    /// Optional Font Awesome glyph (UTF-8) for the navigation button.
+    /// Optional side-panel icon spec for the navigation button. Use
+    /// {@code awesome:alias}, {@code lucide:name}, {@code phosphor:name[:weight]},
+    /// or a legacy raw Font Awesome glyph.
     String icon() default "";
+
+    /// Optional icon tint in Titan ARGB format (0xAARRGGBB). Zero uses the
+    /// controller theme. Ignored when {@link #image()} is present.
+    int iconColor() default 0;
 
     /// Optional classpath resource path to a custom PNG image icon
     /// (RuneLite-style). Loaded from the plugin JAR via the plugin class

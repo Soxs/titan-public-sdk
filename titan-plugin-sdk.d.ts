@@ -1219,10 +1219,17 @@ interface PanelDef {
     /** Display title shown on the nav button tooltip / header. */
     title: string;
     /**
-     * Optional Font Awesome glyph (UTF-8 string, e.g. "\uf013") for the nav
-     * button. Ignored when `image` is set.
+     * Optional icon spec for the nav button. Use `awesome:gear`,
+     * `lucide:house`, `phosphor:gear:bold`, or a legacy Font Awesome glyph
+     * such as "\uf013". Unprefixed strings are treated as Font Awesome for
+     * compatibility. Ignored when `image` is set.
      */
     icon?: string;
+    /**
+     * Optional icon tint as ARGB (0xAARRGGBB). Applies to Font Awesome,
+     * Lucide, Phosphor, and letter fallback icons. Ignored when `image` is set.
+     */
+    iconColor?: number;
     /**
      * Optional custom image icon as a base64-encoded PNG (RuneLite-style).
      * A `data:image/png;base64,` prefix is allowed. Takes precedence over

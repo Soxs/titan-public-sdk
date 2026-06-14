@@ -35,7 +35,7 @@ dependencies {
 ```
 
 Use `latest.release` while developing to pick up the newest published SDK.
-For reproducible plugin releases, pin an exact SDK version such as `0.1.2`.
+For reproducible plugin releases, pin an exact SDK version such as `0.1.3`.
 
 For a runnable project to copy or fork, start from
 [`Soxs/titan-java-sample-plugin`](https://github.com/Soxs/titan-java-sample-plugin).

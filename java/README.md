@@ -25,7 +25,7 @@ runtime. Plugin JARs should contain plugin classes annotated with
 `@PluginDescriptor`, not their own copy of the SDK or Guice.
 
 Use `latest.release` while developing to pick up the newest published SDK.
-For reproducible plugin releases, pin an exact SDK version such as `0.1.2`.
+For reproducible plugin releases, pin an exact SDK version such as `0.1.3`.
 
 The SDK exposes Guice as a compile dependency so plugin authors can use:
 
