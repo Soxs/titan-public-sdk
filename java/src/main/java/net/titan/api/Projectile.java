@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 public final class Projectile implements Locatable<Projectile> {
-    private transient Client client;
     private long basePtr;
     private int plane;
     private int startX;
@@ -76,13 +75,11 @@ public final class Projectile implements Locatable<Projectile> {
 
     private Optional<Actor> resolveActor(int hashIndex, int entityType) {
         if (hashIndex < 0 || entityType == EntityType.NONE) return Optional.empty();
-        Client value = client;
-        if (value == null) {
-            try {
-                value = Titan.client();
-            } catch (RuntimeException ignored) {
-                return Optional.empty();
-            }
+        Client value;
+        try {
+            value = Titan.client();
+        } catch (RuntimeException ignored) {
+            return Optional.empty();
         }
         if (entityType == EntityType.PLAYER) {
             List<Player> players = value.players();

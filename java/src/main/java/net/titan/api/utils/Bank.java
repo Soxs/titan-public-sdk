@@ -12,6 +12,8 @@ import net.titan.api.TileObject;
 import net.titan.api.Titan;
 import net.titan.api.Varbits;
 import net.titan.api.Widget;
+import net.titan.api.internal.InteractionBackend;
+import net.titan.api.internal.TitanRuntime;
 import net.titan.api.queries.Queries;
 
 import java.util.List;
@@ -25,6 +27,10 @@ public final class Bank {
 
     private static Client client() {
         return Titan.client();
+    }
+
+    private static InteractionBackend actions() {
+        return TitanRuntime.getInteractionBackend();
     }
 
     // --- State reads -----------------------------------------------------
@@ -106,26 +112,26 @@ public final class Bank {
     // --- Actions ---------------------------------------------------------
 
     public static boolean close() {
-        return client().widgetInteract(MenuAction.CC_OP, 1, 11, InterfaceId.BANK_CLOSE);
+        return actions().widgetInteract(MenuAction.CC_OP, 1, 11, InterfaceId.BANK_CLOSE);
     }
 
     public static boolean setNotedMode(boolean noted) {
         if (isNotedMode() == noted) return true;
-        return client().widgetInteract(MenuAction.CC_OP, 1, -1, InterfaceId.BANK_NOTE_TOGGLE);
+        return actions().widgetInteract(MenuAction.CC_OP, 1, -1, InterfaceId.BANK_NOTE_TOGGLE);
     }
 
     public static boolean depositAll() {
-        return client().widgetInteract(
+        return actions().widgetInteract(
             MenuAction.CC_OP, 1, -1, InterfaceId.BANK_DEPOSIT_INVENTORY);
     }
 
     public static boolean depositEquipment() {
-        return client().widgetInteract(
+        return actions().widgetInteract(
             MenuAction.CC_OP, 1, -1, InterfaceId.BANK_DEPOSIT_EQUIPMENT);
     }
 
     public static boolean depositAllOfSlot(int slot) {
-        return client().widgetInteract(
+        return actions().widgetInteract(
             MenuAction.CC_OP_LOW_PRIORITY, 8, slot,
             InterfaceId.BANK_INVENTORY_ITEM_CONTAINER);
     }
@@ -133,7 +139,7 @@ public final class Bank {
     public static boolean depositOneOfSlot(int slot) {
         int qty = bankQuantityType();
         int identifier = (qty == 0) ? 2 : 3;
-        return client().widgetInteract(
+        return actions().widgetInteract(
             MenuAction.CC_OP, identifier, slot,
             InterfaceId.BANK_INVENTORY_ITEM_CONTAINER);
     }
@@ -166,7 +172,7 @@ public final class Bank {
         if (slot.isEmpty()) return false;
         int qty = bankQuantityType();
         int identifier = (qty == 0) ? 1 : 2;
-        return client().widgetInteract(
+        return actions().widgetInteract(
             MenuAction.CC_OP, identifier, slot.get().slot(),
             InterfaceId.BANK_ITEM_CONTAINER);
     }
@@ -177,7 +183,7 @@ public final class Bank {
         int qty = bankQuantityType();
         int identifier = (qty == 4) ? 1 : 7;
         int op = (qty == 4) ? MenuAction.CC_OP : MenuAction.CC_OP_LOW_PRIORITY;
-        return client().widgetInteract(op, identifier, slot.get().slot(),
+        return actions().widgetInteract(op, identifier, slot.get().slot(),
             InterfaceId.BANK_ITEM_CONTAINER);
     }
 
@@ -193,30 +199,30 @@ public final class Bank {
 
         if (amount == 1) {
             int id = (qty == 0) ? 1 : 2;
-            return client().widgetInteract(MenuAction.CC_OP, id, slot,
+            return actions().widgetInteract(MenuAction.CC_OP, id, slot,
                 InterfaceId.BANK_ITEM_CONTAINER);
         }
         if (amount == 5) {
             int id = (qty == 1) ? 1 : 3;
-            return client().widgetInteract(MenuAction.CC_OP, id, slot,
+            return actions().widgetInteract(MenuAction.CC_OP, id, slot,
                 InterfaceId.BANK_ITEM_CONTAINER);
         }
         if (amount == 10) {
             int id = (qty == 2) ? 1 : 4;
-            return client().widgetInteract(MenuAction.CC_OP, id, slot,
+            return actions().widgetInteract(MenuAction.CC_OP, id, slot,
                 InterfaceId.BANK_ITEM_CONTAINER);
         }
 
         int lastQty = client().varbit(Varbits.BANK_REQUESTEDQUANTITY);
         if (lastQty == amount) {
             int id = (qty == 3) ? 1 : 5;
-            return client().widgetInteract(MenuAction.CC_OP, id, slot,
+            return actions().widgetInteract(MenuAction.CC_OP, id, slot,
                 InterfaceId.BANK_ITEM_CONTAINER);
         }
 
         int id = (qty == 3) ? 1 : 6;
         int op = (qty == 3) ? MenuAction.CC_OP : MenuAction.CC_OP_LOW_PRIORITY;
-        return client().widgetInteract(op, id, slot, InterfaceId.BANK_ITEM_CONTAINER);
+        return actions().widgetInteract(op, id, slot, InterfaceId.BANK_ITEM_CONTAINER);
     }
 
     public static boolean interactItemInBank(int itemId) {
@@ -226,7 +232,7 @@ public final class Bank {
     public static boolean interactItemInBank(int itemId, int identifier) {
         Optional<InventoryItem> slot = find(itemId);
         if (slot.isEmpty()) return false;
-        return client().widgetInteract(MenuAction.CC_OP, identifier, slot.get().slot(),
+        return actions().widgetInteract(MenuAction.CC_OP, identifier, slot.get().slot(),
             InterfaceId.BANK_ITEM_CONTAINER);
     }
 

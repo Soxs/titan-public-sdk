@@ -1,5 +1,6 @@
 package net.titan.api;
 
+import net.titan.api.internal.TitanRuntime;
 import net.titan.api.queries.WidgetQuerySnapshot;
 
 import java.util.Optional;
@@ -19,6 +20,15 @@ public interface Client {
     int runEnergy();
     int weight();
     boolean loggedIn();
+    default OptionalLong currentWorldViewPtr() { return OptionalLong.empty(); }
+    default OptionalLong worldViewPtr(int worldViewId) { return OptionalLong.empty(); }
+    default OptionalLong topLevelWorldViewPtr() { return OptionalLong.empty(); }
+    default boolean isInInstance() { return false; }
+    default Optional<int[][][]> instanceTemplateChunks() { return Optional.empty(); }
+    default Optional<WorldPoint> fromLocalInstance(WorldPoint point) { return Optional.empty(); }
+    default Optional<WorldPoint> toLocalInstance(WorldPoint point) { return Optional.empty(); }
+    default Optional<LocalPoint> getLocalDestinationLocation() { return Optional.empty(); }
+    default Optional<WorldPoint> getWorldDestinationLocation() { return Optional.empty(); }
     Optional<Player> localPlayer();
     List<Player> players();
     List<NPC> npcs();
@@ -128,10 +138,19 @@ public interface Client {
                              long worldViewId, int clickX, int clickY,
                              String actionText, String targetText, boolean skipClick);
     boolean interactNpc(String action, int npcIdOrNeg1, String nameOrNull);
-    boolean interactNpcByIndex(String action, int hashIndex);
+    @Deprecated
+    default boolean interactNpcByIndex(String action, int hashIndex) {
+        return TitanRuntime.getInteractionBackend().interactNpcByIndex(action, hashIndex);
+    }
     boolean interactObject(String action, int locIdOrNeg1, String nameOrNull);
-    boolean interactTileObject(String action, TileObject object);
-    boolean interactGroundItem(String action, int itemId, int tileX, int tileY);
+    @Deprecated
+    default boolean interactTileObject(String action, TileObject object) {
+        return TitanRuntime.getInteractionBackend().interactTileObject(action, object);
+    }
+    @Deprecated
+    default boolean interactGroundItem(String action, int itemId, int tileX, int tileY) {
+        return TitanRuntime.getInteractionBackend().interactGroundItem(action, itemId, tileX, tileY);
+    }
     Optional<NPC> findNearestNpc(int npcIdOrNeg1, String nameOrNull);
     default Optional<NPC> findNearestNpc(int npcId) {
         return findNearestNpc(npcId, null);
@@ -149,13 +168,31 @@ public interface Client {
 
     List<InventoryItem> inventoryItems();
     boolean containsInventoryItem(int itemId);
-    boolean interactInventoryItem(int itemId, String action);
-    boolean interactInventoryItemAtSlot(int slot, int itemId, String action);
-    boolean useInventoryItemOnItem(int srcSlot, int srcItemId,
-                                   int targetSlot, int targetItemId);
-    boolean useInventoryItemOnNpc(int srcSlot, int srcItemId, int npcHashIndex);
-    boolean useInventoryItemOnObject(int srcSlot, int srcItemId,
-                                     int objectId, int tileX, int tileY);
+    @Deprecated
+    default boolean interactInventoryItem(int itemId, String action) {
+        return TitanRuntime.getInteractionBackend().interactInventoryItem(itemId, action);
+    }
+    @Deprecated
+    default boolean interactInventoryItemAtSlot(int slot, int itemId, String action) {
+        return TitanRuntime.getInteractionBackend().interactInventoryItemAtSlot(slot, itemId, action);
+    }
+    @Deprecated
+    default boolean useInventoryItemOnItem(int srcSlot, int srcItemId,
+                                           int targetSlot, int targetItemId) {
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnItem(
+            srcSlot, srcItemId, targetSlot, targetItemId);
+    }
+    @Deprecated
+    default boolean useInventoryItemOnNpc(int srcSlot, int srcItemId, int npcHashIndex) {
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnNpc(
+            srcSlot, srcItemId, npcHashIndex);
+    }
+    @Deprecated
+    default boolean useInventoryItemOnObject(int srcSlot, int srcItemId,
+                                             int objectId, int tileX, int tileY) {
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnObject(
+            srcSlot, srcItemId, objectId, tileX, tileY);
+    }
     Optional<ItemContainer> itemContainer(int containerId);
     Optional<ItemComposition> itemComposition(int itemId);
 
@@ -171,13 +208,29 @@ public interface Client {
         return new WidgetQuerySnapshot(widgetChildrenAtPath(address), false);
     }
     Optional<Widget> widgetByText(String query);
-    boolean widgetInteract(int opcode, int identifier, int param0, int param1);
-    boolean widgetInteractAtPath(WidgetAddress address, int opcode, int identifier, int childSlot);
-    boolean setWidgetText(int packedId, String text);
-    boolean setWidgetTextAtPath(WidgetAddress address, String text);
+    @Deprecated
+    default boolean widgetInteract(int opcode, int identifier, int param0, int param1) {
+        return TitanRuntime.getInteractionBackend().widgetInteract(opcode, identifier, param0, param1);
+    }
+    @Deprecated
+    default boolean widgetInteractAtPath(WidgetAddress address, int opcode,
+                                         int identifier, int childSlot) {
+        return TitanRuntime.getInteractionBackend().widgetInteractAtPath(
+            address, opcode, identifier, childSlot);
+    }
+    @Deprecated
+    default boolean setWidgetText(int packedId, String text) {
+        return TitanRuntime.getInteractionBackend().setWidgetText(packedId, text);
+    }
+    @Deprecated
+    default boolean setWidgetTextAtPath(WidgetAddress address, String text) {
+        return TitanRuntime.getInteractionBackend().setWidgetTextAtPath(address, text);
+    }
 
     OptionalInt currentWorld();
     List<World> worlds();
+    List<WorldMetadata> worldMetadata();
+    boolean refreshWorldMetadata();
     boolean hopToWorldId(int worldId);
     boolean hopToWorldIngame(int worldId);
     boolean hopToListIndex(int listIndex);

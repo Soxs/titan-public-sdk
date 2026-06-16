@@ -4,6 +4,7 @@ import net.titan.api.InterfaceId;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
 import net.titan.api.VarPlayerId;
+import net.titan.api.internal.TitanRuntime;
 
 public final class Combat {
     private Combat() {}
@@ -21,13 +22,13 @@ public final class Combat {
     }
 
     public static boolean enableSpecialAttack() {
-        return Titan.client().widgetInteract(
+        return TitanRuntime.getInteractionBackend().widgetInteract(
             MenuAction.CC_OP, 1, -1, InterfaceId.SPEC_ORB);
     }
 
     public static boolean setAutoRetaliate(boolean enabled) {
         return isAutoRetaliateEnabled() == enabled ||
-            Titan.client().widgetInteract(
+            TitanRuntime.getInteractionBackend().widgetInteract(
                 MenuAction.CC_OP, 1, -1, InterfaceId.AUTO_RETALIATE);
     }
 }

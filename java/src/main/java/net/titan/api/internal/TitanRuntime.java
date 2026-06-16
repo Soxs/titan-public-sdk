@@ -1,6 +1,7 @@
 package net.titan.api.internal;
 
 import com.google.inject.Injector;
+import net.titan.api.Actor;
 import net.titan.api.overlay.OverlayPanel;
 
 import java.util.ArrayList;
@@ -9,10 +10,13 @@ import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public final class TitanRuntime {
     private static volatile Injector injector;
     private static volatile OverlayBackend overlayBackend;
+    private static volatile ActorResolver actorResolver;
+    private static volatile InteractionBackend interactionBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -57,6 +61,42 @@ public final class TitanRuntime {
         if (overlayBackend == backend) {
             overlayBackend = null;
         }
+    }
+
+    public static void setActorResolver(ActorResolver resolver) {
+        actorResolver = resolver;
+    }
+
+    public static void clearActorResolver(ActorResolver resolver) {
+        if (actorResolver == resolver) {
+            actorResolver = null;
+        }
+    }
+
+    public static InteractionBackend getInteractionBackend() {
+        InteractionBackend value = interactionBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java interaction backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setInteractionBackend(InteractionBackend backend) {
+        interactionBackend = backend;
+    }
+
+    public static void clearInteractionBackend(InteractionBackend backend) {
+        if (interactionBackend == backend) {
+            interactionBackend = null;
+        }
+    }
+
+    public static Optional<Actor> resolveInteracting(int interactingIndex, int interactingType) {
+        ActorResolver value = actorResolver;
+        if (value == null) return Optional.empty();
+        Optional<Actor> actor = value.resolveInteracting(interactingIndex, interactingType);
+        return actor == null ? Optional.empty() : actor;
     }
 
     public static String currentPluginId() {

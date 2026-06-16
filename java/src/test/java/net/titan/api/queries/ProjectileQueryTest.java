@@ -1,5 +1,7 @@
 package net.titan.api.queries;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import net.titan.api.Actor;
 import net.titan.api.Camera;
 import net.titan.api.Client;
@@ -7,6 +9,7 @@ import net.titan.api.EntityType;
 import net.titan.api.NPC;
 import net.titan.api.Player;
 import net.titan.api.Projectile;
+import net.titan.api.internal.TitanRuntime;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,14 +32,20 @@ class ProjectileQueryTest {
         Projectile projectile = projectile(
             -1, EntityType.NONE, 0,
             1854, EntityType.PLAYER, -1855);
-        setObj(projectile, "client", client(List.of(projectile), List.of(player), List.of()));
+        Client client = client(List.of(projectile), List.of(player), List.of());
+        Injector injector = Guice.createInjector(binder -> binder.bind(Client.class).toInstance(client));
+        TitanRuntime.setInjector(injector);
 
-        assertEquals(1854, projectile.targetEntity());
-        assertEquals(-1855, projectile.rawTargetEntity());
-        assertEquals(EntityType.PLAYER, projectile.targetEntityType());
-        Optional<Actor> target = projectile.targetActor();
-        assertTrue(target.isPresent());
-        assertSame(player, target.get());
+        try {
+            assertEquals(1854, projectile.targetEntity());
+            assertEquals(-1855, projectile.rawTargetEntity());
+            assertEquals(EntityType.PLAYER, projectile.targetEntityType());
+            Optional<Actor> target = projectile.targetActor();
+            assertTrue(target.isPresent());
+            assertSame(player, target.get());
+        } finally {
+            TitanRuntime.clearInjector(injector);
+        }
     }
 
     @Test

@@ -4,6 +4,7 @@ import net.titan.api.InterfaceId;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
 import net.titan.api.Widget;
+import net.titan.api.internal.TitanRuntime;
 
 import java.util.Optional;
 
@@ -69,7 +70,7 @@ public final class Dialogue {
 
     public static boolean selectOption(String... needles) {
         int slot = optionSlot(needles);
-        return slot >= 0 && Titan.client().widgetInteract(
+        return slot >= 0 && TitanRuntime.getInteractionBackend().widgetInteract(
             MenuAction.WIDGET_CONTINUE, 0, slot, InterfaceId.DIALOG_OPTIONS);
     }
 
@@ -96,7 +97,8 @@ public final class Dialogue {
     }
 
     private static boolean clickWholeWidget(int packedId, int opcode, int identifier) {
-        return Titan.client().widgetInteract(opcode, identifier, -1, packedId);
+        return TitanRuntime.getInteractionBackend().widgetInteract(
+            opcode, identifier, -1, packedId);
     }
 
     private static boolean containsIgnoreCase(String haystack, String needle) {

@@ -1,11 +1,13 @@
 package net.titan.api;
 
+import net.titan.api.internal.InteractionBackend;
+import net.titan.api.internal.TitanRuntime;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public final class Widget {
-    private transient Client client;
     private int screenX;
     private int screenY;
     private int width;
@@ -75,36 +77,32 @@ public final class Widget {
     }
 
     public boolean interact(int opcode, int identifier, int param0, int param1) {
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.widgetInteract(opcode, identifier, param0, param1);
+        return TitanRuntime.getInteractionBackend().widgetInteract(
+            opcode, identifier, param0, param1);
     }
 
     public boolean interact(int opcode, int identifier, int childSlot) {
-        Client value = client;
-        if (value == null) value = Titan.client();
+        InteractionBackend actions = TitanRuntime.getInteractionBackend();
         if (isDynamic()) {
-            return value.widgetInteractAtPath(address(), opcode, identifier, childSlot);
+            return actions.widgetInteractAtPath(address(), opcode, identifier, childSlot);
         }
-        return value.widgetInteract(opcode, identifier, childSlot, packedId);
+        return actions.widgetInteract(opcode, identifier, childSlot, packedId);
     }
 
     public boolean interact(int opcode, int identifier) {
         int slot = dynamicChildSlot >= 0 ? dynamicChildSlot : -1;
-        Client value = client;
-        if (value == null) value = Titan.client();
+        InteractionBackend actions = TitanRuntime.getInteractionBackend();
         if (isDynamic()) {
-            return value.widgetInteractAtPath(address(), opcode, identifier, -1);
+            return actions.widgetInteractAtPath(address(), opcode, identifier, -1);
         }
-        return value.widgetInteract(opcode, identifier, slot, packedId);
+        return actions.widgetInteract(opcode, identifier, slot, packedId);
     }
 
     public boolean setText(String value) {
-        Client bridge = client;
-        if (bridge == null) bridge = Titan.client();
+        InteractionBackend actions = TitanRuntime.getInteractionBackend();
         if (isDynamic()) {
-            return bridge.setWidgetTextAtPath(address(), value);
+            return actions.setWidgetTextAtPath(address(), value);
         }
-        return bridge.setWidgetText(packedId, value);
+        return actions.setWidgetText(packedId, value);
     }
 }

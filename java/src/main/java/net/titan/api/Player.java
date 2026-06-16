@@ -6,6 +6,8 @@ import java.util.List;
 public final class Player implements Actor, Locatable<Player> {
     private long entityPtr;
     private int hashIndex;
+    private int worldViewId = WorldView.CURRENT;
+    private long worldViewPtr;
     private int tileX;
     private int tileY;
     private int plane;
@@ -34,6 +36,10 @@ public final class Player implements Actor, Locatable<Player> {
 
     @Override
     public long entityPtr() { return entityPtr; }
+    @Override
+    public int worldViewId() { return worldViewId; }
+    @Override
+    public long worldViewPtr() { return worldViewPtr; }
     public String name() { return name == null ? "" : name; }
     @Override
     public int tileX() { return tileX; }
@@ -50,7 +56,7 @@ public final class Player implements Actor, Locatable<Player> {
     @Override
     public int preciseY() { return preciseY; }
     @Override
-    public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY); }
+    public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY, worldViewId); }
     @Override
     public Tile tile() { return Locatable.super.tile(); }
     @Override

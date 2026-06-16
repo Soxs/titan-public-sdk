@@ -63,12 +63,16 @@ interface Tile {
     x: number;
     y: number;
     plane: number;
+    /** Owning WorldView id. `-1` means the current WorldView sentinel. SDK 85+. */
+    worldViewId?: number;
 }
 /** RuneLite-style world-space tile coordinate (x, y, plane = z). */
 interface WorldPoint {
     x: number;
     y: number;
     z: number;
+    /** Owning WorldView id. `0` is top-level, `-1` is current sentinel. SDK 85+. */
+    worldViewId?: number;
 }
 /**
  * Sub-tile precision scene-local coordinate. Mirrors `titan::LocalPoint`
@@ -89,10 +93,19 @@ interface LocalPoint {
     sceneX?: number;
     /** Scene tile index (y >> 7). Optional; computed by callers. */
     sceneY?: number;
+    /** Owning WorldView id. `-1` means the current WorldView sentinel. SDK 85+. */
+    worldViewId?: number;
 }
 interface ScreenPoint {
     x: number;
     y: number;
+}
+
+type InstanceTemplateChunks = number[][][] & { readonly instanced?: boolean };
+
+interface InstanceConvertible {
+    fromLocalInstance(): WorldPoint | null;
+    toLocalInstance(): WorldPoint | null;
 }
 
 interface MenuActionSpec {
@@ -140,7 +153,7 @@ interface ActorSpotAnim {
     readonly expireCycle: number;
 }
 
-interface ActorBase {
+interface ActorBase extends InstanceConvertible {
     readonly hashIndex: number;
     readonly tileX: number;
     readonly tileY: number;
@@ -160,6 +173,10 @@ interface ActorBase {
     /** Interaction lifecycle phase (0 = active, non-zero = stale, 0xFF = unavailable). SDK v44+. */
     readonly interactingPhase: number;
     readonly entityPtr: number;
+    /** Owning WorldView id. `0` is top-level; non-zero ids identify sub WorldViews. SDK 85+. */
+    readonly worldViewId: number;
+    /** Raw native WorldView pointer for diagnostics. SDK 85+. */
+    readonly worldViewPtr: bigint;
 
     /** Logical/server tile. For actors this is PathQueue[0] when available. */
     readonly tile: Tile;
@@ -258,20 +275,24 @@ interface Npc extends ActorBase {
 
 type Actor = Player | Npc;
 
-interface TileObject {
+interface TileObject extends InstanceConvertible {
     readonly tileX: number;
     readonly tileY: number;
     readonly plane: number;
+    readonly worldViewId: number;
+    readonly worldViewPtr: bigint;
     readonly id: number;
     readonly sizeX: number;
     readonly sizeY: number;
     readonly type: string;
     readonly name: string;
+    /** Raw native scene tag used by loc interaction and clickbox lookup. */
+    readonly packedId: bigint;
     /**
-     * Scene layer the loc was picked up from (matches the layer bits
-     * in the engine's picking typecode):
+     * Scene layer the loc was picked up from:
      *   0 = Wall, 1 = Decor, 2 = Scenery (standing loc), 3 = GroundDecor.
-     * `-1` when the host couldn't classify. Populated by SDK v34+.
+     * `-1` when the host couldn't classify. Native loc picking uses packedId;
+     * layer is metadata for filtering/debug display. Populated by SDK v34+.
      */
     readonly layer: number;
     /** Raw 1-byte TypeCode2 value, or -1 when unavailable. */
@@ -298,10 +319,12 @@ interface TileObject {
     interact(action: string): boolean;
 }
 
-interface GroundItem {
+interface GroundItem extends InstanceConvertible {
     readonly tileX: number;
     readonly tileY: number;
     readonly plane: number;
+    readonly worldViewId: number;
+    readonly worldViewPtr: bigint;
     readonly id: number;
     readonly quantity: number;
     /** See titan.GroundItemOwnership. Unknown/unreadable ownership is `0xFFFFFFFF`. */
@@ -345,7 +368,7 @@ interface Item {
     useOn(target: Item | Npc | TileObject): boolean;
 }
 
-interface Projectile {
+interface Projectile extends InstanceConvertible {
     readonly plane: number;
     readonly startX: number;
     readonly startZ: number;
@@ -406,7 +429,7 @@ interface Sequence {
  * from `WorldView::GraphicsObjectList` and dispatched through
  * `onGraphicsObject{Spawned,Despawned,Moved}`. SDK 57+.
  */
-interface GraphicsObject {
+interface GraphicsObject extends InstanceConvertible {
     readonly spotAnimId: number;
     readonly startCycle: number;
     readonly plane: number;
@@ -419,6 +442,8 @@ interface GraphicsObject {
     readonly tileY: number;
     readonly worldX: number;
     readonly worldY: number;
+    readonly worldViewId: number;
+    readonly worldViewPtr: bigint;
     readonly seqPtr: bigint;
     readonly seqTypePtr: bigint;
     readonly animationId: number;
@@ -475,13 +500,17 @@ interface NamedQuery<T> extends Query<T> {
  *
  * Both `within` and `nearestTo` accept the same set of origin shapes:
  * - `Tile` / `ActorBase` -- scene-local tile coords (no conversion).
- * - `WorldPoint` -- absolute world coords; converted to scene-local
- *   via the live `baseX` / `baseY` from `titan.state.client.snapshot`.
- *   Falls back to an empty result (`within`) / `null` (`nearestTo`)
- *   when the client snapshot is unavailable.
+ * - `WorldPoint` -- absolute world coords compared in the point's
+ *   owning WorldView.
  * - `LocalPoint` -- sub-tile scene-local coords; round-down via `>> 7`.
  */
 interface LocatableQuery<T> extends Query<T> {
+    /** Keep only entities owned by the given WorldView id. SDK 85+. */
+    worldView(worldViewId: number): this;
+    /** Keep only entities owned by the current WorldView. SDK 85+. */
+    currentWorldView(): this;
+    /** Keep only top-level WorldView entities (`WorldView.TOP_LEVEL`). SDK 85+. */
+    topLevelWorldView(): this;
     within(radius: number, origin: Tile | ActorBase | WorldPoint | LocalPoint): this;
     nearestTo(origin: Tile | ActorBase | WorldPoint | LocalPoint): T | null;
     /** Nearest entity to the local player, or null. */
@@ -1475,6 +1504,12 @@ declare namespace titan {
     const ENTITY_TYPE_PLAYER: number;
     const ENTITY_TYPE_NONE: number;
 
+    /** WorldView id constants. SDK 85+. */
+    const WorldView: {
+        readonly CURRENT: -1;
+        readonly TOP_LEVEL: 0;
+    };
+
     /**
      * Render-pass selector for `Plugin.overlay({ layer: ... })`. Two
      * values matching the host's draw passes (`ABOVE_SCENE` /
@@ -1556,6 +1591,33 @@ declare namespace titan {
         hasLineOfSight(other: LineOfSightTarget): boolean;
     }
 
+    namespace worldView {
+        const CURRENT: -1;
+        const TOP_LEVEL: 0;
+        /** Active/current WorldView pointer, or null when unavailable. SDK 81+. */
+        function current(): bigint | null;
+        /** WorldView pointer for a specific WorldView id, or null when unavailable. SDK 81+. */
+        function get(id: number): bigint | null;
+        /** Top-level/default WorldView pointer. SDK 81+. */
+        function topLevel(): bigint | null;
+    }
+
+    namespace WorldView {
+        const CURRENT: -1;
+        const TOP_LEVEL: 0;
+    }
+
+    namespace worldPoint {
+        /** True when the active RegionComposite contains at least one valid template cell. SDK 81+. */
+        function isInInstance(): boolean;
+        /** Active instance template chunks as [plane][chunkX][chunkY], or null when unavailable. SDK 81+. */
+        function getInstanceTemplateChunks(): InstanceTemplateChunks | null;
+        /** Convert a local-instance WorldPoint to its source-world point. SDK 81+. */
+        function fromLocalInstance(point: WorldPoint): WorldPoint | null;
+        /** Convert a source-world WorldPoint into the current local instance. SDK 81+. */
+        function toLocalInstance(point: WorldPoint): WorldPoint | null;
+    }
+
     // --- Geometry helpers (SDK 39) ---
     // Mirror the inline methods on `titan::WorldPos` in C++. Operate
     // over plain `WorldPoint` interface values returned from entity
@@ -1624,6 +1686,26 @@ declare namespace titan {
             readonly baseX: number;
             /** Scene base Y in absolute world tile coordinates. */
             readonly baseY: number;
+            /** Active/current WorldView id. SDK 84+. */
+            readonly currentWorldViewId: number;
+            /** Top-level scene base X in absolute world tile coordinates. SDK 84+. */
+            readonly topLevelBaseX: number;
+            /** Top-level scene base Y in absolute world tile coordinates. SDK 84+. */
+            readonly topLevelBaseY: number;
+            /** Top-level WorldView plane. SDK 84+. */
+            readonly topLevelPlane: number;
+            /** Top-level loaded scene width in tiles. SDK 84+. */
+            readonly topLevelSceneSizeX: number;
+            /** Top-level loaded scene height in tiles. SDK 84+. */
+            readonly topLevelSceneSizeY: number;
+            /** Local player's projected tile in the top-level WorldView. SDK 85+. */
+            readonly topLevelLocalPlayerTileX: number;
+            /** Local player's projected tile in the top-level WorldView. SDK 85+. */
+            readonly topLevelLocalPlayerTileY: number;
+            /** Projected local-player plane in the top-level WorldView. SDK 85+. */
+            readonly topLevelLocalPlayerPlane: number;
+            /** True when the top-level local-player projection is available. SDK 85+. */
+            readonly topLevelLocalPlayerTileValid: boolean;
             /** Loaded scene width in tiles. SDK 52+. */
             readonly sceneSizeX: number;
             /** Loaded scene height in tiles. SDK 52+. */
@@ -1644,6 +1726,10 @@ declare namespace titan {
             /** Alias for `isGroupIronman`. */
             readonly isGroupIronMan: boolean;
             readonly localPlayer: Player | null;
+            /** Active minimap red-flag destination in scene-local precise coords. SDK 82+. */
+            getLocalDestinationLocation(): LocalPoint | null;
+            /** Active minimap red-flag destination in world coords. SDK 82+. */
+            getWorldDestinationLocation(): WorldPoint | null;
             /**
              * Dispatch a fully-specified menu-action entry. Mirrors
              * `titan::ClientFacade::invokeMenuAction(...)` in C++.
@@ -2539,6 +2625,17 @@ declare namespace titan {
                  fillColor: number, outlineColor: number): void;
         tileRegion(minTileX: number, minTileY: number, maxTileX: number, maxTileY: number,
                    plane: number, fillColor: number, outlineColor: number): void;
+        tileQuadInWorldView(worldViewId: number, tileX: number, tileY: number, plane: number,
+                            fillColor: number, outlineColor: number): void;
+        tileRegionInWorldView(worldViewId: number,
+                              minTileX: number, minTileY: number,
+                              maxTileX: number, maxTileY: number,
+                              plane: number, fillColor: number, outlineColor: number): void;
+        worldTileRegionInWorldView(worldViewId: number,
+                                   minWorldX: number, minWorldY: number,
+                                   maxWorldX: number, maxWorldY: number,
+                                   plane: number, fillColor: number,
+                                   outlineColor: number): void;
         entityBox(entity: Npc | Player, color: number, height?: number): void;
         entityBoxAt(preciseX: number, preciseY: number, plane: number,
                     tileSize: number, height: number, color: number): void;
@@ -2558,11 +2655,11 @@ declare namespace titan {
          * its typecode. Passing `typecode = 0` skips typecode-keyed lookup
          * and falls back to the host's legacy world-keyed cache.
          */
-        entityClickboxRaw(entityPtr: number, typecode: number,
+        entityClickboxRaw(entityPtr: number | bigint, typecode: number | bigint,
                           outline: number, fill?: number): void;
         /** Tile-object (wall, decor, standing loc, ground decor) equivalent. */
         tileObjectClickbox(obj: TileObject, outline: number, fill?: number): void;
-        tileObjectClickboxRaw(locPtr: number, typecode: number,
+        tileObjectClickboxRaw(locPtr: number | bigint, typecode: number | bigint,
                               outline: number, fill?: number): void;
         /**
          * Draw the 2D convex hull of an entity's projected AABB corners --
@@ -2572,21 +2669,38 @@ declare namespace titan {
          * to real model vertices.
          */
         entityHull(entity: Npc | Player, outline: number, fill?: number): void;
-        entityHullRaw(entityPtr: number, typecode: number,
+        entityHullRaw(entityPtr: number | bigint, typecode: number | bigint,
                       outline: number, fill?: number): void;
         tileObjectHull(obj: TileObject, outline: number, fill?: number): void;
-        tileObjectHullRaw(locPtr: number, typecode: number,
+        tileObjectHullRaw(locPtr: number | bigint, typecode: number | bigint,
                           outline: number, fill?: number): void;
         textAtWorld(worldX: number, worldY: number, worldZ: number,
                     text: string, color: number, centered?: boolean): void;
+        textAtWorldInWorldView(worldViewId: number,
+                               preciseX: number, worldY: number, preciseY: number,
+                               plane: number, text: string, color: number,
+                               centered?: boolean): void;
+        textAtWorldTileInWorldView(worldViewId: number,
+                                   worldTileX: number, worldY: number, worldTileY: number,
+                                   plane: number, text: string, color: number,
+                                   centered?: boolean): void;
         screenText(x: number, y: number, text: string, color: number): void;
         screenRect(x: number, y: number, w: number, h: number, color: number): void;
         screenLine(x1: number, y1: number, x2: number, y2: number,
                    color: number, thickness?: number): void;
         worldToScreen(worldX: number, worldY: number, worldZ: number): ScreenPoint | null;
+        worldToScreenInWorldView(worldViewId: number,
+                                 preciseX: number, worldY: number,
+                                 preciseY: number, plane: number): ScreenPoint | null;
         tileToScreen(tileX: number, tileY: number, plane: number,
                      heightOffset?: number): ScreenPoint | null;
         tileHeight(preciseX: number, preciseY: number, plane: number): number;
+        tileHeightInWorldView(worldViewId: number,
+                              preciseX: number, preciseY: number,
+                              plane: number): number;
+        worldTileHeightInWorldView(worldViewId: number,
+                                   worldTileX: number, worldTileY: number,
+                                   plane: number): number;
     };
 
     // Frame-phase schedulers.
@@ -2834,6 +2948,24 @@ declare namespace titan {
         readonly string1: string;
     }
 
+    /**
+     * SLR-backed world metadata from Jagex's official world list. Unlike
+     * `World`, these fields have stable meanings and include the measured
+     * ping cache. Added in SDK 83.
+     */
+    interface WorldMetadata {
+        readonly id: number;
+        readonly flags: number;     // bit 0 = members, bit 16 = beta
+        readonly isMembers: boolean;
+        readonly isBeta: boolean;
+        readonly host: string;
+        readonly activity: string;
+        readonly location: number;
+        readonly population: number;
+        readonly pingMs: number;
+        readonly region: string;
+    }
+
     namespace state {
         namespace world {
             /**
@@ -2851,6 +2983,19 @@ declare namespace titan {
              * `hopByListIndex()` may still work. Added in SDK 28.
              */
             function list(): World[];
+
+            /**
+             * SLR-backed world metadata from Jagex's official world list.
+             * Returns the last good snapshot; pings are -1 while unknown.
+             * Added in SDK 83.
+             */
+            function metadata(): WorldMetadata[];
+
+            /**
+             * Force an asynchronous SLR metadata refresh and ping probe
+             * queue. Added in SDK 83.
+             */
+            function refreshMetadata(): boolean;
 
             /**
              * Dispatch a **title-screen** hop to a specific world id.

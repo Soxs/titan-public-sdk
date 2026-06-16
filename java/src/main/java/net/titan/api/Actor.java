@@ -1,7 +1,10 @@
 package net.titan.api;
 
+import net.titan.api.internal.TitanRuntime;
+
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public interface Actor {
     long entityPtr();
@@ -11,6 +14,8 @@ public interface Actor {
     int plane();
     int worldX();
     int worldY();
+    default int worldViewId() { return WorldView.CURRENT; }
+    default long worldViewPtr() { return 0L; }
     int preciseX();
     int preciseY();
     int orientation();
@@ -45,6 +50,14 @@ public interface Actor {
     default boolean isInteracting() {
         if (interactingPhase() == 0xFF) return interactingIndex() != -1 && interactingIndex() != 0;
         return interactingPhase() == 0 && interactingType() != EntityType.NONE && interactingIndex() != -1;
+    }
+
+    default Optional<Actor> interacting() {
+        return TitanRuntime.resolveInteracting(interactingIndex(), interactingType());
+    }
+
+    default Actor getInteracting() {
+        return interacting().orElse(null);
     }
 
     default float healthPercent() {

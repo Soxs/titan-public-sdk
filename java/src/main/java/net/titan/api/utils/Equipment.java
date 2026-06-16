@@ -6,6 +6,7 @@ import net.titan.api.InventoryItem;
 import net.titan.api.ItemComposition;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
+import net.titan.api.internal.TitanRuntime;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +39,7 @@ public final class Equipment {
 
         public boolean unequip() {
             int packedId = slot.widgetPackedId();
-            return packedId != 0 && Titan.client().widgetInteract(
+            return packedId != 0 && TitanRuntime.getInteractionBackend().widgetInteract(
                 MenuAction.CC_OP, 1, -1, packedId);
         }
     }

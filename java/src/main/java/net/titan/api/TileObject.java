@@ -1,10 +1,13 @@
 package net.titan.api;
 
+import net.titan.api.internal.TitanRuntime;
+
 import java.util.Collections;
 import java.util.List;
 
 public final class TileObject implements Locatable<TileObject> {
-    private transient Client client;
+    private int worldViewId = WorldView.CURRENT;
+    private long worldViewPtr;
     private int tileX;
     private int tileY;
     private int plane;
@@ -31,6 +34,10 @@ public final class TileObject implements Locatable<TileObject> {
     public int tileY() { return tileY; }
     @Override
     public int plane() { return plane; }
+    @Override
+    public int worldViewId() { return worldViewId; }
+    @Override
+    public long worldViewPtr() { return worldViewPtr; }
     public int id() { return id; }
     public int sizeX() { return sizeX; }
     public int sizeY() { return sizeY; }
@@ -55,7 +62,8 @@ public final class TileObject implements Locatable<TileObject> {
 
     @Override
     public WorldArea worldArea() {
-        return new WorldArea(worldX(), worldY(), Math.max(1, sizeX()), Math.max(1, sizeY()), plane());
+        return new WorldArea(worldX(), worldY(), Math.max(1, sizeX()), Math.max(1, sizeY()),
+            plane(), worldViewId());
     }
 
     public boolean hasAction(String action) {
@@ -69,8 +77,6 @@ public final class TileObject implements Locatable<TileObject> {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.interactTileObject(action, this);
+        return TitanRuntime.getInteractionBackend().interactTileObject(action, this);
     }
 }

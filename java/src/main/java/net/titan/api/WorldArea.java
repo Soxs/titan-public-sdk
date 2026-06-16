@@ -8,15 +8,21 @@ public final class WorldArea {
     private int width = 1;
     private int height = 1;
     private int plane;
+    private int worldViewId = WorldView.CURRENT;
 
     public WorldArea() {}
 
     public WorldArea(int x, int y, int width, int height, int plane) {
+        this(x, y, width, height, plane, WorldView.CURRENT);
+    }
+
+    public WorldArea(int x, int y, int width, int height, int plane, int worldViewId) {
         this.x = x;
         this.y = y;
         this.width = Math.max(1, width);
         this.height = Math.max(1, height);
         this.plane = plane;
+        this.worldViewId = worldViewId;
     }
 
     public int x() { return x; }
@@ -24,19 +30,24 @@ public final class WorldArea {
     public int width() { return width; }
     public int height() { return height; }
     public int plane() { return plane; }
+    public int worldViewId() { return worldViewId; }
 
     public boolean contains(WorldPoint point) {
-        return point != null && point.z() == plane && contains2D(point);
+        return point != null && point.z() == plane
+            && WorldView.same(point.worldViewId(), worldViewId) && contains2D(point);
     }
 
     public boolean contains2D(WorldPoint point) {
         return point != null
+            && WorldView.same(point.worldViewId(), worldViewId)
             && point.x() >= x && point.x() < x + width
             && point.y() >= y && point.y() < y + height;
     }
 
     public int distanceTo(WorldPoint point) {
-        if (point == null || point.z() != plane) return Integer.MAX_VALUE;
+        if (point == null || point.z() != plane || !WorldView.same(point.worldViewId(), worldViewId)) {
+            return Integer.MAX_VALUE;
+        }
         int dx = 0;
         int dy = 0;
         if (point.x() < x) dx = x - point.x();
@@ -47,7 +58,9 @@ public final class WorldArea {
     }
 
     public int distanceTo(WorldArea other) {
-        if (other == null || other.plane != plane) return Integer.MAX_VALUE;
+        if (other == null || other.plane != plane || !WorldView.same(other.worldViewId, worldViewId)) {
+            return Integer.MAX_VALUE;
+        }
         int dx = 0;
         int dy = 0;
         if (other.x + other.width <= x) dx = x - (other.x + other.width - 1);
@@ -58,7 +71,7 @@ public final class WorldArea {
     }
 
     public WorldPoint center() {
-        return new WorldPoint(x + width / 2, y + height / 2, plane);
+        return new WorldPoint(x + width / 2, y + height / 2, plane, worldViewId);
     }
 
     @Override
@@ -67,17 +80,18 @@ public final class WorldArea {
         if (!(object instanceof WorldArea)) return false;
         WorldArea other = (WorldArea) object;
         return x == other.x && y == other.y && width == other.width
-            && height == other.height && plane == other.plane;
+            && height == other.height && plane == other.plane
+            && WorldView.same(worldViewId, other.worldViewId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y, width, height, plane);
+        return Objects.hash(x, y, width, height, plane, worldViewId);
     }
 
     @Override
     public String toString() {
         return "WorldArea{" + x + "," + y + "," + width + "x" + height
-            + "," + plane + "}";
+            + "," + plane + ",wv=" + worldViewId + "}";
     }
 }

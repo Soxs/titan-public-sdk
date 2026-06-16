@@ -4,6 +4,7 @@ import net.titan.api.NPC;
 import net.titan.api.Player;
 import net.titan.api.ScreenPoint;
 import net.titan.api.TileObject;
+import net.titan.api.WorldView;
 import net.titan.api.WorldPoint;
 import net.titan.api.internal.TitanRuntime;
 
@@ -86,8 +87,7 @@ public final class OverlayDraw {
 
     public void tileObjectClickbox(TileObject object, int outline, int fill) {
         if (object == null) return;
-        long typecode = buildLocTypecode(
-            object.id(), object.layer(), object.tileX(), object.tileY(), object.plane());
+        long typecode = object.packedId();
         tileObjectClickbox(object.entityPtr(), typecode, outline, fill);
     }
 
@@ -127,8 +127,7 @@ public final class OverlayDraw {
 
     public void tileObjectHull(TileObject object, int outline, int fill) {
         if (object == null) return;
-        long typecode = buildLocTypecode(
-            object.id(), object.layer(), object.tileX(), object.tileY(), object.plane());
+        long typecode = object.packedId();
         tileObjectHull(object.entityPtr(), typecode, outline, fill);
     }
 
@@ -205,12 +204,21 @@ public final class OverlayDraw {
 
     public static long buildLocTypecode(int locId, int layer,
                                         int tileX, int tileY, int plane) {
+        return buildLocTypecode(locId, layer, tileX, tileY, plane, WorldView.TOP_LEVEL);
+    }
+
+    public static long buildLocTypecode(int locId, int layer,
+                                        int tileX, int tileY, int plane,
+                                        int worldViewId) {
+        // Native loc picking uses the raw scene tag; layer is kept in
+        // the signature for source compatibility.
         if (locId < 0) return 0L;
         long tx = tileX & 0x7FL;
         long tileYBits = tileY & 0x7FL;
         long pl = plane & 0x3L;
-        long id = locId & 0xFFFFFFFFL;
-        long ly = layer < 0 ? 0L : layer & 0x3L;
-        return tx | (tileYBits << 7) | (pl << 14) | (2L << 16) | (id << 20) | (ly << 52);
+        long id = locId & 0xFFFFL;
+        long wv = worldViewId < 0 ? 0L : worldViewId & 0xFFFFL;
+        return tx | (tileYBits << 7) | (pl << 14) | (2L << 16)
+            | (id << 20) | (wv << 36);
     }
 }

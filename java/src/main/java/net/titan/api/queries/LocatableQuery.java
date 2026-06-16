@@ -8,6 +8,7 @@ import net.titan.api.NPC;
 import net.titan.api.Player;
 import net.titan.api.Tile;
 import net.titan.api.WorldPoint;
+import net.titan.api.WorldView;
 
 import java.util.Collection;
 import java.util.Comparator;
@@ -20,6 +21,18 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     protected LocatableQuery(Client client, Collection<T> source) {
         super(source);
         this.client = client;
+    }
+
+    public Q worldView(int worldViewId) {
+        return where(item -> WorldView.same(item.worldViewId(), worldViewId));
+    }
+
+    public Q currentWorldView() {
+        return worldView(WorldView.CURRENT);
+    }
+
+    public Q topLevelWorldView() {
+        return worldView(WorldView.TOP_LEVEL);
     }
 
     public Q within(int radius, Tile origin) {
@@ -44,13 +57,13 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     }
 
     public Q within(int radius, WorldPoint origin) {
-        Tile tile = sceneTile(origin);
-        return tile == null ? clear() : within(radius, tile);
+        if (origin == null) return clear();
+        return where(item -> item.distanceTo(origin) <= radius);
     }
 
     public Q within(int radius, LocalPoint origin) {
         if (origin == null) return clear();
-        Tile tile = new Tile(origin.sceneX(), origin.sceneY(), 0);
+        Tile tile = new Tile(origin.sceneX(), origin.sceneY(), 0, origin.worldViewId());
         return where(item -> item.tile().distanceTo2D(tile) <= radius);
     }
 
@@ -75,14 +88,23 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     }
 
     public Optional<T> nearestTo(WorldPoint origin) {
-        Tile tile = sceneTile(origin);
-        return tile == null ? Optional.empty() : nearestTo(tile);
+        if (origin == null) return Optional.empty();
+        T best = null;
+        int bestDistance = Integer.MAX_VALUE;
+        for (T item : items) {
+            int distance = item.distanceTo(origin);
+            if (distance < bestDistance) {
+                bestDistance = distance;
+                best = item;
+            }
+        }
+        return Optional.ofNullable(best);
     }
 
     public Optional<T> nearestTo(LocalPoint origin) {
         return origin == null
             ? Optional.empty()
-            : nearestToTile(new Tile(origin.sceneX(), origin.sceneY(), 0), false);
+            : nearestToTile(new Tile(origin.sceneX(), origin.sceneY(), 0, origin.worldViewId()), false);
     }
 
     public Optional<T> nearest() {
@@ -101,8 +123,8 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     }
 
     public Q atWorldPoint(WorldPoint point) {
-        Tile tile = sceneTile(point);
-        return tile == null ? clear() : onTile(tile);
+        if (point == null) return clear();
+        return where(item -> point.equals(item.worldPoint()));
     }
 
     public Q sortedByDistanceTo(Tile origin) {
@@ -127,13 +149,13 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     }
 
     public Q sortedByDistanceTo(WorldPoint origin) {
-        Tile tile = sceneTile(origin);
-        return tile == null ? self() : sortedByDistanceTo(tile);
+        if (origin == null) return self();
+        return sortBy(Comparator.comparingInt(item -> item.distanceTo(origin)));
     }
 
     public Q sortedByDistanceTo(LocalPoint origin) {
         if (origin == null) return self();
-        Tile tile = new Tile(origin.sceneX(), origin.sceneY(), 0);
+        Tile tile = new Tile(origin.sceneX(), origin.sceneY(), 0, origin.worldViewId());
         return sortBy(Comparator.comparingInt(item -> item.tile().distanceTo2D(tile)));
     }
 
@@ -152,12 +174,6 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
         }
         return Optional.ofNullable(best);
     }
-
-    private Tile sceneTile(WorldPoint origin) {
-        if (client == null || origin == null) return null;
-        return new Tile(origin.x() - client.baseX(), origin.y() - client.baseY(), origin.z());
-    }
-
     private Q clear() {
         items.clear();
         return self();

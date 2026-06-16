@@ -1,9 +1,12 @@
 package net.titan.api;
 
+import net.titan.api.internal.TitanRuntime;
+
 public final class GroundItem implements Locatable<GroundItem> {
     private static final int ACCOUNT_TYPE_VARBIT = 1777;
 
-    private transient Client client;
+    private int worldViewId = WorldView.CURRENT;
+    private long worldViewPtr;
     private int tileX;
     private int tileY;
     private int plane;
@@ -20,6 +23,10 @@ public final class GroundItem implements Locatable<GroundItem> {
     public int tileY() { return tileY; }
     @Override
     public int plane() { return plane; }
+    @Override
+    public int worldViewId() { return worldViewId; }
+    @Override
+    public long worldViewPtr() { return worldViewPtr; }
     public int id() { return id; }
     public int quantity() { return quantity; }
     public String name() { return name == null ? "" : name; }
@@ -30,9 +37,7 @@ public final class GroundItem implements Locatable<GroundItem> {
     public long ownershipType() { return ownershipType; }
     public GroundItemOwnership ownership() { return GroundItemOwnership.fromId(ownershipType); }
     public boolean canLoot() {
-        Client value = client;
-        if (value == null) value = Titan.client();
-        int accountType = value.varbit(ACCOUNT_TYPE_VARBIT);
+        int accountType = Titan.client().varbit(ACCOUNT_TYPE_VARBIT);
         boolean ironman = accountType >= 1 && accountType <= 6;
         boolean groupIronman = accountType == 4 || accountType == 5 || accountType == 6;
         switch ((int) ownershipType) {
@@ -50,8 +55,6 @@ public final class GroundItem implements Locatable<GroundItem> {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.interactGroundItem(action, id, tileX, tileY);
+        return TitanRuntime.getInteractionBackend().interactGroundItem(action, id, tileX, tileY);
     }
 }

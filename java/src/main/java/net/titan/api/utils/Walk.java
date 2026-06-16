@@ -4,6 +4,7 @@ import net.titan.api.InterfaceId;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
 import net.titan.api.VarPlayerId;
+import net.titan.api.internal.TitanRuntime;
 
 public final class Walk {
     private Walk() {}
@@ -13,7 +14,7 @@ public final class Walk {
     }
 
     public static boolean toggleRun() {
-        return Titan.client().widgetInteract(
+        return TitanRuntime.getInteractionBackend().widgetInteract(
             MenuAction.CC_OP, 1, -1, InterfaceId.RUN_ORB);
     }
 

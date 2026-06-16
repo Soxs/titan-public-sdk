@@ -1,13 +1,16 @@
 package net.titan.api;
 
+import net.titan.api.internal.TitanRuntime;
+
 import java.util.Collections;
 import java.util.List;
 
 public final class NPC implements Actor, Locatable<NPC> {
-    private transient Client client;
     private long entityPtr;
     private long definitionPtr;
     private int hashIndex;
+    private int worldViewId = WorldView.CURRENT;
+    private long worldViewPtr;
     private int id = -1;
     private int tileX;
     private int tileY;
@@ -39,6 +42,8 @@ public final class NPC implements Actor, Locatable<NPC> {
     @Override public long entityPtr() { return entityPtr; }
     public long definitionPtr() { return definitionPtr; }
     @Override public int hashIndex() { return hashIndex; }
+    @Override public int worldViewId() { return worldViewId; }
+    @Override public long worldViewPtr() { return worldViewPtr; }
     public int id() { return id; }
     @Override public int tileX() { return tileX; }
     @Override public int tileY() { return tileY; }
@@ -47,7 +52,7 @@ public final class NPC implements Actor, Locatable<NPC> {
     @Override public int worldY() { return worldY; }
     @Override public int preciseX() { return preciseX; }
     @Override public int preciseY() { return preciseY; }
-    @Override public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY); }
+    @Override public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY, worldViewId); }
     @Override public Tile tile() { return Locatable.super.tile(); }
     @Override public WorldPoint worldPoint() { return Locatable.super.worldPoint(); }
     @Override public int orientation() { return orientation; }
@@ -85,7 +90,8 @@ public final class NPC implements Actor, Locatable<NPC> {
 
     @Override
     public WorldArea worldArea() {
-        return new WorldArea(worldX(), worldY(), Math.max(1, sizeX()), Math.max(1, sizeY()), plane());
+        return new WorldArea(worldX(), worldY(), Math.max(1, sizeX()), Math.max(1, sizeY()),
+            plane(), worldViewId());
     }
 
     @Override public int distanceTo(Tile other) { return Locatable.super.distanceTo(other); }
@@ -103,8 +109,6 @@ public final class NPC implements Actor, Locatable<NPC> {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.interactNpcByIndex(action, hashIndex);
+        return TitanRuntime.getInteractionBackend().interactNpcByIndex(action, hashIndex);
     }
 }

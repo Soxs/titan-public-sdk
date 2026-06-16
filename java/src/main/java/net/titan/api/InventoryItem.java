@@ -1,7 +1,9 @@
 package net.titan.api;
 
+import net.titan.api.internal.InteractionBackend;
+import net.titan.api.internal.TitanRuntime;
+
 public final class InventoryItem {
-    private transient Client client;
     private int slot = -1;
     private int id = -1;
     private int quantity;
@@ -14,33 +16,28 @@ public final class InventoryItem {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        if (slot >= 0 && value.interactInventoryItemAtSlot(slot, id, action)) {
+        InteractionBackend actions = TitanRuntime.getInteractionBackend();
+        if (slot >= 0 && actions.interactInventoryItemAtSlot(slot, id, action)) {
             return true;
         }
-        return value.interactInventoryItem(id, action);
+        return actions.interactInventoryItem(id, action);
     }
 
     public boolean useOn(InventoryItem target) {
         if (target == null) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.useInventoryItemOnItem(slot, id, target.slot(), target.id());
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnItem(
+            slot, id, target.slot(), target.id());
     }
 
     public boolean useOn(NPC target) {
         if (target == null) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.useInventoryItemOnNpc(slot, id, target.hashIndex());
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnNpc(
+            slot, id, target.hashIndex());
     }
 
     public boolean useOn(TileObject target) {
         if (target == null) return false;
-        Client value = client;
-        if (value == null) value = Titan.client();
-        return value.useInventoryItemOnObject(
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnObject(
             slot, id, target.id(), target.tileX(), target.tileY());
     }
 }

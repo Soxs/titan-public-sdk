@@ -14,6 +14,7 @@ public final class GraphicsObject implements Locatable<GraphicsObject> {
     private int tileY;
     private int worldX;
     private int worldY;
+    private int worldViewId = WorldView.CURRENT;
     private long worldViewPtr;
     private long seqStateAddr;
     private long seqTypePtr;
@@ -42,6 +43,9 @@ public final class GraphicsObject implements Locatable<GraphicsObject> {
     public int worldX() { return worldX; }
     @Override
     public int worldY() { return worldY; }
+    @Override
+    public int worldViewId() { return worldViewId; }
+    @Override
     public long worldViewPtr() { return worldViewPtr; }
     public long seqStateAddr() { return seqStateAddr; }
     public long seqPtr() { return seqPtr != 0 ? seqPtr : seqTypePtr; }
@@ -55,6 +59,6 @@ public final class GraphicsObject implements Locatable<GraphicsObject> {
 
     @Override
     public LocalPoint localPoint() {
-        return new LocalPoint(preciseX, preciseZ);
+        return new LocalPoint(preciseX, preciseZ, worldViewId);
     }
 }
