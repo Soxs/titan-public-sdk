@@ -58,4 +58,16 @@ public interface Locatable<T extends Locatable<T>> {
     default boolean isInMeleeDistance(Locatable<?> other) {
         return other != null && worldArea().isInMeleeDistance(other.worldArea());
     }
+
+    default boolean hasLineOfSight(WorldPoint other) {
+        return worldArea().hasLineOfSight(other);
+    }
+
+    default boolean hasLineOfSight(WorldArea other) {
+        return worldArea().hasLineOfSight(other);
+    }
+
+    default boolean hasLineOfSight(Locatable<?> other) {
+        return other != null && worldArea().hasLineOfSight(other.worldArea());
+    }
 }

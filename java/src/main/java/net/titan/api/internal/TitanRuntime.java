@@ -17,6 +17,7 @@ public final class TitanRuntime {
     private static volatile OverlayBackend overlayBackend;
     private static volatile ActorResolver actorResolver;
     private static volatile InteractionBackend interactionBackend;
+    private static volatile SchedulerBackend schedulerBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -89,6 +90,25 @@ public final class TitanRuntime {
     public static void clearInteractionBackend(InteractionBackend backend) {
         if (interactionBackend == backend) {
             interactionBackend = null;
+        }
+    }
+
+    public static SchedulerBackend getSchedulerBackend() {
+        SchedulerBackend value = schedulerBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java scheduler backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setSchedulerBackend(SchedulerBackend backend) {
+        schedulerBackend = backend;
+    }
+
+    public static void clearSchedulerBackend(SchedulerBackend backend) {
+        if (schedulerBackend == backend) {
+            schedulerBackend = null;
         }
     }
 

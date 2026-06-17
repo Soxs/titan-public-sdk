@@ -28,7 +28,14 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     }
 
     public Q currentWorldView() {
-        return worldView(WorldView.CURRENT);
+        int id = client == null ? WorldView.CURRENT : client.currentWorldViewId();
+        if (client != null) {
+            Optional<Player> local = client.localPlayer();
+            if (local.isPresent()) {
+                id = local.get().worldViewId();
+            }
+        }
+        return worldView(id);
     }
 
     public Q topLevelWorldView() {

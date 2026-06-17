@@ -1,11 +1,15 @@
 package net.titan.api.overlay;
 
 import net.titan.api.NPC;
+import net.titan.api.Client;
+import net.titan.api.LocalPoint;
+import net.titan.api.Locatable;
 import net.titan.api.Player;
 import net.titan.api.ScreenPoint;
 import net.titan.api.TileObject;
 import net.titan.api.WorldView;
 import net.titan.api.WorldPoint;
+import net.titan.api.Titan;
 import net.titan.api.internal.TitanRuntime;
 
 import java.util.Optional;
@@ -31,10 +35,73 @@ public final class OverlayDraw {
             minTileX, minTileY, maxTileX, maxTileY, plane, fillColor, outlineColor);
     }
 
+    public void tileQuadInWorldView(int worldViewId, int tileX, int tileY,
+                                    int plane, int fillColor, int outlineColor) {
+        TitanRuntime.getOverlayBackend().tileQuadInWorldView(
+            worldViewId, tileX, tileY, plane, fillColor, outlineColor);
+    }
+
+    public void tileRegionInWorldView(int worldViewId, int minTileX, int minTileY,
+                                      int maxTileX, int maxTileY, int plane,
+                                      int fillColor, int outlineColor) {
+        TitanRuntime.getOverlayBackend().tileRegionInWorldView(
+            worldViewId, minTileX, minTileY, maxTileX, maxTileY, plane,
+            fillColor, outlineColor);
+    }
+
+    public void worldTileRegionInWorldView(int worldViewId,
+                                           int minWorldX, int minWorldY,
+                                           int maxWorldX, int maxWorldY,
+                                           int plane, int fillColor,
+                                           int outlineColor) {
+        Client client = Titan.client();
+        int baseX = worldViewId == WorldView.TOP_LEVEL ? client.topLevelBaseX() : client.baseX();
+        int baseY = worldViewId == WorldView.TOP_LEVEL ? client.topLevelBaseY() : client.baseY();
+        tileRegionInWorldView(worldViewId,
+            minWorldX - baseX, minWorldY - baseY,
+            maxWorldX - baseX, maxWorldY - baseY,
+            plane, fillColor, outlineColor);
+    }
+
     public void entityBox(int preciseX, int preciseY, int plane,
                           int tileSize, int height, int color) {
         TitanRuntime.getOverlayBackend().entityBox(
             preciseX, preciseY, plane, tileSize, height, color);
+    }
+
+    private void entityBoxInWorldView(int worldViewId, int preciseX,
+                                      int preciseY, int plane, int tileSize,
+                                      int height, int color) {
+        int half = tileSize * 64;
+        int x0 = preciseX - half;
+        int x1 = preciseX + half;
+        int z0 = preciseY - half;
+        int z1 = preciseY + half;
+        int groundY = tileHeightInWorldView(worldViewId, preciseX, preciseY, plane);
+
+        Optional<ScreenPoint>[] bottom = new Optional[] {
+            worldToScreenInWorldView(worldViewId, x0, groundY, z0, plane),
+            worldToScreenInWorldView(worldViewId, x1, groundY, z0, plane),
+            worldToScreenInWorldView(worldViewId, x1, groundY, z1, plane),
+            worldToScreenInWorldView(worldViewId, x0, groundY, z1, plane)
+        };
+        Optional<ScreenPoint>[] top = new Optional[] {
+            worldToScreenInWorldView(worldViewId, x0, groundY - height, z0, plane),
+            worldToScreenInWorldView(worldViewId, x1, groundY - height, z0, plane),
+            worldToScreenInWorldView(worldViewId, x1, groundY - height, z1, plane),
+            worldToScreenInWorldView(worldViewId, x0, groundY - height, z1, plane)
+        };
+
+        for (int i = 0; i < 4; ++i) {
+            lineIfPresent(bottom[i], bottom[(i + 1) % 4], color);
+            lineIfPresent(top[i], top[(i + 1) % 4], color);
+            lineIfPresent(bottom[i], top[i], color);
+        }
+    }
+
+    private void lineIfPresent(Optional<ScreenPoint> a, Optional<ScreenPoint> b, int color) {
+        if (!a.isPresent() || !b.isPresent()) return;
+        screenLine(a.get().x(), a.get().y(), b.get().x(), b.get().y(), color, 1.5f);
     }
 
     public void entityBox(NPC npc, int color) {
@@ -43,7 +110,8 @@ public final class OverlayDraw {
 
     public void entityBox(NPC npc, int color, int height) {
         if (npc == null) return;
-        entityBox(npc.preciseX(), npc.preciseY(), npc.plane(), 1, height, color);
+        entityBoxInWorldView(npc.worldViewId(), npc.preciseX(), npc.preciseY(),
+            npc.plane(), 1, height, color);
     }
 
     public void entityBox(Player player, int color) {
@@ -52,7 +120,8 @@ public final class OverlayDraw {
 
     public void entityBox(Player player, int color, int height) {
         if (player == null) return;
-        entityBox(player.preciseX(), player.preciseY(), player.plane(), 1, height, color);
+        entityBoxInWorldView(player.worldViewId(), player.preciseX(), player.preciseY(),
+            player.plane(), 1, height, color);
     }
 
     public void entityClickbox(NPC npc, int outline) {
@@ -155,6 +224,65 @@ public final class OverlayDraw {
         textAtWorld(point.x(), point.y(), point.z(), text, color, centered);
     }
 
+    public void textAtWorldInWorldView(int worldViewId, int preciseX, int worldY,
+                                       int preciseY, int plane, String text,
+                                       int color) {
+        textAtWorldInWorldView(worldViewId, preciseX, worldY, preciseY, plane,
+                               text, color, true);
+    }
+
+    public void textAtWorldInWorldView(int worldViewId, int preciseX, int worldY,
+                                       int preciseY, int plane, String text,
+                                       int color, boolean centered) {
+        TitanRuntime.getOverlayBackend().textAtWorldInWorldView(
+            worldViewId, preciseX, worldY, preciseY, plane, text, color, centered);
+    }
+
+    public void textAtWorld(LocalPoint point, int worldY, int plane,
+                            String text, int color) {
+        textAtWorld(point, worldY, plane, text, color, true);
+    }
+
+    public void textAtWorld(LocalPoint point, int worldY, int plane,
+                            String text, int color, boolean centered) {
+        if (point == null) return;
+        textAtWorldInWorldView(point.worldViewId(), point.x(), worldY,
+                               point.y(), plane, text, color, centered);
+    }
+
+    public void textAtWorld(Locatable<?> locatable, int worldY,
+                            String text, int color) {
+        textAtWorld(locatable, worldY, text, color, true);
+    }
+
+    public void textAtWorld(Locatable<?> locatable, int worldY,
+                            String text, int color, boolean centered) {
+        if (locatable == null) return;
+        textAtWorld(locatable.localPoint(), worldY, locatable.plane(),
+                    text, color, centered);
+    }
+
+    public void textAtWorldTileInWorldView(int worldViewId,
+                                           int worldTileX, int worldY,
+                                           int worldTileY, int plane,
+                                           String text, int color) {
+        textAtWorldTileInWorldView(worldViewId, worldTileX, worldY, worldTileY,
+                                   plane, text, color, true);
+    }
+
+    public void textAtWorldTileInWorldView(int worldViewId,
+                                           int worldTileX, int worldY,
+                                           int worldTileY, int plane,
+                                           String text, int color,
+                                           boolean centered) {
+        Client client = Titan.client();
+        int baseX = worldViewId == WorldView.TOP_LEVEL ? client.topLevelBaseX() : client.baseX();
+        int baseY = worldViewId == WorldView.TOP_LEVEL ? client.topLevelBaseY() : client.baseY();
+        textAtWorldInWorldView(worldViewId,
+            (worldTileX - baseX) * 128, worldY, (worldTileY - baseY) * 128,
+            plane, text, color, centered);
+    }
+
     public void screenText(int x, int y, String text, int color) {
         TitanRuntime.getOverlayBackend().screenText(x, y, text, color);
     }
@@ -179,6 +307,27 @@ public final class OverlayDraw {
         return point == null ? Optional.empty() : worldToScreen(point.x(), point.y(), point.z());
     }
 
+    public Optional<ScreenPoint> worldToScreenInWorldView(int worldViewId,
+                                                          int preciseX,
+                                                          int worldY,
+                                                          int preciseY,
+                                                          int plane) {
+        return TitanRuntime.getOverlayBackend().worldToScreenInWorldView(
+            worldViewId, preciseX, worldY, preciseY, plane);
+    }
+
+    public Optional<ScreenPoint> worldToScreen(LocalPoint point, int worldY, int plane) {
+        return point == null
+            ? Optional.empty()
+            : worldToScreenInWorldView(point.worldViewId(), point.x(), worldY, point.y(), plane);
+    }
+
+    public Optional<ScreenPoint> worldToScreen(Locatable<?> locatable, int worldY) {
+        return locatable == null
+            ? Optional.empty()
+            : worldToScreen(locatable.localPoint(), worldY, locatable.plane());
+    }
+
     public Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane) {
         return tileToScreen(tileX, tileY, plane, 0);
     }
@@ -189,6 +338,25 @@ public final class OverlayDraw {
 
     public int tileHeight(int preciseX, int preciseY, int plane) {
         return TitanRuntime.getOverlayBackend().tileHeight(preciseX, preciseY, plane);
+    }
+
+    public int tileHeightInWorldView(int worldViewId, int preciseX, int preciseY, int plane) {
+        return TitanRuntime.getOverlayBackend().tileHeightInWorldView(
+            worldViewId, preciseX, preciseY, plane);
+    }
+
+    public int tileHeight(LocalPoint point, int plane) {
+        return point == null ? 0 : tileHeightInWorldView(point.worldViewId(), point.x(), point.y(), plane);
+    }
+
+    public int worldTileHeightInWorldView(int worldViewId,
+                                          int worldTileX, int worldTileY,
+                                          int plane) {
+        Client client = Titan.client();
+        int baseX = worldViewId == WorldView.TOP_LEVEL ? client.topLevelBaseX() : client.baseX();
+        int baseY = worldViewId == WorldView.TOP_LEVEL ? client.topLevelBaseY() : client.baseY();
+        return tileHeightInWorldView(worldViewId,
+            (worldTileX - baseX) * 128, (worldTileY - baseY) * 128, plane);
     }
 
     public static long buildActorTypecode(int entityType, int hashIndex,

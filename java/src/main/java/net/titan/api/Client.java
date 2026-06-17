@@ -20,15 +20,36 @@ public interface Client {
     int runEnergy();
     int weight();
     boolean loggedIn();
-    default OptionalLong currentWorldViewPtr() { return OptionalLong.empty(); }
-    default OptionalLong worldViewPtr(int worldViewId) { return OptionalLong.empty(); }
-    default OptionalLong topLevelWorldViewPtr() { return OptionalLong.empty(); }
-    default boolean isInInstance() { return false; }
-    default Optional<int[][][]> instanceTemplateChunks() { return Optional.empty(); }
-    default Optional<WorldPoint> fromLocalInstance(WorldPoint point) { return Optional.empty(); }
-    default Optional<WorldPoint> toLocalInstance(WorldPoint point) { return Optional.empty(); }
-    default Optional<LocalPoint> getLocalDestinationLocation() { return Optional.empty(); }
-    default Optional<WorldPoint> getWorldDestinationLocation() { return Optional.empty(); }
+    int currentWorldViewId();
+    int topLevelBaseX();
+    int topLevelBaseY();
+    int topLevelPlane();
+    int topLevelSceneSizeX();
+    int topLevelSceneSizeY();
+    int topLevelLocalPlayerTileX();
+    int topLevelLocalPlayerTileY();
+    int topLevelLocalPlayerPlane();
+    boolean topLevelLocalPlayerTileValid();
+    default int accountType() { return varbit(Varbits.ACCOUNT_TYPE); }
+    default boolean isIronman() {
+        int type = accountType();
+        return type >= 1 && type <= 6;
+    }
+    default boolean isIronMan() { return isIronman(); }
+    default boolean isGroupIronman() {
+        int type = accountType();
+        return type == 4 || type == 5 || type == 6;
+    }
+    default boolean isGroupIronMan() { return isGroupIronman(); }
+    OptionalLong currentWorldViewPtr();
+    OptionalLong worldViewPtr(int worldViewId);
+    OptionalLong topLevelWorldViewPtr();
+    boolean isInInstance();
+    Optional<int[][][]> instanceTemplateChunks();
+    Optional<WorldPoint> fromLocalInstance(WorldPoint point);
+    Optional<WorldPoint> toLocalInstance(WorldPoint point);
+    Optional<LocalPoint> getLocalDestinationLocation();
+    Optional<WorldPoint> getWorldDestinationLocation();
     Optional<Player> localPlayer();
     List<Player> players();
     List<NPC> npcs();
@@ -73,6 +94,21 @@ public interface Client {
             ? Optional.empty()
             : worldToScreen(locatable.worldX(), locatable.worldY(), locatable.plane());
     }
+    Optional<ScreenPoint> worldToScreenInWorldView(int worldViewId,
+                                                   int preciseX,
+                                                   int worldY,
+                                                   int preciseY,
+                                                   int plane);
+    default Optional<ScreenPoint> worldToScreen(LocalPoint point, int worldY, int plane) {
+        return point == null
+            ? Optional.empty()
+            : worldToScreenInWorldView(point.worldViewId(), point.x(), worldY, point.y(), plane);
+    }
+    default Optional<ScreenPoint> worldToScreen(Locatable<?> locatable, int worldY) {
+        return locatable == null
+            ? Optional.empty()
+            : worldToScreen(locatable.localPoint(), worldY, locatable.plane());
+    }
     Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane, int heightOffset);
     default Optional<ScreenPoint> tileToScreen(Tile tile, int heightOffset) {
         return tile == null
@@ -80,6 +116,16 @@ public interface Client {
             : tileToScreen(tile.x(), tile.y(), tile.plane(), heightOffset);
     }
     int tileHeight(int preciseX, int preciseY, int plane);
+    int tileHeightInWorldView(int worldViewId, int preciseX, int preciseY, int plane);
+    default int tileHeight(LocalPoint point, int plane) {
+        return point == null ? 0 : tileHeightInWorldView(point.worldViewId(), point.x(), point.y(), plane);
+    }
+    default int worldTileHeightInWorldView(int worldViewId, int worldTileX, int worldTileY, int plane) {
+        int baseX = worldViewId == WorldView.TOP_LEVEL ? topLevelBaseX() : baseX();
+        int baseY = worldViewId == WorldView.TOP_LEVEL ? topLevelBaseY() : baseY();
+        return tileHeightInWorldView(worldViewId, (worldTileX - baseX) * 128,
+                                     (worldTileY - baseY) * 128, plane);
+    }
 
     int varbit(int id);
     int varp(int id);
@@ -284,6 +330,9 @@ public interface Client {
 
     // --- Human-like delayed keyboard typing ---
     boolean typeKeyboardString(String text);
+    boolean typeKeyboardString(String text, int minDelayMs, int maxDelayMs);
+    boolean typeKeyboardString(String text, int minDelayMs, int maxDelayMs,
+                               int callbackPhase, KeyboardTypeCallback callback);
     void cancelKeyboardType();
     boolean isKeyboardTyping();
 }

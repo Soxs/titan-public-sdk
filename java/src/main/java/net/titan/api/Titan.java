@@ -25,4 +25,12 @@ public final class Titan {
     public static Client client() {
         return getInstance(Client.class);
     }
+
+    public static void runOnClientTick(Runnable callback) {
+        TitanRuntime.getSchedulerBackend().runOnClientTick(callback);
+    }
+
+    public static void runOnRender(Runnable callback) {
+        TitanRuntime.getSchedulerBackend().runOnRender(callback);
+    }
 }

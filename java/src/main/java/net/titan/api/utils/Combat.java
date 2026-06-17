@@ -22,6 +22,10 @@ public final class Combat {
     }
 
     public static boolean enableSpecialAttack() {
+        return enableSpecialAttack(false);
+    }
+
+    public static boolean enableSpecialAttack(boolean skipMovement) {
         return TitanRuntime.getInteractionBackend().widgetInteract(
             MenuAction.CC_OP, 1, -1, InterfaceId.SPEC_ORB);
     }

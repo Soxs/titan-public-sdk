@@ -1,5 +1,7 @@
 package net.titan.api;
 
+import net.titan.api.internal.LineOfSight;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -57,6 +59,18 @@ public final class WorldPoint {
 
     public boolean isInMeleeDistance(Locatable<?> other) {
         return other != null && isInMeleeDistance(other.worldArea());
+    }
+
+    public boolean hasLineOfSight(WorldPoint other) {
+        return LineOfSight.hasLineOfSight(this, other);
+    }
+
+    public boolean hasLineOfSight(WorldArea other) {
+        return LineOfSight.hasLineOfSight(worldArea(), other);
+    }
+
+    public boolean hasLineOfSight(Locatable<?> other) {
+        return other != null && hasLineOfSight(other.worldArea());
     }
 
     public WorldPoint dx(int delta) { return new WorldPoint(x + delta, y, z, worldViewId); }

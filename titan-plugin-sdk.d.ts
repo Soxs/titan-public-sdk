@@ -1617,8 +1617,6 @@ declare namespace titan {
     }
 
     namespace worldPoint {
-        /** True when the active RegionComposite contains at least one valid template cell. SDK 81+. */
-        function isInInstance(): boolean;
         /** Active instance template chunks as [plane][chunkX][chunkY], or null when unavailable. SDK 81+. */
         function getInstanceTemplateChunks(): InstanceTemplateChunks | null;
         /** Convert a local-instance WorldPoint to its source-world point. SDK 81+. */
@@ -1737,6 +1735,10 @@ declare namespace titan {
             /** Alias for `isGroupIronman`. */
             readonly isGroupIronMan: boolean;
             readonly localPlayer: Player | null;
+            /** True when the active client scene uses non-identity instance templates. SDK 86+. */
+            isInInstance(): boolean;
+            /** Active instance template chunks as [plane][chunkX][chunkY], or null when unavailable. SDK 86+. */
+            getInstanceTemplateChunks(): InstanceTemplateChunks | null;
             /** Active minimap red-flag destination in scene-local precise coords. SDK 82+. */
             getLocalDestinationLocation(): LocalPoint | null;
             /** Active minimap red-flag destination in world coords. SDK 82+. */

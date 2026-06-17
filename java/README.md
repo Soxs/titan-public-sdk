@@ -37,13 +37,21 @@ TitanClient's embedded runtime provides the Guice runtime.
 
 ## Package Layout
 
-- `net.titan.api`: game-facing services and types such as `Client`, `Player`,
-  and `Logger`.
+- `net.titan.api`: game-facing services, core types, and catalogs such as
+  `Client`, `Player`, `Logger`, `Prayer`, `Varbits`, `InterfaceId`,
+  `ChatMessageType`, `ScriptId`, and `QuestId`.
 - `net.titan.api.plugins`: `Plugin` and `PluginDescriptor`.
 - `net.titan.api.config`: config interfaces, annotations, sections, and
   setting metadata.
 - `net.titan.api.events`: event classes such as `GameTick`.
 - `net.titan.api.eventbus`: `EventBus` and `Subscribe`.
+- `net.titan.api.queries`: fluent NPC, player, object, item, projectile,
+  graphics-object, inventory, and widget queries.
+- `net.titan.api.utils`: composed helpers including `Bank`, `Inventory`,
+  `Equipment`, `Combat`, `Walk`, `Dialogue`, `Login`, `Plugins`, `Script`,
+  `Cache`, and `Magic`.
+- `net.titan.api.overlay`: in-game overlay draw and panel helpers, including
+  WorldView-aware projection/draw methods.
 
 ## Build And Publish
 

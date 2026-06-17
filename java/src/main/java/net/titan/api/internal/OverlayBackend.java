@@ -9,6 +9,11 @@ public interface OverlayBackend {
     void tileQuad(int tileX, int tileY, int plane, int fillColor, int outlineColor);
     void tileRegion(int minTileX, int minTileY, int maxTileX, int maxTileY,
                     int plane, int fillColor, int outlineColor);
+    void tileQuadInWorldView(int worldViewId, int tileX, int tileY, int plane,
+                             int fillColor, int outlineColor);
+    void tileRegionInWorldView(int worldViewId, int minTileX, int minTileY,
+                               int maxTileX, int maxTileY, int plane,
+                               int fillColor, int outlineColor);
     void entityBox(int preciseX, int preciseY, int plane,
                    int tileSize, int height, int color);
     void entityClickbox(long entityPtr, long typecode, int outline, int fill);
@@ -17,12 +22,19 @@ public interface OverlayBackend {
     void tileObjectHull(long locPtr, long typecode, int outline, int fill);
     void textAtWorld(int worldX, int worldY, int worldZ,
                      String text, int color, boolean centered);
+    void textAtWorldInWorldView(int worldViewId, int preciseX, int worldY,
+                                int preciseY, int plane, String text,
+                                int color, boolean centered);
     void screenText(int x, int y, String text, int color);
     void screenRect(int x, int y, int width, int height, int color);
     void screenLine(int x1, int y1, int x2, int y2, int color, float thickness);
     Optional<ScreenPoint> worldToScreen(int worldX, int worldY, int worldZ);
+    Optional<ScreenPoint> worldToScreenInWorldView(int worldViewId, int preciseX,
+                                                   int worldY, int preciseY,
+                                                   int plane);
     Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane, int heightOffset);
     int tileHeight(int preciseX, int preciseY, int plane);
+    int tileHeightInWorldView(int worldViewId, int preciseX, int preciseY, int plane);
 
     int overlayPanelRegister(String pluginId, String panelName,
                              int defaultAnchor, int defaultPriority);

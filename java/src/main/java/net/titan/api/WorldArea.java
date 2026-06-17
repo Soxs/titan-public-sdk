@@ -1,5 +1,7 @@
 package net.titan.api;
 
+import net.titan.api.internal.LineOfSight;
+
 import java.util.Objects;
 
 public final class WorldArea {
@@ -90,6 +92,18 @@ public final class WorldArea {
 
     public boolean isInMeleeDistance(Locatable<?> other) {
         return other != null && isInMeleeDistance(other.worldArea());
+    }
+
+    public boolean hasLineOfSight(WorldPoint point) {
+        return point != null && LineOfSight.hasLineOfSight(this, point.worldArea());
+    }
+
+    public boolean hasLineOfSight(WorldArea other) {
+        return LineOfSight.hasLineOfSight(this, other);
+    }
+
+    public boolean hasLineOfSight(Locatable<?> other) {
+        return other != null && hasLineOfSight(other.worldArea());
     }
 
     public WorldPoint center() {
