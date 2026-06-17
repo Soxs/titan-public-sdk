@@ -43,6 +43,22 @@ public final class WorldPoint {
     public int regionX() { return x & 63; }
     public int regionY() { return y & 63; }
 
+    public WorldArea worldArea() {
+        return new WorldArea(x, y, 1, 1, z, worldViewId);
+    }
+
+    public boolean isInMeleeDistance(WorldPoint other) {
+        return worldArea().isInMeleeDistance(other);
+    }
+
+    public boolean isInMeleeDistance(WorldArea other) {
+        return other != null && other.isInMeleeDistance(this);
+    }
+
+    public boolean isInMeleeDistance(Locatable<?> other) {
+        return other != null && isInMeleeDistance(other.worldArea());
+    }
+
     public WorldPoint dx(int delta) { return new WorldPoint(x + delta, y, z, worldViewId); }
     public WorldPoint dy(int delta) { return new WorldPoint(x, y + delta, z, worldViewId); }
     public WorldPoint dz(int delta) { return new WorldPoint(x, y, z + delta, worldViewId); }

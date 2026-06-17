@@ -3,7 +3,7 @@ package net.titan.api;
 import java.util.Collections;
 import java.util.List;
 
-public final class Player implements Actor, Locatable<Player> {
+public final class Player implements Actor {
     private long entityPtr;
     private int hashIndex;
     private int worldViewId = WorldView.CURRENT;
@@ -55,20 +55,6 @@ public final class Player implements Actor, Locatable<Player> {
     public int preciseX() { return preciseX; }
     @Override
     public int preciseY() { return preciseY; }
-    @Override
-    public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY, worldViewId); }
-    @Override
-    public Tile tile() { return Locatable.super.tile(); }
-    @Override
-    public WorldPoint worldPoint() { return Locatable.super.worldPoint(); }
-    @Override
-    public WorldArea worldArea() { return Locatable.super.worldArea(); }
-    @Override
-    public int distanceTo(Tile other) { return Locatable.super.distanceTo(other); }
-    @Override
-    public int distanceTo(WorldPoint other) { return Locatable.super.distanceTo(other); }
-    @Override
-    public int distanceTo(Locatable<?> other) { return Locatable.super.distanceTo(other); }
     @Override
     public int orientation() { return orientation; }
     @Override

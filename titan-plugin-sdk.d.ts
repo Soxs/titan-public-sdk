@@ -204,6 +204,8 @@ interface ActorBase extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this actor's footprint to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when this actor's footprint is exactly one tile from another footprint/point. SDK 86+. */
+    isInMeleeDistance(other: SpatialTarget): boolean;
 
     /** True when this actor is actively interacting with a target. SDK 54+. */
     isInteracting(): boolean;
@@ -313,6 +315,8 @@ interface TileObject extends InstanceConvertible {
     hasAction(action: string): boolean;
     /** RuneLite-style line of sight from this object's footprint to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when this object's footprint is exactly one tile from another footprint/point. SDK 86+. */
+    isInMeleeDistance(other: SpatialTarget): boolean;
     /** RuneLite-style dynamic scenery animation id lookup. SDK 71+. */
     getAnimation(): number;
     /** Dispatch against this exact object instance, preserving its scene tile. */
@@ -339,6 +343,8 @@ interface GroundItem extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this item tile to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when this item tile is exactly one tile from another footprint/point. SDK 86+. */
+    isInMeleeDistance(other: SpatialTarget): boolean;
 
     /** Dispatch a ground-item action (e.g. "Take", "Examine"). */
     interact(action: string): boolean;
@@ -408,6 +414,8 @@ interface Projectile extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this projectile tile to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when this projectile tile is exactly one tile from another footprint/point. SDK 86+. */
+    isInMeleeDistance(other: SpatialTarget): boolean;
 }
 
 interface Sequence {
@@ -458,9 +466,13 @@ interface GraphicsObject extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this graphics object's tile to another locatable or world point. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when this graphics object's tile is exactly one tile from another footprint/point. SDK 86+. */
+    isInMeleeDistance(other: SpatialTarget): boolean;
 }
 
-type LineOfSightTarget = WorldPoint | ActorBase | TileObject | GroundItem | Projectile | GraphicsObject | titan.WorldArea;
+type Locatable = ActorBase | TileObject | GroundItem | Projectile | GraphicsObject;
+type SpatialTarget = Locatable | WorldPoint | titan.WorldArea;
+type LineOfSightTarget = SpatialTarget;
 
 // ---------------------------------------------------------------------------
 // Queries — fluent filtering over collections.
@@ -1587,6 +1599,8 @@ declare namespace titan {
          * Returns `Number.MAX_SAFE_INTEGER` when planes differ.
          */
         distanceTo(p: WorldPoint): number;
+        /** True when this area is exactly one tile from another footprint/point. SDK 86+. */
+        isInMeleeDistance(other: SpatialTarget): boolean;
         /** RuneLite-style line of sight from this area to another area, locatable, or world point. SDK 52+. */
         hasLineOfSight(other: LineOfSightTarget): boolean;
     }
@@ -1602,11 +1616,6 @@ declare namespace titan {
         function topLevel(): bigint | null;
     }
 
-    namespace WorldView {
-        const CURRENT: -1;
-        const TOP_LEVEL: 0;
-    }
-
     namespace worldPoint {
         /** True when the active RegionComposite contains at least one valid template cell. SDK 81+. */
         function isInInstance(): boolean;
@@ -1616,6 +1625,8 @@ declare namespace titan {
         function fromLocalInstance(point: WorldPoint): WorldPoint | null;
         /** Convert a source-world WorldPoint into the current local instance. SDK 81+. */
         function toLocalInstance(point: WorldPoint): WorldPoint | null;
+        /** Literal-safe RuneLite-style melee adjacency check for two world/locatable targets. SDK 86+. */
+        function isInMeleeDistance(a: SpatialTarget, b: SpatialTarget): boolean;
     }
 
     // --- Geometry helpers (SDK 39) ---

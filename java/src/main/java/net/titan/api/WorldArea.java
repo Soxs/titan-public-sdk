@@ -70,6 +70,18 @@ public final class WorldArea {
         return Math.max(dx, dy);
     }
 
+    public boolean isInMeleeDistance(WorldPoint point) {
+        return distanceTo(point) == 1;
+    }
+
+    public boolean isInMeleeDistance(WorldArea other) {
+        return distanceTo(other) == 1;
+    }
+
+    public boolean isInMeleeDistance(Locatable<?> other) {
+        return other != null && isInMeleeDistance(other.worldArea());
+    }
+
     public WorldPoint center() {
         return new WorldPoint(x + width / 2, y + height / 2, plane, worldViewId);
     }

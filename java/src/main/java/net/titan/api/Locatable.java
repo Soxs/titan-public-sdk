@@ -46,4 +46,16 @@ public interface Locatable<T extends Locatable<T>> {
     default int distanceTo(Locatable<?> other) {
         return other == null ? Integer.MAX_VALUE : tile().distanceTo(other.tile());
     }
+
+    default boolean isInMeleeDistance(WorldPoint other) {
+        return worldArea().isInMeleeDistance(other);
+    }
+
+    default boolean isInMeleeDistance(WorldArea other) {
+        return worldArea().isInMeleeDistance(other);
+    }
+
+    default boolean isInMeleeDistance(Locatable<?> other) {
+        return other != null && worldArea().isInMeleeDistance(other.worldArea());
+    }
 }

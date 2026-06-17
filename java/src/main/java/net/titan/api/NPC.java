@@ -5,7 +5,7 @@ import net.titan.api.internal.TitanRuntime;
 import java.util.Collections;
 import java.util.List;
 
-public final class NPC implements Actor, Locatable<NPC> {
+public final class NPC implements Actor {
     private long entityPtr;
     private long definitionPtr;
     private int hashIndex;
@@ -52,9 +52,6 @@ public final class NPC implements Actor, Locatable<NPC> {
     @Override public int worldY() { return worldY; }
     @Override public int preciseX() { return preciseX; }
     @Override public int preciseY() { return preciseY; }
-    @Override public LocalPoint localPoint() { return new LocalPoint(preciseX, preciseY, worldViewId); }
-    @Override public Tile tile() { return Locatable.super.tile(); }
-    @Override public WorldPoint worldPoint() { return Locatable.super.worldPoint(); }
     @Override public int orientation() { return orientation; }
     @Override public int animation() { return animation; }
     @Override public int movementPose() { return movementPose; }
@@ -93,10 +90,6 @@ public final class NPC implements Actor, Locatable<NPC> {
         return new WorldArea(worldX(), worldY(), Math.max(1, sizeX()), Math.max(1, sizeY()),
             plane(), worldViewId());
     }
-
-    @Override public int distanceTo(Tile other) { return Locatable.super.distanceTo(other); }
-    @Override public int distanceTo(WorldPoint other) { return Locatable.super.distanceTo(other); }
-    @Override public int distanceTo(Locatable<?> other) { return Locatable.super.distanceTo(other); }
 
     public boolean hasAction(String action) {
         if (action == null || action.isEmpty()) return false;

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public interface Actor {
+public interface Actor extends Locatable<Actor> {
     long entityPtr();
     int hashIndex();
     int tileX();
@@ -29,13 +29,10 @@ public interface Actor {
     int healthScale();
     boolean hasHealthBar();
 
-    Tile tile();
-    WorldPoint worldPoint();
-    LocalPoint localPoint();
-    WorldArea worldArea();
-    int distanceTo(Tile other);
-    int distanceTo(WorldPoint other);
-    int distanceTo(Locatable<?> other);
+    @Override
+    default LocalPoint localPoint() {
+        return new LocalPoint(preciseX(), preciseY(), worldViewId());
+    }
 
     default boolean isAnimating() { return animation() != -1; }
 
