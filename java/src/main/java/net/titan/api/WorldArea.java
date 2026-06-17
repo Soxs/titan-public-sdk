@@ -71,11 +71,21 @@ public final class WorldArea {
     }
 
     public boolean isInMeleeDistance(WorldPoint point) {
-        return distanceTo(point) == 1;
+        return point != null && isInMeleeDistance(
+            new WorldArea(point.x(), point.y(), 1, 1, point.z(), point.worldViewId()));
     }
 
     public boolean isInMeleeDistance(WorldArea other) {
-        return distanceTo(other) == 1;
+        if (other == null || other.plane != plane || !WorldView.same(other.worldViewId, worldViewId)) {
+            return false;
+        }
+        int dx = 0;
+        int dy = 0;
+        if (other.x + other.width <= x) dx = x - (other.x + other.width - 1);
+        else if (other.x >= x + width) dx = other.x - (x + width - 1);
+        if (other.y + other.height <= y) dy = y - (other.y + other.height - 1);
+        else if (other.y >= y + height) dy = other.y - (y + height - 1);
+        return dx + dy == 1;
     }
 
     public boolean isInMeleeDistance(Locatable<?> other) {

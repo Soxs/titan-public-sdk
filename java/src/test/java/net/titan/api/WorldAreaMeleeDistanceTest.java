@@ -11,9 +11,10 @@ class WorldAreaMeleeDistanceTest {
         WorldArea area = new WorldArea(10, 10, 2, 2, 0);
 
         assertTrue(area.isInMeleeDistance(new WorldPoint(12, 10, 0)));
-        assertTrue(area.isInMeleeDistance(new WorldPoint(12, 12, 0)));
         assertTrue(area.isInMeleeDistance(new WorldArea(12, 10, 1, 1, 0)));
-        assertTrue(area.isInMeleeDistance(new WorldArea(8, 8, 2, 2, 0)));
+        assertTrue(area.isInMeleeDistance(new WorldArea(8, 10, 2, 2, 0)));
+        assertFalse(area.isInMeleeDistance(new WorldPoint(12, 12, 0)));
+        assertFalse(area.isInMeleeDistance(new WorldArea(8, 8, 2, 2, 0)));
     }
 
     @Test
@@ -33,7 +34,8 @@ class WorldAreaMeleeDistanceTest {
         TestLocatable oneTile = new TestLocatable(11, 10, 0, 1, 1);
         TestLocatable large = new TestLocatable(11, 9, 0, 2, 3);
 
-        assertTrue(point.isInMeleeDistance(new WorldPoint(11, 11, 0)));
+        assertTrue(point.isInMeleeDistance(new WorldPoint(11, 10, 0)));
+        assertFalse(point.isInMeleeDistance(new WorldPoint(11, 11, 0)));
         assertTrue(point.isInMeleeDistance(oneTile));
         assertTrue(oneTile.isInMeleeDistance(point));
         assertTrue(large.isInMeleeDistance(point));
