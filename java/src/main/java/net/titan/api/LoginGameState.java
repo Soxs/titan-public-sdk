@@ -1,14 +1,14 @@
 package net.titan.api;
 
-/// Coarse login / game state mirroring RuneLite's {@code Client.getGameState()}.
+/// Native client game-state values exposed by {@code Client.getGameState()}.
 /// Matches the C++ {@code titan::LoginGameState} enum.
 public enum LoginGameState {
     UNKNOWN(-1),
-    LOGIN_SCREEN(0),
-    LOGIN_AUTHENTICATOR(1),
-    LOGGING_IN(2),
-    LOGGED_IN(3),
-    HOPPING(4);
+    LOGIN_SCREEN(10),
+    LOGIN_AUTHENTICATOR(11),
+    LOGGING_IN(20),
+    LOGGED_IN(30),
+    HOPPING(45);
 
     private final int id;
 

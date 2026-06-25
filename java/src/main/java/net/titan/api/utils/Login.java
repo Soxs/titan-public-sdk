@@ -24,7 +24,17 @@ public final class Login {
     }
 
     public static boolean isLoggedIn() {
-        return state() == LoginGameState.LOGGED_IN;
+        return isWorldReady();
+    }
+
+    public static boolean isWorldReady() {
+        var client = Titan.client();
+        return client.localPlayer().isPresent()
+            && client.currentWorldViewPtr().isPresent()
+            && client.sceneSizeX() > 0
+            && client.sceneSizeY() > 0
+            && client.topLevelSceneSizeX() > 0
+            && client.topLevelSceneSizeY() > 0;
     }
 
     public static boolean setUsername(String username) {

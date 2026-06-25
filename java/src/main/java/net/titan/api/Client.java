@@ -188,6 +188,9 @@ public interface Client {
     default boolean interactNpcByIndex(String action, int hashIndex) {
         return TitanRuntime.getInteractionBackend().interactNpcByIndex(action, hashIndex);
     }
+    default boolean interactNpcByIndex(String action, int hashIndex, int worldViewId) {
+        return TitanRuntime.getInteractionBackend().interactNpcByIndex(action, hashIndex, worldViewId);
+    }
     boolean interactObject(String action, int locIdOrNeg1, String nameOrNull);
     @Deprecated
     default boolean interactTileObject(String action, TileObject object) {
@@ -196,6 +199,11 @@ public interface Client {
     @Deprecated
     default boolean interactGroundItem(String action, int itemId, int tileX, int tileY) {
         return TitanRuntime.getInteractionBackend().interactGroundItem(action, itemId, tileX, tileY);
+    }
+    default boolean interactGroundItem(String action, int itemId, int tileX, int tileY,
+                                       int worldViewId) {
+        return TitanRuntime.getInteractionBackend().interactGroundItem(
+            action, itemId, tileX, tileY, worldViewId);
     }
     Optional<NPC> findNearestNpc(int npcIdOrNeg1, String nameOrNull);
     default Optional<NPC> findNearestNpc(int npcId) {

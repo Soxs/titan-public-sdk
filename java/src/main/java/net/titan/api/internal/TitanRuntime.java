@@ -4,9 +4,13 @@ import com.google.inject.Injector;
 import net.titan.api.Actor;
 import net.titan.api.overlay.OverlayPanel;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +22,7 @@ public final class TitanRuntime {
     private static volatile ActorResolver actorResolver;
     private static volatile InteractionBackend interactionBackend;
     private static volatile SchedulerBackend schedulerBackend;
+    private static volatile LiveStateBackend liveStateBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -74,6 +79,121 @@ public final class TitanRuntime {
         }
     }
 
+    public static void setLiveStateBackend(LiveStateBackend backend) {
+        liveStateBackend = backend;
+    }
+
+    public static void clearLiveStateBackend(LiveStateBackend backend) {
+        if (liveStateBackend == backend) {
+            liveStateBackend = null;
+        }
+    }
+
+    public static boolean liveExists(Object value) {
+        LiveStateBackend backend = liveStateBackend;
+        if (isDetachedSnapshot(value)) return true;
+        return backend == null || value == null || backend.exists(value);
+    }
+
+    public static <T> T currentLive(T value) {
+        LiveStateBackend backend = liveStateBackend;
+        if (isDetachedSnapshot(value)) return value;
+        return backend == null || value == null ? value : backend.current(value);
+    }
+
+    public static String liveIdentity(Object value) {
+        LiveStateBackend backend = liveStateBackend;
+        if (isDetachedSnapshot(value)) return null;
+        return backend == null || value == null ? null : backend.identity(value);
+    }
+
+    public static boolean liveEquals(Object self, Object other) {
+        if (self == other) return true;
+        if (self == null || other == null || self.getClass() != other.getClass()) return false;
+        String identity = liveIdentity(self);
+        return identity != null && identity.equals(liveIdentity(other));
+    }
+
+    public static int liveHashCode(Object value) {
+        String identity = liveIdentity(value);
+        return identity != null ? identity.hashCode() : System.identityHashCode(value);
+    }
+
+    public static <T> T snapshotLive(T value) {
+        LiveStateBackend backend = liveStateBackend;
+        if (backend != null && value != null) return backend.snapshot(value);
+        return detachedCopy(value);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> T detachedCopy(T value) {
+        return detachedCopy(value, new IdentityHashMap<>());
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> T detachedCopy(T value, IdentityHashMap<Object, Object> seen) {
+        if (value == null) return null;
+        Object existing = seen.get(value);
+        if (existing != null) return (T) existing;
+        try {
+            Class<?> type = value.getClass();
+            Constructor<?> ctor = type.getDeclaredConstructor();
+            ctor.setAccessible(true);
+            Object copy = ctor.newInstance();
+            seen.put(value, copy);
+            for (Class<?> cursor = type; cursor != null && cursor != Object.class;
+                    cursor = cursor.getSuperclass()) {
+                for (Field field : cursor.getDeclaredFields()) {
+                    if (Modifier.isStatic(field.getModifiers())) continue;
+                    field.setAccessible(true);
+                    field.set(copy, detachedValue(field.get(value), seen));
+                }
+            }
+            markDetachedSnapshot(copy);
+            return (T) copy;
+        } catch (ReflectiveOperationException | RuntimeException ignored) {
+            return value;
+        }
+    }
+
+    private static Object detachedValue(Object value, IdentityHashMap<Object, Object> seen) {
+        if (value instanceof List<?>) {
+            List<?> raw = (List<?>) value;
+            List<Object> out = new ArrayList<>(raw.size());
+            for (Object item : raw) out.add(detachedValue(item, seen));
+            return out;
+        }
+        if (isSdkObject(value)) return detachedCopy(value, seen);
+        return value;
+    }
+
+    private static boolean isSdkObject(Object value) {
+        if (value == null) return false;
+        Package pkg = value.getClass().getPackage();
+        return pkg != null && pkg.getName().startsWith("net.titan.api");
+    }
+
+    private static boolean isDetachedSnapshot(Object value) {
+        if (value == null) return false;
+        try {
+            Field field = value.getClass().getDeclaredField("liveHandle");
+            field.setAccessible(true);
+            return !field.getBoolean(value);
+        } catch (NoSuchFieldException | IllegalAccessException | RuntimeException ignored) {
+            return false;
+        }
+    }
+
+    private static void markDetachedSnapshot(Object value) {
+        if (value == null) return;
+        try {
+            Field field = value.getClass().getDeclaredField("liveHandle");
+            field.setAccessible(true);
+            field.setBoolean(value, false);
+        } catch (NoSuchFieldException | IllegalAccessException | RuntimeException ignored) {
+        }
+    }
+
     public static InteractionBackend getInteractionBackend() {
         InteractionBackend value = interactionBackend;
         if (value == null) {
@@ -113,9 +233,15 @@ public final class TitanRuntime {
     }
 
     public static Optional<Actor> resolveInteracting(int interactingIndex, int interactingType) {
+        return resolveInteracting(interactingIndex, interactingType, -1);
+    }
+
+    public static Optional<Actor> resolveInteracting(int interactingIndex,
+                                                     int interactingType,
+                                                     int worldViewId) {
         ActorResolver value = actorResolver;
         if (value == null) return Optional.empty();
-        Optional<Actor> actor = value.resolveInteracting(interactingIndex, interactingType);
+        Optional<Actor> actor = value.resolveInteracting(interactingIndex, interactingType, worldViewId);
         return actor == null ? Optional.empty() : actor;
     }
 

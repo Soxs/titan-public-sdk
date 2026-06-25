@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public final class Widget {
+    private boolean liveHandle = true;
     private int screenX;
     private int screenY;
     private int width;
@@ -32,48 +33,55 @@ public final class Widget {
     private int rootPackedId;
     private List<Integer> dynamicPath;
 
-    public int screenX() { return screenX; }
-    public int screenY() { return screenY; }
-    public int width() { return width; }
-    public int height() { return height; }
-    public int relativeX() { return relativeX; }
-    public int relativeY() { return relativeY; }
-    public int scrollX() { return scrollX; }
-    public int scrollY() { return scrollY; }
-    public int type() { return type; }
-    public int contentType() { return contentType; }
-    public int opacity() { return opacity; }
-    public int itemId() { return itemId; }
-    public int itemQuantity() { return itemQuantity; }
-    public int parentId() { return parentId; }
-    public boolean isHidden() { return hidden; }
-    public boolean isSelfHidden() { return selfHidden; }
-    public boolean isVisible() { return visible; }
-    public String text() { return text == null ? "" : text; }
-    public int packedId() { return packedId; }
-    public int dynamicParentPackedId() { return dynamicParentPackedId; }
-    public int dynamicChildSlot() { return dynamicChildSlot; }
-    public int rootPackedId() { return rootPackedId; }
+    private Widget live() { return TitanRuntime.currentLive(this); }
+
+    public int screenX() { return live().screenX; }
+    public int screenY() { return live().screenY; }
+    public int width() { return live().width; }
+    public int height() { return live().height; }
+    public int relativeX() { return live().relativeX; }
+    public int relativeY() { return live().relativeY; }
+    public int scrollX() { return live().scrollX; }
+    public int scrollY() { return live().scrollY; }
+    public int type() { return live().type; }
+    public int contentType() { return live().contentType; }
+    public int opacity() { return live().opacity; }
+    public int itemId() { return live().itemId; }
+    public int itemQuantity() { return live().itemQuantity; }
+    public int parentId() { return live().parentId; }
+    public boolean isHidden() { return live().hidden; }
+    public boolean isSelfHidden() { return live().selfHidden; }
+    public boolean isVisible() { return live().visible; }
+    public String text() {
+        String value = live().text;
+        return value == null ? "" : value;
+    }
+    public int packedId() { return live().packedId; }
+    public int dynamicParentPackedId() { return live().dynamicParentPackedId; }
+    public int dynamicChildSlot() { return live().dynamicChildSlot; }
+    public int rootPackedId() { return live().rootPackedId; }
     public List<Integer> dynamicPath() {
-        return dynamicPath == null
+        List<Integer> value = live().dynamicPath;
+        return value == null
             ? Collections.emptyList()
-            : Collections.unmodifiableList(dynamicPath);
+            : Collections.unmodifiableList(value);
     }
 
     public WidgetAddress address() {
-        int root = rootPackedId != 0
-            ? rootPackedId
-            : dynamicParentPackedId != 0 ? dynamicParentPackedId : packedId;
+        Widget w = live();
+        int root = w.rootPackedId != 0
+            ? w.rootPackedId
+            : w.dynamicParentPackedId != 0 ? w.dynamicParentPackedId : w.packedId;
         List<Integer> path = dynamicPath();
-        if (path.isEmpty() && dynamicChildSlot >= 0) {
+        if (path.isEmpty() && w.dynamicChildSlot >= 0) {
             path = new ArrayList<>();
-            path.add(dynamicChildSlot);
+            path.add(w.dynamicChildSlot);
         }
         return new WidgetAddress(root, path);
     }
 
     public boolean isDynamic() {
-        return dynamicChildSlot >= 0 || !dynamicPath().isEmpty();
+        return dynamicChildSlot() >= 0 || !dynamicPath().isEmpty();
     }
 
     public boolean interact(int opcode, int identifier, int param0, int param1) {
@@ -86,23 +94,41 @@ public final class Widget {
         if (isDynamic()) {
             return actions.widgetInteractAtPath(address(), opcode, identifier, childSlot);
         }
-        return actions.widgetInteract(opcode, identifier, childSlot, packedId);
+        return actions.widgetInteract(opcode, identifier, childSlot, packedId());
     }
 
     public boolean interact(int opcode, int identifier) {
-        int slot = dynamicChildSlot >= 0 ? dynamicChildSlot : -1;
+        int slot = dynamicChildSlot() >= 0 ? dynamicChildSlot() : -1;
         InteractionBackend actions = TitanRuntime.getInteractionBackend();
         if (isDynamic()) {
             return actions.widgetInteractAtPath(address(), opcode, identifier, -1);
         }
-        return actions.widgetInteract(opcode, identifier, slot, packedId);
+        return actions.widgetInteract(opcode, identifier, slot, packedId());
     }
 
     public boolean setText(String value) {
         InteractionBackend actions = TitanRuntime.getInteractionBackend();
+        boolean ok;
         if (isDynamic()) {
-            return actions.setWidgetTextAtPath(address(), value);
+            ok = actions.setWidgetTextAtPath(address(), value);
+        } else {
+            ok = actions.setWidgetText(packedId(), value);
         }
-        return actions.setWidgetText(packedId, value);
+        if (ok) text = value == null ? "" : value;
+        return ok;
+    }
+
+    public boolean exists() { return TitanRuntime.liveExists(this); }
+
+    public Widget snapshot() { return TitanRuntime.snapshotLive(this); }
+
+    @Override
+    public boolean equals(Object other) {
+        return TitanRuntime.liveEquals(this, other);
+    }
+
+    @Override
+    public int hashCode() {
+        return TitanRuntime.liveHashCode(this);
     }
 }

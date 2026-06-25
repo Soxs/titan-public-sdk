@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public final class NPC implements Actor {
+    private boolean liveHandle = true;
     private long entityPtr;
     private long definitionPtr;
     private int hashIndex;
@@ -39,50 +40,60 @@ public final class NPC implements Actor {
     private List<WorldPoint> pathQueue;
     private List<ActorSpotAnim> currentSpotAnims;
 
-    @Override public long entityPtr() { return entityPtr; }
-    public long definitionPtr() { return definitionPtr; }
-    @Override public int hashIndex() { return hashIndex; }
-    @Override public int worldViewId() { return worldViewId; }
-    @Override public long worldViewPtr() { return worldViewPtr; }
-    public int id() { return id; }
-    @Override public int tileX() { return tileX; }
-    @Override public int tileY() { return tileY; }
-    @Override public int plane() { return plane; }
-    @Override public int worldX() { return worldX; }
-    @Override public int worldY() { return worldY; }
-    @Override public int preciseX() { return preciseX; }
-    @Override public int preciseY() { return preciseY; }
-    @Override public int orientation() { return orientation; }
-    @Override public int animation() { return animation; }
-    @Override public int movementPose() { return movementPose; }
-    @Override public int idlePose() { return idlePose; }
-    @Override public int interactingIndex() { return interactingIndex; }
-    @Override public int interactingType() { return interactingType; }
-    @Override public int interactingPhase() { return interactingPhase; }
-    public int overrideTransform() { return overrideTransform; }
-    public int sizeX() { return sizeX; }
-    public int sizeY() { return sizeY; }
-    public int overheadIcon() { return overheadIcon; }
-    public HeadIcon overheadHeadIcon() { return HeadIcon.fromId(overheadIcon); }
-    public boolean hasHeadIconOverride() { return hasHeadIconOverride; }
+    private NPC live() { return TitanRuntime.currentLive(this); }
+
+    @Override public long entityPtr() { return live().entityPtr; }
+    public long definitionPtr() { return live().definitionPtr; }
+    @Override public int hashIndex() { return live().hashIndex; }
+    @Override public int worldViewId() { return live().worldViewId; }
+    @Override public long worldViewPtr() { return live().worldViewPtr; }
+    public int id() { return live().id; }
+    @Override public int tileX() { return live().tileX; }
+    @Override public int tileY() { return live().tileY; }
+    @Override public int plane() { return live().plane; }
+    @Override public int worldX() { return live().worldX; }
+    @Override public int worldY() { return live().worldY; }
+    @Override public int preciseX() { return live().preciseX; }
+    @Override public int preciseY() { return live().preciseY; }
+    @Override public int orientation() { return live().orientation; }
+    @Override public int animation() { return live().animation; }
+    @Override public int movementPose() { return live().movementPose; }
+    @Override public int idlePose() { return live().idlePose; }
+    @Override public int interactingIndex() { return live().interactingIndex; }
+    @Override public int interactingType() { return live().interactingType; }
+    @Override public int interactingPhase() { return live().interactingPhase; }
+    public int overrideTransform() { return live().overrideTransform; }
+    public int sizeX() { return live().sizeX; }
+    public int sizeY() { return live().sizeY; }
+    public int overheadIcon() { return live().overheadIcon; }
+    public HeadIcon overheadHeadIcon() { return HeadIcon.fromId(overheadIcon()); }
+    public boolean hasHeadIconOverride() { return live().hasHeadIconOverride; }
     public boolean isOverheadActive() {
-        return overheadIcon >= 0 || hasHeadIconOverride;
+        return overheadIcon() >= 0 || hasHeadIconOverride();
     }
     public boolean isOverheadActive(HeadIcon icon) {
-        return icon != null && overheadIcon == icon.id();
+        return icon != null && overheadIcon() == icon.id();
     }
-    @Override public int healthRatio() { return healthRatio; }
-    @Override public int healthScale() { return healthScale; }
-    @Override public boolean hasHealthBar() { return hasHealthBar; }
-    public String name() { return name == null ? "" : name; }
-    public List<String> actions() { return actions == null ? Collections.emptyList() : Collections.unmodifiableList(actions); }
+    @Override public int healthRatio() { return live().healthRatio; }
+    @Override public int healthScale() { return live().healthScale; }
+    @Override public boolean hasHealthBar() { return live().hasHealthBar; }
+    public String name() {
+        String value = live().name;
+        return value == null ? "" : value;
+    }
+    public List<String> actions() {
+        List<String> value = live().actions;
+        return value == null ? Collections.emptyList() : Collections.unmodifiableList(value);
+    }
     @Override public List<WorldPoint> pathQueue() {
-        return pathQueue == null ? Collections.emptyList() : Collections.unmodifiableList(pathQueue);
+        List<WorldPoint> value = live().pathQueue;
+        return value == null ? Collections.emptyList() : Collections.unmodifiableList(value);
     }
     @Override public List<ActorSpotAnim> currentSpotAnims() {
-        return currentSpotAnims == null
+        List<ActorSpotAnim> value = live().currentSpotAnims;
+        return value == null
             ? Collections.emptyList()
-            : Collections.unmodifiableList(currentSpotAnims);
+            : Collections.unmodifiableList(value);
     }
 
     @Override
@@ -102,6 +113,19 @@ public final class NPC implements Actor {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        return TitanRuntime.getInteractionBackend().interactNpcByIndex(action, hashIndex);
+        return TitanRuntime.getInteractionBackend().interactNpcByIndex(
+            action, hashIndex(), worldViewId());
+    }
+
+    public NPC snapshot() { return TitanRuntime.snapshotLive(this); }
+
+    @Override
+    public boolean equals(Object other) {
+        return TitanRuntime.liveEquals(this, other);
+    }
+
+    @Override
+    public int hashCode() {
+        return TitanRuntime.liveHashCode(this);
     }
 }

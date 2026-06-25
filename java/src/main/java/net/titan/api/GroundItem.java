@@ -5,6 +5,7 @@ import net.titan.api.internal.TitanRuntime;
 public final class GroundItem implements Locatable<GroundItem> {
     private static final int ACCOUNT_TYPE_VARBIT = 1777;
 
+    private boolean liveHandle = true;
     private int worldViewId = WorldView.CURRENT;
     private long worldViewPtr;
     private int tileX;
@@ -17,30 +18,35 @@ public final class GroundItem implements Locatable<GroundItem> {
     private int worldY;
     private long ownershipType;
 
+    private GroundItem live() { return TitanRuntime.currentLive(this); }
+
     @Override
-    public int tileX() { return tileX; }
+    public int tileX() { return live().tileX; }
     @Override
-    public int tileY() { return tileY; }
+    public int tileY() { return live().tileY; }
     @Override
-    public int plane() { return plane; }
+    public int plane() { return live().plane; }
     @Override
-    public int worldViewId() { return worldViewId; }
+    public int worldViewId() { return live().worldViewId; }
     @Override
-    public long worldViewPtr() { return worldViewPtr; }
-    public int id() { return id; }
-    public int quantity() { return quantity; }
-    public String name() { return name == null ? "" : name; }
+    public long worldViewPtr() { return live().worldViewPtr; }
+    public int id() { return live().id; }
+    public int quantity() { return live().quantity; }
+    public String name() {
+        String value = live().name;
+        return value == null ? "" : value;
+    }
     @Override
-    public int worldX() { return worldX; }
+    public int worldX() { return live().worldX; }
     @Override
-    public int worldY() { return worldY; }
-    public long ownershipType() { return ownershipType; }
-    public GroundItemOwnership ownership() { return GroundItemOwnership.fromId(ownershipType); }
+    public int worldY() { return live().worldY; }
+    public long ownershipType() { return live().ownershipType; }
+    public GroundItemOwnership ownership() { return GroundItemOwnership.fromId(ownershipType()); }
     public boolean canLoot() {
         int accountType = Titan.client().varbit(ACCOUNT_TYPE_VARBIT);
         boolean ironman = accountType >= 1 && accountType <= 6;
         boolean groupIronman = accountType == 4 || accountType == 5 || accountType == 6;
-        switch ((int) ownershipType) {
+        switch ((int) ownershipType()) {
         case 0:
         case 1:
             return true;
@@ -55,6 +61,21 @@ public final class GroundItem implements Locatable<GroundItem> {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
-        return TitanRuntime.getInteractionBackend().interactGroundItem(action, id, tileX, tileY);
+        return TitanRuntime.getInteractionBackend().interactGroundItem(
+            action, id(), tileX(), tileY(), worldViewId());
+    }
+
+    public boolean exists() { return TitanRuntime.liveExists(this); }
+
+    public GroundItem snapshot() { return TitanRuntime.snapshotLive(this); }
+
+    @Override
+    public boolean equals(Object other) {
+        return TitanRuntime.liveEquals(this, other);
+    }
+
+    @Override
+    public int hashCode() {
+        return TitanRuntime.liveHashCode(this);
     }
 }

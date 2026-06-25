@@ -29,6 +29,8 @@ public interface Actor extends Locatable<Actor> {
     int healthScale();
     boolean hasHealthBar();
 
+    default boolean exists() { return TitanRuntime.liveExists(this); }
+
     @Override
     default LocalPoint localPoint() {
         return new LocalPoint(preciseX(), preciseY(), worldViewId());
@@ -50,7 +52,7 @@ public interface Actor extends Locatable<Actor> {
     }
 
     default Optional<Actor> interacting() {
-        return TitanRuntime.resolveInteracting(interactingIndex(), interactingType());
+        return TitanRuntime.resolveInteracting(interactingIndex(), interactingType(), worldViewId());
     }
 
     default Actor getInteracting() {

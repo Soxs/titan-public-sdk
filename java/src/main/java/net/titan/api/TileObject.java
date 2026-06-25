@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public final class TileObject implements Locatable<TileObject> {
+    private boolean liveHandle = true;
     private int worldViewId = WorldView.CURRENT;
     private long worldViewPtr;
     private int tileX;
@@ -28,37 +29,48 @@ public final class TileObject implements Locatable<TileObject> {
     private int orientation = -1;
     private int animation = -1;
 
+    private TileObject live() { return TitanRuntime.currentLive(this); }
+
     @Override
-    public int tileX() { return tileX; }
+    public int tileX() { return live().tileX; }
     @Override
-    public int tileY() { return tileY; }
+    public int tileY() { return live().tileY; }
     @Override
-    public int plane() { return plane; }
+    public int plane() { return live().plane; }
     @Override
-    public int worldViewId() { return worldViewId; }
+    public int worldViewId() { return live().worldViewId; }
     @Override
-    public long worldViewPtr() { return worldViewPtr; }
-    public int id() { return id; }
-    public int sizeX() { return sizeX; }
-    public int sizeY() { return sizeY; }
-    public long packedId() { return packedId; }
-    public long entityPtr() { return entityPtr; }
-    public long definitionPtr() { return definitionPtr; }
-    public String type() { return type == null ? "" : type; }
+    public long worldViewPtr() { return live().worldViewPtr; }
+    public int id() { return live().id; }
+    public int sizeX() { return live().sizeX; }
+    public int sizeY() { return live().sizeY; }
+    public long packedId() { return live().packedId; }
+    public long entityPtr() { return live().entityPtr; }
+    public long definitionPtr() { return live().definitionPtr; }
+    public String type() {
+        String value = live().type;
+        return value == null ? "" : value;
+    }
     public String typeName() { return type(); }
-    public String name() { return name == null ? "" : name; }
-    public List<String> actions() { return actions == null ? Collections.emptyList() : Collections.unmodifiableList(actions); }
-    public int layer() { return layer; }
-    public int sceneTypecode() { return sceneTypecode; }
-    public int sceneObjectType() { return sceneObjectType; }
+    public String name() {
+        String value = live().name;
+        return value == null ? "" : value;
+    }
+    public List<String> actions() {
+        List<String> value = live().actions;
+        return value == null ? Collections.emptyList() : Collections.unmodifiableList(value);
+    }
+    public int layer() { return live().layer; }
+    public int sceneTypecode() { return live().sceneTypecode; }
+    public int sceneObjectType() { return live().sceneObjectType; }
     public int shape() { return sceneObjectType(); }
-    public int orientation() { return orientation; }
-    public int animation() { return animation; }
+    public int orientation() { return live().orientation; }
+    public int animation() { return live().animation; }
     public int getAnimation() { return animation(); }
     @Override
-    public int worldX() { return worldX; }
+    public int worldX() { return live().worldX; }
     @Override
-    public int worldY() { return worldY; }
+    public int worldY() { return live().worldY; }
 
     @Override
     public WorldArea worldArea() {
@@ -78,5 +90,19 @@ public final class TileObject implements Locatable<TileObject> {
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         return TitanRuntime.getInteractionBackend().interactTileObject(action, this);
+    }
+
+    public boolean exists() { return TitanRuntime.liveExists(this); }
+
+    public TileObject snapshot() { return TitanRuntime.snapshotLive(this); }
+
+    @Override
+    public boolean equals(Object other) {
+        return TitanRuntime.liveEquals(this, other);
+    }
+
+    @Override
+    public int hashCode() {
+        return TitanRuntime.liveHashCode(this);
     }
 }

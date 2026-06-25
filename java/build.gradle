@@ -22,9 +22,73 @@ repositories {
     mavenCentral()
 }
 
+def titanRoot = projectDir.parentFile.parentFile
+def titanGamevalToolDir = new File(titanRoot, 'tools/gamevals')
+def titanGamevalGradle = new File(projectDir, System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')
+    ? 'gradlew.bat'
+    : 'gradlew')
+def titanGenerateGamevals = providers.gradleProperty('titanGenerateGamevals')
+    .orElse(providers.environmentVariable('TITAN_GENERATE_GAMEVALS'))
+    .map { it.toBoolean() }
+    .orElse(true)
+def titanGamevalRevision = providers.gradleProperty('titanGamevalRevision')
+    .orElse(providers.environmentVariable('TITAN_GAMEVAL_REVISION'))
+    .orElse('live')
+def titanGamevalJavaHome = providers.gradleProperty('titanGamevalJavaHome')
+    .orElse(providers.environmentVariable('TITAN_GAMEVAL_JAVA_HOME'))
+def titanGamevalJsonDir = providers.gradleProperty('titanGamevalJsonDir')
+    .orElse(new File(titanRoot, 'build/generated/gamevals').absolutePath)
+
+tasks.register('generateTitanGamevals', Exec) {
+    group = 'generation'
+    description = 'Refresh generated native gameval Java SDK sources from the local OSRS cache.'
+    onlyIf {
+        titanGenerateGamevals.get()
+            && titanGamevalGradle.isFile()
+            && new File(titanGamevalToolDir, 'build.gradle').isFile()
+    }
+    workingDir titanRoot
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'cmd', '/c', titanGamevalGradle.absolutePath
+    } else {
+        commandLine titanGamevalGradle.absolutePath
+    }
+    args '--no-daemon',
+        '-p', titanGamevalToolDir.absolutePath,
+        'generateGamevals',
+        "-PtitanRoot=${titanRoot.absolutePath}",
+        "-PjsonDir=${titanGamevalJsonDir.get()}",
+        "-Prevision=${titanGamevalRevision.get()}"
+    doFirst {
+        def javaHome = titanGamevalJavaHome.orNull
+        if ((javaHome == null || javaHome.isBlank())
+            && System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+            def localJdk25 = new File('C:/Program Files/Java/jdk-25')
+            if (new File(localJdk25, 'bin/java.exe').isFile()) {
+                javaHome = localJdk25.absolutePath
+            }
+        }
+        if (javaHome != null && !javaHome.isBlank()) {
+            environment 'JAVA_HOME', javaHome
+        }
+    }
+}
+
 dependencies {
     api 'com.google.inject:guice:7.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+}
+
+tasks.named('compileJava') {
+    dependsOn tasks.named('generateTitanGamevals')
+}
+
+tasks.named('sourcesJar') {
+    dependsOn tasks.named('generateTitanGamevals')
+}
+
+tasks.named('javadoc') {
+    dependsOn tasks.named('generateTitanGamevals')
 }
 
 tasks.named('test') {

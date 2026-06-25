@@ -5,8 +5,15 @@ import net.titan.api.WidgetAddress;
 
 public interface InteractionBackend {
     boolean interactNpcByIndex(String action, int hashIndex);
+    default boolean interactNpcByIndex(String action, int hashIndex, int worldViewId) {
+        return interactNpcByIndex(action, hashIndex);
+    }
     boolean interactTileObject(String action, TileObject object);
     boolean interactGroundItem(String action, int itemId, int tileX, int tileY);
+    default boolean interactGroundItem(String action, int itemId, int tileX, int tileY,
+                                       int worldViewId) {
+        return interactGroundItem(action, itemId, tileX, tileY);
+    }
 
     boolean interactInventoryItem(int itemId, String action);
     boolean interactInventoryItemAtSlot(int slot, int itemId, String action);
