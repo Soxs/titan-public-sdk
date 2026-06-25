@@ -1,10 +1,10 @@
 package net.titan.api.utils;
 
 import net.titan.api.InventoryItem;
-import net.titan.api.InterfaceId;
 import net.titan.api.Titan;
 import net.titan.api.Widget;
 import net.titan.api.queries.Queries;
+import net.titan.gamevals.InterfaceID;
 
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public final class Inventory {
     public static final int CAPACITY = 28;
-    public static final int INVENTORY_PACKED_ID = InterfaceId.pack(149, 0);
+    public static final int INVENTORY_PACKED_ID = InterfaceID.Inventory.ITEMS;
 
     private Inventory() {}
 

@@ -1,39 +1,40 @@
 package net.titan.api.utils;
 
-import net.titan.api.InterfaceId;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
 import net.titan.api.Widget;
 import net.titan.api.internal.TitanRuntime;
+import net.titan.gamevals.InterfaceID;
 
 import java.util.Optional;
 
 public final class Dialogue {
-    // Mirrors C++ InterfaceIds::ContinueCandidates (order matters).
+    // Mirrors the native gameval-backed continue candidate order.
     private static final int[] CONTINUE_CANDIDATES = {
-        InterfaceId.pack(233, 3),   // LEVEL_UP_CONTINUE
-        InterfaceId.pack(229, 2),   // MINIGAME_DIALOG_CONTINUE
-        InterfaceId.pack(231, 5),   // DIALOG_NPC_CONTINUE
-        InterfaceId.pack(217, 5),   // DIALOG_PLAYER_CONTINUE
-        InterfaceId.pack(11, 4),    // DIALOG2_SPRITE_CONTINUE
-        InterfaceId.pack(229, 1),   // DIALOG_NOTIFICATION_CONTINUE
-        InterfaceId.pack(162, 42),  // tutorial-island continue (text-gated)
-        InterfaceId.pack(162, 43),  // tutorial-island continue (text-gated)
+        InterfaceID.LevelupDisplay.CONTINUE_,
+        InterfaceID.Messagebox.CONTINUE_,
+        InterfaceID.Messagebox.CONTENT,
+        InterfaceID.ChatLeft.CONTINUE_,
+        InterfaceID.ChatRight.CONTINUE_,
+        InterfaceID.ObjectboxDouble.PAUSEBUTTON,
+        InterfaceID.Messagebox.SAFEZONE,
+        InterfaceID.Chatbox.CLOSE_ICON,
+        InterfaceID.Chatbox.MES_TEXT,
     };
 
     private Dialogue() {}
 
     public static boolean continueMake() {
-        return visible(InterfaceId.MAKE_BUTTON).isPresent() &&
-            clickWholeWidget(InterfaceId.MAKE_BUTTON, MenuAction.CC_OP, 1);
+        return visible(InterfaceID.Skillmulti.BOTTOM).isPresent() &&
+            clickWholeWidget(InterfaceID.Skillmulti.BOTTOM, MenuAction.CC_OP, 1);
     }
 
     public static int getContinueWidgetPackedId() {
         for (int packedId : CONTINUE_CANDIDATES) {
             Optional<Widget> widget = visible(packedId);
             if (!widget.isPresent()) continue;
-            if ((packedId == InterfaceId.pack(162, 42) ||
-                    packedId == InterfaceId.pack(162, 43)) &&
+            if ((packedId == InterfaceID.Chatbox.CLOSE_ICON ||
+                    packedId == InterfaceID.Chatbox.MES_TEXT) &&
                     !containsIgnoreCase(widget.get().text(), "Click here to continue")) {
                 continue;
             }
@@ -50,18 +51,18 @@ public final class Dialogue {
 
     public static boolean inDialogue() {
         return getContinueWidgetPackedId() != 0 ||
-            visible(InterfaceId.DIALOG_OPTIONS).isPresent();
+            visible(InterfaceID.Chatmenu.OPTIONS).isPresent();
     }
 
     public static boolean isQuestCompletionOpen() {
-        return visible(InterfaceId.QUESTSCROLL_CONTENT).isPresent() ||
-            visible(InterfaceId.QUESTSCROLL_CLOSE).isPresent();
+        return visible(InterfaceID.Questscroll.CONTENT).isPresent() ||
+            visible(InterfaceID.Questscroll.CLOSE_BUTTON).isPresent();
     }
 
     public static boolean closeQuestCompletion() {
         return isQuestCompletionOpen() &&
-            visible(InterfaceId.QUESTSCROLL_CLOSE).isPresent() &&
-            clickWholeWidget(InterfaceId.QUESTSCROLL_CLOSE, MenuAction.CC_OP, 1);
+            visible(InterfaceID.Questscroll.CLOSE_BUTTON).isPresent() &&
+            clickWholeWidget(InterfaceID.Questscroll.CLOSE_BUTTON, MenuAction.CC_OP, 1);
     }
 
     public static boolean hasOption(String... needles) {
@@ -71,7 +72,7 @@ public final class Dialogue {
     public static boolean selectOption(String... needles) {
         int slot = optionSlot(needles);
         return slot >= 0 && TitanRuntime.getInteractionBackend().widgetInteract(
-            MenuAction.WIDGET_CONTINUE, 0, slot, InterfaceId.DIALOG_OPTIONS);
+            MenuAction.WIDGET_CONTINUE, 0, slot, InterfaceID.Chatmenu.OPTIONS);
     }
 
     public static boolean handleDialogue(String... needles) {
@@ -82,7 +83,7 @@ public final class Dialogue {
     private static int optionSlot(String... needles) {
         if (needles == null || needles.length == 0) return -1;
         for (String needle : needles) {
-            for (Widget child : Titan.client().widgetChildren(InterfaceId.DIALOG_OPTIONS)) {
+            for (Widget child : Titan.client().widgetChildren(InterfaceID.Chatmenu.OPTIONS)) {
                 if (child.isVisible() && containsIgnoreCase(child.text(), needle)) {
                     int slot = child.dynamicChildSlot();
                     return slot >= 0 ? slot : child.packedId() & 0xffff;

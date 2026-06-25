@@ -3357,9 +3357,9 @@ declare namespace titan {
     };
 
     /**
-     * Packed widget ids for the dialogue / combat helpers. Mirrors
-     * `titan::InterfaceIds::*` in
-     * [shared/titan/interface_ids.h](shared/titan/interface_ids.h).
+     * Legacy packed widget ids for the dialogue / combat helpers. Prefer
+     * `titan.gamevals.InterfaceID.*`; this object is kept for script
+     * compatibility.
      * Added in SDK 39.
      */
     const InterfaceIds: {

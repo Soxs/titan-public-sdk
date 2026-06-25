@@ -2,7 +2,6 @@ package net.titan.api.utils;
 
 import net.titan.api.BankSets;
 import net.titan.api.Client;
-import net.titan.api.InterfaceId;
 import net.titan.api.InventoryId;
 import net.titan.api.InventoryItem;
 import net.titan.api.ItemContainer;
@@ -15,6 +14,7 @@ import net.titan.api.Widget;
 import net.titan.api.internal.InteractionBackend;
 import net.titan.api.internal.TitanRuntime;
 import net.titan.api.queries.Queries;
+import net.titan.gamevals.InterfaceID;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,11 +36,11 @@ public final class Bank {
     // --- State reads -----------------------------------------------------
 
     public static boolean isOpen() {
-        return widgetVisible(InterfaceId.BANK_ITEM_CONTAINER);
+        return widgetVisible(InterfaceID.Bankmain.ITEMS);
     }
 
     public static boolean isGeOpen() {
-        return widgetVisible(InterfaceId.GRAND_EXCHANGE_INVENTORY_ITEM_CONTAINER);
+        return widgetVisible(InterfaceID.GeOffersSide.ITEMS);
     }
 
     public static boolean isSearchOpen() {
@@ -112,28 +112,29 @@ public final class Bank {
     // --- Actions ---------------------------------------------------------
 
     public static boolean close() {
-        return actions().widgetInteract(MenuAction.CC_OP, 1, 11, InterfaceId.BANK_CLOSE);
+        return actions().widgetInteract(MenuAction.CC_OP, 1, 11, InterfaceID.Bankmain.FRAME);
     }
 
     public static boolean setNotedMode(boolean noted) {
         if (isNotedMode() == noted) return true;
-        return actions().widgetInteract(MenuAction.CC_OP, 1, -1, InterfaceId.BANK_NOTE_TOGGLE);
+        return actions().widgetInteract(
+            MenuAction.CC_OP, 1, -1, InterfaceID.Bankmain.POTIONSTORE_CONTAINER);
     }
 
     public static boolean depositAll() {
         return actions().widgetInteract(
-            MenuAction.CC_OP, 1, -1, InterfaceId.BANK_DEPOSIT_INVENTORY);
+            MenuAction.CC_OP, 1, -1, InterfaceID.Bankmain.DEPOSITINV);
     }
 
     public static boolean depositEquipment() {
         return actions().widgetInteract(
-            MenuAction.CC_OP, 1, -1, InterfaceId.BANK_DEPOSIT_EQUIPMENT);
+            MenuAction.CC_OP, 1, -1, InterfaceID.Bankmain.DEPOSITWORN);
     }
 
     public static boolean depositAllOfSlot(int slot) {
         return actions().widgetInteract(
             MenuAction.CC_OP_LOW_PRIORITY, 8, slot,
-            InterfaceId.BANK_INVENTORY_ITEM_CONTAINER);
+            InterfaceID.Bankside.ITEMS);
     }
 
     public static boolean depositOneOfSlot(int slot) {
@@ -141,7 +142,7 @@ public final class Bank {
         int identifier = (qty == 0) ? 2 : 3;
         return actions().widgetInteract(
             MenuAction.CC_OP, identifier, slot,
-            InterfaceId.BANK_INVENTORY_ITEM_CONTAINER);
+            InterfaceID.Bankside.ITEMS);
     }
 
     public static boolean depositAllOfItem(int itemId) {
@@ -174,7 +175,7 @@ public final class Bank {
         int identifier = (qty == 0) ? 1 : 2;
         return actions().widgetInteract(
             MenuAction.CC_OP, identifier, slot.get().slot(),
-            InterfaceId.BANK_ITEM_CONTAINER);
+            InterfaceID.Bankmain.ITEMS);
     }
 
     public static boolean withdrawAllItem(int itemId) {
@@ -184,7 +185,7 @@ public final class Bank {
         int identifier = (qty == 4) ? 1 : 7;
         int op = (qty == 4) ? MenuAction.CC_OP : MenuAction.CC_OP_LOW_PRIORITY;
         return actions().widgetInteract(op, identifier, slot.get().slot(),
-            InterfaceId.BANK_ITEM_CONTAINER);
+            InterfaceID.Bankmain.ITEMS);
     }
 
     /// Withdraw a specific amount. For 1/5/10 the matching menu option is used.
@@ -200,29 +201,29 @@ public final class Bank {
         if (amount == 1) {
             int id = (qty == 0) ? 1 : 2;
             return actions().widgetInteract(MenuAction.CC_OP, id, slot,
-                InterfaceId.BANK_ITEM_CONTAINER);
+                InterfaceID.Bankmain.ITEMS);
         }
         if (amount == 5) {
             int id = (qty == 1) ? 1 : 3;
             return actions().widgetInteract(MenuAction.CC_OP, id, slot,
-                InterfaceId.BANK_ITEM_CONTAINER);
+                InterfaceID.Bankmain.ITEMS);
         }
         if (amount == 10) {
             int id = (qty == 2) ? 1 : 4;
             return actions().widgetInteract(MenuAction.CC_OP, id, slot,
-                InterfaceId.BANK_ITEM_CONTAINER);
+                InterfaceID.Bankmain.ITEMS);
         }
 
         int lastQty = client().varbit(Varbits.BANK_REQUESTEDQUANTITY);
         if (lastQty == amount) {
             int id = (qty == 3) ? 1 : 5;
             return actions().widgetInteract(MenuAction.CC_OP, id, slot,
-                InterfaceId.BANK_ITEM_CONTAINER);
+                InterfaceID.Bankmain.ITEMS);
         }
 
         int id = (qty == 3) ? 1 : 6;
         int op = (qty == 3) ? MenuAction.CC_OP : MenuAction.CC_OP_LOW_PRIORITY;
-        return actions().widgetInteract(op, id, slot, InterfaceId.BANK_ITEM_CONTAINER);
+        return actions().widgetInteract(op, id, slot, InterfaceID.Bankmain.ITEMS);
     }
 
     public static boolean interactItemInBank(int itemId) {
@@ -233,7 +234,7 @@ public final class Bank {
         Optional<InventoryItem> slot = find(itemId);
         if (slot.isEmpty()) return false;
         return actions().widgetInteract(MenuAction.CC_OP, identifier, slot.get().slot(),
-            InterfaceId.BANK_ITEM_CONTAINER);
+            InterfaceID.Bankmain.ITEMS);
     }
 
     // --- Opening a bank --------------------------------------------------
@@ -274,7 +275,7 @@ public final class Bank {
     }
 
     public static int pinRequestedDigitIndex() {
-        Optional<Widget> w = client().widget(InterfaceId.BANK_PIN_INSTRUCTION);
+        Optional<Widget> w = client().widget(InterfaceID.BankpinKeypad.FRAME);
         if (w.isEmpty() || !w.get().isVisible()) return -1;
         String txt = w.get().text();
         if (containsIgnoreCase(txt, "FIRST")) return 0;

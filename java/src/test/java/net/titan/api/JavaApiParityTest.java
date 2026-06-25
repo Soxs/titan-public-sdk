@@ -9,6 +9,7 @@ import net.titan.api.internal.TitanRuntime;
 import net.titan.api.overlay.OverlayDraw;
 import net.titan.api.overlay.OverlayPanelStyle;
 import net.titan.api.utils.Magic;
+import net.titan.gamevals.InterfaceID;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +62,7 @@ class JavaApiParityTest {
         Magic.SpellInfo varrock = Magic.info(Magic.Standard.VARROCK_TELEPORT);
         assertEquals("VARROCK_TELEPORT", varrock.name());
         assertEquals(25, varrock.level());
-        assertEquals(InterfaceId.MagicSpellbook.VARROCK_TELEPORT, varrock.widget());
+        assertEquals(InterfaceID.MagicSpellbook.VARROCK_TELEPORT, varrock.widget());
         assertEquals(Magic.SpellBook.STANDARD, varrock.book());
 
         assertEquals(Magic.SpellBook.ANCIENT, Magic.info(Magic.Ancient.ICE_BARRAGE).book());

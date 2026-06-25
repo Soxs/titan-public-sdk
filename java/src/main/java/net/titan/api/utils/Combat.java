@@ -1,10 +1,10 @@
 package net.titan.api.utils;
 
-import net.titan.api.InterfaceId;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
 import net.titan.api.VarPlayerId;
 import net.titan.api.internal.TitanRuntime;
+import net.titan.gamevals.InterfaceID;
 
 public final class Combat {
     private Combat() {}
@@ -27,12 +27,12 @@ public final class Combat {
 
     public static boolean enableSpecialAttack(boolean skipMovement) {
         return TitanRuntime.getInteractionBackend().widgetInteract(
-            MenuAction.CC_OP, 1, -1, InterfaceId.SPEC_ORB);
+            MenuAction.CC_OP, 1, -1, InterfaceID.Orbs.ORB_SPECENERGY);
     }
 
     public static boolean setAutoRetaliate(boolean enabled) {
         return isAutoRetaliateEnabled() == enabled ||
             TitanRuntime.getInteractionBackend().widgetInteract(
-                MenuAction.CC_OP, 1, -1, InterfaceId.AUTO_RETALIATE);
+                MenuAction.CC_OP, 1, -1, InterfaceID.CombatInterface.RETALIATE);
     }
 }

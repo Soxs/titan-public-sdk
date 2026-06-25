@@ -1,10 +1,10 @@
 package net.titan.api.utils;
 
-import net.titan.api.InterfaceId;
 import net.titan.api.MenuAction;
 import net.titan.api.Titan;
 import net.titan.api.VarPlayerId;
 import net.titan.api.internal.TitanRuntime;
+import net.titan.gamevals.InterfaceID;
 
 public final class Walk {
     private Walk() {}
@@ -15,7 +15,7 @@ public final class Walk {
 
     public static boolean toggleRun() {
         return TitanRuntime.getInteractionBackend().widgetInteract(
-            MenuAction.CC_OP, 1, -1, InterfaceId.RUN_ORB);
+            MenuAction.CC_OP, 1, -1, InterfaceID.Orbs.RUNENERGY_BACKING);
     }
 
     public static boolean setRunEnabled(boolean enabled) {
