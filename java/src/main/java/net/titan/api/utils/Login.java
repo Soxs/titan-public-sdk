@@ -24,7 +24,7 @@ public final class Login {
     }
 
     public static boolean isLoggedIn() {
-        return isWorldReady();
+        return state() == LoginGameState.LOGGED_IN;
     }
 
     public static boolean isWorldReady() {

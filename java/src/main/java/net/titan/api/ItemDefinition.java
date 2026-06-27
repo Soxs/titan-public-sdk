@@ -13,6 +13,7 @@ public final class ItemDefinition {
     private boolean stackable;
     private boolean noted;
     private int noteId = -1;
+    /** Other item id in the note pair, or -1 when there is no note pair. */
     private int linkedId = -1;
     private List<String> inventoryActions;
     private List<String> groundActions;

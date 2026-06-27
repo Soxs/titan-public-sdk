@@ -40,7 +40,7 @@ public final class LoginState {
             && client.topLevelSceneSizeX() > 0
             && client.topLevelSceneSizeY() > 0;
     }
-    public boolean isLoggedIn() { return isWorldReady(); }
+    public boolean isLoggedIn() { return gameState() == LoginGameState.LOGGED_IN; }
     public boolean exists() { return TitanRuntime.liveExists(this); }
     public LoginState snapshot() { return TitanRuntime.snapshotLive(this); }
 }

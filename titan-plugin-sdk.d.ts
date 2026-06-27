@@ -25,9 +25,7 @@
  * (`Plugin`, `register`, settings), and enums (`MenuAction`, `Skill`,
  * `Prayer`, `Varbits`, `InventoryID`, `EquipmentSlot`, ...).
  *
- * Two ways to write a plugin:
- *
- * 1) Class-based (recommended):
+ * Write plugins by extending titan.Plugin:
  * ```ts
  * class MyPlugin extends titan.Plugin {
  *     id = "my_plugin";
@@ -48,12 +46,9 @@
  * }
  * titan.register(new MyPlugin());
  * ```
- *
- * 2) Object-registration (legacy, still supported):
- * ```ts
- * titan.registerPlugin({ id: "my_plugin", name: "My Plugin", ... });
- * ```
  */
+
+declare namespace titan {
 
 // ---------------------------------------------------------------------------
 // Positional types
@@ -457,7 +452,6 @@ interface GraphicsObject extends InstanceConvertible {
     readonly worldViewId: number;
     readonly worldViewPtr: bigint;
     readonly seqPtr: bigint;
-    readonly seqTypePtr: bigint;
     readonly animationId: number;
     readonly frameCycle: number;
     readonly currentFrame: number;
@@ -828,14 +822,8 @@ interface MenuOptionClicked {
 
 interface ScriptEvent {
     readonly scriptId: number;
-    /** Snapshot of the integer argument stack as a fresh array
-     *  (allocates; prefer `arg(i)` for indexed access). */
-    args(): number[];
-    /** Snapshot of the integer result stack as a fresh array
-     *  (allocates; prefer `result(i)` for indexed access). */
-    results(): number[];
-    arg(i: number, def?: number): number;
-    result(i: number, def?: number): number;
+    readonly intArgs: number[];
+    readonly intResults: number[];
 }
 
 /** Delivered to `onVarbitChanged` when a varbit's resolved value actually
@@ -876,7 +864,7 @@ interface ChatMessageEvent {
 }
 
 /** Discriminates the source of a `SoundPlayedEvent`. */
-declare const enum SoundKind {
+const enum SoundKind {
     /** Queued JagFX/wave sound effect (combat, spells, NPCs, area sounds). */
     Synth = 0,
     /** MIDI jingle (level-ups, quests, music stings). */
@@ -912,7 +900,7 @@ interface SoundPlayedEvent {
 interface HitsplatAppliedEvent {
     /** Resolved actor object, or null if the actor no longer resolves. */
     readonly actor: Actor | null;
-    /** Entity type constant: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
+    /** Entity type code: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
     readonly actorType: number;
     /** Lowercase actor kind: "player", "npc", or "none". */
     readonly kind: "player" | "npc" | "none";
@@ -942,7 +930,7 @@ interface HitsplatAppliedEvent {
 interface ActorSpotAnimEvent {
     /** Resolved actor object, or null if the actor no longer resolves. */
     readonly actor: Actor | null;
-    /** Entity type constant: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
+    /** Entity type code: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
     readonly actorType: number;
     /** Lowercase actor kind: "player", "npc", or "none". */
     readonly kind: "player" | "npc" | "none";
@@ -970,7 +958,7 @@ interface ActorSpotAnimEvent {
 interface AnimationChangedEvent {
     /** Resolved actor object, or null if the actor no longer resolves. */
     readonly actor: Actor | null;
-    /** Entity type constant: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
+    /** Entity type code: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
     readonly actorType: number;
     /** Lowercase actor kind: "player", "npc", or "none". */
     readonly kind: "player" | "npc" | "none";
@@ -1012,8 +1000,11 @@ interface ItemContainerSnapshot {
 /** Event wrapper for tick-level diff of an item container. Fires whenever
  * a mapped container's slot contents differ from the previous tick's
  * snapshot. Added in SDK 26. */
-interface ItemContainerChangedEvent extends ItemContainerSnapshot {
+interface ItemContainerChangedEvent {
+    readonly containerId: number;
+    readonly capacity: number;
     readonly gameTick: number;
+    readonly items: ItemContainerSlot[];
 }
 
 /** Runtime ItemDef snapshot (RuneLite's Client.getItemDefinition parity).
@@ -1025,7 +1016,7 @@ interface ItemComposition {
     readonly id: number;
     readonly name: string;
     readonly stackable: boolean;
-    /** -1 when the item has no note variant. */
+    /** Other item id in the note pair; -1 when there is no note pair. */
     readonly linkedNoteId: number;
     /** Inventory-action slots with positional gaps preserved. */
     readonly inventoryActions: string[];
@@ -1169,7 +1160,7 @@ interface PluginHandle {
  * helper methods (this.boolSetting, this.section, this.overlay, ...) and
  * override the lifecycle methods you care about.
  */
-declare class TitanPlugin {
+class Plugin {
     id: string;
     name: string;
     /**
@@ -1188,11 +1179,6 @@ declare class TitanPlugin {
     version?: string;
     /** Default enabled state for first install; runtime starts disabled until the controller applies saved/default state. */
     enabled?: boolean;
-    /** Legacy single-overlay layer. Prefer `overlay({ layer, render })` for multiple overlays. */
-    renderLayer?: OverlayLayer;
-    /** Legacy single-overlay callback. Prefer `overlay({ layer, render })` for new plugins. */
-    renderOverlay?(): void;
-
     // Setting helpers — each returns a Setting<T> that auto-registers.
     boolSetting(init: BoolSettingInit): Setting<boolean>;
     intSetting(init: IntSettingInit): Setting<number>;
@@ -1264,9 +1250,9 @@ declare class TitanPlugin {
 // ---------------------------------------------------------------------------
 
 /**
- * One side panel definition. Supply via `panels` on a TitanPlugin or
- * PluginDefinition. A plugin may declare multiple panels; each gets its own
- * nav button in the controller side rail.
+ * One side panel definition. Supply via `panels` on a Plugin. A plugin
+ * may declare multiple panels; each gets its own nav button in the controller
+ * side rail.
  */
 interface PanelDef {
     /** Stable per-plugin id used to route panel content and actions. */
@@ -1275,9 +1261,9 @@ interface PanelDef {
     title: string;
     /**
      * Optional icon spec for the nav button. Use `awesome:gear`,
-     * `lucide:house`, `phosphor:gear:bold`, or a legacy Font Awesome glyph
-     * such as "\uf013". Unprefixed strings are treated as Font Awesome for
-     * compatibility. Ignored when `image` is set.
+     * `lucide:house`, `phosphor:gear:bold`, or a raw Font Awesome glyph
+     * such as "\uf013". Unprefixed strings are treated as Font Awesome.
+     * Ignored when `image` is set.
      */
     icon?: string;
     /**
@@ -1297,28 +1283,11 @@ interface PanelDef {
     onAction?(actionId: number, value: SettingValue): void;
 }
 
-declare enum PanelTone {
-    neutral = 0,
-    accent = 1,
-    success = 2,
-    warning = 3,
-    danger = 4,
-    info = 5,
-}
+type PanelTone = number;
 
-declare enum PanelButtonStyle {
-    normal = 0,
-    primary = 1,
-    secondary = 2,
-    danger = 3,
-    ghost = 4,
-}
+type PanelButtonStyle = number;
 
-declare enum PanelInputFlags {
-    none = 0,
-    password = 1,
-    multiline = 2,
-}
+type PanelInputFlags = number;
 
 interface Panel {
     text(s: string): Panel;
@@ -1380,131 +1349,6 @@ interface SettingValue {
     stringValue?: string;
 }
 
-// ---------------------------------------------------------------------------
-// Legacy object-registration types (still supported)
-// ---------------------------------------------------------------------------
-
-interface PluginSettingBase {
-    key: string;
-    name: string;
-    section?: string;
-    tooltip?: string;
-    position?: number;
-    hidden?: boolean;
-}
-
-interface BooleanSetting extends PluginSettingBase {
-    type: "checkbox";
-    value: boolean;
-    default?: boolean;
-}
-
-interface SliderSetting extends PluginSettingBase {
-    type: "slider";
-    value: number;
-    min: number;
-    max: number;
-    default?: number;
-}
-
-interface ColorSetting extends PluginSettingBase {
-    type: "color";
-    /** RGB color stored as 0xRRGGBB. */
-    value: number;
-    default?: number;
-}
-
-interface ComboOption {
-    value: number;
-    label: string;
-}
-
-interface ComboSetting extends PluginSettingBase {
-    type: "combo";
-    value: number;
-    options: ComboOption[];
-    default?: number;
-}
-
-interface TextSetting extends PluginSettingBase {
-    type: "text";
-    value: string;
-    default?: string;
-}
-
-type PluginSetting = BooleanSetting | SliderSetting | ColorSetting | ComboSetting | TextSetting;
-
-interface PluginSection {
-    key: string;
-    name: string;
-    description?: string;
-    position?: number;
-    closedByDefault?: boolean;
-}
-
-interface PluginDefinition {
-    id: string;
-    name: string;
-    /** Default enabled state for first install; runtime starts disabled until the controller applies saved/default state. */
-    enabled?: boolean;
-    /**
-     * Side panels exposed by this plugin (each becomes its own nav button).
-     * Replaces the SDK <= 64 singular `hasPanel` / `panelTitle` /
-     * `getPanelElements` / `onPanelAction` fields.
-     */
-    panels?: PanelDef[];
-    /** One-line description shown as a tooltip in the plugin list. */
-    description?: string;
-    /** Plugin author name. */
-    author?: string;
-    /** Short version string (e.g. "1.0.0"). */
-    version?: string;
-    renderLayer?: OverlayLayer;
-    settings?: PluginSetting[];
-    sections?: PluginSection[];
-
-    onClientTick?(): void;
-    onGameTick?(tick: number): void;
-    renderOverlay?(): void;
-
-    onProjectileSpawned?(proj: Projectile): void;
-    onProjectileDespawned?(proj: Projectile): void;
-    onProjectileMoved?(proj: Projectile): void;
-    onGraphicsObjectSpawned?(g: GraphicsObject): void;
-    onGraphicsObjectDespawned?(g: GraphicsObject): void;
-    onGraphicsObjectMoved?(g: GraphicsObject): void;
-    onNpcSpawned?(npc: Npc): void;
-    onNpcDespawned?(npc: Npc): void;
-    onPlayerSpawned?(player: Player): void;
-    onPlayerDespawned?(player: Player): void;
-    onTileObjectSpawned?(obj: TileObject): void;
-    onTileObjectDespawned?(obj: TileObject): void;
-    onMenuOptionClicked?(event: MenuOptionClicked): void;
-    onScriptFired?(event: ScriptEvent): void;
-    /** Fired when a varbit's resolved value actually changes. Added in SDK 21. */
-    onVarbitChanged?(event: VarbitChangedEvent): void;
-    /** Fired when native Client.GameState changes. Added in SDK 91. */
-    onGameStateChanged?(event: GameStateChangedEvent): void;
-    /** Fired for every chat line added to the chatbox. Added in SDK 22. */
-    onChatMessage?(event: ChatMessageEvent): void;
-    /** Fired when the native client plays a sound (synth effect or jingle; see
-     * `event.kind`). Set `event.consumed = true` to stop later sound handlers;
-     * use `titan.state.audio.playbackDisabled` for playback suppression. Added
-     * in SDK 69. */
-    onSoundPlayed?(event: SoundPlayedEvent): void;
-    /** Fired when a visible hitsplat is applied to a resolved actor. Added in SDK 74. */
-    onHitsplatApplied?(event: HitsplatAppliedEvent): void;
-    /** Fired when an actor-attached spot animation is applied. Added in SDK 76. */
-    onActorSpotAnim?(event: ActorSpotAnimEvent): void;
-    /** Fired when an actor animation field actually changes. Added in SDK 78. */
-    onAnimationChanged?(event: AnimationChangedEvent): void;
-    /** Fired when a mapped item container's slot contents differ from the
-     * previous tick's snapshot. Added in SDK 26. */
-    onItemContainerChanged?(event: ItemContainerChangedEvent): void;
-
-    settingValues?: Record<string, any>;
-}
-
 interface PanelElement {
     type: number;
     text?: string;
@@ -1523,11 +1367,10 @@ interface PanelElement {
 }
 
 // ---------------------------------------------------------------------------
-// titan global namespace — fluent facades + legacy free functions.
+// titan global namespace — fluent facades and helper catalogs.
 // ---------------------------------------------------------------------------
 
-declare namespace titan {
-    // Entity-type constants (for legacy callers).
+    // Entity-type constants used by projectile and actor event payloads.
     const ENTITY_TYPE_NPC: number;
     const ENTITY_TYPE_PLAYER: number;
     const ENTITY_TYPE_NONE: number;
@@ -1550,26 +1393,26 @@ declare namespace titan {
     };
 
     const PanelTone: {
-        readonly neutral: PanelTone.neutral;
-        readonly accent: PanelTone.accent;
-        readonly success: PanelTone.success;
-        readonly warning: PanelTone.warning;
-        readonly danger: PanelTone.danger;
-        readonly info: PanelTone.info;
+        readonly neutral: 0;
+        readonly accent: 1;
+        readonly success: 2;
+        readonly warning: 3;
+        readonly danger: 4;
+        readonly info: 5;
     };
 
     const PanelButtonStyle: {
-        readonly normal: PanelButtonStyle.normal;
-        readonly primary: PanelButtonStyle.primary;
-        readonly secondary: PanelButtonStyle.secondary;
-        readonly danger: PanelButtonStyle.danger;
-        readonly ghost: PanelButtonStyle.ghost;
+        readonly normal: 0;
+        readonly primary: 1;
+        readonly secondary: 2;
+        readonly danger: 3;
+        readonly ghost: 4;
     };
 
     const PanelInputFlags: {
-        readonly none: PanelInputFlags.none;
-        readonly password: PanelInputFlags.password;
-        readonly multiline: PanelInputFlags.multiline;
+        readonly none: 0;
+        readonly password: 1;
+        readonly multiline: 2;
     };
 
     /**
@@ -1662,11 +1505,7 @@ declare namespace titan {
     function distance(a: WorldPoint | Tile, b: WorldPoint | Tile): number;
 
     // Class-based registration.
-    const Plugin: typeof TitanPlugin;
-    function register(plugin: TitanPlugin): void;
-
-    // Legacy object-based registration (still supported).
-    function registerPlugin(definition: PluginDefinition): void;
+    function register(plugin: Plugin): void;
 
     // Logging.
     function log(message: string): void;
@@ -1811,6 +1650,7 @@ declare namespace titan {
         stackable: boolean;
         noted: boolean;
         noteId: number;
+        /** Other item id in the note pair; -1 when there is no note pair. */
         linkedId: number;
         inventoryActions: string[];
         groundActions: string[];
@@ -2310,9 +2150,8 @@ declare namespace titan {
          * [shared/titan/utils/equipment.h](shared/titan/utils/equipment.h).
          * Reads compose `titan.state.itemContainer(EQUIPMENT)`;
          * `unequip*` fires a synthetic CC_OP click against the worn-
-         * items slot widget -- same shape as the RuneLite-side
-         * `LegacyMenuEntry("Remove", "", identifier=1, opcode=CC_OP,
-         * p0=-1, p1=<wornitems slot>)`.
+         * items slot widget with the same "Remove" menu-action shape
+         * RuneLite uses for worn-item slots.
          *
          * Numeric arguments to `find` / `contains` / `unequip` are
          * treated as **item ids**; pass a `titan.EquipmentSlot` value
@@ -2586,7 +2425,7 @@ declare namespace titan {
             readonly index: number;
             /** True once the local player is available in-world. */
             readonly isWorldReady: boolean;
-            /** Compatibility alias for `isWorldReady`; does not mean native gameState === LoggedIn. */
+            /** True when native gameState is `LoginGameState.LoggedIn`. */
             readonly isLoggedIn: boolean;
 
             setUsername(username: string): void;
@@ -2655,7 +2494,7 @@ declare namespace titan {
         readonly self: PluginHandle & (() => PluginHandle);
     };
 
-    // Overlay draw API — call from inside Overlay::render or renderOverlay.
+    // Overlay draw API -- call from inside Overlay::render callbacks.
     const overlay: {
         tileQuad(tileX: number, tileY: number, plane: number,
                  fillColor: number, outlineColor: number): void;
@@ -2689,7 +2528,7 @@ declare namespace titan {
         /**
          * Raw entry for plugins that already hold the entity pointer and
          * its typecode. Passing `typecode = 0` skips typecode-keyed lookup
-         * and falls back to the host's legacy world-keyed cache.
+         * and falls back to the host's world-keyed fallback cache.
          */
         entityClickboxRaw(entityPtr: number | bigint, typecode: number | bigint,
                           outline: number, fill?: number): void;
@@ -3067,7 +2906,7 @@ declare namespace titan {
         }
     }
 
-    // ---- Legacy flat free functions ----
+    // ---- Removed flat free-function spellings ----
     //
     // SDK 41 dropped the flat `titan.getNpcs()` / `titan.containsInventoryItem`
     // / etc. spellings entirely. Use the namespaced equivalents:
@@ -3319,8 +3158,8 @@ declare namespace titan {
     };
 
     /**
-     * Client-side integer variable ids. Mirrors RuneLite's deprecated
-     * `VarClientInt` compatibility catalog and `titan::VarClientInt::*` in
+     * Client-side integer variable ids. Mirrors RuneLite's `VarClientInt`
+     * catalog and `titan::VarClientInt::*` in
      * [shared/titan/var_client_int.h](shared/titan/var_client_int.h).
      * Added in SDK 61.
      */
@@ -3340,8 +3179,8 @@ declare namespace titan {
     };
 
     /**
-     * Client-side string variable ids. Mirrors RuneLite's deprecated
-     * `VarClientStr` compatibility catalog and `titan::VarClientStr::*` in
+     * Client-side string variable ids. Mirrors RuneLite's `VarClientStr`
+     * catalog and `titan::VarClientStr::*` in
      * [shared/titan/var_client_str.h](shared/titan/var_client_str.h).
      * Added in SDK 61.
      */
@@ -3354,234 +3193,6 @@ declare namespace titan {
         readonly NOTIFICATION_BOTTOM_TEXT: 388;
         /** Return the compatibility-catalog identifier, or null when unnamed. */
         nameOf(id: number): string | null;
-    };
-
-    /**
-     * Legacy packed widget ids for the dialogue / combat helpers. Prefer
-     * `titan.gamevals.InterfaceID.*`; this object is kept for script
-     * compatibility.
-     * Added in SDK 39.
-     */
-    const InterfaceIds: {
-        readonly MakeButton: 17694734;
-        readonly AutoRetaliate: 38862880;
-        readonly QuestscrollClose: 10027024;
-        readonly QuestscrollContent: 10027009;
-        readonly DialogOptions: 14352385;
-        readonly SpecOrb: 10485794;
-        readonly MagicSpellbook: {
-            readonly UNIVERSE: 14286848;
-            readonly TOP: 14286849;
-            readonly GLOW: 14286850;
-            readonly SPELLLAYER: 14286851;
-            readonly BACK_BUTTON: 14286852;
-            readonly LEAGUE_HOME_TELEPORT: 14286853;
-            readonly TELEPORT_HOME_STANDARD: 14286854;
-            readonly TELEPORT_MINIGAME_STANDARD: 14286855;
-            readonly TELEPORT_MINIGAME_ANCIENT: 14286856;
-            readonly TELEPORT_MINIGAME_ARCEUUS: 14286857;
-            readonly TELEPORT_MINIGAME_LUNAR: 14286858;
-            readonly WIND_STRIKE: 14286859;
-            readonly CONFUSE: 14286860;
-            readonly XBOWS_ENCHANT: 14286861;
-            readonly WATER_STRIKE: 14286862;
-            readonly ENCHANT_JEWELLERY: 14286863;
-            readonly ENCHANT_1: 14286864;
-            readonly EARTH_STRIKE: 14286865;
-            readonly WEAKEN: 14286866;
-            readonly FIRE_STRIKE: 14286867;
-            readonly BONES_BANANAS: 14286868;
-            readonly WIND_BOLT: 14286869;
-            readonly CURSE: 14286870;
-            readonly BIND: 14286871;
-            readonly LOW_ALCHEMY: 14286872;
-            readonly WATER_BOLT: 14286873;
-            readonly VARROCK_TELEPORT: 14286874;
-            readonly ENCHANT_2: 14286875;
-            readonly EARTH_BOLT: 14286876;
-            readonly LUMBRIDGE_TELEPORT: 14286877;
-            readonly TELEGRAB: 14286878;
-            readonly FIRE_BOLT: 14286879;
-            readonly FALADOR_TELEPORT: 14286880;
-            readonly CRUMBLE_UNDEAD: 14286881;
-            readonly TELEPORT_TO_YOUR_HOUSE: 14286882;
-            readonly WIND_BLAST: 14286883;
-            readonly SUPERHEAT: 14286884;
-            readonly CAMELOT_TELEPORT: 14286885;
-            readonly WATER_BLAST: 14286886;
-            readonly KOUREND_TELEPORT: 14286887;
-            readonly ENCHANT_3: 14286888;
-            readonly IBAN_BLAST: 14286889;
-            readonly SNARE: 14286890;
-            readonly MAGIC_DART: 14286891;
-            readonly ARDOUGNE_TELEPORT: 14286892;
-            readonly EARTH_BLAST: 14286893;
-            readonly FORTIS_TELEPORT: 14286894;
-            readonly HIGH_ALCHEMY: 14286895;
-            readonly CHARGE_WATER_ORB: 14286896;
-            readonly ENCHANT_4: 14286897;
-            readonly WATCHTOWER_TELEPORT: 14286898;
-            readonly FIRE_BLAST: 14286899;
-            readonly CHARGE_EARTH_ORB: 14286900;
-            readonly BONES_PEACHES: 14286901;
-            readonly SARADOMIN_STRIKE: 14286902;
-            readonly CLAWS_OF_GUTHIX: 14286903;
-            readonly FLAMES_OF_ZAMORAK: 14286904;
-            readonly TROLLHEIM_TELEPORT: 14286905;
-            readonly WIND_WAVE: 14286906;
-            readonly CHARGE_FIRE_ORB: 14286907;
-            readonly APE_TELEPORT: 14286908;
-            readonly WATER_WAVE: 14286909;
-            readonly CHARGE_AIR_ORB: 14286910;
-            readonly VULNERABILITY: 14286911;
-            readonly ENCHANT_5: 14286912;
-            readonly EARTH_WAVE: 14286913;
-            readonly ENFEEBLE: 14286914;
-            readonly TELEOTHER_LUMBRIDGE: 14286915;
-            readonly FIRE_WAVE: 14286916;
-            readonly ENTANGLE: 14286917;
-            readonly STUN: 14286918;
-            readonly CHARGE: 14286919;
-            readonly WIND_SURGE: 14286920;
-            readonly TELEOTHER_FALADOR: 14286921;
-            readonly WATER_SURGE: 14286922;
-            readonly TELEPORT_BLOCK: 14286923;
-            readonly BOUNTY_TARGET: 14286924;
-            readonly ENCHANT_6: 14286925;
-            readonly TELEOTHER_CAMELOT: 14286926;
-            readonly EARTH_SURGE: 14286927;
-            readonly ENCHANT_7: 14286928;
-            readonly FIRE_SURGE: 14286929;
-            readonly TELEPORT_BOAT_TO_ME: 14286930;
-            readonly TELEPORT_ME_TO_BOAT: 14286931;
-            readonly ICE_RUSH: 14286932;
-            readonly ICE_BLITZ: 14286933;
-            readonly ICE_BURST: 14286934;
-            readonly ICE_BARRAGE: 14286935;
-            readonly BLOOD_RUSH: 14286936;
-            readonly BLOOD_BLITZ: 14286937;
-            readonly BLOOD_BURST: 14286938;
-            readonly BLOOD_BARRAGE: 14286939;
-            readonly SMOKE_RUSH: 14286940;
-            readonly SMOKE_BLITZ: 14286941;
-            readonly SMOKE_BURST: 14286942;
-            readonly SMOKE_BARRAGE: 14286943;
-            readonly SHADOW_RUSH: 14286944;
-            readonly SHADOW_BLITZ: 14286945;
-            readonly SHADOW_BURST: 14286946;
-            readonly SHADOW_BARRAGE: 14286947;
-            readonly ZAROSTELEPORT1: 14286948;
-            readonly ZAROSTELEPORT2: 14286949;
-            readonly ZAROSTELEPORT3: 14286950;
-            readonly ZAROSTELEPORT4: 14286951;
-            readonly ZAROSTELEPORT5: 14286952;
-            readonly ZAROSTELEPORT6: 14286953;
-            readonly ZAROSTELEPORT7: 14286954;
-            readonly ZAROSTELEPORT8: 14286955;
-            readonly TELEPORT_HOME_ZAROS: 14286956;
-            readonly TELEPORT_HOME_LUNAR: 14286957;
-            readonly BAKE_PIE: 14286958;
-            readonly CURE_PLANT: 14286959;
-            readonly MONSTER_EXAMINE: 14286960;
-            readonly NPC_CONTACT: 14286961;
-            readonly CURE_OTHER: 14286962;
-            readonly HUMIDIFY: 14286963;
-            readonly TELE_MOONCLAN: 14286964;
-            readonly TELE_GROUP_MOONCLAN: 14286965;
-            readonly CURE_ME: 14286966;
-            readonly HUNTER_KIT: 14286967;
-            readonly TELE_WATERBIRTH: 14286968;
-            readonly TELE_GROUP_WATERBIRTH: 14286969;
-            readonly CURE_GROUP: 14286970;
-            readonly STAT_SPY: 14286971;
-            readonly TELE_BARB_OUT: 14286972;
-            readonly TELE_GROUP_BARBARIAN: 14286973;
-            readonly SUPERGLASS: 14286974;
-            readonly TAN_LEATHER: 14286975;
-            readonly TELE_KHAZARD: 14286976;
-            readonly TELE_GROUP_KHAZARD: 14286977;
-            readonly DREAM: 14286978;
-            readonly STRING_JEWEL: 14286979;
-            readonly REST_POT_SHARE: 14286980;
-            readonly MAGIC_IMBUE: 14286981;
-            readonly FERTILE_SOIL: 14286982;
-            readonly STREN_POT_SHARE: 14286983;
-            readonly TELE_FISH: 14286984;
-            readonly TELE_GROUP_FISHING_GUILD: 14286985;
-            readonly PLANK_MAKE: 14286986;
-            readonly TELE_CATHER: 14286987;
-            readonly TELE_GROUP_CATHERBY: 14286988;
-            readonly RECHARGE_DRAGONSTONE: 14286989;
-            readonly TELE_GHORROCK: 14286990;
-            readonly TELE_GROUP_GHORROCK: 14286991;
-            readonly ENERGY_TRANS: 14286992;
-            readonly HEAL_OTHER: 14286993;
-            readonly VENGEANCE_OTHER: 14286994;
-            readonly VENGEANCE: 14286995;
-            readonly HEAL_GROUP: 14286996;
-            readonly SPELLBOOK_SWAP: 14286997;
-            readonly GEOMANCY: 14286998;
-            readonly SPIN_FLAX: 14286999;
-            readonly OURANIA_TELEPORT: 14287000;
-            readonly TELEPORT_HOME_ARCEUUS: 14287001;
-            readonly REANIMATION_BASIC: 14287002;
-            readonly TELEPORT_ARCEUUS_LIBRARY: 14287003;
-            readonly REANIMATION_ADEPT: 14287004;
-            readonly REANIMATION_EXPERT: 14287005;
-            readonly REANIMATION_MASTER: 14287006;
-            readonly TELEPORT_DRAYNOR_MANOR: 14287007;
-            readonly NECROMANCY_DOG: 14287008;
-            readonly TELEPORT_MIND_ALTAR: 14287009;
-            readonly TELEPORT_RESPAWN: 14287010;
-            readonly TELEPORT_SALVE_GRAVEYARD: 14287011;
-            readonly TELEPORT_FENKENSTRAIN_CASTLE: 14287012;
-            readonly TELEPORT_WEST_ARDOUGNE: 14287013;
-            readonly TELEPORT_HARMONY_ISLAND: 14287014;
-            readonly TELEPORT_CEMETERY: 14287015;
-            readonly RESURRECT_CROPS: 14287016;
-            readonly TELEPORT_BARROWS: 14287017;
-            readonly TELEPORT_APE_ATOLL_DUNGEON: 14287018;
-            readonly TELEPORT_BATTLEFRONT: 14287019;
-            readonly INFERIOR_DEMONBANE: 14287020;
-            readonly SUPERIOR_DEMONBANE: 14287021;
-            readonly DARK_DEMONBANE: 14287022;
-            readonly MARK_OF_DARKNESS: 14287023;
-            readonly GHOSTLY_GRASP: 14287024;
-            readonly SKELETAL_GRASP: 14287025;
-            readonly UNDEAD_GRASP: 14287026;
-            readonly WARD_OF_ARCEUUS: 14287027;
-            readonly LESSER_CORRUPTION: 14287028;
-            readonly GREATER_CORRUPTION: 14287029;
-            readonly DEMONIC_OFFERING: 14287030;
-            readonly SINISTER_OFFERING: 14287031;
-            readonly DEGRIME: 14287032;
-            readonly SHADOW_VEIL: 14287033;
-            readonly VILE_VIGOUR: 14287034;
-            readonly DARK_LURE: 14287035;
-            readonly DEATH_CHARGE: 14287036;
-            readonly RESURRECT_LESSER_GHOST: 14287037;
-            readonly RESURRECT_LESSER_SKELETON: 14287038;
-            readonly RESURRECT_LESSER_ZOMBIE: 14287039;
-            readonly RESURRECT_SUPERIOR_GHOST: 14287040;
-            readonly RESURRECT_SUPERIOR_SKELETON: 14287041;
-            readonly RESURRECT_SUPERIOR_ZOMBIE: 14287042;
-            readonly RESURRECT_GREATER_GHOST: 14287043;
-            readonly RESURRECT_GREATER_SKELETON: 14287044;
-            readonly RESURRECT_GREATER_ZOMBIE: 14287045;
-            readonly MONSTER_INSPECT: 14287046;
-            readonly TRANSMUTE_UPGRADE: 14287047;
-            readonly TRANSMUTE_DOWNGRADE: 14287048;
-            readonly INFOLAYER: 14287049;
-            readonly INFOLAYER_GRAPHIC0: 14287050;
-            readonly FILTERMENU_CONTAINER: 14287051;
-            readonly FILTERMENU_CONTAINER_GRAPHIC0: 14287052;
-            readonly FILTERMENU_CONTAINER_TEXT1: 14287053;
-            readonly FILTERMENU: 14287054;
-            readonly BOTTOM: 14287055;
-            readonly INFOBUTTON: 14287056;
-            readonly FILTERBUTTON: 14287057;
-            readonly TOOLTIP: 14287058;
-        };
     };
 
     /**
