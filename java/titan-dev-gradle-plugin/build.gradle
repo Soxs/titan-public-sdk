@@ -1,0 +1,62 @@
+plugins {
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'net.titan'
+version = providers.gradleProperty('titanDevPluginVersion').get()
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+gradlePlugin {
+    plugins {
+        titanDev {
+            id = 'net.titan.dev'
+            implementationClass = 'net.titan.dev.TitanDevPlugin'
+            displayName = 'Titan dev plugin staging'
+            description = 'Stages a plugin JAR into a TitanClient dev session ' +
+                'and launches/recycles a DEV tab so edits hot-reload via the ' +
+                'in-tab refresh button.'
+        }
+    }
+}
+
+publishing {
+    // The java-gradle-plugin plugin registers two publications:
+    //   pluginMaven                         -> the implementation jar
+    //                                          (net.titan:titan-dev-gradle-plugin)
+    //   net.titan.devPluginMarkerMaven      -> the plugin marker
+    //                                          (net.titan.dev:net.titan.dev.gradle.plugin)
+    // Both are published by `publish`; consumers resolve them through the raw
+    // GitHub maven repo declared in their settings.gradle pluginManagement.
+    repositories {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL').orNull
+        def repositoryUsername = providers.environmentVariable('TITAN_MAVEN_USERNAME').orNull
+        def repositoryPassword = providers.environmentVariable('TITAN_MAVEN_PASSWORD').orNull
+        if (repositoryUrl) {
+            maven {
+                name = 'titan'
+                url = uri(repositoryUrl)
+                if (repositoryUsername != null || repositoryPassword != null) {
+                    credentials {
+                        username = repositoryUsername ?: ''
+                        password = repositoryPassword ?: ''
+                    }
+                }
+            }
+        }
+    }
+}

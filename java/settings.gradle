@@ -1,1 +1,5 @@
 rootProject.name = 'titan-plugin-api'
+
+// The net.titan.dev convention plugin ships from the same mirrored tree and is
+// published into maven/releases alongside the API by the root `publish` task.
+include 'titan-dev-gradle-plugin'

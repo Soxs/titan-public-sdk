@@ -35,6 +35,66 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Hot Reload For Plugin Authors
+
+The `net.titan.dev` Gradle plugin (published into the same Maven repo as the
+API) provides the TitanClient dev loop: it stages your built JAR into a
+versioned dev session, writes the `session.json` manifest the controller reads,
+and launches/recycles a dedicated DEV tab. After the first launch a plain
+`build` re-stages the next generation so the in-tab refresh button hot-reloads
+it without restarting the client.
+
+Declare the plugin repo in `settings.gradle` and apply the plugin in
+`build.gradle`:
+
+```gradle
+// settings.gradle
+pluginManagement {
+    repositories {
+        maven { url = uri('https://raw.githubusercontent.com/Soxs/titan-public-sdk/main/maven/releases') }
+        gradlePluginPortal()
+    }
+}
+```
+
+```gradle
+// build.gradle
+plugins {
+    id 'java-library'
+    id 'net.titan.dev' version 'latest.release'
+}
+
+dependencies {
+    compileOnly 'net.titan:titan-plugin-api:latest.release'
+}
+```
+
+Set `titanClientRoot` (the folder that directly contains `controller.exe`) in
+`gradle.properties`, or configure the `titanDev` block:
+
+```gradle
+titanDev {
+    clientRoot = 'C:/Program Files/TitanClient'
+    sessionSlug = 'my-plugin'   // defaults to the project name
+    javaDebugPort = 5005        // used by runViaTitanDebug
+}
+```
+
+Loop:
+
+```powershell
+.\gradlew.bat runViaTitan        # launch/recycle the DEV tab
+.\gradlew.bat build              # rebuild; post-build hook re-stages the next gen
+# click the refresh icon next to the plugin in the controller side panel
+```
+
+`runViaTitanDebug` is identical but enables a JDWP agent (default port 5005).
+Reload works at the login screen as well as in-game, and an empty/failed build
+that produces no JAR keeps the currently loaded plugins instead of unloading
+them. This is the recommended path for plugin authors; the
+`runTitanClient`/`publishToMavenLocal` flow below is for SDK contributors
+editing the API itself.
+
 ## Package Layout
 
 - `net.titan.api`: game-facing services, core types, and catalogs such as

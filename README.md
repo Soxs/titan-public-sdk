@@ -10,7 +10,7 @@ Direct commits to `main` may be overwritten by the next outbound sync.
 | Path | Purpose |
 | --- | --- |
 | `java/` | Public Java plugin API source, Gradle build, sources JAR, and Javadoc JAR. |
-| `maven/releases/` | Generated Maven repository for `net.titan:titan-plugin-api`. |
+| `maven/releases/` | Generated Maven repository for `net.titan:titan-plugin-api` and the `net.titan.dev` Gradle plugin. |
 | `titan-plugin-sdk.d.ts` | TypeScript declarations for QuickJS plugins. |
 
 The native C++ SDK, ABI internals, loader handoff schemas, and controller/client
@@ -39,6 +39,83 @@ For reproducible plugin releases, pin an exact SDK version such as `0.1.3`.
 
 For a runnable project to copy or fork, start from
 [`Soxs/titan-java-sample-plugin`](https://github.com/Soxs/titan-java-sample-plugin).
+
+## Hot Reload
+
+The `net.titan.dev` Gradle plugin wires up the TitanClient dev loop: it stages
+your built JAR into a versioned dev session, writes the `session.json` manifest
+the controller reads, and launches (or recycles) a dedicated DEV tab. After the
+first launch, a plain `build` re-stages the next generation so the in-tab
+refresh button hot-reloads it — no client restart.
+
+Add it alongside the `java`/`java-library` plugin. It resolves from the same
+published repo as the API, declared in `settings.gradle`:
+
+```gradle
+// settings.gradle
+pluginManagement {
+    repositories {
+        maven {
+            url = uri('https://raw.githubusercontent.com/Soxs/titan-public-sdk/main/maven/releases')
+        }
+        gradlePluginPortal()
+    }
+}
+```
+
+```gradle
+// build.gradle
+plugins {
+    id 'java-library'
+    id 'net.titan.dev' version 'latest.release'
+}
+
+dependencies {
+    compileOnly 'net.titan:titan-plugin-api:latest.release'
+}
+```
+
+Point the plugin at your TitanClient install — the folder that directly
+contains `controller.exe` — via `gradle.properties`:
+
+```properties
+titanClientRoot=C:/Program Files/TitanClient
+```
+
+or the `titanDev` block (all values optional; they fall back to
+`gradle.properties` / environment variables):
+
+```gradle
+titanDev {
+    clientRoot = 'C:/Program Files/TitanClient'
+    sessionSlug = 'my-plugin'   // defaults to the project name
+    javaDebugPort = 5005        // used by runViaTitanDebug
+}
+```
+
+The dev loop:
+
+```powershell
+# 1. Launch (or recycle) the DEV tab for this plugin.
+.\gradlew.bat runViaTitan
+
+# 2. Edit your plugin code, then rebuild. The post-build hook re-stages the
+#    next generation into the active dev session.
+.\gradlew.bat build
+
+# 3. Click the circular refresh icon next to the plugin in the controller's
+#    side panel. It shows "Reloading..." and swaps in the new code, keeping
+#    your enabled/config state. Reload works at the login screen too.
+```
+
+`runViaTitanDebug` is the same as `runViaTitan` but enables a JDWP agent
+(default port 5005) so you can attach a debugger to the embedded runtime.
+
+If `titanClientRoot` is left blank the plugin also probes common install
+folders and local source-build output (`build/controller/<Config>`). A
+failed or empty build that produces no JAR is detected and the currently
+loaded plugins are kept — the reload just reports the failure rather than
+unloading everything.
 
 ## Java SDK Development
 
