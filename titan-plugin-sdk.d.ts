@@ -148,6 +148,46 @@ interface ActorSpotAnim {
     readonly expireCycle: number;
 }
 
+type PlayerCompositionStatus =
+    | "Unavailable"
+    | "Available"
+    | "MissingOffsets"
+    | "NullPlayer"
+    | "NullModel"
+    | "NpcTransform"
+    | "BadVector"
+    | "Unknown";
+
+type PlayerCompositionSlotKind =
+    | "Empty"
+    | "Item"
+    | "NonItem"
+    | "UnknownRaw"
+    | "Unknown";
+
+interface PlayerCompositionSlot {
+    readonly slotIndex: number;
+    readonly rawValue: number;
+    /** Normalized item id, or -1 when empty/non-item/unknown. */
+    readonly itemId: number;
+    readonly kind: number;
+    readonly kindName: PlayerCompositionSlotKind;
+}
+
+interface PlayerComposition {
+    readonly status: number;
+    readonly statusName: PlayerCompositionStatus;
+    readonly available: boolean;
+    /** Item raw-value base used for normalization, or -1 when absent. */
+    readonly itemIdBase: number;
+    /** NPC transform id, or -1 when not transformed/unknown. */
+    readonly npcTransformId: number;
+    readonly slotCount: number;
+    readonly slots: PlayerCompositionSlot[];
+    /** Find a slot by `titan.EquipmentSlot` ordinal; returns null when absent. */
+    getSlot(slot: number): PlayerCompositionSlot | null;
+}
+
 interface ActorBase extends InstanceConvertible {
     readonly hashIndex: number;
     readonly tileX: number;
@@ -239,6 +279,8 @@ interface Player extends ActorBase {
     healthPercent(): number;
     /** True when health bar is active and ratio is 0. SDK 48+. */
     isDead(): boolean;
+    /** Worn appearance equipment slots read from PlayerModel. SDK 92+. */
+    getPlayerComposition(): PlayerComposition;
 }
 
 interface Npc extends ActorBase {

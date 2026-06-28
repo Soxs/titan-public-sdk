@@ -36,6 +36,7 @@ public final class Player implements Actor {
     private boolean hasHealthBar;
     private List<WorldPoint> pathQueue;
     private List<ActorSpotAnim> currentSpotAnims;
+    private PlayerComposition composition;
 
     private Player live() { return TitanRuntime.currentLive(this); }
 
@@ -115,6 +116,11 @@ public final class Player implements Actor {
         return value == null
             ? Collections.emptyList()
             : Collections.unmodifiableList(value);
+    }
+
+    public PlayerComposition getPlayerComposition() {
+        PlayerComposition value = live().composition;
+        return value == null ? PlayerComposition.unavailable() : value;
     }
 
     @Override
