@@ -10,6 +10,16 @@ final class ObjectIDEntries_64 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(32770, "ID_32770", "", "loctypes"),
+            new GamevalEntry(32771, "ID_32771", "", "loctypes"),
+            new GamevalEntry(32772, "ID_32772", "", "loctypes"),
+            new GamevalEntry(32773, "ID_32773", "", "loctypes"),
+            new GamevalEntry(32774, "ID_32774", "", "loctypes"),
+            new GamevalEntry(32775, "ID_32775", "", "loctypes"),
+            new GamevalEntry(32776, "ID_32776", "", "loctypes"),
+            new GamevalEntry(32777, "ID_32777", "", "loctypes"),
+            new GamevalEntry(32778, "ID_32778", "", "loctypes"),
+            new GamevalEntry(32779, "ID_32779", "", "loctypes"),
             new GamevalEntry(32780, "ID_32780", "", "loctypes"),
             new GamevalEntry(32781, "ID_32781", "", "loctypes"),
             new GamevalEntry(32782, "ID_32782", "", "loctypes"),
@@ -512,16 +522,6 @@ final class ObjectIDEntries_64 {
             new GamevalEntry(33279, "ID_33279", "", "loctypes"),
             new GamevalEntry(33280, "ID_33280", "", "loctypes"),
             new GamevalEntry(33281, "ID_33281", "", "loctypes"),
-            new GamevalEntry(33282, "ID_33282", "", "loctypes"),
-            new GamevalEntry(33283, "ID_33283", "", "loctypes"),
-            new GamevalEntry(33284, "ID_33284", "", "loctypes"),
-            new GamevalEntry(33285, "ID_33285", "", "loctypes"),
-            new GamevalEntry(33286, "ID_33286", "", "loctypes"),
-            new GamevalEntry(33287, "ID_33287", "", "loctypes"),
-            new GamevalEntry(33288, "ID_33288", "", "loctypes"),
-            new GamevalEntry(33289, "ID_33289", "", "loctypes"),
-            new GamevalEntry(33290, "ID_33290", "", "loctypes"),
-            new GamevalEntry(33291, "ID_33291", "", "loctypes"),
         };
     }
 

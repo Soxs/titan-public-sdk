@@ -10,6 +10,16 @@ final class ObjectIDEntries_60 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(30722, "STONE_CRATE", "Stone crate", "loctypes"),
+            new GamevalEntry(30723, "STONE_CRATE_30723", "Stone crate", "loctypes"),
+            new GamevalEntry(30724, "STONE_CRATE_30724", "Stone crate", "loctypes"),
+            new GamevalEntry(30725, "TRAPDOOR_30725", "Trapdoor", "loctypes"),
+            new GamevalEntry(30726, "TRAPDOOR_30726", "Trapdoor", "loctypes"),
+            new GamevalEntry(30727, "LADDER_30727", "Ladder", "loctypes"),
+            new GamevalEntry(30728, "STRANGE_STONE", "Strange stone", "loctypes"),
+            new GamevalEntry(30729, "STRANGE_BLOCKS", "Strange blocks", "loctypes"),
+            new GamevalEntry(30730, "ID_30730", "", "loctypes"),
+            new GamevalEntry(30731, "ID_30731", "", "loctypes"),
             new GamevalEntry(30732, "ID_30732", "", "loctypes"),
             new GamevalEntry(30733, "ID_30733", "", "loctypes"),
             new GamevalEntry(30734, "ID_30734", "", "loctypes"),
@@ -512,16 +522,6 @@ final class ObjectIDEntries_60 {
             new GamevalEntry(31231, "MEDIUM_FOSSIL_DISPLAY_31231", "Medium Fossil Display", "loctypes"),
             new GamevalEntry(31232, "TAR_THING", "Tar Thing", "loctypes"),
             new GamevalEntry(31233, "MEDIUM_FOSSIL_DISPLAY_31233", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31234, "MEDIUM_FOSSIL_DISPLAY_31234", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31235, "MEDIUM_FOSSIL_DISPLAY_31235", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31236, "MEDIUM_FOSSIL_DISPLAY_31236", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31237, "MEDIUM_FOSSIL_DISPLAY_31237", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31238, "GOBLN_MERFSH", "Gobln Merfsh", "loctypes"),
-            new GamevalEntry(31239, "MEDIUM_FOSSIL_DISPLAY_31239", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31240, "MEDIUM_FOSSIL_DISPLAY_31240", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31241, "MEDIUM_FOSSIL_DISPLAY_31241", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31242, "MEDIUM_FOSSIL_DISPLAY_31242", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31243, "MEDIUM_FOSSIL_DISPLAY_31243", "Medium Fossil Display", "loctypes"),
         };
     }
 

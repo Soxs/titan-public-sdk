@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_56 {
-    int TRACKS_28672 = 28672;
-    int JUNGLE_GRASS_28673 = 28673;
     int JUNGLE_GRASS_28674 = 28674;
     int KRUK = 28675;
     int BAMBOO_LADDER_28676 = 28676;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_56 {
     int MOUNTED_AGILITY_CAPE_T = 29181;
     int MOUNTED_ATTACK_CAPE = 29182;
     int MOUNTED_ATTACK_CAPE_T = 29183;
+    int MOUNTED_CONSTRUCTION_CAPE = 29184;
+    int MOUNTED_CONSTRUCTION_CAPE_T = 29185;
 }

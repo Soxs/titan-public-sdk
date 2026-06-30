@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_49 {
-    int ID_25088 = 25088;
-    int ID_25089 = 25089;
-    int TRAILBLAZER_TOOL_ORNAMENT_KIT = 25090;
     int ID_25091 = 25091;
     int ID_25092 = 25092;
     int TRAILBLAZER_GLOBE = 25093;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_49 {
     int ID_25597 = 25597;
     int SPIRIT_ANGLER_BOOTS = 25598;
     int ID_25599 = 25599;
+    int GREAT_BLUE_HERON = 25600;
+    int ID_25601 = 25601;
+    int TINY_TEMPOR = 25602;
 }

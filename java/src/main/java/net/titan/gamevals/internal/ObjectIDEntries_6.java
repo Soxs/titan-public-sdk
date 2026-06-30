@@ -401,7 +401,7 @@ final class ObjectIDEntries_6 {
             new GamevalEntry(3460, "ID_3460", "", "loctypes"),
             new GamevalEntry(3461, "ID_3461", "", "loctypes"),
             new GamevalEntry(3462, "ID_3462", "", "loctypes"),
-            new GamevalEntry(3463, "CELL_DOOR", "Cell door", "loctypes"),
+            new GamevalEntry(3463, "CELL_GATE", "Cell gate", "loctypes"),
             new GamevalEntry(3464, "ID_3464", "", "loctypes"),
             new GamevalEntry(3465, "ID_3465", "", "loctypes"),
             new GamevalEntry(3466, "HANGING_MEAT", "Hanging meat", "loctypes"),

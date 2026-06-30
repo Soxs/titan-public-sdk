@@ -10,9 +10,6 @@ final class ItemIDEntries_49 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(25088, "ID_25088", "", "objtypes"),
-            new GamevalEntry(25089, "ID_25089", "", "objtypes"),
-            new GamevalEntry(25090, "TRAILBLAZER_TOOL_ORNAMENT_KIT", "Trailblazer tool ornament kit", "objtypes"),
             new GamevalEntry(25091, "ID_25091", "", "objtypes"),
             new GamevalEntry(25092, "ID_25092", "", "objtypes"),
             new GamevalEntry(25093, "TRAILBLAZER_GLOBE", "Trailblazer globe", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_49 {
             new GamevalEntry(25597, "ID_25597", "", "objtypes"),
             new GamevalEntry(25598, "SPIRIT_ANGLER_BOOTS", "Spirit angler boots", "objtypes"),
             new GamevalEntry(25599, "ID_25599", "", "objtypes"),
+            new GamevalEntry(25600, "GREAT_BLUE_HERON", "Great blue heron", "objtypes"),
+            new GamevalEntry(25601, "ID_25601", "", "objtypes"),
+            new GamevalEntry(25602, "TINY_TEMPOR", "Tiny tempor", "objtypes"),
         };
     }
 

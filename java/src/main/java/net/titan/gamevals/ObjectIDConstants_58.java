@@ -1,6 +1,16 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_58 {
+    int ID_29698 = 29698;
+    int ID_29699 = 29699;
+    int ID_29700 = 29700;
+    int ID_29701 = 29701;
+    int ID_29702 = 29702;
+    int ID_29703 = 29703;
+    int ID_29704 = 29704;
+    int CRACK_29705 = 29705;
+    int POOL_OF_NIGHTMARES = 29706;
+    int POOL_OF_NIGHTMARES_29707 = 29707;
     int SCOREBOARD_29708 = 29708;
     int ID_29709 = 29709;
     int ID_29710 = 29710;
@@ -503,14 +513,4 @@ public interface ObjectIDConstants_58 {
     int ID_30207 = 30207;
     int ID_30208 = 30208;
     int ID_30209 = 30209;
-    int ID_30210 = 30210;
-    int ID_30211 = 30211;
-    int ID_30212 = 30212;
-    int ID_30213 = 30213;
-    int ID_30214 = 30214;
-    int ID_30215 = 30215;
-    int ID_30216 = 30216;
-    int ID_30217 = 30217;
-    int ID_30218 = 30218;
-    int ID_30219 = 30219;
 }

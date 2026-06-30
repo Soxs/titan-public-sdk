@@ -10,9 +10,6 @@ final class ItemIDEntries_42 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(21504, "GIANT_SEAWEED", "Giant seaweed", "objtypes"),
-            new GamevalEntry(21505, "ID_21505", "", "objtypes"),
-            new GamevalEntry(21506, "ID_21506", "", "objtypes"),
             new GamevalEntry(21507, "FOSSIL_ISLAND_WYVERN", "Fossil island wyvern", "objtypes"),
             new GamevalEntry(21508, "FOSSIL_ISLAND_WYVERN_21508", "Fossil island wyvern", "objtypes"),
             new GamevalEntry(21509, "HERBI", "Herbi", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_42 {
             new GamevalEntry(22013, "MAP_PIECE_22013", "Map piece", "objtypes"),
             new GamevalEntry(22014, "MAP_PIECE_22014", "Map piece", "objtypes"),
             new GamevalEntry(22015, "MAP_PIECE_22015", "Map piece", "objtypes"),
+            new GamevalEntry(22016, "MAP_PIECE_22016", "Map piece", "objtypes"),
+            new GamevalEntry(22017, "MAP_PIECE_22017", "Map piece", "objtypes"),
+            new GamevalEntry(22018, "MAP_PIECE_22018", "Map piece", "objtypes"),
         };
     }
 

@@ -6,7 +6,8 @@ import net.titan.gamevals.internal.InventoryIDEntries;
 
 public final class InventoryID
         implements InventoryIDConstants_0,
-                   InventoryIDConstants_1 {
+                   InventoryIDConstants_1,
+                   InventoryIDConstants_2 {
     private InventoryID() {}
 
     public static final String SOURCE_CATALOG = "invtypes";

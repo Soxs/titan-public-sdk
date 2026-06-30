@@ -10,9 +10,6 @@ final class ItemIDEntries_46 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(23552, "ID_23552", "", "objtypes"),
-            new GamevalEntry(23553, "RANGING_POTION_3_23553", "Ranging potion(3)", "objtypes"),
-            new GamevalEntry(23554, "ID_23554", "", "objtypes"),
             new GamevalEntry(23555, "RANGING_POTION_2_23555", "Ranging potion(2)", "objtypes"),
             new GamevalEntry(23556, "ID_23556", "", "objtypes"),
             new GamevalEntry(23557, "RANGING_POTION_1_23557", "Ranging potion(1)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_46 {
             new GamevalEntry(24061, "NIFF_HARRY", "Niff & harry", "objtypes"),
             new GamevalEntry(24062, "ID_24062", "", "objtypes"),
             new GamevalEntry(24063, "SOGGY_JOURNAL", "Soggy journal", "objtypes"),
+            new GamevalEntry(24064, "ID_24064", "", "objtypes"),
+            new GamevalEntry(24065, "EBRILL_S_JOURNAL", "Ebrill's journal", "objtypes"),
+            new GamevalEntry(24066, "ID_24066", "", "objtypes"),
         };
     }
 

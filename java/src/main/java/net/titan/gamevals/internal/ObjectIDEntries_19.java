@@ -330,7 +330,6 @@ final class ObjectIDEntries_19 {
             new GamevalEntry(10045, "DOOR_10045", "Door", "loctypes"),
             new GamevalEntry(10046, "ID_10046", "", "loctypes"),
             new GamevalEntry(10047, "DARK_TUNNEL_10047", "Dark tunnel", "loctypes"),
-            new GamevalEntry(10048, "TRAPDOOR_10048", "Trapdoor", "loctypes"),
             new GamevalEntry(10049, "GRAVE_10049", "Grave", "loctypes"),
             new GamevalEntry(10050, "GRAVE_10050", "Grave", "loctypes"),
             new GamevalEntry(10051, "GRAVE_10051", "Grave", "loctypes"),
@@ -522,6 +521,7 @@ final class ObjectIDEntries_19 {
             new GamevalEntry(10237, "ID_10237", "", "loctypes"),
             new GamevalEntry(10238, "ID_10238", "", "loctypes"),
             new GamevalEntry(10239, "ID_10239", "", "loctypes"),
+            new GamevalEntry(10240, "ID_10240", "", "loctypes"),
         };
     }
 

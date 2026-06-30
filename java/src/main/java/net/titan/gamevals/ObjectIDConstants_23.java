@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_23 {
-    int DOOR_11776 = 11776;
-    int DOOR_11777 = 11777;
     int DOOR_11778 = 11778;
     int ID_11779 = 11779;
     int DOOR_11780 = 11780;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_23 {
     int ID_12285 = 12285;
     int ID_12286 = 12286;
     int ID_12287 = 12287;
+    int ID_12288 = 12288;
+    int ID_12289 = 12289;
 }

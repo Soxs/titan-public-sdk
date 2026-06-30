@@ -57,8 +57,8 @@ public interface ObjectIDConstants_5 {
     int CUPBOARD_2613 = 2613;
     int DYNAMITE_P = 2614;
     int COFFIN_2615 = 2615;
-    int WALK_DOWN = 2616;
-    int WALK_UP_2617 = 2617;
+    int CLIMB_DOWN_2616 = 2616;
+    int CLIMB_UP_2617 = 2617;
     int BROKEN_FENCE_2618 = 2618;
     int BARREL_2619 = 2619;
     int CRATE_2620 = 2620;

@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_28 {
-    int ATTALA_14336 = 14336;
     int ID_14337 = 14337;
     int ID_14338 = 14338;
     int ATTALA_14339 = 14339;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_28 {
     int ELDER_TORGAN = 14845;
     int ELDER_KATT = 14846;
     int BANKER_14847 = 14847;
+    int LEFF = 14848;
 }

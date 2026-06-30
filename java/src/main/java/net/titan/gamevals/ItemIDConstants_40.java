@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_40 {
-    int ID_20480 = 20480;
-    int VOID_MELEE_HELM_BROKEN = 20481;
-    int ID_20482 = 20482;
     int DECORATIVE_SWORD_BROKEN = 20483;
     int ID_20484 = 20484;
     int DECORATIVE_ARMOUR_BROKEN = 20485;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_40 {
     int OVERLOAD_1_20989 = 20989;
     int OVERLOAD_2_20990 = 20990;
     int OVERLOAD_3_20991 = 20991;
+    int OVERLOAD_4_20992 = 20992;
+    int OVERLOAD_1_20993 = 20993;
+    int OVERLOAD_2_20994 = 20994;
 }

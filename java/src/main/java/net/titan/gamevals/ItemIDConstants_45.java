@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_45 {
-    int WYRM = 23040;
-    int DRAKE = 23041;
-    int HYDRA = 23042;
     int SULPHUR_LIZARD = 23043;
     int ID_23044 = 23044;
     int CLUE_SCROLL_HARD_23045 = 23045;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_45 {
     int SUPER_COMBAT_POTION_1_23549 = 23549;
     int ID_23550 = 23550;
     int RANGING_POTION_4_23551 = 23551;
+    int ID_23552 = 23552;
+    int RANGING_POTION_3_23553 = 23553;
+    int ID_23554 = 23554;
 }

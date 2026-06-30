@@ -10,7 +10,6 @@ final class NpcIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(6656, "KRAKEN_6656", "Kraken", "npctypes"),
             new GamevalEntry(6657, "PET_ROCK_6657", "Pet rock", "npctypes"),
             new GamevalEntry(6658, "FISHBOWL", "Fishbowl", "npctypes"),
             new GamevalEntry(6659, "FISHBOWL_6659", "Fishbowl", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_13 {
             new GamevalEntry(7165, "CARADO_7165", "Carado", "npctypes"),
             new GamevalEntry(7166, "BUNKWICKET_7166", "Bunkwicket", "npctypes"),
             new GamevalEntry(7167, "BUNKWICKET_7167", "Bunkwicket", "npctypes"),
+            new GamevalEntry(7168, "WAYMOTTIN_7168", "Waymottin", "npctypes"),
         };
     }
 

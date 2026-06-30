@@ -10,9 +10,6 @@ final class ItemIDEntries_41 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(20992, "OVERLOAD_4_20992", "Overload (4)", "objtypes"),
-            new GamevalEntry(20993, "OVERLOAD_1_20993", "Overload (+)(1)", "objtypes"),
-            new GamevalEntry(20994, "OVERLOAD_2_20994", "Overload (+)(2)", "objtypes"),
             new GamevalEntry(20995, "OVERLOAD_3_20995", "Overload (+)(3)", "objtypes"),
             new GamevalEntry(20996, "OVERLOAD_4_20996", "Overload (+)(4)", "objtypes"),
             new GamevalEntry(20997, "TWISTED_BOW", "Twisted bow", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_41 {
             new GamevalEntry(21501, "ID_21501", "", "objtypes"),
             new GamevalEntry(21502, "ID_21502", "", "objtypes"),
             new GamevalEntry(21503, "ID_21503", "", "objtypes"),
+            new GamevalEntry(21504, "GIANT_SEAWEED", "Giant seaweed", "objtypes"),
+            new GamevalEntry(21505, "ID_21505", "", "objtypes"),
+            new GamevalEntry(21506, "ID_21506", "", "objtypes"),
         };
     }
 

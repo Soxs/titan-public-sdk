@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_17 {
-    int BROTHER_AIMERI = 8704;
     int BROTHER_AIMERI_8705 = 8705;
     int OLBERTUS = 8706;
     int OLBERTUS_8707 = 8707;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_17 {
     int ID_9213 = 9213;
     int ID_9214 = 9214;
     int ID_9215 = 9215;
+    int ID_9216 = 9216;
 }

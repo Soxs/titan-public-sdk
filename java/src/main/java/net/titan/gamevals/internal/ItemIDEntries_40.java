@@ -10,9 +10,6 @@ final class ItemIDEntries_40 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(20480, "ID_20480", "", "objtypes"),
-            new GamevalEntry(20481, "VOID_MELEE_HELM_BROKEN", "Void melee helm (broken)", "objtypes"),
-            new GamevalEntry(20482, "ID_20482", "", "objtypes"),
             new GamevalEntry(20483, "DECORATIVE_SWORD_BROKEN", "Decorative sword (broken)", "objtypes"),
             new GamevalEntry(20484, "ID_20484", "", "objtypes"),
             new GamevalEntry(20485, "DECORATIVE_ARMOUR_BROKEN", "Decorative armour (broken)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_40 {
             new GamevalEntry(20989, "OVERLOAD_1_20989", "Overload (1)", "objtypes"),
             new GamevalEntry(20990, "OVERLOAD_2_20990", "Overload (2)", "objtypes"),
             new GamevalEntry(20991, "OVERLOAD_3_20991", "Overload (3)", "objtypes"),
+            new GamevalEntry(20992, "OVERLOAD_4_20992", "Overload (4)", "objtypes"),
+            new GamevalEntry(20993, "OVERLOAD_1_20993", "Overload (+)(1)", "objtypes"),
+            new GamevalEntry(20994, "OVERLOAD_2_20994", "Overload (+)(2)", "objtypes"),
         };
     }
 

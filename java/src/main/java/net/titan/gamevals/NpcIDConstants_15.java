@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_15 {
-    int TZHAAR_MEJ_DIR = 7680;
     int TZHAAR_MEJ_BAL = 7681;
     int TZHAAR_HUR_7682 = 7682;
     int TZHAAR_HUR_7683 = 7683;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_15 {
     int GRAVE_DIGGER = 8189;
     int ID_8190 = 8190;
     int ID_8191 = 8191;
+    int ID_8192 = 8192;
 }

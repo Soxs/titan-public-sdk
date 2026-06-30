@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_16 {
-    int ID_8192 = 8192;
     int JAMES = 8193;
     int GROWTHLING = 8194;
     int BRYOPHYTA = 8195;
@@ -15,13 +14,13 @@ public interface NpcIDConstants_16 {
     int VANGUARD_8203 = 8203;
     int VASA_MINIRIO_8204 = 8204;
     int VESPINA_8205 = 8205;
-    int GARTH_8206 = 8206;
+    int ID_8206 = 8206;
     int GARTH_8207 = 8207;
     int MYSTERIOUS_STRANGER = 8208;
     int VYRELORD = 8209;
     int VYRELADY = 8210;
-    int MEIYERDITCH_CITIZEN_8211 = 8211;
-    int HARPERT = 8212;
+    int MEIYERDITCH_CITIZEN = 8211;
+    int ID_8212 = 8212;
     int MERCENARY_8213 = 8213;
     int MERCENARY_8214 = 8214;
     int MERCENARY_8215 = 8215;
@@ -132,15 +131,15 @@ public interface NpcIDConstants_16 {
     int MEIYERDITCH_CITIZEN_8320 = 8320;
     int BANKER_8321 = 8321;
     int BANKER_8322 = 8322;
-    int VYRE_ORATOR = 8323;
-    int VYRE_ORATOR_8324 = 8324;
+    int ID_8323 = 8323;
+    int ID_8324 = 8324;
     int ID_8325 = 8325;
     int VAMPYRE_JUVENILE_8326 = 8326;
     int VAMPYRE_JUVENILE_8327 = 8327;
-    int MEIYERDITCH_CITIZEN_8328 = 8328;
-    int MEIYERDITCH_CITIZEN_8329 = 8329;
-    int MEIYERDITCH_CITIZEN_8330 = 8330;
-    int MEIYERDITCH_CITIZEN_8331 = 8331;
+    int ID_8328 = 8328;
+    int ID_8329 = 8329;
+    int ID_8330 = 8330;
+    int ID_8331 = 8331;
     int VYRELORD_8332 = 8332;
     int VYRELADY_8333 = 8333;
     int VYRELORD_8334 = 8334;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_16 {
     int BIG_FROG_8701 = 8701;
     int FROG_8702 = 8702;
     int TEMPLE_SPIDER = 8703;
+    int BROTHER_AIMERI = 8704;
 }

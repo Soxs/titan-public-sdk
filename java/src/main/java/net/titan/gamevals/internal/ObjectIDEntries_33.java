@@ -10,8 +10,6 @@ final class ObjectIDEntries_33 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(16896, "ID_16896", "", "loctypes"),
-            new GamevalEntry(16897, "ID_16897", "", "loctypes"),
             new GamevalEntry(16898, "ID_16898", "", "loctypes"),
             new GamevalEntry(16899, "WOODEN_TABLE_16899", "Wooden table", "loctypes"),
             new GamevalEntry(16900, "CHAIR_16900", "Chair", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_33 {
             new GamevalEntry(17405, "GANGPLANK_17405", "Gangplank", "loctypes"),
             new GamevalEntry(17406, "GANGPLANK_17406", "Gangplank", "loctypes"),
             new GamevalEntry(17407, "GANGPLANK_17407", "Gangplank", "loctypes"),
+            new GamevalEntry(17408, "GANGPLANK_17408", "Gangplank", "loctypes"),
+            new GamevalEntry(17409, "GANGPLANK_17409", "Gangplank", "loctypes"),
         };
     }
 

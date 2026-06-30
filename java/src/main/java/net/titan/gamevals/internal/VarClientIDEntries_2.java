@@ -279,8 +279,6 @@ final class VarClientIDEntries_2 {
             new GamevalEntry(1290, "ID_1290", "", "varctypes"),
             new GamevalEntry(1291, "ID_1291", "", "varctypes"),
             new GamevalEntry(1292, "ID_1292", "", "varctypes"),
-            new GamevalEntry(1293, "ID_1293", "", "varctypes"),
-            new GamevalEntry(1294, "ID_1294", "", "varctypes"),
             new GamevalEntry(1295, "ID_1295", "", "varctypes"),
             new GamevalEntry(1296, "ID_1296", "", "varctypes"),
             new GamevalEntry(1297, "ID_1297", "", "varctypes"),
@@ -489,6 +487,10 @@ final class VarClientIDEntries_2 {
             new GamevalEntry(1500, "ID_1500", "", "varctypes"),
             new GamevalEntry(1501, "ID_1501", "", "varctypes"),
             new GamevalEntry(1502, "ID_1502", "", "varctypes"),
+            new GamevalEntry(1503, "ID_1503", "", "varctypes"),
+            new GamevalEntry(1504, "ID_1504", "", "varctypes"),
+            new GamevalEntry(1505, "ID_1505", "", "varctypes"),
+            new GamevalEntry(1506, "ID_1506", "", "varctypes"),
         };
     }
 

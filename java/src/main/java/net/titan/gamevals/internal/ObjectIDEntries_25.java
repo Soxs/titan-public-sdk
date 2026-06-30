@@ -10,8 +10,6 @@ final class ObjectIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(12800, "BANK_BOOTH_12800", "Bank Booth", "loctypes"),
-            new GamevalEntry(12801, "BANK_BOOTH_12801", "Bank Booth", "loctypes"),
             new GamevalEntry(12802, "INSPECT_12802", "Inspect", "loctypes"),
             new GamevalEntry(12803, "ID_12803", "", "loctypes"),
             new GamevalEntry(12804, "BARREL_12804", "Barrel", "loctypes"),
@@ -67,7 +65,7 @@ final class ObjectIDEntries_25 {
             new GamevalEntry(12854, "ID_12854", "", "loctypes"),
             new GamevalEntry(12855, "TABLE_12855", "Table", "loctypes"),
             new GamevalEntry(12856, "DOOR_12856", "Door", "loctypes"),
-            new GamevalEntry(12857, "BAR_PUMPS_12857", "Bar pumps", "loctypes"),
+            new GamevalEntry(12857, "ID_12857", "", "loctypes"),
             new GamevalEntry(12858, "ID_12858", "", "loctypes"),
             new GamevalEntry(12859, "ID_12859", "", "loctypes"),
             new GamevalEntry(12860, "ID_12860", "", "loctypes"),
@@ -102,7 +100,7 @@ final class ObjectIDEntries_25 {
             new GamevalEntry(12889, "SMASHED_CHAIR_12889", "Smashed chair", "loctypes"),
             new GamevalEntry(12890, "BARREL_12890", "Barrel", "loctypes"),
             new GamevalEntry(12891, "BARREL_12891", "Barrel", "loctypes"),
-            new GamevalEntry(12892, "SMALL_TABLE_12892", "Small Table", "loctypes"),
+            new GamevalEntry(12892, "TABLE_12892", "Table", "loctypes"),
             new GamevalEntry(12893, "ID_12893", "", "loctypes"),
             new GamevalEntry(12894, "TREE_STUMP_12894", "Tree stump", "loctypes"),
             new GamevalEntry(12895, "TREE_12895", "Tree", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_25 {
             new GamevalEntry(13309, "POSH_BELL_PULL", "Posh bell-pull", "loctypes"),
             new GamevalEntry(13310, "SKELETON_13310", "Skeleton", "loctypes"),
             new GamevalEntry(13311, "PIPE_13311", "Pipe", "loctypes"),
+            new GamevalEntry(13312, "BLOOD", "Blood", "loctypes"),
+            new GamevalEntry(13313, "CAGE_13313", "Cage", "loctypes"),
         };
     }
 

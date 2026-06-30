@@ -10,7 +10,6 @@ final class NpcIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(10752, "GEM_10752", "Gem", "npctypes"),
             new GamevalEntry(10753, "GEM_10753", "Gem", "npctypes"),
             new GamevalEntry(10754, "GEM_10754", "Gem", "npctypes"),
             new GamevalEntry(10755, "GEM_10755", "Gem", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_21 {
             new GamevalEntry(11261, "ZANIK_11261", "Zanik", "npctypes"),
             new GamevalEntry(11262, "ZANIK_11262", "Zanik", "npctypes"),
             new GamevalEntry(11263, "ZANIK_11263", "Zanik", "npctypes"),
+            new GamevalEntry(11264, "ZANIK_11264", "Zanik", "npctypes"),
         };
     }
 

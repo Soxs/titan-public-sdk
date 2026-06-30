@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_63 {
-    int ID_32338 = 32338;
-    int BURNT_HALIBUT = 32339;
-    int ID_32340 = 32340;
     int RAW_BLUEFIN = 32341;
     int ID_32342 = 32342;
     int ID_32343 = 32343;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_63 {
     int SMALL_SALVAGE = 32847;
     int ID_32848 = 32848;
     int FISHY_SALVAGE = 32849;
+    int ID_32850 = 32850;
+    int BARRACUDA_SALVAGE = 32851;
+    int ID_32852 = 32852;
 }

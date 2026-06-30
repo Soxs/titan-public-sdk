@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_44 {
-    int COIN_POUCH_22528 = 22528;
-    int COIN_POUCH_22529 = 22529;
-    int COIN_POUCH_22530 = 22530;
     int COIN_POUCH_22531 = 22531;
     int COIN_POUCH_22532 = 22532;
     int COIN_POUCH_22533 = 22533;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_44 {
     int BOOTS_OF_STONE = 23037;
     int ID_23038 = 23038;
     int ID_23039 = 23039;
+    int WYRM = 23040;
+    int DRAKE = 23041;
+    int HYDRA = 23042;
 }

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 public final class Player implements Actor {
     private boolean liveHandle = true;
@@ -135,6 +136,17 @@ public final class Player implements Actor {
     public boolean isDead() {
         return hasHealthBar() && healthScale() > 0 && healthRatio() == 0;
     }
+
+    @Override
+    public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Ancient spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Lunar spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Necromancy spell) { return Magic.castOn(spell, this); }
 
     public Player snapshot() { return TitanRuntime.snapshotLive(this); }
 

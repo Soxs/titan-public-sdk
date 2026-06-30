@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_50 {
-    int BARREL_25600 = 25600;
-    int BENCH_25601 = 25601;
     int BOW_CABINET_25602 = 25602;
     int TABLE_25603 = 25603;
     int CLIMB_DOWN_25604 = 25604;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_50 {
     int SPIDERS_NEST = 26109;
     int SMASHED_WINDOW = 26110;
     int SMASHED_WINDOW_26111 = 26111;
+    int WINDOW_26112 = 26112;
+    int BOOKCASE_26113 = 26113;
 }

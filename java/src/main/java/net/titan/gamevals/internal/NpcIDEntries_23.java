@@ -10,7 +10,6 @@ final class NpcIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(11776, "KEPHRI_S_PHANTOM", "Kephri's Phantom", "npctypes"),
             new GamevalEntry(11777, "AKKHA_S_PHANTOM", "Akkha's Phantom", "npctypes"),
             new GamevalEntry(11778, "BA_BA", "Ba-Ba", "npctypes"),
             new GamevalEntry(11779, "BA_BA_11779", "Ba-Ba", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_23 {
             new GamevalEntry(12285, "STRANGLED_12285", "Strangled", "npctypes"),
             new GamevalEntry(12286, "STRANGLED_12286", "Strangled", "npctypes"),
             new GamevalEntry(12287, "STRANGLED_12287", "Strangled", "npctypes"),
+            new GamevalEntry(12288, "STRANGLED_BEAR", "Strangled Bear", "npctypes"),
         };
     }
 

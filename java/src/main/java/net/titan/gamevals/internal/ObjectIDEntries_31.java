@@ -10,8 +10,6 @@ final class ObjectIDEntries_31 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(15872, "BLUE_FLOWERS", "Blue flowers", "loctypes"),
-            new GamevalEntry(15873, "HOPPER_15873", "Hopper", "loctypes"),
             new GamevalEntry(15874, "HOPPER_15874", "Hopper", "loctypes"),
             new GamevalEntry(15875, "HOPPER_15875", "Hopper", "loctypes"),
             new GamevalEntry(15876, "HOPPER_15876", "Hopper", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_31 {
             new GamevalEntry(16381, "ID_16381", "", "loctypes"),
             new GamevalEntry(16382, "ID_16382", "", "loctypes"),
             new GamevalEntry(16383, "ID_16383", "", "loctypes"),
+            new GamevalEntry(16384, "ID_16384", "", "loctypes"),
+            new GamevalEntry(16385, "ID_16385", "", "loctypes"),
         };
     }
 

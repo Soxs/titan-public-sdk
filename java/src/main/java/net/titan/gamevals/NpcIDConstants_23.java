@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_23 {
-    int KEPHRI_S_PHANTOM = 11776;
     int AKKHA_S_PHANTOM = 11777;
     int BA_BA = 11778;
     int BA_BA_11779 = 11779;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_23 {
     int STRANGLED_12285 = 12285;
     int STRANGLED_12286 = 12286;
     int STRANGLED_12287 = 12287;
+    int STRANGLED_BEAR = 12288;
 }

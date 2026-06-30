@@ -10,9 +10,6 @@ final class ItemIDEntries_54 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(27701, "CRYSTAL_LEGS_27701", "Crystal legs", "objtypes"),
-            new GamevalEntry(27702, "ID_27702", "", "objtypes"),
-            new GamevalEntry(27703, "CRYSTAL_LEGS_INACTIVE_27703", "Crystal legs (inactive)", "objtypes"),
             new GamevalEntry(27704, "ID_27704", "", "objtypes"),
             new GamevalEntry(27705, "CRYSTAL_HELM_27705", "Crystal helm", "objtypes"),
             new GamevalEntry(27706, "ID_27706", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_54 {
             new GamevalEntry(28210, "ID_28210", "", "objtypes"),
             new GamevalEntry(28211, "ADAMANT_FELLING_AXE", "Adamant felling axe", "objtypes"),
             new GamevalEntry(28212, "ID_28212", "", "objtypes"),
+            new GamevalEntry(28213, "ID_28213", "", "objtypes"),
+            new GamevalEntry(28214, "RUNE_FELLING_AXE", "Rune felling axe", "objtypes"),
+            new GamevalEntry(28215, "ID_28215", "", "objtypes"),
         };
     }
 

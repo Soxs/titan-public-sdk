@@ -10,6 +10,16 @@ final class ObjectIDEntries_59 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(30210, "ID_30210", "", "loctypes"),
+            new GamevalEntry(30211, "ID_30211", "", "loctypes"),
+            new GamevalEntry(30212, "ID_30212", "", "loctypes"),
+            new GamevalEntry(30213, "ID_30213", "", "loctypes"),
+            new GamevalEntry(30214, "ID_30214", "", "loctypes"),
+            new GamevalEntry(30215, "ID_30215", "", "loctypes"),
+            new GamevalEntry(30216, "ID_30216", "", "loctypes"),
+            new GamevalEntry(30217, "ID_30217", "", "loctypes"),
+            new GamevalEntry(30218, "ID_30218", "", "loctypes"),
+            new GamevalEntry(30219, "ID_30219", "", "loctypes"),
             new GamevalEntry(30220, "ID_30220", "", "loctypes"),
             new GamevalEntry(30221, "ID_30221", "", "loctypes"),
             new GamevalEntry(30222, "ID_30222", "", "loctypes"),
@@ -512,16 +522,6 @@ final class ObjectIDEntries_59 {
             new GamevalEntry(30719, "GIANT_VIAL_30719", "Giant vial", "loctypes"),
             new GamevalEntry(30720, "STONE_CHEST", "Stone chest", "loctypes"),
             new GamevalEntry(30721, "STONE_CHEST_30721", "Stone chest", "loctypes"),
-            new GamevalEntry(30722, "STONE_CRATE", "Stone crate", "loctypes"),
-            new GamevalEntry(30723, "STONE_CRATE_30723", "Stone crate", "loctypes"),
-            new GamevalEntry(30724, "STONE_CRATE_30724", "Stone crate", "loctypes"),
-            new GamevalEntry(30725, "TRAPDOOR_30725", "Trapdoor", "loctypes"),
-            new GamevalEntry(30726, "TRAPDOOR_30726", "Trapdoor", "loctypes"),
-            new GamevalEntry(30727, "LADDER_30727", "Ladder", "loctypes"),
-            new GamevalEntry(30728, "STRANGE_STONE", "Strange stone", "loctypes"),
-            new GamevalEntry(30729, "STRANGE_BLOCKS", "Strange blocks", "loctypes"),
-            new GamevalEntry(30730, "ID_30730", "", "loctypes"),
-            new GamevalEntry(30731, "ID_30731", "", "loctypes"),
         };
     }
 

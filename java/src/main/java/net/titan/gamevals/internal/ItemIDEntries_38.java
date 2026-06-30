@@ -10,9 +10,6 @@ final class ItemIDEntries_38 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(19456, "ID_19456", "", "objtypes"),
-            new GamevalEntry(19457, "ID_19457", "", "objtypes"),
-            new GamevalEntry(19458, "ID_19458", "", "objtypes"),
             new GamevalEntry(19459, "ID_19459", "", "objtypes"),
             new GamevalEntry(19460, "ID_19460", "", "objtypes"),
             new GamevalEntry(19461, "ID_19461", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_38 {
             new GamevalEntry(19965, "ID_19965", "", "objtypes"),
             new GamevalEntry(19966, "ID_19966", "", "objtypes"),
             new GamevalEntry(19967, "DARK_TUXEDO_SHOES", "Dark tuxedo shoes", "objtypes"),
+            new GamevalEntry(19968, "ID_19968", "", "objtypes"),
+            new GamevalEntry(19969, "ID_19969", "", "objtypes"),
+            new GamevalEntry(19970, "DARK_BOW_TIE", "Dark bow tie", "objtypes"),
         };
     }
 

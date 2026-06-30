@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_27 {
-    int ADALA_13824 = 13824;
     int CONSTANTINIUS = 13825;
     int CONSTANTINIUS_13826 = 13826;
     int COZYAC = 13827;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_27 {
     int ENNIUS_TULLUS_14333 = 14333;
     int ENNIUS_TULLUS_14334 = 14334;
     int ENNIUS_TULLUS_14335 = 14335;
+    int ATTALA_14336 = 14336;
 }

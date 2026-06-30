@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_21 {
-    int ID_10752 = 10752;
     int ID_10753 = 10753;
     int ID_10754 = 10754;
     int ID_10755 = 10755;
@@ -53,7 +52,6 @@ public interface ObjectIDConstants_21 {
     int TAILOR_S_MATERIALS = 10801;
     int BOXES_10802 = 10802;
     int BOXES_10803 = 10803;
-    int TRAPDOOR_10804 = 10804;
     int SANDY_S_DESK = 10805;
     int ID_10806 = 10806;
     int SANDY_S_COFFEE_MUG = 10807;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_21 {
     int ID_11261 = 11261;
     int ID_11262 = 11262;
     int ID_11263 = 11263;
+    int ID_11264 = 11264;
+    int ID_11265 = 11265;
 }

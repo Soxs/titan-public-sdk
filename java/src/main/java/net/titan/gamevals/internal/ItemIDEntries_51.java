@@ -10,9 +10,6 @@ final class ItemIDEntries_51 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(26165, "ID_26165", "", "objtypes"),
-            new GamevalEntry(26166, "GROUP_IRONMAN_PLATELEGS", "Group ironman platelegs", "objtypes"),
-            new GamevalEntry(26167, "ID_26167", "", "objtypes"),
             new GamevalEntry(26168, "GROUP_IRONMAN_BRACERS", "Group ironman bracers", "objtypes"),
             new GamevalEntry(26169, "ID_26169", "", "objtypes"),
             new GamevalEntry(26170, "HARDCORE_GROUP_IRONMAN_HELM", "Hardcore group ironman helm", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_51 {
             new GamevalEntry(26674, "SLAYER_HELMET_I_26674", "Slayer helmet (i)", "objtypes"),
             new GamevalEntry(26675, "BLACK_SLAYER_HELMET_I_26675", "Black slayer helmet (i)", "objtypes"),
             new GamevalEntry(26676, "GREEN_SLAYER_HELMET_I_26676", "Green slayer helmet (i)", "objtypes"),
+            new GamevalEntry(26677, "RED_SLAYER_HELMET_I_26677", "Red slayer helmet (i)", "objtypes"),
+            new GamevalEntry(26678, "PURPLE_SLAYER_HELMET_I_26678", "Purple slayer helmet (i)", "objtypes"),
+            new GamevalEntry(26679, "TURQUOISE_SLAYER_HELMET_I_26679", "Turquoise slayer helmet (i)", "objtypes"),
         };
     }
 

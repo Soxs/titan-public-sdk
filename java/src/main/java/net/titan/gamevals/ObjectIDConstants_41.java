@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_41 {
-    int ID_20992 = 20992;
-    int ID_20993 = 20993;
     int ID_20994 = 20994;
     int GOLF_CART = 20995;
     int TABLE_20996 = 20996;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_41 {
     int BANNER_21501 = 21501;
     int V_HIDDEN = 21502;
     int ID_21503 = 21503;
+    int ID_21504 = 21504;
+    int DOOR_21505 = 21505;
 }

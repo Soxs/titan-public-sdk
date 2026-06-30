@@ -10,7 +10,6 @@ final class NpcIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(6144, "ID_6144", "", "npctypes"),
             new GamevalEntry(6145, "ID_6145", "", "npctypes"),
             new GamevalEntry(6146, "ID_6146", "", "npctypes"),
             new GamevalEntry(6147, "ID_6147", "", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_12 {
             new GamevalEntry(6653, "KALPHITE_PRINCESS_6653", "Kalphite Princess", "npctypes"),
             new GamevalEntry(6654, "KALPHITE_PRINCESS_6654", "Kalphite Princess", "npctypes"),
             new GamevalEntry(6655, "SMOKE_DEVIL_6655", "Smoke Devil", "npctypes"),
+            new GamevalEntry(6656, "KRAKEN_6656", "Kraken", "npctypes"),
         };
     }
 

@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_10 {
-    int RUPERT_THE_BEARD = 5120;
     int RUPERT_THE_BEARD_5121 = 5121;
     int DRAIN_PIPE = 5122;
     int RUPERT_THE_BEARD_5123 = 5123;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_10 {
     int GIANT_SNAIL_5629 = 5629;
     int GIANT_SNAIL_5630 = 5630;
     int RIYL_SHADOW_5631 = 5631;
+    int ASYN_SHADOW_5632 = 5632;
 }

@@ -1,6 +1,16 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_64 {
+    int ID_32770 = 32770;
+    int ID_32771 = 32771;
+    int ID_32772 = 32772;
+    int ID_32773 = 32773;
+    int ID_32774 = 32774;
+    int ID_32775 = 32775;
+    int ID_32776 = 32776;
+    int ID_32777 = 32777;
+    int ID_32778 = 32778;
+    int ID_32779 = 32779;
     int ID_32780 = 32780;
     int ID_32781 = 32781;
     int ID_32782 = 32782;
@@ -503,14 +513,4 @@ public interface ObjectIDConstants_64 {
     int ID_33279 = 33279;
     int ID_33280 = 33280;
     int ID_33281 = 33281;
-    int ID_33282 = 33282;
-    int ID_33283 = 33283;
-    int ID_33284 = 33284;
-    int ID_33285 = 33285;
-    int ID_33286 = 33286;
-    int ID_33287 = 33287;
-    int ID_33288 = 33288;
-    int ID_33289 = 33289;
-    int ID_33290 = 33290;
-    int ID_33291 = 33291;
 }

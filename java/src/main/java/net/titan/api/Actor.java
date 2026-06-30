@@ -1,6 +1,7 @@
 package net.titan.api;
 
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +31,12 @@ public interface Actor extends Locatable<Actor> {
     boolean hasHealthBar();
 
     default boolean exists() { return TitanRuntime.liveExists(this); }
+
+    boolean castOn(Magic.SpellInfo spell);
+    boolean castOn(Magic.Standard spell);
+    boolean castOn(Magic.Ancient spell);
+    boolean castOn(Magic.Lunar spell);
+    boolean castOn(Magic.Necromancy spell);
 
     @Override
     default LocalPoint localPoint() {

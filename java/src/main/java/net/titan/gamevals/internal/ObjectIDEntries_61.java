@@ -10,6 +10,16 @@ final class ObjectIDEntries_61 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(31234, "MEDIUM_FOSSIL_DISPLAY_31234", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31235, "MEDIUM_FOSSIL_DISPLAY_31235", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31236, "MEDIUM_FOSSIL_DISPLAY_31236", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31237, "MEDIUM_FOSSIL_DISPLAY_31237", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31238, "GOBLN_MERFSH", "Gobln Merfsh", "loctypes"),
+            new GamevalEntry(31239, "MEDIUM_FOSSIL_DISPLAY_31239", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31240, "MEDIUM_FOSSIL_DISPLAY_31240", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31241, "MEDIUM_FOSSIL_DISPLAY_31241", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31242, "MEDIUM_FOSSIL_DISPLAY_31242", "Medium Fossil Display", "loctypes"),
+            new GamevalEntry(31243, "MEDIUM_FOSSIL_DISPLAY_31243", "Medium Fossil Display", "loctypes"),
             new GamevalEntry(31244, "TWOCAN", "Twocan", "loctypes"),
             new GamevalEntry(31245, "MEDIUM_FOSSIL_DISPLAY_31245", "Medium Fossil Display", "loctypes"),
             new GamevalEntry(31246, "MEDIUM_FOSSIL_DISPLAY_31246", "Medium Fossil Display", "loctypes"),
@@ -512,16 +522,6 @@ final class ObjectIDEntries_61 {
             new GamevalEntry(31743, "ID_31743", "", "loctypes"),
             new GamevalEntry(31744, "ID_31744", "", "loctypes"),
             new GamevalEntry(31745, "ID_31745", "", "loctypes"),
-            new GamevalEntry(31746, "ID_31746", "", "loctypes"),
-            new GamevalEntry(31747, "ID_31747", "", "loctypes"),
-            new GamevalEntry(31748, "CHEST_31748", "Chest", "loctypes"),
-            new GamevalEntry(31749, "SIGN_31749", "Sign", "loctypes"),
-            new GamevalEntry(31750, "ID_31750", "", "loctypes"),
-            new GamevalEntry(31751, "ID_31751", "", "loctypes"),
-            new GamevalEntry(31752, "ID_31752", "", "loctypes"),
-            new GamevalEntry(31753, "ID_31753", "", "loctypes"),
-            new GamevalEntry(31754, "THRONE_31754", "Throne", "loctypes"),
-            new GamevalEntry(31755, "HOLE_31755", "Hole", "loctypes"),
         };
     }
 

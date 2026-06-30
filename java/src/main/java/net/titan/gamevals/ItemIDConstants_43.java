@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_43 {
-    int MAP_PIECE_22016 = 22016;
-    int MAP_PIECE_22017 = 22017;
-    int MAP_PIECE_22018 = 22018;
     int MAP_PIECE_22019 = 22019;
     int MAP_PIECE_22020 = 22020;
     int MAP_PIECE_22021 = 22021;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_43 {
     int COIN_POUCH_22525 = 22525;
     int COIN_POUCH_22526 = 22526;
     int COIN_POUCH_22527 = 22527;
+    int COIN_POUCH_22528 = 22528;
+    int COIN_POUCH_22529 = 22529;
+    int COIN_POUCH_22530 = 22530;
 }

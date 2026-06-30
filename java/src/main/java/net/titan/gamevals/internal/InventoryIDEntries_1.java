@@ -520,6 +520,8 @@ final class InventoryIDEntries_1 {
             new GamevalEntry(1019, "ID_1019", "", "invtypes"),
             new GamevalEntry(1020, "ID_1020", "", "invtypes"),
             new GamevalEntry(1021, "ID_1021", "", "invtypes"),
+            new GamevalEntry(1022, "ID_1022", "", "invtypes"),
+            new GamevalEntry(1023, "ID_1023", "", "invtypes"),
         };
     }
 

@@ -10,9 +10,6 @@ final class ItemIDEntries_55 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(28213, "ID_28213", "", "objtypes"),
-            new GamevalEntry(28214, "RUNE_FELLING_AXE", "Rune felling axe", "objtypes"),
-            new GamevalEntry(28215, "ID_28215", "", "objtypes"),
             new GamevalEntry(28216, "ID_28216", "", "objtypes"),
             new GamevalEntry(28217, "DRAGON_FELLING_AXE", "Dragon felling axe", "objtypes"),
             new GamevalEntry(28218, "ID_28218", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_55 {
             new GamevalEntry(28740, "ID_28740", "", "objtypes"),
             new GamevalEntry(28741, "ID_28741", "", "objtypes"),
             new GamevalEntry(28742, "TRAILBLAZER_RELOADED_TROUSERS_T3", "Trailblazer reloaded trousers (t3)", "objtypes"),
+            new GamevalEntry(28743, "ID_28743", "", "objtypes"),
+            new GamevalEntry(28744, "ID_28744", "", "objtypes"),
+            new GamevalEntry(28745, "TRAILBLAZER_RELOADED_BOOTS_T3", "Trailblazer reloaded boots (t3)", "objtypes"),
         };
     }
 

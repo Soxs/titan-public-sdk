@@ -10,13 +10,10 @@ final class ItemIDEntries_58 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(29778, "ID_29778", "", "objtypes"),
-            new GamevalEntry(29779, "ID_29779", "", "objtypes"),
-            new GamevalEntry(29780, "ID_29780", "", "objtypes"),
             new GamevalEntry(29781, "COAGULATED_VENOM", "Coagulated venom", "objtypes"),
             new GamevalEntry(29782, "SPIDER_CAVE_TELEPORT", "Spider cave teleport", "objtypes"),
             new GamevalEntry(29783, "ID_29783", "", "objtypes"),
-            new GamevalEntry(29784, "ARAXYTE_VENOM_SACK", "Araxyte venom sack", "objtypes"),
+            new GamevalEntry(29784, "ARAXYTE_VENOM_SAC", "Araxyte venom sac", "objtypes"),
             new GamevalEntry(29785, "ID_29785", "", "objtypes"),
             new GamevalEntry(29786, "JAR_OF_VENOM", "Jar of venom", "objtypes"),
             new GamevalEntry(29787, "ID_29787", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_58 {
             new GamevalEntry(30287, "DARK_GREEN_PUMPKIN_ANGRY", "Dark green pumpkin (angry)", "objtypes"),
             new GamevalEntry(30288, "DARK_GREEN_PUMPKIN_DEPRESSED", "Dark green pumpkin (depressed)", "objtypes"),
             new GamevalEntry(30289, "DARK_GREEN_PUMPKIN_SHOCKED", "Dark green pumpkin (shocked)", "objtypes"),
+            new GamevalEntry(30290, "DARK_GREEN_PUMPKIN_SAD", "Dark green pumpkin (sad)", "objtypes"),
+            new GamevalEntry(30291, "DARK_GREEN_PUMPKIN_HAPPY", "Dark green pumpkin (happy)", "objtypes"),
+            new GamevalEntry(30292, "DARK_GREEN_PUMPKIN_LAUGHING", "Dark green pumpkin (laughing)", "objtypes"),
         };
     }
 

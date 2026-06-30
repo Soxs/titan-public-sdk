@@ -9,7 +9,7 @@ public final class NpcIDEntries {
     private NpcIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[15711];
+        GamevalEntry[] out = new GamevalEntry[16292];
         int offset = 0;
         offset = copy(out, offset, NpcIDEntries_0.entries());
         offset = copy(out, offset, NpcIDEntries_1.entries());
@@ -42,6 +42,7 @@ public final class NpcIDEntries {
         offset = copy(out, offset, NpcIDEntries_28.entries());
         offset = copy(out, offset, NpcIDEntries_29.entries());
         offset = copy(out, offset, NpcIDEntries_30.entries());
+        offset = copy(out, offset, NpcIDEntries_31.entries());
         return out;
     }
 
@@ -113,6 +114,8 @@ public final class NpcIDEntries {
         hit = NpcIDEntries_29.byId(id);
         if (hit.isPresent()) return hit;
         hit = NpcIDEntries_30.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = NpcIDEntries_31.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

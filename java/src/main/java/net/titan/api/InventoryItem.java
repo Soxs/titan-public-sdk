@@ -2,6 +2,7 @@ package net.titan.api;
 
 import net.titan.api.internal.InteractionBackend;
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 public final class InventoryItem {
     private boolean liveHandle = true;
@@ -50,6 +51,12 @@ public final class InventoryItem {
         return TitanRuntime.getInteractionBackend().useInventoryItemOnObject(
             slot(), id(), target.id(), target.tileX(), target.tileY());
     }
+
+    public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Ancient spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Lunar spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Necromancy spell) { return Magic.castOn(spell, this); }
 
     public boolean exists() { return TitanRuntime.liveExists(this); }
 

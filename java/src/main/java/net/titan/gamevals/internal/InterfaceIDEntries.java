@@ -9,7 +9,7 @@ public final class InterfaceIDEntries {
     private InterfaceIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[957];
+        GamevalEntry[] out = new GamevalEntry[969];
         int offset = 0;
         offset = copy(out, offset, InterfaceIDEntries_0.entries());
         offset = copy(out, offset, InterfaceIDEntries_1.entries());

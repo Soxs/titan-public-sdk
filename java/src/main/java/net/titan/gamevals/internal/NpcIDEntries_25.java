@@ -10,7 +10,6 @@ final class NpcIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(12800, "TRADER_CREWMEMBER_12800", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12801, "TRADER_CREWMEMBER_12801", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12802, "TRADER_CREWMEMBER_12802", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12803, "TRADER_CREWMEMBER_12803", "Trader Crewmember", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_25 {
             new GamevalEntry(13309, "CASSIUS", "Cassius", "npctypes"),
             new GamevalEntry(13310, "DODGY_CHARACTER", "Dodgy Character", "npctypes"),
             new GamevalEntry(13311, "ORIANA", "Oriana", "npctypes"),
+            new GamevalEntry(13312, "LAVINIA", "Lavinia", "npctypes"),
         };
     }
 

@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_26 {
-    int BLOOD = 13312;
-    int CAGE_13313 = 13313;
     int DOOR_13314 = 13314;
     int DOOR_13315 = 13315;
     int CAGE_13316 = 13316;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_26 {
     int TEAK_WALL_DECORATION_13821 = 13821;
     int TEAK_WALL_DECORATION_13822 = 13822;
     int TEAK_WALL_DECORATION_13823 = 13823;
+    int TEAK_WALL_DECORATION_13824 = 13824;
+    int TEAK_WALL_DECORATION_13825 = 13825;
 }

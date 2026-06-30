@@ -10,7 +10,6 @@ final class NpcIDEntries_28 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(14336, "ATTALA_14336", "Attala", "npctypes"),
             new GamevalEntry(14337, "ID_14337", "", "npctypes"),
             new GamevalEntry(14338, "ID_14338", "", "npctypes"),
             new GamevalEntry(14339, "ATTALA_14339", "Attala", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_28 {
             new GamevalEntry(14845, "ELDER_TORGAN", "Elder Torgan", "npctypes"),
             new GamevalEntry(14846, "ELDER_KATT", "Elder Katt", "npctypes"),
             new GamevalEntry(14847, "BANKER_14847", "Banker", "npctypes"),
+            new GamevalEntry(14848, "LEFF", "Leff", "npctypes"),
         };
     }
 

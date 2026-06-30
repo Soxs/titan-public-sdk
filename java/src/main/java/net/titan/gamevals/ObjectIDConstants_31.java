@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_31 {
-    int BLUE_FLOWERS = 15872;
-    int HOPPER_15873 = 15873;
     int HOPPER_15874 = 15874;
     int HOPPER_15875 = 15875;
     int HOPPER_15876 = 15876;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_31 {
     int ID_16381 = 16381;
     int ID_16382 = 16382;
     int ID_16383 = 16383;
+    int ID_16384 = 16384;
+    int ID_16385 = 16385;
 }

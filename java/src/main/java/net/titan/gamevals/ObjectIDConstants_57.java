@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_57 {
-    int MOUNTED_CONSTRUCTION_CAPE = 29184;
-    int MOUNTED_CONSTRUCTION_CAPE_T = 29185;
     int MOUNTED_COOKING_CAPE = 29186;
     int MOUNTED_COOKING_CAPE_T = 29187;
     int MOUNTED_CRAFTING_CAPE = 29188;
@@ -430,6 +428,18 @@ public interface ObjectIDConstants_57 {
     int DISEASED_HUASCA = 29610;
     int DISEASED_HUASCA_29611 = 29611;
     int DISEASED_HUASCA_29612 = 29612;
+    int CASTLE_GATES = 29613;
+    int CASTLE_GATES_29614 = 29614;
+    int ID_29615 = 29615;
+    int ID_29616 = 29616;
+    int ID_29617 = 29617;
+    int ID_29618 = 29618;
+    int ID_29619 = 29619;
+    int ID_29620 = 29620;
+    int ID_29621 = 29621;
+    int ID_29622 = 29622;
+    int ID_29623 = 29623;
+    int ID_29624 = 29624;
     int MOUNTED_MAX_CAPE_29625 = 29625;
     int CRACK_29626 = 29626;
     int CRACK_29627 = 29627;
@@ -503,14 +513,4 @@ public interface ObjectIDConstants_57 {
     int ID_29695 = 29695;
     int ID_29696 = 29696;
     int ID_29697 = 29697;
-    int ID_29698 = 29698;
-    int ID_29699 = 29699;
-    int ID_29700 = 29700;
-    int ID_29701 = 29701;
-    int ID_29702 = 29702;
-    int ID_29703 = 29703;
-    int ID_29704 = 29704;
-    int CRACK_29705 = 29705;
-    int POOL_OF_NIGHTMARES = 29706;
-    int POOL_OF_NIGHTMARES_29707 = 29707;
 }

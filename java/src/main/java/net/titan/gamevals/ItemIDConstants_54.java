@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_54 {
-    int CRYSTAL_LEGS_27701 = 27701;
-    int ID_27702 = 27702;
-    int CRYSTAL_LEGS_INACTIVE_27703 = 27703;
     int ID_27704 = 27704;
     int CRYSTAL_HELM_27705 = 27705;
     int ID_27706 = 27706;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_54 {
     int ID_28210 = 28210;
     int ADAMANT_FELLING_AXE = 28211;
     int ID_28212 = 28212;
+    int ID_28213 = 28213;
+    int RUNE_FELLING_AXE = 28214;
+    int ID_28215 = 28215;
 }

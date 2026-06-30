@@ -10,7 +10,6 @@ final class NpcIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(11264, "ZANIK_11264", "Zanik", "npctypes"),
             new GamevalEntry(11265, "OLDAK", "Oldak", "npctypes"),
             new GamevalEntry(11266, "OLDAK_11266", "Oldak", "npctypes"),
             new GamevalEntry(11267, "HIGH_PRIEST_BIGHEAD", "High Priest Bighead", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_22 {
             new GamevalEntry(11773, "ID_11773", "", "npctypes"),
             new GamevalEntry(11774, "ZEBAK_S_PHANTOM", "Zebak's Phantom", "npctypes"),
             new GamevalEntry(11775, "BA_BA_S_PHANTOM", "Ba-Ba's Phantom", "npctypes"),
+            new GamevalEntry(11776, "KEPHRI_S_PHANTOM", "Kephri's Phantom", "npctypes"),
         };
     }
 

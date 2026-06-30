@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_51 {
-    int WINDOW_26112 = 26112;
-    int BOOKCASE_26113 = 26113;
     int ODD_LOOKING_WALL_26114 = 26114;
     int ODD_LOOKING_WALL_26115 = 26115;
     int ODD_LOOKING_WALL_26116 = 26116;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_51 {
     int ID_26621 = 26621;
     int ID_26622 = 26622;
     int ID_26623 = 26623;
+    int ID_26624 = 26624;
+    int S_S_S_26625 = 26625;
 }

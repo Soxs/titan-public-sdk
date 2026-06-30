@@ -10,8 +10,6 @@ final class ObjectIDEntries_30 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(15360, "DOOR_SPACE_15360", "Door space", "loctypes"),
-            new GamevalEntry(15361, "CENTREPIECE_SPACE", "Centrepiece space", "loctypes"),
             new GamevalEntry(15362, "BIG_TREE_SPACE", "Big Tree space", "loctypes"),
             new GamevalEntry(15363, "TREE_SPACE", "Tree space", "loctypes"),
             new GamevalEntry(15364, "BIG_PLANT_SPACE_1", "Big Plant space 1", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_30 {
             new GamevalEntry(15869, "BAMBOO_PIPES_15869", "Bamboo Pipes", "loctypes"),
             new GamevalEntry(15870, "BAMBOO_PIPES_15870", "Bamboo Pipes", "loctypes"),
             new GamevalEntry(15871, "RUM_CRATE_15871", "Rum Crate", "loctypes"),
+            new GamevalEntry(15872, "BLUE_FLOWERS", "Blue flowers", "loctypes"),
+            new GamevalEntry(15873, "HOPPER_15873", "Hopper", "loctypes"),
         };
     }
 

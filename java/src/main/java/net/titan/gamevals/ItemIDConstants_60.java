@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_60 {
-    int ID_30802 = 30802;
-    int DOSSIER_30803 = 30803;
-    int ID_30804 = 30804;
     int DOSSIER_30805 = 30805;
     int RITE_OF_VILE_TRANSFERENCE = 30806;
     int ID_30807 = 30807;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_60 {
     int ID_31311 = 31311;
     int ID_31312 = 31312;
     int ID_31313 = 31313;
+    int ID_31314 = 31314;
+    int ID_31315 = 31315;
+    int ID_31316 = 31316;
 }

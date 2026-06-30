@@ -2,6 +2,7 @@ package net.titan.api;
 
 import net.titan.api.internal.InteractionBackend;
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -117,6 +118,12 @@ public final class Widget {
         if (ok) text = value == null ? "" : value;
         return ok;
     }
+
+    public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Ancient spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Lunar spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Necromancy spell) { return Magic.castOn(spell, this); }
 
     public boolean exists() { return TitanRuntime.liveExists(this); }
 

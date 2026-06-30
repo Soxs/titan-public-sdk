@@ -141,9 +141,9 @@ public interface ObjectIDConstants_1 {
     int GALLOWS = 649;
     int ID_650 = 650;
     int BURIED_SKELETON = 651;
-    int ID_652 = 652;
-    int ID_653 = 653;
-    int ID_654 = 654;
+    int BLOODSPLATTER = 652;
+    int BLOODSPLATTER_653 = 653;
+    int BLOODSPLATTER_654 = 654;
     int ID_655 = 655;
     int ID_656 = 656;
     int ID_657 = 657;

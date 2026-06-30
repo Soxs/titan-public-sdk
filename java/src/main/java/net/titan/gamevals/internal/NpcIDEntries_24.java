@@ -10,7 +10,6 @@ final class NpcIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(12288, "STRANGLED_BEAR", "Strangled Bear", "npctypes"),
             new GamevalEntry(12289, "STRANGLED_BOAR", "Strangled Boar", "npctypes"),
             new GamevalEntry(12290, "STRANGLED_LYNX", "Strangled Lynx", "npctypes"),
             new GamevalEntry(12291, "ASGARNIA_SMITH_12291", "Asgarnia Smith", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_24 {
             new GamevalEntry(12797, "TRADER_CREWMEMBER_12797", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12798, "TRADER_CREWMEMBER_12798", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12799, "TRADER_CREWMEMBER_12799", "Trader Crewmember", "npctypes"),
+            new GamevalEntry(12800, "TRADER_CREWMEMBER_12800", "Trader Crewmember", "npctypes"),
         };
     }
 

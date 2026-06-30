@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_48 {
-    int MACHINE_24576 = 24576;
-    int MACHINE_24577 = 24577;
     int MACHINE_24578 = 24578;
     int MACHINE_24579 = 24579;
     int MACHINE_24580 = 24580;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_48 {
     int STALAGMITES_25085 = 25085;
     int ID_25086 = 25086;
     int SKELETON_25087 = 25087;
+    int SKELETON_25088 = 25088;
+    int SKELETON_25089 = 25089;
 }

@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_48 {
-    int ID_24576 = 24576;
-    int ANTIQUE_EMBLEM_TIER_7 = 24577;
-    int ID_24578 = 24578;
     int ANTIQUE_EMBLEM_TIER_8 = 24579;
     int ID_24580 = 24580;
     int ANTIQUE_EMBLEM_TIER_9 = 24581;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_48 {
     int ID_25085 = 25085;
     int GRACEFUL_BOOTS_25086 = 25086;
     int TRAILBLAZER_TELEPORT_SCROLL = 25087;
+    int ID_25088 = 25088;
+    int ID_25089 = 25089;
+    int TRAILBLAZER_TOOL_ORNAMENT_KIT = 25090;
 }

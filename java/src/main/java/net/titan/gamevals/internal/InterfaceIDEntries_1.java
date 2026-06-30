@@ -455,6 +455,18 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(954, "BUTLERS_BELL_COLLECTION_DISPLAY", "butlers_bell_collection_display", "iftypes"),
             new GamevalEntry(955, "ALLSTAR_OCULUS", "allstar_oculus", "iftypes"),
             new GamevalEntry(956, "ALLSTAR_TOURNAMENT_SIDEPANEL", "allstar_tournament_sidepanel", "iftypes"),
+            new GamevalEntry(957, "MAGGOT_KING_SCOREBOARD", "maggot_king_scoreboard", "iftypes"),
+            new GamevalEntry(958, "METALPLAQUE", "metalplaque", "iftypes"),
+            new GamevalEntry(959, "WARNING_INTERFACE", "warning_interface", "iftypes"),
+            new GamevalEntry(960, "POLYBIUS_SQUARE", "polybius_square", "iftypes"),
+            new GamevalEntry(961, "CASTLE_DRAKAN_BOOK", "castle_drakan_book", "iftypes"),
+            new GamevalEntry(962, "CASTLE_DRAKAN_BOOKCASE", "castle_drakan_bookcase", "iftypes"),
+            new GamevalEntry(963, "CASTLE_DRAKAN_CLOCK", "castle_drakan_clock", "iftypes"),
+            new GamevalEntry(964, "CASTLE_DRAKAN_MAP", "castle_drakan_map", "iftypes"),
+            new GamevalEntry(965, "CASTLE_DRAKAN_PAINTING", "castle_drakan_painting", "iftypes"),
+            new GamevalEntry(966, "CASTLE_DRAKAN_PLAQUE", "castle_drakan_plaque", "iftypes"),
+            new GamevalEntry(967, "CASTLE_DRAKAN_WORLD_MAP", "castle_drakan_world_map", "iftypes"),
+            new GamevalEntry(968, "MYQ6_INTEGRITY_BAR", "myq6_integrity_bar", "iftypes"),
         };
     }
 

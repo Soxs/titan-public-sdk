@@ -10,8 +10,6 @@ final class ObjectIDEntries_46 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(23552, "GATE_23552", "Gate", "loctypes"),
-            new GamevalEntry(23553, "FILL", "Fill", "loctypes"),
             new GamevalEntry(23554, "GATE_23554", "Gate", "loctypes"),
             new GamevalEntry(23555, "DOOR_23555", "Door", "loctypes"),
             new GamevalEntry(23556, "STEPPING_STONE_23556", "Stepping stone", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_46 {
             new GamevalEntry(24061, "CASTLE_DOOR_24061", "Castle door", "loctypes"),
             new GamevalEntry(24062, "CASTLE_DOOR_24062", "Castle door", "loctypes"),
             new GamevalEntry(24063, "CASTLE_DOOR_24063", "Castle door", "loctypes"),
+            new GamevalEntry(24064, "CASTLE_DOOR_24064", "Castle door", "loctypes"),
+            new GamevalEntry(24065, "CASTLE_DOOR_24065", "Castle door", "loctypes"),
         };
     }
 

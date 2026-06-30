@@ -1,6 +1,7 @@
 package net.titan.api;
 
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 import java.util.Collections;
 import java.util.List;
@@ -91,6 +92,12 @@ public final class TileObject implements Locatable<TileObject> {
         if (action == null || action.isEmpty()) return false;
         return TitanRuntime.getInteractionBackend().interactTileObject(action, this);
     }
+
+    public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Ancient spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Lunar spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Necromancy spell) { return Magic.castOn(spell, this); }
 
     public boolean exists() { return TitanRuntime.liveExists(this); }
 

@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_49 {
-    int SKELETON_25088 = 25088;
-    int SKELETON_25089 = 25089;
     int SKELETON_25090 = 25090;
     int SHIELD_25091 = 25091;
     int ID_25092 = 25092;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_49 {
     int ID_25597 = 25597;
     int ID_25598 = 25598;
     int SUIT_OF_ARMOUR_25599 = 25599;
+    int BARREL_25600 = 25600;
+    int BENCH_25601 = 25601;
 }

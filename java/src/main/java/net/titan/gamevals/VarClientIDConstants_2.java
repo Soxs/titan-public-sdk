@@ -270,8 +270,6 @@ public interface VarClientIDConstants_2 {
     int ID_1290 = 1290;
     int ID_1291 = 1291;
     int ID_1292 = 1292;
-    int ID_1293 = 1293;
-    int ID_1294 = 1294;
     int ID_1295 = 1295;
     int ID_1296 = 1296;
     int ID_1297 = 1297;
@@ -480,4 +478,8 @@ public interface VarClientIDConstants_2 {
     int ID_1500 = 1500;
     int ID_1501 = 1501;
     int ID_1502 = 1502;
+    int ID_1503 = 1503;
+    int ID_1504 = 1504;
+    int ID_1505 = 1505;
+    int ID_1506 = 1506;
 }

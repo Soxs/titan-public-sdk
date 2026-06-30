@@ -10,8 +10,6 @@ final class ObjectIDEntries_57 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(29184, "MOUNTED_CONSTRUCTION_CAPE", "Mounted Construction Cape", "loctypes"),
-            new GamevalEntry(29185, "MOUNTED_CONSTRUCTION_CAPE_T", "Mounted Construction Cape (t)", "loctypes"),
             new GamevalEntry(29186, "MOUNTED_COOKING_CAPE", "Mounted Cooking Cape", "loctypes"),
             new GamevalEntry(29187, "MOUNTED_COOKING_CAPE_T", "Mounted Cooking Cape (t)", "loctypes"),
             new GamevalEntry(29188, "MOUNTED_CRAFTING_CAPE", "Mounted Crafting Cape", "loctypes"),
@@ -439,6 +437,18 @@ final class ObjectIDEntries_57 {
             new GamevalEntry(29610, "DISEASED_HUASCA", "Diseased huasca", "loctypes"),
             new GamevalEntry(29611, "DISEASED_HUASCA_29611", "Diseased huasca", "loctypes"),
             new GamevalEntry(29612, "DISEASED_HUASCA_29612", "Diseased huasca", "loctypes"),
+            new GamevalEntry(29613, "CASTLE_GATES", "Castle Gates", "loctypes"),
+            new GamevalEntry(29614, "CASTLE_GATES_29614", "Castle Gates", "loctypes"),
+            new GamevalEntry(29615, "ID_29615", "", "loctypes"),
+            new GamevalEntry(29616, "ID_29616", "", "loctypes"),
+            new GamevalEntry(29617, "ID_29617", "", "loctypes"),
+            new GamevalEntry(29618, "ID_29618", "", "loctypes"),
+            new GamevalEntry(29619, "ID_29619", "", "loctypes"),
+            new GamevalEntry(29620, "ID_29620", "", "loctypes"),
+            new GamevalEntry(29621, "ID_29621", "", "loctypes"),
+            new GamevalEntry(29622, "ID_29622", "", "loctypes"),
+            new GamevalEntry(29623, "ID_29623", "", "loctypes"),
+            new GamevalEntry(29624, "ID_29624", "", "loctypes"),
             new GamevalEntry(29625, "MOUNTED_MAX_CAPE_29625", "Mounted Max Cape", "loctypes"),
             new GamevalEntry(29626, "CRACK_29626", "Crack", "loctypes"),
             new GamevalEntry(29627, "CRACK_29627", "Crack", "loctypes"),
@@ -512,16 +522,6 @@ final class ObjectIDEntries_57 {
             new GamevalEntry(29695, "ID_29695", "", "loctypes"),
             new GamevalEntry(29696, "ID_29696", "", "loctypes"),
             new GamevalEntry(29697, "ID_29697", "", "loctypes"),
-            new GamevalEntry(29698, "ID_29698", "", "loctypes"),
-            new GamevalEntry(29699, "ID_29699", "", "loctypes"),
-            new GamevalEntry(29700, "ID_29700", "", "loctypes"),
-            new GamevalEntry(29701, "ID_29701", "", "loctypes"),
-            new GamevalEntry(29702, "ID_29702", "", "loctypes"),
-            new GamevalEntry(29703, "ID_29703", "", "loctypes"),
-            new GamevalEntry(29704, "ID_29704", "", "loctypes"),
-            new GamevalEntry(29705, "CRACK_29705", "Crack", "loctypes"),
-            new GamevalEntry(29706, "POOL_OF_NIGHTMARES", "Pool of Nightmares", "loctypes"),
-            new GamevalEntry(29707, "POOL_OF_NIGHTMARES_29707", "Pool of Nightmares", "loctypes"),
         };
     }
 

@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_19 {
-    int VAMPYRE_JUVINATE_9728 = 9728;
     int VAMPYRE_JUVINATE_9729 = 9729;
     int VAMPYRE_JUVINATE_9730 = 9730;
     int VAMPYRE_JUVENILE_9731 = 9731;
@@ -18,17 +17,17 @@ public interface NpcIDConstants_19 {
     int VYREWATCH_9742 = 9742;
     int WEREWOLF_9743 = 9743;
     int WEREWOLF_9744 = 9744;
-    int WEREWOLF_9745 = 9745;
-    int AUCTIONEER = 9746;
+    int ID_9745 = 9745;
+    int ID_9746 = 9746;
     int ID_9747 = 9747;
     int ID_9748 = 9748;
     int ID_9749_16_353_FRANK = 9749;
-    int SPECTATOR_9750 = 9750;
-    int SPECTATOR_9751 = 9751;
-    int SPECTATOR_9752 = 9752;
-    int SPECTATOR_9753 = 9753;
-    int SPECTATOR_9754 = 9754;
-    int SPECTATOR_9755 = 9755;
+    int ID_9750 = 9750;
+    int ID_9751 = 9751;
+    int ID_9752 = 9752;
+    int ID_9753 = 9753;
+    int ID_9754 = 9754;
+    int ID_9755 = 9755;
     int VYREWATCH_SENTINEL_9756 = 9756;
     int VYREWATCH_SENTINEL_9757 = 9757;
     int VYREWATCH_SENTINEL_9758 = 9758;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_19 {
     int ID_10237 = 10237;
     int ID_10238 = 10238;
     int ID_10239 = 10239;
+    int ID_10240 = 10240;
 }

@@ -109,10 +109,7 @@ public interface ItemIDConstants_32 {
     int ID_16489 = 16489;
     int ID_16490 = 16490;
     int ID_16491 = 16491;
-    int ID_16492 = 16492;
     int ID_16493 = 16493;
-    int ID_16494 = 16494;
-    int ID_16495 = 16495;
     int ID_16496 = 16496;
     int ID_16497 = 16497;
     int ID_16498 = 16498;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_32 {
     int NEW_CRYSTAL_HALBERD_FULL_16893 = 16893;
     int ID_16894 = 16894;
     int ID_16895 = 16895;
+    int ID_16896 = 16896;
+    int ID_16897 = 16897;
+    int ID_16898 = 16898;
 }

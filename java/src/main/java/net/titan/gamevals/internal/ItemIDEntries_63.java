@@ -10,9 +10,6 @@ final class ItemIDEntries_63 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(32338, "ID_32338", "", "objtypes"),
-            new GamevalEntry(32339, "BURNT_HALIBUT", "Burnt halibut", "objtypes"),
-            new GamevalEntry(32340, "ID_32340", "", "objtypes"),
             new GamevalEntry(32341, "RAW_BLUEFIN", "Raw bluefin", "objtypes"),
             new GamevalEntry(32342, "ID_32342", "", "objtypes"),
             new GamevalEntry(32343, "ID_32343", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_63 {
             new GamevalEntry(32847, "SMALL_SALVAGE", "Small salvage", "objtypes"),
             new GamevalEntry(32848, "ID_32848", "", "objtypes"),
             new GamevalEntry(32849, "FISHY_SALVAGE", "Fishy salvage", "objtypes"),
+            new GamevalEntry(32850, "ID_32850", "", "objtypes"),
+            new GamevalEntry(32851, "BARRACUDA_SALVAGE", "Barracuda salvage", "objtypes"),
+            new GamevalEntry(32852, "ID_32852", "", "objtypes"),
         };
     }
 

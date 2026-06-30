@@ -10,7 +10,6 @@ final class NpcIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(4608, "SAGIRA", "Sagira", "npctypes"),
             new GamevalEntry(4609, "ANLEIF", "Anleif", "npctypes"),
             new GamevalEntry(4610, "RAT_4610", "Rat", "npctypes"),
             new GamevalEntry(4611, "RAT_4611", "Rat", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_9 {
             new GamevalEntry(5117, "COMBAT_STONE_5117", "Combat stone", "npctypes"),
             new GamevalEntry(5118, "Z_Z_Z_SYLAS", "? Z Z Sylas", "npctypes"),
             new GamevalEntry(5119, "GRIMGNASH", "Grimgnash", "npctypes"),
+            new GamevalEntry(5120, "RUPERT_THE_BEARD", "Rupert the Beard", "npctypes"),
         };
     }
 

@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_28 {
-    int ID_14336 = 14336;
-    int ID_14337 = 14337;
     int ID_14338 = 14338;
     int ID_14339 = 14339;
     int ID_14340 = 14340;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_28 {
     int GAP_14845 = 14845;
     int GAP_14846 = 14846;
     int GAP_14847 = 14847;
+    int GAP_14848 = 14848;
+    int CHAIR_14849 = 14849;
 }

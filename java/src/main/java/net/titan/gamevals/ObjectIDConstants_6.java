@@ -392,7 +392,7 @@ public interface ObjectIDConstants_6 {
     int ID_3460 = 3460;
     int ID_3461 = 3461;
     int ID_3462 = 3462;
-    int CELL_DOOR = 3463;
+    int CELL_GATE = 3463;
     int ID_3464 = 3464;
     int ID_3465 = 3465;
     int HANGING_MEAT = 3466;

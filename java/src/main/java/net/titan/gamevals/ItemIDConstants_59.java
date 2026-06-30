@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_59 {
-    int DARK_GREEN_PUMPKIN_SAD = 30290;
-    int DARK_GREEN_PUMPKIN_HAPPY = 30291;
-    int DARK_GREEN_PUMPKIN_LAUGHING = 30292;
     int POWDER_GREY_PUMPKIN_DISGUSTED = 30293;
     int POWDER_GREY_PUMPKIN_SILLY = 30294;
     int POWDER_GREY_PUMPKIN_EVIL = 30295;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_59 {
     int ID_30799 = 30799;
     int DEMONIC_TALLOW = 30800;
     int ID_30801 = 30801;
+    int ID_30802 = 30802;
+    int DOSSIER_30803 = 30803;
+    int ID_30804 = 30804;
 }

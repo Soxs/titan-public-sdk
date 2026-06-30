@@ -1,6 +1,7 @@
 package net.titan.api;
 
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 public final class GroundItem implements Locatable<GroundItem> {
     private static final int ACCOUNT_TYPE_VARBIT = 1777;
@@ -64,6 +65,12 @@ public final class GroundItem implements Locatable<GroundItem> {
         return TitanRuntime.getInteractionBackend().interactGroundItem(
             action, id(), tileX(), tileY(), worldViewId());
     }
+
+    public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Ancient spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Lunar spell) { return Magic.castOn(spell, this); }
+    public boolean castOn(Magic.Necromancy spell) { return Magic.castOn(spell, this); }
 
     public boolean exists() { return TitanRuntime.liveExists(this); }
 

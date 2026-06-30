@@ -10,9 +10,6 @@ final class ItemIDEntries_44 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(22528, "COIN_POUCH_22528", "Coin pouch", "objtypes"),
-            new GamevalEntry(22529, "COIN_POUCH_22529", "Coin pouch", "objtypes"),
-            new GamevalEntry(22530, "COIN_POUCH_22530", "Coin pouch", "objtypes"),
             new GamevalEntry(22531, "COIN_POUCH_22531", "Coin pouch", "objtypes"),
             new GamevalEntry(22532, "COIN_POUCH_22532", "Coin pouch", "objtypes"),
             new GamevalEntry(22533, "COIN_POUCH_22533", "Coin pouch", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_44 {
             new GamevalEntry(23037, "BOOTS_OF_STONE", "Boots of stone", "objtypes"),
             new GamevalEntry(23038, "ID_23038", "", "objtypes"),
             new GamevalEntry(23039, "ID_23039", "", "objtypes"),
+            new GamevalEntry(23040, "WYRM", "Wyrm", "objtypes"),
+            new GamevalEntry(23041, "DRAKE", "Drake", "objtypes"),
+            new GamevalEntry(23042, "HYDRA", "Hydra", "objtypes"),
         };
     }
 

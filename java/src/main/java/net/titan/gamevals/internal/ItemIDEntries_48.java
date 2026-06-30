@@ -10,9 +10,6 @@ final class ItemIDEntries_48 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(24576, "ID_24576", "", "objtypes"),
-            new GamevalEntry(24577, "ANTIQUE_EMBLEM_TIER_7", "Antique emblem (tier 7)", "objtypes"),
-            new GamevalEntry(24578, "ID_24578", "", "objtypes"),
             new GamevalEntry(24579, "ANTIQUE_EMBLEM_TIER_8", "Antique emblem (tier 8)", "objtypes"),
             new GamevalEntry(24580, "ID_24580", "", "objtypes"),
             new GamevalEntry(24581, "ANTIQUE_EMBLEM_TIER_9", "Antique emblem (tier 9)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_48 {
             new GamevalEntry(25085, "ID_25085", "", "objtypes"),
             new GamevalEntry(25086, "GRACEFUL_BOOTS_25086", "Graceful boots", "objtypes"),
             new GamevalEntry(25087, "TRAILBLAZER_TELEPORT_SCROLL", "Trailblazer teleport scroll", "objtypes"),
+            new GamevalEntry(25088, "ID_25088", "", "objtypes"),
+            new GamevalEntry(25089, "ID_25089", "", "objtypes"),
+            new GamevalEntry(25090, "TRAILBLAZER_TOOL_ORNAMENT_KIT", "Trailblazer tool ornament kit", "objtypes"),
         };
     }
 

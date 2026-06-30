@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_64 {
-    int ID_32850 = 32850;
-    int BARRACUDA_SALVAGE = 32851;
-    int ID_32852 = 32852;
     int LARGE_SALVAGE = 32853;
     int ID_32854 = 32854;
     int PLUNDERED_SALVAGE = 32855;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_64 {
     int IMPISH_WHISTLE = 33365;
     int ID_33366 = 33366;
     int ID_33367 = 33367;
+    int DEMONIC_PACTS_DEMON_BUTLER_SCROLL = 33368;
+    int ID_33369 = 33369;
+    int ID_33370 = 33370;
 }

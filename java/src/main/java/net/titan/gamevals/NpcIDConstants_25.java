@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_25 {
-    int TRADER_CREWMEMBER_12800 = 12800;
     int TRADER_CREWMEMBER_12801 = 12801;
     int TRADER_CREWMEMBER_12802 = 12802;
     int TRADER_CREWMEMBER_12803 = 12803;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_25 {
     int CASSIUS = 13309;
     int DODGY_CHARACTER = 13310;
     int ORIANA = 13311;
+    int LAVINIA = 13312;
 }

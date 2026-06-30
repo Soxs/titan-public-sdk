@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_32 {
-    int ID_16384 = 16384;
-    int ID_16385 = 16385;
     int ID_16386 = 16386;
     int ID_16387 = 16387;
     int ID_16388 = 16388;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_32 {
     int COOKING_RANGE_16893 = 16893;
     int EXTRA_ANCHOR = 16894;
     int CHAIN_16895 = 16895;
+    int ID_16896 = 16896;
+    int ID_16897 = 16897;
 }

@@ -35,7 +35,8 @@ public final class NpcID
                    NpcIDConstants_27,
                    NpcIDConstants_28,
                    NpcIDConstants_29,
-                   NpcIDConstants_30 {
+                   NpcIDConstants_30,
+                   NpcIDConstants_31 {
     private NpcID() {}
 
     public static final String SOURCE_CATALOG = "npctypes";

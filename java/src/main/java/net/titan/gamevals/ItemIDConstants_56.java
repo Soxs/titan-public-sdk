@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_56 {
-    int ID_28743 = 28743;
-    int ID_28744 = 28744;
-    int TRAILBLAZER_RELOADED_BOOTS_T3 = 28745;
     int ID_28746 = 28746;
     int ID_28747 = 28747;
     int TRAILBLAZER_RELOADED_TORCH = 28748;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_56 {
     int ID_29252 = 29252;
     int ENHANCED_QUETZAL_WHISTLE_BLUEPRINT = 29253;
     int ID_29254 = 29254;
+    int ID_29255 = 29255;
+    int PERFECTED_QUETZAL_WHISTLE_BLUEPRINT = 29256;
+    int ID_29257 = 29257;
 }

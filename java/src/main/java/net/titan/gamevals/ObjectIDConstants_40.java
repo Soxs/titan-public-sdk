@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_40 {
-    int ID_20480 = 20480;
-    int ID_20481 = 20481;
     int PASSAGEWAY_20482 = 20482;
     int PASSAGEWAY_20483 = 20483;
     int STAIRS_20484 = 20484;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_40 {
     int ID_20989 = 20989;
     int ID_20990 = 20990;
     int ID_20991 = 20991;
+    int ID_20992 = 20992;
+    int ID_20993 = 20993;
 }

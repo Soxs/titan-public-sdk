@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_61 {
-    int ID_31314 = 31314;
-    int ID_31315 = 31315;
-    int ID_31316 = 31316;
     int ID_31317 = 31317;
     int ID_31318 = 31318;
     int ID_31319 = 31319;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_61 {
     int HORIZON_S_LURE = 31823;
     int ID_31824 = 31824;
     int ID_31825 = 31825;
+    int ID_31826 = 31826;
+    int ID_31827 = 31827;
+    int ID_31828 = 31828;
 }

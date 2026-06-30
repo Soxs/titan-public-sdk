@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_46 {
-    int GATE_23552 = 23552;
-    int FILL = 23553;
     int GATE_23554 = 23554;
     int DOOR_23555 = 23555;
     int STEPPING_STONE_23556 = 23556;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_46 {
     int CASTLE_DOOR_24061 = 24061;
     int CASTLE_DOOR_24062 = 24062;
     int CASTLE_DOOR_24063 = 24063;
+    int CASTLE_DOOR_24064 = 24064;
+    int CASTLE_DOOR_24065 = 24065;
 }

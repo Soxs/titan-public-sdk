@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_57 {
-    int ID_29255 = 29255;
-    int PERFECTED_QUETZAL_WHISTLE_BLUEPRINT = 29256;
-    int ID_29257 = 29257;
     int ID_29258 = 29258;
     int TORN_ENHANCED_QUETZAL_WHISTLE_BLUEPRINT = 29259;
     int ID_29260 = 29260;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_57 {
     int IMCANDO_HAMMER_OFF_HAND = 29775;
     int ID_29776 = 29776;
     int BRUMA_TORCH_OFF_HAND = 29777;
+    int ID_29778 = 29778;
+    int ID_29779 = 29779;
+    int ID_29780 = 29780;
 }

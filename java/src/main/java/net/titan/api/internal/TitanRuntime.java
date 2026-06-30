@@ -21,6 +21,7 @@ public final class TitanRuntime {
     private static volatile OverlayBackend overlayBackend;
     private static volatile ActorResolver actorResolver;
     private static volatile InteractionBackend interactionBackend;
+    private static volatile MouseBackend mouseBackend;
     private static volatile SchedulerBackend schedulerBackend;
     private static volatile LiveStateBackend liveStateBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
@@ -210,6 +211,25 @@ public final class TitanRuntime {
     public static void clearInteractionBackend(InteractionBackend backend) {
         if (interactionBackend == backend) {
             interactionBackend = null;
+        }
+    }
+
+    public static MouseBackend getMouseBackend() {
+        MouseBackend value = mouseBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java mouse backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setMouseBackend(MouseBackend backend) {
+        mouseBackend = backend;
+    }
+
+    public static void clearMouseBackend(MouseBackend backend) {
+        if (mouseBackend == backend) {
+            mouseBackend = null;
         }
     }
 

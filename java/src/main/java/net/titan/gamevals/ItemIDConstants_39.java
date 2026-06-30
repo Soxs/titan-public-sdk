@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_39 {
-    int ID_19968 = 19968;
-    int ID_19969 = 19969;
-    int DARK_BOW_TIE = 19970;
     int ID_19971 = 19971;
     int ID_19972 = 19972;
     int LIGHT_TUXEDO_JACKET = 19973;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_39 {
     int VOID_MAGE_HELM_BROKEN = 20477;
     int ID_20478 = 20478;
     int VOID_RANGER_HELM_BROKEN = 20479;
+    int ID_20480 = 20480;
+    int VOID_MELEE_HELM_BROKEN = 20481;
+    int ID_20482 = 20482;
 }

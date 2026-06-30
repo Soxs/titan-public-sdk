@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_41 {
-    int OVERLOAD_4_20992 = 20992;
-    int OVERLOAD_1_20993 = 20993;
-    int OVERLOAD_2_20994 = 20994;
     int OVERLOAD_3_20995 = 20995;
     int OVERLOAD_4_20996 = 20996;
     int TWISTED_BOW = 20997;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_41 {
     int ID_21501 = 21501;
     int ID_21502 = 21502;
     int ID_21503 = 21503;
+    int GIANT_SEAWEED = 21504;
+    int ID_21505 = 21505;
+    int ID_21506 = 21506;
 }

@@ -1,6 +1,16 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_59 {
+    int ID_30210 = 30210;
+    int ID_30211 = 30211;
+    int ID_30212 = 30212;
+    int ID_30213 = 30213;
+    int ID_30214 = 30214;
+    int ID_30215 = 30215;
+    int ID_30216 = 30216;
+    int ID_30217 = 30217;
+    int ID_30218 = 30218;
+    int ID_30219 = 30219;
     int ID_30220 = 30220;
     int ID_30221 = 30221;
     int ID_30222 = 30222;
@@ -503,14 +513,4 @@ public interface ObjectIDConstants_59 {
     int GIANT_VIAL_30719 = 30719;
     int STONE_CHEST = 30720;
     int STONE_CHEST_30721 = 30721;
-    int STONE_CRATE = 30722;
-    int STONE_CRATE_30723 = 30723;
-    int STONE_CRATE_30724 = 30724;
-    int TRAPDOOR_30725 = 30725;
-    int TRAPDOOR_30726 = 30726;
-    int LADDER_30727 = 30727;
-    int STRANGE_STONE = 30728;
-    int STRANGE_BLOCKS = 30729;
-    int ID_30730 = 30730;
-    int ID_30731 = 30731;
 }

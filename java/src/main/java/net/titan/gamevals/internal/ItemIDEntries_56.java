@@ -10,9 +10,6 @@ final class ItemIDEntries_56 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(28743, "ID_28743", "", "objtypes"),
-            new GamevalEntry(28744, "ID_28744", "", "objtypes"),
-            new GamevalEntry(28745, "TRAILBLAZER_RELOADED_BOOTS_T3", "Trailblazer reloaded boots (t3)", "objtypes"),
             new GamevalEntry(28746, "ID_28746", "", "objtypes"),
             new GamevalEntry(28747, "ID_28747", "", "objtypes"),
             new GamevalEntry(28748, "TRAILBLAZER_RELOADED_TORCH", "Trailblazer reloaded torch", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_56 {
             new GamevalEntry(29252, "ID_29252", "", "objtypes"),
             new GamevalEntry(29253, "ENHANCED_QUETZAL_WHISTLE_BLUEPRINT", "Enhanced quetzal whistle blueprint", "objtypes"),
             new GamevalEntry(29254, "ID_29254", "", "objtypes"),
+            new GamevalEntry(29255, "ID_29255", "", "objtypes"),
+            new GamevalEntry(29256, "PERFECTED_QUETZAL_WHISTLE_BLUEPRINT", "Perfected quetzal whistle blueprint", "objtypes"),
+            new GamevalEntry(29257, "ID_29257", "", "objtypes"),
         };
     }
 

@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_47 {
-    int ID_24064 = 24064;
-    int EBRILL_S_JOURNAL = 24065;
-    int ID_24066 = 24066;
     int STAINED_JOURNAL = 24067;
     int ID_24068 = 24068;
     int THE_TRUTH_BEHIND_THE_MYTH_EXCERPT = 24069;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_47 {
     int ANTIQUE_EMBLEM_TIER_5 = 24573;
     int ID_24574 = 24574;
     int ANTIQUE_EMBLEM_TIER_6 = 24575;
+    int ID_24576 = 24576;
+    int ANTIQUE_EMBLEM_TIER_7 = 24577;
+    int ID_24578 = 24578;
 }

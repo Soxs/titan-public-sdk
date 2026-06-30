@@ -1,13 +1,10 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_58 {
-    int ID_29778 = 29778;
-    int ID_29779 = 29779;
-    int ID_29780 = 29780;
     int COAGULATED_VENOM = 29781;
     int SPIDER_CAVE_TELEPORT = 29782;
     int ID_29783 = 29783;
-    int ARAXYTE_VENOM_SACK = 29784;
+    int ARAXYTE_VENOM_SAC = 29784;
     int ID_29785 = 29785;
     int JAR_OF_VENOM = 29786;
     int ID_29787 = 29787;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_58 {
     int DARK_GREEN_PUMPKIN_ANGRY = 30287;
     int DARK_GREEN_PUMPKIN_DEPRESSED = 30288;
     int DARK_GREEN_PUMPKIN_SHOCKED = 30289;
+    int DARK_GREEN_PUMPKIN_SAD = 30290;
+    int DARK_GREEN_PUMPKIN_HAPPY = 30291;
+    int DARK_GREEN_PUMPKIN_LAUGHING = 30292;
 }

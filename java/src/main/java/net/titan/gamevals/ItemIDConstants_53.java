@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_53 {
-    int VERAC_S_FLAIL_27189 = 27189;
-    int VERAC_S_BRASSARD_27190 = 27190;
-    int UNHOLY_BOOK_27191 = 27191;
     int OPAL_DRAGON_BOLTS_E_27192 = 27192;
     int ANCESTRAL_ROBE_TOP_27193 = 27193;
     int ANCESTRAL_ROBE_BOTTOM_27194 = 27194;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_53 {
     int ID_27698 = 27698;
     int CRYSTAL_BODY_INACTIVE_27699 = 27699;
     int ID_27700 = 27700;
+    int CRYSTAL_LEGS_27701 = 27701;
+    int ID_27702 = 27702;
+    int CRYSTAL_LEGS_INACTIVE_27703 = 27703;
 }

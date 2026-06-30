@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_24 {
-    int STRANGLED_BEAR = 12288;
     int STRANGLED_BOAR = 12289;
     int STRANGLED_LYNX = 12290;
     int ASGARNIA_SMITH_12291 = 12291;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_24 {
     int TRADER_CREWMEMBER_12797 = 12797;
     int TRADER_CREWMEMBER_12798 = 12798;
     int TRADER_CREWMEMBER_12799 = 12799;
+    int TRADER_CREWMEMBER_12800 = 12800;
 }

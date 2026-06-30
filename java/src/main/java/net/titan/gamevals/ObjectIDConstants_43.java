@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_43 {
-    int ID_22016 = 22016;
-    int ID_22017 = 22017;
     int ID_22018 = 22018;
     int ID_22019 = 22019;
     int ID_22020 = 22020;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_43 {
     int RACHEL_SICK = 22525;
     int RACHEL_VERY_SICK = 22526;
     int RACHEL_GHASTLY = 22527;
+    int RACHEL_SICK_22528 = 22528;
+    int RACHEL_VERY_SICK_22529 = 22529;
 }

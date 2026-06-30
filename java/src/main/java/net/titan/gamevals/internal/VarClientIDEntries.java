@@ -9,7 +9,7 @@ public final class VarClientIDEntries {
     private VarClientIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[1503];
+        GamevalEntry[] out = new GamevalEntry[1505];
         int offset = 0;
         offset = copy(out, offset, VarClientIDEntries_0.entries());
         offset = copy(out, offset, VarClientIDEntries_1.entries());

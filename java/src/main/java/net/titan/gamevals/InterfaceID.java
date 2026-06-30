@@ -2928,7 +2928,7 @@ public final class InterfaceID
         public static final int STAT_BOOSTS_HUD = 5242920;
         public static final int BUFF_BAR = 5242921;
         public static final int NOTIFICATIONS = 5242922;
-        public static final int EHC_LISTENER = 5242923;
+        public static final int TLI_LISTENER = 5242923;
         public static final int MOUSEOVER = 5242924;
         public static final int UI_HIGHLIGHTS = 5242925;
         public static final int POPOUT = 5242926;
@@ -4357,6 +4357,16 @@ public final class InterfaceID
         public static final int QJ198 = 7798992;
         public static final int QJ199 = 7798993;
         public static final int QJ200 = 7798994;
+        public static final int QJ201 = 7798995;
+        public static final int QJ202 = 7798996;
+        public static final int QJ203 = 7798997;
+        public static final int QJ204 = 7798998;
+        public static final int QJ205 = 7798999;
+        public static final int QJ206 = 7799000;
+        public static final int QJ207 = 7799001;
+        public static final int QJ208 = 7799002;
+        public static final int QJ209 = 7799003;
+        public static final int QJ210 = 7799004;
     }
 
     public static final class TournamentSidepanel {
@@ -5843,7 +5853,7 @@ public final class InterfaceID
         public static final int ORBS = 10551329;
         public static final int GAMEFRAME = 10551330;
         public static final int POPOUT = 10551331;
-        public static final int EHC_LISTENER = 10551332;
+        public static final int TLI_LISTENER = 10551332;
         public static final int MOUSEOVER = 10551333;
         public static final int SIDE_BACKGROUND = 10551334;
         public static final int COM_39 = 10551335;
@@ -6563,7 +6573,7 @@ public final class InterfaceID
         public static final int ICON6 = 10747969;
         public static final int GAMEFRAME = 10747970;
         public static final int POPOUT = 10747971;
-        public static final int EHC_LISTENER = 10747972;
+        public static final int TLI_LISTENER = 10747972;
         public static final int MOUSEOVER = 10747973;
         public static final int SIDE_BACKGROUND = 10747974;
         public static final int SIDEMODAL = 10747975;
@@ -6633,7 +6643,7 @@ public final class InterfaceID
         public static final int PVP_ICONS = 10813472;
         public static final int PM_CONTAINER = 10813473;
         public static final int ORBS = 10813474;
-        public static final int EHC_LISTENER = 10813475;
+        public static final int TLI_LISTENER = 10813475;
         public static final int MOUSEOVER = 10813476;
         public static final int UI_HIGHLIGHTS = 10813477;
         public static final int CONTROL = 10813478;
@@ -19457,7 +19467,7 @@ public final class InterfaceID
         public static final int CONTROL = 35913729;
         public static final int GAMEFRAME = 35913730;
         public static final int POPOUT = 35913731;
-        public static final int EHC_LISTENER = 35913732;
+        public static final int TLI_LISTENER = 35913732;
         public static final int MOUSEOVER = 35913733;
         public static final int UI_HIGHLIGHTS = 35913734;
         public static final int COM_7 = 35913735;
@@ -21190,7 +21200,7 @@ public final class InterfaceID
         public static final int SIDECRM = 39387266;
         public static final int POPOUT = 39387267;
         public static final int MOUSEOVER = 39387268;
-        public static final int EHC_LISTENER = 39387269;
+        public static final int TLI_LISTENER = 39387269;
         public static final int UI_HIGHLIGHTS = 39387270;
     }
 
@@ -22101,6 +22111,7 @@ public final class InterfaceID
         public static final int UNIVERSE = 41549824;
         public static final int BACKGROUND = 41549825;
         public static final int FOREGROUND = 41549826;
+        public static final int FADER = 41549827;
     }
 
     public static final class LighttemplePillar {
@@ -31130,6 +31141,267 @@ public final class InterfaceID
         public static final int SEARCHBAR_CONTAINER = 62652427;
         public static final int SEARCHBAR = 62652428;
         public static final int SEARCH_TITLE = 62652429;
+    }
+
+    public static final class MaggotKingScoreboard {
+        private MaggotKingScoreboard() {}
+
+        public static final int UNIVERSE = 62717952;
+        public static final int BACKGROUND = 62717953;
+        public static final int CLOSE = 62717954;
+        public static final int CLOSE_ICON = 62717955;
+        public static final int CONTENT = 62717956;
+        public static final int TITLE = 62717957;
+        public static final int TITLE_TEXT = 62717958;
+        public static final int STATS = 62717959;
+        public static final int PKC = 62717960;
+        public static final int PKC_CONTENT = 62717961;
+        public static final int PD = 62717962;
+        public static final int PD_CONTENT = 62717963;
+        public static final int PBT = 62717964;
+        public static final int PBT_CONTENT = 62717965;
+        public static final int GKC = 62717966;
+        public static final int GKC_CONTENT = 62717967;
+        public static final int GD = 62717968;
+        public static final int GD_CONTENT = 62717969;
+        public static final int GBT = 62717970;
+        public static final int GBT_CONTENT = 62717971;
+    }
+
+    public static final class Metalplaque {
+        private Metalplaque() {}
+
+        public static final int UNIVERSE = 62783488;
+        public static final int BACKGROUND = 62783489;
+        public static final int CONTENT = 62783490;
+        public static final int MS1 = 62783491;
+        public static final int MS2 = 62783492;
+        public static final int MS3 = 62783493;
+        public static final int MS4 = 62783494;
+        public static final int MS5 = 62783495;
+        public static final int MS6 = 62783496;
+        public static final int MS7 = 62783497;
+        public static final int MS8 = 62783498;
+        public static final int MS9 = 62783499;
+        public static final int MS10 = 62783500;
+        public static final int MS11 = 62783501;
+        public static final int CLOSE_ICON = 62783502;
+    }
+
+    public static final class WarningInterface {
+        private WarningInterface() {}
+
+        public static final int UNIVERSE = 62849024;
+        public static final int PAUSEBUTTON_1 = 62849025;
+        public static final int PAUSEBUTTON_2 = 62849026;
+        public static final int CONTENTS = 62849027;
+        public static final int FRAME = 62849028;
+        public static final int COM_5 = 62849029;
+        public static final int COM_6 = 62849030;
+        public static final int MAIN = 62849031;
+        public static final int CONTAINER = 62849032;
+        public static final int TEXT_LAYER = 62849033;
+        public static final int TEXT = 62849034;
+        public static final int SCROLLBAR = 62849035;
+        public static final int BOTTOM = 62849036;
+        public static final int BUTTON_1 = 62849037;
+        public static final int BUTTON_2 = 62849038;
+    }
+
+    public static final class PolybiusSquare {
+        private PolybiusSquare() {}
+
+        public static final int UNIVERSE = 62914560;
+        public static final int MAIN = 62914561;
+        public static final int COM_2 = 62914562;
+        public static final int CLOSE = 62914563;
+        public static final int CONTENT = 62914564;
+        public static final int GRID = 62914565;
+        public static final int COM_6 = 62914566;
+        public static final int COM_7 = 62914567;
+        public static final int COM_8 = 62914568;
+        public static final int COM_9 = 62914569;
+        public static final int COM_10 = 62914570;
+        public static final int COM_11 = 62914571;
+        public static final int COM_12 = 62914572;
+        public static final int COM_13 = 62914573;
+        public static final int COM_14 = 62914574;
+        public static final int COM_15 = 62914575;
+        public static final int COM_16 = 62914576;
+        public static final int COM_17 = 62914577;
+        public static final int COM_18 = 62914578;
+        public static final int COM_19 = 62914579;
+        public static final int COM_20 = 62914580;
+        public static final int COM_21 = 62914581;
+        public static final int COM_22 = 62914582;
+        public static final int COM_23 = 62914583;
+        public static final int COM_24 = 62914584;
+        public static final int COM_25 = 62914585;
+        public static final int COM_26 = 62914586;
+        public static final int COM_27 = 62914587;
+        public static final int COM_28 = 62914588;
+        public static final int COM_29 = 62914589;
+        public static final int COM_30 = 62914590;
+        public static final int COM_31 = 62914591;
+        public static final int COM_32 = 62914592;
+        public static final int COM_33 = 62914593;
+        public static final int COM_34 = 62914594;
+        public static final int COM_35 = 62914595;
+        public static final int A = 62914596;
+        public static final int B = 62914597;
+        public static final int C = 62914598;
+        public static final int D = 62914599;
+        public static final int E = 62914600;
+        public static final int F = 62914601;
+        public static final int G = 62914602;
+        public static final int H = 62914603;
+        public static final int I_J = 62914604;
+        public static final int K = 62914605;
+        public static final int L = 62914606;
+        public static final int M = 62914607;
+        public static final int N = 62914608;
+        public static final int O = 62914609;
+        public static final int P = 62914610;
+        public static final int Q = 62914611;
+        public static final int R = 62914612;
+        public static final int S = 62914613;
+        public static final int T = 62914614;
+        public static final int U = 62914615;
+        public static final int V = 62914616;
+        public static final int W = 62914617;
+        public static final int X = 62914618;
+        public static final int Y = 62914619;
+        public static final int Z = 62914620;
+    }
+
+    public static final class CastleDrakanBook {
+        private CastleDrakanBook() {}
+
+        public static final int UNIVERSE = 62980096;
+        public static final int CONTENT = 62980097;
+        public static final int BACKGROUND = 62980098;
+        public static final int BACKGROUND_MODEL = 62980099;
+        public static final int PAGE_RIGHT_MODEL = 62980100;
+        public static final int PAGE_LEFT_MODEL = 62980101;
+        public static final int TITLE = 62980102;
+        public static final int CLOSE_BUTTON = 62980103;
+        public static final int CLOSE_GRAPHIC = 62980104;
+        public static final int PAGE_LEFT_NUMBER = 62980105;
+        public static final int PAGE_RIGHT_NUMBER = 62980106;
+        public static final int PAGE_LEFT = 62980107;
+        public static final int NAME = 62980108;
+        public static final int PAGE_RIGHT = 62980109;
+        public static final int SYMBOL = 62980110;
+        public static final int PAGE_LEFT_BUTTON = 62980111;
+        public static final int PAGE_LEFT_GRAPHIC = 62980112;
+        public static final int PAGE_RIGHT_BUTTON = 62980113;
+        public static final int PAGE_RIGHT_GRAPHIC = 62980114;
+    }
+
+    public static final class CastleDrakanBookcase {
+        private CastleDrakanBookcase() {}
+
+        public static final int UNIVERSE = 63045632;
+        public static final int CONTENTS = 63045633;
+        public static final int FRAME = 63045634;
+        public static final int MAIN = 63045635;
+        public static final int BACKGROUND = 63045636;
+        public static final int SHELF = 63045637;
+        public static final int CLOSE = 63045638;
+    }
+
+    public static final class CastleDrakanClock {
+        private CastleDrakanClock() {}
+
+        public static final int UNIVERSE = 63111168;
+        public static final int CONTENTS = 63111169;
+        public static final int FRAME = 63111170;
+        public static final int MAIN = 63111171;
+        public static final int CLOCKFACE = 63111172;
+        public static final int BIG_HAND = 63111173;
+        public static final int SMALL_HAND = 63111174;
+        public static final int CLOCK_MIDDLE = 63111175;
+        public static final int BIG_BUTTONS = 63111176;
+        public static final int BIG_TITLE = 63111177;
+        public static final int BIG_ROTATE_CLOCKWISE = 63111178;
+        public static final int BIG_ROTATE_ANTICLOCKWISE = 63111179;
+        public static final int SMALL_BUTTONS = 63111180;
+        public static final int SMALL_TITLE = 63111181;
+        public static final int SMALL_ROTATE_CLOCKWISE = 63111182;
+        public static final int SMALL_ROTATE_ANTICLOCKWISE = 63111183;
+        public static final int CLOSE = 63111184;
+    }
+
+    public static final class CastleDrakanMap {
+        private CastleDrakanMap() {}
+
+        public static final int UNIVERSE = 63176704;
+        public static final int CONTENT = 63176705;
+        public static final int COM_2 = 63176706;
+        public static final int COM_3 = 63176707;
+        public static final int COM_4 = 63176708;
+        public static final int CLOSE_BUTTON = 63176709;
+        public static final int CLOSE_BUTTON_GRAPHIC = 63176710;
+    }
+
+    public static final class CastleDrakanPainting {
+        private CastleDrakanPainting() {}
+
+        public static final int UNIVERSE = 63242240;
+        public static final int PAINTING = 63242241;
+        public static final int CLOSE_ICON = 63242242;
+    }
+
+    public static final class CastleDrakanPlaque {
+        private CastleDrakanPlaque() {}
+
+        public static final int UNIVERSE = 63307776;
+        public static final int BACKGROUND = 63307777;
+        public static final int CONTENT = 63307778;
+        public static final int COM_3 = 63307779;
+        public static final int CLOSE_ICON = 63307780;
+    }
+
+    public static final class CastleDrakanWorldMap {
+        private CastleDrakanWorldMap() {}
+
+        public static final int UNIVERSE = 63373312;
+        public static final int CONTENTS = 63373313;
+        public static final int FRAME = 63373314;
+        public static final int BACKGROUND = 63373315;
+        public static final int DRAG = 63373316;
+        public static final int MAIN = 63373317;
+        public static final int BUTTONS = 63373318;
+        public static final int FLOOR_2 = 63373319;
+        public static final int FLOOR_1 = 63373320;
+        public static final int FLOOR_0 = 63373321;
+        public static final int DUNGEON = 63373322;
+        public static final int MAP = 63373323;
+        public static final int MAP_BACK = 63373324;
+        public static final int MAP_FRONT = 63373325;
+        public static final int CLOSE = 63373326;
+    }
+
+    public static final class Myq6IntegrityBar {
+        private Myq6IntegrityBar() {}
+
+        public static final int UNIVERSE = 63438848;
+        public static final int DODGER = 63438849;
+        public static final int DODGER_INNER = 63438850;
+        public static final int INTEGRITY = 63438851;
+        public static final int INTEGRITY_BORDER = 63438852;
+        public static final int INTEGRITY_BACKING = 63438853;
+        public static final int TITLE = 63438854;
+        public static final int HP_BAR = 63438855;
+        public static final int INNER_BORDER = 63438856;
+        public static final int INNER = 63438857;
+        public static final int HEALTH_BAR_BACK = 63438858;
+        public static final int HEALTH_BAR_REMAINING = 63438859;
+        public static final int HP_BAR_TEXT = 63438860;
+        public static final int TIMER = 63438861;
+        public static final int TIMER_BORDER = 63438862;
+        public static final int TIMER_BACKING = 63438863;
+        public static final int TIMER_TEXT = 63438864;
     }
 
     public static GamevalEntry[] entries() { return InterfaceIDEntries.entries(); }

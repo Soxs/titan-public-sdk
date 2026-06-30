@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_33 {
-    int ID_16896 = 16896;
-    int ID_16897 = 16897;
     int ID_16898 = 16898;
     int WOODEN_TABLE_16899 = 16899;
     int CHAIR_16900 = 16900;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_33 {
     int GANGPLANK_17405 = 17405;
     int GANGPLANK_17406 = 17406;
     int GANGPLANK_17407 = 17407;
+    int GANGPLANK_17408 = 17408;
+    int GANGPLANK_17409 = 17409;
 }

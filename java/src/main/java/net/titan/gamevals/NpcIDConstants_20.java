@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_20 {
-    int ID_10240 = 10240;
     int ID_10241 = 10241;
     int ID_10242 = 10242;
     int ID_10243 = 10243;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_20 {
     int GEM_10749 = 10749;
     int GEM_10750 = 10750;
     int GEM_10751 = 10751;
+    int GEM_10752 = 10752;
 }

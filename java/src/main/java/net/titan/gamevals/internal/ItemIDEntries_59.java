@@ -10,9 +10,6 @@ final class ItemIDEntries_59 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(30290, "DARK_GREEN_PUMPKIN_SAD", "Dark green pumpkin (sad)", "objtypes"),
-            new GamevalEntry(30291, "DARK_GREEN_PUMPKIN_HAPPY", "Dark green pumpkin (happy)", "objtypes"),
-            new GamevalEntry(30292, "DARK_GREEN_PUMPKIN_LAUGHING", "Dark green pumpkin (laughing)", "objtypes"),
             new GamevalEntry(30293, "POWDER_GREY_PUMPKIN_DISGUSTED", "Powder grey pumpkin (disgusted)", "objtypes"),
             new GamevalEntry(30294, "POWDER_GREY_PUMPKIN_SILLY", "Powder grey pumpkin (silly)", "objtypes"),
             new GamevalEntry(30295, "POWDER_GREY_PUMPKIN_EVIL", "Powder grey pumpkin (evil)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_59 {
             new GamevalEntry(30799, "ID_30799", "", "objtypes"),
             new GamevalEntry(30800, "DEMONIC_TALLOW", "Demonic tallow", "objtypes"),
             new GamevalEntry(30801, "ID_30801", "", "objtypes"),
+            new GamevalEntry(30802, "ID_30802", "", "objtypes"),
+            new GamevalEntry(30803, "DOSSIER_30803", "Dossier", "objtypes"),
+            new GamevalEntry(30804, "ID_30804", "", "objtypes"),
         };
     }
 

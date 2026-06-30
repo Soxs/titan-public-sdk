@@ -1,12 +1,21 @@
 package net.titan.api.utils;
 
+import net.titan.api.GroundItem;
+import net.titan.api.InventoryItem;
+import net.titan.api.MenuAction;
+import net.titan.api.NPC;
+import net.titan.api.Player;
+import net.titan.api.ScreenPoint;
 import net.titan.api.Skill;
 import net.titan.api.Titan;
+import net.titan.api.TileObject;
 import net.titan.api.VarPlayerId;
+import net.titan.api.Widget;
 import net.titan.gamevals.InterfaceID;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Optional;
 
 public final class Magic {
     public static final int SPELLBOOK_VARBIT = 4070;
@@ -14,6 +23,8 @@ public final class Magic {
     private static final int ARDOUGNE_TELEPORT_VARP = 165;
     private static final int TROLLHEIM_TELEPORT_VARP = 335;
     private static final Duration HOME_TELEPORT_COOLDOWN = Duration.ofMinutes(30);
+    private static final String CAST_ACTION_TEXT = "Cast";
+    private static final String BLANK_TARGET_TEXT = "";
 
     private Magic() {}
 
@@ -274,6 +285,71 @@ public final class Magic {
         public int packedId() { return packedId; }
         public int childIndex() { return childIndex; }
         public int itemId() { return itemId; }
+
+        public boolean castOn(SpellInfo spell) { return Magic.castOn(spell, this); }
+        public boolean castOn(Standard spell) { return Magic.castOn(spell, this); }
+        public boolean castOn(Ancient spell) { return Magic.castOn(spell, this); }
+        public boolean castOn(Lunar spell) { return Magic.castOn(spell, this); }
+        public boolean castOn(Necromancy spell) { return Magic.castOn(spell, this); }
+    }
+
+    private static final class TargetAction {
+        private final int opcode;
+        private final int identifier;
+        private final int param0;
+        private final int param1;
+        private final boolean widgetInteract;
+        private int worldViewId;
+        private int targetPlane = -1;
+        private int targetSizeX = 1;
+        private int targetSizeY = 1;
+        private int targetLayer = -1;
+        private long targetEntityPtr;
+        private long targetPackedId;
+
+        private TargetAction(int opcode, int identifier, int param0, int param1) {
+            this(opcode, identifier, param0, param1, false);
+        }
+
+        private TargetAction(int opcode, int identifier, int param0, int param1,
+                             boolean widgetInteract) {
+            this.opcode = opcode;
+            this.identifier = identifier;
+            this.param0 = param0;
+            this.param1 = param1;
+            this.widgetInteract = widgetInteract;
+        }
+
+        private TargetAction worldViewId(int value) {
+            this.worldViewId = value;
+            return this;
+        }
+
+        private TargetAction targetPlane(int value) {
+            this.targetPlane = value;
+            return this;
+        }
+
+        private TargetAction targetSize(int x, int y) {
+            this.targetSizeX = Math.max(1, x);
+            this.targetSizeY = Math.max(1, y);
+            return this;
+        }
+
+        private TargetAction targetLayer(int value) {
+            this.targetLayer = value;
+            return this;
+        }
+
+        private TargetAction targetEntityPtr(long value) {
+            this.targetEntityPtr = value;
+            return this;
+        }
+
+        private TargetAction targetPackedId(long value) {
+            this.targetPackedId = value;
+            return this;
+        }
     }
 
     public static SpellInfo info(Standard spell) {
@@ -533,7 +609,7 @@ public final class Magic {
     public static boolean canCast(Necromancy spell) { return canCast(info(spell)); }
 
     public static boolean select(SpellInfo spell) {
-        return false;
+        return cast(spell);
     }
 
     public static boolean select(Standard spell) { return select(info(spell)); }
@@ -542,43 +618,190 @@ public final class Magic {
     public static boolean select(Necromancy spell) { return select(info(spell)); }
 
     public static boolean cast(SpellInfo spell) {
-        return false;
-    }
-
-    public static boolean cast(SpellInfo spell, boolean skipMovement) {
-        return false;
+        return isValidSpell(spell) &&
+            Titan.client().widgetInteract(MenuAction.WIDGET_TARGET, 0, -1, spell.widget());
     }
 
     public static boolean cast(SpellInfo spell, int actionIndex) {
-        return false;
+        return cast(spell, actionIndex, MenuAction.CC_OP);
     }
 
-    public static boolean cast(SpellInfo spell, int actionIndex, boolean skipMovement) {
-        return false;
+    public static boolean cast(SpellInfo spell, int actionIndex, int opcode) {
+        return actionIndex >= 0 && isValidSpell(spell) &&
+            Titan.client().widgetInteract(opcode, actionIndex + 1, -1, spell.widget());
     }
 
     public static boolean cast(Standard spell) { return cast(info(spell)); }
     public static boolean cast(Ancient spell) { return cast(info(spell)); }
     public static boolean cast(Lunar spell) { return cast(info(spell)); }
     public static boolean cast(Necromancy spell) { return cast(info(spell)); }
+    public static boolean cast(Standard spell, int actionIndex) { return cast(info(spell), actionIndex); }
+    public static boolean cast(Ancient spell, int actionIndex) { return cast(info(spell), actionIndex); }
+    public static boolean cast(Lunar spell, int actionIndex) { return cast(info(spell), actionIndex); }
+    public static boolean cast(Necromancy spell, int actionIndex) { return cast(info(spell), actionIndex); }
+    public static boolean cast(Standard spell, int actionIndex, int opcode) { return cast(info(spell), actionIndex, opcode); }
+    public static boolean cast(Ancient spell, int actionIndex, int opcode) { return cast(info(spell), actionIndex, opcode); }
+    public static boolean cast(Lunar spell, int actionIndex, int opcode) { return cast(info(spell), actionIndex, opcode); }
+    public static boolean cast(Necromancy spell, int actionIndex, int opcode) { return cast(info(spell), actionIndex, opcode); }
 
-    public static boolean castOn(SpellInfo spell, Object target) {
-        return false;
+    public static boolean castOn(SpellInfo spell, WidgetTarget target) {
+        return castOnTarget(spell, targetAction(target));
     }
 
-    public static boolean castOn(SpellInfo spell, Object target, boolean skipMovement) {
-        return false;
+    public static boolean castOn(SpellInfo spell, Widget target) {
+        return castOnTarget(spell, targetAction(target));
     }
 
-    public static boolean castOn(Standard spell, Object target) { return castOn(info(spell), target); }
-    public static boolean castOn(Ancient spell, Object target) { return castOn(info(spell), target); }
-    public static boolean castOn(Lunar spell, Object target) { return castOn(info(spell), target); }
-    public static boolean castOn(Necromancy spell, Object target) { return castOn(info(spell), target); }
+    public static boolean castOn(SpellInfo spell, InventoryItem target) {
+        return castOnTarget(spell, targetAction(target));
+    }
+
+    public static boolean castOn(SpellInfo spell, NPC target) {
+        return castOnTarget(spell, targetAction(target));
+    }
+
+    public static boolean castOn(SpellInfo spell, Player target) {
+        return castOnTarget(spell, targetAction(target));
+    }
+
+    public static boolean castOn(SpellInfo spell, GroundItem target) {
+        return castOnTarget(spell, targetAction(target));
+    }
+
+    public static boolean castOn(SpellInfo spell, TileObject target) {
+        return castOnTarget(spell, targetAction(target));
+    }
+
+    public static boolean castOn(Standard spell, WidgetTarget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Standard spell, Widget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Standard spell, InventoryItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Standard spell, NPC target) { return castOn(info(spell), target); }
+    public static boolean castOn(Standard spell, Player target) { return castOn(info(spell), target); }
+    public static boolean castOn(Standard spell, GroundItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Standard spell, TileObject target) { return castOn(info(spell), target); }
+
+    public static boolean castOn(Ancient spell, WidgetTarget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Ancient spell, Widget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Ancient spell, InventoryItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Ancient spell, NPC target) { return castOn(info(spell), target); }
+    public static boolean castOn(Ancient spell, Player target) { return castOn(info(spell), target); }
+    public static boolean castOn(Ancient spell, GroundItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Ancient spell, TileObject target) { return castOn(info(spell), target); }
+
+    public static boolean castOn(Lunar spell, WidgetTarget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Lunar spell, Widget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Lunar spell, InventoryItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Lunar spell, NPC target) { return castOn(info(spell), target); }
+    public static boolean castOn(Lunar spell, Player target) { return castOn(info(spell), target); }
+    public static boolean castOn(Lunar spell, GroundItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Lunar spell, TileObject target) { return castOn(info(spell), target); }
+
+    public static boolean castOn(Necromancy spell, WidgetTarget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Necromancy spell, Widget target) { return castOn(info(spell), target); }
+    public static boolean castOn(Necromancy spell, InventoryItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Necromancy spell, NPC target) { return castOn(info(spell), target); }
+    public static boolean castOn(Necromancy spell, Player target) { return castOn(info(spell), target); }
+    public static boolean castOn(Necromancy spell, GroundItem target) { return castOn(info(spell), target); }
+    public static boolean castOn(Necromancy spell, TileObject target) { return castOn(info(spell), target); }
+
+    private static boolean castOnTarget(SpellInfo spell, TargetAction action) {
+        return action != null && select(spell) && scheduleTargetAction(action);
+    }
 
     private static SpellInfo spellInfo(String name, int level, int widget,
                                        SpellBook book, boolean members,
                                        int menuEntryId) {
         return new SpellInfo(name, level, widget, book, members, menuEntryId);
+    }
+
+    private static boolean isValidSpell(SpellInfo spell) {
+        return spell != null && !spell.name().isEmpty() && spell.widget() != 0;
+    }
+
+    private static TargetAction targetAction(WidgetTarget target) {
+        if (target == null || target.packedId() == 0) return null;
+        return new TargetAction(
+            MenuAction.WIDGET_TARGET_ON_WIDGET, 0, target.childIndex(), target.packedId(), true);
+    }
+
+    private static TargetAction targetAction(Widget target) {
+        if (target == null || target.packedId() == 0) return null;
+        return new TargetAction(
+            MenuAction.WIDGET_TARGET_ON_WIDGET, 0, target.dynamicChildSlot(), target.packedId(), true);
+    }
+
+    private static TargetAction targetAction(InventoryItem target) {
+        if (target == null || target.slot() < 0 || target.id() < 0) return null;
+        return new TargetAction(
+            MenuAction.WIDGET_TARGET_ON_WIDGET, 0, target.slot(), InterfaceID.Inventory.ITEMS, true);
+    }
+
+    private static TargetAction targetAction(NPC target) {
+        if (target == null || target.hashIndex() < 0) return null;
+        return new TargetAction(MenuAction.WIDGET_TARGET_ON_NPC, target.hashIndex(), 0, 0)
+            .worldViewId(target.worldViewId())
+            .targetPlane(target.plane())
+            .targetSize(target.sizeX(), target.sizeY())
+            .targetEntityPtr(target.entityPtr());
+    }
+
+    private static TargetAction targetAction(Player target) {
+        if (target == null || target.hashIndex() < 0) return null;
+        return new TargetAction(MenuAction.WIDGET_TARGET_ON_PLAYER, target.hashIndex(), 0, 0)
+            .worldViewId(target.worldViewId())
+            .targetPlane(target.plane())
+            .targetEntityPtr(target.entityPtr());
+    }
+
+    private static TargetAction targetAction(GroundItem target) {
+        if (target == null || target.id() < 0) return null;
+        return new TargetAction(
+            MenuAction.WIDGET_TARGET_ON_GROUND_ITEM, target.id(), target.tileX(), target.tileY())
+            .worldViewId(target.worldViewId())
+            .targetPlane(target.plane());
+    }
+
+    private static TargetAction targetAction(TileObject target) {
+        if (target == null || target.id() < 0) return null;
+        return new TargetAction(
+            MenuAction.WIDGET_TARGET_ON_GAME_OBJECT, target.id(), target.tileX(), target.tileY())
+            .worldViewId(target.worldViewId())
+            .targetPlane(target.plane())
+            .targetSize(target.sizeX(), target.sizeY())
+            .targetLayer(target.layer())
+            .targetEntityPtr(target.entityPtr())
+            .targetPackedId(target.packedId());
+    }
+
+    private static boolean scheduleTargetAction(TargetAction action) {
+        try {
+            if (action.widgetInteract) {
+                Titan.runOnClientTick(() -> Titan.client().widgetInteract(
+                    action.opcode, action.identifier, action.param0, action.param1));
+            } else {
+                Titan.runOnClientTick(() -> {
+                    Optional<ScreenPoint> click = Mouse.resolveActionClickPoint(
+                        action.opcode, action.identifier, action.param0, action.param1,
+                        action.worldViewId, action.targetPlane,
+                        action.targetSizeX, action.targetSizeY,
+                        action.targetLayer, action.targetEntityPtr,
+                        action.targetPackedId);
+                    if (!click.isPresent()) return;
+                    ScreenPoint point = click.get();
+                    long dispatchWorldViewId = action.worldViewId < 0
+                        ? Titan.client().currentWorldViewId()
+                        : action.worldViewId;
+                    if (dispatchWorldViewId < 0) dispatchWorldViewId = 0;
+                    Titan.client().invokeMenuAction(
+                        action.opcode, action.identifier, action.param0, action.param1,
+                        dispatchWorldViewId, point.x(), point.y(),
+                        CAST_ACTION_TEXT, BLANK_TARGET_TEXT, false);
+                });
+            }
+            return true;
+        } catch (RuntimeException ex) {
+            return false;
+        }
     }
 
     private static SpellInfo empty() {

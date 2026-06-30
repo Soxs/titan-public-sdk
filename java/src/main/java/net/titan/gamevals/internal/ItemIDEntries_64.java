@@ -10,9 +10,6 @@ final class ItemIDEntries_64 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(32850, "ID_32850", "", "objtypes"),
-            new GamevalEntry(32851, "BARRACUDA_SALVAGE", "Barracuda salvage", "objtypes"),
-            new GamevalEntry(32852, "ID_32852", "", "objtypes"),
             new GamevalEntry(32853, "LARGE_SALVAGE", "Large salvage", "objtypes"),
             new GamevalEntry(32854, "ID_32854", "", "objtypes"),
             new GamevalEntry(32855, "PLUNDERED_SALVAGE", "Plundered salvage", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_64 {
             new GamevalEntry(33365, "IMPISH_WHISTLE", "Impish whistle", "objtypes"),
             new GamevalEntry(33366, "ID_33366", "", "objtypes"),
             new GamevalEntry(33367, "ID_33367", "", "objtypes"),
+            new GamevalEntry(33368, "DEMONIC_PACTS_DEMON_BUTLER_SCROLL", "Demonic pacts demon butler scroll", "objtypes"),
+            new GamevalEntry(33369, "ID_33369", "", "objtypes"),
+            new GamevalEntry(33370, "ID_33370", "", "objtypes"),
         };
     }
 

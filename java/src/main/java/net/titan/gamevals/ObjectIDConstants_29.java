@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_29 {
-    int GAP_14848 = 14848;
-    int CHAIR_14849 = 14849;
     int CHAIR_14850 = 14850;
     int TABLE_14851 = 14851;
     int TABLE_14852 = 14852;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_29 {
     int DOOR_SPACE_15357 = 15357;
     int DOOR_SPACE_15358 = 15358;
     int DOOR_SPACE_15359 = 15359;
+    int DOOR_SPACE_15360 = 15360;
+    int CENTREPIECE_SPACE = 15361;
 }

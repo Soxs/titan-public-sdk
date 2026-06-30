@@ -212,8 +212,8 @@ public interface NpcIDConstants_7 {
     int TALK_TO_3792 = 3792;
     int TALK_TO_3793 = 3793;
     int TALK_TO_3794 = 3794;
-    int MEIYERDITCH_CITIZEN = 3795;
-    int MEIYERDITCH_CITIZEN_3796 = 3796;
+    int TALK_TO_3795 = 3795;
+    int TALK_TO_3796 = 3796;
     int TALK_TO_3797 = 3797;
     int TALK_TO_3798 = 3798;
     int TALK_TO_3799 = 3799;

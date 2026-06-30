@@ -1,0 +1,40 @@
+package net.titan.gamevals;
+
+public interface VarPlayerIDConstants_11 {
+    int ID_5632 = 5632;
+    int ID_5633 = 5633;
+    int ID_5634 = 5634;
+    int ID_5635 = 5635;
+    int ID_5636 = 5636;
+    int ID_5637 = 5637;
+    int ID_5638 = 5638;
+    int ID_5639 = 5639;
+    int ID_5640 = 5640;
+    int ID_5641 = 5641;
+    int ID_5642 = 5642;
+    int ID_5643 = 5643;
+    int ID_5644 = 5644;
+    int ID_5645 = 5645;
+    int ID_5646 = 5646;
+    int ID_5647 = 5647;
+    int ID_5648 = 5648;
+    int ID_5649 = 5649;
+    int ID_5650 = 5650;
+    int ID_5651 = 5651;
+    int ID_5652 = 5652;
+    int ID_5653 = 5653;
+    int ID_5654 = 5654;
+    int ID_5655 = 5655;
+    int ID_5656 = 5656;
+    int ID_5657 = 5657;
+    int ID_5658 = 5658;
+    int ID_5659 = 5659;
+    int ID_5660 = 5660;
+    int ID_5661 = 5661;
+    int ID_5662 = 5662;
+    int ID_5663 = 5663;
+    int ID_5664 = 5664;
+    int ID_5665 = 5665;
+    int ID_5666 = 5666;
+    int ID_5667 = 5667;
+}

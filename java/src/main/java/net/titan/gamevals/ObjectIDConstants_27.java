@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_27 {
-    int TEAK_WALL_DECORATION_13824 = 13824;
-    int TEAK_WALL_DECORATION_13825 = 13825;
     int TEAK_WALL_DECORATION_13826 = 13826;
     int TEAK_WALL_DECORATION_13827 = 13827;
     int TEAK_WALL_DECORATION_13828 = 13828;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_27 {
     int ID_14333 = 14333;
     int ID_14334 = 14334;
     int BONES_14335 = 14335;
+    int ID_14336 = 14336;
+    int ID_14337 = 14337;
 }

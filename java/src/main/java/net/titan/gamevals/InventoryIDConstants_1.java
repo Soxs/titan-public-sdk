@@ -511,4 +511,6 @@ public interface InventoryIDConstants_1 {
     int ID_1019 = 1019;
     int ID_1020 = 1020;
     int ID_1021 = 1021;
+    int ID_1022 = 1022;
+    int ID_1023 = 1023;
 }

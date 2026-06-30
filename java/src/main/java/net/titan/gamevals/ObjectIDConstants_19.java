@@ -321,7 +321,6 @@ public interface ObjectIDConstants_19 {
     int DOOR_10045 = 10045;
     int ID_10046 = 10046;
     int DARK_TUNNEL_10047 = 10047;
-    int TRAPDOOR_10048 = 10048;
     int GRAVE_10049 = 10049;
     int GRAVE_10050 = 10050;
     int GRAVE_10051 = 10051;
@@ -513,4 +512,5 @@ public interface ObjectIDConstants_19 {
     int ID_10237 = 10237;
     int ID_10238 = 10238;
     int ID_10239 = 10239;
+    int ID_10240 = 10240;
 }

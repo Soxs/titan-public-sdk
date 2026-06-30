@@ -10,7 +10,6 @@ final class NpcIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(13312, "LAVINIA", "Lavinia", "npctypes"),
             new GamevalEntry(13313, "VICTOR_13313", "Victor", "npctypes"),
             new GamevalEntry(13314, "CAIUS", "Caius", "npctypes"),
             new GamevalEntry(13315, "RUFUS_13315", "Rufus", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_26 {
             new GamevalEntry(13821, "ADALA_13821", "Adala", "npctypes"),
             new GamevalEntry(13822, "ADALA_13822", "Adala", "npctypes"),
             new GamevalEntry(13823, "ADALA_13823", "Adala", "npctypes"),
+            new GamevalEntry(13824, "ADALA_13824", "Adala", "npctypes"),
         };
     }
 

@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_12 {
-    int ID_6144 = 6144;
     int ID_6145 = 6145;
     int ID_6146 = 6146;
     int ID_6147 = 6147;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_12 {
     int KALPHITE_PRINCESS_6653 = 6653;
     int KALPHITE_PRINCESS_6654 = 6654;
     int SMOKE_DEVIL_6655 = 6655;
+    int KRAKEN_6656 = 6656;
 }

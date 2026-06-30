@@ -10,7 +10,6 @@ final class NpcIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(7680, "TZHAAR_MEJ_DIR", "TzHaar-Mej-Dir", "npctypes"),
             new GamevalEntry(7681, "TZHAAR_MEJ_BAL", "TzHaar-Mej-Bal", "npctypes"),
             new GamevalEntry(7682, "TZHAAR_HUR_7682", "TzHaar-Hur", "npctypes"),
             new GamevalEntry(7683, "TZHAAR_HUR_7683", "TzHaar-Hur", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_15 {
             new GamevalEntry(8189, "GRAVE_DIGGER", "Grave digger", "npctypes"),
             new GamevalEntry(8190, "ID_8190", "", "npctypes"),
             new GamevalEntry(8191, "ID_8191", "", "npctypes"),
+            new GamevalEntry(8192, "ID_8192", "", "npctypes"),
         };
     }
 

@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_45 {
-    int M_AYY_YAYA_23040 = 23040;
-    int M_AYY_YAYA_23041 = 23041;
     int TOOLS_23042 = 23042;
     int TOOLS_23043 = 23043;
     int METAL = 23044;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_45 {
     int SPIKES_23549 = 23549;
     int SPIKES_23550 = 23550;
     int ID_23551 = 23551;
+    int GATE_23552 = 23552;
+    int FILL = 23553;
 }

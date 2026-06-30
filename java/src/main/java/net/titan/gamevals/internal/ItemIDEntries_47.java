@@ -10,9 +10,6 @@ final class ItemIDEntries_47 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(24064, "ID_24064", "", "objtypes"),
-            new GamevalEntry(24065, "EBRILL_S_JOURNAL", "Ebrill's journal", "objtypes"),
-            new GamevalEntry(24066, "ID_24066", "", "objtypes"),
             new GamevalEntry(24067, "STAINED_JOURNAL", "Stained journal", "objtypes"),
             new GamevalEntry(24068, "ID_24068", "", "objtypes"),
             new GamevalEntry(24069, "THE_TRUTH_BEHIND_THE_MYTH_EXCERPT", "The truth behind the myth (excerpt)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_47 {
             new GamevalEntry(24573, "ANTIQUE_EMBLEM_TIER_5", "Antique emblem (tier 5)", "objtypes"),
             new GamevalEntry(24574, "ID_24574", "", "objtypes"),
             new GamevalEntry(24575, "ANTIQUE_EMBLEM_TIER_6", "Antique emblem (tier 6)", "objtypes"),
+            new GamevalEntry(24576, "ID_24576", "", "objtypes"),
+            new GamevalEntry(24577, "ANTIQUE_EMBLEM_TIER_7", "Antique emblem (tier 7)", "objtypes"),
+            new GamevalEntry(24578, "ID_24578", "", "objtypes"),
         };
     }
 

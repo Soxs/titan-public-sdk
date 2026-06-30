@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_11 {
-    int ASYN_SHADOW_5632 = 5632;
     int C_ATTACK = 5633;
     int VAMPYRE_JUVINATE_5634 = 5634;
     int VAMPYRE_JUVINATE_5635 = 5635;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_11 {
     int ID_6141 = 6141;
     int ID_6142 = 6142;
     int URIUM_SHADOW = 6143;
+    int ID_6144 = 6144;
 }

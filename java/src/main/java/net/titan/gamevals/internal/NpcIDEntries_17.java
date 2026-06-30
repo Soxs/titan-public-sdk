@@ -10,7 +10,6 @@ final class NpcIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(8704, "BROTHER_AIMERI", "Brother Aimeri", "npctypes"),
             new GamevalEntry(8705, "BROTHER_AIMERI_8705", "/ / Brother Aimeri", "npctypes"),
             new GamevalEntry(8706, "OLBERTUS", "Olbertus", "npctypes"),
             new GamevalEntry(8707, "OLBERTUS_8707", "Olbertus", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_17 {
             new GamevalEntry(9213, "ID_9213", "", "npctypes"),
             new GamevalEntry(9214, "ID_9214", "", "npctypes"),
             new GamevalEntry(9215, "ID_9215", "", "npctypes"),
+            new GamevalEntry(9216, "ID_9216", "", "npctypes"),
         };
     }
 

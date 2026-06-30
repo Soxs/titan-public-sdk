@@ -10,7 +10,6 @@ final class NpcIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(9728, "VAMPYRE_JUVINATE_9728", "+ Vampyre Juvinate", "npctypes"),
             new GamevalEntry(9729, "VAMPYRE_JUVINATE_9729", "+ Vampyre Juvinate", "npctypes"),
             new GamevalEntry(9730, "VAMPYRE_JUVINATE_9730", "+ Vampyre Juvinate", "npctypes"),
             new GamevalEntry(9731, "VAMPYRE_JUVENILE_9731", "Vampyre Juvenile", "npctypes"),
@@ -27,17 +26,17 @@ final class NpcIDEntries_19 {
             new GamevalEntry(9742, "VYREWATCH_9742", "Vyrewatch", "npctypes"),
             new GamevalEntry(9743, "WEREWOLF_9743", "Werewolf", "npctypes"),
             new GamevalEntry(9744, "WEREWOLF_9744", "Werewolf", "npctypes"),
-            new GamevalEntry(9745, "WEREWOLF_9745", "Werewolf", "npctypes"),
-            new GamevalEntry(9746, "AUCTIONEER", "Auctioneer", "npctypes"),
+            new GamevalEntry(9745, "ID_9745", "", "npctypes"),
+            new GamevalEntry(9746, "ID_9746", "", "npctypes"),
             new GamevalEntry(9747, "ID_9747", "", "npctypes"),
             new GamevalEntry(9748, "ID_9748", "", "npctypes"),
             new GamevalEntry(9749, "ID_9749_16_353_FRANK", "16! +? 353 Frank", "npctypes"),
-            new GamevalEntry(9750, "SPECTATOR_9750", "Spectator", "npctypes"),
-            new GamevalEntry(9751, "SPECTATOR_9751", "Spectator", "npctypes"),
-            new GamevalEntry(9752, "SPECTATOR_9752", "Spectator", "npctypes"),
-            new GamevalEntry(9753, "SPECTATOR_9753", "Spectator", "npctypes"),
-            new GamevalEntry(9754, "SPECTATOR_9754", "Spectator", "npctypes"),
-            new GamevalEntry(9755, "SPECTATOR_9755", "Spectator", "npctypes"),
+            new GamevalEntry(9750, "ID_9750", "", "npctypes"),
+            new GamevalEntry(9751, "ID_9751", "", "npctypes"),
+            new GamevalEntry(9752, "ID_9752", "", "npctypes"),
+            new GamevalEntry(9753, "ID_9753", "", "npctypes"),
+            new GamevalEntry(9754, "ID_9754", "", "npctypes"),
+            new GamevalEntry(9755, "ID_9755", "", "npctypes"),
             new GamevalEntry(9756, "VYREWATCH_SENTINEL_9756", "Vyrewatch Sentinel", "npctypes"),
             new GamevalEntry(9757, "VYREWATCH_SENTINEL_9757", "Vyrewatch Sentinel", "npctypes"),
             new GamevalEntry(9758, "VYREWATCH_SENTINEL_9758", "Vyrewatch Sentinel", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_19 {
             new GamevalEntry(10237, "ID_10237", "", "npctypes"),
             new GamevalEntry(10238, "ID_10238", "", "npctypes"),
             new GamevalEntry(10239, "ID_10239", "", "npctypes"),
+            new GamevalEntry(10240, "ID_10240", "", "npctypes"),
         };
     }
 

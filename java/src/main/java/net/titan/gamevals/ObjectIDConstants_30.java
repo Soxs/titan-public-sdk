@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_30 {
-    int DOOR_SPACE_15360 = 15360;
-    int CENTREPIECE_SPACE = 15361;
     int BIG_TREE_SPACE = 15362;
     int TREE_SPACE = 15363;
     int BIG_PLANT_SPACE_1 = 15364;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_30 {
     int BAMBOO_PIPES_15869 = 15869;
     int BAMBOO_PIPES_15870 = 15870;
     int RUM_CRATE_15871 = 15871;
+    int BLUE_FLOWERS = 15872;
+    int HOPPER_15873 = 15873;
 }

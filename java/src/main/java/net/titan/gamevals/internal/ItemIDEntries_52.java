@@ -10,9 +10,6 @@ final class ItemIDEntries_52 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(26677, "RED_SLAYER_HELMET_I_26677", "Red slayer helmet (i)", "objtypes"),
-            new GamevalEntry(26678, "PURPLE_SLAYER_HELMET_I_26678", "Purple slayer helmet (i)", "objtypes"),
-            new GamevalEntry(26679, "TURQUOISE_SLAYER_HELMET_I_26679", "Turquoise slayer helmet (i)", "objtypes"),
             new GamevalEntry(26680, "HYDRA_SLAYER_HELMET_I_26680", "Hydra slayer helmet (i)", "objtypes"),
             new GamevalEntry(26681, "TWISTED_SLAYER_HELMET_I_26681", "Twisted slayer helmet (i)", "objtypes"),
             new GamevalEntry(26682, "TZTOK_SLAYER_HELMET_I_26682", "Tztok slayer helmet (i)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_52 {
             new GamevalEntry(27186, "ZARYTE_CROSSBOW_27186", "Zaryte crossbow", "objtypes"),
             new GamevalEntry(27187, "BOW_OF_FAERDHINEN_C_27187", "Bow of faerdhinen (c)", "objtypes"),
             new GamevalEntry(27188, "LIGHT_BALLISTA_27188", "Light ballista", "objtypes"),
+            new GamevalEntry(27189, "VERAC_S_FLAIL_27189", "Verac's flail", "objtypes"),
+            new GamevalEntry(27190, "VERAC_S_BRASSARD_27190", "Verac's brassard", "objtypes"),
+            new GamevalEntry(27191, "UNHOLY_BOOK_27191", "Unholy book", "objtypes"),
         };
     }
 

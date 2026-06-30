@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_13 {
-    int KRAKEN_6656 = 6656;
     int PET_ROCK_6657 = 6657;
     int FISHBOWL = 6658;
     int FISHBOWL_6659 = 6659;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_13 {
     int CARADO_7165 = 7165;
     int BUNKWICKET_7166 = 7166;
     int BUNKWICKET_7167 = 7167;
+    int WAYMOTTIN_7168 = 7168;
 }

@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_18 {
-    int ID_9216 = 9216;
     int ID_9217 = 9217;
     int ID_9218 = 9218;
     int ID_9219 = 9219;
@@ -375,9 +374,9 @@ public interface NpcIDConstants_18 {
     int VAMPYRE_JUVINATE_9587 = 9587;
     int DESMODUS_LASIURUS = 9588;
     int MORDAN_NIKAZSI = 9589;
-    int VYREWATCH_9590 = 9590;
+    int ID_9590 = 9590;
     int VYREWATCH_9591 = 9591;
-    int PRISONER_9592 = 9592;
+    int ID_9592 = 9592;
     int PRISONER_9593 = 9593;
     int MARIA_GADDERANKS = 9594;
     int MARIA_GADDERANKS_9595 = 9595;
@@ -442,8 +441,8 @@ public interface NpcIDConstants_18 {
     int KNIGHT_OF_THE_LION = 9654;
     int ID_9655 = 9655;
     int ARCHPRIEST_OF_THE_UNICORN = 9656;
-    int DARKMEYER_SLAVE = 9657;
-    int DARKMEYER_SLAVE_9658 = 9658;
+    int MAN_9657 = 9657;
+    int MAN_9658 = 9658;
     int MAD_MELVIN96 = 9659;
     int R2T2PNSH0TY = 9660;
     int JYN = 9661;
@@ -462,12 +461,12 @@ public interface NpcIDConstants_18 {
     int ID_9674 = 9674;
     int NORANNA_TYTANIN = 9675;
     int NORANNA_TYTANIN_9676 = 9676;
-    int SLAVE_9677 = 9677;
-    int SLAVE_9678 = 9678;
-    int SLAVE_9679 = 9679;
-    int SLAVE_9680 = 9680;
-    int SLAVE_9681 = 9681;
-    int SLAVE_9682 = 9682;
+    int ID_9677 = 9677;
+    int ID_9678 = 9678;
+    int ID_9679 = 9679;
+    int ID_9680 = 9680;
+    int ID_9681 = 9681;
+    int ID_9682 = 9682;
     int TALK_TO_9683 = 9683;
     int TALK_TO_9684 = 9684;
     int VALENTIN_RASPUTIN = 9685;
@@ -501,7 +500,7 @@ public interface NpcIDConstants_18 {
     int CRIMSONETTE_VAN_MARR = 9713;
     int PIPISTRELLE_DRAYNAR = 9714;
     int LADY_NADEZHDA_SHADUM = 9715;
-    int LORD_MISCHA_MYRMEL = 9716;
+    int ID_9716 = 9716;
     int LORD_ALEXEI_JOVKAI_9717 = 9717;
     int BANKER_9718 = 9718;
     int BANKER_9719 = 9719;
@@ -510,7 +509,8 @@ public interface NpcIDConstants_18 {
     int DESPOINA_CALLIDRA = 9722;
     int LENYIG_KARNA = 9723;
     int VARRIAN_SOBAK = 9724;
-    int SLAVE_9725 = 9725;
-    int SLAVE_9726 = 9726;
+    int ID_9725 = 9725;
+    int ID_9726 = 9726;
     int VAMPYRE_JUVINATE_9727 = 9727;
+    int VAMPYRE_JUVINATE_9728 = 9728;
 }

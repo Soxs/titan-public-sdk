@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_50 {
-    int GREAT_BLUE_HERON = 25600;
-    int ID_25601 = 25601;
-    int TINY_TEMPOR = 25602;
     int ID_25603 = 25603;
     int GREGG_S_EASTDOOR = 25604;
     int ID_25605 = 25605;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_50 {
     int GROUP_IRONMAN_PLATEBODY_26162 = 26162;
     int ID_26163 = 26163;
     int GROUP_IRONMAN_PLATEBODY_26164 = 26164;
+    int ID_26165 = 26165;
+    int GROUP_IRONMAN_PLATELEGS = 26166;
+    int ID_26167 = 26167;
 }

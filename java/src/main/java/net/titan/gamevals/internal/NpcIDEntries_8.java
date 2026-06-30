@@ -376,12 +376,11 @@ final class NpcIDEntries_8 {
             new GamevalEntry(4459, "X_TALK_TO_4459", "X Talk-to", "npctypes"),
             new GamevalEntry(4460, "XG", "Xg", "npctypes"),
             new GamevalEntry(4461, "GABRIELA", "Gabriela", "npctypes"),
-            new GamevalEntry(4462, "VLADIMIR", "Vladimir", "npctypes"),
             new GamevalEntry(4463, "CALIN", "Calin", "npctypes"),
             new GamevalEntry(4464, "MIHAIL", "Mihail", "npctypes"),
             new GamevalEntry(4465, "NICOLETA", "Nicoleta", "npctypes"),
             new GamevalEntry(4466, "SIMONA", "Simona", "npctypes"),
-            new GamevalEntry(4467, "VASILE", "Vasile", "npctypes"),
+            new GamevalEntry(4467, "ID_4467", "", "npctypes"),
             new GamevalEntry(4468, "RAZVAN", "Razvan", "npctypes"),
             new GamevalEntry(4469, "LUMINATA", "Luminata", "npctypes"),
             new GamevalEntry(4470, "CORNELIUS", "Cornelius", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_8 {
             new GamevalEntry(4605, "VAERINGK", "Vaeringk", "npctypes"),
             new GamevalEntry(4606, "OXI", "Oxi", "npctypes"),
             new GamevalEntry(4607, "FIOR", "Fior", "npctypes"),
+            new GamevalEntry(4608, "SAGIRA", "Sagira", "npctypes"),
         };
     }
 

@@ -10,8 +10,6 @@ final class ObjectIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(13824, "TEAK_WALL_DECORATION_13824", "Teak wall decoration", "loctypes"),
-            new GamevalEntry(13825, "TEAK_WALL_DECORATION_13825", "Teak wall decoration", "loctypes"),
             new GamevalEntry(13826, "TEAK_WALL_DECORATION_13826", "Teak wall decoration", "loctypes"),
             new GamevalEntry(13827, "TEAK_WALL_DECORATION_13827", "Teak wall decoration", "loctypes"),
             new GamevalEntry(13828, "TEAK_WALL_DECORATION_13828", "Teak wall decoration", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_27 {
             new GamevalEntry(14333, "ID_14333", "", "loctypes"),
             new GamevalEntry(14334, "ID_14334", "", "loctypes"),
             new GamevalEntry(14335, "BONES_14335", "Bones", "loctypes"),
+            new GamevalEntry(14336, "ID_14336", "", "loctypes"),
+            new GamevalEntry(14337, "ID_14337", "", "loctypes"),
         };
     }
 

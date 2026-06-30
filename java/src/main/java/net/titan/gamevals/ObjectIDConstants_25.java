@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_25 {
-    int BANK_BOOTH_12800 = 12800;
-    int BANK_BOOTH_12801 = 12801;
     int INSPECT_12802 = 12802;
     int ID_12803 = 12803;
     int BARREL_12804 = 12804;
@@ -58,7 +56,7 @@ public interface ObjectIDConstants_25 {
     int ID_12854 = 12854;
     int TABLE_12855 = 12855;
     int DOOR_12856 = 12856;
-    int BAR_PUMPS_12857 = 12857;
+    int ID_12857 = 12857;
     int ID_12858 = 12858;
     int ID_12859 = 12859;
     int ID_12860 = 12860;
@@ -93,7 +91,7 @@ public interface ObjectIDConstants_25 {
     int SMASHED_CHAIR_12889 = 12889;
     int BARREL_12890 = 12890;
     int BARREL_12891 = 12891;
-    int SMALL_TABLE_12892 = 12892;
+    int TABLE_12892 = 12892;
     int ID_12893 = 12893;
     int TREE_STUMP_12894 = 12894;
     int TREE_12895 = 12895;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_25 {
     int POSH_BELL_PULL = 13309;
     int SKELETON_13310 = 13310;
     int PIPE_13311 = 13311;
+    int BLOOD = 13312;
+    int CAGE_13313 = 13313;
 }

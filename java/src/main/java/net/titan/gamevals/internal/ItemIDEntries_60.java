@@ -10,9 +10,6 @@ final class ItemIDEntries_60 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(30802, "ID_30802", "", "objtypes"),
-            new GamevalEntry(30803, "DOSSIER_30803", "Dossier", "objtypes"),
-            new GamevalEntry(30804, "ID_30804", "", "objtypes"),
             new GamevalEntry(30805, "DOSSIER_30805", "Dossier", "objtypes"),
             new GamevalEntry(30806, "RITE_OF_VILE_TRANSFERENCE", "Rite of vile transference", "objtypes"),
             new GamevalEntry(30807, "ID_30807", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_60 {
             new GamevalEntry(31311, "ID_31311", "", "objtypes"),
             new GamevalEntry(31312, "ID_31312", "", "objtypes"),
             new GamevalEntry(31313, "ID_31313", "", "objtypes"),
+            new GamevalEntry(31314, "ID_31314", "", "objtypes"),
+            new GamevalEntry(31315, "ID_31315", "", "objtypes"),
+            new GamevalEntry(31316, "ID_31316", "", "objtypes"),
         };
     }
 

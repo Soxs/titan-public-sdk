@@ -189,7 +189,7 @@ final class ObjectIDEntries_7 {
             new GamevalEntry(3760, "CAVE_EXIT_3760", "Cave Exit", "loctypes"),
             new GamevalEntry(3761, "EXIT", "Exit", "loctypes"),
             new GamevalEntry(3762, "SECRET_DOOR", "Secret Door", "loctypes"),
-            new GamevalEntry(3763, "CELL_DOOR_3763", "Cell Door", "loctypes"),
+            new GamevalEntry(3763, "CELL_DOOR", "Cell Door", "loctypes"),
             new GamevalEntry(3764, "CELL_DOOR_3764", "Cell Door", "loctypes"),
             new GamevalEntry(3765, "CELL_DOOR_3765", "Cell Door", "loctypes"),
             new GamevalEntry(3766, "ID_3766", "", "loctypes"),

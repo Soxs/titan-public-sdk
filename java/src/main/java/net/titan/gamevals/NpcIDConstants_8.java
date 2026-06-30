@@ -367,12 +367,11 @@ public interface NpcIDConstants_8 {
     int X_TALK_TO_4459 = 4459;
     int XG = 4460;
     int GABRIELA = 4461;
-    int VLADIMIR = 4462;
     int CALIN = 4463;
     int MIHAIL = 4464;
     int NICOLETA = 4465;
     int SIMONA = 4466;
-    int VASILE = 4467;
+    int ID_4467 = 4467;
     int RAZVAN = 4468;
     int LUMINATA = 4469;
     int CORNELIUS = 4470;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_8 {
     int VAERINGK = 4605;
     int OXI = 4606;
     int FIOR = 4607;
+    int SAGIRA = 4608;
 }

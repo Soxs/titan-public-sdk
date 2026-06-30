@@ -10,7 +10,6 @@ final class NpcIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(5120, "RUPERT_THE_BEARD", "Rupert the Beard", "npctypes"),
             new GamevalEntry(5121, "RUPERT_THE_BEARD_5121", "Rupert the Beard", "npctypes"),
             new GamevalEntry(5122, "DRAIN_PIPE", "Drain pipe", "npctypes"),
             new GamevalEntry(5123, "RUPERT_THE_BEARD_5123", "Rupert the Beard", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_10 {
             new GamevalEntry(5629, "GIANT_SNAIL_5629", "Giant snail", "npctypes"),
             new GamevalEntry(5630, "GIANT_SNAIL_5630", "Giant snail", "npctypes"),
             new GamevalEntry(5631, "RIYL_SHADOW_5631", "Riyl shadow", "npctypes"),
+            new GamevalEntry(5632, "ASYN_SHADOW_5632", "Asyn shadow", "npctypes"),
         };
     }
 

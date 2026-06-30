@@ -10,9 +10,6 @@ final class ItemIDEntries_53 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(27189, "VERAC_S_FLAIL_27189", "Verac's flail", "objtypes"),
-            new GamevalEntry(27190, "VERAC_S_BRASSARD_27190", "Verac's brassard", "objtypes"),
-            new GamevalEntry(27191, "UNHOLY_BOOK_27191", "Unholy book", "objtypes"),
             new GamevalEntry(27192, "OPAL_DRAGON_BOLTS_E_27192", "Opal dragon bolts (e)", "objtypes"),
             new GamevalEntry(27193, "ANCESTRAL_ROBE_TOP_27193", "Ancestral robe top", "objtypes"),
             new GamevalEntry(27194, "ANCESTRAL_ROBE_BOTTOM_27194", "Ancestral robe bottom", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_53 {
             new GamevalEntry(27698, "ID_27698", "", "objtypes"),
             new GamevalEntry(27699, "CRYSTAL_BODY_INACTIVE_27699", "Crystal body (inactive)", "objtypes"),
             new GamevalEntry(27700, "ID_27700", "", "objtypes"),
+            new GamevalEntry(27701, "CRYSTAL_LEGS_27701", "Crystal legs", "objtypes"),
+            new GamevalEntry(27702, "ID_27702", "", "objtypes"),
+            new GamevalEntry(27703, "CRYSTAL_LEGS_INACTIVE_27703", "Crystal legs (inactive)", "objtypes"),
         };
     }
 

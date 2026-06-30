@@ -1,6 +1,7 @@
 package net.titan.api;
 
 import net.titan.api.internal.TitanRuntime;
+import net.titan.api.utils.Magic;
 
 import java.util.Collections;
 import java.util.List;
@@ -116,6 +117,17 @@ public final class NPC implements Actor {
         return TitanRuntime.getInteractionBackend().interactNpcByIndex(
             action, hashIndex(), worldViewId());
     }
+
+    @Override
+    public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Ancient spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Lunar spell) { return Magic.castOn(spell, this); }
+    @Override
+    public boolean castOn(Magic.Necromancy spell) { return Magic.castOn(spell, this); }
 
     public NPC snapshot() { return TitanRuntime.snapshotLive(this); }
 

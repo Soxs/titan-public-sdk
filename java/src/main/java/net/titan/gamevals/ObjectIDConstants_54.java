@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_54 {
-    int POST = 27648;
-    int ID_27649 = 27649;
     int ID_27650 = 27650;
     int ID_27651 = 27651;
     int ID_27652 = 27652;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_54 {
     int BOOKSHELF_28157 = 28157;
     int BOOKSHELF_28158 = 28158;
     int BOOKSHELF_28159 = 28159;
+    int BOOKSHELF_28160 = 28160;
+    int BOOKSHELF_28161 = 28161;
 }

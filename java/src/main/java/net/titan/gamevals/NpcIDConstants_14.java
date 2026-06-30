@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_14 {
-    int WAYMOTTIN_7168 = 7168;
     int WAYMOTTIN_7169 = 7169;
     int ZOOKNOCK_7170 = 7170;
     int ZOOKNOCK_7171 = 7171;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_14 {
     int TZHAAR_KET_ZUH = 7677;
     int TZHAAR_KET_YIL = 7678;
     int TZHAAR_KET_7679 = 7679;
+    int TZHAAR_MEJ_DIR = 7680;
 }

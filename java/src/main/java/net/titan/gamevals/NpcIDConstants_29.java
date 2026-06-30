@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_29 {
-    int LEFF = 14848;
     int DALNA = 14849;
     int FINN_14850 = 14850;
     int AMMA = 14851;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_29 {
     int SHIPYARD_WORKER_15357 = 15357;
     int SHIPYARD_WORKER_15358 = 15358;
     int SHIPYARD_WORKER_15359 = 15359;
+    int SHIPYARD_WORKER_15360 = 15360;
 }

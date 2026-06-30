@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_9 {
-    int SAGIRA = 4608;
     int ANLEIF = 4609;
     int RAT_4610 = 4610;
     int RAT_4611 = 4611;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_9 {
     int COMBAT_STONE_5117 = 5117;
     int Z_Z_Z_SYLAS = 5118;
     int GRIMGNASH = 5119;
+    int RUPERT_THE_BEARD = 5120;
 }

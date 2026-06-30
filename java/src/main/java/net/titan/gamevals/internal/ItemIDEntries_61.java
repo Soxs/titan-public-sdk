@@ -10,9 +10,6 @@ final class ItemIDEntries_61 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(31314, "ID_31314", "", "objtypes"),
-            new GamevalEntry(31315, "ID_31315", "", "objtypes"),
-            new GamevalEntry(31316, "ID_31316", "", "objtypes"),
             new GamevalEntry(31317, "ID_31317", "", "objtypes"),
             new GamevalEntry(31318, "ID_31318", "", "objtypes"),
             new GamevalEntry(31319, "ID_31319", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_61 {
             new GamevalEntry(31823, "HORIZON_S_LURE", "Horizon's lure", "objtypes"),
             new GamevalEntry(31824, "ID_31824", "", "objtypes"),
             new GamevalEntry(31825, "ID_31825", "", "objtypes"),
+            new GamevalEntry(31826, "ID_31826", "", "objtypes"),
+            new GamevalEntry(31827, "ID_31827", "", "objtypes"),
+            new GamevalEntry(31828, "ID_31828", "", "objtypes"),
         };
     }
 

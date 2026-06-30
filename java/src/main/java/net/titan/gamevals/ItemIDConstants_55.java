@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_55 {
-    int ID_28213 = 28213;
-    int RUNE_FELLING_AXE = 28214;
-    int ID_28215 = 28215;
     int ID_28216 = 28216;
     int DRAGON_FELLING_AXE = 28217;
     int ID_28218 = 28218;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_55 {
     int ID_28740 = 28740;
     int ID_28741 = 28741;
     int TRAILBLAZER_RELOADED_TROUSERS_T3 = 28742;
+    int ID_28743 = 28743;
+    int ID_28744 = 28744;
+    int TRAILBLAZER_RELOADED_BOOTS_T3 = 28745;
 }

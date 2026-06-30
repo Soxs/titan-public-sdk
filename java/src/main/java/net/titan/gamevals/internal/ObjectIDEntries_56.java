@@ -10,8 +10,6 @@ final class ObjectIDEntries_56 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(28672, "TRACKS_28672", "Tracks", "loctypes"),
-            new GamevalEntry(28673, "JUNGLE_GRASS_28673", "Jungle Grass", "loctypes"),
             new GamevalEntry(28674, "JUNGLE_GRASS_28674", "Jungle Grass", "loctypes"),
             new GamevalEntry(28675, "KRUK", "Kruk", "loctypes"),
             new GamevalEntry(28676, "BAMBOO_LADDER_28676", "Bamboo Ladder", "loctypes"),
@@ -522,6 +520,8 @@ final class ObjectIDEntries_56 {
             new GamevalEntry(29181, "MOUNTED_AGILITY_CAPE_T", "Mounted Agility Cape (t)", "loctypes"),
             new GamevalEntry(29182, "MOUNTED_ATTACK_CAPE", "Mounted Attack Cape", "loctypes"),
             new GamevalEntry(29183, "MOUNTED_ATTACK_CAPE_T", "Mounted Attack Cape (t)", "loctypes"),
+            new GamevalEntry(29184, "MOUNTED_CONSTRUCTION_CAPE", "Mounted Construction Cape", "loctypes"),
+            new GamevalEntry(29185, "MOUNTED_CONSTRUCTION_CAPE_T", "Mounted Construction Cape (t)", "loctypes"),
         };
     }
 

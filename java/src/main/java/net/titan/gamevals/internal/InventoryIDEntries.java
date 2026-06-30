@@ -9,10 +9,11 @@ public final class InventoryIDEntries {
     private InventoryIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[1022];
+        GamevalEntry[] out = new GamevalEntry[1026];
         int offset = 0;
         offset = copy(out, offset, InventoryIDEntries_0.entries());
         offset = copy(out, offset, InventoryIDEntries_1.entries());
+        offset = copy(out, offset, InventoryIDEntries_2.entries());
         return out;
     }
 
@@ -26,6 +27,8 @@ public final class InventoryIDEntries {
         hit = InventoryIDEntries_0.byId(id);
         if (hit.isPresent()) return hit;
         hit = InventoryIDEntries_1.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = InventoryIDEntries_2.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

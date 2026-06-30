@@ -10,9 +10,6 @@ final class ItemIDEntries_45 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(23040, "WYRM", "Wyrm", "objtypes"),
-            new GamevalEntry(23041, "DRAKE", "Drake", "objtypes"),
-            new GamevalEntry(23042, "HYDRA", "Hydra", "objtypes"),
             new GamevalEntry(23043, "SULPHUR_LIZARD", "Sulphur lizard", "objtypes"),
             new GamevalEntry(23044, "ID_23044", "", "objtypes"),
             new GamevalEntry(23045, "CLUE_SCROLL_HARD_23045", "Clue scroll (hard)", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_45 {
             new GamevalEntry(23549, "SUPER_COMBAT_POTION_1_23549", "Super combat potion(1)", "objtypes"),
             new GamevalEntry(23550, "ID_23550", "", "objtypes"),
             new GamevalEntry(23551, "RANGING_POTION_4_23551", "Ranging potion(4)", "objtypes"),
+            new GamevalEntry(23552, "ID_23552", "", "objtypes"),
+            new GamevalEntry(23553, "RANGING_POTION_3_23553", "Ranging potion(3)", "objtypes"),
+            new GamevalEntry(23554, "ID_23554", "", "objtypes"),
         };
     }
 

@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_62 {
-    int ID_31826 = 31826;
-    int ID_31827 = 31827;
-    int ID_31828 = 31828;
     int ID_31829 = 31829;
     int ID_31830 = 31830;
     int BOTTLE_OF_ALMOST_SMUGGLED_RUM = 31831;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_62 {
     int ID_32335 = 32335;
     int HALIBUT = 32336;
     int ID_32337 = 32337;
+    int ID_32338 = 32338;
+    int BURNT_HALIBUT = 32339;
+    int ID_32340 = 32340;
 }

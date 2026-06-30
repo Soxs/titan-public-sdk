@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_24 {
-    int ID_12288 = 12288;
-    int ID_12289 = 12289;
     int ID_12290 = 12290;
     int ID_12291 = 12291;
     int ID_12292 = 12292;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_24 {
     int ID_12797 = 12797;
     int BANK_BOOTH_12798 = 12798;
     int BANK_BOOTH_12799 = 12799;
+    int BANK_BOOTH_12800 = 12800;
+    int BANK_BOOTH_12801 = 12801;
 }

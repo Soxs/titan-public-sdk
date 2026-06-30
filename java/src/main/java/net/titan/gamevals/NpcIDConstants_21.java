@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_21 {
-    int GEM_10752 = 10752;
     int GEM_10753 = 10753;
     int GEM_10754 = 10754;
     int GEM_10755 = 10755;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_21 {
     int ZANIK_11261 = 11261;
     int ZANIK_11262 = 11262;
     int ZANIK_11263 = 11263;
+    int ZANIK_11264 = 11264;
 }

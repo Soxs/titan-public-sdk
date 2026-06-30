@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_55 {
-    int BOOKSHELF_28160 = 28160;
-    int BOOKSHELF_28161 = 28161;
     int BOOKSHELF_28162 = 28162;
     int BOOKSHELF_28163 = 28163;
     int BOOKSHELF_28164 = 28164;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_55 {
     int GNOME_TABLE_28669 = 28669;
     int GNOME_STATUE_28670 = 28670;
     int TRACKS_28671 = 28671;
+    int TRACKS_28672 = 28672;
+    int JUNGLE_GRASS_28673 = 28673;
 }

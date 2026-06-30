@@ -10,9 +10,6 @@ final class ItemIDEntries_57 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(29255, "ID_29255", "", "objtypes"),
-            new GamevalEntry(29256, "PERFECTED_QUETZAL_WHISTLE_BLUEPRINT", "Perfected quetzal whistle blueprint", "objtypes"),
-            new GamevalEntry(29257, "ID_29257", "", "objtypes"),
             new GamevalEntry(29258, "ID_29258", "", "objtypes"),
             new GamevalEntry(29259, "TORN_ENHANCED_QUETZAL_WHISTLE_BLUEPRINT", "Torn enhanced quetzal whistle blueprint", "objtypes"),
             new GamevalEntry(29260, "ID_29260", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_57 {
             new GamevalEntry(29775, "IMCANDO_HAMMER_OFF_HAND", "Imcando hammer (off-hand)", "objtypes"),
             new GamevalEntry(29776, "ID_29776", "", "objtypes"),
             new GamevalEntry(29777, "BRUMA_TORCH_OFF_HAND", "Bruma torch (off-hand)", "objtypes"),
+            new GamevalEntry(29778, "ID_29778", "", "objtypes"),
+            new GamevalEntry(29779, "ID_29779", "", "objtypes"),
+            new GamevalEntry(29780, "ID_29780", "", "objtypes"),
         };
     }
 

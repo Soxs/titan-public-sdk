@@ -1,6 +1,16 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_62 {
+    int ID_31746 = 31746;
+    int ID_31747 = 31747;
+    int CHEST_31748 = 31748;
+    int SIGN_31749 = 31749;
+    int ID_31750 = 31750;
+    int ID_31751 = 31751;
+    int ID_31752 = 31752;
+    int ID_31753 = 31753;
+    int THRONE_31754 = 31754;
+    int HOLE_31755 = 31755;
     int GANGPLANK_31756 = 31756;
     int ROCKS_31757 = 31757;
     int ROCKS_31758 = 31758;
@@ -198,7 +208,7 @@ public interface ObjectIDConstants_62 {
     int BEARHEAD = 31950;
     int ID_31951 = 31951;
     int ID_31952 = 31952;
-    int CELL_GATE = 31953;
+    int CELL_GATE_31953 = 31953;
     int CELL_GATE_31954 = 31954;
     int CELL_GATE_31955 = 31955;
     int CELL_GATE_31956 = 31956;
@@ -503,14 +513,4 @@ public interface ObjectIDConstants_62 {
     int ID_32255 = 32255;
     int ID_32256 = 32256;
     int ID_32257 = 32257;
-    int ID_32258 = 32258;
-    int ID_32259 = 32259;
-    int ID_32260 = 32260;
-    int ID_32261 = 32261;
-    int ID_32262 = 32262;
-    int ID_32263 = 32263;
-    int ID_32264 = 32264;
-    int ID_32265 = 32265;
-    int ID_32266 = 32266;
-    int ID_32267 = 32267;
 }

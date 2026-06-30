@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_46 {
-    int ID_23552 = 23552;
-    int RANGING_POTION_3_23553 = 23553;
-    int ID_23554 = 23554;
     int RANGING_POTION_2_23555 = 23555;
     int ID_23556 = 23556;
     int RANGING_POTION_1_23557 = 23557;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_46 {
     int NIFF_HARRY = 24061;
     int ID_24062 = 24062;
     int SOGGY_JOURNAL = 24063;
+    int ID_24064 = 24064;
+    int EBRILL_S_JOURNAL = 24065;
+    int ID_24066 = 24066;
 }

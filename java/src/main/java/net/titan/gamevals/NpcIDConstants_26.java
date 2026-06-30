@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_26 {
-    int LAVINIA = 13312;
     int VICTOR_13313 = 13313;
     int CAIUS = 13314;
     int RUFUS_13315 = 13315;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_26 {
     int ADALA_13821 = 13821;
     int ADALA_13822 = 13822;
     int ADALA_13823 = 13823;
+    int ADALA_13824 = 13824;
 }

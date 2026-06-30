@@ -180,7 +180,7 @@ public interface ObjectIDConstants_7 {
     int CAVE_EXIT_3760 = 3760;
     int EXIT = 3761;
     int SECRET_DOOR = 3762;
-    int CELL_DOOR_3763 = 3763;
+    int CELL_DOOR = 3763;
     int CELL_DOOR_3764 = 3764;
     int CELL_DOOR_3765 = 3765;
     int ID_3766 = 3766;

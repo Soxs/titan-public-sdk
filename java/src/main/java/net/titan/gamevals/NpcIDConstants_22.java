@@ -1,7 +1,6 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_22 {
-    int ZANIK_11264 = 11264;
     int OLDAK = 11265;
     int OLDAK_11266 = 11266;
     int HIGH_PRIEST_BIGHEAD = 11267;
@@ -513,4 +512,5 @@ public interface NpcIDConstants_22 {
     int ID_11773 = 11773;
     int ZEBAK_S_PHANTOM = 11774;
     int BA_BA_S_PHANTOM = 11775;
+    int KEPHRI_S_PHANTOM = 11776;
 }

@@ -10,7 +10,6 @@ final class NpcIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(5632, "ASYN_SHADOW_5632", "Asyn shadow", "npctypes"),
             new GamevalEntry(5633, "C_ATTACK", "?c Attack", "npctypes"),
             new GamevalEntry(5634, "VAMPYRE_JUVINATE_5634", "Vampyre Juvinate", "npctypes"),
             new GamevalEntry(5635, "VAMPYRE_JUVINATE_5635", "Vampyre Juvinate", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_11 {
             new GamevalEntry(6141, "ID_6141", "", "npctypes"),
             new GamevalEntry(6142, "ID_6142", "", "npctypes"),
             new GamevalEntry(6143, "URIUM_SHADOW", "Urium Shadow", "npctypes"),
+            new GamevalEntry(6144, "ID_6144", "", "npctypes"),
         };
     }
 

@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_38 {
-    int OPENING = 19456;
-    int ID_19457 = 19457;
     int ROCKS_19458 = 19458;
     int ID_19459 = 19459;
     int ID_19460 = 19460;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_38 {
     int ID_19965 = 19965;
     int ID_19966 = 19966;
     int ID_19967 = 19967;
+    int ID_19968 = 19968;
+    int ID_19969 = 19969;
 }

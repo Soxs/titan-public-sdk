@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_51 {
-    int ID_26165 = 26165;
-    int GROUP_IRONMAN_PLATELEGS = 26166;
-    int ID_26167 = 26167;
     int GROUP_IRONMAN_BRACERS = 26168;
     int ID_26169 = 26169;
     int HARDCORE_GROUP_IRONMAN_HELM = 26170;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_51 {
     int SLAYER_HELMET_I_26674 = 26674;
     int BLACK_SLAYER_HELMET_I_26675 = 26675;
     int GREEN_SLAYER_HELMET_I_26676 = 26676;
+    int RED_SLAYER_HELMET_I_26677 = 26677;
+    int PURPLE_SLAYER_HELMET_I_26678 = 26678;
+    int TURQUOISE_SLAYER_HELMET_I_26679 = 26679;
 }

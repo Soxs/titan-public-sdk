@@ -10,7 +10,6 @@ final class NpcIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(13824, "ADALA_13824", "Adala", "npctypes"),
             new GamevalEntry(13825, "CONSTANTINIUS", "Constantinius", "npctypes"),
             new GamevalEntry(13826, "CONSTANTINIUS_13826", "Constantinius", "npctypes"),
             new GamevalEntry(13827, "COZYAC", "Cozyac", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_27 {
             new GamevalEntry(14333, "ENNIUS_TULLUS_14333", "Ennius Tullus", "npctypes"),
             new GamevalEntry(14334, "ENNIUS_TULLUS_14334", "Ennius Tullus", "npctypes"),
             new GamevalEntry(14335, "ENNIUS_TULLUS_14335", "Ennius Tullus", "npctypes"),
+            new GamevalEntry(14336, "ATTALA_14336", "Attala", "npctypes"),
         };
     }
 

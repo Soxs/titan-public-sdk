@@ -118,10 +118,7 @@ final class ItemIDEntries_32 {
             new GamevalEntry(16489, "ID_16489", "", "objtypes"),
             new GamevalEntry(16490, "ID_16490", "", "objtypes"),
             new GamevalEntry(16491, "ID_16491", "", "objtypes"),
-            new GamevalEntry(16492, "ID_16492", "", "objtypes"),
             new GamevalEntry(16493, "ID_16493", "", "objtypes"),
-            new GamevalEntry(16494, "ID_16494", "", "objtypes"),
-            new GamevalEntry(16495, "ID_16495", "", "objtypes"),
             new GamevalEntry(16496, "ID_16496", "", "objtypes"),
             new GamevalEntry(16497, "ID_16497", "", "objtypes"),
             new GamevalEntry(16498, "ID_16498", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_32 {
             new GamevalEntry(16893, "NEW_CRYSTAL_HALBERD_FULL_16893", "New crystal halberd full", "objtypes"),
             new GamevalEntry(16894, "ID_16894", "", "objtypes"),
             new GamevalEntry(16895, "ID_16895", "", "objtypes"),
+            new GamevalEntry(16896, "ID_16896", "", "objtypes"),
+            new GamevalEntry(16897, "ID_16897", "", "objtypes"),
+            new GamevalEntry(16898, "ID_16898", "", "objtypes"),
         };
     }
 

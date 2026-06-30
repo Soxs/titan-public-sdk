@@ -10,9 +10,6 @@ final class ItemIDEntries_50 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(25600, "GREAT_BLUE_HERON", "Great blue heron", "objtypes"),
-            new GamevalEntry(25601, "ID_25601", "", "objtypes"),
-            new GamevalEntry(25602, "TINY_TEMPOR", "Tiny tempor", "objtypes"),
             new GamevalEntry(25603, "ID_25603", "", "objtypes"),
             new GamevalEntry(25604, "GREGG_S_EASTDOOR", "Gregg's eastdoor", "objtypes"),
             new GamevalEntry(25605, "ID_25605", "", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_50 {
             new GamevalEntry(26162, "GROUP_IRONMAN_PLATEBODY_26162", "Group ironman platebody", "objtypes"),
             new GamevalEntry(26163, "ID_26163", "", "objtypes"),
             new GamevalEntry(26164, "GROUP_IRONMAN_PLATEBODY_26164", "Group ironman platebody", "objtypes"),
+            new GamevalEntry(26165, "ID_26165", "", "objtypes"),
+            new GamevalEntry(26166, "GROUP_IRONMAN_PLATELEGS", "Group ironman platelegs", "objtypes"),
+            new GamevalEntry(26167, "ID_26167", "", "objtypes"),
         };
     }
 

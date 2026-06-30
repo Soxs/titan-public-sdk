@@ -10,9 +10,6 @@ final class ItemIDEntries_39 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(19968, "ID_19968", "", "objtypes"),
-            new GamevalEntry(19969, "ID_19969", "", "objtypes"),
-            new GamevalEntry(19970, "DARK_BOW_TIE", "Dark bow tie", "objtypes"),
             new GamevalEntry(19971, "ID_19971", "", "objtypes"),
             new GamevalEntry(19972, "ID_19972", "", "objtypes"),
             new GamevalEntry(19973, "LIGHT_TUXEDO_JACKET", "Light tuxedo jacket", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_39 {
             new GamevalEntry(20477, "VOID_MAGE_HELM_BROKEN", "Void mage helm (broken)", "objtypes"),
             new GamevalEntry(20478, "ID_20478", "", "objtypes"),
             new GamevalEntry(20479, "VOID_RANGER_HELM_BROKEN", "Void ranger helm (broken)", "objtypes"),
+            new GamevalEntry(20480, "ID_20480", "", "objtypes"),
+            new GamevalEntry(20481, "VOID_MELEE_HELM_BROKEN", "Void melee helm (broken)", "objtypes"),
+            new GamevalEntry(20482, "ID_20482", "", "objtypes"),
         };
     }
 

@@ -10,7 +10,6 @@ final class NpcIDEntries_29 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(14848, "LEFF", "Leff", "npctypes"),
             new GamevalEntry(14849, "DALNA", "Dalna", "npctypes"),
             new GamevalEntry(14850, "FINN_14850", "Finn", "npctypes"),
             new GamevalEntry(14851, "AMMA", "Amma", "npctypes"),
@@ -522,6 +521,7 @@ final class NpcIDEntries_29 {
             new GamevalEntry(15357, "SHIPYARD_WORKER_15357", "Shipyard Worker", "npctypes"),
             new GamevalEntry(15358, "SHIPYARD_WORKER_15358", "Shipyard Worker", "npctypes"),
             new GamevalEntry(15359, "SHIPYARD_WORKER_15359", "Shipyard Worker", "npctypes"),
+            new GamevalEntry(15360, "SHIPYARD_WORKER_15360", "Shipyard Worker", "npctypes"),
         };
     }
 

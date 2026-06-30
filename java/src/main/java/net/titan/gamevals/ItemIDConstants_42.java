@@ -1,9 +1,6 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_42 {
-    int GIANT_SEAWEED = 21504;
-    int ID_21505 = 21505;
-    int ID_21506 = 21506;
     int FOSSIL_ISLAND_WYVERN = 21507;
     int FOSSIL_ISLAND_WYVERN_21508 = 21508;
     int HERBI = 21509;
@@ -513,4 +510,7 @@ public interface ItemIDConstants_42 {
     int MAP_PIECE_22013 = 22013;
     int MAP_PIECE_22014 = 22014;
     int MAP_PIECE_22015 = 22015;
+    int MAP_PIECE_22016 = 22016;
+    int MAP_PIECE_22017 = 22017;
+    int MAP_PIECE_22018 = 22018;
 }

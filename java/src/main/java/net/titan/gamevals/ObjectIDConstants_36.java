@@ -1,8 +1,6 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_36 {
-    int ID_18432 = 18432;
-    int ID_18433 = 18433;
     int SLUG_GOO = 18434;
     int ID_18435 = 18435;
     int ID_18436 = 18436;
@@ -513,4 +511,6 @@ public interface ObjectIDConstants_36 {
     int ID_18941 = 18941;
     int ID_18942 = 18942;
     int ID_18943 = 18943;
+    int ID_18944 = 18944;
+    int ID_18945 = 18945;
 }

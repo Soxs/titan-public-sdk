@@ -10,9 +10,6 @@ final class ItemIDEntries_43 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(22016, "MAP_PIECE_22016", "Map piece", "objtypes"),
-            new GamevalEntry(22017, "MAP_PIECE_22017", "Map piece", "objtypes"),
-            new GamevalEntry(22018, "MAP_PIECE_22018", "Map piece", "objtypes"),
             new GamevalEntry(22019, "MAP_PIECE_22019", "Map piece", "objtypes"),
             new GamevalEntry(22020, "MAP_PIECE_22020", "Map piece", "objtypes"),
             new GamevalEntry(22021, "MAP_PIECE_22021", "Map piece", "objtypes"),
@@ -522,6 +519,9 @@ final class ItemIDEntries_43 {
             new GamevalEntry(22525, "COIN_POUCH_22525", "Coin pouch", "objtypes"),
             new GamevalEntry(22526, "COIN_POUCH_22526", "Coin pouch", "objtypes"),
             new GamevalEntry(22527, "COIN_POUCH_22527", "Coin pouch", "objtypes"),
+            new GamevalEntry(22528, "COIN_POUCH_22528", "Coin pouch", "objtypes"),
+            new GamevalEntry(22529, "COIN_POUCH_22529", "Coin pouch", "objtypes"),
+            new GamevalEntry(22530, "COIN_POUCH_22530", "Coin pouch", "objtypes"),
         };
     }
 
