@@ -107,9 +107,9 @@ public interface InterfaceIDConstants_1 {
     int AIDE_MAP = 615;
     int MISC_COLLECTION = 616;
     int MOBILE_RATING = 617;
-    int ID_618_1V1ARENA_HUD = 618;
-    int ID_619_1V1ARENA_REVIEW = 619;
-    int ID_620_1V1ARENA_RESULTS = 620;
+    int _1V1ARENA_HUD = 618;
+    int _1V1ARENA_REVIEW = 619;
+    int _1V1ARENA_RESULTS = 620;
     int COLLECTION = 621;
     int PUZZLE_VIKINGEXILE = 622;
     int LOVAQUEST_LOCKS = 623;

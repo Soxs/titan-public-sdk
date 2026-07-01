@@ -10,13 +10,7 @@ public final class VarPlayerID
                    VarPlayerIDConstants_2,
                    VarPlayerIDConstants_3,
                    VarPlayerIDConstants_4,
-                   VarPlayerIDConstants_5,
-                   VarPlayerIDConstants_6,
-                   VarPlayerIDConstants_7,
-                   VarPlayerIDConstants_8,
-                   VarPlayerIDConstants_9,
-                   VarPlayerIDConstants_10,
-                   VarPlayerIDConstants_11 {
+                   VarPlayerIDConstants_5 {
     private VarPlayerID() {}
 
     public static final String SOURCE_CATALOG = "varptypes";

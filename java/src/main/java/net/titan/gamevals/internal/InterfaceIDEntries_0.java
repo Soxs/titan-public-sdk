@@ -10,10 +10,10 @@ final class InterfaceIDEntries_0 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(0, "ID_0_100GUIDE_EGGS_OVERLAY", "100guide_eggs_overlay", "iftypes"),
-            new GamevalEntry(1, "ID_1_100GUIDE_FLOUR_OVERLAY", "100guide_flour_overlay", "iftypes"),
+            new GamevalEntry(0, "_100GUIDE_EGGS_OVERLAY", "100guide_eggs_overlay", "iftypes"),
+            new GamevalEntry(1, "_100GUIDE_FLOUR_OVERLAY", "100guide_flour_overlay", "iftypes"),
             new GamevalEntry(2, "RANGINGGUILD_TICKETEXCHANGE", "rangingguild_ticketexchange", "iftypes"),
-            new GamevalEntry(3, "ID_3_100GUIDE_MILK_OVERLAY", "100guide_milk_overlay", "iftypes"),
+            new GamevalEntry(3, "_100GUIDE_MILK_OVERLAY", "100guide_milk_overlay", "iftypes"),
             new GamevalEntry(4, "DEATHKEEP", "deathkeep", "iftypes"),
             new GamevalEntry(5, "AGILITYARENA_OVERLAY", "agilityarena_overlay", "iftypes"),
             new GamevalEntry(6, "SILVER_CRAFTING", "silver_crafting", "iftypes"),
@@ -274,7 +274,7 @@ final class InterfaceIDEntries_0 {
             new GamevalEntry(261, "SOUL_WARS_TUTORIAL_INSTRUCTIONS", "soul_wars_tutorial_instructions", "iftypes"),
             new GamevalEntry(262, "ELEM_MAGICPRESS_PIPES", "elem_magicpress_pipes", "iftypes"),
             new GamevalEntry(263, "MESOVERLAY", "mesoverlay", "iftypes"),
-            new GamevalEntry(264, "ID_264_100GUIDE_FLOUR_DISPLAY", "100guide_flour_display", "iftypes"),
+            new GamevalEntry(264, "_100GUIDE_FLOUR_DISPLAY", "100guide_flour_display", "iftypes"),
             new GamevalEntry(265, "PARTYDROP_MAIN", "partydrop_main", "iftypes"),
             new GamevalEntry(266, "PARTYDROP_SIDE", "partydrop_side", "iftypes"),
             new GamevalEntry(267, "CLUEQUEST_MAP", "cluequest_map", "iftypes"),

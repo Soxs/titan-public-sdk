@@ -1,10 +1,10 @@
 package net.titan.gamevals;
 
 public interface InterfaceIDConstants_0 {
-    int ID_0_100GUIDE_EGGS_OVERLAY = 0;
-    int ID_1_100GUIDE_FLOUR_OVERLAY = 1;
+    int _100GUIDE_EGGS_OVERLAY = 0;
+    int _100GUIDE_FLOUR_OVERLAY = 1;
     int RANGINGGUILD_TICKETEXCHANGE = 2;
-    int ID_3_100GUIDE_MILK_OVERLAY = 3;
+    int _100GUIDE_MILK_OVERLAY = 3;
     int DEATHKEEP = 4;
     int AGILITYARENA_OVERLAY = 5;
     int SILVER_CRAFTING = 6;
@@ -265,7 +265,7 @@ public interface InterfaceIDConstants_0 {
     int SOUL_WARS_TUTORIAL_INSTRUCTIONS = 261;
     int ELEM_MAGICPRESS_PIPES = 262;
     int MESOVERLAY = 263;
-    int ID_264_100GUIDE_FLOUR_DISPLAY = 264;
+    int _100GUIDE_FLOUR_DISPLAY = 264;
     int PARTYDROP_MAIN = 265;
     int PARTYDROP_SIDE = 266;
     int CLUEQUEST_MAP = 267;

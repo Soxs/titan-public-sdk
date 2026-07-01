@@ -9,7 +9,7 @@ public final class VarbitIDEntries {
     private VarbitIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[18935];
+        GamevalEntry[] out = new GamevalEntry[13109];
         int offset = 0;
         offset = copy(out, offset, VarbitIDEntries_0.entries());
         offset = copy(out, offset, VarbitIDEntries_1.entries());
@@ -37,17 +37,6 @@ public final class VarbitIDEntries {
         offset = copy(out, offset, VarbitIDEntries_23.entries());
         offset = copy(out, offset, VarbitIDEntries_24.entries());
         offset = copy(out, offset, VarbitIDEntries_25.entries());
-        offset = copy(out, offset, VarbitIDEntries_26.entries());
-        offset = copy(out, offset, VarbitIDEntries_27.entries());
-        offset = copy(out, offset, VarbitIDEntries_28.entries());
-        offset = copy(out, offset, VarbitIDEntries_29.entries());
-        offset = copy(out, offset, VarbitIDEntries_30.entries());
-        offset = copy(out, offset, VarbitIDEntries_31.entries());
-        offset = copy(out, offset, VarbitIDEntries_32.entries());
-        offset = copy(out, offset, VarbitIDEntries_33.entries());
-        offset = copy(out, offset, VarbitIDEntries_34.entries());
-        offset = copy(out, offset, VarbitIDEntries_35.entries());
-        offset = copy(out, offset, VarbitIDEntries_36.entries());
         return out;
     }
 
@@ -109,28 +98,6 @@ public final class VarbitIDEntries {
         hit = VarbitIDEntries_24.byId(id);
         if (hit.isPresent()) return hit;
         hit = VarbitIDEntries_25.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_26.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_27.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_28.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_29.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_30.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_31.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_32.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_33.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_34.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_35.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarbitIDEntries_36.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

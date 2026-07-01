@@ -9,7 +9,7 @@ public final class VarPlayerIDEntries {
     private VarPlayerIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[5668];
+        GamevalEntry[] out = new GamevalEntry[2914];
         int offset = 0;
         offset = copy(out, offset, VarPlayerIDEntries_0.entries());
         offset = copy(out, offset, VarPlayerIDEntries_1.entries());
@@ -17,12 +17,6 @@ public final class VarPlayerIDEntries {
         offset = copy(out, offset, VarPlayerIDEntries_3.entries());
         offset = copy(out, offset, VarPlayerIDEntries_4.entries());
         offset = copy(out, offset, VarPlayerIDEntries_5.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_6.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_7.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_8.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_9.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_10.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_11.entries());
         return out;
     }
 
@@ -44,18 +38,6 @@ public final class VarPlayerIDEntries {
         hit = VarPlayerIDEntries_4.byId(id);
         if (hit.isPresent()) return hit;
         hit = VarPlayerIDEntries_5.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarPlayerIDEntries_6.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarPlayerIDEntries_7.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarPlayerIDEntries_8.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarPlayerIDEntries_9.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarPlayerIDEntries_10.byId(id);
-        if (hit.isPresent()) return hit;
-        hit = VarPlayerIDEntries_11.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

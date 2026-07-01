@@ -9,7 +9,7 @@ public final class NpcIDEntries {
     private NpcIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[16292];
+        GamevalEntry[] out = new GamevalEntry[16290];
         int offset = 0;
         offset = copy(out, offset, NpcIDEntries_0.entries());
         offset = copy(out, offset, NpcIDEntries_1.entries());

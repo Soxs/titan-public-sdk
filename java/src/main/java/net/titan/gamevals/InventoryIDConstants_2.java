@@ -1,6 +1,6 @@
 package net.titan.gamevals;
 
 public interface InventoryIDConstants_2 {
-    int ID_1024 = 1024;
-    int ID_1025 = 1025;
+    int SKILLING_MODE_HOLDING_INV = 1024;
+    int PUB_BURGH_DE_ROTT = 1025;
 }

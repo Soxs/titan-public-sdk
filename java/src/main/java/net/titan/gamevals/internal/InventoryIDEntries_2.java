@@ -10,8 +10,8 @@ final class InventoryIDEntries_2 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(1024, "ID_1024", "", "invtypes"),
-            new GamevalEntry(1025, "ID_1025", "", "invtypes"),
+            new GamevalEntry(1024, "SKILLING_MODE_HOLDING_INV", "skilling_mode_holding_inv", "invtypes"),
+            new GamevalEntry(1025, "PUB_BURGH_DE_ROTT", "pub_burgh_de_rott", "invtypes"),
         };
     }
 
