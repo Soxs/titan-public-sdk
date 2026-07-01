@@ -75,11 +75,11 @@ dependencies {
 }
 ```
 
-Point the plugin at your TitanClient install — the folder that directly
-contains `controller.exe` — via `gradle.properties`:
+Point the plugin at your TitanLauncher sync repository via `gradle.properties`.
+The Gradle dev plugin resolves `state.json` to the current `releases/<version>` folder containing `controller.exe`:
 
 ```properties
-titanClientRoot=C:/Program Files/TitanClient
+titanClientRoot=%USERPROFILE%/.titanclient/repository
 ```
 
 or the `titanDev` block (all values optional; they fall back to
@@ -87,7 +87,7 @@ or the `titanDev` block (all values optional; they fall back to
 
 ```gradle
 titanDev {
-    clientRoot = 'C:/Program Files/TitanClient'
+    clientRoot = '%USERPROFILE%/.titanclient/repository'
     sessionSlug = 'my-plugin'   // defaults to the project name
     javaDebugPort = 5005        // used by runViaTitanDebug
 }
@@ -111,8 +111,9 @@ The dev loop:
 `runViaTitanDebug` is the same as `runViaTitan` but enables a JDWP agent
 (default port 5005) so you can attach a debugger to the embedded runtime.
 
-If `titanClientRoot` is left blank the plugin also probes common install
-folders and local source-build output (`build/controller/<Config>`). A
+If `titanClientRoot` is left blank the plugin also probes the launcher
+repository, common install folders, and local source-build output
+(`build/controller/<Config>`). A
 failed or empty build that produces no JAR is detected and the currently
 loaded plugins are kept — the reload just reports the failure rather than
 unloading everything.
@@ -127,15 +128,14 @@ cd java
 .\gradlew.bat publishToMavenLocal
 ```
 
-To test an API-compatible SDK change against an installed TitanClient, edit
-`java/gradle.properties` and set `titanClientRoot` to the folder that directly
-contains `controller.exe`:
+To test an API-compatible SDK change against TitanClient, edit
+`java/gradle.properties` and set `titanClientRoot` to the TitanLauncher sync repository:
 
 ```properties
-titanClientRoot=C:/Program Files/TitanClient
+titanClientRoot=%USERPROFILE%/.titanclient/repository
 ```
 
-That TitanClient folder must include the embedded Java runtime at
+The resolved synced runtime must include the embedded Java runtime at
 `java/titan-java-embedded.jar`.
 
 Then run:
@@ -144,13 +144,13 @@ Then run:
 .\gradlew.bat runTitanClient
 ```
 
-`runTitanClient` will also try common install folders if `titanClientRoot` is
-left blank.
+`runTitanClient` will also try the launcher repository and common install
+folders if `titanClientRoot` is left blank.
 
 You can also use a one-off Gradle property:
 
 ```powershell
-.\gradlew.bat runTitanClient "-PtitanClientRoot=C:\Program Files\TitanClient"
+.\gradlew.bat runTitanClient "-PtitanClientRoot=%USERPROFILE%/.titanclient/repository"
 ```
 
 Changes that require new embedded runtime behavior or native bridge methods

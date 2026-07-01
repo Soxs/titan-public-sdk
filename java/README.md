@@ -69,12 +69,14 @@ dependencies {
 }
 ```
 
-Set `titanClientRoot` (the folder that directly contains `controller.exe`) in
-`gradle.properties`, or configure the `titanDev` block:
+Run TitanLauncher once so it syncs TitanClient into
+`%USERPROFILE%\.titanclient\repository`. The Gradle dev plugin auto-detects
+that synced release. Use `titanClientRoot` or the `titanDev` block only when
+you want to target a custom install or local source build:
 
 ```gradle
 titanDev {
-    clientRoot = 'C:/Program Files/TitanClient'
+    clientRoot = '%USERPROFILE%/.titanclient/repository'
     sessionSlug = 'my-plugin'   // defaults to the project name
     javaDebugPort = 5005        // used by runViaTitanDebug
 }
@@ -127,27 +129,30 @@ The canonical outbound sync publishes releases into
 
 ## Test Modified SDK Sources In TitanClient
 
-Edit the included `gradle.properties` file and set `titanClientRoot` to the
-folder that directly contains `controller.exe`:
-
-```properties
-titanClientRoot=C:/Program Files/TitanClient
-```
-
-That TitanClient folder must include the embedded Java runtime at:
-
-```text
-java/titan-java-embedded.jar
-```
-
-Then run:
+Run TitanLauncher once so it syncs a release into
+`%USERPROFILE%\.titanclient\repository`, then run:
 
 ```powershell
 .\gradlew.bat runTitanClient
 ```
 
-`runTitanClient` will also try common TitanClient install folders and local
-source-build output folders if `titanClientRoot` is left blank.
+The auto-detected TitanClient folder must include the embedded Java runtime at:
+
+```text
+java/titan-java-embedded.jar
+```
+
+You can still edit the included `gradle.properties` file and set
+`titanClientRoot` to the folder that directly contains `controller.exe` when
+testing a custom/source build:
+
+```properties
+titanClientRoot=%USERPROFILE%/.titanclient/repository
+```
+
+`runTitanClient` will also try the launcher repository, common TitanClient
+install folders, and local source-build output folders if `titanClientRoot` is
+left blank.
 
 The task builds this public API JAR, stages it under
 `%USERPROFILE%\.titanclient\java-dev`, and launches:
@@ -163,13 +168,13 @@ access to the private runtime source.
 You can also provide the installed location as a one-off Gradle property:
 
 ```powershell
-.\gradlew.bat runTitanClient "-PtitanClientRoot=C:\Program Files\TitanClient"
+.\gradlew.bat runTitanClient "-PtitanClientRoot=%USERPROFILE%/.titanclient/repository"
 ```
 
 Or set it for the current PowerShell session:
 
 ```powershell
-$env:TITAN_CLIENT_ROOT = "C:\Program Files\TitanClient"
+$env:TITAN_CLIENT_ROOT = "%USERPROFILE%/.titanclient/repository"
 .\gradlew.bat runTitanClient
 ```
 

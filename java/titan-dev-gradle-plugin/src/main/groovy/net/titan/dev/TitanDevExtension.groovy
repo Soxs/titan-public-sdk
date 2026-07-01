@@ -11,10 +11,11 @@ import org.gradle.api.provider.Property
  *
  * <pre>
  * titanDev {
- *     // Folder that directly contains controller.exe. Falls back to
- *     // -PtitanClientRoot / TITAN_CLIENT_ROOT, then common install and local
- *     // source-build locations.
- *     clientRoot = 'C:/Program Files/TitanClient'
+ *     // Folder that directly contains controller.exe, or the TitanLauncher
+ *     // repository root containing state.json. Falls back to -PtitanClientRoot /
+ *     // TITAN_CLIENT_ROOT, then the launcher repository, common install, and
+ *     // local source-build locations.
+ *     clientRoot = '%USERPROFILE%/.titanclient/repository'
  *
  *     // Dev-session slug. Falls back to -PtitanDevSessionSlug /
  *     // TITAN_DEV_SESSION_SLUG (then the legacy titanPluginSlug), else the

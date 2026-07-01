@@ -1,6 +1,7 @@
 package net.titan.dev
 
 import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -88,20 +89,71 @@ class TitanDevPlugin implements Plugin<Project> {
             file.toPath().toAbsolutePath().normalize().toString().replace('\\', '/')
         }
 
+        def expandTitanPath = { String rawPath ->
+            def value = trimOrNull(rawPath)
+            if (value == null) {
+                return null
+            }
+
+            def userProfile = System.getenv('USERPROFILE') ?: System.getProperty('user.home')
+            value = value.replace('%USERPROFILE%', userProfile)
+                .replace('%userprofile%', userProfile)
+
+            if (value == '~') {
+                return System.getProperty('user.home')
+            }
+            if (value.startsWith('~/') || value.startsWith('~\\')) {
+                return new File(System.getProperty('user.home'), value.substring(2)).path
+            }
+            return value
+        }
+
+        def launcherReleaseFromRepositoryRoot = { File repositoryRoot ->
+            if (repositoryRoot == null || !isWindows) {
+                return null
+            }
+
+            def stateJson = new File(repositoryRoot, 'state.json')
+            if (!stateJson.isFile()) {
+                return null
+            }
+
+            try {
+                def state = new JsonSlurper().parse(stateJson)
+                def version = state?.current_version?.toString()
+                if (version == null || !version.matches(/[A-Za-z0-9._-]{1,64}/)) {
+                    return null
+                }
+
+                def candidate = new File(repositoryRoot, "releases/${version}")
+                if (new File(candidate, 'controller.exe').isFile() && new File(candidate, 'manifest.json').isFile()) {
+                    return candidate
+                }
+            } catch (ignored) {
+                return null
+            }
+
+            return null
+        }
+
         def configuredTitanClientRoot = {
             def fromExtension = trimOrNull(ext.clientRoot.getOrNull())
             if (fromExtension != null) {
-                return fromExtension
+                return expandTitanPath(fromExtension)
             }
             def gradleProperty = trimOrNull(providers.gradleProperty('titanClientRoot').orNull)
             if (gradleProperty != null) {
-                return gradleProperty
+                return expandTitanPath(gradleProperty)
             }
             def environmentVariable = trimOrNull(providers.environmentVariable('TITAN_CLIENT_ROOT').orNull)
             if (environmentVariable != null) {
-                return environmentVariable
+                return expandTitanPath(environmentVariable)
             }
             return null
+        }
+
+        def launcherRepositoryClientRoot = {
+            launcherReleaseFromRepositoryRoot(new File(System.getProperty('user.home'), '.titanclient/repository'))
         }
 
         def titanClientRootCandidates = {
@@ -111,6 +163,8 @@ class TitanDevPlugin implements Plugin<Project> {
                     candidates.add(candidate)
                 }
             }
+
+            addCandidate(launcherRepositoryClientRoot())
 
             if (isWindows) {
                 def programFiles = System.getenv('ProgramFiles')
@@ -148,32 +202,37 @@ class TitanDevPlugin implements Plugin<Project> {
                 lines << "TitanClient controller.exe was not found."
                 lines << "Checked: ${checkedController.absolutePath}"
             } else {
-                lines << "TitanClient install path is not configured, and no common install/source-build location was auto-detected."
+                lines << "TitanClient runtime path is not configured, and no launcher repository/common install/source-build location was auto-detected."
             }
             lines << ''
-            lines << "${titanLaunchTaskName} needs the folder that directly contains controller.exe."
-            lines << 'Use the folder path, not controller.exe itself and not the plugins folder.'
+            lines << "${titanLaunchTaskName} needs either the TitanLauncher repository root or the folder that directly contains controller.exe."
+            lines << 'Use the repository/runtime folder path, not controller.exe itself and not the plugins folder.'
+            lines << ''
+            lines << 'Run TitanLauncher.exe once so it syncs a release into:'
+            lines << '  %USERPROFILE%\\.titanclient\\repository'
             lines << ''
             lines << 'Set it in the titanDev block in build.gradle:'
-            lines << '  titanDev { clientRoot = "C:/Program Files/TitanClient" }'
+            lines << '  titanDev { clientRoot = "%USERPROFILE%/.titanclient/repository" }'
             lines << ''
             lines << 'Or edit the titanClientRoot entry in gradle.properties:'
-            lines << '  titanClientRoot=C:/Program Files/TitanClient'
+            lines << '  titanClientRoot=%USERPROFILE%/.titanclient/repository'
             lines << "  .\\gradlew.bat ${titanLaunchTaskName}"
             lines << ''
             lines << 'Or set it for this PowerShell session:'
-            lines << '  $env:TITAN_CLIENT_ROOT = "C:\\Program Files\\TitanClient"'
+            lines << '  $env:TITAN_CLIENT_ROOT = "%USERPROFILE%/.titanclient/repository"'
             lines << "  .\\gradlew.bat ${titanLaunchTaskName}"
             lines << ''
             lines << 'One-off Gradle property:'
-            lines << "  .\\gradlew.bat ${titanLaunchTaskName} \"-PtitanClientRoot=C:\\Program Files\\TitanClient\""
+            lines << "  .\\gradlew.bat ${titanLaunchTaskName} \"-PtitanClientRoot=%USERPROFILE%/.titanclient/repository\""
             lines.join(System.lineSeparator())
         }
 
         def resolveTitanController = {
             def configuredRoot = configuredTitanClientRoot()
             if (configuredRoot) {
-                def controller = new File(configuredRoot, 'controller.exe')
+                def configuredRootFile = new File(configuredRoot)
+                def runtimeRoot = launcherReleaseFromRepositoryRoot(configuredRootFile) ?: configuredRootFile
+                def controller = new File(runtimeRoot, 'controller.exe')
                 if (!controller.isFile()) {
                     throw new GradleException(titanClientRootHelp(controller))
                 }
