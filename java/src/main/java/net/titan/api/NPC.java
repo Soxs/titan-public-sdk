@@ -5,6 +5,7 @@ import net.titan.api.utils.Magic;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public final class NPC implements Actor {
     private boolean liveHandle = true;
@@ -105,15 +106,16 @@ public final class NPC implements Actor {
 
     public boolean hasAction(String action) {
         if (action == null || action.isEmpty()) return false;
-        String needle = action.toLowerCase();
+        String needle = action.toLowerCase(Locale.ROOT);
         for (String value : actions()) {
-            if (value != null && value.toLowerCase().contains(needle)) return true;
+            if (value != null && value.toLowerCase(Locale.ROOT).contains(needle)) return true;
         }
         return false;
     }
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
+        if (!hasAction(action)) return false;
         return TitanRuntime.getInteractionBackend().interactNpcByIndex(
             action, hashIndex(), worldViewId());
     }

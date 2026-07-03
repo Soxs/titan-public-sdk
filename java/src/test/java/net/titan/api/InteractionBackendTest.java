@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -66,8 +67,8 @@ class InteractionBackendTest {
     @Test
     void entityInteractionsUseRuntimeBackend() {
         useBackend(new RecordingBackend());
-        NPC npc = npc(42);
-        TileObject object = tileObject(100, 3200, 3201);
+        NPC npc = npc(42, "Talk-to", "Trade");
+        TileObject object = tileObject(100, 3200, 3201, "Open", "Close");
         GroundItem groundItem = groundItem(995, 3210, 3211);
 
         assertTrue(npc.interact("Talk-to"));
@@ -119,6 +120,15 @@ class InteractionBackendTest {
         assertEquals(null, backend.call);
     }
 
+    @Test
+    void missingEntityActionsDoNotReachBackend() {
+        useBackend(new RecordingBackend());
+
+        assertFalse(npc(1, "Talk-to").interact("Attack"));
+        assertFalse(tileObject(2, 3, 4, "Open").interact("Chop down"));
+        assertEquals(null, backend.call);
+    }
+
     private void useBackend(RecordingBackend value) {
         backend = value;
         TitanRuntime.setInteractionBackend(value);
@@ -131,17 +141,19 @@ class InteractionBackendTest {
         return item;
     }
 
-    private static NPC npc(int hashIndex) {
+    private static NPC npc(int hashIndex, String... actions) {
         NPC npc = new NPC();
         setInt(npc, "hashIndex", hashIndex);
+        setObject(npc, "actions", Arrays.asList(actions));
         return npc;
     }
 
-    private static TileObject tileObject(int id, int tileX, int tileY) {
+    private static TileObject tileObject(int id, int tileX, int tileY, String... actions) {
         TileObject object = new TileObject();
         setInt(object, "id", id);
         setInt(object, "tileX", tileX);
         setInt(object, "tileY", tileY);
+        setObject(object, "actions", Arrays.asList(actions));
         return object;
     }
 
@@ -166,6 +178,16 @@ class InteractionBackendTest {
             Field field = target.getClass().getDeclaredField(fieldName);
             field.setAccessible(true);
             field.setInt(target, value);
+        } catch (ReflectiveOperationException ex) {
+            throw new AssertionError(ex);
+        }
+    }
+
+    private static void setObject(Object target, String fieldName, Object value) {
+        try {
+            Field field = target.getClass().getDeclaredField(fieldName);
+            field.setAccessible(true);
+            field.set(target, value);
         } catch (ReflectiveOperationException ex) {
             throw new AssertionError(ex);
         }

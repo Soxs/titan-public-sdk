@@ -310,7 +310,7 @@ interface Npc extends ActorBase {
     /** Footprint area anchored at this NPC's south-west world point. */
     toWorldArea(): titan.WorldArea;
     hasAction(action: string): boolean;
-    /** Dispatch a named action via this NPC's hash index. */
+    /** Dispatch a named action via this NPC's hash index; returns false when actions does not contain it. */
     interact(action: string): boolean;
     /** True when this NPC is currently displaying any overhead icon. SDK 35+. */
     isOverheadActive(icon?: number): boolean;
@@ -370,7 +370,7 @@ interface TileObject extends InstanceConvertible {
     isInMeleeDistance(other: SpatialTarget): boolean;
     /** RuneLite-style dynamic scenery animation id lookup. SDK 71+. */
     getAnimation(): number;
-    /** Dispatch against this exact object instance, preserving its scene tile. */
+    /** Dispatch against this exact object instance, preserving its scene tile; returns false when actions does not contain it. */
     interact(action: string): boolean;
     /** Cast `spell` on this object. */
     castOn(spell: MagicSpell): boolean;
