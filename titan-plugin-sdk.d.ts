@@ -1741,13 +1741,11 @@ interface PanelElement {
         highBit: number;
         /**
          * Where the `{varpIndex, lowBit, highBit}` triple came from.
-         * `"live"`: the game's in-memory VarBitType hash cache (always
-         * fresh; only populated for varbits loaded this session).
-         * `"native"`: decoded via the native GET_VARBIT round-trip
-         * (reserved for future flows; not produced today).
-         * `"disk"`: read from the JS5 disk cache as a fallback when the
-         * live entry isn't loaded; may be stale if the local
-         * `main_file_cache.dat2` hasn't been refreshed.
+         * Current hosts return `"disk"` for `titan.state.cache.varbit(id)`:
+         * the definition comes from Titan-owned JS5 cache data and does not
+         * walk the game's live VarBitType cache.
+         * `"live"` and `"native"` remain part of the union for older hosts
+         * and diagnostic/native comparison flows.
          * Added in SDK 58.
          */
         source: 'live' | 'native' | 'disk';
@@ -1764,13 +1762,11 @@ interface PanelElement {
          * Raw var reads. Skill / prayer queries live on
          * `titan.state.skills` / `titan.state.prayers` (SDK 39+).
          *
-         * `varbit(id)` is self-healing (SDK 58+): if the game hasn't
-         * loaded the VarBitType into its in-memory cache yet (typical
-         * for out-of-area minigame varbits), the host falls back to the
-         * native GET_VARBIT call (which JS5-loads the type on demand)
-         * and finally to a disk-cache extract. Returns `-1` only when
-         * every source is unavailable. The first out-of-area read for a
-         * given varbit may incur a one-time JS5 load.
+         * `varbit(id)` uses Titan-owned JS5 cache definitions plus a direct
+         * varp read. It does not call native GET_VARBIT and does not walk the
+         * game's live VarBitType cache, so it is safe from render/plugin
+         * threads. Returns `-1` when the cache definition or parent varp is
+         * unavailable.
          */
         const vars: {
             varbit(id: number): number;
