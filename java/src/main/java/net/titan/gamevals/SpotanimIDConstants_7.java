@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface SpotanimIDConstants_7 {
+    int LEAGUES_6_SIGIL_OF_LIFE_IMPACT = 3584;
     int VFX_WHITE_PARTICLES = 3585;
     int VFX_WHITE_PARTICLES_REVERSE = 3586;
     int VFX_BEEF_TORNADO = 3587;

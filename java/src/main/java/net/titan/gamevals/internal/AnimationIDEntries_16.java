@@ -10,6 +10,7 @@ final class AnimationIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8208, "GOLDEN_TENCH_READY", "golden_tench_ready", "seqtypes"),
             new GamevalEntry(8209, "GOLDEN_TENCH_ATTACK", "golden_tench_attack", "seqtypes"),
             new GamevalEntry(8210, "KAHLITH_READY", "kahlith_ready", "seqtypes"),
             new GamevalEntry(8211, "KAHLITH_WALK", "kahlith_walk", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_16 {
             new GamevalEntry(8720, "VYRELORD_VANSTROM_KLAUSE_DOUBLE_PUNCH_KICK", "vyrelord_vanstrom_klause_double_punch_kick", "seqtypes"),
             new GamevalEntry(8721, "VYRELORD_VANSTROM_KLAUSE_DRAGON", "vyrelord_vanstrom_klause_dragon", "seqtypes"),
             new GamevalEntry(8722, "VYRELORD_SUMMON", "vyrelord_summon", "seqtypes"),
-            new GamevalEntry(8723, "VYRELORD_DISINTEGRATE", "vyrelord_disintegrate", "seqtypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_12 {
+    int SLICE_SURFACE_GOBLIN_SERGENT_STAND_UP = 6158;
     int SLICE_DORGESH_URTAQ_ARGUING = 6159;
     int SLICE_DWARF_ALVIJAR_ARGUING = 6160;
     int SLICE_ZANIK_ADDRESS_GOBLIN_CROWD = 6161;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_12 {
     int PETROCK_SPOTANIM_STAY = 6667;
     int PETROCK_SPOTANIM_STICK = 6668;
     int PETROCK_PROJANIM_STICK = 6669;
-    int PETROCK_SPOTANIM_STICK_LAND = 6670;
 }

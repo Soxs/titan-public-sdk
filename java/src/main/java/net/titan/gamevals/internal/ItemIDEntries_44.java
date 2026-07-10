@@ -10,6 +10,9 @@ final class ItemIDEntries_44 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(22982, "PLACEHOLDER_FEROCIOUS_GLOVES", "placeholder_ferocious_gloves", "objtypes"),
+            new GamevalEntry(22983, "HYDRA_LEATHER", "Hydra leather", "objtypes"),
+            new GamevalEntry(22984, "CERT_HYDRA_LEATHER", "cert_hydra_leather", "objtypes"),
             new GamevalEntry(22985, "PLACEHOLDER_HYDRA_LEATHER", "placeholder_hydra_leather", "objtypes"),
             new GamevalEntry(22986, "BONECRUSHER_NECKLACE", "Bonecrusher necklace", "objtypes"),
             new GamevalEntry(22987, "PLACEHOLDER_BONECRUSHER_NECKLACE", "placeholder_bonecrusher_necklace", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_44 {
             new GamevalEntry(23491, "PLACEHOLDER_SLAYER_WILDERNESS_KEY", "placeholder_slayer_wilderness_key", "objtypes"),
             new GamevalEntry(23492, "SLAYER_WILDERNESS_KEY_2", "slayer_wilderness_key_2", "objtypes"),
             new GamevalEntry(23493, "SLAYER_WILDERNESS_KEY_4", "slayer_wilderness_key_4", "objtypes"),
-            new GamevalEntry(23494, "SLAYER_WILDERNESS_KEY_5", "slayer_wilderness_key_5", "objtypes"),
-            new GamevalEntry(23495, "SARACHNISPET", "Sraracha", "objtypes"),
-            new GamevalEntry(23496, "PLACEHOLDER_SARACHNISPET", "placeholder_sarachnispet", "objtypes"),
         };
     }
 

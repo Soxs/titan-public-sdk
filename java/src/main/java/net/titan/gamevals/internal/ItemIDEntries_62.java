@@ -10,6 +10,9 @@ final class ItemIDEntries_62 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(32308, "PLACEHOLDER_SAILING_FINE_FISH_OFFCUTS", "placeholder_sailing_fine_fish_offcuts", "objtypes"),
+            new GamevalEntry(32309, "RAW_GIANT_KRILL", "Raw giant krill", "objtypes"),
+            new GamevalEntry(32310, "CERT_RAW_GIANT_KRILL", "cert_raw_giant_krill", "objtypes"),
             new GamevalEntry(32311, "PLACEHOLDER_RAW_GIANT_KRILL", "placeholder_raw_giant_krill", "objtypes"),
             new GamevalEntry(32312, "GIANT_KRILL", "Giant krill", "objtypes"),
             new GamevalEntry(32313, "CERT_GIANT_KRILL", "cert_giant_krill", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_62 {
             new GamevalEntry(32817, "SAILING_ARMOURED_KRAKEN_TENTACLE", "Armoured kraken tentacle", "objtypes"),
             new GamevalEntry(32818, "SAILING_VAMPYRE_KRAKEN_TENTACLE", "Vampyre kraken tentacle", "objtypes"),
             new GamevalEntry(32819, "SAILING_EAGLE_RAY_FIN", "Eagle ray fin", "objtypes"),
-            new GamevalEntry(32820, "SAILING_BUTTERFLY_RAY_FIN", "Butterfly ray fin", "objtypes"),
-            new GamevalEntry(32821, "SAILING_STINGRAY_FIN", "Stingray fin", "objtypes"),
-            new GamevalEntry(32822, "SAILING_MANTA_RAY_FIN", "Manta ray fin", "objtypes"),
         };
     }
 

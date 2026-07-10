@@ -10,6 +10,7 @@ final class AnimationIDEntries_2 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1028, "ELEMENTAL_FIRE_WALK", "elemental_fire_walk", "seqtypes"),
             new GamevalEntry(1029, "ELEMENTAL_FIRE_ATTACK", "elemental_fire_attack", "seqtypes"),
             new GamevalEntry(1030, "ELEMENTAL_FIRE_DEFEND", "elemental_fire_defend", "seqtypes"),
             new GamevalEntry(1031, "ELEMENTAL_FIRE_DEATH", "elemental_fire_death", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_2 {
             new GamevalEntry(1538, "ABYSSAL_DEATH", "abyssal_death", "seqtypes"),
             new GamevalEntry(1539, "DEMON_SPAWN_FLY", "demon_spawn_fly", "seqtypes"),
             new GamevalEntry(1540, "DEMON_SPAWN_ATTACK", "demon_spawn_attack", "seqtypes"),
-            new GamevalEntry(1541, "DEMON_SPAWN_DEATH", "demon_spawn_death", "seqtypes"),
         };
     }
 

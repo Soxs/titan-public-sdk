@@ -10,6 +10,7 @@ final class AnimationIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10772, "COA_UZER_FIRE", "coa_uzer_fire", "seqtypes"),
             new GamevalEntry(10773, "COA_FORT_FIRE", "coa_fort_fire", "seqtypes"),
             new GamevalEntry(10774, "COA_FORT_FIRE_SMALL", "coa_fort_fire_small", "seqtypes"),
             new GamevalEntry(10775, "COA_STONE_GOLEM_WALK", "coa_stone_golem_walk", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_21 {
             new GamevalEntry(11284, "WGS_WASHERMAN_READY", "wgs_washerman_ready", "seqtypes"),
             new GamevalEntry(11285, "HUMAN_FALL_LOOP", "human_fall_loop", "seqtypes"),
             new GamevalEntry(11286, "HUMAN_GETUP_FROM_SLIP", "human_getup_from_slip", "seqtypes"),
-            new GamevalEntry(11287, "WGS_SUROK_BANGING_PRISON_BARS", "wgs_surok_banging_prison_bars", "seqtypes"),
         };
     }
 

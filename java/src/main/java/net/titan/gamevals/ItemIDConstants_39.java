@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_39 {
+    int BR_ADAMANT_SCIMITAR = 20400;
+    int BR_YEW_BOW = 20401;
+    int BR_RUNE_SCIMITAR = 20402;
     int BR_MAPLE_BOW = 20403;
     int BR_AIR_STAFF = 20404;
     int BR_ABYSSAL_WHIP = 20405;
@@ -510,7 +513,4 @@ public interface ItemIDConstants_39 {
     int RAIDS_SEED_BUCHULEAF = 20909;
     int RAIDS_STINKHORN_MUSHROOM = 20910;
     int RAIDS_ENDARKENED_JUICE = 20911;
-    int RAIDS_CICELY = 20912;
-    int RAIDS_VIAL_ELDER_WEAK_1 = 20913;
-    int RAIDS_VIAL_ELDER_WEAK_2 = 20914;
 }

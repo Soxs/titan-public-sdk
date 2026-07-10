@@ -10,6 +10,7 @@ final class AnimationIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13848, "LEAGUES_6_THRALL_IMP_MAGIC_ATTACK", "leagues_6_thrall_imp_magic_attack", "seqtypes"),
             new GamevalEntry(13849, "LEAGUES_6_THRALL_IMP_MAGIC_ATTACK_02", "leagues_6_thrall_imp_magic_attack_02", "seqtypes"),
             new GamevalEntry(13850, "LEAGUES_6_THRALL_IMP_RANGED_ATTACK", "leagues_6_thrall_imp_ranged_attack", "seqtypes"),
             new GamevalEntry(13851, "LEAGUES_6_THRALL_IMP_MELEE_ATTACK", "leagues_6_thrall_imp_melee_attack", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_27 {
             new GamevalEntry(14357, "LOWERNIEL_DRAKAN_CUTSCENE_PART02_AFTERIMAGE01", "lowerniel_drakan_cutscene_part02_afterimage01", "seqtypes"),
             new GamevalEntry(14358, "LOWERNIEL_DRAKAN_CUTSCENE_PART02_AFTERIMAGE02", "lowerniel_drakan_cutscene_part02_afterimage02", "seqtypes"),
             new GamevalEntry(14359, "LOWERNIEL_DRAKAN_CUTSCENE_WELL_SIT_STAND01", "lowerniel_drakan_cutscene_well_sit_stand01", "seqtypes"),
-            new GamevalEntry(14360, "LOWERNIEL_DRAKAN_CUTSCENE_SUNSPEAR_DRAMATIC01", "lowerniel_drakan_cutscene_sunspear_dramatic01", "seqtypes"),
         };
     }
 

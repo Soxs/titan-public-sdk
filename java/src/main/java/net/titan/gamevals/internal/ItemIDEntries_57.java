@@ -10,6 +10,9 @@ final class ItemIDEntries_57 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(29736, "DNI23_ARMS_BARESHOULDERS", "Dni23 arms bareshoulders", "objtypes"),
+            new GamevalEntry(29737, "PLACEHOLDER_DNI23_ARMS_BARESHOULDERS", "placeholder_dni23_arms_bareshoulders", "objtypes"),
+            new GamevalEntry(29738, "DNI23_LEGS_SHORTS", "Dni23 legs shorts", "objtypes"),
             new GamevalEntry(29739, "PLACEHOLDER_DNI23_LEGS_SHORTS", "placeholder_dni23_legs_shorts", "objtypes"),
             new GamevalEntry(29740, "DNI23_LEGS_BEACH", "Dni23 legs beach", "objtypes"),
             new GamevalEntry(29741, "PLACEHOLDER_DNI23_LEGS_BEACH", "placeholder_dni23_legs_beach", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_57 {
             new GamevalEntry(30257, "HW24_REWARD_PUMPKIN_YELLOW_EW", "Yellow pumpkin (disgusted)", "objtypes"),
             new GamevalEntry(30258, "HW24_REWARD_PUMPKIN_YELLOW_DERP", "Yellow pumpkin (silly)", "objtypes"),
             new GamevalEntry(30259, "HW24_REWARD_PUMPKIN_YELLOW_EVIL", "Yellow pumpkin (evil)", "objtypes"),
-            new GamevalEntry(30260, "HW24_REWARD_PUMPKIN_YELLOW_GRR", "Yellow pumpkin (angry)", "objtypes"),
-            new GamevalEntry(30261, "HW24_REWARD_PUMPKIN_YELLOW_MEH", "Yellow pumpkin (depressed)", "objtypes"),
-            new GamevalEntry(30262, "HW24_REWARD_PUMPKIN_YELLOW_OH", "Yellow pumpkin (shocked)", "objtypes"),
         };
     }
 

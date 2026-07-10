@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_21 {
+    int COA_UZER_FIRE = 10772;
     int COA_FORT_FIRE = 10773;
     int COA_FORT_FIRE_SMALL = 10774;
     int COA_STONE_GOLEM_WALK = 10775;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_21 {
     int WGS_WASHERMAN_READY = 11284;
     int HUMAN_FALL_LOOP = 11285;
     int HUMAN_GETUP_FROM_SLIP = 11286;
-    int WGS_SUROK_BANGING_PRISON_BARS = 11287;
 }

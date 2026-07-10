@@ -10,6 +10,9 @@ final class ItemIDEntries_37 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(19371, "PLACEHOLDER_3DOSESTAMINA", "placeholder_3dosestamina", "objtypes"),
+            new GamevalEntry(19372, "PLACEHOLDER_2DOSESTAMINA", "placeholder_2dosestamina", "objtypes"),
+            new GamevalEntry(19373, "PLACEHOLDER_1DOSESTAMINA", "placeholder_1dosestamina", "objtypes"),
             new GamevalEntry(19374, "PLACEHOLDER_3DOSE2RESTORE", "placeholder_3dose2restore", "objtypes"),
             new GamevalEntry(19375, "PLACEHOLDER_2DOSE2RESTORE", "placeholder_2dose2restore", "objtypes"),
             new GamevalEntry(19376, "PLACEHOLDER_1DOSE2RESTORE", "placeholder_1dose2restore", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_37 {
             new GamevalEntry(19885, "TRAIL_HARD_ANAGRAM_EXP8_CHALLENGE", "Challenge scroll (hard)", "objtypes"),
             new GamevalEntry(19886, "TRAIL_HARD_ANAGRAM_EXP9", "Clue scroll (hard)", "objtypes"),
             new GamevalEntry(19887, "TRAIL_HARD_ANAGRAM_EXP9_PUZZLEBOX", "Puzzle box (hard)", "objtypes"),
-            new GamevalEntry(19888, "TRAIL_HARD_ANAGRAM_EXP10", "Clue scroll (hard)", "objtypes"),
-            new GamevalEntry(19889, "TRAIL_HARD_ANAGRAM_EXP10_CHALLENGE", "Challenge scroll (hard)", "objtypes"),
-            new GamevalEntry(19890, "TRAIL_HARD_ANAGRAM_EXP11", "Clue scroll (hard)", "objtypes"),
         };
     }
 

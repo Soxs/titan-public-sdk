@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_18 {
+    int CANNON_LEAGUE03_FIRE_SW = 9235;
     int CANNON_LEAGUE03_FIRE_W = 9236;
     int CANNON_LEAGUE03_FIRE_NW = 9237;
     int CANNON_LEAGUE03_AIM = 9238;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_18 {
     int NPC_MANDRILL_ATTACK_RANGED_02 = 9745;
     int NPC_MANDRILL_ATTACK_MAGIC = 9746;
     int NPC_MANDRILL_ATTACK_MAGIC_02 = 9747;
-    int NPC_MANDRILL_ATTACK_SPECIAL_JUMP01 = 9748;
 }

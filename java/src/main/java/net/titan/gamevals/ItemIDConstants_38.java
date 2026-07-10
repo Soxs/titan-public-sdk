@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_38 {
+    int TRAIL_HARD_ANAGRAM_EXP10 = 19888;
+    int TRAIL_HARD_ANAGRAM_EXP10_CHALLENGE = 19889;
+    int TRAIL_HARD_ANAGRAM_EXP11 = 19890;
     int TRAIL_HARD_ANAGRAM_EXP11_PUZZLEBOX = 19891;
     int TRAIL_HARD_ANAGRAM_EXP12 = 19892;
     int TRAIL_HARD_ANAGRAM_EXP12_CHALLENGE = 19893;
@@ -510,7 +513,4 @@ public interface ItemIDConstants_38 {
     int BR_HALBERD = 20397;
     int BR_MITHRIL_SCIMITAR = 20398;
     int BR_WILLOW_BOW = 20399;
-    int BR_ADAMANT_SCIMITAR = 20400;
-    int BR_YEW_BOW = 20401;
-    int BR_RUNE_SCIMITAR = 20402;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface SpotanimIDConstants_4 {
+    int LOTG_ZANIK_LIGHT_VORTEX_ONE = 2048;
     int LOTG_ZANIK_LIGHT_VORTEX_TWO = 2049;
     int LOTG_BONE_SHARDS_PROJECTILE = 2050;
     int LOTG_DOUBLE_COIL_SPOTANIM = 2051;
@@ -512,5 +513,4 @@ public interface SpotanimIDConstants_4 {
     int VFX_DM_BOSS_TRANSPARENT = 2557;
     int VFX_DM_BOSS_COMBINED = 2558;
     int VFX_DM_BREACH_PROJ = 2559;
-    int SIGIL_OF_THE_ETERNAL_JEWELLER = 2560;
 }

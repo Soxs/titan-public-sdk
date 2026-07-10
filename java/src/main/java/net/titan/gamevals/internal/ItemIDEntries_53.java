@@ -10,6 +10,9 @@ final class ItemIDEntries_53 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(27647, "CERT_SATURATED_HEART", "cert_saturated_heart", "objtypes"),
+            new GamevalEntry(27648, "VENENATIS_PET_LEGACY", "Venenatis spiderling", "objtypes"),
+            new GamevalEntry(27649, "CALLISTO_PET_LEGACY", "Callisto cub", "objtypes"),
             new GamevalEntry(27650, "VETION_PET_LEGACY", "Vet'ion jr.", "objtypes"),
             new GamevalEntry(27651, "VETION_PET2_LEGACY", "Vet'ion jr.", "objtypes"),
             new GamevalEntry(27652, "WILD_CAVE_WEBWEAVER_UNCHARGED", "Webweaver bow (u)", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_53 {
             new GamevalEntry(28168, "PLACEHOLDER_FORESTRY_CLOTHES_POUCH_BLUEPRINT", "placeholder_forestry_clothes_pouch_blueprint", "objtypes"),
             new GamevalEntry(28169, "FORESTRY_LUMBERJACK_TOP", "Forestry top", "objtypes"),
             new GamevalEntry(28170, "PLACEHOLDER_FORESTRY_LUMBERJACK_TOP", "placeholder_forestry_lumberjack_top", "objtypes"),
-            new GamevalEntry(28171, "FORESTRY_LUMBERJACK_LEGS", "Forestry legs", "objtypes"),
-            new GamevalEntry(28172, "PLACEHOLDER_FORESTRY_LUMBERJACK_LEGS", "placeholder_forestry_lumberjack_legs", "objtypes"),
-            new GamevalEntry(28173, "FORESTRY_LUMBERJACK_HAT", "Forestry hat", "objtypes"),
         };
     }
 

@@ -10,6 +10,9 @@ final class ItemIDEntries_38 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(19888, "TRAIL_HARD_ANAGRAM_EXP10", "Clue scroll (hard)", "objtypes"),
+            new GamevalEntry(19889, "TRAIL_HARD_ANAGRAM_EXP10_CHALLENGE", "Challenge scroll (hard)", "objtypes"),
+            new GamevalEntry(19890, "TRAIL_HARD_ANAGRAM_EXP11", "Clue scroll (hard)", "objtypes"),
             new GamevalEntry(19891, "TRAIL_HARD_ANAGRAM_EXP11_PUZZLEBOX", "Puzzle box (hard)", "objtypes"),
             new GamevalEntry(19892, "TRAIL_HARD_ANAGRAM_EXP12", "Clue scroll (hard)", "objtypes"),
             new GamevalEntry(19893, "TRAIL_HARD_ANAGRAM_EXP12_CHALLENGE", "Challenge scroll (hard)", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_38 {
             new GamevalEntry(20397, "BR_HALBERD", "Spear", "objtypes"),
             new GamevalEntry(20398, "BR_MITHRIL_SCIMITAR", "ZHits a demon for minor damage", "objtypes"),
             new GamevalEntry(20399, "BR_WILLOW_BOW", "ZHits a demon for moderate damage", "objtypes"),
-            new GamevalEntry(20400, "BR_ADAMANT_SCIMITAR", "ZHits a demon for major damage", "objtypes"),
-            new GamevalEntry(20401, "BR_YEW_BOW", "Yew shortbow", "objtypes"),
-            new GamevalEntry(20402, "BR_RUNE_SCIMITAR", "Rune scimitar", "objtypes"),
         };
     }
 

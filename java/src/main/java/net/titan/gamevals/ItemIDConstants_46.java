@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_46 {
+    int PRIF_ELVEN_GLOVES = 24006;
+    int CERT_PRIF_ELVEN_GLOVES = 24007;
+    int PLACEHOLDER_PRIF_ELVEN_GLOVES = 24008;
     int PRIF_ELVEN_CLOTHES_TOP_1 = 24009;
     int CERT_PRIF_ELVEN_CLOTHES_TOP_1 = 24010;
     int PLACEHOLDER_PRIF_ELVEN_CLOTHES_TOP_1 = 24011;
@@ -510,7 +513,4 @@ public interface ItemIDConstants_46 {
     int CERT_VOLATILE_ORB = 24515;
     int PLACEHOLDER_VOLATILE_ORB = 24516;
     int ELDRITCH_ORB = 24517;
-    int CERT_ELDRITCH_ORB = 24518;
-    int PLACEHOLDER_ELDRITCH_ORB = 24519;
-    int BR_CAPE_1000 = 24520;
 }

@@ -10,6 +10,9 @@ final class ItemIDEntries_61 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(31796, "PLACEHOLDER_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_500000", "placeholder_sailing_chance_encounters_clam_pearl_500000", "objtypes"),
+            new GamevalEntry(31797, "SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_1000000", "Brilliant pearl", "objtypes"),
+            new GamevalEntry(31798, "CERT_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_1000000", "cert_sailing_chance_encounters_clam_pearl_1000000", "objtypes"),
             new GamevalEntry(31799, "PLACEHOLDER_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_1000000", "placeholder_sailing_chance_encounters_clam_pearl_1000000", "objtypes"),
             new GamevalEntry(31800, "SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_2500000", "Radiant pearl", "objtypes"),
             new GamevalEntry(31801, "CERT_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_2500000", "cert_sailing_chance_encounters_clam_pearl_2500000", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_61 {
             new GamevalEntry(32305, "SAILING_SKILLGUIDE_BOAT_REPAIR_KIT_IRONWOOD", "Ironwood repair kit", "objtypes"),
             new GamevalEntry(32306, "SAILING_SKILLGUIDE_BOAT_REPAIR_KIT_ROSEWOOD", "Rosewood repair kit", "objtypes"),
             new GamevalEntry(32307, "SAILING_FINE_FISH_OFFCUTS", "Fine fish offcuts", "objtypes"),
-            new GamevalEntry(32308, "PLACEHOLDER_SAILING_FINE_FISH_OFFCUTS", "placeholder_sailing_fine_fish_offcuts", "objtypes"),
-            new GamevalEntry(32309, "RAW_GIANT_KRILL", "Raw giant krill", "objtypes"),
-            new GamevalEntry(32310, "CERT_RAW_GIANT_KRILL", "cert_raw_giant_krill", "objtypes"),
         };
     }
 

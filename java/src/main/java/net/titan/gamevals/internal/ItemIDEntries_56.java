@@ -10,6 +10,9 @@ final class ItemIDEntries_56 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(29213, "HUNTER_MIX_MOONMOTH_1DOSE", "Moonlight moth mix (1)", "objtypes"),
+            new GamevalEntry(29214, "CERT_HUNTER_MIX_MOONMOTH_1DOSE", "cert_hunter_mix_moonmoth_1dose", "objtypes"),
+            new GamevalEntry(29215, "PLACEHOLDER_HUNTER_MIX_MOONMOTH_1DOSE", "placeholder_hunter_mix_moonmoth_1dose", "objtypes"),
             new GamevalEntry(29216, "BREAM_FISH_RAW", "Raw bream", "objtypes"),
             new GamevalEntry(29217, "BREAM_FISH_COOKED", "Cooked bream", "objtypes"),
             new GamevalEntry(29218, "VARLAMORE_JAGUAR_FUR", "Jaguar fur", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_56 {
             new GamevalEntry(29733, "PLACEHOLDER_DNI23_ARMS_FRILLY", "placeholder_dni23_arms_frilly", "objtypes"),
             new GamevalEntry(29734, "DNI23_ARMS_TATTYSHORT", "Dni23 arms tattyshort", "objtypes"),
             new GamevalEntry(29735, "PLACEHOLDER_DNI23_ARMS_TATTYSHORT", "placeholder_dni23_arms_tattyshort", "objtypes"),
-            new GamevalEntry(29736, "DNI23_ARMS_BARESHOULDERS", "Dni23 arms bareshoulders", "objtypes"),
-            new GamevalEntry(29737, "PLACEHOLDER_DNI23_ARMS_BARESHOULDERS", "placeholder_dni23_arms_bareshoulders", "objtypes"),
-            new GamevalEntry(29738, "DNI23_LEGS_SHORTS", "Dni23 legs shorts", "objtypes"),
         };
     }
 

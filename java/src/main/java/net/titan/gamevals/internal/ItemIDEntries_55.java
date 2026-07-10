@@ -10,6 +10,9 @@ final class ItemIDEntries_55 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(28701, "PLACEHOLDER_LEAGUE_4_DEATH_SCROLL", "placeholder_league_4_death_scroll", "objtypes"),
+            new GamevalEntry(28702, "LEAGUE_4_BANNER", "Trailblazer reloaded banner", "objtypes"),
+            new GamevalEntry(28703, "CERT_LEAGUE_4_BANNER", "cert_league_4_banner", "objtypes"),
             new GamevalEntry(28704, "PLACEHOLDER_LEAGUE_4_BANNER", "placeholder_league_4_banner", "objtypes"),
             new GamevalEntry(28705, "LEAGUE_4_HOME_TELEPORT_SCROLL", "Trailblazer reloaded home teleport scroll", "objtypes"),
             new GamevalEntry(28706, "CERT_LEAGUE_4_HOME_TELEPORT_SCROLL", "cert_league_4_home_teleport_scroll", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_55 {
             new GamevalEntry(29210, "HUNTER_MIX_SUNMOTH_1DOSE", "Sunlight moth mix (1)", "objtypes"),
             new GamevalEntry(29211, "CERT_HUNTER_MIX_SUNMOTH_1DOSE", "cert_hunter_mix_sunmoth_1dose", "objtypes"),
             new GamevalEntry(29212, "PLACEHOLDER_HUNTER_MIX_SUNMOTH_1DOSE", "placeholder_hunter_mix_sunmoth_1dose", "objtypes"),
-            new GamevalEntry(29213, "HUNTER_MIX_MOONMOTH_1DOSE", "Moonlight moth mix (1)", "objtypes"),
-            new GamevalEntry(29214, "CERT_HUNTER_MIX_MOONMOTH_1DOSE", "cert_hunter_mix_moonmoth_1dose", "objtypes"),
-            new GamevalEntry(29215, "PLACEHOLDER_HUNTER_MIX_MOONMOTH_1DOSE", "placeholder_hunter_mix_moonmoth_1dose", "objtypes"),
         };
     }
 

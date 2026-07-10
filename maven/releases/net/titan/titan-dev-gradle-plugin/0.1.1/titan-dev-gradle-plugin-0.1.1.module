@@ -28,10 +28,10 @@
           "name": "titan-dev-gradle-plugin-0.1.1.jar",
           "url": "titan-dev-gradle-plugin-0.1.1.jar",
           "size": 108737,
-          "sha512": "b951863ecc1ccccc816eb62c79a9c58d928114516ded93db6f1ec6aa2bab532854263c7a2b9abcf4f3feff42f8674c82587676d9a61a74a699a6a5f02a7ec127",
-          "sha256": "926a24143d79e82f73e0ebdef9729596eacdd6a378681b8c8af8dfbad2cab1b1",
-          "sha1": "a9502ad54ac4d7e1cb5cdce300e4880df323e712",
-          "md5": "c72134413481c60bab2fa4493a3933d5"
+          "sha512": "cc35e12a29fea9c7d2f6caeff5527943d38b910900928cdf988eb95b2ce8d95547ff70995a9e414090d54b3e323be2344546ea40a96484477bbb3bd0a651af52",
+          "sha256": "120fb843be4fbcf54cc23921331b59cf5b4f3caa0d2a8cde5414a09d4f0a8fb8",
+          "sha1": "1f4b7232ced41a8a50b9b9e67c81832771ac0507",
+          "md5": "bbd54bc86ad539f90c2f520d7c3a1ce1"
         }
       ]
     },
@@ -49,10 +49,10 @@
           "name": "titan-dev-gradle-plugin-0.1.1.jar",
           "url": "titan-dev-gradle-plugin-0.1.1.jar",
           "size": 108737,
-          "sha512": "b951863ecc1ccccc816eb62c79a9c58d928114516ded93db6f1ec6aa2bab532854263c7a2b9abcf4f3feff42f8674c82587676d9a61a74a699a6a5f02a7ec127",
-          "sha256": "926a24143d79e82f73e0ebdef9729596eacdd6a378681b8c8af8dfbad2cab1b1",
-          "sha1": "a9502ad54ac4d7e1cb5cdce300e4880df323e712",
-          "md5": "c72134413481c60bab2fa4493a3933d5"
+          "sha512": "cc35e12a29fea9c7d2f6caeff5527943d38b910900928cdf988eb95b2ce8d95547ff70995a9e414090d54b3e323be2344546ea40a96484477bbb3bd0a651af52",
+          "sha256": "120fb843be4fbcf54cc23921331b59cf5b4f3caa0d2a8cde5414a09d4f0a8fb8",
+          "sha1": "1f4b7232ced41a8a50b9b9e67c81832771ac0507",
+          "md5": "bbd54bc86ad539f90c2f520d7c3a1ce1"
         }
       ]
     }

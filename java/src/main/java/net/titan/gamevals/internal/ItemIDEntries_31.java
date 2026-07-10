@@ -245,7 +245,10 @@ final class ItemIDEntries_31 {
             new GamevalEntry(16489, "PLACEHOLDER_DREAM_CHEST", "placeholder_dream_chest", "objtypes"),
             new GamevalEntry(16490, "PLACEHOLDER_DREAM_HUNTER_BOX", "placeholder_dream_hunter_box", "objtypes"),
             new GamevalEntry(16491, "PLACEHOLDER_DREAM_LANTERN", "placeholder_dream_lantern", "objtypes"),
+            new GamevalEntry(16492, "PLACEHOLDER_STAKE", "Stake", "objtypes"),
             new GamevalEntry(16493, "PLACEHOLDER_GARLIC", "placeholder_garlic", "objtypes"),
+            new GamevalEntry(16494, "PLACEHOLDER_PIPKEY_GOLD", "Golden key", "objtypes"),
+            new GamevalEntry(16495, "PLACEHOLDER_PIPKEY_IRON", "Iron key", "objtypes"),
             new GamevalEntry(16496, "PLACEHOLDER_PIPTINDERBOX_GOLD", "placeholder_piptinderbox_gold", "objtypes"),
             new GamevalEntry(16497, "PLACEHOLDER_PIPCANDLE_GOLD", "placeholder_pipcandle_gold", "objtypes"),
             new GamevalEntry(16498, "PLACEHOLDER_PIPPOT_GOLD", "placeholder_pippot_gold", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_31 {
             new GamevalEntry(16770, "PLACEHOLDER_VIKING_CLOAK_GREY", "placeholder_viking_cloak_grey", "objtypes"),
             new GamevalEntry(16771, "PLACEHOLDER_VIKING_CLOAK_TANGERINE", "placeholder_viking_cloak_tangerine", "objtypes"),
             new GamevalEntry(16772, "PLACEHOLDER_VIKING_CLOAK_OCEAN", "placeholder_viking_cloak_ocean", "objtypes"),
-            new GamevalEntry(16773, "PLACEHOLDER_VIKING_CLOAK_PURPLE", "placeholder_viking_cloak_purple", "objtypes"),
-            new GamevalEntry(16774, "PLACEHOLDER_VIKING_CLOAK_PINK", "placeholder_viking_cloak_pink", "objtypes"),
-            new GamevalEntry(16775, "PLACEHOLDER_VIKING_CLOAK_BLACK", "placeholder_viking_cloak_black", "objtypes"),
         };
     }
 

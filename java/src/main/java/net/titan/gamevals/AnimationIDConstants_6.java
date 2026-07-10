@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_6 {
+    int ENAKH_BONEGUARD_WALK = 3078;
     int SNP_FIRE_BOSS_READY = 3079;
     int ENAKH_BONEGUARD_GLOW_SMALL_ATTACK = 3080;
     int ENAKH_BONEGUARD_GLOW_SMALL_BLOCK = 3081;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_6 {
     int POH_JESTER_ELEVATE = 3588;
     int POH_JESTER_DEELEVATE = 3589;
     int POH_JESTER_DESCEND = 3590;
-    int POH_JESTER_ASCEND = 3591;
 }

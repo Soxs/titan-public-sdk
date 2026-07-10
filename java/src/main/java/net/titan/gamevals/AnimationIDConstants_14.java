@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_14 {
+    int GIANT_BASIC_INJECT_GROW = 7184;
     int HUMAN_ZENYTECUTTING = 7185;
     int CHAIR_EAT_STOOL_1_DELAYOFFSET = 7186;
     int DREAM_CYRISUS_SIT_UP_TRANSITION_REVERSE = 7187;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_14 {
     int FOSSIL_LOC_JUMPSHROOM_SQUASH = 7693;
     int FOSSIL_NPC_HERBIBOAR_IDLE = 7694;
     int FOSSIL_NPC_HERBIBOAR_WALK = 7695;
-    int FOSSIL_NPC_HERBIBOAR_ATTACK = 7696;
 }

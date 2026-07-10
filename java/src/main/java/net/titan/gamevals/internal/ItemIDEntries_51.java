@@ -10,6 +10,9 @@ final class ItemIDEntries_51 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(26623, "OSB9_COOKOUT_TOMATO", "Tomato (cookout)", "objtypes"),
+            new GamevalEntry(26624, "PLACEHOLDER_OSB9_COOKOUT_TOMATO", "placeholder_osb9_cookout_tomato", "objtypes"),
+            new GamevalEntry(26625, "OSB9_COOKOUT_CHEESE", "Cheese (cookout)", "objtypes"),
             new GamevalEntry(26626, "PLACEHOLDER_OSB9_COOKOUT_CHEESE", "placeholder_osb9_cookout_cheese", "objtypes"),
             new GamevalEntry(26627, "OSB9_COOKOUT_BANANA", "Banana (cookout)", "objtypes"),
             new GamevalEntry(26628, "PLACEHOLDER_OSB9_COOKOUT_BANANA", "placeholder_osb9_cookout_banana", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_51 {
             new GamevalEntry(27132, "PLACEHOLDER_PVPA_ROTG", "placeholder_pvpa_rotg", "objtypes"),
             new GamevalEntry(27133, "PLACEHOLDER_PVPA_HEAVY_RING", "placeholder_pvpa_heavy_ring", "objtypes"),
             new GamevalEntry(27134, "PLACEHOLDER_PVPA_SHARP_RING", "placeholder_pvpa_sharp_ring", "objtypes"),
-            new GamevalEntry(27135, "PLACEHOLDER_PVPA_SEER_RING", "placeholder_pvpa_seer_ring", "objtypes"),
-            new GamevalEntry(27136, "PLACEHOLDER_PVPA_RANGER_RING", "placeholder_pvpa_ranger_ring", "objtypes"),
-            new GamevalEntry(27137, "PLACEHOLDER_PVPA_WARRIOR_RING", "placeholder_pvpa_warrior_ring", "objtypes"),
         };
     }
 

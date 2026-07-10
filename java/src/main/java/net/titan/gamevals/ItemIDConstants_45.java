@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_45 {
+    int SLAYER_WILDERNESS_KEY_5 = 23494;
+    int SARACHNISPET = 23495;
+    int PLACEHOLDER_SARACHNISPET = 23496;
     int HOSDUN_TEMPLE_COIN = 23497;
     int PLACEHOLDER_HOSDUN_TEMPLE_COIN = 23498;
     int HOSDUN_GRUBBY_KEY = 23499;
@@ -510,7 +513,4 @@ public interface ItemIDConstants_45 {
     int PRIF_ELVEN_BOOTS = 24003;
     int CERT_PRIF_ELVEN_BOOTS = 24004;
     int PLACEHOLDER_PRIF_ELVEN_BOOTS = 24005;
-    int PRIF_ELVEN_GLOVES = 24006;
-    int CERT_PRIF_ELVEN_GLOVES = 24007;
-    int PLACEHOLDER_PRIF_ELVEN_GLOVES = 24008;
 }

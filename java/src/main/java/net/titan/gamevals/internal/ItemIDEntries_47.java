@@ -10,6 +10,9 @@ final class ItemIDEntries_47 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(24518, "CERT_ELDRITCH_ORB", "cert_eldritch_orb", "objtypes"),
+            new GamevalEntry(24519, "PLACEHOLDER_ELDRITCH_ORB", "placeholder_eldritch_orb", "objtypes"),
+            new GamevalEntry(24520, "BR_CAPE_1000", "Victor's cape (1000)", "objtypes"),
             new GamevalEntry(24521, "PLACEHOLDER_BR_CAPE_1000", "placeholder_br_cape_1000", "objtypes"),
             new GamevalEntry(24522, "OSB7_CAT_EARS", "Null", "objtypes"),
             new GamevalEntry(24523, "OSB7_CAT_HAIR", "Death's coffer", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_47 {
             new GamevalEntry(25027, "PLACEHOLDER_TRAILBLAZER_RELIC_HUNTER_BOOTS_T2", "placeholder_trailblazer_relic_hunter_boots_t2", "objtypes"),
             new GamevalEntry(25028, "TRAILBLAZER_RELIC_HUNTER_HOOD_T1", "Trailblazer hood (t1)", "objtypes"),
             new GamevalEntry(25029, "CERT_TRAILBLAZER_RELIC_HUNTER_HOOD_T1", "cert_trailblazer_relic_hunter_hood_t1", "objtypes"),
-            new GamevalEntry(25030, "PLACEHOLDER_TRAILBLAZER_RELIC_HUNTER_HOOD_T1", "placeholder_trailblazer_relic_hunter_hood_t1", "objtypes"),
-            new GamevalEntry(25031, "TRAILBLAZER_RELIC_HUNTER_TOP_T1", "Trailblazer top (t1)", "objtypes"),
-            new GamevalEntry(25032, "CERT_TRAILBLAZER_RELIC_HUNTER_TOP_T1", "cert_trailblazer_relic_hunter_top_t1", "objtypes"),
         };
     }
 

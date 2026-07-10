@@ -10,6 +10,9 @@ final class ItemIDEntries_41 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(21432, "WILDWARS_TEAM5_CAPE", "Wilderness cape", "objtypes"),
+            new GamevalEntry(21433, "WILDWARS_CHAMPION_AMULET", "Wilderness champion amulet", "objtypes"),
+            new GamevalEntry(21434, "WILDWARS_TEAM1_CHAMPION_CAPE", "Wilderness cape", "objtypes"),
             new GamevalEntry(21435, "WILDWARS_TEAM2_CHAMPION_CAPE", "L ? ' Wilderness cape", "objtypes"),
             new GamevalEntry(21436, "WILDWARS_TEAM3_CHAMPION_CAPE", "Wilderness cape", "objtypes"),
             new GamevalEntry(21437, "WILDWARS_TEAM4_CHAMPION_CAPE", "Wilderness cape", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_41 {
             new GamevalEntry(21945, "PLACEHOLDER_DRAGON_BOLTS_ENCHANTED_RUBY", "placeholder_dragon_bolts_enchanted_ruby", "objtypes"),
             new GamevalEntry(21946, "DRAGON_BOLTS_ENCHANTED_DIAMOND", "Diamond dragon bolts (e)", "objtypes"),
             new GamevalEntry(21947, "PLACEHOLDER_DRAGON_BOLTS_ENCHANTED_DIAMOND", "placeholder_dragon_bolts_enchanted_diamond", "objtypes"),
-            new GamevalEntry(21948, "DRAGON_BOLTS_ENCHANTED_DRAGONSTONE", "Dragonstone dragon bolts (e)", "objtypes"),
-            new GamevalEntry(21949, "PLACEHOLDER_DRAGON_BOLTS_ENCHANTED_DRAGONSTONE", "placeholder_dragon_bolts_enchanted_dragonstone", "objtypes"),
-            new GamevalEntry(21950, "DRAGON_BOLTS_ENCHANTED_ONYX", "Onyx dragon bolts (e)", "objtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class AnimationIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3078, "ENAKH_BONEGUARD_WALK", "enakh_boneguard_walk", "seqtypes"),
             new GamevalEntry(3079, "SNP_FIRE_BOSS_READY", "snp_fire_boss_ready", "seqtypes"),
             new GamevalEntry(3080, "ENAKH_BONEGUARD_GLOW_SMALL_ATTACK", "enakh_boneguard_glow_small_attack", "seqtypes"),
             new GamevalEntry(3081, "ENAKH_BONEGUARD_GLOW_SMALL_BLOCK", "enakh_boneguard_glow_small_block", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_6 {
             new GamevalEntry(3588, "POH_JESTER_ELEVATE", "poh_jester_elevate", "seqtypes"),
             new GamevalEntry(3589, "POH_JESTER_DEELEVATE", "poh_jester_deelevate", "seqtypes"),
             new GamevalEntry(3590, "POH_JESTER_DESCEND", "poh_jester_descend", "seqtypes"),
-            new GamevalEntry(3591, "POH_JESTER_ASCEND", "poh_jester_ascend", "seqtypes"),
         };
     }
 

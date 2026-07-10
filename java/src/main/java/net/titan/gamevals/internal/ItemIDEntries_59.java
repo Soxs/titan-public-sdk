@@ -10,6 +10,9 @@ final class ItemIDEntries_59 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(30772, "PLACEHOLDER_COSMIC_SOUL_CATALYST", "placeholder_cosmic_soul_catalyst", "objtypes"),
+            new GamevalEntry(30773, "DIABOLIC_WORMS", "Diabolic worms", "objtypes"),
+            new GamevalEntry(30774, "PLACEHOLDER_DIABOLIC_WORMS", "placeholder_diabolic_worms", "objtypes"),
             new GamevalEntry(30775, "TELEPORTSCROLL_CHASMOFFIRE", "Chasm teleport scroll", "objtypes"),
             new GamevalEntry(30776, "PLACEHOLDER_TELEPORTSCROLL_CHASMOFFIRE", "placeholder_teleportscroll_chasmoffire", "objtypes"),
             new GamevalEntry(30777, "RADIANT_OATHPLATE_HELM", "Radiant oathplate helm", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_59 {
             new GamevalEntry(31281, "SKILLPET_WC_JATOBA", "Beaver", "objtypes"),
             new GamevalEntry(31282, "SKILLPET_WC_ROSEWOOD", "Beaver", "objtypes"),
             new GamevalEntry(31283, "SKILLPETSAILING", "Soup", "objtypes"),
-            new GamevalEntry(31284, "PLACEHOLDER_SKILLPETSAILING", "placeholder_skillpetsailing", "objtypes"),
-            new GamevalEntry(31285, "GRYPHONBOSSPET", "Gull", "objtypes"),
-            new GamevalEntry(31286, "PLACEHOLDER_GRYPHONBOSSPET", "placeholder_gryphonbosspet", "objtypes"),
         };
     }
 

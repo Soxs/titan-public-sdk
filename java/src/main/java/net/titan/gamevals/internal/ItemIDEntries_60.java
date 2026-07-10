@@ -10,6 +10,9 @@ final class ItemIDEntries_60 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(31284, "PLACEHOLDER_SKILLPETSAILING", "placeholder_skillpetsailing", "objtypes"),
+            new GamevalEntry(31285, "GRYPHONBOSSPET", "Gull", "objtypes"),
+            new GamevalEntry(31286, "PLACEHOLDER_GRYPHONBOSSPET", "placeholder_gryphonbosspet", "objtypes"),
             new GamevalEntry(31287, "GRYPHONBOSSPET_ADULT", "Gulliver", "objtypes"),
             new GamevalEntry(31288, "SKILLCAPE_SAILING", "Sailing cape", "objtypes"),
             new GamevalEntry(31289, "PLACEHOLDER_SKILLCAPE_SAILING", "placeholder_skillcape_sailing", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_60 {
             new GamevalEntry(31793, "PLACEHOLDER_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_250000", "placeholder_sailing_chance_encounters_clam_pearl_250000", "objtypes"),
             new GamevalEntry(31794, "SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_500000", "Glistening pearl", "objtypes"),
             new GamevalEntry(31795, "CERT_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_500000", "cert_sailing_chance_encounters_clam_pearl_500000", "objtypes"),
-            new GamevalEntry(31796, "PLACEHOLDER_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_500000", "placeholder_sailing_chance_encounters_clam_pearl_500000", "objtypes"),
-            new GamevalEntry(31797, "SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_1000000", "Brilliant pearl", "objtypes"),
-            new GamevalEntry(31798, "CERT_SAILING_CHANCE_ENCOUNTERS_CLAM_PEARL_1000000", "cert_sailing_chance_encounters_clam_pearl_1000000", "objtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class AnimationIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6158, "SLICE_SURFACE_GOBLIN_SERGENT_STAND_UP", "slice_surface_goblin_sergent_stand_up", "seqtypes"),
             new GamevalEntry(6159, "SLICE_DORGESH_URTAQ_ARGUING", "slice_dorgesh_urtaq_arguing", "seqtypes"),
             new GamevalEntry(6160, "SLICE_DWARF_ALVIJAR_ARGUING", "slice_dwarf_alvijar_arguing", "seqtypes"),
             new GamevalEntry(6161, "SLICE_ZANIK_ADDRESS_GOBLIN_CROWD", "slice_zanik_address_goblin_crowd", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_12 {
             new GamevalEntry(6667, "PETROCK_SPOTANIM_STAY", "petrock_spotanim_stay", "seqtypes"),
             new GamevalEntry(6668, "PETROCK_SPOTANIM_STICK", "petrock_spotanim_stick", "seqtypes"),
             new GamevalEntry(6669, "PETROCK_PROJANIM_STICK", "petrock_projanim_stick", "seqtypes"),
-            new GamevalEntry(6670, "PETROCK_SPOTANIM_STICK_LAND", "petrock_spotanim_stick_land", "seqtypes"),
         };
     }
 

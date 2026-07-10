@@ -19585,7 +19585,10 @@ interface PanelElement {
             readonly PLACEHOLDER_DREAM_CHEST: 16489;
             readonly PLACEHOLDER_DREAM_HUNTER_BOX: 16490;
             readonly PLACEHOLDER_DREAM_LANTERN: 16491;
+            readonly PLACEHOLDER_STAKE: 16492;
             readonly PLACEHOLDER_GARLIC: 16493;
+            readonly PLACEHOLDER_PIPKEY_GOLD: 16494;
+            readonly PLACEHOLDER_PIPKEY_IRON: 16495;
             readonly PLACEHOLDER_PIPTINDERBOX_GOLD: 16496;
             readonly PLACEHOLDER_PIPCANDLE_GOLD: 16497;
             readonly PLACEHOLDER_PIPPOT_GOLD: 16498;
@@ -36732,6 +36735,10 @@ interface PanelElement {
             readonly HUNTGUIDE_STYMPHIKE: 33824;
             readonly HUNTGUIDE_LETVEK: 33825;
             readonly SLAYERGUIDE_VENATOR: 33826;
+            readonly ANCIENT_SCEPTRE_TROUVER_BROKEN: 33827;
+            readonly PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_BROKEN: 33828;
+            readonly ANCIENT_SCEPTRE_TROUVER_MANGLED: 33829;
+            readonly PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_MANGLED: 33830;
             byId(id: number): GamevalEntry | null;
         };
         readonly NpcID: {
@@ -125382,6 +125389,28 @@ interface PanelElement {
             readonly DRAKAN_ENCOUNTER_3_ATTEMPTS: 15622;
             readonly DRAKAN_ENCOUNTER_4_ATTEMPTS: 15623;
             readonly VAMPYRE_AGGRESSION_DARKMEYER: 15624;
+            readonly VAMPYRIUM_AGILITY_FLAVOUR_DIALOGUE: 15625;
+            readonly MAGGOT_KING_REDUCED_DEATH_FEE_KILLS: 15626;
+            readonly MYQ6_OWED_SPEAR: 15627;
+            readonly CASTLE_DRAKAN_EMBLEM_HOLDER_USED: 15628;
+            readonly SANGVESTI_CLOTHES_SHOP_DOOR_FOUND: 15629;
+            readonly SANGVESTI_CLOTHES_SHOP_BACK_DOOR_FOUND: 15630;
+            readonly SANGVESTI_FANCY_HOUSE_3_DOOR_FOUND: 15631;
+            readonly SANGVESTI_FANCY_HOUSE_3_BACK_DOOR_FOUND: 15632;
+            readonly SANGVESTI_CHAPEL_BACK_DOOR_1_FOUND: 15633;
+            readonly SANGVESTI_CHAPEL_BACK_DOOR_2_FOUND: 15634;
+            readonly SANGVESTI_TRAPDOOR_FOUND: 15635;
+            readonly SANGVESTI_BLACKSMITH_DOOR_FOUND: 15636;
+            readonly SANGVESTI_BASIC_HOUSE_DOOR_FOUND: 15637;
+            readonly SANGVESTI_PUB_DOOR_FOUND: 15638;
+            readonly SANGVESTI_PUB_BACK_DOOR_FOUND: 15639;
+            readonly SANGVESTI_MYRMEL_MANOR_DOOR_FOUND: 15640;
+            readonly SANGVESTI_MYRMEL_MANOR_BACK_DOOR_FOUND: 15641;
+            readonly SANGVESTI_BANK_DOOR_FOUND: 15642;
+            readonly SANGVESTI_INTERIOR_BANK_DOOR_FOUND: 15643;
+            readonly SANGVESTI_SHADUM_MANOR_DOOR_FOUND: 15644;
+            readonly SANGVESTI_FANCY_HOUSE_1_DOOR_FOUND: 15645;
+            readonly SANGVESTI_FANCY_HOUSE_1_BACK_DOOR_FOUND: 15646;
             readonly LEAGUE_HASNT_USED_BOOTS_FOR_MOUNT_QUID: 15647;
             readonly LEAGUE_ELVES_KILLED: 15648;
             readonly LEAGUE_BASALT_STONES_STARTED: 15649;
@@ -125401,7 +125430,24 @@ interface PanelElement {
             readonly LEAGUE_RUNE_DART_TIPS_IN_PRIF: 15663;
             readonly LEAGUE_RED_CHINCHOMPAS_IN_TIRANNWN: 15664;
             readonly LEAGUE_ZAHUR_POTION_COUNTER: 15665;
+            readonly SANGVESTI_VITUR_MANOR_DOOR_FOUND: 15666;
+            readonly SANGVESTI_FANCY_HOUSE_2_DOOR_FOUND: 15667;
+            readonly SANGVESTI_FANCY_HOUSE_2_BACK_DOOR_FOUND: 15668;
+            readonly SANGVESTI_FOOD_SHOP_DOOR_FOUND: 15669;
+            readonly SANGVESTI_FOOD_SHOP_BACK_DOOR_FOUND: 15670;
             readonly XMAS24_INVITE_GERTRUDE: 15671;
+            readonly SANGVESTI_GENERAL_STORE_DOOR_FOUND: 15672;
+            readonly SANGVESTI_BASIC_HOUSE_2_DOOR_FOUND: 15673;
+            readonly SANGVESTI_BASIC_HOUSE_3_DOOR_FOUND: 15674;
+            readonly SANGVESTI_HINT_FANCY_HOUSE_3: 15675;
+            readonly SANGVESTI_HINT_VITUR_MANOR: 15676;
+            readonly SANGVESTI_HINT_CHAPEL: 15677;
+            readonly SANGVESTI_HINT_FOOD_SHOP: 15678;
+            readonly SANGVESTI_HINT_BASIC_HOUSE_3: 15679;
+            readonly SANGVESTI_HINT_PUB: 15680;
+            readonly SANGVESTI_HINT_CLOTHES_SHOP: 15681;
+            readonly SANGVESTI_HINT_FANCY_HOUSE_1: 15682;
+            readonly SANGVESTI_HINT_BLACKSMITH: 15683;
             readonly XMAS24_INVITE_CHARLIE: 15796;
             readonly XMAS24_INVITES: 15800;
             readonly XMAS24_MATCH_AMIK: 15892;
@@ -132211,6 +132257,9 @@ interface PanelElement {
             readonly MAGGOT_KING_ATTEMPTS: 5665;
             readonly DRAKAN_ENCOUNTER_ATTEMPTS: 5666;
             readonly DRAKAN_FINAL_MIN_HP: 5667;
+            readonly SANGVESTI_GENERAL_3: 5668;
+            readonly SANGVESTI_PLAYER_POS: 5669;
+            readonly SANGVESTI_PLAYER_LAST_DEATH_POS: 5670;
             byId(id: number): GamevalEntry | null;
         };
         readonly VarClientID: {
@@ -137287,8 +137336,9 @@ interface PanelElement {
                 readonly COL_HIDDEN: 9;
                 readonly COL_HOLIDAY: 10;
                 readonly COL_SECONDARY_TRACK: 11;
-                readonly COL_RELEASE_TYPE: 12;
-                readonly COL_RELATED_CONTENT: 13;
+                readonly COL_PARENT_TRACK: 12;
+                readonly COL_RELEASE_TYPE: 13;
+                readonly COL_RELATED_CONTENT: 14;
                 readonly Row: {
                     readonly MUSIC_RAT_BOSS: 2;
                     readonly MUSIC_7TH_REALM: 2511;
@@ -161989,7 +162039,6 @@ interface PanelElement {
             readonly SKILL_FEATURE_AGILITY_VAMPYRIUM_CRAWL: 16895;
             readonly SKILL_FEATURE_AGILITY_VAMPYRIUM_PILLAR_JUMPS: 16896;
             readonly SKILL_FEATURE_AGILITY_VAMPYRIUM_SLIDES: 16897;
-            readonly SKILL_FEATURE_CRAFTING_NECKLACE_OF_RUPTURE: 16898;
             readonly SKILL_FEATURE_FISHING_LEECHFIN: 16899;
             readonly SKILL_FEATURE_HITPOINTS_NECKLACEOFRUPTURE: 16900;
             readonly SKILL_FEATURE_HUNTER_STYMPHIKE: 16901;
@@ -162817,6 +162866,7 @@ interface PanelElement {
             readonly CHATBORED2: 563;
             readonly CHATBORED3: 564;
             readonly CHATBORED4: 565;
+            readonly HUMAN_WEAPONS_CRIMSON_KISTEN_ATTACK_ALT: 566;
             readonly CHATHAP1: 567;
             readonly CHATHAP2: 568;
             readonly CHATHAP3: 569;
@@ -178450,6 +178500,7 @@ interface PanelElement {
             readonly ELDRITCH_SMOKE_IMPACT: 1789;
             readonly VANSTROM_BLOODVELD_BURST: 1790;
             readonly VANSTROM_ORB_EXPLODE: 1791;
+            readonly MAGGOT_KING_POISON_PROJECTILE: 1792;
             readonly VANSTROM_ENRAGE_POWERUP: 1793;
             readonly VANSTROM_LIGHTNING: 1794;
             readonly HALLOWED_GRAPPLE_SPOT: 1795;
@@ -181598,7 +181649,7 @@ interface PanelElement {
             readonly EVENT_REWARDS: 927;
             readonly BALLOT: 928;
             readonly TUTORIAL_PLAYER_EXPERIENCE: 929;
-            readonly FLETCHING_TABLE: 930;
+            readonly SANGVESTI_WORLD_MAP: 930;
             readonly SAILING_BT_HUD: 931;
             readonly SAILING_BT_SELECTION: 932;
             readonly SAILING_BT_STATISTICS: 933;
@@ -209268,35 +209319,19 @@ interface PanelElement {
                 readonly BUTTON_RETURNING: 60882950;
                 readonly BUTTON_EXPERIENCED: 60882951;
             };
-            readonly FletchingTable: {
-                readonly INFINITY_: 60948480;
-                readonly UNIVERSE: 60948481;
+            readonly SangvestiWorldMap: {
+                readonly UNIVERSE: 60948480;
+                readonly CONTENTS: 60948481;
                 readonly FRAME: 60948482;
-                readonly CONTENT: 60948483;
-                readonly LEFT_PANEL: 60948484;
-                readonly LEFT_SCROLL: 60948485;
-                readonly LEFT_LIST: 60948486;
-                readonly CATEGORY_BACKGROUNDS: 60948487;
-                readonly CATEGORY_LIST: 60948488;
-                readonly RIGHT_PANEL: 60948489;
-                readonly RIGHT_SCROLL: 60948490;
-                readonly LIST: 60948491;
-                readonly CATEGORY_HEADERS: 60948492;
-                readonly CATEGORY_LINES: 60948493;
-                readonly OBJ_LIST: 60948494;
-                readonly TEXT_LIST: 60948495;
-                readonly BUTTONS: 60948496;
-                readonly COM_17: 60948497;
-                readonly X1: 60948498;
-                readonly TEXT_1: 60948499;
-                readonly X5: 60948500;
-                readonly TEXT_5: 60948501;
-                readonly X10: 60948502;
-                readonly TEXT_10: 60948503;
-                readonly XX: 60948504;
-                readonly TEXT_X: 60948505;
-                readonly XALL: 60948506;
-                readonly TEXT_ALL: 60948507;
+                readonly BACKGROUND: 60948483;
+                readonly DRAG: 60948484;
+                readonly MAIN: 60948485;
+                readonly MAP: 60948486;
+                readonly COM_7: 60948487;
+                readonly MAP_BACK: 60948488;
+                readonly MAP_FRONT: 60948489;
+                readonly CLOSE: 60948490;
+                readonly TOOLTIP: 60948491;
             };
             readonly SailingBtHud: {
                 readonly UNIVERSE: 61014016;
@@ -210089,6 +210124,7 @@ interface PanelElement {
                 readonly MAP_BACK: 63373324;
                 readonly MAP_FRONT: 63373325;
                 readonly CLOSE: 63373326;
+                readonly TOOLTIP: 63373327;
             };
             readonly Myq6IntegrityBar: {
                 readonly UNIVERSE: 63438848;

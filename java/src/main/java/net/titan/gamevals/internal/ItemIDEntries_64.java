@@ -10,6 +10,9 @@ final class ItemIDEntries_64 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(33338, "LEAGUE_6_SLAYER_HELM1", "Oathplate slayer helmet", "objtypes"),
+            new GamevalEntry(33339, "PLACEHOLDER_LEAGUE_6_SLAYER_HELM1", "placeholder_league_6_slayer_helm1", "objtypes"),
+            new GamevalEntry(33340, "LEAGUE_6_SLAYER_HELM2", "Radiant slayer helmet", "objtypes"),
             new GamevalEntry(33341, "PLACEHOLDER_LEAGUE_6_SLAYER_HELM2", "placeholder_league_6_slayer_helm2", "objtypes"),
             new GamevalEntry(33342, "LEAGUE_6_DEMONIC_QUILL", "Demonic quill", "objtypes"),
             new GamevalEntry(33343, "CERT_LEAGUE_6_DEMONIC_QUILL", "cert_league_6_demonic_quill", "objtypes"),
@@ -358,7 +361,7 @@ final class ItemIDEntries_64 {
             new GamevalEntry(33686, "PLACEHOLDER_TARNISHED_HALBERD", "placeholder_tarnished_halberd", "objtypes"),
             new GamevalEntry(33687, "TARNISHED_RING", "Tarnished ring", "objtypes"),
             new GamevalEntry(33688, "PLACEHOLDER_TARNISHED_RING", "placeholder_tarnished_ring", "objtypes"),
-            new GamevalEntry(33689, "TARNISHED_BRACELET", "Tarnished necklace", "objtypes"),
+            new GamevalEntry(33689, "TARNISHED_BRACELET", "Tarnished bracelet", "objtypes"),
             new GamevalEntry(33690, "PLACEHOLDER_TARNISHED_BRACELET", "placeholder_tarnished_bracelet", "objtypes"),
             new GamevalEntry(33691, "TARNISHED_NECKLACE", "Tarnished necklace", "objtypes"),
             new GamevalEntry(33692, "PLACEHOLDER_TARNISHED_NECKLACE", "placeholder_tarnished_necklace", "objtypes"),
@@ -496,6 +499,10 @@ final class ItemIDEntries_64 {
             new GamevalEntry(33824, "HUNTGUIDE_STYMPHIKE", "Stymphike", "objtypes"),
             new GamevalEntry(33825, "HUNTGUIDE_LETVEK", "Letvek", "objtypes"),
             new GamevalEntry(33826, "SLAYERGUIDE_VENATOR", "Venator", "objtypes"),
+            new GamevalEntry(33827, "ANCIENT_SCEPTRE_TROUVER_BROKEN", "Ancient sceptre (l) (broken)", "objtypes"),
+            new GamevalEntry(33828, "PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_BROKEN", "placeholder_ancient_sceptre_trouver_broken", "objtypes"),
+            new GamevalEntry(33829, "ANCIENT_SCEPTRE_TROUVER_MANGLED", "Ancient sceptre (l) (mangled)", "objtypes"),
+            new GamevalEntry(33830, "PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_MANGLED", "placeholder_ancient_sceptre_trouver_mangled", "objtypes"),
         };
     }
 

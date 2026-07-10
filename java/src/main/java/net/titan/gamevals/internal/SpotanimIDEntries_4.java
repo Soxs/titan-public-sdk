@@ -10,6 +10,7 @@ final class SpotanimIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2048, "LOTG_ZANIK_LIGHT_VORTEX_ONE", "lotg_zanik_light_vortex_one", "spottypes"),
             new GamevalEntry(2049, "LOTG_ZANIK_LIGHT_VORTEX_TWO", "lotg_zanik_light_vortex_two", "spottypes"),
             new GamevalEntry(2050, "LOTG_BONE_SHARDS_PROJECTILE", "lotg_bone_shards_projectile", "spottypes"),
             new GamevalEntry(2051, "LOTG_DOUBLE_COIL_SPOTANIM", "lotg_double_coil_spotanim", "spottypes"),
@@ -521,7 +522,6 @@ final class SpotanimIDEntries_4 {
             new GamevalEntry(2557, "VFX_DM_BOSS_TRANSPARENT", "vfx_dm_boss_transparent", "spottypes"),
             new GamevalEntry(2558, "VFX_DM_BOSS_COMBINED", "vfx_dm_boss_combined", "spottypes"),
             new GamevalEntry(2559, "VFX_DM_BREACH_PROJ", "vfx_dm_breach_proj", "spottypes"),
-            new GamevalEntry(2560, "SIGIL_OF_THE_ETERNAL_JEWELLER", "sigil_of_the_eternal_jeweller", "spottypes"),
         };
     }
 

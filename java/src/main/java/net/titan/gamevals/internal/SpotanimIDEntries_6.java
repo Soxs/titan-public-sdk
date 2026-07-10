@@ -10,6 +10,7 @@ final class SpotanimIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3072, "LEAGUES5_HERSPRAY_ATTACK_SPOT03", "leagues5_herspray_attack_spot03", "spottypes"),
             new GamevalEntry(3073, "LEAGUES5_HERSPRAY_ATTACK_PROJ01", "leagues5_herspray_attack_proj01", "spottypes"),
             new GamevalEntry(3074, "LEAGUES5_HERSPRAY_ATTACK_PROJ02", "leagues5_herspray_attack_proj02", "spottypes"),
             new GamevalEntry(3075, "LEAGUES5_HERSPRAY_ATTACK_PROJ03", "leagues5_herspray_attack_proj03", "spottypes"),
@@ -521,7 +522,6 @@ final class SpotanimIDEntries_6 {
             new GamevalEntry(3581, "LEAGUES_6_IMPERSONATION_MARK", "leagues_6_impersonation_mark", "spottypes"),
             new GamevalEntry(3582, "LEAGUES_6_IMPERSONATION_SMOKEPUFF", "leagues_6_impersonation_smokepuff", "spottypes"),
             new GamevalEntry(3583, "LEAGUES_6_SIGIL_OF_LIFE", "leagues_6_sigil_of_life", "spottypes"),
-            new GamevalEntry(3584, "LEAGUES_6_SIGIL_OF_LIFE_IMPACT", "leagues_6_sigil_of_life_impact", "spottypes"),
         };
     }
 

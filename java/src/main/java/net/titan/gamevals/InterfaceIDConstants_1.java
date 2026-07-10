@@ -419,7 +419,7 @@ public interface InterfaceIDConstants_1 {
     int EVENT_REWARDS = 927;
     int BALLOT = 928;
     int TUTORIAL_PLAYER_EXPERIENCE = 929;
-    int FLETCHING_TABLE = 930;
+    int SANGVESTI_WORLD_MAP = 930;
     int SAILING_BT_HUD = 931;
     int SAILING_BT_SELECTION = 932;
     int SAILING_BT_STATISTICS = 933;

@@ -10,6 +10,7 @@ final class AnimationIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6670, "PETROCK_SPOTANIM_STICK_LAND", "petrock_spotanim_stick_land", "seqtypes"),
             new GamevalEntry(6671, "XBOWS_STRINGING_CROSSBOW_BRONZE", "xbows_stringing_crossbow_bronze", "seqtypes"),
             new GamevalEntry(6672, "XBOWS_STRINGING_CROSSBOW_BLURITE", "xbows_stringing_crossbow_blurite", "seqtypes"),
             new GamevalEntry(6673, "XBOWS_STRINGING_CROSSBOW_IRON", "xbows_stringing_crossbow_iron", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_13 {
             new GamevalEntry(7181, "ROCK_GOLEM_WALK", "rock_golem_walk", "seqtypes"),
             new GamevalEntry(7182, "CHINCHOMPA_CHATHEAD_IDLE", "chinchompa_chathead_idle", "seqtypes"),
             new GamevalEntry(7183, "GIANT_BASIC_STAMP", "giant_basic_stamp", "seqtypes"),
-            new GamevalEntry(7184, "GIANT_BASIC_INJECT_GROW", "giant_basic_inject_grow", "seqtypes"),
         };
     }
 

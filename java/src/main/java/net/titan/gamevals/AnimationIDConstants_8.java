@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_8 {
+    int CHAIR_SIT = 4103;
     int CHAIR_SIT_DIAGONAL_RIGHT = 4104;
     int CHAIR_GET_UP = 4105;
     int CHAIR_GET_UP_DIAGONAL_RIGHT = 4106;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_8 {
     int QIP_DS_DELRITH_WEAKENED_PORTAL = 4619;
     int QIP_DS_DELRITH_PORTAL_FAILED = 4620;
     int QIP_DS_TABLE_EXPLOSION_FIRSTFRAME = 4621;
-    int QIP_DS_TABLE_EXPLOSION = 4622;
 }

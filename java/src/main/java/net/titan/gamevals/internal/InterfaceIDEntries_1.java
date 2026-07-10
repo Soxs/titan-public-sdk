@@ -428,7 +428,7 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(927, "EVENT_REWARDS", "event_rewards", "iftypes"),
             new GamevalEntry(928, "BALLOT", "ballot", "iftypes"),
             new GamevalEntry(929, "TUTORIAL_PLAYER_EXPERIENCE", "tutorial_player_experience", "iftypes"),
-            new GamevalEntry(930, "FLETCHING_TABLE", "fletching_table", "iftypes"),
+            new GamevalEntry(930, "SANGVESTI_WORLD_MAP", "sangvesti_world_map", "iftypes"),
             new GamevalEntry(931, "SAILING_BT_HUD", "sailing_bt_hud", "iftypes"),
             new GamevalEntry(932, "SAILING_BT_SELECTION", "sailing_bt_selection", "iftypes"),
             new GamevalEntry(933, "SAILING_BT_STATISTICS", "sailing_bt_statistics", "iftypes"),

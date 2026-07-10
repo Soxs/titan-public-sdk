@@ -10,6 +10,9 @@ final class ItemIDEntries_32 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(16773, "PLACEHOLDER_VIKING_CLOAK_PURPLE", "placeholder_viking_cloak_purple", "objtypes"),
+            new GamevalEntry(16774, "PLACEHOLDER_VIKING_CLOAK_PINK", "placeholder_viking_cloak_pink", "objtypes"),
+            new GamevalEntry(16775, "PLACEHOLDER_VIKING_CLOAK_BLACK", "placeholder_viking_cloak_black", "objtypes"),
             new GamevalEntry(16776, "PLACEHOLDER_VIKINGBOOTS", "placeholder_vikingboots", "objtypes"),
             new GamevalEntry(16777, "PLACEHOLDER_VIKINGROBETOP", "placeholder_vikingrobetop", "objtypes"),
             new GamevalEntry(16778, "PLACEHOLDER_VIKINGROBEBOTTOM", "placeholder_vikingrobebottom", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_32 {
             new GamevalEntry(17284, "PLACEHOLDER_DOCTOR_GOWN", "placeholder_doctor_gown", "objtypes"),
             new GamevalEntry(17285, "PLACEHOLDER_ZEP_PLANTPOT_WILLOW_SAPLING", "placeholder_zep_plantpot_willow_sapling", "objtypes"),
             new GamevalEntry(17286, "PLACEHOLDER_ZEP_TEST_BALLOON_STRUC", "placeholder_zep_test_balloon_struc", "objtypes"),
-            new GamevalEntry(17287, "PLACEHOLDER_ZEP_TEST_BALLOON", "placeholder_zep_test_balloon", "objtypes"),
-            new GamevalEntry(17288, "PLACEHOLDER_ZEP_TOY_BALLOON_YEL", "placeholder_zep_toy_balloon_yel", "objtypes"),
-            new GamevalEntry(17289, "PLACEHOLDER_ZEP_TOY_BALLOON_BLUE", "placeholder_zep_toy_balloon_blue", "objtypes"),
         };
     }
 

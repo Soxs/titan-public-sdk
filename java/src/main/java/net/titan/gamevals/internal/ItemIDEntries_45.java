@@ -10,6 +10,9 @@ final class ItemIDEntries_45 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(23494, "SLAYER_WILDERNESS_KEY_5", "slayer_wilderness_key_5", "objtypes"),
+            new GamevalEntry(23495, "SARACHNISPET", "Sraracha", "objtypes"),
+            new GamevalEntry(23496, "PLACEHOLDER_SARACHNISPET", "placeholder_sarachnispet", "objtypes"),
             new GamevalEntry(23497, "HOSDUN_TEMPLE_COIN", "Temple coin", "objtypes"),
             new GamevalEntry(23498, "PLACEHOLDER_HOSDUN_TEMPLE_COIN", "placeholder_hosdun_temple_coin", "objtypes"),
             new GamevalEntry(23499, "HOSDUN_GRUBBY_KEY", "Grubby key", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_45 {
             new GamevalEntry(24003, "PRIF_ELVEN_BOOTS", "Elven boots", "objtypes"),
             new GamevalEntry(24004, "CERT_PRIF_ELVEN_BOOTS", "cert_prif_elven_boots", "objtypes"),
             new GamevalEntry(24005, "PLACEHOLDER_PRIF_ELVEN_BOOTS", "placeholder_prif_elven_boots", "objtypes"),
-            new GamevalEntry(24006, "PRIF_ELVEN_GLOVES", "Elven gloves", "objtypes"),
-            new GamevalEntry(24007, "CERT_PRIF_ELVEN_GLOVES", "cert_prif_elven_gloves", "objtypes"),
-            new GamevalEntry(24008, "PLACEHOLDER_PRIF_ELVEN_GLOVES", "placeholder_prif_elven_gloves", "objtypes"),
         };
     }
 

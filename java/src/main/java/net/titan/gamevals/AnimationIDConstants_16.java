@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_16 {
+    int GOLDEN_TENCH_READY = 8208;
     int GOLDEN_TENCH_ATTACK = 8209;
     int KAHLITH_READY = 8210;
     int KAHLITH_WALK = 8211;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_16 {
     int VYRELORD_VANSTROM_KLAUSE_DOUBLE_PUNCH_KICK = 8720;
     int VYRELORD_VANSTROM_KLAUSE_DRAGON = 8721;
     int VYRELORD_SUMMON = 8722;
-    int VYRELORD_DISINTEGRATE = 8723;
 }

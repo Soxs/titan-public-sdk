@@ -10,6 +10,9 @@ final class ItemIDEntries_33 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(17287, "PLACEHOLDER_ZEP_TEST_BALLOON", "placeholder_zep_test_balloon", "objtypes"),
+            new GamevalEntry(17288, "PLACEHOLDER_ZEP_TOY_BALLOON_YEL", "placeholder_zep_toy_balloon_yel", "objtypes"),
+            new GamevalEntry(17289, "PLACEHOLDER_ZEP_TOY_BALLOON_BLUE", "placeholder_zep_toy_balloon_blue", "objtypes"),
             new GamevalEntry(17290, "PLACEHOLDER_ZEP_TOY_BALLOON_RED", "placeholder_zep_toy_balloon_red", "objtypes"),
             new GamevalEntry(17291, "PLACEHOLDER_ZEP_TOY_BALLOON_ORANGE", "placeholder_zep_toy_balloon_orange", "objtypes"),
             new GamevalEntry(17292, "PLACEHOLDER_ZEP_TOY_BALLOON_GREEN", "placeholder_zep_toy_balloon_green", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_33 {
             new GamevalEntry(17798, "PLACEHOLDER_POT_BONEMEAL_WOLF", "placeholder_pot_bonemeal_wolf", "objtypes"),
             new GamevalEntry(17799, "PLACEHOLDER_POT_BONEMEAL_SMALL_NINJA_MONKEY", "placeholder_pot_bonemeal_small_ninja_monkey", "objtypes"),
             new GamevalEntry(17800, "PLACEHOLDER_POT_BONEMEAL_MEDIUM_NINJA_MONKEY", "placeholder_pot_bonemeal_medium_ninja_monkey", "objtypes"),
-            new GamevalEntry(17801, "PLACEHOLDER_POT_BONEMEAL_NORMAL_GORILLA_MONKEY", "placeholder_pot_bonemeal_normal_gorilla_monkey", "objtypes"),
-            new GamevalEntry(17802, "PLACEHOLDER_POT_BONEMEAL_BEARDED_GORILLA_MONKEY", "placeholder_pot_bonemeal_bearded_gorilla_monkey", "objtypes"),
-            new GamevalEntry(17803, "PLACEHOLDER_POT_BONEMEAL_NORMAL_MONKEY", "placeholder_pot_bonemeal_normal_monkey", "objtypes"),
         };
     }
 

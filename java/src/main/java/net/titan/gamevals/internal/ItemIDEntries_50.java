@@ -10,6 +10,9 @@ final class ItemIDEntries_50 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(26092, "SIGIL_OF_THE_GNOMES_ATTUNED", "Sigil of the gnomes", "objtypes"),
+            new GamevalEntry(26093, "SIGIL_OF_THE_GNOMES_UNATTUNED", "Sigil of the gnomes", "objtypes"),
+            new GamevalEntry(26095, "SIGIL_OF_NATURE_ATTUNED", "Sigil of nature", "objtypes"),
             new GamevalEntry(26096, "SIGIL_OF_NATURE_UNATTUNED", "Sigil of nature", "objtypes"),
             new GamevalEntry(26098, "SIGIL_OF_DEVOTION_ATTUNED", "Sigil of devotion", "objtypes"),
             new GamevalEntry(26099, "SIGIL_OF_DEVOTION_UNATTUNED", "Sigil of devotion", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_50 {
             new GamevalEntry(26620, "PLACEHOLDER_OSB9_COOKOUT_POT", "placeholder_osb9_cookout_pot", "objtypes"),
             new GamevalEntry(26621, "OSB9_COOKOUT_POT_OF_FLOUR", "Pot of flour (cookout)", "objtypes"),
             new GamevalEntry(26622, "PLACEHOLDER_OSB9_COOKOUT_POT_OF_FLOUR", "placeholder_osb9_cookout_pot_of_flour", "objtypes"),
-            new GamevalEntry(26623, "OSB9_COOKOUT_TOMATO", "Tomato (cookout)", "objtypes"),
-            new GamevalEntry(26624, "PLACEHOLDER_OSB9_COOKOUT_TOMATO", "placeholder_osb9_cookout_tomato", "objtypes"),
-            new GamevalEntry(26625, "OSB9_COOKOUT_CHEESE", "Cheese (cookout)", "objtypes"),
         };
     }
 

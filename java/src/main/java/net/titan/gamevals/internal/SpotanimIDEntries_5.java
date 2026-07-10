@@ -10,6 +10,7 @@ final class SpotanimIDEntries_5 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2560, "SIGIL_OF_THE_ETERNAL_JEWELLER", "sigil_of_the_eternal_jeweller", "spottypes"),
             new GamevalEntry(2561, "POG_TERROR_BIRD_PROJ_ANIM", "pog_terror_bird_proj_anim", "spottypes"),
             new GamevalEntry(2562, "POG_ORGANIC_TELEPORT_SPOTANIM", "pog_organic_teleport_spotanim", "spottypes"),
             new GamevalEntry(2563, "POG_ORGANIC_TELEPORT_REVERSED_SPOTANIM", "pog_organic_teleport_reversed_spotanim", "spottypes"),
@@ -521,7 +522,6 @@ final class SpotanimIDEntries_5 {
             new GamevalEntry(3069, "LEAGUE5_ATTACK_PUNCTURE_SPOTANIM", "league5_attack_puncture_spotanim", "spottypes"),
             new GamevalEntry(3070, "LEAGUES5_HERSPRAY_ATTACK_SPOT01", "leagues5_herspray_attack_spot01", "spottypes"),
             new GamevalEntry(3071, "LEAGUES5_HERSPRAY_ATTACK_SPOT02", "leagues5_herspray_attack_spot02", "spottypes"),
-            new GamevalEntry(3072, "LEAGUES5_HERSPRAY_ATTACK_SPOT03", "leagues5_herspray_attack_spot03", "spottypes"),
         };
     }
 

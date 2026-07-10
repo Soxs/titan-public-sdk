@@ -10,6 +10,7 @@ final class AnimationIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4622, "QIP_DS_TABLE_EXPLOSION", "qip_ds_table_explosion", "seqtypes"),
             new GamevalEntry(4623, "QIP_DS_DELRITH_SUMMONED", "qip_ds_delrith_summoned", "seqtypes"),
             new GamevalEntry(4624, "QIP_DS_DELRITH_BANISHED", "qip_ds_delrith_banished", "seqtypes"),
             new GamevalEntry(4625, "QIP_DS_ROCK_FLY", "qip_ds_rock_fly", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_9 {
             new GamevalEntry(5131, "ZEP_BALLOON_JOURNEY_CASTLEWARS_VARROCK", "zep_balloon_journey_castlewars_varrock", "seqtypes"),
             new GamevalEntry(5132, "ZEP_BALLOON_JOURNEY_GRANDTREE_CASTLEWARS", "zep_balloon_journey_grandtree_castlewars", "seqtypes"),
             new GamevalEntry(5133, "ZEP_BALLOON_JOURNEY_CASTLEWARS_GRANDTREE", "zep_balloon_journey_castlewars_grandtree", "seqtypes"),
-            new GamevalEntry(5134, "ZEP_BALLOON_JOURNEY_GRANDTREE_CRAFTING", "zep_balloon_journey_grandtree_crafting", "seqtypes"),
         };
     }
 

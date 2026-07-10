@@ -10,6 +10,7 @@ final class AnimationIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5134, "ZEP_BALLOON_JOURNEY_GRANDTREE_CRAFTING", "zep_balloon_journey_grandtree_crafting", "seqtypes"),
             new GamevalEntry(5135, "ZEP_BALLOON_JOURNEY_CRAFTING_GRANDTREE", "zep_balloon_journey_crafting_grandtree", "seqtypes"),
             new GamevalEntry(5136, "ZEP_BALLOON_JOURNEY_TAVERLEY_GRANDTREE", "zep_balloon_journey_taverley_grandtree", "seqtypes"),
             new GamevalEntry(5137, "ZEP_BALLOON_JOURNEY_GRANDTREE_TAVERLEY", "zep_balloon_journey_grandtree_taverley", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_10 {
             new GamevalEntry(5643, "BRAIN_SAWBONES_ATTACK", "brain_sawbones_attack", "seqtypes"),
             new GamevalEntry(5644, "BRAIN_SAWBONES_DEFEND", "brain_sawbones_defend", "seqtypes"),
             new GamevalEntry(5645, "BRAIN_ZOMBIE_PIRATE_WANDERERS_WALK", "brain_zombie_pirate_wanderers_walk", "seqtypes"),
-            new GamevalEntry(5646, "BRAIN_ZOMBIE_PIRATE_WANDERERS_READY", "brain_zombie_pirate_wanderers_ready", "seqtypes"),
         };
     }
 

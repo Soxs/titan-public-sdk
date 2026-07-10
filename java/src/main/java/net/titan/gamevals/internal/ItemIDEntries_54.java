@@ -10,6 +10,9 @@ final class ItemIDEntries_54 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(28171, "FORESTRY_LUMBERJACK_LEGS", "Forestry legs", "objtypes"),
+            new GamevalEntry(28172, "PLACEHOLDER_FORESTRY_LUMBERJACK_LEGS", "placeholder_forestry_lumberjack_legs", "objtypes"),
+            new GamevalEntry(28173, "FORESTRY_LUMBERJACK_HAT", "Forestry hat", "objtypes"),
             new GamevalEntry(28174, "PLACEHOLDER_FORESTRY_LUMBERJACK_HAT", "placeholder_forestry_lumberjack_hat", "objtypes"),
             new GamevalEntry(28175, "FORESTRY_LUMBERJACK_BOOTS", "Forestry boots", "objtypes"),
             new GamevalEntry(28176, "PLACEHOLDER_FORESTRY_LUMBERJACK_BOOTS", "placeholder_forestry_lumberjack_boots", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_54 {
             new GamevalEntry(28698, "PLACEHOLDER_LEAGUE_4_VENGEANCE_SCROLL", "placeholder_league_4_vengeance_scroll", "objtypes"),
             new GamevalEntry(28699, "LEAGUE_4_DEATH_SCROLL", "Trailblazer reloaded death scroll", "objtypes"),
             new GamevalEntry(28700, "CERT_LEAGUE_4_DEATH_SCROLL", "cert_league_4_death_scroll", "objtypes"),
-            new GamevalEntry(28701, "PLACEHOLDER_LEAGUE_4_DEATH_SCROLL", "placeholder_league_4_death_scroll", "objtypes"),
-            new GamevalEntry(28702, "LEAGUE_4_BANNER", "Trailblazer reloaded banner", "objtypes"),
-            new GamevalEntry(28703, "CERT_LEAGUE_4_BANNER", "cert_league_4_banner", "objtypes"),
         };
     }
 

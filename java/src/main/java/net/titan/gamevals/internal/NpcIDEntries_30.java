@@ -417,7 +417,7 @@ final class NpcIDEntries_30 {
             new GamevalEntry(15767, "VENATOR_3", "Venator", "npctypes"),
             new GamevalEntry(15768, "VENATOR_4", "Venator", "npctypes"),
             new GamevalEntry(15769, "VENATOR_5", "Venator", "npctypes"),
-            new GamevalEntry(15770, "SUPERIOR_VENATOR", "Superior venator", "npctypes"),
+            new GamevalEntry(15770, "SUPERIOR_VENATOR", "Blood-starved venator", "npctypes"),
             new GamevalEntry(15771, "BURGH_BREWING_HELPER", "burgh_brewing_helper", "npctypes"),
             new GamevalEntry(15772, "BURGH_BREWING_HELPER_VIS", "Vasile", "npctypes"),
             new GamevalEntry(15773, "BURGH_VILAGER_RAT_1_VIS", "Vasile", "npctypes"),

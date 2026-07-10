@@ -10,6 +10,7 @@ final class AnimationIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4103, "CHAIR_SIT", "chair_sit", "seqtypes"),
             new GamevalEntry(4104, "CHAIR_SIT_DIAGONAL_RIGHT", "chair_sit_diagonal_right", "seqtypes"),
             new GamevalEntry(4105, "CHAIR_GET_UP", "chair_get_up", "seqtypes"),
             new GamevalEntry(4106, "CHAIR_GET_UP_DIAGONAL_RIGHT", "chair_get_up_diagonal_right", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_8 {
             new GamevalEntry(4619, "QIP_DS_DELRITH_WEAKENED_PORTAL", "qip_ds_delrith_weakened_portal", "seqtypes"),
             new GamevalEntry(4620, "QIP_DS_DELRITH_PORTAL_FAILED", "qip_ds_delrith_portal_failed", "seqtypes"),
             new GamevalEntry(4621, "QIP_DS_TABLE_EXPLOSION_FIRSTFRAME", "qip_ds_table_explosion_firstframe", "seqtypes"),
-            new GamevalEntry(4622, "QIP_DS_TABLE_EXPLOSION", "qip_ds_table_explosion", "seqtypes"),
         };
     }
 

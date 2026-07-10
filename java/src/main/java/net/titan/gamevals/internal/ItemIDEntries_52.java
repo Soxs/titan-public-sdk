@@ -10,6 +10,9 @@ final class ItemIDEntries_52 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(27135, "PLACEHOLDER_PVPA_SEER_RING", "placeholder_pvpa_seer_ring", "objtypes"),
+            new GamevalEntry(27136, "PLACEHOLDER_PVPA_RANGER_RING", "placeholder_pvpa_ranger_ring", "objtypes"),
+            new GamevalEntry(27137, "PLACEHOLDER_PVPA_WARRIOR_RING", "placeholder_pvpa_warrior_ring", "objtypes"),
             new GamevalEntry(27138, "PLACEHOLDER_PVPA_BERZERKER_RING", "placeholder_pvpa_berzerker_ring", "objtypes"),
             new GamevalEntry(27139, "PLACEHOLDER_PVPA_BLACK_MASK", "placeholder_pvpa_black_mask", "objtypes"),
             new GamevalEntry(27140, "PLACEHOLDER_PVPA_SALVE_AMULET_E", "placeholder_pvpa_salve_amulet_e", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_52 {
             new GamevalEntry(27644, "MARK_OF_HAZEEL_DUMMY", "mark_of_hazeel_dummy", "objtypes"),
             new GamevalEntry(27645, "LEAGUE_3_CARDTHROW", "Mystic cards", "objtypes"),
             new GamevalEntry(27646, "PLACEHOLDER_LEAGUE_3_CARDTHROW", "placeholder_league_3_cardthrow", "objtypes"),
-            new GamevalEntry(27647, "CERT_SATURATED_HEART", "cert_saturated_heart", "objtypes"),
-            new GamevalEntry(27648, "VENENATIS_PET_LEGACY", "Venenatis spiderling", "objtypes"),
-            new GamevalEntry(27649, "CALLISTO_PET_LEGACY", "Callisto cub", "objtypes"),
         };
     }
 

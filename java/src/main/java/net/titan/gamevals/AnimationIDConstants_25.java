@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_25 {
+    int LORE_MINOTAUR_WALK = 12824;
     int LORE_MINOTAUR_DEFEND = 12825;
     int LORE_MINOTAUR_ATTACK = 12826;
     int LORE_MINOTAUR_DEATH = 12827;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_25 {
     int VFX_SAILING_CANNON01_SMALL01_IMPACT01 = 13333;
     int SAILING_ALPHA_HELM_RAFT01_INACTIVE01 = 13334;
     int SAILING_ALPHA_HELM_RAFT01_ACTIVE01 = 13335;
-    int SAILING_ALPHA_HELM_RAFT01_ACTIVE01_LOOP = 13336;
 }

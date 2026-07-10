@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_5 {
+    int GARDEN_PULL_TROLLEY = 2566;
     int GARDEN_TROLLEY_READY = 2567;
     int GARDEN_TROLLEY_WALK = 2568;
     int GARDEN_APPLY_POTION = 2569;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_5 {
     int ENAKH_BONEGUARD_ATTACK = 3075;
     int ENAKH_BONEGUARD_DEATH = 3076;
     int ENAKH_BONEGUARD_LARGE_DEATH = 3077;
-    int ENAKH_BONEGUARD_WALK = 3078;
 }

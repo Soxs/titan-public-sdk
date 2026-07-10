@@ -10,6 +10,9 @@ final class ItemIDEntries_46 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(24006, "PRIF_ELVEN_GLOVES", "Elven gloves", "objtypes"),
+            new GamevalEntry(24007, "CERT_PRIF_ELVEN_GLOVES", "cert_prif_elven_gloves", "objtypes"),
+            new GamevalEntry(24008, "PLACEHOLDER_PRIF_ELVEN_GLOVES", "placeholder_prif_elven_gloves", "objtypes"),
             new GamevalEntry(24009, "PRIF_ELVEN_CLOTHES_TOP_1", "Elven top", "objtypes"),
             new GamevalEntry(24010, "CERT_PRIF_ELVEN_CLOTHES_TOP_1", "cert_prif_elven_clothes_top_1", "objtypes"),
             new GamevalEntry(24011, "PLACEHOLDER_PRIF_ELVEN_CLOTHES_TOP_1", "placeholder_prif_elven_clothes_top_1", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_46 {
             new GamevalEntry(24515, "CERT_VOLATILE_ORB", "cert_volatile_orb", "objtypes"),
             new GamevalEntry(24516, "PLACEHOLDER_VOLATILE_ORB", "placeholder_volatile_orb", "objtypes"),
             new GamevalEntry(24517, "ELDRITCH_ORB", "Eldritch orb", "objtypes"),
-            new GamevalEntry(24518, "CERT_ELDRITCH_ORB", "cert_eldritch_orb", "objtypes"),
-            new GamevalEntry(24519, "PLACEHOLDER_ELDRITCH_ORB", "placeholder_eldritch_orb", "objtypes"),
-            new GamevalEntry(24520, "BR_CAPE_1000", "Victor's cape (1000)", "objtypes"),
         };
     }
 

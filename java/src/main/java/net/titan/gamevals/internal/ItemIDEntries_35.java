@@ -10,6 +10,9 @@ final class ItemIDEntries_35 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(18313, "PLACEHOLDER_WILDERNESS_CAPE_29", "placeholder_wilderness_cape_29", "objtypes"),
+            new GamevalEntry(18314, "PLACEHOLDER_WILDERNESS_CAPE_30", "placeholder_wilderness_cape_30", "objtypes"),
+            new GamevalEntry(18315, "PLACEHOLDER_WILDERNESS_CAPE_31", "placeholder_wilderness_cape_31", "objtypes"),
             new GamevalEntry(18316, "PLACEHOLDER_WILDERNESS_CAPE_32", "placeholder_wilderness_cape_32", "objtypes"),
             new GamevalEntry(18317, "PLACEHOLDER_WILDERNESS_CAPE_33", "placeholder_wilderness_cape_33", "objtypes"),
             new GamevalEntry(18318, "PLACEHOLDER_WILDERNESS_CAPE_34", "placeholder_wilderness_cape_34", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_35 {
             new GamevalEntry(18828, "PLACEHOLDER_VM_VASE_INV", "placeholder_vm_vase_inv", "objtypes"),
             new GamevalEntry(18829, "PLACEHOLDER_VAMPIRE_DUST", "placeholder_vampire_dust", "objtypes"),
             new GamevalEntry(18830, "PLACEHOLDER_WOLFENBOOTS_GREY", "placeholder_wolfenboots_grey", "objtypes"),
-            new GamevalEntry(18831, "PLACEHOLDER_WOLFENROBETOP_GREY", "placeholder_wolfenrobetop_grey", "objtypes"),
-            new GamevalEntry(18832, "PLACEHOLDER_WOLFENROBEBOTTOM_GREY", "placeholder_wolfenrobebottom_grey", "objtypes"),
-            new GamevalEntry(18833, "PLACEHOLDER_WOLFENHAT_GREY", "placeholder_wolfenhat_grey", "objtypes"),
         };
     }
 

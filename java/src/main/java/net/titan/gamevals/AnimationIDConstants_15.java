@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_15 {
+    int FOSSIL_NPC_HERBIBOAR_ATTACK = 7696;
     int FOSSIL_NPC_FETAL = 7697;
     int FOSSIL_NPC_TARBEAST_SPLAT_SPOT = 7698;
     int ULTRACOMPOST_MAKE = 7699;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_15 {
     int AERIAL_FISHING_LAUNCH = 8205;
     int AERIAL_FISHING_TRAVEL = 8206;
     int AERIAL_FISHING_SPLASH_MEDIUM = 8207;
-    int GOLDEN_TENCH_READY = 8208;
 }

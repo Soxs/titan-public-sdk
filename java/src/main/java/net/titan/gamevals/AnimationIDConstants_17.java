@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_17 {
+    int VYRELORD_DISINTEGRATE = 8723;
     int VYRELORD_DISINTEGRATE_SPOTANIM = 8724;
     int VYRELORD_DRAKAN_WALK = 8725;
     int VYRELORD_DRAKAN_READY = 8726;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_17 {
     int CANNON_LEAGUE03_FIRE_E = 9232;
     int CANNON_LEAGUE03_FIRE_SE = 9233;
     int CANNON_LEAGUE03_FIRE_S = 9234;
-    int CANNON_LEAGUE03_FIRE_SW = 9235;
 }

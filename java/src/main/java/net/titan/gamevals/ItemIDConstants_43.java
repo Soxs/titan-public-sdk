@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_43 {
+    int PLACEHOLDER_1DOSEBATTLEMAGE = 22460;
+    int _4DOSEBASTION = 22461;
+    int CERT_4DOSEBASTION = 22462;
     int PLACEHOLDER_4DOSEBASTION = 22463;
     int _3DOSEBASTION = 22464;
     int CERT_3DOSEBASTION = 22465;
@@ -510,7 +513,4 @@ public interface ItemIDConstants_43 {
     int CERT_DRAGONHUNTER_LANCE = 22979;
     int PLACEHOLDER_DRAGONHUNTER_LANCE = 22980;
     int FEROCIOUS_GLOVES = 22981;
-    int PLACEHOLDER_FEROCIOUS_GLOVES = 22982;
-    int HYDRA_LEATHER = 22983;
-    int CERT_HYDRA_LEATHER = 22984;
 }

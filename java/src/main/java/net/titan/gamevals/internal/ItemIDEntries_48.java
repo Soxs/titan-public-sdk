@@ -10,6 +10,9 @@ final class ItemIDEntries_48 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(25030, "PLACEHOLDER_TRAILBLAZER_RELIC_HUNTER_HOOD_T1", "placeholder_trailblazer_relic_hunter_hood_t1", "objtypes"),
+            new GamevalEntry(25031, "TRAILBLAZER_RELIC_HUNTER_TOP_T1", "Trailblazer top (t1)", "objtypes"),
+            new GamevalEntry(25032, "CERT_TRAILBLAZER_RELIC_HUNTER_TOP_T1", "cert_trailblazer_relic_hunter_top_t1", "objtypes"),
             new GamevalEntry(25033, "PLACEHOLDER_TRAILBLAZER_RELIC_HUNTER_TOP_T1", "placeholder_trailblazer_relic_hunter_top_t1", "objtypes"),
             new GamevalEntry(25034, "TRAILBLAZER_RELIC_HUNTER_LEGS_T1", "Trailblazer trousers (t1)", "objtypes"),
             new GamevalEntry(25035, "CERT_TRAILBLAZER_RELIC_HUNTER_LEGS_T1", "cert_trailblazer_relic_hunter_legs_t1", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_48 {
             new GamevalEntry(25539, "CELESTIAL_RING", "Celestial ring (uncharged)", "objtypes"),
             new GamevalEntry(25540, "PLACEHOLDER_CELESTIAL_RING", "placeholder_celestial_ring", "objtypes"),
             new GamevalEntry(25541, "CELESTIAL_RING_CHARGED", "Celestial ring", "objtypes"),
-            new GamevalEntry(25542, "PLACEHOLDER_CELESTIAL_RING_CHARGED", "placeholder_celestial_ring_charged", "objtypes"),
-            new GamevalEntry(25543, "CELESTIAL_SIGNET", "Celestial signet (uncharged)", "objtypes"),
-            new GamevalEntry(25544, "PLACEHOLDER_CELESTIAL_SIGNET", "placeholder_celestial_signet", "objtypes"),
         };
     }
 

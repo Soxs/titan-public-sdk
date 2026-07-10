@@ -10,6 +10,7 @@ final class AnimationIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8723, "VYRELORD_DISINTEGRATE", "vyrelord_disintegrate", "seqtypes"),
             new GamevalEntry(8724, "VYRELORD_DISINTEGRATE_SPOTANIM", "vyrelord_disintegrate_spotanim", "seqtypes"),
             new GamevalEntry(8725, "VYRELORD_DRAKAN_WALK", "vyrelord_drakan_walk", "seqtypes"),
             new GamevalEntry(8726, "VYRELORD_DRAKAN_READY", "vyrelord_drakan_ready", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_17 {
             new GamevalEntry(9232, "CANNON_LEAGUE03_FIRE_E", "cannon_league03_fire_e", "seqtypes"),
             new GamevalEntry(9233, "CANNON_LEAGUE03_FIRE_SE", "cannon_league03_fire_se", "seqtypes"),
             new GamevalEntry(9234, "CANNON_LEAGUE03_FIRE_S", "cannon_league03_fire_s", "seqtypes"),
-            new GamevalEntry(9235, "CANNON_LEAGUE03_FIRE_SW", "cannon_league03_fire_sw", "seqtypes"),
         };
     }
 

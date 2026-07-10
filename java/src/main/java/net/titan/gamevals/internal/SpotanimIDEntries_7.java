@@ -10,6 +10,7 @@ final class SpotanimIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3584, "LEAGUES_6_SIGIL_OF_LIFE_IMPACT", "leagues_6_sigil_of_life_impact", "spottypes"),
             new GamevalEntry(3585, "VFX_WHITE_PARTICLES", "vfx_white_particles", "spottypes"),
             new GamevalEntry(3586, "VFX_WHITE_PARTICLES_REVERSE", "vfx_white_particles_reverse", "spottypes"),
             new GamevalEntry(3587, "VFX_BEEF_TORNADO", "vfx_beef_tornado", "spottypes"),

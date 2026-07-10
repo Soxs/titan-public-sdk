@@ -10,6 +10,9 @@ final class ItemIDEntries_63 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(32820, "SAILING_BUTTERFLY_RAY_FIN", "Butterfly ray fin", "objtypes"),
+            new GamevalEntry(32821, "SAILING_STINGRAY_FIN", "Stingray fin", "objtypes"),
+            new GamevalEntry(32822, "SAILING_MANTA_RAY_FIN", "Manta ray fin", "objtypes"),
             new GamevalEntry(32823, "SAILING_TERN_FEATHER", "Tern feather", "objtypes"),
             new GamevalEntry(32824, "SAILING_OSPREY_FEATHER", "Osprey feather", "objtypes"),
             new GamevalEntry(32825, "SAILING_FRIGATEBIRD_FEATHER", "Frigatebird feather", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_63 {
             new GamevalEntry(33334, "PLACEHOLDER_BROKEN_IBAN_STAFF_ORN", "placeholder_broken_iban_staff_orn", "objtypes"),
             new GamevalEntry(33335, "SOULREAPER_AXE_ORN", "Soulreaper axe (o)", "objtypes"),
             new GamevalEntry(33337, "PLACEHOLDER_SOULREAPER_AXE_ORN", "placeholder_soulreaper_axe_orn", "objtypes"),
-            new GamevalEntry(33338, "LEAGUE_6_SLAYER_HELM1", "Oathplate slayer helmet", "objtypes"),
-            new GamevalEntry(33339, "PLACEHOLDER_LEAGUE_6_SLAYER_HELM1", "placeholder_league_6_slayer_helm1", "objtypes"),
-            new GamevalEntry(33340, "LEAGUE_6_SLAYER_HELM2", "Radiant slayer helmet", "objtypes"),
         };
     }
 

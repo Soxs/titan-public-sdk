@@ -266,6 +266,7 @@ final class SpotanimIDEntries_3 {
             new GamevalEntry(1789, "ELDRITCH_SMOKE_IMPACT", "eldritch_smoke_impact", "spottypes"),
             new GamevalEntry(1790, "VANSTROM_BLOODVELD_BURST", "vanstrom_bloodveld_burst", "spottypes"),
             new GamevalEntry(1791, "VANSTROM_ORB_EXPLODE", "vanstrom_orb_explode", "spottypes"),
+            new GamevalEntry(1792, "MAGGOT_KING_POISON_PROJECTILE", "maggot_king_poison_projectile", "spottypes"),
             new GamevalEntry(1793, "VANSTROM_ENRAGE_POWERUP", "vanstrom_enrage_powerup", "spottypes"),
             new GamevalEntry(1794, "VANSTROM_LIGHTNING", "vanstrom_lightning", "spottypes"),
             new GamevalEntry(1795, "HALLOWED_GRAPPLE_SPOT", "hallowed_grapple_spot", "spottypes"),
@@ -521,7 +522,6 @@ final class SpotanimIDEntries_3 {
             new GamevalEntry(2045, "LOTG_GOBLIN_TO_PLAYER_GOBLIN_ANIM4", "lotg_goblin_to_player_goblin_anim4", "spottypes"),
             new GamevalEntry(2046, "LOTG_GOBLIN_TO_PLAYER_GOBLIN_ANIM5", "lotg_goblin_to_player_goblin_anim5", "spottypes"),
             new GamevalEntry(2047, "LOTG_GOBLIN_TO_PLAYER_GOBLIN_ANIM6", "lotg_goblin_to_player_goblin_anim6", "spottypes"),
-            new GamevalEntry(2048, "LOTG_ZANIK_LIGHT_VORTEX_ONE", "lotg_zanik_light_vortex_one", "spottypes"),
         };
     }
 

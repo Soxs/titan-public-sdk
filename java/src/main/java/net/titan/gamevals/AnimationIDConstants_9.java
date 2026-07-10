@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_9 {
+    int QIP_DS_TABLE_EXPLOSION = 4622;
     int QIP_DS_DELRITH_SUMMONED = 4623;
     int QIP_DS_DELRITH_BANISHED = 4624;
     int QIP_DS_ROCK_FLY = 4625;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_9 {
     int ZEP_BALLOON_JOURNEY_CASTLEWARS_VARROCK = 5131;
     int ZEP_BALLOON_JOURNEY_GRANDTREE_CASTLEWARS = 5132;
     int ZEP_BALLOON_JOURNEY_CASTLEWARS_GRANDTREE = 5133;
-    int ZEP_BALLOON_JOURNEY_GRANDTREE_CRAFTING = 5134;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_7 {
+    int POH_JESTER_ASCEND = 3591;
     int JESTER_JUMPS_OUT = 3592;
     int JESTER_JUMPS_IN = 3593;
     int BALANCE_BEAM_READY = 3594;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_7 {
     int CHAIR_EAT_DININGCHAIRS_6 = 4100;
     int CHAIR_SIT_READY_DININGCHAIRS_7 = 4101;
     int CHAIR_EAT_DININGCHAIRS_7 = 4102;
-    int CHAIR_SIT = 4103;
 }

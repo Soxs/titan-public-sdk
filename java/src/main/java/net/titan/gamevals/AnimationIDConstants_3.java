@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_3 {
+    int DEMON_SPAWN_DEATH = 1541;
     int DEMON_SPAWN_PARRY = 1542;
     int DEMON_SPAWN_SPOTANIM = 1543;
     int BASILISK_WALK = 1544;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_3 {
     int LIGHT_CREATURE_READY = 2051;
     int LIGHT_CREATURE_GROW = 2052;
     int LIGHT_CREATURE_SHRINK = 2053;
-    int TOG_WEEPING_WALL = 2054;
 }

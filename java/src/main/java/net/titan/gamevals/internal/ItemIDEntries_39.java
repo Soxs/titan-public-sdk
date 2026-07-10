@@ -10,6 +10,9 @@ final class ItemIDEntries_39 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(20400, "BR_ADAMANT_SCIMITAR", "ZHits a demon for major damage", "objtypes"),
+            new GamevalEntry(20401, "BR_YEW_BOW", "Yew shortbow", "objtypes"),
+            new GamevalEntry(20402, "BR_RUNE_SCIMITAR", "Rune scimitar", "objtypes"),
             new GamevalEntry(20403, "BR_MAPLE_BOW", "Maple shortbow", "objtypes"),
             new GamevalEntry(20404, "BR_AIR_STAFF", "ZTeleports you to the Barrows brothers' graveyard", "objtypes"),
             new GamevalEntry(20405, "BR_ABYSSAL_WHIP", "Abyssal whip", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_39 {
             new GamevalEntry(20909, "RAIDS_SEED_BUCHULEAF", "Buchu seed", "objtypes"),
             new GamevalEntry(20910, "RAIDS_STINKHORN_MUSHROOM", "Stinkhorn mushroom", "objtypes"),
             new GamevalEntry(20911, "RAIDS_ENDARKENED_JUICE", "Endarkened juice", "objtypes"),
-            new GamevalEntry(20912, "RAIDS_CICELY", "Cicely", "objtypes"),
-            new GamevalEntry(20913, "RAIDS_VIAL_ELDER_WEAK_1", "Elder (-)(1)", "objtypes"),
-            new GamevalEntry(20914, "RAIDS_VIAL_ELDER_WEAK_2", "Elder (-)(2)", "objtypes"),
         };
     }
 

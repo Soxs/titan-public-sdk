@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_40 {
+    int RAIDS_CICELY = 20912;
+    int RAIDS_VIAL_ELDER_WEAK_1 = 20913;
+    int RAIDS_VIAL_ELDER_WEAK_2 = 20914;
     int RAIDS_VIAL_ELDER_WEAK_3 = 20915;
     int RAIDS_VIAL_ELDER_WEAK_4 = 20916;
     int RAIDS_VIAL_ELDER_1 = 20917;
@@ -510,7 +513,4 @@ public interface ItemIDConstants_40 {
     int WILDWARS_TEAM2_CAPE = 21429;
     int WILDWARS_TEAM3_CAPE = 21430;
     int WILDWARS_TEAM4_CAPE = 21431;
-    int WILDWARS_TEAM5_CAPE = 21432;
-    int WILDWARS_CHAMPION_AMULET = 21433;
-    int WILDWARS_TEAM1_CHAMPION_CAPE = 21434;
 }

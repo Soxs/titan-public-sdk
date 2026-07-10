@@ -10,6 +10,9 @@ final class ItemIDEntries_36 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(18831, "PLACEHOLDER_WOLFENROBETOP_GREY", "placeholder_wolfenrobetop_grey", "objtypes"),
+            new GamevalEntry(18832, "PLACEHOLDER_WOLFENROBEBOTTOM_GREY", "placeholder_wolfenrobebottom_grey", "objtypes"),
+            new GamevalEntry(18833, "PLACEHOLDER_WOLFENHAT_GREY", "placeholder_wolfenhat_grey", "objtypes"),
             new GamevalEntry(18834, "PLACEHOLDER_WOLFENGLOVES_GREY", "placeholder_wolfengloves_grey", "objtypes"),
             new GamevalEntry(18835, "PLACEHOLDER_WOLFENBOOTS_CRIMSON", "placeholder_wolfenboots_crimson", "objtypes"),
             new GamevalEntry(18836, "PLACEHOLDER_WOLFENROBETOP_CRIMSON", "placeholder_wolfenrobetop_crimson", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_36 {
             new GamevalEntry(19368, "PLACEHOLDER_3DOSE2ENERGY", "placeholder_3dose2energy", "objtypes"),
             new GamevalEntry(19369, "PLACEHOLDER_2DOSE2ENERGY", "placeholder_2dose2energy", "objtypes"),
             new GamevalEntry(19370, "PLACEHOLDER_1DOSE2ENERGY", "placeholder_1dose2energy", "objtypes"),
-            new GamevalEntry(19371, "PLACEHOLDER_3DOSESTAMINA", "placeholder_3dosestamina", "objtypes"),
-            new GamevalEntry(19372, "PLACEHOLDER_2DOSESTAMINA", "placeholder_2dosestamina", "objtypes"),
-            new GamevalEntry(19373, "PLACEHOLDER_1DOSESTAMINA", "placeholder_1dosestamina", "objtypes"),
         };
     }
 

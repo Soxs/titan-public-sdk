@@ -10,6 +10,7 @@ final class AnimationIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12311, "SCRAMBLED_EGG_SPLATTERED_IDLE", "scrambled_egg_splattered_idle", "seqtypes"),
             new GamevalEntry(12312, "SCRAMBLED_ALAN_ENTER_HANDS_ON_HIP", "scrambled_alan_enter_hands_on_hip", "seqtypes"),
             new GamevalEntry(12313, "SCRAMBLED_ALAN_HANDS_ON_HIP", "scrambled_alan_hands_on_hip", "seqtypes"),
             new GamevalEntry(12314, "SCRAMBLED_ALAN_FALL", "scrambled_alan_fall", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_24 {
             new GamevalEntry(12821, "LORE_MACAW_FLY_BACK", "lore_macaw_fly_back", "seqtypes"),
             new GamevalEntry(12822, "LORE_MAGPIE_SPECIAL", "lore_magpie_special", "seqtypes"),
             new GamevalEntry(12823, "LORE_MINOTAUR_READY", "lore_minotaur_ready", "seqtypes"),
-            new GamevalEntry(12824, "LORE_MINOTAUR_WALK", "lore_minotaur_walk", "seqtypes"),
         };
     }
 

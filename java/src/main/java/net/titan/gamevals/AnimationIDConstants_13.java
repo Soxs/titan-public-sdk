@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_13 {
+    int PETROCK_SPOTANIM_STICK_LAND = 6670;
     int XBOWS_STRINGING_CROSSBOW_BRONZE = 6671;
     int XBOWS_STRINGING_CROSSBOW_BLURITE = 6672;
     int XBOWS_STRINGING_CROSSBOW_IRON = 6673;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_13 {
     int ROCK_GOLEM_WALK = 7181;
     int CHINCHOMPA_CHATHEAD_IDLE = 7182;
     int GIANT_BASIC_STAMP = 7183;
-    int GIANT_BASIC_INJECT_GROW = 7184;
 }

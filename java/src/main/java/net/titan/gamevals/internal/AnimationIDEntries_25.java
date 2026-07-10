@@ -10,6 +10,7 @@ final class AnimationIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12824, "LORE_MINOTAUR_WALK", "lore_minotaur_walk", "seqtypes"),
             new GamevalEntry(12825, "LORE_MINOTAUR_DEFEND", "lore_minotaur_defend", "seqtypes"),
             new GamevalEntry(12826, "LORE_MINOTAUR_ATTACK", "lore_minotaur_attack", "seqtypes"),
             new GamevalEntry(12827, "LORE_MINOTAUR_DEATH", "lore_minotaur_death", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_25 {
             new GamevalEntry(13333, "VFX_SAILING_CANNON01_SMALL01_IMPACT01", "vfx_sailing_cannon01_small01_impact01", "seqtypes"),
             new GamevalEntry(13334, "SAILING_ALPHA_HELM_RAFT01_INACTIVE01", "sailing_alpha_helm_raft01_inactive01", "seqtypes"),
             new GamevalEntry(13335, "SAILING_ALPHA_HELM_RAFT01_ACTIVE01", "sailing_alpha_helm_raft01_active01", "seqtypes"),
-            new GamevalEntry(13336, "SAILING_ALPHA_HELM_RAFT01_ACTIVE01_LOOP", "sailing_alpha_helm_raft01_active01_loop", "seqtypes"),
         };
     }
 

@@ -3559,8 +3559,9 @@ public final class DBTableID
         public static final int COL_HIDDEN = 9;
         public static final int COL_HOLIDAY = 10;
         public static final int COL_SECONDARY_TRACK = 11;
-        public static final int COL_RELEASE_TYPE = 12;
-        public static final int COL_RELATED_CONTENT = 13;
+        public static final int COL_PARENT_TRACK = 12;
+        public static final int COL_RELEASE_TYPE = 13;
+        public static final int COL_RELATED_CONTENT = 14;
 
         public static final class Row {
             private Row() {}

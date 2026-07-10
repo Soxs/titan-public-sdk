@@ -10,6 +10,7 @@ final class AnimationIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9235, "CANNON_LEAGUE03_FIRE_SW", "cannon_league03_fire_sw", "seqtypes"),
             new GamevalEntry(9236, "CANNON_LEAGUE03_FIRE_W", "cannon_league03_fire_w", "seqtypes"),
             new GamevalEntry(9237, "CANNON_LEAGUE03_FIRE_NW", "cannon_league03_fire_nw", "seqtypes"),
             new GamevalEntry(9238, "CANNON_LEAGUE03_AIM", "cannon_league03_aim", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_18 {
             new GamevalEntry(9745, "NPC_MANDRILL_ATTACK_RANGED_02", "npc_mandrill_attack_ranged_02", "seqtypes"),
             new GamevalEntry(9746, "NPC_MANDRILL_ATTACK_MAGIC", "npc_mandrill_attack_magic", "seqtypes"),
             new GamevalEntry(9747, "NPC_MANDRILL_ATTACK_MAGIC_02", "npc_mandrill_attack_magic_02", "seqtypes"),
-            new GamevalEntry(9748, "NPC_MANDRILL_ATTACK_SPECIAL_JUMP01", "npc_mandrill_attack_special_jump01", "seqtypes"),
         };
     }
 

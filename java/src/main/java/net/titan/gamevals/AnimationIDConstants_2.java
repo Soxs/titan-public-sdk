@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_2 {
+    int ELEMENTAL_FIRE_WALK = 1028;
     int ELEMENTAL_FIRE_ATTACK = 1029;
     int ELEMENTAL_FIRE_DEFEND = 1030;
     int ELEMENTAL_FIRE_DEATH = 1031;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_2 {
     int ABYSSAL_DEATH = 1538;
     int DEMON_SPAWN_FLY = 1539;
     int DEMON_SPAWN_ATTACK = 1540;
-    int DEMON_SPAWN_DEATH = 1541;
 }

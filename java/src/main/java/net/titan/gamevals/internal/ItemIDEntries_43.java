@@ -10,6 +10,9 @@ final class ItemIDEntries_43 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(22460, "PLACEHOLDER_1DOSEBATTLEMAGE", "placeholder_1dosebattlemage", "objtypes"),
+            new GamevalEntry(22461, "_4DOSEBASTION", "Bastion potion(4)", "objtypes"),
+            new GamevalEntry(22462, "CERT_4DOSEBASTION", "cert_4dosebastion", "objtypes"),
             new GamevalEntry(22463, "PLACEHOLDER_4DOSEBASTION", "placeholder_4dosebastion", "objtypes"),
             new GamevalEntry(22464, "_3DOSEBASTION", "Bastion potion(3)", "objtypes"),
             new GamevalEntry(22465, "CERT_3DOSEBASTION", "cert_3dosebastion", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_43 {
             new GamevalEntry(22979, "CERT_DRAGONHUNTER_LANCE", "cert_dragonhunter_lance", "objtypes"),
             new GamevalEntry(22980, "PLACEHOLDER_DRAGONHUNTER_LANCE", "placeholder_dragonhunter_lance", "objtypes"),
             new GamevalEntry(22981, "FEROCIOUS_GLOVES", "Ferocious gloves", "objtypes"),
-            new GamevalEntry(22982, "PLACEHOLDER_FEROCIOUS_GLOVES", "placeholder_ferocious_gloves", "objtypes"),
-            new GamevalEntry(22983, "HYDRA_LEATHER", "Hydra leather", "objtypes"),
-            new GamevalEntry(22984, "CERT_HYDRA_LEATHER", "cert_hydra_leather", "objtypes"),
         };
     }
 

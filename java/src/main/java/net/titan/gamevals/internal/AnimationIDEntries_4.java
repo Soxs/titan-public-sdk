@@ -10,6 +10,7 @@ final class AnimationIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2054, "TOG_WEEPING_WALL", "tog_weeping_wall", "seqtypes"),
             new GamevalEntry(2055, "TOG_SNAKE_OPENCLOSE", "tog_snake_openclose", "seqtypes"),
             new GamevalEntry(2056, "TOG_SNAKE_SLEEP", "tog_snake_sleep", "seqtypes"),
             new GamevalEntry(2057, "TOG_SNAKE_READY", "tog_snake_ready", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_4 {
             new GamevalEntry(2563, "HUMAN_DH_WEAPON_RUN", "human_dh_weapon_run", "seqtypes"),
             new GamevalEntry(2564, "CANDLE_FLICKER", "candle_flicker", "seqtypes"),
             new GamevalEntry(2565, "GARDEN_PUSH_TROLLEY", "garden_push_trolley", "seqtypes"),
-            new GamevalEntry(2566, "GARDEN_PULL_TROLLEY", "garden_pull_trolley", "seqtypes"),
         };
     }
 

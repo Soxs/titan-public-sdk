@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface SpotanimIDConstants_6 {
+    int LEAGUES5_HERSPRAY_ATTACK_SPOT03 = 3072;
     int LEAGUES5_HERSPRAY_ATTACK_PROJ01 = 3073;
     int LEAGUES5_HERSPRAY_ATTACK_PROJ02 = 3074;
     int LEAGUES5_HERSPRAY_ATTACK_PROJ03 = 3075;
@@ -512,5 +513,4 @@ public interface SpotanimIDConstants_6 {
     int LEAGUES_6_IMPERSONATION_MARK = 3581;
     int LEAGUES_6_IMPERSONATION_SMOKEPUFF = 3582;
     int LEAGUES_6_SIGIL_OF_LIFE = 3583;
-    int LEAGUES_6_SIGIL_OF_LIFE_IMPACT = 3584;
 }

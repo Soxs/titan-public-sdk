@@ -10,6 +10,7 @@ final class AnimationIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7184, "GIANT_BASIC_INJECT_GROW", "giant_basic_inject_grow", "seqtypes"),
             new GamevalEntry(7185, "HUMAN_ZENYTECUTTING", "human_zenytecutting", "seqtypes"),
             new GamevalEntry(7186, "CHAIR_EAT_STOOL_1_DELAYOFFSET", "chair_eat_stool_1_delayoffset", "seqtypes"),
             new GamevalEntry(7187, "DREAM_CYRISUS_SIT_UP_TRANSITION_REVERSE", "dream_cyrisus_sit_up_transition_reverse", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_14 {
             new GamevalEntry(7693, "FOSSIL_LOC_JUMPSHROOM_SQUASH", "fossil_loc_jumpshroom_squash", "seqtypes"),
             new GamevalEntry(7694, "FOSSIL_NPC_HERBIBOAR_IDLE", "fossil_npc_herbiboar_idle", "seqtypes"),
             new GamevalEntry(7695, "FOSSIL_NPC_HERBIBOAR_WALK", "fossil_npc_herbiboar_walk", "seqtypes"),
-            new GamevalEntry(7696, "FOSSIL_NPC_HERBIBOAR_ATTACK", "fossil_npc_herbiboar_attack", "seqtypes"),
         };
     }
 

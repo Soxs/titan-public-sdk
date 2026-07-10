@@ -55,6 +55,7 @@ public interface AnimationIDConstants_1 {
     int CHATBORED2 = 563;
     int CHATBORED3 = 564;
     int CHATBORED4 = 565;
+    int HUMAN_WEAPONS_CRIMSON_KISTEN_ATTACK_ALT = 566;
     int CHATHAP1 = 567;
     int CHATHAP2 = 568;
     int CHATHAP3 = 569;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_1 {
     int OGRE_LONGBOW = 1025;
     int HUMAN_CHOMPYBIRD_OGREBELLOWS = 1026;
     int ELEMENTAL_FIRE_READY = 1027;
-    int ELEMENTAL_FIRE_WALK = 1028;
 }

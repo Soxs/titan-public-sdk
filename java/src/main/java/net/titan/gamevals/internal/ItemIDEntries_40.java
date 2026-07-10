@@ -10,6 +10,9 @@ final class ItemIDEntries_40 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(20912, "RAIDS_CICELY", "Cicely", "objtypes"),
+            new GamevalEntry(20913, "RAIDS_VIAL_ELDER_WEAK_1", "Elder (-)(1)", "objtypes"),
+            new GamevalEntry(20914, "RAIDS_VIAL_ELDER_WEAK_2", "Elder (-)(2)", "objtypes"),
             new GamevalEntry(20915, "RAIDS_VIAL_ELDER_WEAK_3", "Elder (-)(3)", "objtypes"),
             new GamevalEntry(20916, "RAIDS_VIAL_ELDER_WEAK_4", "Elder (-)(4)", "objtypes"),
             new GamevalEntry(20917, "RAIDS_VIAL_ELDER_1", "Elder potion (1)", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_40 {
             new GamevalEntry(21429, "WILDWARS_TEAM2_CAPE", "L ? ' Wilderness cape", "objtypes"),
             new GamevalEntry(21430, "WILDWARS_TEAM3_CAPE", "Wilderness cape", "objtypes"),
             new GamevalEntry(21431, "WILDWARS_TEAM4_CAPE", "Wilderness cape", "objtypes"),
-            new GamevalEntry(21432, "WILDWARS_TEAM5_CAPE", "Wilderness cape", "objtypes"),
-            new GamevalEntry(21433, "WILDWARS_CHAMPION_AMULET", "Wilderness champion amulet", "objtypes"),
-            new GamevalEntry(21434, "WILDWARS_TEAM1_CHAMPION_CAPE", "Wilderness cape", "objtypes"),
         };
     }
 

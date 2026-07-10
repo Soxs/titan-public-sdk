@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_20 {
+    int NPC_WHISPERER_01_DEATH_01 = 10260;
     int NPC_WHISPERER_01_DEATH_02 = 10261;
     int NPC_WHISPERER_01_DEATH_02_PET = 10262;
     int NPC_WHISPERER_TENTACLE_01_SPAWN_01 = 10263;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_20 {
     int COA_CANDLE_EFFECT = 10769;
     int COA_TORCH = 10770;
     int COA_TORCH_LOW = 10771;
-    int COA_UZER_FIRE = 10772;
 }

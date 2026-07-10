@@ -10,6 +10,7 @@ final class AnimationIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9748, "NPC_MANDRILL_ATTACK_SPECIAL_JUMP01", "npc_mandrill_attack_special_jump01", "seqtypes"),
             new GamevalEntry(9749, "NPC_MANDRILL_ATTACK_SPECIAL_RANGED01", "npc_mandrill_attack_special_ranged01", "seqtypes"),
             new GamevalEntry(9750, "NPC_MANDRILL_ATTACK_SPECIAL_IDLE01", "npc_mandrill_attack_special_idle01", "seqtypes"),
             new GamevalEntry(9751, "NPC_MANDRILL_ATTACK_SPECIAL_END01", "npc_mandrill_attack_special_end01", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_19 {
             new GamevalEntry(10257, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_IDLE", "npc_whisperer_01_teleport_summon_souls_01_idle", "seqtypes"),
             new GamevalEntry(10258, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_END", "npc_whisperer_01_teleport_summon_souls_01_end", "seqtypes"),
             new GamevalEntry(10259, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_ATTACK", "npc_whisperer_01_teleport_summon_souls_01_attack", "seqtypes"),
-            new GamevalEntry(10260, "NPC_WHISPERER_01_DEATH_01", "npc_whisperer_01_death_01", "seqtypes"),
         };
     }
 

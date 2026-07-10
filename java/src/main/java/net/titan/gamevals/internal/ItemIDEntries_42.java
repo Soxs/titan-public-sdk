@@ -10,6 +10,9 @@ final class ItemIDEntries_42 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(21948, "DRAGON_BOLTS_ENCHANTED_DRAGONSTONE", "Dragonstone dragon bolts (e)", "objtypes"),
+            new GamevalEntry(21949, "PLACEHOLDER_DRAGON_BOLTS_ENCHANTED_DRAGONSTONE", "placeholder_dragon_bolts_enchanted_dragonstone", "objtypes"),
+            new GamevalEntry(21950, "DRAGON_BOLTS_ENCHANTED_ONYX", "Onyx dragon bolts (e)", "objtypes"),
             new GamevalEntry(21951, "PLACEHOLDER_DRAGON_BOLTS_ENCHANTED_ONYX", "placeholder_dragon_bolts_enchanted_onyx", "objtypes"),
             new GamevalEntry(21952, "XBOWS_CROSSBOW_STOCK_MAGIC", "Magic stock", "objtypes"),
             new GamevalEntry(21953, "CERT_XBOWS_CROSSBOW_STOCK_MAGIC", "cert_xbows_crossbow_stock_magic", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_42 {
             new GamevalEntry(22457, "PLACEHOLDER_2DOSEBATTLEMAGE", "placeholder_2dosebattlemage", "objtypes"),
             new GamevalEntry(22458, "_1DOSEBATTLEMAGE", "Battlemage potion(1)", "objtypes"),
             new GamevalEntry(22459, "CERT_1DOSEBATTLEMAGE", "cert_1dosebattlemage", "objtypes"),
-            new GamevalEntry(22460, "PLACEHOLDER_1DOSEBATTLEMAGE", "placeholder_1dosebattlemage", "objtypes"),
-            new GamevalEntry(22461, "_4DOSEBASTION", "Bastion potion(4)", "objtypes"),
-            new GamevalEntry(22462, "CERT_4DOSEBASTION", "cert_4dosebastion", "objtypes"),
         };
     }
 

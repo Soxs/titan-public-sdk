@@ -10,6 +10,9 @@ final class ItemIDEntries_58 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(30260, "HW24_REWARD_PUMPKIN_YELLOW_GRR", "Yellow pumpkin (angry)", "objtypes"),
+            new GamevalEntry(30261, "HW24_REWARD_PUMPKIN_YELLOW_MEH", "Yellow pumpkin (depressed)", "objtypes"),
+            new GamevalEntry(30262, "HW24_REWARD_PUMPKIN_YELLOW_OH", "Yellow pumpkin (shocked)", "objtypes"),
             new GamevalEntry(30263, "HW24_REWARD_PUMPKIN_YELLOW_SAD", "Yellow pumpkin (sad)", "objtypes"),
             new GamevalEntry(30264, "HW24_REWARD_PUMPKIN_YELLOW_WOO", "Yellow pumpkin (happy)", "objtypes"),
             new GamevalEntry(30265, "HW24_REWARD_PUMPKIN_YELLOW_YAY", "Yellow pumpkin (laughing)", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_58 {
             new GamevalEntry(30769, "OATHPLATE_SHARDS_4", "oathplate_shards_4", "objtypes"),
             new GamevalEntry(30770, "OATHPLATE_SHARDS_5", "oathplate_shards_5", "objtypes"),
             new GamevalEntry(30771, "COSMIC_SOUL_CATALYST", "Aether catalyst", "objtypes"),
-            new GamevalEntry(30772, "PLACEHOLDER_COSMIC_SOUL_CATALYST", "placeholder_cosmic_soul_catalyst", "objtypes"),
-            new GamevalEntry(30773, "DIABOLIC_WORMS", "Diabolic worms", "objtypes"),
-            new GamevalEntry(30774, "PLACEHOLDER_DIABOLIC_WORMS", "placeholder_diabolic_worms", "objtypes"),
         };
     }
 

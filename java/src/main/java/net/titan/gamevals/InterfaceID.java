@@ -30446,37 +30446,21 @@ public final class InterfaceID
         public static final int BUTTON_EXPERIENCED = 60882951;
     }
 
-    public static final class FletchingTable {
-        private FletchingTable() {}
+    public static final class SangvestiWorldMap {
+        private SangvestiWorldMap() {}
 
-        public static final int INFINITY_ = 60948480;
-        public static final int UNIVERSE = 60948481;
+        public static final int UNIVERSE = 60948480;
+        public static final int CONTENTS = 60948481;
         public static final int FRAME = 60948482;
-        public static final int CONTENT = 60948483;
-        public static final int LEFT_PANEL = 60948484;
-        public static final int LEFT_SCROLL = 60948485;
-        public static final int LEFT_LIST = 60948486;
-        public static final int CATEGORY_BACKGROUNDS = 60948487;
-        public static final int CATEGORY_LIST = 60948488;
-        public static final int RIGHT_PANEL = 60948489;
-        public static final int RIGHT_SCROLL = 60948490;
-        public static final int LIST = 60948491;
-        public static final int CATEGORY_HEADERS = 60948492;
-        public static final int CATEGORY_LINES = 60948493;
-        public static final int OBJ_LIST = 60948494;
-        public static final int TEXT_LIST = 60948495;
-        public static final int BUTTONS = 60948496;
-        public static final int COM_17 = 60948497;
-        public static final int X1 = 60948498;
-        public static final int TEXT_1 = 60948499;
-        public static final int X5 = 60948500;
-        public static final int TEXT_5 = 60948501;
-        public static final int X10 = 60948502;
-        public static final int TEXT_10 = 60948503;
-        public static final int XX = 60948504;
-        public static final int TEXT_X = 60948505;
-        public static final int XALL = 60948506;
-        public static final int TEXT_ALL = 60948507;
+        public static final int BACKGROUND = 60948483;
+        public static final int DRAG = 60948484;
+        public static final int MAIN = 60948485;
+        public static final int MAP = 60948486;
+        public static final int COM_7 = 60948487;
+        public static final int MAP_BACK = 60948488;
+        public static final int MAP_FRONT = 60948489;
+        public static final int CLOSE = 60948490;
+        public static final int TOOLTIP = 60948491;
     }
 
     public static final class SailingBtHud {
@@ -31380,6 +31364,7 @@ public final class InterfaceID
         public static final int MAP_BACK = 63373324;
         public static final int MAP_FRONT = 63373325;
         public static final int CLOSE = 63373326;
+        public static final int TOOLTIP = 63373327;
     }
 
     public static final class Myq6IntegrityBar {

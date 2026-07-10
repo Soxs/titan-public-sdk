@@ -10,6 +10,9 @@ final class ItemIDEntries_49 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(25542, "PLACEHOLDER_CELESTIAL_RING_CHARGED", "placeholder_celestial_ring_charged", "objtypes"),
+            new GamevalEntry(25543, "CELESTIAL_SIGNET", "Celestial signet (uncharged)", "objtypes"),
+            new GamevalEntry(25544, "PLACEHOLDER_CELESTIAL_SIGNET", "placeholder_celestial_signet", "objtypes"),
             new GamevalEntry(25545, "CELESTIAL_SIGNET_CHARGED", "Celestial signet", "objtypes"),
             new GamevalEntry(25546, "PLACEHOLDER_CELESTIAL_SIGNET_CHARGED", "placeholder_celestial_signet_charged", "objtypes"),
             new GamevalEntry(25547, "STAR_FRAGMENT", "Star fragment", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_49 {
             new GamevalEntry(26087, "SIGIL_OF_THE_ELVES_UNATTUNED", "Sigil of the elves", "objtypes"),
             new GamevalEntry(26089, "SIGIL_OF_THE_BARBARIANS_ATTUNED", "Sigil of the barbarians", "objtypes"),
             new GamevalEntry(26090, "SIGIL_OF_THE_BARBARIANS_UNATTUNED", "Sigil of the barbarians", "objtypes"),
-            new GamevalEntry(26092, "SIGIL_OF_THE_GNOMES_ATTUNED", "Sigil of the gnomes", "objtypes"),
-            new GamevalEntry(26093, "SIGIL_OF_THE_GNOMES_UNATTUNED", "Sigil of the gnomes", "objtypes"),
-            new GamevalEntry(26095, "SIGIL_OF_NATURE_ATTUNED", "Sigil of nature", "objtypes"),
         };
     }
 

@@ -64,6 +64,7 @@ final class AnimationIDEntries_1 {
             new GamevalEntry(563, "CHATBORED2", "chatbored2", "seqtypes"),
             new GamevalEntry(564, "CHATBORED3", "chatbored3", "seqtypes"),
             new GamevalEntry(565, "CHATBORED4", "chatbored4", "seqtypes"),
+            new GamevalEntry(566, "HUMAN_WEAPONS_CRIMSON_KISTEN_ATTACK_ALT", "human_weapons_crimson_kisten_attack_alt", "seqtypes"),
             new GamevalEntry(567, "CHATHAP1", "chathap1", "seqtypes"),
             new GamevalEntry(568, "CHATHAP2", "chathap2", "seqtypes"),
             new GamevalEntry(569, "CHATHAP3", "chathap3", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_1 {
             new GamevalEntry(1025, "OGRE_LONGBOW", "ogre_longbow", "seqtypes"),
             new GamevalEntry(1026, "HUMAN_CHOMPYBIRD_OGREBELLOWS", "human_chompybird_ogrebellows", "seqtypes"),
             new GamevalEntry(1027, "ELEMENTAL_FIRE_READY", "elemental_fire_ready", "seqtypes"),
-            new GamevalEntry(1028, "ELEMENTAL_FIRE_WALK", "elemental_fire_walk", "seqtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class AnimationIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10260, "NPC_WHISPERER_01_DEATH_01", "npc_whisperer_01_death_01", "seqtypes"),
             new GamevalEntry(10261, "NPC_WHISPERER_01_DEATH_02", "npc_whisperer_01_death_02", "seqtypes"),
             new GamevalEntry(10262, "NPC_WHISPERER_01_DEATH_02_PET", "npc_whisperer_01_death_02_pet", "seqtypes"),
             new GamevalEntry(10263, "NPC_WHISPERER_TENTACLE_01_SPAWN_01", "npc_whisperer_tentacle_01_spawn_01", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_20 {
             new GamevalEntry(10769, "COA_CANDLE_EFFECT", "coa_candle_effect", "seqtypes"),
             new GamevalEntry(10770, "COA_TORCH", "coa_torch", "seqtypes"),
             new GamevalEntry(10771, "COA_TORCH_LOW", "coa_torch_low", "seqtypes"),
-            new GamevalEntry(10772, "COA_UZER_FIRE", "coa_uzer_fire", "seqtypes"),
         };
     }
 

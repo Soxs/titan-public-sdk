@@ -10,6 +10,7 @@ final class AnimationIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3591, "POH_JESTER_ASCEND", "poh_jester_ascend", "seqtypes"),
             new GamevalEntry(3592, "JESTER_JUMPS_OUT", "jester_jumps_out", "seqtypes"),
             new GamevalEntry(3593, "JESTER_JUMPS_IN", "jester_jumps_in", "seqtypes"),
             new GamevalEntry(3594, "BALANCE_BEAM_READY", "balance_beam_ready", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_7 {
             new GamevalEntry(4100, "CHAIR_EAT_DININGCHAIRS_6", "chair_eat_diningchairs_6", "seqtypes"),
             new GamevalEntry(4101, "CHAIR_SIT_READY_DININGCHAIRS_7", "chair_sit_ready_diningchairs_7", "seqtypes"),
             new GamevalEntry(4102, "CHAIR_EAT_DININGCHAIRS_7", "chair_eat_diningchairs_7", "seqtypes"),
-            new GamevalEntry(4103, "CHAIR_SIT", "chair_sit", "seqtypes"),
         };
     }
 

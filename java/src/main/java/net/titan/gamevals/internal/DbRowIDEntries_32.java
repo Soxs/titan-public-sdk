@@ -293,7 +293,6 @@ final class DbRowIDEntries_32 {
             new GamevalEntry(16895, "SKILL_FEATURE_AGILITY_VAMPYRIUM_CRAWL", "skill_feature_agility_vampyrium_crawl", "rowtypes"),
             new GamevalEntry(16896, "SKILL_FEATURE_AGILITY_VAMPYRIUM_PILLAR_JUMPS", "skill_feature_agility_vampyrium_pillar_jumps", "rowtypes"),
             new GamevalEntry(16897, "SKILL_FEATURE_AGILITY_VAMPYRIUM_SLIDES", "skill_feature_agility_vampyrium_slides", "rowtypes"),
-            new GamevalEntry(16898, "SKILL_FEATURE_CRAFTING_NECKLACE_OF_RUPTURE", "skill_feature_crafting_necklace_of_rupture", "rowtypes"),
             new GamevalEntry(16899, "SKILL_FEATURE_FISHING_LEECHFIN", "skill_feature_fishing_leechfin", "rowtypes"),
             new GamevalEntry(16900, "SKILL_FEATURE_HITPOINTS_NECKLACEOFRUPTURE", "skill_feature_hitpoints_necklaceofrupture", "rowtypes"),
             new GamevalEntry(16901, "SKILL_FEATURE_HUNTER_STYMPHIKE", "skill_feature_hunter_stymphike", "rowtypes"),

@@ -10,6 +10,7 @@ final class AnimationIDEntries_28 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14360, "LOWERNIEL_DRAKAN_CUTSCENE_SUNSPEAR_DRAMATIC01", "lowerniel_drakan_cutscene_sunspear_dramatic01", "seqtypes"),
             new GamevalEntry(14361, "LOWERNIEL_DRAKAN_CUTSCENE_SUNSPEAR_DRAMATIC01_SILENT", "lowerniel_drakan_cutscene_sunspear_dramatic01_silent", "seqtypes"),
             new GamevalEntry(14362, "LOWERNIEL_DRAKAN_CUTSCENE_SUNSPEAR_SNAPPY01", "lowerniel_drakan_cutscene_sunspear_snappy01", "seqtypes"),
             new GamevalEntry(14363, "LOWERNIEL_DRAKAN_CUTSCENE_WELL_SIT_STAND_IDLE01", "lowerniel_drakan_cutscene_well_sit_stand_idle01", "seqtypes"),

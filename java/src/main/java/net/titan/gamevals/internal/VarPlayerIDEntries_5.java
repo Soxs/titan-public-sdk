@@ -364,6 +364,9 @@ final class VarPlayerIDEntries_5 {
             new GamevalEntry(5665, "MAGGOT_KING_ATTEMPTS", "maggot_king_attempts", "varptypes"),
             new GamevalEntry(5666, "DRAKAN_ENCOUNTER_ATTEMPTS", "drakan_encounter_attempts", "varptypes"),
             new GamevalEntry(5667, "DRAKAN_FINAL_MIN_HP", "drakan_final_min_hp", "varptypes"),
+            new GamevalEntry(5668, "SANGVESTI_GENERAL_3", "sangvesti_general_3", "varptypes"),
+            new GamevalEntry(5669, "SANGVESTI_PLAYER_POS", "sangvesti_player_pos", "varptypes"),
+            new GamevalEntry(5670, "SANGVESTI_PLAYER_LAST_DEATH_POS", "sangvesti_player_last_death_pos", "varptypes"),
         };
     }
 

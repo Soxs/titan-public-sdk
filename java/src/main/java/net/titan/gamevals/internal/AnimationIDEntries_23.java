@@ -10,6 +10,7 @@ final class AnimationIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11799, "SHARATHTEERK_ATTACK_SUMMON_01", "sharathteerk_attack_summon_01", "seqtypes"),
             new GamevalEntry(11800, "SHARATHTEERK_ATTACK_SUMMON_01_SPOTANIM", "sharathteerk_attack_summon_01_spotanim", "seqtypes"),
             new GamevalEntry(11801, "SHARATHTEERK_ATTACK_SUMMON_01_IMPACTANIM", "sharathteerk_attack_summon_01_impactanim", "seqtypes"),
             new GamevalEntry(11802, "SHARATHTEERK_ELIAS_BIND_01", "sharathteerk_elias_bind_01", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_23 {
             new GamevalEntry(12308, "SCRAMBLED_EGG_SPLAT", "scrambled_egg_splat", "seqtypes"),
             new GamevalEntry(12309, "SCRAMBLED_EGG_SPLAT_OFFSET01", "scrambled_egg_splat_offset01", "seqtypes"),
             new GamevalEntry(12310, "SCRAMBLED_EGG_SPLAT_OFFSET02", "scrambled_egg_splat_offset02", "seqtypes"),
-            new GamevalEntry(12311, "SCRAMBLED_EGG_SPLATTERED_IDLE", "scrambled_egg_splattered_idle", "seqtypes"),
         };
     }
 

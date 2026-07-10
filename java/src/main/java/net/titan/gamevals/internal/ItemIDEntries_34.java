@@ -10,6 +10,9 @@ final class ItemIDEntries_34 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(17801, "PLACEHOLDER_POT_BONEMEAL_NORMAL_GORILLA_MONKEY", "placeholder_pot_bonemeal_normal_gorilla_monkey", "objtypes"),
+            new GamevalEntry(17802, "PLACEHOLDER_POT_BONEMEAL_BEARDED_GORILLA_MONKEY", "placeholder_pot_bonemeal_bearded_gorilla_monkey", "objtypes"),
+            new GamevalEntry(17803, "PLACEHOLDER_POT_BONEMEAL_NORMAL_MONKEY", "placeholder_pot_bonemeal_normal_monkey", "objtypes"),
             new GamevalEntry(17804, "PLACEHOLDER_POT_BONEMEAL_SMALL_ZOMBIE_MONKEY", "placeholder_pot_bonemeal_small_zombie_monkey", "objtypes"),
             new GamevalEntry(17805, "PLACEHOLDER_POT_BONEMEAL_LARGE_ZOMBIE_MONKEY", "placeholder_pot_bonemeal_large_zombie_monkey", "objtypes"),
             new GamevalEntry(17806, "PLACEHOLDER_POT_BONEMEAL_SKELETON", "placeholder_pot_bonemeal_skeleton", "objtypes"),
@@ -519,9 +522,6 @@ final class ItemIDEntries_34 {
             new GamevalEntry(18310, "PLACEHOLDER_WILDERNESS_CAPE_26", "placeholder_wilderness_cape_26", "objtypes"),
             new GamevalEntry(18311, "PLACEHOLDER_WILDERNESS_CAPE_27", "placeholder_wilderness_cape_27", "objtypes"),
             new GamevalEntry(18312, "PLACEHOLDER_WILDERNESS_CAPE_28", "placeholder_wilderness_cape_28", "objtypes"),
-            new GamevalEntry(18313, "PLACEHOLDER_WILDERNESS_CAPE_29", "placeholder_wilderness_cape_29", "objtypes"),
-            new GamevalEntry(18314, "PLACEHOLDER_WILDERNESS_CAPE_30", "placeholder_wilderness_cape_30", "objtypes"),
-            new GamevalEntry(18315, "PLACEHOLDER_WILDERNESS_CAPE_31", "placeholder_wilderness_cape_31", "objtypes"),
         };
     }
 
