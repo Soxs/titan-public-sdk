@@ -1222,6 +1222,12 @@ class Plugin {
     id: string;
     name: string;
     /**
+     * Stable plugin ids that must be present before this plugin is activated.
+     * Dependencies may target native, JavaScript, or Java plugins. Cycles and
+     * missing providers are reported by the host dependency resolver.
+     */
+    dependencies?: string[];
+    /**
      * Side panels exposed by this plugin. Each entry becomes its own nav
      * button in the controller's right-hand rail. A plugin may declare
      * several. Replaces the SDK <= 64 singular `hasPanel` / `panelTitle` /

@@ -37,10 +37,10 @@
           "name": "titan-plugin-api-0.1.21.jar",
           "url": "titan-plugin-api-0.1.21.jar",
           "size": 9124945,
-          "sha512": "6d31d8b39627893401069e9a9a3d58c297f7092798bf5b5cdf4ca991fd663b70a29a9239b6e1aab08bdc3afd3f4f920b15362c09b3b1ffebc6749971ac397b2f",
-          "sha256": "815a60e59c25fd9069d20728c10c79cb32fb52271e4ef790b205e509ad0c197a",
-          "sha1": "10ba88b546dead6e267fa8330d8549f50e0ba1a1",
-          "md5": "e89b459b61f7effd5fd90afa6b7d89a9"
+          "sha512": "c95ddc321f868898e3e591c71c5591f7f73aad51d472e4007e7f2a667e69e762decd50c97c92c218c9584aadf4b854eef48bad641692d1a68b92e29ba39c49a0",
+          "sha256": "5c336f8e83b5d345e9f2164d2aa94ad067f7bd39ff7c47f09680cb66347d2ec0",
+          "sha1": "9fc5b169b586a08d802ae00ba548066450d91c41",
+          "md5": "ac3c31de5d33630914a1b009ecb4f6e9"
         }
       ]
     },
@@ -67,10 +67,10 @@
           "name": "titan-plugin-api-0.1.21.jar",
           "url": "titan-plugin-api-0.1.21.jar",
           "size": 9124945,
-          "sha512": "6d31d8b39627893401069e9a9a3d58c297f7092798bf5b5cdf4ca991fd663b70a29a9239b6e1aab08bdc3afd3f4f920b15362c09b3b1ffebc6749971ac397b2f",
-          "sha256": "815a60e59c25fd9069d20728c10c79cb32fb52271e4ef790b205e509ad0c197a",
-          "sha1": "10ba88b546dead6e267fa8330d8549f50e0ba1a1",
-          "md5": "e89b459b61f7effd5fd90afa6b7d89a9"
+          "sha512": "c95ddc321f868898e3e591c71c5591f7f73aad51d472e4007e7f2a667e69e762decd50c97c92c218c9584aadf4b854eef48bad641692d1a68b92e29ba39c49a0",
+          "sha256": "5c336f8e83b5d345e9f2164d2aa94ad067f7bd39ff7c47f09680cb66347d2ec0",
+          "sha1": "9fc5b169b586a08d802ae00ba548066450d91c41",
+          "md5": "ac3c31de5d33630914a1b009ecb4f6e9"
         }
       ]
     },
@@ -87,10 +87,10 @@
           "name": "titan-plugin-api-0.1.21-sources.jar",
           "url": "titan-plugin-api-0.1.21-sources.jar",
           "size": 4712190,
-          "sha512": "83935e7507e02a722ae6554403d28abb59da4df48a1a225b58af2b5c344d5631878089d8b53da945d51df0f90ee1031e82f258f5970decd7aa2ebb8328653e31",
-          "sha256": "83b98aa16c7eb747746cd698fd39f9c5a7a37a6979d2f254682c677b27efb837",
-          "sha1": "3666adaaa2916b4acf49283e5dfcb4697c2072ac",
-          "md5": "9a56ffbe16b352b9667e4b32e86c12dc"
+          "sha512": "a51820eaf456c1f8fbabf2ab61318b5423a7a6dccea8846b87c9ff9cb5bf6575667319dc7fd45847a7031366cc9db70fb396aee199a380e7f57295e06087c0c7",
+          "sha256": "ad863c0a0c6e15445ca68cd816217ccd2a9189ef1171142854bd959b0cdb3c8b",
+          "sha1": "34b690ea46af1d192425697aa979dcfeff05626e",
+          "md5": "c4a4da5f826fa997f76d4d0a575fb241"
         }
       ]
     },
@@ -107,10 +107,10 @@
           "name": "titan-plugin-api-0.1.21-javadoc.jar",
           "url": "titan-plugin-api-0.1.21-javadoc.jar",
           "size": 22292406,
-          "sha512": "d17f5bd8176ff2af338d4fdf5ec2016c4bb02e9fd7eb2df071379078ae4d00358e55853b5a7c6f091ce85ca92f8ccc0daeca94f0360f74b7e1824be6647fea11",
-          "sha256": "b29cc63a9e5f0f549f2272ca7239bcaab36b6c39ce759c31cdebad650c18be7c",
-          "sha1": "13281cf81d65a86167a1c171397f8f61c5a81af2",
-          "md5": "27c6dbe2c1be53637ead06a75dea27cc"
+          "sha512": "2f53e786665e0863f0b21e947585e25e675e631d89008cba1f341e1070683a649b35a13328b9a7484999c1b8a82337ee91322f6ecacb80845e0af75506e595f3",
+          "sha256": "29d579193df7ecc7f3010eafcff710dfa2703d3c63cac75f199d8143b732fe39",
+          "sha1": "84193178f4ff8b7b718ba5c56bc571c947e255c7",
+          "md5": "866dd7223ee59ee4164d0499f37d956d"
         }
       ]
     }
