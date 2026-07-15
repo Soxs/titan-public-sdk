@@ -10,6 +10,7 @@ final class DbRowIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12517, "SKILL_GUIDE_SUBSECTION_SAILING_CREWMATES", "skill_guide_subsection_sailing_crewmates", "rowtypes"),
             new GamevalEntry(12518, "SKILL_GUIDE_SUBSECTION_SAILING_OTHER", "skill_guide_subsection_sailing_other", "rowtypes"),
             new GamevalEntry(12519, "SKILL_FEATURE_SAILING_OVERVIEW_0", "skill_feature_sailing_overview_0", "rowtypes"),
             new GamevalEntry(12520, "SKILL_FEATURE_SAILING_OVERVIEW_1", "skill_feature_sailing_overview_1", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_24 {
             new GamevalEntry(13026, "SKILL_FEATURE_SMITHING_RUNE_KITESHIELD", "skill_feature_smithing_rune_kiteshield", "rowtypes"),
             new GamevalEntry(13027, "SKILL_FEATURE_SMITHING_RUNE_CLAWS", "skill_feature_smithing_rune_claws", "rowtypes"),
             new GamevalEntry(13028, "SKILL_FEATURE_SMITHING_RUNE_2H_SWORD", "skill_feature_smithing_rune_2h_sword", "rowtypes"),
-            new GamevalEntry(13029, "SKILL_FEATURE_SMITHING_RUNE_PLATELEGS", "skill_feature_smithing_rune_platelegs", "rowtypes"),
         };
     }
 

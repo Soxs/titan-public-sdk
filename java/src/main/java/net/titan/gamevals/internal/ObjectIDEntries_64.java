@@ -10,6 +10,7 @@ final class ObjectIDEntries_64 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(32835, "TOB_DUNGEON_WALKWAY_FLOOR_WIDE_B", "tob_dungeon_walkway_floor_wide_b", "loctypes"),
             new GamevalEntry(32836, "TOB_DUNGEON_WALKWAY_FLOOR_WIDE_C", "tob_dungeon_walkway_floor_wide_c", "loctypes"),
             new GamevalEntry(32837, "TOB_DUNGEON_WALKWAY_FLOOR_WIDE_D", "tob_dungeon_walkway_floor_wide_d", "loctypes"),
             new GamevalEntry(32838, "TOB_DUNGEON_WALKWAY_FLOOR_END_A", "tob_dungeon_walkway_floor_end_a", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_64 {
             new GamevalEntry(33344, "KHARID_POSHWALL_TOPLESS", "Broken wall", "loctypes"),
             new GamevalEntry(33345, "KHARID_POSHWALL_FALLENTOP", "kharid_poshwall_fallentop", "loctypes"),
             new GamevalEntry(33346, "POH_TELENEXUS_1", "Portal Nexus space", "loctypes"),
-            new GamevalEntry(33347, "POH_TELENEXUS_2_MIDDLE", "Rug space", "loctypes"),
         };
     }
 

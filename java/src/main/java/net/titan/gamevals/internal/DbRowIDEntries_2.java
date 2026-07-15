@@ -10,6 +10,7 @@ final class DbRowIDEntries_2 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1024, "CLUEHELPER_TARGET_NPC_HAJEDY", "cluehelper_target_npc_hajedy", "rowtypes"),
             new GamevalEntry(1025, "CLUEHELPER_TARGET_NPC_ROAVAR", "cluehelper_target_npc_roavar", "rowtypes"),
             new GamevalEntry(1026, "CLUEHELPER_TARGET_NPC_VIGGORA_1", "cluehelper_target_npc_viggora_1", "rowtypes"),
             new GamevalEntry(1027, "CLUEHELPER_TARGET_NPC_VIGGORA_2", "cluehelper_target_npc_viggora_2", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_2 {
             new GamevalEntry(1533, "CLUEHELPER_ANAGRAM_MEDIUM_NIEVE", "cluehelper_anagram_medium_nieve", "rowtypes"),
             new GamevalEntry(1534, "CLUEHELPER_ANAGRAM_MEDIUM_SIR_KAY", "cluehelper_anagram_medium_sir_kay", "rowtypes"),
             new GamevalEntry(1535, "CLUEHELPER_ANAGRAM_MEDIUM_KING_ROALD", "cluehelper_anagram_medium_king_roald", "rowtypes"),
-            new GamevalEntry(1536, "CLUEHELPER_ANAGRAM_MEDIUM_KAYLEE", "cluehelper_anagram_medium_kaylee", "rowtypes"),
         };
     }
 

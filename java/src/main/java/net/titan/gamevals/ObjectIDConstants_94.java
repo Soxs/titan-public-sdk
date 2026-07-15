@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_94 {
+    int DT2_LASSAR_ENTRY_ROCK_OP = 48196;
     int DT2_LASSAR_ENTRY_ROCK_ROPE = 48197;
     int DT2_LASSAR_EXIT = 48198;
     int DT2_LASSAR_SHADOW_PUDDLE_ACTIVE = 48199;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_94 {
     int BRIDGEKIT_ZEMA_RAILING05_MIRROR = 48705;
     int BRIDGEKIT_ZEMA_RAILING06 = 48706;
     int BRIDGEKIT_ZEMA_RAILING06_MIRROR = 48707;
-    int BRIDGEKIT_ZEMA_RAILING07 = 48708;
 }

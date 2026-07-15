@@ -10,6 +10,7 @@ final class ObjectIDEntries_103 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(52808, "CAVE_ROCK01_ENTRANCE01_MOUNTAIN01", "Cave", "loctypes"),
             new GamevalEntry(52809, "TEOMAT_PIPES01_UP01", "Pipes", "loctypes"),
             new GamevalEntry(52810, "TEOMAT_PIPES01_CORNER01", "teomat_pipes01_corner01", "loctypes"),
             new GamevalEntry(52811, "TEOMAT_PIPES01_ACROSS01", "teomat_pipes01_across01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_103 {
             new GamevalEntry(53318, "LUC2_CHURCHDOOR_OPENR", "Large door", "loctypes"),
             new GamevalEntry(53319, "LUC2_BF_LADDER_UP", "Ladder", "loctypes"),
             new GamevalEntry(53320, "LUC2_BF_LADDER_DOWN", "Ladder", "loctypes"),
-            new GamevalEntry(53321, "LUC2_BF_DOOR_OPEN", "Large doors", "loctypes"),
         };
     }
 

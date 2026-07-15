@@ -10,6 +10,7 @@ final class ObjectIDEntries_97 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(49732, "POG_SEWER_BRICK_WALL_PILLAR_CORNER_MIRROR", "pog_sewer_brick_wall_pillar_corner_mirror", "loctypes"),
             new GamevalEntry(49733, "POG_SEWER_PILLAR", "pog_sewer_pillar", "loctypes"),
             new GamevalEntry(49734, "POG_SEWER_BRICK_WALL_PLANTS_01", "pog_sewer_brick_wall_plants_01", "loctypes"),
             new GamevalEntry(49735, "POG_SEWER_BRICK_WALL_PLANTS_02", "pog_sewer_brick_wall_plants_02", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_97 {
             new GamevalEntry(50241, "MOM2_DUNGEON_WALL_TOP_CORNER2", "mom2_dungeon_wall_top_corner2", "loctypes"),
             new GamevalEntry(50242, "MOM2_DUNGEON_WALL_TOP_CORNER2_HIGHER", "mom2_dungeon_wall_top_corner2_higher", "loctypes"),
             new GamevalEntry(50243, "MOM2_DUNGEON_WALL_TOP_CORNER2_MED_HIGHER", "mom2_dungeon_wall_top_corner2_med_higher", "loctypes"),
-            new GamevalEntry(50244, "MOM2_DUNGEON_WALL_TOP_CORNER", "mom2_dungeon_wall_top_corner", "loctypes"),
         };
     }
 

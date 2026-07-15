@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_82 {
+    int SHAYZIEN_FLAG_AGILITY01 = 42051;
     int SHAYZIEN_FLAG_ARROWS01 = 42052;
     int SHAYZIEN_FLAG_ARROWS02 = 42053;
     int SHAYZIEN_FLAG_MISSING01 = 42054;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_82 {
     int TOBQUEST_FLOOR_TILE04_03 = 42560;
     int TOBQUEST_FLOOR_TILE04_04 = 42561;
     int TOBQUEST_FLOOR_TILE04_05 = 42562;
-    int TOBQUEST_FLOOR_TILE04_06 = 42563;
 }

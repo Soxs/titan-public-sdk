@@ -10,6 +10,7 @@ final class ObjectIDEntries_76 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(38979, "HS_NPT2_WALL_CUTS_03", "hs_npt2_wall_cuts_03", "loctypes"),
             new GamevalEntry(38980, "HS_NPT2_WALL_F3", "hs_npt2_wall_f3", "loctypes"),
             new GamevalEntry(38981, "HS_NPT2_WALL_F3_02", "hs_npt2_wall_f3_02", "loctypes"),
             new GamevalEntry(38982, "HS_NPT2_WALL_F3_03", "hs_npt2_wall_f3_03", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_76 {
             new GamevalEntry(39488, "DARKM_RICH_WARDROBE", "Wardrobe", "loctypes"),
             new GamevalEntry(39489, "DARKM_RICH_SINK", "Sink", "loctypes"),
             new GamevalEntry(39490, "DARKM_RICH_RANGE", "Range", "loctypes"),
-            new GamevalEntry(39491, "DARKM_RICH_STAIRCASE_BOTTOM", "Staircase", "loctypes"),
         };
     }
 

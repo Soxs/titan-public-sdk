@@ -10,6 +10,7 @@ final class ObjectIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10779, "PVPW_ARMOURSTAND_FALADORSTOOL", "pvpw_armourstand_faladorstool", "loctypes"),
             new GamevalEntry(10780, "PVPW_ARMOURSTAND_PLAINSTOOL", "pvpw_armourstand_plainstool", "loctypes"),
             new GamevalEntry(10781, "PVPW_ARMOURSTAND_CHAIR", "pvpw_armourstand_chair", "loctypes"),
             new GamevalEntry(10782, "ROCKSLIDE_SMALL", "Rock", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_21 {
             new GamevalEntry(11306, "FEVER_STEERINGWHEEL", "Ship's wheel", "loctypes"),
             new GamevalEntry(11307, "FEVER_ANCHOR", "Anchor", "loctypes"),
             new GamevalEntry(11308, "FEVER_SHIP_LADDER", "Ship's ladder", "loctypes"),
-            new GamevalEntry(11309, "FEVER_SHIP_LADDERTOP", "Ship's ladder", "loctypes"),
         };
     }
 

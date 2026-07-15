@@ -10,6 +10,7 @@ final class DbRowIDEntries_30 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(15590, "TALENT_BUILD_BLOWPIPES_CAPSTONE_10", "talent_build_blowpipes_capstone_10", "rowtypes"),
             new GamevalEntry(15591, "TALENT_BUILD_BLOWPIPES_10", "talent_build_blowpipes_10", "rowtypes"),
             new GamevalEntry(15592, "TALENT_BUILD_BLOWPIPES_20", "talent_build_blowpipes_20", "rowtypes"),
             new GamevalEntry(15593, "TALENT_BUILD_BLOWPIPES_30", "talent_build_blowpipes_30", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_30 {
             new GamevalEntry(16099, "AGILITY_SHORTCUT_TELEPORT_TONALI_CAVERN_LOG_BALANCE", "agility_shortcut_teleport_tonali_cavern_log_balance", "rowtypes"),
             new GamevalEntry(16100, "AGILITY_SHORTCUT_TELEPORT_TONALI_CAVERN_STEPPING_STONE", "agility_shortcut_teleport_tonali_cavern_stepping_stone", "rowtypes"),
             new GamevalEntry(16101, "AGILITY_SHORTCUT_TELEPORT_CHAOS_TEMPLE_STEPPING_STONE", "agility_shortcut_teleport_chaos_temple_stepping_stone", "rowtypes"),
-            new GamevalEntry(16102, "AGILITY_SHORTCUT_TELEPORT_DEEP_WILDERNESS_DUNGEON_CREVICE", "agility_shortcut_teleport_deep_wilderness_dungeon_crevice", "rowtypes"),
         };
     }
 

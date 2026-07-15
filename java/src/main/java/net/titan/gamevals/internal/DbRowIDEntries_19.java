@@ -10,6 +10,7 @@ final class DbRowIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9957, "SKILL_FEATURE_CONSTRUCTION_ROOM_THRONEROOM", "skill_feature_construction_room_throneroom", "rowtypes"),
             new GamevalEntry(9958, "SKILL_FEATURE_CONSTRUCTION_ROOM_OUBLIETTE", "skill_feature_construction_room_oubliette", "rowtypes"),
             new GamevalEntry(9959, "SKILL_FEATURE_CONSTRUCTION_ROOM_SUPERIORGARDEN", "skill_feature_construction_room_superiorgarden", "rowtypes"),
             new GamevalEntry(9960, "SKILL_FEATURE_CONSTRUCTION_ROOM_DUNGEON", "skill_feature_construction_room_dungeon", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_19 {
             new GamevalEntry(10466, "SKILL_FEATURE_CONSTRUCTION_BOAT_REPAIR_MAHOGANY", "skill_feature_construction_boat_repair_mahogany", "rowtypes"),
             new GamevalEntry(10467, "SKILL_FEATURE_CONSTRUCTION_BOAT_REPAIR_CAMPHOR", "skill_feature_construction_boat_repair_camphor", "rowtypes"),
             new GamevalEntry(10468, "SKILL_FEATURE_CONSTRUCTION_BOAT_REPAIR_IRONWOOD", "skill_feature_construction_boat_repair_ironwood", "rowtypes"),
-            new GamevalEntry(10469, "SKILL_FEATURE_CONSTRUCTION_BOAT_REPAIR_ROSEWOOD", "skill_feature_construction_boat_repair_rosewood", "rowtypes"),
         };
     }
 

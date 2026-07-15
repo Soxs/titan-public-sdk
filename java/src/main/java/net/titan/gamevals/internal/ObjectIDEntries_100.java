@@ -10,6 +10,7 @@ final class ObjectIDEntries_100 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(51268, "PMOON_BLOOD_DRIPS01", "Drip", "loctypes"),
             new GamevalEntry(51269, "PMOON_BLUE_DRIPS01", "pmoon_blue_drips01", "loctypes"),
             new GamevalEntry(51270, "CAVEKIT_WATERFALL_BLOOD01", "Blood", "loctypes"),
             new GamevalEntry(51271, "CAVEKIT_WATERFALL_BLOOD02", "Blood", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_100 {
             new GamevalEntry(51781, "PLANT_BUSH_WWWPEICE_MIRR", "plant_bush_wwwpeice_mirr", "loctypes"),
             new GamevalEntry(51782, "PLANT_BUSH_EEEPEICE", "plant_bush_eeepeice_", "loctypes"),
             new GamevalEntry(51783, "PLANT_BUSH_555PEICE", "plant_bush_555peice", "loctypes"),
-            new GamevalEntry(51784, "PLANT_BUSH_CLUMP", "plant_bush_clump", "loctypes"),
         };
     }
 

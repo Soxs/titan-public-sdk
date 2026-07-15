@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_105 {
+    int LUC2_GT_PILLAR_TORCH = 53833;
     int LUC2_GT_BASE_PILLAR_LEVEL2 = 53834;
     int LUC2_GT_MAIN_PILLAR_LEVEL1_L = 53835;
     int LUC2_GT_MAIN_PILLAR_LEVEL2_L = 53836;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_105 {
     int DECOKIT_ICE01_TAPOYAUIK04 = 54342;
     int DECOKIT_ICE01_TAPOYAUIK05 = 54343;
     int DECOKIT_ICE01_TAPOYAUIK06 = 54344;
-    int DECOKIT_ICE01_TAPOYAUIK07 = 54345;
 }

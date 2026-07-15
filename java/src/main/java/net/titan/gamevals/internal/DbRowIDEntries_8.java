@@ -10,6 +10,7 @@ final class DbRowIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4096, "NPC_CONTACT_ANIM_TOGGLE_LIST", "npc_contact_anim_toggle_list", "rowtypes"),
             new GamevalEntry(4097, "CHAELDAR_CUSTODIANS", "chaeldar_custodians", "rowtypes"),
             new GamevalEntry(4098, "NIEVE_CUSTODIANS", "nieve_custodians", "rowtypes"),
             new GamevalEntry(4099, "SLAYERAREA_CRYPTOFTONALI", "slayerarea_cryptoftonali", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_8 {
             new GamevalEntry(4626, "SYNTH_ICEFIEND", "synth_icefiend", "rowtypes"),
             new GamevalEntry(4627, "SYNTH_IMP", "synth_imp", "rowtypes"),
             new GamevalEntry(4628, "SYNTH_INSECT", "synth_insect", "rowtypes"),
-            new GamevalEntry(4629, "SYNTH_JACKAL", "synth_jackal", "rowtypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_25 {
+    int BURGH_DUNGEON = 12845;
     int BURGH_DUNGEON_EXPOSED_PLASTER = 12846;
     int BURGH_STONE_CRUMBLY_RIGHT_LEV2 = 12847;
     int BURGH_STONE_CRUMBLY_LEFT_LEV2 = 12848;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_25 {
     int POH_TRAP_5 = 13360;
     int POH_TRAP_1_HIDDEN = 13361;
     int POH_TRAP_2_HIDDEN = 13362;
-    int POH_TRAP_3_HIDDEN = 13363;
 }

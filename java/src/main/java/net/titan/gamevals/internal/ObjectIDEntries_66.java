@@ -10,6 +10,7 @@ final class ObjectIDEntries_66 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(33859, "COMPOST_BIGBIN_SUPERCOMPOST_03", "Big Compost Bin", "loctypes"),
             new GamevalEntry(33860, "COMPOST_BIGBIN_SUPERCOMPOST_04", "Big Compost Bin", "loctypes"),
             new GamevalEntry(33861, "COMPOST_BIGBIN_SUPERCOMPOST_05", "Big Compost Bin", "loctypes"),
             new GamevalEntry(33862, "COMPOST_BIGBIN_SUPERCOMPOST_06", "Big Compost Bin", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_66 {
             new GamevalEntry(34368, "BRIMSTONE_DECO_FULL", "brimstone_deco_full", "loctypes"),
             new GamevalEntry(34369, "BRIMSTONE_DECO_MED", "brimstone_deco_med", "loctypes"),
             new GamevalEntry(34370, "BRIMSTONE_DECO_CORN", "brimstone_deco_corn", "loctypes"),
-            new GamevalEntry(34371, "BRIMSTONE_DECO_SIDE", "brimstone_deco_side", "loctypes"),
         };
     }
 

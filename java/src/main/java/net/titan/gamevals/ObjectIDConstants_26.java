@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_26 {
+    int POH_TRAP_3_HIDDEN = 13363;
     int POH_TRAP_4_HIDDEN = 13364;
     int POH_TRAP_5_HIDDEN = 13365;
     int POH_SKELETON = 13366;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_26 {
     int SOULBANE_FIREWALL_MULTI = 13880;
     int SOULBANE_FIREWALL = 13881;
     int SOUL_BANE_AWALL_VOID_EXIT = 13882;
-    int SOUL_BANE_AWALL_TOP = 13883;
 }

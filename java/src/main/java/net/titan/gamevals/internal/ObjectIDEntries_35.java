@@ -10,6 +10,7 @@ final class ObjectIDEntries_35 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(17980, "AREA_SANGUINE_MYREQUE_SECRET_WALL_CLOSED", "Wall", "loctypes"),
             new GamevalEntry(17981, "AREA_SANGUINE_MYREQUE_SECRET_WALL_INACTIVE", "area_sanguine_myreque_secret_wall_inactive", "loctypes"),
             new GamevalEntry(17982, "SANG_MYREQUE_HIDEOUT_SYMBOL_ACTIVE", "Decorated wall", "loctypes"),
             new GamevalEntry(17983, "SANG_MYREQUE_HIDEOUT_RUG_TRAPDOOR_HIDDEN", "Rug", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_35 {
             new GamevalEntry(18489, "AIDE_ORNATERAILING_GATE", "Door", "loctypes"),
             new GamevalEntry(18490, "AIDE_ORNATERAILING_GATE_OPEN", "Door", "loctypes"),
             new GamevalEntry(18491, "AIDE_BANKBOOTH", "Bank booth", "loctypes"),
-            new GamevalEntry(18492, "AIDE_BANKBOOTH_CLOSED", "Closed booth", "loctypes"),
         };
     }
 

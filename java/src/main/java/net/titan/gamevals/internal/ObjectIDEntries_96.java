@@ -10,6 +10,7 @@ final class ObjectIDEntries_96 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(49220, "DT2_SCAR_DEBRIS_NOOP", "Debris", "loctypes"),
             new GamevalEntry(49221, "DT2_SCAR_TENT_OP", "Tent", "loctypes"),
             new GamevalEntry(49222, "DT2_SCAR_TENT_NOOP", "Tent", "loctypes"),
             new GamevalEntry(49223, "DT2_SCAR_WALLKIT01", "dt2_scar_wallkit01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_96 {
             new GamevalEntry(49729, "POG_SEWER_BRICK_WALL_END_MIRROR", "pog_sewer_brick_wall_end_mirror", "loctypes"),
             new GamevalEntry(49730, "POG_SEWER_BRICK_WALL_PILLAR", "pog_sewer_brick_wall_pillar", "loctypes"),
             new GamevalEntry(49731, "POG_SEWER_BRICK_WALL_PILLAR_CORNER", "pog_sewer_brick_wall_pillar_corner", "loctypes"),
-            new GamevalEntry(49732, "POG_SEWER_BRICK_WALL_PILLAR_CORNER_MIRROR", "pog_sewer_brick_wall_pillar_corner_mirror", "loctypes"),
         };
     }
 

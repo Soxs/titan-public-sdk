@@ -10,6 +10,7 @@ final class DbRowIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2048, "CLUEHELPER_COORDINATE_ELITE_30", "cluehelper_coordinate_elite_30", "rowtypes"),
             new GamevalEntry(2049, "CLUEHELPER_COORDINATE_ELITE_31", "cluehelper_coordinate_elite_31", "rowtypes"),
             new GamevalEntry(2050, "CLUEHELPER_COORDINATE_ELITE_32", "cluehelper_coordinate_elite_32", "rowtypes"),
             new GamevalEntry(2051, "CLUEHELPER_COORDINATE_ELITE_33", "cluehelper_coordinate_elite_33", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_4 {
             new GamevalEntry(2557, "MUSIC_BANDOS_BATTALION", "music_bandos_battalion", "rowtypes"),
             new GamevalEntry(2558, "MUSIC_BARB_ASSAULT_TUTORIAL", "music_barb_assault_tutorial", "rowtypes"),
             new GamevalEntry(2559, "MUSIC_BARB_WIRE", "music_barb_wire", "rowtypes"),
-            new GamevalEntry(2560, "MUSIC_BARBARIANISM", "music_barbarianism", "rowtypes"),
         };
     }
 

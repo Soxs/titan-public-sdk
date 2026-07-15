@@ -10,6 +10,7 @@ final class DbRowIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13029, "SKILL_FEATURE_SMITHING_RUNE_PLATELEGS", "skill_feature_smithing_rune_platelegs", "rowtypes"),
             new GamevalEntry(13030, "SKILL_FEATURE_SMITHING_RUNE_PLATESKIRT", "skill_feature_smithing_rune_plateskirt", "rowtypes"),
             new GamevalEntry(13031, "SKILL_FEATURE_SMITHING_RUNE_PLATEBODY", "skill_feature_smithing_rune_platebody", "rowtypes"),
             new GamevalEntry(13032, "SKILL_FEATURE_SMITHING_SHAYZIEN_GLOVES_1", "skill_feature_smithing_shayzien_gloves_1", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_25 {
             new GamevalEntry(13538, "LEAGUE_TASK_ACTIVATE_DEADEYE", "league_task_activate_deadeye", "rowtypes"),
             new GamevalEntry(13539, "LEAGUE_TASK_ACTIVATE_MYSTIC_VIGOUR", "league_task_activate_mystic_vigour", "rowtypes"),
             new GamevalEntry(13540, "LEAGUE_TASK_ACTIVATE_AN_ARCANE_OR_DEXTEROUS_PRAYER_SCROLL", "league_task_activate_an_arcane_or_dexterous_prayer_scroll", "rowtypes"),
-            new GamevalEntry(13541, "LEAGUE_TASK_CAST_A_SURGE_SPELL", "league_task_cast_a_surge_spell", "rowtypes"),
         };
     }
 

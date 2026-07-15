@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_70 {
+    int SOTE_ELF_VILLAGE_WALL_WINDOW_BURNT = 35907;
     int SOTE_BURNT_GRASS_1 = 35908;
     int SOTE_BURNT_GRASS_2 = 35909;
     int SOTE_BURNT_GRASS_3 = 35910;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_70 {
     int CRYSTAL_TOWER_TOP_ROOF_D2 = 36416;
     int CRYSTAL_TOWER_TOP_ROOF_D3 = 36417;
     int CRYSTAL_TOWER_TOP_ROOF_D4 = 36418;
-    int CRYSTAL_TOWER_TOP_ROOF_E1 = 36419;
 }

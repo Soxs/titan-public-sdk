@@ -10,6 +10,7 @@ final class ObjectIDEntries_107 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(54857, "WALLKIT_MISTROCK01_POST02", "wallkit_mistrock01_post02", "loctypes"),
             new GamevalEntry(54858, "WALLKIT_MISTROCK02_DEFAULT01", "wallkit_mistrock02_default01", "loctypes"),
             new GamevalEntry(54859, "WALLKIT_MISTROCK02_WINDOW01", "wallkit_mistrock02_window01", "loctypes"),
             new GamevalEntry(54860, "WALLKIT_ALCHEMIST01_DEFAULT01", "wallkit_alchemist01_default01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_107 {
             new GamevalEntry(55366, "VMQ3_RUINS_WALL_LEVER_2", "vmq3_ruins_wall_lever_2", "loctypes"),
             new GamevalEntry(55367, "VMQ3_RUINS_WALL_LEVER_3", "vmq3_ruins_wall_lever_3", "loctypes"),
             new GamevalEntry(55368, "VMQ3_RUINS_WALL_LEVER_4", "vmq3_ruins_wall_lever_4", "loctypes"),
-            new GamevalEntry(55369, "VMQ3_RUINS_BRAZIER_1", "vmq3_ruins_brazier_1", "loctypes"),
         };
     }
 

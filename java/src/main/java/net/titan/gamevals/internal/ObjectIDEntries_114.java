@@ -10,6 +10,7 @@ final class ObjectIDEntries_114 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(58441, "TT_LAIR_ENTRANCE_CLEAR", "Cave entrance", "loctypes"),
             new GamevalEntry(58442, "TT_LAIR_EXIT", "Cave exit", "loctypes"),
             new GamevalEntry(58443, "TT_LAIR_EXIT_FIGHT", "Cave exit", "loctypes"),
             new GamevalEntry(58444, "TT_PEARL_MOORING_POINT_FIGHT", "Mooring point", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_114 {
             new GamevalEntry(58951, "SAILING_BT_CRYSTAL_CRWYS_ACTIVATED", "Crystal of Crwys", "loctypes"),
             new GamevalEntry(58952, "SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS_PARENT", "sailing_crystal_flecked_portal_crwys_parent", "loctypes"),
             new GamevalEntry(58953, "SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS", "Portal of Crwys", "loctypes"),
-            new GamevalEntry(58954, "SAILING_BT_CRYSTAL_HEFIN_PARENT", "sailing_bt_crystal_hefin_parent", "loctypes"),
         };
     }
 

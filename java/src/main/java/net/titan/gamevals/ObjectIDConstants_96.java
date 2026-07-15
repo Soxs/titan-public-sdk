@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_96 {
+    int DT2_SCAR_DEBRIS_NOOP = 49220;
     int DT2_SCAR_TENT_OP = 49221;
     int DT2_SCAR_TENT_NOOP = 49222;
     int DT2_SCAR_WALLKIT01 = 49223;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_96 {
     int POG_SEWER_BRICK_WALL_END_MIRROR = 49729;
     int POG_SEWER_BRICK_WALL_PILLAR = 49730;
     int POG_SEWER_BRICK_WALL_PILLAR_CORNER = 49731;
-    int POG_SEWER_BRICK_WALL_PILLAR_CORNER_MIRROR = 49732;
 }

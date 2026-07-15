@@ -10,6 +10,7 @@ final class ObjectIDEntries_86 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(44099, "CLIFF_DESERT_ROCK02", "cliff_desert_rock02", "loctypes"),
             new GamevalEntry(44100, "CLIFF_DESERT_ROCK03", "cliff_desert_rock03", "loctypes"),
             new GamevalEntry(44101, "CLIFF_DESERT_ROCK04", "cliff_desert_rock04", "loctypes"),
             new GamevalEntry(44102, "CLIFF_DESERT_ROCK_LOW", "cliff_desert_rock_low", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_86 {
             new GamevalEntry(44608, "GIANTS_FOUNDRY_GRINDSTONE_BROKEN_CUTSCENE", "Broken grindstone", "loctypes"),
             new GamevalEntry(44609, "GIANTS_FOUNDRY_POLISHING_WHEEL_BROKEN_CUTSCENE", "Broken polishing wheel", "loctypes"),
             new GamevalEntry(44610, "GIANTS_FOUNDRY_EXIT_CUTSCENE", "Exit", "loctypes"),
-            new GamevalEntry(44611, "GIANTS_FOUNDRY_CRUCIBLE_EMPTY_CUTSCENE", "Crucible", "loctypes"),
         };
     }
 

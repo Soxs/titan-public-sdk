@@ -10,6 +10,7 @@ final class DbRowIDEntries_31 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(16102, "AGILITY_SHORTCUT_TELEPORT_DEEP_WILDERNESS_DUNGEON_CREVICE", "agility_shortcut_teleport_deep_wilderness_dungeon_crevice", "rowtypes"),
             new GamevalEntry(16103, "AGILITY_SHORTCUT_TELEPORT_LAVA_DRAGON_ISLE_STEPPING_STONE", "agility_shortcut_teleport_lava_dragon_isle_stepping_stone", "rowtypes"),
             new GamevalEntry(16104, "AGILITY_SHORTCUT_TELEPORT_LAVA_MAZE_STEPPING_STONE", "agility_shortcut_teleport_lava_maze_stepping_stone", "rowtypes"),
             new GamevalEntry(16105, "AGILITY_SHORTCUT_TELEPORT_REVENANT_CAVE_EASY_PILLAR_NORTH", "agility_shortcut_teleport_revenant_cave_easy_pillar_north", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_31 {
             new GamevalEntry(16611, "DR_JPJJPJ", "dr_jpjjpj", "rowtypes"),
             new GamevalEntry(16612, "DR_BARRAGE2", "dr_barrage2", "rowtypes"),
             new GamevalEntry(16613, "DR_BARRAGE3", "dr_barrage3", "rowtypes"),
-            new GamevalEntry(16614, "DR_BARRAGE4", "dr_barrage4", "rowtypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_51 {
+    int ELEMENTAL_WORKSHOP_FURNACE_GLOW = 26178;
     int GRANDFIREPLACE_OLDBRICK = 26179;
     int FIREPLACECOOKINGPOT = 26180;
     int RANGE = 26181;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_51 {
     int MOTHERLODE_SACK_GRAPHIC = 26687;
     int MOTHERLODE_SACK = 26688;
     int CLANWARS_PRISONWALL = 26689;
-    int CLANWARS_SNOWFALLING = 26690;
 }

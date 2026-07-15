@@ -10,6 +10,7 @@ final class ObjectIDEntries_51 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(26178, "ELEMENTAL_WORKSHOP_FURNACE_GLOW", "elemental_workshop_furnace_glow", "loctypes"),
             new GamevalEntry(26179, "GRANDFIREPLACE_OLDBRICK", "Fireplace", "loctypes"),
             new GamevalEntry(26180, "FIREPLACECOOKINGPOT", "Cooking pot", "loctypes"),
             new GamevalEntry(26181, "RANGE", "Range", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_51 {
             new GamevalEntry(26687, "MOTHERLODE_SACK_GRAPHIC", "motherlode_sack_graphic", "loctypes"),
             new GamevalEntry(26688, "MOTHERLODE_SACK", "motherlode_sack", "loctypes"),
             new GamevalEntry(26689, "CLANWARS_PRISONWALL", "clanwars_prisonwall", "loctypes"),
-            new GamevalEntry(26690, "CLANWARS_SNOWFALLING", "clanwars_snowfalling", "loctypes"),
         };
     }
 

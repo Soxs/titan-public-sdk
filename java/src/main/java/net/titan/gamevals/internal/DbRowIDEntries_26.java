@@ -10,6 +10,7 @@ final class DbRowIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13541, "LEAGUE_TASK_CAST_A_SURGE_SPELL", "league_task_cast_a_surge_spell", "rowtypes"),
             new GamevalEntry(13542, "LEAGUE_TASK_150_AMOXLIATL_KILLS", "league_task_150_amoxliatl_kills", "rowtypes"),
             new GamevalEntry(13543, "LEAGUE_TASK_150_HUEYCOATL_KILLS", "league_task_150_hueycoatl_kills", "rowtypes"),
             new GamevalEntry(13544, "LEAGUE_TASK_ASSEMBLE_A_SLAYER_HELM", "league_task_assemble_a_slayer_helm", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_26 {
             new GamevalEntry(14050, "LEAGUE_TASK_EQUIP_A_PIECE_OF_ZEALOTS_ROBES", "league_task_equip_a_piece_of_zealots_robes", "rowtypes"),
             new GamevalEntry(14051, "LEAGUE_TASK_EQUIP_A_PIRATE_HOOK", "league_task_equip_a_pirate_hook", "rowtypes"),
             new GamevalEntry(14052, "LEAGUE_TASK_EQUIP_A_PRINCE_AWOWOGEI_MONKEY_BACKPACK", "league_task_equip_a_prince_awowogei_monkey_backpack", "rowtypes"),
-            new GamevalEntry(14053, "LEAGUE_TASK_EQUIP_A_RAT_BONE_WEAPON", "league_task_equip_a_rat_bone_weapon", "rowtypes"),
         };
     }
 

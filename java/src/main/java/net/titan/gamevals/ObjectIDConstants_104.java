@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_104 {
+    int LUC2_BF_DOOR_OPEN = 53321;
     int LUC2_BF_DOOR_CLOSE = 53322;
     int LUC2_TILE_02 = 53323;
     int LUC2_TILE_03 = 53324;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_104 {
     int LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT1 = 53830;
     int LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT2 = 53831;
     int LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT3 = 53832;
-    int LUC2_GT_PILLAR_TORCH = 53833;
 }

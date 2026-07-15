@@ -10,6 +10,7 @@ final class ObjectIDEntries_59 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(30274, "TZHAAR_SOLIDIFIED_NPC_1_1", "Haar-Tok", "loctypes"),
             new GamevalEntry(30275, "TZHAAR_SOLIDIFIED_NPC_1_2", "Haar-Tok", "loctypes"),
             new GamevalEntry(30276, "TZHAAR_SOLIDIFIED_NPC_2_1", "Haar-Tok", "loctypes"),
             new GamevalEntry(30277, "TZHAAR_SOLIDIFIED_NPC_2_2", "Haar-Tok", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_59 {
             new GamevalEntry(30783, "FOSSIL_UNDERWATER_CURRENT", "Current", "loctypes"),
             new GamevalEntry(30784, "FOSSIL_U_ROCKS_BIG_SOFT_01", "fossil_u_rocks_big_soft_01", "loctypes"),
             new GamevalEntry(30785, "FOSSIL_U_ROCKS_BIG_SOFT_02", "fossil_u_rocks_big_soft_02", "loctypes"),
-            new GamevalEntry(30786, "FOSSIL_U_ROCKS_BIG_SOFT_03", "fossil_u_rocks_big_soft_03", "loctypes"),
         };
     }
 

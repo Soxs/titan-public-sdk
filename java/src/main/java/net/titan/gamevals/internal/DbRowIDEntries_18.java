@@ -10,6 +10,7 @@ final class DbRowIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9445, "GATHERING_EVENTS_TREE_ROSEWOOD", "gathering_events_tree_rosewood", "rowtypes"),
             new GamevalEntry(9446, "HISCORES_SKILL_SAILING", "hiscores_skill_sailing", "rowtypes"),
             new GamevalEntry(9447, "HISCORES_BOSSES_GRYPHON_BOSS", "hiscores_bosses_gryphon_boss", "rowtypes"),
             new GamevalEntry(9448, "CHARTERING_DESTINATION_PANDEMONIUM", "chartering_destination_pandemonium", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_18 {
             new GamevalEntry(9954, "SKILL_FEATURE_CONSTRUCTION_ROOM_PORTALCHAMBER", "skill_feature_construction_room_portalchamber", "rowtypes"),
             new GamevalEntry(9955, "SKILL_FEATURE_CONSTRUCTION_ADVERTBOARD", "skill_feature_construction_advertboard", "rowtypes"),
             new GamevalEntry(9956, "SKILL_FEATURE_CONSTRUCTION_ROOM_FORMALGARDEN", "skill_feature_construction_room_formalgarden", "rowtypes"),
-            new GamevalEntry(9957, "SKILL_FEATURE_CONSTRUCTION_ROOM_THRONEROOM", "skill_feature_construction_room_throneroom", "rowtypes"),
         };
     }
 

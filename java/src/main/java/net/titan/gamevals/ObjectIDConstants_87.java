@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_87 {
+    int GIANTS_FOUNDRY_CRUCIBLE_EMPTY_CUTSCENE = 44611;
     int GIANTS_FOUNDRY_JIG_EMPTY_CUTSCENE = 44612;
     int GIANTS_FOUNDRY_CHEST_CUTSCENE = 44613;
     int GIANTS_FOUNDRY_LAVA_POOL_CUTSCENE = 44614;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_87 {
     int TOA_WALL_WARDEN_01 = 45120;
     int TOA_WALL_WARDEN_02 = 45121;
     int TOA_WALL_WARDEN_02_MIRROR = 45122;
-    int TOA_WALL_WARDEN_03 = 45123;
 }

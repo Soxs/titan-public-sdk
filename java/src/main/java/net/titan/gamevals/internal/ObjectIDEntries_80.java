@@ -10,6 +10,7 @@ final class ObjectIDEntries_80 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(41027, "POH_LEAGUEHALL_TROPHYCASE_HOTSPOT", "Trophy case space", "loctypes"),
             new GamevalEntry(41028, "POH_LEAGUEHALL_BANNERSTAND_HOTSPOT", "Banner stand space", "loctypes"),
             new GamevalEntry(41029, "POH_LEAGUEHALL_OUTFITSTAND_HOTSPOT", "Outfit stand space", "loctypes"),
             new GamevalEntry(41030, "POH_LEAGUEHALL_STATUE_HOTSPOT", "Statue space", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_80 {
             new GamevalEntry(41536, "BIM_VAULT_FOG04", "bim_vault_fog04", "loctypes"),
             new GamevalEntry(41537, "CAMDOZAAL_VAULT_DOOR", "Vault Door", "loctypes"),
             new GamevalEntry(41538, "LEAVES_ROTTEN_FULL", "leaves_rotten_full", "loctypes"),
-            new GamevalEntry(41539, "CAMDOZAAL_VAULT_BARRIER_CLOSED", "Security Barrier", "loctypes"),
         };
     }
 

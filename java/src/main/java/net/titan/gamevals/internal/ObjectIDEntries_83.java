@@ -10,6 +10,7 @@ final class ObjectIDEntries_83 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(42563, "TOBQUEST_FLOOR_TILE04_06", "tobquest_floor_tile04_06", "loctypes"),
             new GamevalEntry(42564, "TOBQUEST_FLOOR_TILE_TRANS01", "tobquest_floor_tile_trans01", "loctypes"),
             new GamevalEntry(42565, "TOBQUEST_FLOOR_TILE_TRANS02", "tobquest_floor_tile_trans02", "loctypes"),
             new GamevalEntry(42566, "TOBQUEST_CRYPT_CORNER_INNER01", "tobquest_crypt_corner_inner01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_83 {
             new GamevalEntry(43072, "LEAGUE_3_WAYPOINT_MULTI_CATHERBY", "league_3_waypoint_multi_catherby", "loctypes"),
             new GamevalEntry(43073, "LEAGUE_3_WAYPOINT_MULTI_ARDOUGNE", "league_3_waypoint_multi_ardougne", "loctypes"),
             new GamevalEntry(43074, "LEAGUE_3_WAYPOINT_MULTI_BRIMHAVEN", "league_3_waypoint_multi_brimhaven", "loctypes"),
-            new GamevalEntry(43075, "LEAGUE_3_WAYPOINT_MULTI_RELLEKKA", "league_3_waypoint_multi_rellekka", "loctypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_43 {
+    int BRAIN_BELLTOWER_BELL_FLOOR = 22080;
     int BRAIN_BALCONY_FLOORING = 22081;
     int BRAIN_BALCONY_FLOORING_HALF = 22082;
     int BRAIN_BALCONY_FLOORING_QUARTER = 22083;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_43 {
     int DORGESH_CAVES_PYLON = 22589;
     int DORGESH_CAVES_PYLON_CABLE = 22590;
     int DORGESH_CAVES_PYLON_2 = 22591;
-    int DORGESH_CAVEWALL_SLOPE_EDGE = 22592;
 }

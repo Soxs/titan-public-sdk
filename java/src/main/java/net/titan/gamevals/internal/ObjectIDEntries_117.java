@@ -10,6 +10,7 @@ final class ObjectIDEntries_117 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(59978, "BOATKIT_DECK_STRAIGHT03_PIRATE", "boatkit_deck_straight03_pirate", "loctypes"),
             new GamevalEntry(59979, "BOATKIT_DECK_DIAGONAL01_PIRATE", "boatkit_deck_diagonal01_pirate", "loctypes"),
             new GamevalEntry(59980, "BOATKIT_DECK_DIAGONAL01_MIRROR_PIRATE", "boatkit_deck_diagonal01_mirror_pirate", "loctypes"),
             new GamevalEntry(59981, "BOATKIT_HELM01_PIRATE", "Ship's wheel", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_117 {
             new GamevalEntry(60487, "SALVAGING_HOOK_RAFT_ADAMANT", "Adamant salvaging hook", "loctypes"),
             new GamevalEntry(60488, "SALVAGING_HOOK_RAFT_RUNE", "Rune salvaging hook", "loctypes"),
             new GamevalEntry(60489, "SALVAGING_HOOK_RAFT_DRAGON", "Dragon salvaging hook", "loctypes"),
-            new GamevalEntry(60490, "SALVAGING_HOOK_BRONZE", "Bronze salvaging hook", "loctypes"),
         };
     }
 

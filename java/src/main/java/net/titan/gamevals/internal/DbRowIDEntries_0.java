@@ -520,8 +520,8 @@ final class DbRowIDEntries_0 {
             new GamevalEntry(507, "CLUEHELPER_TARGET_COORD_0_53_50_7_46", "cluehelper_target_coord_0_53_50_7_46", "rowtypes"),
             new GamevalEntry(508, "CLUEHELPER_TARGET_COORD_0_42_50_11_51", "cluehelper_target_coord_0_42_50_11_51", "rowtypes"),
             new GamevalEntry(509, "CLUEHELPER_TARGET_COORD_0_55_50_26_51", "cluehelper_target_coord_0_55_50_26_51", "rowtypes"),
+            new GamevalEntry(510, "WOODCUTTING_RESOURCE_ENGORGED_BLOODWOOD_TREE", "woodcutting_resource_engorged_bloodwood_tree", "rowtypes"),
             new GamevalEntry(511, "CLUEHELPER_TARGET_COORD_0_44_51_25_3", "cluehelper_target_coord_0_44_51_25_3", "rowtypes"),
-            new GamevalEntry(512, "CLUEHELPER_TARGET_COORD_0_49_47_32_33", "cluehelper_target_coord_0_49_47_32_33", "rowtypes"),
         };
     }
 

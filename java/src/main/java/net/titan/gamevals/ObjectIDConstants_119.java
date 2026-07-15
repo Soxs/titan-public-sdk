@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_119 {
+    int LEVER_SANGVESTI_WALL01_UP01 = 61002;
     int LEVER_SANGVESTI_WALL01_DOWN01 = 61003;
     int LEVER_SANGVESTI_FLOOR01_UP01 = 61004;
     int LEVER_SANGVESTI_FLOOR01_DOWN01 = 61005;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_119 {
     int TORCH_DAEYALT_LAB01_SE = 61512;
     int TORCH_DAEYALT_LAB01_SW = 61513;
     int TORCH_DAEYALT_LAB01_NW = 61514;
-    int WALLKIT_DRAKAN01_WALLTOP01 = 61515;
 }

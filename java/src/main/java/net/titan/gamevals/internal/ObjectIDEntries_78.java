@@ -10,6 +10,7 @@ final class ObjectIDEntries_78 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(40003, "CON_CONTRACT_HOSIDIUS_NORTH_HOTSPOT3", "con_contract_hosidius_north_hotspot3", "loctypes"),
             new GamevalEntry(40004, "CON_CONTRACT_HOSIDIUS_NORTH_HOTSPOT5", "con_contract_hosidius_north_hotspot5", "loctypes"),
             new GamevalEntry(40005, "CON_CONTRACT_HOSIDIUS_NORTH_HOTSPOT6", "con_contract_hosidius_north_hotspot6", "loctypes"),
             new GamevalEntry(40006, "CON_CONTRACT_HOSIDIUS_NORTH_HOTSPOT7", "con_contract_hosidius_north_hotspot7", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_78 {
             new GamevalEntry(40512, "SNP_MAP_EDGE_FOREST_2_TOP_BLUE", "snp_map_edge_forest_2_top_blue", "loctypes"),
             new GamevalEntry(40513, "SNP_MAP_EDGE_FOREST_3_TOP_BLUE", "snp_map_edge_forest_3_top_blue", "loctypes"),
             new GamevalEntry(40514, "SNP_MAP_EDGE_FOREST_1_TOP_OFFSET_BLUE", "snp_map_edge_forest_1_top_offset_blue", "loctypes"),
-            new GamevalEntry(40515, "SNP_MAP_EDGE_FOREST_2_TOP_OFFSET_BLUE", "snp_map_edge_forest_2_top_offset_blue", "loctypes"),
         };
     }
 

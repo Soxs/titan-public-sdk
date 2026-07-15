@@ -10,6 +10,7 @@ final class ObjectIDEntries_55 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(28226, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_05_RED", "Bookshelf", "loctypes"),
             new GamevalEntry(28227, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_06_TURQUOISE", "Bookshelf", "loctypes"),
             new GamevalEntry(28228, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_06_GREEN", "Bookshelf", "loctypes"),
             new GamevalEntry(28229, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_06_BLUE", "Bookshelf", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_55 {
             new GamevalEntry(28735, "MM2_CAVE_SECRET_BUNKER_LEV0_STEPSIDE_01", "mm2_cave_secret_bunker_lev0_stepside_01", "loctypes"),
             new GamevalEntry(28736, "MM2_CAVE_SECRET_BUNKER_LEV0_STEPSIDE_02", "mm2_cave_secret_bunker_lev0_stepside_02", "loctypes"),
             new GamevalEntry(28737, "MM2_CAVE_SECRET_BUNKER_PIT_LEV0", "mm2_cave_secret_bunker_pit_lev0", "loctypes"),
-            new GamevalEntry(28738, "MM2_CAVE_SECRET_BUNKER_LEV0_HOLD", "mm2_cave_secret_bunker_lev0_hold", "loctypes"),
         };
     }
 

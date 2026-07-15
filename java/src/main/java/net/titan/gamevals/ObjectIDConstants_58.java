@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_58 {
+    int RAIDS_LASERCRABS_SMALLCRYSTAL_WHITE = 29762;
     int RAIDS_WOODSOURCE_ROOTS = 29763;
     int RAIDS_WOODSOURCE_ROOTS_DEPLETED = 29764;
     int RAIDS_PATCH_EMPTY = 29765;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_58 {
     int TZHAAR_WALL_CHARGING_PILLAR = 30271;
     int TZHAAR_WALL_CHARGING_STEPS = 30272;
     int TZHAAR_STALAGMITE_1 = 30273;
-    int TZHAAR_SOLIDIFIED_NPC_1_1 = 30274;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_10 {
+    int VMQ4_METZLI_BOSS_MOON_TELEPORT_SW_1 = 5205;
     int VMQ4_METZLI_BOSS_MOON_TELEPORT_NW_1 = 5206;
     int VMQ4_METZLI_BOSS_MOON_TELEPORT_NE_2 = 5207;
     int VMQ4_METZLI_BOSS_MOON_TELEPORT_SE_2 = 5208;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_10 {
     int POH_BELLS = 5747;
     int POH_ORGAN = 5748;
     int POH_WORKBENCH_1 = 5749;
-    int POH_WORKBENCH_2 = 5750;
 }

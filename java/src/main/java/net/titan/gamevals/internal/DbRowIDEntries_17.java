@@ -10,6 +10,7 @@ final class DbRowIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8933, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_3", "port_task_civitas_illa_fortis_courier_3", "rowtypes"),
             new GamevalEntry(8934, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_4", "port_task_civitas_illa_fortis_courier_4", "rowtypes"),
             new GamevalEntry(8935, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_5", "port_task_civitas_illa_fortis_courier_5", "rowtypes"),
             new GamevalEntry(8936, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_6", "port_task_civitas_illa_fortis_courier_6", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_17 {
             new GamevalEntry(9442, "WOODCUTTING_RESOURCE_ROSEWOOD_TREE_DATA", "woodcutting_resource_rosewood_tree_data", "rowtypes"),
             new GamevalEntry(9443, "WOODCUTTING_RESOURCE_ROSEWOOD_TREE_FARMING_PATCH_DATA", "woodcutting_resource_rosewood_tree_farming_patch_data", "rowtypes"),
             new GamevalEntry(9444, "GROUP_GATHERING_RESOURCE_ROSEWOOD_TREE", "group_gathering_resource_rosewood_tree", "rowtypes"),
-            new GamevalEntry(9445, "GATHERING_EVENTS_TREE_ROSEWOOD", "gathering_events_tree_rosewood", "rowtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_42 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(21568, "FRIS_WALL_RAMP_02_MIRROR", "fris_wall_ramp_02_mirror", "loctypes"),
             new GamevalEntry(21569, "FRISD_IZSO_MUSHROOMS_COLDTOP", "Mushrooms", "loctypes"),
             new GamevalEntry(21570, "FRISD_IZSO_MUSHROOMS_LONG", "Mushrooms", "loctypes"),
             new GamevalEntry(21571, "FRISD_IZSO_ROCK_POOL", "Rock", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_42 {
             new GamevalEntry(22077, "BRAIN_BELLTOWER_ROOF_JOIN_06", "brain_belltower_roof_join_06", "loctypes"),
             new GamevalEntry(22078, "BRAIN_BELLTOWER_ROOF_JOIN_06_MIRROR", "brain_belltower_roof_join_06_mirror", "loctypes"),
             new GamevalEntry(22079, "BRAIN_BELLTOWER_BELL", "brain_belltower_bell", "loctypes"),
-            new GamevalEntry(22080, "BRAIN_BELLTOWER_BELL_FLOOR", "brain_belltower_bell_floor", "loctypes"),
         };
     }
 

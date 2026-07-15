@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_114 {
+    int TT_LAIR_ENTRANCE_CLEAR = 58441;
     int TT_LAIR_EXIT = 58442;
     int TT_LAIR_EXIT_FIGHT = 58443;
     int TT_PEARL_MOORING_POINT_FIGHT = 58444;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_114 {
     int SAILING_BT_CRYSTAL_CRWYS_ACTIVATED = 58951;
     int SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS_PARENT = 58952;
     int SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS = 58953;
-    int SAILING_BT_CRYSTAL_HEFIN_PARENT = 58954;
 }

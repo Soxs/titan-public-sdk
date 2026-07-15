@@ -10,6 +10,7 @@ final class ObjectIDEntries_113 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(57929, "GREAT_CONCH_CLIFF_SHORTCUT_SOUTHEAST_TOP", "Rocks", "loctypes"),
             new GamevalEntry(57930, "GREAT_CONCH_CLIFF_SHORTCUT_SOUTHEAST_BOTTOM", "Rocks", "loctypes"),
             new GamevalEntry(57931, "GREAT_CONCH_CLIFF_SHORTCUT_EAST_1_TOP", "Rocks", "loctypes"),
             new GamevalEntry(57932, "GREAT_CONCH_CLIFF_SHORTCUT_EAST_1_BOTTOM", "Rocks", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_113 {
             new GamevalEntry(58438, "TT_REPAIR_WALL_FIXED", "Wall", "loctypes"),
             new GamevalEntry(58439, "TT_LAIR_ENTRANCE", "tt_lair_entrance", "loctypes"),
             new GamevalEntry(58440, "TT_LAIR_ENTRANCE_BLOCKED", "Cave entrance", "loctypes"),
-            new GamevalEntry(58441, "TT_LAIR_ENTRANCE_CLEAR", "Cave entrance", "loctypes"),
         };
     }
 

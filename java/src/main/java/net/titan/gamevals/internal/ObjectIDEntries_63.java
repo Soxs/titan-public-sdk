@@ -10,6 +10,7 @@ final class ObjectIDEntries_63 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(32322, "DS2_BOAT_ALK_AGILITY_CLIMB", "Rope ladder", "loctypes"),
             new GamevalEntry(32323, "DS2_BOAT_ASG_AGILITY_CLIMB", "Rope ladder", "loctypes"),
             new GamevalEntry(32324, "DS2_BOAT_MIST_AGILITY_CLIMB", "Rope", "loctypes"),
             new GamevalEntry(32325, "DS2_AGILITY_CLIMB_HULL", "Ship", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_63 {
             new GamevalEntry(32832, "TOB_DUNGEON_WALKWAY_FLOOR_CORNER_H", "tob_dungeon_walkway_floor_corner_h", "loctypes"),
             new GamevalEntry(32833, "TOB_DUNGEON_WALKWAY_FLOOR_CORNER_I", "tob_dungeon_walkway_floor_corner_i", "loctypes"),
             new GamevalEntry(32834, "TOB_DUNGEON_WALKWAY_FLOOR_WIDE_A", "tob_dungeon_walkway_floor_wide_a", "loctypes"),
-            new GamevalEntry(32835, "TOB_DUNGEON_WALKWAY_FLOOR_WIDE_B", "tob_dungeon_walkway_floor_wide_b", "loctypes"),
         };
     }
 

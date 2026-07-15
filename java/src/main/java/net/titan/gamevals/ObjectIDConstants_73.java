@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_73 {
+    int POH_TWISTED_WINDOW_BOB2 = 37443;
     int LOGPILE_SMALL = 37444;
     int POH_HOSIDIUS_WINDOW_SHUTTERS = 37445;
     int POH_HOSIDIUS_WINDOW_BOB = 37446;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_73 {
     int TUT2_MINING_EXIT_R = 37952;
     int TUT2_COMBAT_ENTRY_L = 37953;
     int TUT2_COMBAT_ENTRY_R = 37954;
-    int TUT2_COMBAT_LADDER = 37955;
 }

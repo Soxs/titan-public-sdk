@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_11 {
+    int POH_WORKBENCH_2 = 5750;
     int POH_WORKBENCH_3 = 5751;
     int POH_WORKBENCH_4 = 5752;
     int POH_WORKBENCH_5 = 5753;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_11 {
     int SLAYER_TARGET_GARGOYLES = 6259;
     int SLAYER_TARGET_PYREFIENDS = 6260;
     int SLAYER_TARGET_BLOODVELD = 6261;
-    int SLAYER_TARGET_DUSTDEVILS = 6262;
 }

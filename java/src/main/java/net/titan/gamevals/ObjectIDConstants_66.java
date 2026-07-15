@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_66 {
+    int COMPOST_BIGBIN_SUPERCOMPOST_03 = 33859;
     int COMPOST_BIGBIN_SUPERCOMPOST_04 = 33860;
     int COMPOST_BIGBIN_SUPERCOMPOST_05 = 33861;
     int COMPOST_BIGBIN_SUPERCOMPOST_06 = 33862;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_66 {
     int BRIMSTONE_DECO_FULL = 34368;
     int BRIMSTONE_DECO_MED = 34369;
     int BRIMSTONE_DECO_CORN = 34370;
-    int BRIMSTONE_DECO_SIDE = 34371;
 }

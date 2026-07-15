@@ -10,6 +10,7 @@ final class DbRowIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5205, "VMQ4_METZLI_BOSS_MOON_TELEPORT_SW_1", "vmq4_metzli_boss_moon_teleport_sw_1", "rowtypes"),
             new GamevalEntry(5206, "VMQ4_METZLI_BOSS_MOON_TELEPORT_NW_1", "vmq4_metzli_boss_moon_teleport_nw_1", "rowtypes"),
             new GamevalEntry(5207, "VMQ4_METZLI_BOSS_MOON_TELEPORT_NE_2", "vmq4_metzli_boss_moon_teleport_ne_2", "rowtypes"),
             new GamevalEntry(5208, "VMQ4_METZLI_BOSS_MOON_TELEPORT_SE_2", "vmq4_metzli_boss_moon_teleport_se_2", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_10 {
             new GamevalEntry(5747, "POH_BELLS", "poh_bells", "rowtypes"),
             new GamevalEntry(5748, "POH_ORGAN", "poh_organ", "rowtypes"),
             new GamevalEntry(5749, "POH_WORKBENCH_1", "poh_workbench_1", "rowtypes"),
-            new GamevalEntry(5750, "POH_WORKBENCH_2", "poh_workbench_2", "rowtypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_9 {
+    int SYNTH_JACKAL = 4629;
     int SYNTH_JELLY = 4630;
     int SYNTH_KALPHITE = 4631;
     int SYNTH_KILLERWATT = 4632;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_9 {
     int VMQ4_METZLI_BOSS_SUN_TELEPORT_4 = 5202;
     int VMQ4_METZLI_BOSS_MOON_TELEPORT_NE_1 = 5203;
     int VMQ4_METZLI_BOSS_MOON_TELEPORT_SE_1 = 5204;
-    int VMQ4_METZLI_BOSS_MOON_TELEPORT_SW_1 = 5205;
 }

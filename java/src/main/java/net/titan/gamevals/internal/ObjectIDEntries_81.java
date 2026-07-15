@@ -10,6 +10,7 @@ final class ObjectIDEntries_81 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(41539, "CAMDOZAAL_VAULT_BARRIER_CLOSED", "Security Barrier", "loctypes"),
             new GamevalEntry(41540, "CAMDOZAAL_VAULT_BARRIER_OPEN", "Security Barrier", "loctypes"),
             new GamevalEntry(41541, "CAMDOZAAL_VAULT_CHEST_SMALL_AVAILABLE", "Simple lockbox", "loctypes"),
             new GamevalEntry(41542, "CAMDOZAAL_VAULT_CHEST_MEDIUM_AVAILABLE", "Elaborate lockbox", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_81 {
             new GamevalEntry(42048, "SHAYZIEN_INFIRMARY_TENTDOOR", "shayzien_infirmary_tentdoor", "loctypes"),
             new GamevalEntry(42049, "SHAYZIEN_INFIRMARY_TENTROOF_CENTRE", "shayzien_infirmary_tentroof_centre", "loctypes"),
             new GamevalEntry(42050, "SHAYZIEN_FLAG_DEFAULT01", "Banner", "loctypes"),
-            new GamevalEntry(42051, "SHAYZIEN_FLAG_AGILITY01", "Banner", "loctypes"),
         };
     }
 

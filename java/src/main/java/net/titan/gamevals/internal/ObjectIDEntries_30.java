@@ -10,6 +10,7 @@ final class ObjectIDEntries_30 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(15420, "POH_STUDY_1", "Lectern space", "loctypes"),
             new GamevalEntry(15421, "POH_STUDY_2", "Globe space", "loctypes"),
             new GamevalEntry(15422, "POH_STUDY_4", "Crystal ball space", "loctypes"),
             new GamevalEntry(15423, "POH_STUDY_5", "Wall chart space", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_30 {
             new GamevalEntry(15929, "STEAM_PUMP_ANIM1", "Steam Pump", "loctypes"),
             new GamevalEntry(15930, "BREW_STEAM_PUMP_ACTIVE", "brew_steam_pump_active", "loctypes"),
             new GamevalEntry(15931, "BREW_LOG_STORE", "Log Store", "loctypes"),
-            new GamevalEntry(15932, "BREW_WORKBENCH", "Workbench", "loctypes"),
         };
     }
 

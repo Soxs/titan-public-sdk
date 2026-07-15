@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_8 {
+    int NPC_CONTACT_ANIM_TOGGLE_LIST = 4096;
     int CHAELDAR_CUSTODIANS = 4097;
     int NIEVE_CUSTODIANS = 4098;
     int SLAYERAREA_CRYPTOFTONALI = 4099;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_8 {
     int SYNTH_ICEFIEND = 4626;
     int SYNTH_IMP = 4627;
     int SYNTH_INSECT = 4628;
-    int SYNTH_JACKAL = 4629;
 }

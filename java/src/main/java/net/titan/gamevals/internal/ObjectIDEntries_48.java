@@ -10,6 +10,7 @@ final class ObjectIDEntries_48 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(24642, "VM_TIMELINE_OBSERVATORY_MODEL", "vm_timeline_observatory_model", "loctypes"),
             new GamevalEntry(24643, "VM_TIMELINE_OBSERVATORY_MODEL_MULTI", "Display case", "loctypes"),
             new GamevalEntry(24644, "VM_TIMELINE_WEREWOLF_SKIN", "Display case", "loctypes"),
             new GamevalEntry(24645, "VM_TIMELINE_BARBARIAN_VILLAGE", "Display case", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_48 {
             new GamevalEntry(25151, "DRAGON_SLAYER_QIP_RUINWALL_4", "Wall", "loctypes"),
             new GamevalEntry(25152, "DRAGON_SLAYER_QIP_RUIN_PILLAR", "Pillar", "loctypes"),
             new GamevalEntry(25153, "DRAGON_SLAYER_QIP_RUIN_PILLAR2", "Pillar", "loctypes"),
-            new GamevalEntry(25154, "DRAGON_SLAYER_QIP_RUIN_ENTRANCE", "Hole", "loctypes"),
         };
     }
 

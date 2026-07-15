@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_101 {
+    int PLANT_BUSH_CLUMP = 51784;
     int DECAL_LEDGE01_GRASS01 = 51785;
     int DECAL_LEDGE01_GRASS02 = 51786;
     int AVIUM_ROOTS01 = 51787;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_101 {
     int WALLKIT_FORTIS02_WALL01_MIRROR = 52293;
     int WALLKIT_FORTIS02_ARROWSLIT01 = 52294;
     int WALLKIT_FORTIS02_ARROWSLIT01_MIRROR = 52295;
-    int WALLKIT_FORTIS03_PARAPET01 = 52296;
 }

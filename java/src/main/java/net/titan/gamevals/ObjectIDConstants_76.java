@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_76 {
+    int HS_NPT2_WALL_CUTS_03 = 38979;
     int HS_NPT2_WALL_F3 = 38980;
     int HS_NPT2_WALL_F3_02 = 38981;
     int HS_NPT2_WALL_F3_03 = 38982;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_76 {
     int DARKM_RICH_WARDROBE = 39488;
     int DARKM_RICH_SINK = 39489;
     int DARKM_RICH_RANGE = 39490;
-    int DARKM_RICH_STAIRCASE_BOTTOM = 39491;
 }

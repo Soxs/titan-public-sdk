@@ -10,6 +10,7 @@ final class DbRowIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11493, "SKILL_FEATURE_HERBLORE_SURGE", "skill_feature_herblore_surge", "rowtypes"),
             new GamevalEntry(11494, "SKILL_FEATURE_HERBLORE_WEAPONPOISONPLUSPLUS", "skill_feature_herblore_weaponpoisonplusplus", "rowtypes"),
             new GamevalEntry(11495, "SKILL_FEATURE_HERBLORE_EXTENDEDANTIFIRE", "skill_feature_herblore_extendedantifire", "rowtypes"),
             new GamevalEntry(11496, "SKILL_FEATURE_HERBLORE_ANCIENT", "skill_feature_herblore_ancient", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_22 {
             new GamevalEntry(12002, "SKILL_FEATURE_MAGIC_LUNAR_80_STRING_JEWELRY", "skill_feature_magic_lunar_80_string_jewelry", "rowtypes"),
             new GamevalEntry(12003, "SKILL_FEATURE_MAGIC_LUNAR_81_RES_POT_SHARE", "skill_feature_magic_lunar_81_res_pot_share", "rowtypes"),
             new GamevalEntry(12004, "SKILL_FEATURE_MAGIC_LUNAR_82_MAGIC_IMBUE", "skill_feature_magic_lunar_82_magic_imbue", "rowtypes"),
-            new GamevalEntry(12005, "SKILL_FEATURE_MAGIC_LUNAR_83_TREAT_SOIL", "skill_feature_magic_lunar_83_treat_soil", "rowtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_110 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(56393, "MAGIC_HUNTER_RUNE_INACTIVE", "Inactive Rune", "loctypes"),
             new GamevalEntry(56394, "MAGIC_HUNTER_RUNE_ACTIVE", "magic_hunter_rune_active", "loctypes"),
             new GamevalEntry(56395, "MAGIC_HUNTER_RUNE_ACTIVATING", "magic_hunter_rune_activating", "loctypes"),
             new GamevalEntry(56396, "MAGIC_HUNTER_START", "Lectern", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_110 {
             new GamevalEntry(56902, "WALLKIT_TONALI03_CAVE01", "wallkit_tonali03_cave01", "loctypes"),
             new GamevalEntry(56903, "WALLKIT_TONALI03_CAVE01_LIGHT01", "wallkit_tonali03_cave01_light01", "loctypes"),
             new GamevalEntry(56904, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01", "cavekit_tonali01_rock01_falloff01_ledge01", "loctypes"),
-            new GamevalEntry(56905, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01_ACTIVE", "Ledge", "loctypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_32 {
+    int DR_BARRAGE4 = 16614;
     int DR_BARRAGE5 = 16615;
     int DR_BARRAGE6 = 16616;
     int DR_O_JAB_LEFT = 16617;

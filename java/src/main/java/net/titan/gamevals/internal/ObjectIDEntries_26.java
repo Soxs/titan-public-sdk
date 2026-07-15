@@ -10,6 +10,7 @@ final class ObjectIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13363, "POH_TRAP_3_HIDDEN", "T Tangle hidden", "loctypes"),
             new GamevalEntry(13364, "POH_TRAP_4_HIDDEN", "T Marble hidden", "loctypes"),
             new GamevalEntry(13365, "POH_TRAP_5_HIDDEN", "T Teleport hidden", "loctypes"),
             new GamevalEntry(13366, "POH_SKELETON", "Bones", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_26 {
             new GamevalEntry(13880, "SOULBANE_FIREWALL_MULTI", "soulbane_firewall_multi", "loctypes"),
             new GamevalEntry(13881, "SOULBANE_FIREWALL", "Fire", "loctypes"),
             new GamevalEntry(13882, "SOUL_BANE_AWALL_VOID_EXIT", "( Enter", "loctypes"),
-            new GamevalEntry(13883, "SOUL_BANE_AWALL_TOP", "soul_bane_awall_top", "loctypes"),
         };
     }
 

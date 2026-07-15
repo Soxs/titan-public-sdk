@@ -10,6 +10,7 @@ final class ObjectIDEntries_53 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(27202, "SHAYZIEN_STAIRS_TOP_02", "Stairs", "loctypes"),
             new GamevalEntry(27203, "SHAYZIEN_STAIRS_BOTTOM_03", "Stairs", "loctypes"),
             new GamevalEntry(27204, "SHAYZIEN_STAIRS_TOP_03", "Stairs", "loctypes"),
             new GamevalEntry(27205, "SHAYZIEN_CRATE_BANDAGES", "Medpack Box", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_53 {
             new GamevalEntry(27711, "PISCARILIUS_WASHING_LINE_END_01", "piscarilius_washing_line_end_01", "loctypes"),
             new GamevalEntry(27712, "PISCARILIUS_WASHING_LINE_END_02", "piscarilius_washing_line_end_02", "loctypes"),
             new GamevalEntry(27713, "PISCARILIUS_WASHING_LINE_01", "piscarilius_washing_line_01", "loctypes"),
-            new GamevalEntry(27714, "PISCARILIUS_WASHING_LINE_02", "piscarilius_washing_line_02", "loctypes"),
         };
     }
 

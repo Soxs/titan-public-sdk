@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_59 {
+    int TZHAAR_SOLIDIFIED_NPC_1_1 = 30274;
     int TZHAAR_SOLIDIFIED_NPC_1_2 = 30275;
     int TZHAAR_SOLIDIFIED_NPC_2_1 = 30276;
     int TZHAAR_SOLIDIFIED_NPC_2_2 = 30277;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_59 {
     int FOSSIL_UNDERWATER_CURRENT = 30783;
     int FOSSIL_U_ROCKS_BIG_SOFT_01 = 30784;
     int FOSSIL_U_ROCKS_BIG_SOFT_02 = 30785;
-    int FOSSIL_U_ROCKS_BIG_SOFT_03 = 30786;
 }

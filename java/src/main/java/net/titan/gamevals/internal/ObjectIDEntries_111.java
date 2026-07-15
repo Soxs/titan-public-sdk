@@ -10,6 +10,7 @@ final class ObjectIDEntries_111 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(56905, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01_ACTIVE", "Ledge", "loctypes"),
             new GamevalEntry(56906, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01_NOBLOCK", "cavekit_tonali01_rock01_falloff01_ledge01_noblock", "loctypes"),
             new GamevalEntry(56907, "WALLKIT_TONALI04_CAVE01", "wallkit_tonali04_cave01", "loctypes"),
             new GamevalEntry(56908, "WALLKIT_TONALI04_CAVE02", "wallkit_tonali04_cave02", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_111 {
             new GamevalEntry(57414, "ROOFKIT_TALKASTI01_ROOF01_CORNER02", "roofkit_talkasti01_roof01_corner02", "loctypes"),
             new GamevalEntry(57415, "ROOFKIT_TALKASTI01_ROOF03", "roofkit_talkasti01_roof03", "loctypes"),
             new GamevalEntry(57416, "ROOFKIT_TALKASTI01_ROOF04", "roofkit_talkasti01_roof04", "loctypes"),
-            new GamevalEntry(57417, "SKEWWALL_TALTEKLAN01_STRAIGHT01", "skewwall_talteklan01_straight01", "loctypes"),
         };
     }
 

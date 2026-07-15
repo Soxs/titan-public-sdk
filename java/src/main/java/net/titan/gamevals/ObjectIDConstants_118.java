@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_118 {
+    int SALVAGING_HOOK_BRONZE = 60490;
     int SALVAGING_HOOK_IRON = 60491;
     int SALVAGING_HOOK_STEEL = 60492;
     int SALVAGING_HOOK_MITHRIL = 60493;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_118 {
     int STATUE_SANGVESTI01_SHADUM01 = 60999;
     int STATUE_SANGVESTI01_VITUR01 = 61000;
     int STATUES_SANGVESTI01_DRAKAN01_AGILITY01 = 61001;
-    int LEVER_SANGVESTI_WALL01_UP01 = 61002;
 }

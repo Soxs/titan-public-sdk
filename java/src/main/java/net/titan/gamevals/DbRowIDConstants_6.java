@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_6 {
+    int MUSIC_START = 3072;
     int MUSIC_STILL_NIGHT = 3073;
     int MUSIC_STILLNESS = 3074;
     int MUSIC_STORM_BREW = 3075;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_6 {
     int PRIDE24_CAPE_NONBINARY = 3581;
     int PRIDE24_CAPE_GENDERQUEER = 3582;
     int PRIDE24_CAPE_LESBIAN = 3583;
-    int PRIDE24_CAPE_GAY = 3584;
 }

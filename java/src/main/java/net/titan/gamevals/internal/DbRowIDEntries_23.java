@@ -10,6 +10,7 @@ final class DbRowIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12005, "SKILL_FEATURE_MAGIC_LUNAR_83_TREAT_SOIL", "skill_feature_magic_lunar_83_treat_soil", "rowtypes"),
             new GamevalEntry(12006, "SKILL_FEATURE_MAGIC_LUNAR_84_STATBOOST_POT_SHARE", "skill_feature_magic_lunar_84_statboost_pot_share", "rowtypes"),
             new GamevalEntry(12007, "SKILL_FEATURE_MAGIC_LUNAR_85_TELE_FISH_GUILD", "skill_feature_magic_lunar_85_tele_fish_guild", "rowtypes"),
             new GamevalEntry(12008, "SOTFA_FOREST", "sotfa_forest", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_23 {
             new GamevalEntry(12514, "SKILL_GUIDE_SUBSECTION_SAILING_BARRACUDATRIALS", "skill_guide_subsection_sailing_barracudatrials", "rowtypes"),
             new GamevalEntry(12515, "SKILL_GUIDE_SUBSECTION_SAILING_COREBOATPARTS", "skill_guide_subsection_sailing_coreboatparts", "rowtypes"),
             new GamevalEntry(12516, "SKILL_GUIDE_SUBSECTION_SAILING_BOATFACILITIES", "skill_guide_subsection_sailing_boatfacilities", "rowtypes"),
-            new GamevalEntry(12517, "SKILL_GUIDE_SUBSECTION_SAILING_CREWMATES", "skill_guide_subsection_sailing_crewmates", "rowtypes"),
         };
     }
 

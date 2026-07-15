@@ -10,6 +10,7 @@ final class ObjectIDEntries_65 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(33347, "POH_TELENEXUS_2_MIDDLE", "Rug space", "loctypes"),
             new GamevalEntry(33348, "KHARID_BIGWINDOW", "Big window", "loctypes"),
             new GamevalEntry(33349, "POH_TELENEXUS_2_SIDE", "Rug space", "loctypes"),
             new GamevalEntry(33350, "POH_TELENEXUS_2_CORNER", "Rug space", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_65 {
             new GamevalEntry(33856, "COMPOST_BIGBIN_SUPERCOMPOST_READY", "Big Compost Bin", "loctypes"),
             new GamevalEntry(33857, "COMPOST_BIGBIN_SUPERCOMPOST_01", "Big Compost Bin", "loctypes"),
             new GamevalEntry(33858, "COMPOST_BIGBIN_SUPERCOMPOST_02", "Big Compost Bin", "loctypes"),
-            new GamevalEntry(33859, "COMPOST_BIGBIN_SUPERCOMPOST_03", "Big Compost Bin", "loctypes"),
         };
     }
 

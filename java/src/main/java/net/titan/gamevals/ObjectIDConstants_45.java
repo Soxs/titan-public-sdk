@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_45 {
+    int HELLHOUND_WINCH = 23104;
     int HELLHOUND_FIREWALL = 23105;
     int BROKEN_GREY_TILE_01 = 23106;
     int BROKEN_GREY_TILE_02 = 23107;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_45 {
     int QIP_GERTRUDE_LOG_STACK = 23614;
     int QIP_GERTRUDE_CART = 23615;
     int FAI_VARROCK_ROSEBUSH = 23616;
-    int FAI_VARROCK_ROSES_EDGE = 23617;
 }

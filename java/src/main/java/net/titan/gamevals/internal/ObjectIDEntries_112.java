@@ -10,6 +10,7 @@ final class ObjectIDEntries_112 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(57417, "SKEWWALL_TALTEKLAN01_STRAIGHT01", "skewwall_talteklan01_straight01", "loctypes"),
             new GamevalEntry(57418, "SKEWWALL_TALTEKLAN01_CORNER01", "skewwall_talteklan01_corner01", "loctypes"),
             new GamevalEntry(57419, "SKEWWALL_TALTEKLAN01_CORNER02", "skewwall_talteklan01_corner02", "loctypes"),
             new GamevalEntry(57420, "SKEWWALL_TALTEKLAN01_END01", "skewwall_talteklan01_end01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_112 {
             new GamevalEntry(57926, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_5", "Whirlwind", "loctypes"),
             new GamevalEntry(57927, "GREAT_CONCH_CLIFF_SHORTCUT_TOWN_TOP", "Rocks", "loctypes"),
             new GamevalEntry(57928, "GREAT_CONCH_CLIFF_SHORTCUT_TOWN_BOTTOM", "Rocks", "loctypes"),
-            new GamevalEntry(57929, "GREAT_CONCH_CLIFF_SHORTCUT_SOUTHEAST_TOP", "Rocks", "loctypes"),
         };
     }
 

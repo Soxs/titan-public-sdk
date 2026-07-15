@@ -10,6 +10,7 @@ final class DbRowIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7909, "SAILING_CHARTING_SPYGLASS_TWO_TOWERS", "sailing_charting_spyglass_two_towers", "rowtypes"),
             new GamevalEntry(7910, "SAILING_CHARTING_SPYGLASS_TWO_TOWERS_CORE", "sailing_charting_spyglass_two_towers_core", "rowtypes"),
             new GamevalEntry(7911, "SAILING_CHARTING_SPYGLASS_VOID_KNIGHTS", "sailing_charting_spyglass_void_knights", "rowtypes"),
             new GamevalEntry(7912, "SAILING_CHARTING_SPYGLASS_VOID_KNIGHTS_CORE", "sailing_charting_spyglass_void_knights_core", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_15 {
             new GamevalEntry(8418, "SAILING_CUSTOMISATION_TAB_BRAZIER", "sailing_customisation_tab_brazier", "rowtypes"),
             new GamevalEntry(8419, "SAILING_CUSTOMISATION_TAB_ALL", "sailing_customisation_tab_all", "rowtypes"),
             new GamevalEntry(8420, "SAILING_CUSTOMISATION_TAB_CANNONS", "sailing_customisation_tab_cannons", "rowtypes"),
-            new GamevalEntry(8421, "SAILING_CUSTOMISATION_TAB_SALVAGING", "sailing_customisation_tab_salvaging", "rowtypes"),
         };
     }
 

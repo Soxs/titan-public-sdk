@@ -36744,6 +36744,8 @@ interface PanelElement {
             readonly PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_BROKEN: 33828;
             readonly ANCIENT_SCEPTRE_TROUVER_MANGLED: 33829;
             readonly PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_MANGLED: 33830;
+            readonly PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY: 33831;
+            readonly PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY_DUMMY: 33832;
             byId(id: number): GamevalEntry | null;
         };
         readonly NpcID: {
@@ -63061,6 +63063,7 @@ interface PanelElement {
             readonly FAI_VARROCK_COOK_GUILD_DOOR: 10045;
             readonly FAI_VARROCK_COOK_GUILD_DOOR_INACTIVE: 10046;
             readonly MOTHERLODE_SHORTCUT: 10047;
+            readonly AFK_BLOODWOOD_TREE: 10048;
             readonly MACRO_DIGGER_OPEN_GRAVE_COFFIN_5: 10049;
             readonly MACRO_DIGGER_OPEN_GRAVE_EMPTY_1: 10050;
             readonly MACRO_DIGGER_OPEN_GRAVE_EMPTY_2: 10051;
@@ -125453,6 +125456,10 @@ interface PanelElement {
             readonly SANGVESTI_HINT_CLOTHES_SHOP: 15681;
             readonly SANGVESTI_HINT_FANCY_HOUSE_1: 15682;
             readonly SANGVESTI_HINT_BLACKSMITH: 15683;
+            readonly AFK_BLOODWOOD_TREE_PROGRESS: 15684;
+            readonly AFK_BLOODWOOD_TREE_DRAINING: 15685;
+            readonly CRIMSON_KISTEN_WARNING: 15686;
+            readonly SAILING_PLAYER_TRAWLING_SHOAL_BAITED_STEP: 15687;
             readonly XMAS24_INVITE_CHARLIE: 15796;
             readonly XMAS24_INVITES: 15800;
             readonly XMAS24_MATCH_AMIK: 15892;
@@ -132265,6 +132272,7 @@ interface PanelElement {
             readonly SANGVESTI_GENERAL_3: 5668;
             readonly SANGVESTI_PLAYER_POS: 5669;
             readonly SANGVESTI_PLAYER_LAST_DEATH_POS: 5670;
+            readonly AFK_BLOODWOOD_TREE: 5671;
             byId(id: number): GamevalEntry | null;
         };
         readonly VarClientID: {
@@ -138237,6 +138245,7 @@ interface PanelElement {
                 readonly COL_GROUP_XP_SCALAR_CAP: 9;
                 readonly COL_BEHAVIOUR_DATA: 10;
                 readonly Row: {
+                    readonly WOODCUTTING_RESOURCE_ENGORGED_BLOODWOOD_TREE: 510;
                     readonly WOODCUTTING_RESOURCE_YEW_TREE: 3251;
                     readonly WOODCUTTING_RESOURCE_YEW_TREE_FARMING_PATCH: 3252;
                     readonly WOODCUTTING_RESOURCE_TEAK_TREE: 3256;
@@ -145887,6 +145896,7 @@ interface PanelElement {
             readonly CLUEHELPER_TARGET_COORD_0_53_50_7_46: 507;
             readonly CLUEHELPER_TARGET_COORD_0_42_50_11_51: 508;
             readonly CLUEHELPER_TARGET_COORD_0_55_50_26_51: 509;
+            readonly WOODCUTTING_RESOURCE_ENGORGED_BLOODWOOD_TREE: 510;
             readonly CLUEHELPER_TARGET_COORD_0_44_51_25_3: 511;
             readonly CLUEHELPER_TARGET_COORD_0_49_47_32_33: 512;
             readonly CLUEHELPER_TARGET_COORD_0_39_47_46_23: 513;

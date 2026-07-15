@@ -10,6 +10,7 @@ final class DbRowIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5750, "POH_WORKBENCH_2", "poh_workbench_2", "rowtypes"),
             new GamevalEntry(5751, "POH_WORKBENCH_3", "poh_workbench_3", "rowtypes"),
             new GamevalEntry(5752, "POH_WORKBENCH_4", "poh_workbench_4", "rowtypes"),
             new GamevalEntry(5753, "POH_WORKBENCH_5", "poh_workbench_5", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_11 {
             new GamevalEntry(6259, "SLAYER_TARGET_GARGOYLES", "slayer_target_gargoyles", "rowtypes"),
             new GamevalEntry(6260, "SLAYER_TARGET_PYREFIENDS", "slayer_target_pyrefiends", "rowtypes"),
             new GamevalEntry(6261, "SLAYER_TARGET_BLOODVELD", "slayer_target_bloodveld", "rowtypes"),
-            new GamevalEntry(6262, "SLAYER_TARGET_DUSTDEVILS", "slayer_target_dustdevils", "rowtypes"),
         };
     }
 

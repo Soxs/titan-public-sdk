@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_46 {
+    int FAI_VARROCK_ROSES_EDGE = 23617;
     int FAI_VARROCK_ROSES_EDGE_B = 23618;
     int FAI_VARROCK_ROSES_EDGE_SHAPE_8 = 23619;
     int FAI_VARROCK_ROSES_EDGE_B_SHAPE_8 = 23620;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_46 {
     int FAI_FALADOR_ROOFKIT_SLATE_CORNER_RIGHT = 24127;
     int FAI_FALADOR_ROOFKIT_SLATE_EDGECUT = 24128;
     int FAI_FALADOR_ROOFKIT_CORNERCUT = 24129;
-    int FAI_FALADOR_ROOFKIT_SLATE_CUT = 24130;
 }

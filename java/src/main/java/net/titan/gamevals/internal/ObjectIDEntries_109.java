@@ -10,6 +10,7 @@ final class ObjectIDEntries_109 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(55881, "LEAGUE_RAGINGECHOES_BLOCK_1X1", "Rock", "loctypes"),
             new GamevalEntry(55882, "LEAGUE_RAGINGECHOES_GATEWAY_MISTHALIN_W", "Archway", "loctypes"),
             new GamevalEntry(55883, "LEAGUE_RAGINGECHOES_GATEWAY_MISTHALIN_W_2", "Archway", "loctypes"),
             new GamevalEntry(55884, "LEAGUE_RAGINGECHOES_GATEWAY_MISTHALIN_W_3", "Archway", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_109 {
             new GamevalEntry(56390, "BED_ALDARIN01_BUNKBED01_SMALL", "Bunk bed", "loctypes"),
             new GamevalEntry(56391, "BED_ALDARIN01_BUNKBED01_SMALL2", "Bunk bed", "loctypes"),
             new GamevalEntry(56392, "MAGIC_HUNTER_EXIT", "?'2 Enter", "loctypes"),
-            new GamevalEntry(56393, "MAGIC_HUNTER_RUNE_INACTIVE", "Inactive Rune", "loctypes"),
         };
     }
 

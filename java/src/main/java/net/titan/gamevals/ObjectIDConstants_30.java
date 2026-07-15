@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_30 {
+    int POH_STUDY_1 = 15420;
     int POH_STUDY_2 = 15421;
     int POH_STUDY_4 = 15422;
     int POH_STUDY_5 = 15423;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_30 {
     int STEAM_PUMP_ANIM1 = 15929;
     int BREW_STEAM_PUMP_ACTIVE = 15930;
     int BREW_LOG_STORE = 15931;
-    int BREW_WORKBENCH = 15932;
 }

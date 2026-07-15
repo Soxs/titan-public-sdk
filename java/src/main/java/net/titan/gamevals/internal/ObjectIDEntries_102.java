@@ -10,6 +10,7 @@ final class ObjectIDEntries_102 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(52296, "WALLKIT_FORTIS03_PARAPET01", "wallkit_fortis03_parapet01", "loctypes"),
             new GamevalEntry(52297, "WALLKIT_FORTIS03_PARAPET02", "wallkit_fortis03_parapet02", "loctypes"),
             new GamevalEntry(52298, "WALLKIT_FORTIS02_BRICKS01", "wallkit_fortis02_bricks01", "loctypes"),
             new GamevalEntry(52299, "WALLKIT_FORTIS02_BRICKS02", "wallkit_fortis02_bricks02", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_102 {
             new GamevalEntry(52805, "WALLKIT_TEOMAT01_STAINGLASS02_M", "wallkit_teomat01_stainglass02_m", "loctypes"),
             new GamevalEntry(52806, "TEOMAT_SHELF01_BOOKS01", "Bookshelf", "loctypes"),
             new GamevalEntry(52807, "TEOMAT_SHELF01_BOOKS02", "Bookshelf", "loctypes"),
-            new GamevalEntry(52808, "CAVE_ROCK01_ENTRANCE01_MOUNTAIN01", "Cave", "loctypes"),
         };
     }
 

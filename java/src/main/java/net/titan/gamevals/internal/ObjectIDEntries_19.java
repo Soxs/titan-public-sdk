@@ -303,6 +303,7 @@ final class ObjectIDEntries_19 {
             new GamevalEntry(10045, "FAI_VARROCK_COOK_GUILD_DOOR", "Door", "loctypes"),
             new GamevalEntry(10046, "FAI_VARROCK_COOK_GUILD_DOOR_INACTIVE", "fai_varrock_cook_guild_door_inactive", "loctypes"),
             new GamevalEntry(10047, "MOTHERLODE_SHORTCUT", "Dark tunnel", "loctypes"),
+            new GamevalEntry(10048, "AFK_BLOODWOOD_TREE", "Engorged bloodwood tree", "loctypes"),
             new GamevalEntry(10049, "MACRO_DIGGER_OPEN_GRAVE_COFFIN_5", "Grave", "loctypes"),
             new GamevalEntry(10050, "MACRO_DIGGER_OPEN_GRAVE_EMPTY_1", "Grave", "loctypes"),
             new GamevalEntry(10051, "MACRO_DIGGER_OPEN_GRAVE_EMPTY_2", "Grave", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_19 {
             new GamevalEntry(10264, "MAKINGHISTORY_DOUBLEDOORR", "Door", "loctypes"),
             new GamevalEntry(10265, "MAKINGHISTORY_DOUBLEDOORR_OPEN", "Door", "loctypes"),
             new GamevalEntry(10266, "MAKINGHISTORY_SHIELD_DISPLAY_MULTILOC", "makinghistory_shield_display_multiloc", "loctypes"),
-            new GamevalEntry(10267, "MAKINGHISTORY_SHIELD_DISPLAY", "Shield Display", "loctypes"),
         };
     }
 

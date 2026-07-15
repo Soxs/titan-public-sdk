@@ -10,6 +10,7 @@ final class ObjectIDEntries_104 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(53321, "LUC2_BF_DOOR_OPEN", "Large doors", "loctypes"),
             new GamevalEntry(53322, "LUC2_BF_DOOR_CLOSE", "Large doors", "loctypes"),
             new GamevalEntry(53323, "LUC2_TILE_02", "luc2_tile_02", "loctypes"),
             new GamevalEntry(53324, "LUC2_TILE_03", "luc2_tile_03", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_104 {
             new GamevalEntry(53830, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT1", "Hole", "loctypes"),
             new GamevalEntry(53831, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT2", "Hole", "loctypes"),
             new GamevalEntry(53832, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT3", "Hole", "loctypes"),
-            new GamevalEntry(53833, "LUC2_GT_PILLAR_TORCH", "luc2_gt_pillar_torch", "loctypes"),
         };
     }
 

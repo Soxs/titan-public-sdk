@@ -10,6 +10,7 @@ final class DbRowIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7397, "SAILING_CHARTING_CURRENT_DUCK_WESTERN_GATE", "sailing_charting_current_duck_western_gate", "rowtypes"),
             new GamevalEntry(7398, "SAILING_CHARTING_CURRENT_DUCK_WESTERN_GATE_CORE", "sailing_charting_current_duck_western_gate_core", "rowtypes"),
             new GamevalEntry(7399, "SAILING_CHARTING_CURRENT_DUCK_PORTH_NEIGWL", "sailing_charting_current_duck_porth_neigwl", "rowtypes"),
             new GamevalEntry(7400, "SAILING_CHARTING_CURRENT_DUCK_PORTH_NEIGWL_CORE", "sailing_charting_current_duck_porth_neigwl_core", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_14 {
             new GamevalEntry(7906, "SAILING_CHARTING_SPYGLASS_KEEP_LE_FAYE_CORE", "sailing_charting_spyglass_keep_le_faye_core", "rowtypes"),
             new GamevalEntry(7907, "SAILING_CHARTING_SPYGLASS_FISHING_PLATFORM", "sailing_charting_spyglass_fishing_platform", "rowtypes"),
             new GamevalEntry(7908, "SAILING_CHARTING_SPYGLASS_FISHING_PLATFORM_CORE", "sailing_charting_spyglass_fishing_platform_core", "rowtypes"),
-            new GamevalEntry(7909, "SAILING_CHARTING_SPYGLASS_TWO_TOWERS", "sailing_charting_spyglass_two_towers", "rowtypes"),
         };
     }
 

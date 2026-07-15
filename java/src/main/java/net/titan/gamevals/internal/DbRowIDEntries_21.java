@@ -10,6 +10,7 @@ final class DbRowIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10981, "SKILL_GUIDE_SUBSECTION_FARMING_ROOTS", "skill_guide_subsection_farming_roots", "rowtypes"),
             new GamevalEntry(10982, "SKILL_GUIDE_SUBSECTION_FARMING_GRICOLLER", "skill_guide_subsection_farming_gricoller", "rowtypes"),
             new GamevalEntry(10983, "SKILL_GUIDE_SUBSECTION_FARMING_RAIDS", "skill_guide_subsection_farming_raids", "rowtypes"),
             new GamevalEntry(10984, "SKILL_GUIDE_SUBSECTION_FARMING_OTHER", "skill_guide_subsection_farming_other", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_21 {
             new GamevalEntry(11490, "SKILL_FEATURE_HERBLORE_BASTION", "skill_feature_herblore_bastion", "rowtypes"),
             new GamevalEntry(11491, "SKILL_FEATURE_HERBLORE_BATTLEMAGE", "skill_feature_herblore_battlemage", "rowtypes"),
             new GamevalEntry(11492, "SKILL_FEATURE_HERBLORE_SARADOMIN", "skill_feature_herblore_saradomin", "rowtypes"),
-            new GamevalEntry(11493, "SKILL_FEATURE_HERBLORE_SURGE", "skill_feature_herblore_surge", "rowtypes"),
         };
     }
 

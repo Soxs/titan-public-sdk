@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_107 {
+    int WALLKIT_MISTROCK01_POST02 = 54857;
     int WALLKIT_MISTROCK02_DEFAULT01 = 54858;
     int WALLKIT_MISTROCK02_WINDOW01 = 54859;
     int WALLKIT_ALCHEMIST01_DEFAULT01 = 54860;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_107 {
     int VMQ3_RUINS_WALL_LEVER_2 = 55366;
     int VMQ3_RUINS_WALL_LEVER_3 = 55367;
     int VMQ3_RUINS_WALL_LEVER_4 = 55368;
-    int VMQ3_RUINS_BRAZIER_1 = 55369;
 }

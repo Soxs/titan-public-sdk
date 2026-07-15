@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_23 {
+    int TZHAAR_CAVE_WALL_4 = 11821;
     int TZHAAR_CAVE_WALL_5 = 11822;
     int TZHAAR_CAVE_WALL_6 = 11823;
     int TZHAAR_CAVE_WALL_7 = 11824;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_23 {
     int HUNDRED_DWARF_AMBASSADOR_BASE = 12330;
     int HUNDRED_GOBLIN1_MULTI = 12331;
     int HUNDRED_GOBLIN1_BASE = 12332;
-    int HUNDRED_GOBLIN2_MULTI = 12333;
 }

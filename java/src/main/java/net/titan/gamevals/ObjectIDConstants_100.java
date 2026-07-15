@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_100 {
+    int PMOON_BLOOD_DRIPS01 = 51268;
     int PMOON_BLUE_DRIPS01 = 51269;
     int CAVEKIT_WATERFALL_BLOOD01 = 51270;
     int CAVEKIT_WATERFALL_BLOOD02 = 51271;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_100 {
     int PLANT_BUSH_WWWPEICE_MIRR = 51781;
     int PLANT_BUSH_EEEPEICE = 51782;
     int PLANT_BUSH_555PEICE = 51783;
-    int PLANT_BUSH_CLUMP = 51784;
 }

@@ -10,6 +10,7 @@ final class ObjectIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12333, "HUNDRED_GOBLIN2_MULTI", "hundred_goblin2_multi", "loctypes"),
             new GamevalEntry(12334, "HUNDRED_GOBLIN2_BASE", "General Wartface", "loctypes"),
             new GamevalEntry(12335, "HUNDRED_GOBLIN_CHAIR", "hundred_goblin_chair", "loctypes"),
             new GamevalEntry(12336, "HUNDRED_PIRATE_MULTI", "hundred_pirate_multi", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_24 {
             new GamevalEntry(12842, "BURGH_STONE_CRUMBLY_LOW2_LEFT", "burgh_stone_crumbly_low2_left", "loctypes"),
             new GamevalEntry(12843, "BURGH_STONE_WINDOW", "burgh_stone_window", "loctypes"),
             new GamevalEntry(12844, "BURGH_STONE_PILE_OF_BICKS", "Pile of bricks", "loctypes"),
-            new GamevalEntry(12845, "BURGH_DUNGEON", "burgh_dungeon", "loctypes"),
         };
     }
 

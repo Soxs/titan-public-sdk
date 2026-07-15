@@ -10,6 +10,7 @@ final class ObjectIDEntries_87 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(44611, "GIANTS_FOUNDRY_CRUCIBLE_EMPTY_CUTSCENE", "Crucible", "loctypes"),
             new GamevalEntry(44612, "GIANTS_FOUNDRY_JIG_EMPTY_CUTSCENE", "Mould jig", "loctypes"),
             new GamevalEntry(44613, "GIANTS_FOUNDRY_CHEST_CUTSCENE", "Big chest", "loctypes"),
             new GamevalEntry(44614, "GIANTS_FOUNDRY_LAVA_POOL_CUTSCENE", "Lava pool", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_87 {
             new GamevalEntry(45120, "TOA_WALL_WARDEN_01", "toa_wall_warden_01", "loctypes"),
             new GamevalEntry(45121, "TOA_WALL_WARDEN_02", "toa_wall_warden_02", "loctypes"),
             new GamevalEntry(45122, "TOA_WALL_WARDEN_02_MIRROR", "toa_wall_warden_02_mirror", "loctypes"),
-            new GamevalEntry(45123, "TOA_WALL_WARDEN_03", "toa_wall_warden_03", "loctypes"),
         };
     }
 

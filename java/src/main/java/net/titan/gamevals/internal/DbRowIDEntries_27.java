@@ -10,6 +10,7 @@ final class DbRowIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14053, "LEAGUE_TASK_EQUIP_A_RAT_BONE_WEAPON", "league_task_equip_a_rat_bone_weapon", "rowtypes"),
             new GamevalEntry(14054, "LEAGUE_TASK_EQUIP_A_RED_TOPAZ_MACHETE", "league_task_equip_a_red_topaz_machete", "rowtypes"),
             new GamevalEntry(14055, "LEAGUE_TASK_EQUIP_A_RING_OF_ENDURANCE", "league_task_equip_a_ring_of_endurance", "rowtypes"),
             new GamevalEntry(14056, "LEAGUE_TASK_EQUIP_AN_AVERNIC_DEFENDER", "league_task_equip_an_avernic_defender", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_27 {
             new GamevalEntry(14562, "LEAGUE_TASK_PICK_A_CABBAGE_IN_VARROCK", "league_task_pick_a_cabbage_in_varrock", "rowtypes"),
             new GamevalEntry(14563, "LEAGUE_TASK_PICK_A_PINEAPPLE_ON_KARAMJA", "league_task_pick_a_pineapple_on_karamja", "rowtypes"),
             new GamevalEntry(14564, "LEAGUE_TASK_PRAY_AT_AN_ALTAR_IN_LUMBRIDGE", "league_task_pray_at_an_altar_in_lumbridge", "rowtypes"),
-            new GamevalEntry(14565, "LEAGUE_TASK_PRAY_AT_THE_SOUTHERN_CHAOS_TEMPLE", "league_task_pray_at_the_southern_chaos_temple", "rowtypes"),
         };
     }
 

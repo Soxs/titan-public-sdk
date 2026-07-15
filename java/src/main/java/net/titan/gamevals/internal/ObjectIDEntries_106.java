@@ -10,6 +10,7 @@ final class ObjectIDEntries_106 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(54345, "DECOKIT_ICE01_TAPOYAUIK07", "decokit_ice01_tapoyauik07", "loctypes"),
             new GamevalEntry(54346, "DECOKIT_ICE01_TAPOYAUIK08", "decokit_ice01_tapoyauik08", "loctypes"),
             new GamevalEntry(54347, "DECOKIT_ICE01_TAPOYAUIK09", "decokit_ice01_tapoyauik09", "loctypes"),
             new GamevalEntry(54348, "FLOORKIT_GRADIENT06_STRAIGHT01", "floorkit_gradient06_straight01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_106 {
             new GamevalEntry(54854, "WALLKIT_MISTROCK01_LVL0", "wallkit_mistrock01_lvl0", "loctypes"),
             new GamevalEntry(54855, "WALLKIT_MISTROCK01_WINDOW01", "wallkit_mistrock01_window01", "loctypes"),
             new GamevalEntry(54856, "WALLKIT_MISTROCK01_POST01", "wallkit_mistrock01_post01", "loctypes"),
-            new GamevalEntry(54857, "WALLKIT_MISTROCK01_POST02", "wallkit_mistrock01_post02", "loctypes"),
         };
     }
 

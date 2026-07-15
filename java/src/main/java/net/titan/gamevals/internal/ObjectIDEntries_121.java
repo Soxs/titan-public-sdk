@@ -10,6 +10,7 @@ final class ObjectIDEntries_121 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(62027, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE05", "vampyrium_jovkai01_bridge01_fence05", "loctypes"),
             new GamevalEntry(62028, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE06_STAIRS01", "vampyrium_jovkai01_bridge01_fence06_stairs01", "loctypes"),
             new GamevalEntry(62029, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE06_STAIRS01_MIRROR", "vampyrium_jovkai01_bridge01_fence06_stairs01_mirror", "loctypes"),
             new GamevalEntry(62030, "VAMPYRIUM_JOVKAI01_ARCH01", "vampyrium_jovkai01_arch01", "loctypes"),

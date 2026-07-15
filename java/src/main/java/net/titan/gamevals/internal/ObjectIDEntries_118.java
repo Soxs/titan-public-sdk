@@ -10,6 +10,7 @@ final class ObjectIDEntries_118 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(60490, "SALVAGING_HOOK_BRONZE", "Bronze salvaging hook", "loctypes"),
             new GamevalEntry(60491, "SALVAGING_HOOK_IRON", "Iron salvaging hook", "loctypes"),
             new GamevalEntry(60492, "SALVAGING_HOOK_STEEL", "Steel salvaging hook", "loctypes"),
             new GamevalEntry(60493, "SALVAGING_HOOK_MITHRIL", "Mithril salvaging hook", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_118 {
             new GamevalEntry(60999, "STATUE_SANGVESTI01_SHADUM01", "Statue", "loctypes"),
             new GamevalEntry(61000, "STATUE_SANGVESTI01_VITUR01", "Statue", "loctypes"),
             new GamevalEntry(61001, "STATUES_SANGVESTI01_DRAKAN01_AGILITY01", "Statue", "loctypes"),
-            new GamevalEntry(61002, "LEVER_SANGVESTI_WALL01_UP01", "lever_sangvesti_wall01_up01", "loctypes"),
         };
     }
 

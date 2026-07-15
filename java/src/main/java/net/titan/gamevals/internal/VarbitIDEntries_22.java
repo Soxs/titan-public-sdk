@@ -10,6 +10,10 @@ final class VarbitIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(18368, "AMENITY_FURNACE_BUCCANEERS", "amenity_furnace_buccaneers", "varbittypes"),
+            new GamevalEntry(18369, "AMENITY_BANKCHEST_BUCCANEERS", "amenity_bankchest_buccaneers", "varbittypes"),
+            new GamevalEntry(18370, "AMENITY_ROWBOAT_YNYSDAIL", "amenity_rowboat_ynysdail", "varbittypes"),
+            new GamevalEntry(18371, "AMENITY_ROWBOAT_BUCCANEERS", "amenity_rowboat_buccaneers", "varbittypes"),
             new GamevalEntry(18373, "POH_MENAGERIE_MULTIFORM_GRYPHONBOSSPET", "poh_menagerie_multiform_gryphonbosspet", "varbittypes"),
             new GamevalEntry(18387, "CRAB_TRAP_PANDEMONIUM_1", "crab_trap_pandemonium_1", "varbittypes"),
             new GamevalEntry(18388, "CRAB_TRAP_PANDEMONIUM_2", "crab_trap_pandemonium_2", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_22 {
             new GamevalEntry(18900, "SAILING_CHARTING_MERMAID_GUIDE_MOONSHADOW_COMPLETE", "sailing_charting_mermaid_guide_moonshadow_complete", "varbittypes"),
             new GamevalEntry(18901, "SAILING_CHARTING_CURRENT_DUCK_GREAT_SOUND_COMPLETE", "sailing_charting_current_duck_great_sound_complete", "varbittypes"),
             new GamevalEntry(18902, "SAILING_CHARTING_CURRENT_DUCK_LITUS_LUCIS_COMPLETE", "sailing_charting_current_duck_litus_lucis_complete", "varbittypes"),
-            new GamevalEntry(18903, "SAILING_CHARTING_CURRENT_DUCK_CRYSTAL_SEA_COMPLETE", "sailing_charting_current_duck_crystal_sea_complete", "varbittypes"),
-            new GamevalEntry(18904, "SAILING_CHARTING_CURRENT_DUCK_MOONSHADOW_COMPLETE", "sailing_charting_current_duck_moonshadow_complete", "varbittypes"),
-            new GamevalEntry(18905, "SAILING_CHARTING_DRINK_CRATE_WILD_WHISKY_COMPLETE", "sailing_charting_drink_crate_wild_whisky_complete", "varbittypes"),
-            new GamevalEntry(18906, "SAILING_CHARTING_DRINK_CRATE_ROBERTS_PORT_COMPLETE", "sailing_charting_drink_crate_roberts_port_complete", "varbittypes"),
         };
     }
 

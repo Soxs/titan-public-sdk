@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_12 {
+    int SLAYER_TARGET_DUSTDEVILS = 6262;
     int SLAYER_TARGET_JELLIES = 6263;
     int SLAYER_TARGET_ROCKSLUGS = 6264;
     int SLAYER_TARGET_NECHRYAEL = 6265;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_12 {
     int ACTION_YAMA_UNIQUE = 6771;
     int ACTION_HUEY_UNIQUE = 6772;
     int ACTION_LOOT_BARROWS_UNIQUE_WHILE_WEARING_BARROWS_ITEM = 6773;
-    int ACTION_COX_UNIQUE = 6774;
 }

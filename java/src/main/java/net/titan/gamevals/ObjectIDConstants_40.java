@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_40 {
+    int LOTR_RUINS_PILLAR_JUMP_01 = 20540;
     int LOTR_RUINS_PILLAR_JUMP_02 = 20541;
     int LOTR_RUINS_PILLAR_JUMP_03 = 20542;
     int LOTR_RUINS_PILLAR_JUMP_04 = 20543;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_40 {
     int PENG_BASE_ROOF2_R = 21053;
     int PENG_BASE_BOOTH_JOIN = 21054;
     int PENG_BASE_BOOTH_FRONT = 21055;
-    int PENG_BASE_BOOTH_SIDE = 21056;
 }

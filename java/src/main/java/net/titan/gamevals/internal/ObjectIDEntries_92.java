@@ -10,6 +10,7 @@ final class ObjectIDEntries_92 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(47172, "WILD_ESCAPECAVE_DUGUPSOIL_3", "wild_escapecave_dugupsoil_3", "loctypes"),
             new GamevalEntry(47173, "WILD_ESCAPECAVE_VETION_PILLAR01", "wild_escapecave_vetion_pillar01", "loctypes"),
             new GamevalEntry(47174, "WILD_VETION_ENTER_ARENA", "Rubble", "loctypes"),
             new GamevalEntry(47175, "WILD_CAVE_EXIT01", "Cave", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_92 {
             new GamevalEntry(47681, "WALLKIT_LASSAR01_INNER01_SHADOW", "wallkit_lassar01_inner01_shadow", "loctypes"),
             new GamevalEntry(47682, "WALLKIT_LASSAR01_SCONCE01_SHADOW", "wallkit_lassar01_sconce01_shadow", "loctypes"),
             new GamevalEntry(47683, "WALLKIT_LASSAR01_WINDOW01_SHADOW", "wallkit_lassar01_window01_shadow", "loctypes"),
-            new GamevalEntry(47684, "WALLKIT_LASSAR02_WINDOW01_SHADOW", "wallkit_lassar02_window01_shadow", "loctypes"),
         };
     }
 

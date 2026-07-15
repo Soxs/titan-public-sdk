@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_106 {
+    int DECOKIT_ICE01_TAPOYAUIK07 = 54345;
     int DECOKIT_ICE01_TAPOYAUIK08 = 54346;
     int DECOKIT_ICE01_TAPOYAUIK09 = 54347;
     int FLOORKIT_GRADIENT06_STRAIGHT01 = 54348;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_106 {
     int WALLKIT_MISTROCK01_LVL0 = 54854;
     int WALLKIT_MISTROCK01_WINDOW01 = 54855;
     int WALLKIT_MISTROCK01_POST01 = 54856;
-    int WALLKIT_MISTROCK01_POST02 = 54857;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_38 {
+    int HUNTING_TRAIL1_2R = 19516;
     int HUNTING_TRAIL7_6L = 19517;
     int HUNTING_TRAIL1_3 = 19518;
     int HUNTING_TRAIL1_3R = 19519;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_38 {
     int QIP_WATCHTOWER_PILLAR_NOCRYSTAL_MULTI_CYAN = 20025;
     int QIP_WATCHTOWER_PILLAR_NOCRYSTAL_YELLOW = 20026;
     int QIP_WATCHTOWER_PILLAR_CRYSTAL_YELLOW = 20027;
-    int QIP_WATCHTOWER_PILLAR_GLOWING_CRYSTAL_YELLOW = 20028;
 }

@@ -10,6 +10,7 @@ final class ObjectIDEntries_116 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(59466, "SAILING_COMBAT_HEAT_SHIELD_HIGH_INACTIVE", "Scorching brazier", "loctypes"),
             new GamevalEntry(59467, "SAILING_BOAT_NPC_KANDARIN_LARGE01A", "sailing_boat_npc_kandarin_large01a", "loctypes"),
             new GamevalEntry(59468, "SAILING_BOAT_NPC_KANDARIN_LARGE01B1", "sailing_boat_npc_kandarin_large01b1", "loctypes"),
             new GamevalEntry(59469, "SAILING_BOAT_NPC_KANDARIN_LARGE01B2", "sailing_boat_npc_kandarin_large01b2", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_116 {
             new GamevalEntry(59975, "BOATKIT_DECK_HOLE01_PIRATE", "boatkit_deck_hole01_pirate", "loctypes"),
             new GamevalEntry(59976, "BOATKIT_DECK_STRAIGHT01_PIRATE", "boatkit_deck_straight01_pirate", "loctypes"),
             new GamevalEntry(59977, "BOATKIT_DECK_STRAIGHT02_PIRATE", "boatkit_deck_straight02_pirate", "loctypes"),
-            new GamevalEntry(59978, "BOATKIT_DECK_STRAIGHT03_PIRATE", "boatkit_deck_straight03_pirate", "loctypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_5 {
+    int MUSIC_BARBARIANISM = 2560;
     int MUSIC_BARKING_MAD = 2561;
     int MUSIC_BAROQUE = 2562;
     int MUSIC_BARRELCHEST_BATTLE = 2563;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_5 {
     int MUSIC_STAGNANT = 3069;
     int MUSIC_STAND_UP_AND_BE_COUNTED = 3070;
     int MUSIC_STARLIGHT = 3071;
-    int MUSIC_START = 3072;
 }

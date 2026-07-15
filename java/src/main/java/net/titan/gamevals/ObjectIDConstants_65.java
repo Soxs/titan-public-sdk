@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_65 {
+    int POH_TELENEXUS_2_MIDDLE = 33347;
     int KHARID_BIGWINDOW = 33348;
     int POH_TELENEXUS_2_SIDE = 33349;
     int POH_TELENEXUS_2_CORNER = 33350;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_65 {
     int COMPOST_BIGBIN_SUPERCOMPOST_READY = 33856;
     int COMPOST_BIGBIN_SUPERCOMPOST_01 = 33857;
     int COMPOST_BIGBIN_SUPERCOMPOST_02 = 33858;
-    int COMPOST_BIGBIN_SUPERCOMPOST_03 = 33859;
 }

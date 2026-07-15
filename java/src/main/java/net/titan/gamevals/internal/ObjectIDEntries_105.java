@@ -10,6 +10,7 @@ final class ObjectIDEntries_105 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(53833, "LUC2_GT_PILLAR_TORCH", "luc2_gt_pillar_torch", "loctypes"),
             new GamevalEntry(53834, "LUC2_GT_BASE_PILLAR_LEVEL2", "luc2_gt_base_pillar_level2", "loctypes"),
             new GamevalEntry(53835, "LUC2_GT_MAIN_PILLAR_LEVEL1_L", "luc2_gt_main_pillar_level1_l", "loctypes"),
             new GamevalEntry(53836, "LUC2_GT_MAIN_PILLAR_LEVEL2_L", "luc2_gt_main_pillar_level2_l", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_105 {
             new GamevalEntry(54342, "DECOKIT_ICE01_TAPOYAUIK04", "decokit_ice01_tapoyauik04", "loctypes"),
             new GamevalEntry(54343, "DECOKIT_ICE01_TAPOYAUIK05", "decokit_ice01_tapoyauik05", "loctypes"),
             new GamevalEntry(54344, "DECOKIT_ICE01_TAPOYAUIK06", "decokit_ice01_tapoyauik06", "loctypes"),
-            new GamevalEntry(54345, "DECOKIT_ICE01_TAPOYAUIK07", "decokit_ice01_tapoyauik07", "loctypes"),
         };
     }
 

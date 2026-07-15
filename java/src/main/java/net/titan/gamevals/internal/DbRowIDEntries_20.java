@@ -10,6 +10,7 @@ final class DbRowIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10469, "SKILL_FEATURE_CONSTRUCTION_BOAT_REPAIR_ROSEWOOD", "skill_feature_construction_boat_repair_rosewood", "rowtypes"),
             new GamevalEntry(10470, "SKILL_FEATURE_CONSTRUCTION_SKILLCAPE", "skill_feature_construction_skillcape", "rowtypes"),
             new GamevalEntry(10471, "SKILL_GUIDE_SUBSECTION_COOKING_OVERVIEW", "skill_guide_subsection_cooking_overview", "rowtypes"),
             new GamevalEntry(10472, "SKILL_GUIDE_SUBSECTION_COOKING_MEATS", "skill_guide_subsection_cooking_meats", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_20 {
             new GamevalEntry(10978, "SKILL_GUIDE_SUBSECTION_FARMING_HERBS", "skill_guide_subsection_farming_herbs", "rowtypes"),
             new GamevalEntry(10979, "SKILL_GUIDE_SUBSECTION_FARMING_SPECIAL", "skill_guide_subsection_farming_special", "rowtypes"),
             new GamevalEntry(10980, "SKILL_GUIDE_SUBSECTION_FARMING_SCARECROWS", "skill_guide_subsection_farming_scarecrows", "rowtypes"),
-            new GamevalEntry(10981, "SKILL_GUIDE_SUBSECTION_FARMING_ROOTS", "skill_guide_subsection_farming_roots", "rowtypes"),
         };
     }
 

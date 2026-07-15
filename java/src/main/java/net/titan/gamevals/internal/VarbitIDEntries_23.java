@@ -10,6 +10,10 @@ final class VarbitIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(18903, "SAILING_CHARTING_CURRENT_DUCK_CRYSTAL_SEA_COMPLETE", "sailing_charting_current_duck_crystal_sea_complete", "varbittypes"),
+            new GamevalEntry(18904, "SAILING_CHARTING_CURRENT_DUCK_MOONSHADOW_COMPLETE", "sailing_charting_current_duck_moonshadow_complete", "varbittypes"),
+            new GamevalEntry(18905, "SAILING_CHARTING_DRINK_CRATE_WILD_WHISKY_COMPLETE", "sailing_charting_drink_crate_wild_whisky_complete", "varbittypes"),
+            new GamevalEntry(18906, "SAILING_CHARTING_DRINK_CRATE_ROBERTS_PORT_COMPLETE", "sailing_charting_drink_crate_roberts_port_complete", "varbittypes"),
             new GamevalEntry(18907, "SAILING_CHARTING_DRINK_CRATE_SEA_SHANDY_COMPLETE", "sailing_charting_drink_crate_sea_shandy_complete", "varbittypes"),
             new GamevalEntry(18908, "SAILING_CHARTING_DRINK_CRATE_MONKFISH_STOUT_COMPLETE", "sailing_charting_drink_crate_monkfish_stout_complete", "varbittypes"),
             new GamevalEntry(18909, "SAILING_CHARTING_DRINK_CRATE_LUNARSHINE_COMPLETE", "sailing_charting_drink_crate_lunarshine_complete", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_23 {
             new GamevalEntry(19424, "SAILING_BOAT_5_BRAZIER", "sailing_boat_5_brazier", "varbittypes"),
             new GamevalEntry(19425, "SAILING_BOAT_5_HOTSPOT_0", "sailing_boat_5_hotspot_0", "varbittypes"),
             new GamevalEntry(19426, "SAILING_BOAT_5_HOTSPOT_1", "sailing_boat_5_hotspot_1", "varbittypes"),
-            new GamevalEntry(19427, "SAILING_BOAT_5_HOTSPOT_2", "sailing_boat_5_hotspot_2", "varbittypes"),
-            new GamevalEntry(19428, "SAILING_BOAT_5_HOTSPOT_3", "sailing_boat_5_hotspot_3", "varbittypes"),
-            new GamevalEntry(19429, "SAILING_BOAT_5_HOTSPOT_4", "sailing_boat_5_hotspot_4", "varbittypes"),
-            new GamevalEntry(19430, "SAILING_BOAT_5_HOTSPOT_5", "sailing_boat_5_hotspot_5", "varbittypes"),
         };
     }
 

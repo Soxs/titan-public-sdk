@@ -10,6 +10,7 @@ final class ObjectIDEntries_62 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(31810, "DS2_CORSAIR_COVE_PIRATE_THRONE", "ds2_corsair_cove_pirate_throne", "loctypes"),
             new GamevalEntry(31811, "CRANDOR_LAB_BIRTHING_POOL_WATER", "crandor_lab_birthing_pool_water", "loctypes"),
             new GamevalEntry(31812, "DS2_VIKING_SHIP_FRONT_SMALL_LV0", "ds2_viking_ship_front_small_lv0", "loctypes"),
             new GamevalEntry(31813, "DS2_VIKING_SHIP_FRONT_SMALL_LV1", "ds2_viking_ship_front_small_lv1", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_62 {
             new GamevalEntry(32319, "DS2_AGILITY_STEPPING_STONE", "Wreckage", "loctypes"),
             new GamevalEntry(32320, "DS2_AGILITY_STEPPING_STONE_SHIP", "Ship", "loctypes"),
             new GamevalEntry(32321, "DS2_BOAT_KAND_AGILITY_CLIMB", "Rope ladder", "loctypes"),
-            new GamevalEntry(32322, "DS2_BOAT_ALK_AGILITY_CLIMB", "Rope ladder", "loctypes"),
         };
     }
 

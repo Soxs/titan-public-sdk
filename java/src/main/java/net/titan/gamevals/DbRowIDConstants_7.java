@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_7 {
+    int PRIDE24_CAPE_GAY = 3584;
     int PRIDE24_SHIRT_PRIDE = 3585;
     int PRIDE24_SHIRT_BISEXUAL = 3586;
     int PRIDE24_SHIRT_ASEXUAL = 3587;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_7 {
     int HOME_TELE_ANIM_TOGGLE_LIST = 4093;
     int VENGEANCE_ANIM_TOGGLE_LIST = 4094;
     int ALCHEMY_ANIM_TOGGLE_LIST = 4095;
-    int NPC_CONTACT_ANIM_TOGGLE_LIST = 4096;
 }

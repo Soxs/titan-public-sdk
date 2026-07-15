@@ -10,6 +10,7 @@ final class ObjectIDEntries_57 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(29250, "POH_THEME_ZANARIS_EDGE", "Otherworldly garden", "loctypes"),
             new GamevalEntry(29251, "POH_THEME_ZANARIS_INNER_CORNER", "Otherworldly garden", "loctypes"),
             new GamevalEntry(29252, "POH_THEME_ZANARIS_OUTER_CORNER", "Otherworldly garden", "loctypes"),
             new GamevalEntry(29253, "POH_THEME_ZANARIS_HERO", "Otherworldly theme", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_57 {
             new GamevalEntry(29759, "RAIDS_LASERCRABS_SMALLCRYSTAL_CYAN", "Cyan crystal", "loctypes"),
             new GamevalEntry(29760, "RAIDS_LASERCRABS_SMALLCRYSTAL_MAGENTA", "Magenta crystal", "loctypes"),
             new GamevalEntry(29761, "RAIDS_LASERCRABS_SMALLCRYSTAL_YELLOW", "Yellow crystal", "loctypes"),
-            new GamevalEntry(29762, "RAIDS_LASERCRABS_SMALLCRYSTAL_WHITE", "White crystal", "loctypes"),
         };
     }
 

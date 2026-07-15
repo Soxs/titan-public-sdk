@@ -10,6 +10,7 @@ final class ObjectIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11821, "TZHAAR_CAVE_WALL_4", "tzhaar_cave_wall_4", "loctypes"),
             new GamevalEntry(11822, "TZHAAR_CAVE_WALL_5", "tzhaar_cave_wall_5", "loctypes"),
             new GamevalEntry(11823, "TZHAAR_CAVE_WALL_6", "tzhaar_cave_wall_6", "loctypes"),
             new GamevalEntry(11824, "TZHAAR_CAVE_WALL_7", "tzhaar_cave_wall_7", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_23 {
             new GamevalEntry(12330, "HUNDRED_DWARF_AMBASSADOR_BASE", "Dwarf", "loctypes"),
             new GamevalEntry(12331, "HUNDRED_GOBLIN1_MULTI", "hundred_goblin1_multi", "loctypes"),
             new GamevalEntry(12332, "HUNDRED_GOBLIN1_BASE", "General Bentnoze", "loctypes"),
-            new GamevalEntry(12333, "HUNDRED_GOBLIN2_MULTI", "hundred_goblin2_multi", "loctypes"),
         };
     }
 

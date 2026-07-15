@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_63 {
+    int DS2_BOAT_ALK_AGILITY_CLIMB = 32322;
     int DS2_BOAT_ASG_AGILITY_CLIMB = 32323;
     int DS2_BOAT_MIST_AGILITY_CLIMB = 32324;
     int DS2_AGILITY_CLIMB_HULL = 32325;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_63 {
     int TOB_DUNGEON_WALKWAY_FLOOR_CORNER_H = 32832;
     int TOB_DUNGEON_WALKWAY_FLOOR_CORNER_I = 32833;
     int TOB_DUNGEON_WALKWAY_FLOOR_WIDE_A = 32834;
-    int TOB_DUNGEON_WALKWAY_FLOOR_WIDE_B = 32835;
 }

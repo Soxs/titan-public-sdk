@@ -10,6 +10,10 @@ final class VarbitIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(19987, "MUSIC_PLAYLIST_3_TRACK_50", "music_playlist_3_track_50", "varbittypes"),
+            new GamevalEntry(19988, "MUSIC_PLAYLIST_3_TRACK_51", "music_playlist_3_track_51", "varbittypes"),
+            new GamevalEntry(19989, "MUSIC_PLAYLIST_3_TRACK_52", "music_playlist_3_track_52", "varbittypes"),
+            new GamevalEntry(19990, "MUSIC_PLAYLIST_3_TRACK_53", "music_playlist_3_track_53", "varbittypes"),
             new GamevalEntry(19991, "MUSIC_PLAYLIST_3_TRACK_54", "music_playlist_3_track_54", "varbittypes"),
             new GamevalEntry(19992, "MUSIC_PLAYLIST_3_TRACK_55", "music_playlist_3_track_55", "varbittypes"),
             new GamevalEntry(19993, "MUSIC_PLAYLIST_3_TRACK_56", "music_playlist_3_track_56", "varbittypes"),

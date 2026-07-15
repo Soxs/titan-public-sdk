@@ -10,6 +10,7 @@ final class ObjectIDEntries_32 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(16444, "RANDOMSOUND_MORYTANIA_AMBIENCE", "randomsound_morytania_ambience", "loctypes"),
             new GamevalEntry(16445, "RANDOMSOUND_ICELANDS_AMBIENCE", "randomsound_icelands_ambience", "loctypes"),
             new GamevalEntry(16446, "RANDOMSOUND_COASTAL_AMBIENCE", "randomsound_coastal_ambience", "loctypes"),
             new GamevalEntry(16447, "RANDOMSOUND_SEA_BELL_AMBIENCE", "? ?", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_32 {
             new GamevalEntry(16953, "QUEST_LUNAR_GALLEON_CANNON_WITH_SYMBOL", "Cannon", "loctypes"),
             new GamevalEntry(16954, "QUEST_LUNAR_SACK_PILE_WITH_SYMBOL", "Crate", "loctypes"),
             new GamevalEntry(16955, "QUEST_LUNAR_WALLCHART_WITH_SYMBOL", "Wall chart", "loctypes"),
-            new GamevalEntry(16956, "QUEST_LUNAR_CHEST_WITH_SYMBOL", "Chest", "loctypes"),
         };
     }
 

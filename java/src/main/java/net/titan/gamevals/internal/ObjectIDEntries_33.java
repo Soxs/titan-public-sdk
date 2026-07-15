@@ -10,6 +10,7 @@ final class ObjectIDEntries_33 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(16956, "QUEST_LUNAR_CHEST_WITH_SYMBOL", "Chest", "loctypes"),
             new GamevalEntry(16957, "QUEST_LUNAR_CRANE_NOSCRIPT", "Crane", "loctypes"),
             new GamevalEntry(16958, "QUEST_LUNAR_ROWBOAT", "Row boat", "loctypes"),
             new GamevalEntry(16959, "QUEST_LUNAR_GALLEON_PIER_STAIRS_BASE", "Ladder", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_33 {
             new GamevalEntry(17465, "LOTR_RUINS_WALL_SKULLS_LVL1", "lotr_ruins_wall_skulls_lvl1", "loctypes"),
             new GamevalEntry(17466, "LOTR_RUINS_WALL_SKULLS_NO_WATER_LVL1", "lotr_ruins_wall_skulls_no_water_lvl1", "loctypes"),
             new GamevalEntry(17467, "LOTR_RUINS_WALL_NO_WATER_LVL1", "lotr_ruins_wall_no_water_lvl1", "loctypes"),
-            new GamevalEntry(17468, "LOTR_RUINS_WALL_CORNER_LVL1", "lotr_ruins_wall_corner_lvl1", "loctypes"),
         };
     }
 

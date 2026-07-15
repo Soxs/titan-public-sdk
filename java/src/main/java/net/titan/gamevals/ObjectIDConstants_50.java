@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_50 {
+    int KR_CAM_LANCELOT_JAIL = 25666;
     int KR_CAM_BEDIVERE_JAIL = 25667;
     int MURDER_QIP_GARDEN_HEDGE = 25668;
     int MURDER_QIP_GARDEN_HEDGE_CORNER = 25669;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_50 {
     int _100_ILM_LONG_HOT_ROCK_MULTI = 26175;
     int RCU_ABYSSAL_SPLAT_2 = 26176;
     int RCU_ABYSSAL_SPLAT_3 = 26177;
-    int ELEMENTAL_WORKSHOP_FURNACE_GLOW = 26178;
 }

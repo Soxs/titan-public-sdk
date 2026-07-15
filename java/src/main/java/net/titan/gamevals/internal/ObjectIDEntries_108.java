@@ -10,6 +10,7 @@ final class ObjectIDEntries_108 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(55369, "VMQ3_RUINS_BRAZIER_1", "vmq3_ruins_brazier_1", "loctypes"),
             new GamevalEntry(55370, "VMQ3_RUINS_BRAZIER_2", "vmq3_ruins_brazier_2", "loctypes"),
             new GamevalEntry(55371, "VMQ3_RUINS_BRAZIER_3", "vmq3_ruins_brazier_3", "loctypes"),
             new GamevalEntry(55372, "VMQ3_RUINS_BRAZIER_4", "vmq3_ruins_brazier_4", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_108 {
             new GamevalEntry(55878, "LEAGUE_RAGINGECHOES_BLOCK_2X2", "Rock", "loctypes"),
             new GamevalEntry(55879, "LEAGUE_RAGINGECHOES_BLOCK_2X2_B", "Rock", "loctypes"),
             new GamevalEntry(55880, "LEAGUE_RAGINGECHOES_BLOCK_2X1", "Rock", "loctypes"),
-            new GamevalEntry(55881, "LEAGUE_RAGINGECHOES_BLOCK_1X1", "Rock", "loctypes"),
         };
     }
 

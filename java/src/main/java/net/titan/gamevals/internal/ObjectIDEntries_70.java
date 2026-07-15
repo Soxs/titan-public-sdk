@@ -10,6 +10,7 @@ final class ObjectIDEntries_70 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(35907, "SOTE_ELF_VILLAGE_WALL_WINDOW_BURNT", "sote_elf_village_wall_window_burnt", "loctypes"),
             new GamevalEntry(35908, "SOTE_BURNT_GRASS_1", "sote_burnt_grass_1", "loctypes"),
             new GamevalEntry(35909, "SOTE_BURNT_GRASS_2", "sote_burnt_grass_2", "loctypes"),
             new GamevalEntry(35910, "SOTE_BURNT_GRASS_3", "sote_burnt_grass_3", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_70 {
             new GamevalEntry(36416, "CRYSTAL_TOWER_TOP_ROOF_D2", "crystal_tower_top_roof_d2", "loctypes"),
             new GamevalEntry(36417, "CRYSTAL_TOWER_TOP_ROOF_D3", "crystal_tower_top_roof_d3", "loctypes"),
             new GamevalEntry(36418, "CRYSTAL_TOWER_TOP_ROOF_D4", "crystal_tower_top_roof_d4", "loctypes"),
-            new GamevalEntry(36419, "CRYSTAL_TOWER_TOP_ROOF_E1", "crystal_tower_top_roof_e1", "loctypes"),
         };
     }
 

@@ -10,6 +10,10 @@ final class VarbitIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(17734, "ENT_TOTEMS_SITE_7_MULTIANIMAL_D_1", "ent_totems_site_7_multianimal_d_1", "varbittypes"),
+            new GamevalEntry(17735, "ENT_TOTEMS_SITE_7_MULTIANIMAL_E_1", "ent_totems_site_7_multianimal_e_1", "varbittypes"),
+            new GamevalEntry(17736, "ENT_TOTEMS_SITE_7_ALL_MULTIANIMALS", "ent_totems_site_7_all_multianimals", "varbittypes"),
+            new GamevalEntry(17737, "ENT_TOTEMS_SITE_8_BASE", "ent_totems_site_8_base", "varbittypes"),
             new GamevalEntry(17738, "ENT_TOTEMS_SITE_8_BASE_CARVED", "ent_totems_site_8_base_carved", "varbittypes"),
             new GamevalEntry(17739, "ENT_TOTEMS_SITE_8_BASE_MULTILOC", "ent_totems_site_8_base_multiloc", "varbittypes"),
             new GamevalEntry(17740, "ENT_TOTEMS_SITE_8_LOW", "ent_totems_site_8_low", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_21 {
             new GamevalEntry(18365, "AMENITY_COOKING_POT_LAGUNA_AURORAE", "amenity_cooking_pot_laguna_aurorae", "varbittypes"),
             new GamevalEntry(18366, "AMENITY_COOKING_POT_CHINCHOMPA", "amenity_cooking_pot_chinchompa", "varbittypes"),
             new GamevalEntry(18367, "AMENITY_ANVIL_BUCCANEERS", "amenity_anvil_buccaneers", "varbittypes"),
-            new GamevalEntry(18368, "AMENITY_FURNACE_BUCCANEERS", "amenity_furnace_buccaneers", "varbittypes"),
-            new GamevalEntry(18369, "AMENITY_BANKCHEST_BUCCANEERS", "amenity_bankchest_buccaneers", "varbittypes"),
-            new GamevalEntry(18370, "AMENITY_ROWBOAT_YNYSDAIL", "amenity_rowboat_ynysdail", "varbittypes"),
-            new GamevalEntry(18371, "AMENITY_ROWBOAT_BUCCANEERS", "amenity_rowboat_buccaneers", "varbittypes"),
         };
     }
 

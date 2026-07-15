@@ -10,6 +10,7 @@ final class DbRowIDEntries_1 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(512, "CLUEHELPER_TARGET_COORD_0_49_47_32_33", "cluehelper_target_coord_0_49_47_32_33", "rowtypes"),
             new GamevalEntry(513, "CLUEHELPER_TARGET_COORD_0_39_47_46_23", "cluehelper_target_coord_0_39_47_46_23", "rowtypes"),
             new GamevalEntry(514, "CLUEHELPER_TARGET_COORD_0_40_47_21_22", "cluehelper_target_coord_0_40_47_21_22", "rowtypes"),
             new GamevalEntry(515, "CLUEHELPER_TARGET_COORD_0_46_47_17_16", "cluehelper_target_coord_0_46_47_17_16", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_1 {
             new GamevalEntry(1021, "CLUEHELPER_TARGET_NPC_ULIZIUS", "cluehelper_target_npc_ulizius", "rowtypes"),
             new GamevalEntry(1022, "CLUEHELPER_TARGET_NPC_DONOVAN_THE_FAMILY_HANDYMAN", "cluehelper_target_npc_donovan_the_family_handyman", "rowtypes"),
             new GamevalEntry(1023, "CLUEHELPER_TARGET_NPC_KANGAI_MAU", "cluehelper_target_npc_kangai_mau", "rowtypes"),
-            new GamevalEntry(1024, "CLUEHELPER_TARGET_NPC_HAJEDY", "cluehelper_target_npc_hajedy", "rowtypes"),
         };
     }
 

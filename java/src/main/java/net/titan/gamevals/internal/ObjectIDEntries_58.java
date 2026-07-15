@@ -10,6 +10,7 @@ final class ObjectIDEntries_58 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(29762, "RAIDS_LASERCRABS_SMALLCRYSTAL_WHITE", "White crystal", "loctypes"),
             new GamevalEntry(29763, "RAIDS_WOODSOURCE_ROOTS", "Sapling", "loctypes"),
             new GamevalEntry(29764, "RAIDS_WOODSOURCE_ROOTS_DEPLETED", "Stump", "loctypes"),
             new GamevalEntry(29765, "RAIDS_PATCH_EMPTY", "Herb patch", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_58 {
             new GamevalEntry(30271, "TZHAAR_WALL_CHARGING_PILLAR", "Node", "loctypes"),
             new GamevalEntry(30272, "TZHAAR_WALL_CHARGING_STEPS", "tzhaar_wall_charging_steps", "loctypes"),
             new GamevalEntry(30273, "TZHAAR_STALAGMITE_1", "tzhaar_stalagmite_1", "loctypes"),
-            new GamevalEntry(30274, "TZHAAR_SOLIDIFIED_NPC_1_1", "Haar-Tok", "loctypes"),
         };
     }
 

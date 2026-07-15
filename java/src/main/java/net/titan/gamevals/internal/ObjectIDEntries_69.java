@@ -10,6 +10,7 @@ final class ObjectIDEntries_69 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(35395, "SOTE_WARPED_LIBRARY_DESK_02_CHAIR_A", "sote_warped_library_desk_02_chair_a", "loctypes"),
             new GamevalEntry(35396, "SOTE_WARPED_LIBRARY_DESK_02_CHAIR_B", "sote_warped_library_desk_02_chair_b", "loctypes"),
             new GamevalEntry(35397, "SOTE_WARPED_LIBRARY_DESK_02_CHAIR_C", "sote_warped_library_desk_02_chair_c", "loctypes"),
             new GamevalEntry(35398, "SOTE_WARPED_LIBRARY_DESK_END_01", "sote_warped_library_desk_end_01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_69 {
             new GamevalEntry(35904, "SOTE_ELF_VILLAGE_RAIL1_BURNT_BLOCKWALK_ONLY", "sote_elf_village_rail1_burnt_blockwalk_only", "loctypes"),
             new GamevalEntry(35905, "SOTE_ELF_VILLAGE_BANKRAIL_BURNT", "sote_elf_village_bankrail_burnt", "loctypes"),
             new GamevalEntry(35906, "SOTE_ELF_VILLAGE_RAIL2_BURNT", "sote_elf_village_rail2_burnt", "loctypes"),
-            new GamevalEntry(35907, "SOTE_ELF_VILLAGE_WALL_WINDOW_BURNT", "sote_elf_village_wall_window_burnt", "loctypes"),
         };
     }
 

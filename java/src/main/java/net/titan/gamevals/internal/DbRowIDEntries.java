@@ -9,7 +9,7 @@ public final class DbRowIDEntries {
     private DbRowIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[16708];
+        GamevalEntry[] out = new GamevalEntry[16709];
         int offset = 0;
         offset = copy(out, offset, DbRowIDEntries_0.entries());
         offset = copy(out, offset, DbRowIDEntries_1.entries());

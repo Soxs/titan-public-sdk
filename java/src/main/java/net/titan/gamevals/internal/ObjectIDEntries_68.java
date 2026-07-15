@@ -10,6 +10,7 @@ final class ObjectIDEntries_68 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(34883, "HOSDUN_CATAVINE_END_DIAG", "hosdun_catavine_end_diag", "loctypes"),
             new GamevalEntry(34884, "HOSDUN_BRICK_WALL", "hosdun_brick_wall", "loctypes"),
             new GamevalEntry(34885, "HOSDUN_BRICK_WALL_END_R", "hosdun_brick_wall_end_r", "loctypes"),
             new GamevalEntry(34886, "HOSDUN_BRICK_WALL_END_L", "hosdun_brick_wall_end_l", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_68 {
             new GamevalEntry(35392, "SOTE_WARPED_LIBRARY_DESK_01_CHAIR_B", "sote_warped_library_desk_01_chair_b", "loctypes"),
             new GamevalEntry(35393, "SOTE_WARPED_LIBRARY_DESK_01_CHAIR_C", "sote_warped_library_desk_01_chair_c", "loctypes"),
             new GamevalEntry(35394, "SOTE_WARPED_LIBRARY_DESK_02", "sote_warped_library_desk_02", "loctypes"),
-            new GamevalEntry(35395, "SOTE_WARPED_LIBRARY_DESK_02_CHAIR_A", "sote_warped_library_desk_02_chair_a", "loctypes"),
         };
     }
 

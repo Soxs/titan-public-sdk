@@ -10,6 +10,7 @@ final class DbRowIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3584, "PRIDE24_CAPE_GAY", "pride24_cape_gay", "rowtypes"),
             new GamevalEntry(3585, "PRIDE24_SHIRT_PRIDE", "pride24_shirt_pride", "rowtypes"),
             new GamevalEntry(3586, "PRIDE24_SHIRT_BISEXUAL", "pride24_shirt_bisexual", "rowtypes"),
             new GamevalEntry(3587, "PRIDE24_SHIRT_ASEXUAL", "pride24_shirt_asexual", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_7 {
             new GamevalEntry(4093, "HOME_TELE_ANIM_TOGGLE_LIST", "home_tele_anim_toggle_list", "rowtypes"),
             new GamevalEntry(4094, "VENGEANCE_ANIM_TOGGLE_LIST", "vengeance_anim_toggle_list", "rowtypes"),
             new GamevalEntry(4095, "ALCHEMY_ANIM_TOGGLE_LIST", "alchemy_anim_toggle_list", "rowtypes"),
-            new GamevalEntry(4096, "NPC_CONTACT_ANIM_TOGGLE_LIST", "npc_contact_anim_toggle_list", "rowtypes"),
         };
     }
 

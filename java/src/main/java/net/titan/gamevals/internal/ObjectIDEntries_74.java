@@ -10,6 +10,7 @@ final class ObjectIDEntries_74 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(37955, "TUT2_COMBAT_LADDER", "Ladder", "loctypes"),
             new GamevalEntry(37956, "TUT2_BANK_LADDER", "Ladder", "loctypes"),
             new GamevalEntry(37957, "TOURNAMENT_CLANWARS_TEMPPORTAL_HUB", "Handy portal", "loctypes"),
             new GamevalEntry(37958, "PRIF_IORWERTH_DUNGEON_CAMP_TENT", "prif_iorwerth_dungeon_camp_tent", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_74 {
             new GamevalEntry(38464, "HALLOWED_FLOOR_1_SOUTHPATH_STAIRS", "Stairs", "loctypes"),
             new GamevalEntry(38465, "HALLOWED_FLOOR_1_WESTPATH_DROP", "Stairs", "loctypes"),
             new GamevalEntry(38466, "HALLOWED_FLOOR_2_NORTHPATH_STAIRS", "Stairs", "loctypes"),
-            new GamevalEntry(38467, "HALLOWED_FLOOR_2_EASTPATH_STAIRS", "Stairs", "loctypes"),
         };
     }
 

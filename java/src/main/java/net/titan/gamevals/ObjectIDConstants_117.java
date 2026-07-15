@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_117 {
+    int BOATKIT_DECK_STRAIGHT03_PIRATE = 59978;
     int BOATKIT_DECK_DIAGONAL01_PIRATE = 59979;
     int BOATKIT_DECK_DIAGONAL01_MIRROR_PIRATE = 59980;
     int BOATKIT_HELM01_PIRATE = 59981;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_117 {
     int SALVAGING_HOOK_RAFT_ADAMANT = 60487;
     int SALVAGING_HOOK_RAFT_RUNE = 60488;
     int SALVAGING_HOOK_RAFT_DRAGON = 60489;
-    int SALVAGING_HOOK_BRONZE = 60490;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_36 {
+    int AIDE_BANKBOOTH_CLOSED = 18492;
     int AIDE_SIGNPOST_1 = 18493;
     int AIDE_FISHING_NET = 18494;
     int AIDE_BOOKCASE2 = 18495;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_36 {
     int SOS_FAM_ROPE_UP = 19001;
     int SOS_FAM_ROPE_DOWN = 19002;
     int SOS_FAM_LADD_UP = 19003;
-    int SOS_FAM_LADD_DOWN = 19004;
 }

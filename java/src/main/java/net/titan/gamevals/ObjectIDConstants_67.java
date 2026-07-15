@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_67 {
+    int BRIMSTONE_DECO_SIDE = 34371;
     int BRIMSTONE_SULPHUR_CLIFF_1 = 34372;
     int BRIMSTONE_SULPHUR_CLIFF_2 = 34373;
     int BRIMSTONE_SULPHUR_CLIFF_3 = 34374;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_67 {
     int HOSDUN_CATAVINE_DIAG3 = 34880;
     int HOSDUN_CATAVINE_DIAGFILLER = 34881;
     int HOSDUN_CATAVINE_END = 34882;
-    int HOSDUN_CATAVINE_END_DIAG = 34883;
 }

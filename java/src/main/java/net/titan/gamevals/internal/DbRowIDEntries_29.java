@@ -10,6 +10,7 @@ final class DbRowIDEntries_29 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(15078, "LEAGUE_TASK_OBTAIN_50_MILLION_HUNTER_XP", "league_task_obtain_50_million_hunter_xp", "rowtypes"),
             new GamevalEntry(15079, "LEAGUE_TASK_OBTAIN_50_MILLION_MAGIC_XP", "league_task_obtain_50_million_magic_xp", "rowtypes"),
             new GamevalEntry(15080, "LEAGUE_TASK_OBTAIN_50_MILLION_MINING_XP", "league_task_obtain_50_million_mining_xp", "rowtypes"),
             new GamevalEntry(15081, "LEAGUE_TASK_OBTAIN_50_MILLION_PRAYER_XP", "league_task_obtain_50_million_prayer_xp", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_29 {
             new GamevalEntry(15587, "TALENT_BUILD_CROSSBOWS_20", "talent_build_crossbows_20", "rowtypes"),
             new GamevalEntry(15588, "TALENT_BUILD_CROSSBOWS_30", "talent_build_crossbows_30", "rowtypes"),
             new GamevalEntry(15589, "TALENT_BUILD_CROSSBOWS_35", "talent_build_crossbows_35", "rowtypes"),
-            new GamevalEntry(15590, "TALENT_BUILD_BLOWPIPES_CAPSTONE_10", "talent_build_blowpipes_capstone_10", "rowtypes"),
         };
     }
 

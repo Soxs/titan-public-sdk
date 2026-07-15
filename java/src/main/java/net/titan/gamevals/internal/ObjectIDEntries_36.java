@@ -10,6 +10,7 @@ final class ObjectIDEntries_36 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(18492, "AIDE_BANKBOOTH_CLOSED", "Closed booth", "loctypes"),
             new GamevalEntry(18493, "AIDE_SIGNPOST_1", "Signpost", "loctypes"),
             new GamevalEntry(18494, "AIDE_FISHING_NET", "aide_fishing_net", "loctypes"),
             new GamevalEntry(18495, "AIDE_BOOKCASE2", "Bookcase", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_36 {
             new GamevalEntry(19001, "SOS_FAM_ROPE_UP", "Rope", "loctypes"),
             new GamevalEntry(19002, "SOS_FAM_ROPE_DOWN", "Rope", "loctypes"),
             new GamevalEntry(19003, "SOS_FAM_LADD_UP", "Ladder", "loctypes"),
-            new GamevalEntry(19004, "SOS_FAM_LADD_DOWN", "Ladder", "loctypes"),
         };
     }
 

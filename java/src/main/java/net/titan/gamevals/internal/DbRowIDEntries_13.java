@@ -10,6 +10,7 @@ final class DbRowIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6774, "ACTION_COX_UNIQUE", "action_cox_unique", "rowtypes"),
             new GamevalEntry(6775, "ACTION_GET_TOA_UNIQUE", "action_get_toa_unique", "rowtypes"),
             new GamevalEntry(6776, "ACTION_GET_TOB_UNIQUE", "action_get_tob_unique", "rowtypes"),
             new GamevalEntry(6777, "ACTION_VORKATH_UNIQUE", "action_vorkath_unique", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_13 {
             new GamevalEntry(7394, "SAILING_CHARTING_CURRENT_DUCK_SOUL_BAY_CORE", "sailing_charting_current_duck_soul_bay_core", "rowtypes"),
             new GamevalEntry(7395, "SAILING_CHARTING_CURRENT_DUCK_BACKWATER", "sailing_charting_current_duck_backwater", "rowtypes"),
             new GamevalEntry(7396, "SAILING_CHARTING_CURRENT_DUCK_BACKWATER_CORE", "sailing_charting_current_duck_backwater_core", "rowtypes"),
-            new GamevalEntry(7397, "SAILING_CHARTING_CURRENT_DUCK_WESTERN_GATE", "sailing_charting_current_duck_western_gate", "rowtypes"),
         };
     }
 

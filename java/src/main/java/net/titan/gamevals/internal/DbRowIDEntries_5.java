@@ -10,6 +10,7 @@ final class DbRowIDEntries_5 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2560, "MUSIC_BARBARIANISM", "music_barbarianism", "rowtypes"),
             new GamevalEntry(2561, "MUSIC_BARKING_MAD", "music_barking_mad", "rowtypes"),
             new GamevalEntry(2562, "MUSIC_BAROQUE", "music_baroque", "rowtypes"),
             new GamevalEntry(2563, "MUSIC_BARRELCHEST_BATTLE", "music_barrelchest_battle", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_5 {
             new GamevalEntry(3069, "MUSIC_STAGNANT", "music_stagnant", "rowtypes"),
             new GamevalEntry(3070, "MUSIC_STAND_UP_AND_BE_COUNTED", "music_stand_up_and_be_counted", "rowtypes"),
             new GamevalEntry(3071, "MUSIC_STARLIGHT", "music_starlight", "rowtypes"),
-            new GamevalEntry(3072, "MUSIC_START", "music_start", "rowtypes"),
         };
     }
 

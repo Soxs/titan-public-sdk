@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_21 {
+    int PVPW_ARMOURSTAND_FALADORSTOOL = 10779;
     int PVPW_ARMOURSTAND_PLAINSTOOL = 10780;
     int PVPW_ARMOURSTAND_CHAIR = 10781;
     int ROCKSLIDE_SMALL = 10782;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_21 {
     int FEVER_STEERINGWHEEL = 11306;
     int FEVER_ANCHOR = 11307;
     int FEVER_SHIP_LADDER = 11308;
-    int FEVER_SHIP_LADDERTOP = 11309;
 }

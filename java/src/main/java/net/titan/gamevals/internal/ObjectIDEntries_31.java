@@ -10,6 +10,7 @@ final class ObjectIDEntries_31 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(15932, "BREW_WORKBENCH", "Workbench", "loctypes"),
             new GamevalEntry(15933, "BREW_PARTS_TABLE_EMPTY", "Workbench", "loctypes"),
             new GamevalEntry(15934, "BREW_PARTS_TABLE_FULL", "Workbench", "loctypes"),
             new GamevalEntry(15935, "BREW_WATER_DUMMY", "Watering Hole", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_31 {
             new GamevalEntry(16441, "RANDOMSOUND_JUNGLE_AMBIENCE", "randomsound_jungle_ambience", "loctypes"),
             new GamevalEntry(16442, "RANDOMSOUND_FOREST_AMBIENCE", "randomsound_forest_ambience", "loctypes"),
             new GamevalEntry(16443, "RANDOMSOUND_WILDERNESS_AMBIENCE", "randomsound_wilderness_ambience", "loctypes"),
-            new GamevalEntry(16444, "RANDOMSOUND_MORYTANIA_AMBIENCE", "randomsound_morytania_ambience", "loctypes"),
         };
     }
 

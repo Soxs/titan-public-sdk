@@ -10,6 +10,7 @@ final class DbRowIDEntries_32 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(16614, "DR_BARRAGE4", "dr_barrage4", "rowtypes"),
             new GamevalEntry(16615, "DR_BARRAGE5", "dr_barrage5", "rowtypes"),
             new GamevalEntry(16616, "DR_BARRAGE6", "dr_barrage6", "rowtypes"),
             new GamevalEntry(16617, "DR_O_JAB_LEFT", "dr_o_jab_left", "rowtypes"),

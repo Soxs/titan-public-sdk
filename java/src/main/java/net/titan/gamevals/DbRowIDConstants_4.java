@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface DbRowIDConstants_4 {
+    int CLUEHELPER_COORDINATE_ELITE_30 = 2048;
     int CLUEHELPER_COORDINATE_ELITE_31 = 2049;
     int CLUEHELPER_COORDINATE_ELITE_32 = 2050;
     int CLUEHELPER_COORDINATE_ELITE_33 = 2051;
@@ -512,5 +513,4 @@ public interface DbRowIDConstants_4 {
     int MUSIC_BANDOS_BATTALION = 2557;
     int MUSIC_BARB_ASSAULT_TUTORIAL = 2558;
     int MUSIC_BARB_WIRE = 2559;
-    int MUSIC_BARBARIANISM = 2560;
 }

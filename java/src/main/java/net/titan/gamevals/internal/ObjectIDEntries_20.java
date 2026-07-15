@@ -10,6 +10,7 @@ final class ObjectIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10267, "MAKINGHISTORY_SHIELD_DISPLAY", "Shield Display", "loctypes"),
             new GamevalEntry(10268, "MAKINGHISTORY_LARGE_DISPLAY1_MULTILOC", "makinghistory_large_display1_multiloc", "loctypes"),
             new GamevalEntry(10269, "MAKINGHISTORY_LARGE_DISPLAY1", "Large Display", "loctypes"),
             new GamevalEntry(10270, "MAKINGHISTORY_LARGE_DISPLAY2_MULTILOC", "makinghistory_large_display2_multiloc", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_20 {
             new GamevalEntry(10776, "MAGICTRAINING_STAIRS_TOP_MIRROR", "Stairs", "loctypes"),
             new GamevalEntry(10777, "PVPW_BANKCHEST", "pvpw_bankchest", "loctypes"),
             new GamevalEntry(10778, "PVPW_ARMOURSTAND_BUSH", "pvpw_armourstand_bush", "loctypes"),
-            new GamevalEntry(10779, "PVPW_ARMOURSTAND_FALADORSTOOL", "pvpw_armourstand_faladorstool", "loctypes"),
         };
     }
 

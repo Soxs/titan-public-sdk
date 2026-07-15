@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_103 {
+    int CAVE_ROCK01_ENTRANCE01_MOUNTAIN01 = 52808;
     int TEOMAT_PIPES01_UP01 = 52809;
     int TEOMAT_PIPES01_CORNER01 = 52810;
     int TEOMAT_PIPES01_ACROSS01 = 52811;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_103 {
     int LUC2_CHURCHDOOR_OPENR = 53318;
     int LUC2_BF_LADDER_UP = 53319;
     int LUC2_BF_LADDER_DOWN = 53320;
-    int LUC2_BF_DOOR_OPEN = 53321;
 }

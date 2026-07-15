@@ -10,6 +10,7 @@ final class ObjectIDEntries_79 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(40515, "SNP_MAP_EDGE_FOREST_2_TOP_OFFSET_BLUE", "snp_map_edge_forest_2_top_offset_blue", "loctypes"),
             new GamevalEntry(40516, "SNP_MAP_EDGE_FOREST_3_TOP_OFFSET_BLUE", "snp_map_edge_forest_3_top_offset_blue", "loctypes"),
             new GamevalEntry(40517, "SNP_MAP_EDGE_FOREST_1_RED", "snp_map_edge_forest_1_red", "loctypes"),
             new GamevalEntry(40518, "SNP_MAP_EDGE_FOREST_2_RED", "snp_map_edge_forest_2_red", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_79 {
             new GamevalEntry(41024, "POH_LEAGUEHALL_PEDESTAL_HOTSPOT_1", "Pedestal space", "loctypes"),
             new GamevalEntry(41025, "POH_LEAGUEHALL_PEDESTAL_HOTSPOT_2", "Pedestal space", "loctypes"),
             new GamevalEntry(41026, "POH_LEAGUEHALL_PEDESTAL_HOTSPOT_3", "Pedestal space", "loctypes"),
-            new GamevalEntry(41027, "POH_LEAGUEHALL_TROPHYCASE_HOTSPOT", "Trophy case space", "loctypes"),
         };
     }
 

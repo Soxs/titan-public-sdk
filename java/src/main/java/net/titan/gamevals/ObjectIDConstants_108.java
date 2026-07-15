@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_108 {
+    int VMQ3_RUINS_BRAZIER_1 = 55369;
     int VMQ3_RUINS_BRAZIER_2 = 55370;
     int VMQ3_RUINS_BRAZIER_3 = 55371;
     int VMQ3_RUINS_BRAZIER_4 = 55372;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_108 {
     int LEAGUE_RAGINGECHOES_BLOCK_2X2 = 55878;
     int LEAGUE_RAGINGECHOES_BLOCK_2X2_B = 55879;
     int LEAGUE_RAGINGECHOES_BLOCK_2X1 = 55880;
-    int LEAGUE_RAGINGECHOES_BLOCK_1X1 = 55881;
 }

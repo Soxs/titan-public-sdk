@@ -55,6 +55,10 @@ final class VarbitIDEntries_20 {
             new GamevalEntry(15681, "SANGVESTI_HINT_CLOTHES_SHOP", "sangvesti_hint_clothes_shop", "varbittypes"),
             new GamevalEntry(15682, "SANGVESTI_HINT_FANCY_HOUSE_1", "sangvesti_hint_fancy_house_1", "varbittypes"),
             new GamevalEntry(15683, "SANGVESTI_HINT_BLACKSMITH", "sangvesti_hint_blacksmith", "varbittypes"),
+            new GamevalEntry(15684, "AFK_BLOODWOOD_TREE_PROGRESS", "afk_bloodwood_tree_progress", "varbittypes"),
+            new GamevalEntry(15685, "AFK_BLOODWOOD_TREE_DRAINING", "afk_bloodwood_tree_draining", "varbittypes"),
+            new GamevalEntry(15686, "CRIMSON_KISTEN_WARNING", "crimson_kisten_warning", "varbittypes"),
+            new GamevalEntry(15687, "SAILING_PLAYER_TRAWLING_SHOAL_BAITED_STEP", "sailing_player_trawling_shoal_baited_step", "varbittypes"),
             new GamevalEntry(15796, "XMAS24_INVITE_CHARLIE", "xmas24_invite_charlie", "varbittypes"),
             new GamevalEntry(15800, "XMAS24_INVITES", "xmas24_invites", "varbittypes"),
             new GamevalEntry(15892, "XMAS24_MATCH_AMIK", "xmas24_match_amik", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_20 {
             new GamevalEntry(17731, "ENT_TOTEMS_SITE_7_MULTIANIMAL_A_1", "ent_totems_site_7_multianimal_a_1", "varbittypes"),
             new GamevalEntry(17732, "ENT_TOTEMS_SITE_7_MULTIANIMAL_B_1", "ent_totems_site_7_multianimal_b_1", "varbittypes"),
             new GamevalEntry(17733, "ENT_TOTEMS_SITE_7_MULTIANIMAL_C_1", "ent_totems_site_7_multianimal_c_1", "varbittypes"),
-            new GamevalEntry(17734, "ENT_TOTEMS_SITE_7_MULTIANIMAL_D_1", "ent_totems_site_7_multianimal_d_1", "varbittypes"),
-            new GamevalEntry(17735, "ENT_TOTEMS_SITE_7_MULTIANIMAL_E_1", "ent_totems_site_7_multianimal_e_1", "varbittypes"),
-            new GamevalEntry(17736, "ENT_TOTEMS_SITE_7_ALL_MULTIANIMALS", "ent_totems_site_7_all_multianimals", "varbittypes"),
-            new GamevalEntry(17737, "ENT_TOTEMS_SITE_8_BASE", "ent_totems_site_8_base", "varbittypes"),
         };
     }
 

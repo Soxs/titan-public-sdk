@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_71 {
+    int CRYSTAL_TOWER_TOP_ROOF_E1 = 36419;
     int CRYSTAL_TOWER_TOP_ROOF_E2 = 36420;
     int CRYSTAL_TOWER_TOP_ROOF_E3 = 36421;
     int CRYSTAL_TOWER_TOP_ROOF_E4 = 36422;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_71 {
     int SOTE_LIGHT_2_A_8_EAST = 36928;
     int SOTE_LIGHT_2_A_8_EAST_SIZE3 = 36929;
     int SOTE_LIGHT_2_A_8_EAST_SIZE4 = 36930;
-    int SOTE_LIGHT_2_B_7_EAST = 36931;
 }

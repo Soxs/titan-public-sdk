@@ -358,4 +358,5 @@ public interface VarPlayerIDConstants_5 {
     int SANGVESTI_GENERAL_3 = 5668;
     int SANGVESTI_PLAYER_POS = 5669;
     int SANGVESTI_PLAYER_LAST_DEATH_POS = 5670;
+    int AFK_BLOODWOOD_TREE = 5671;
 }

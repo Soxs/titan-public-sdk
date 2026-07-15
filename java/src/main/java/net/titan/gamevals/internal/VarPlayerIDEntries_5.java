@@ -367,6 +367,7 @@ final class VarPlayerIDEntries_5 {
             new GamevalEntry(5668, "SANGVESTI_GENERAL_3", "sangvesti_general_3", "varptypes"),
             new GamevalEntry(5669, "SANGVESTI_PLAYER_POS", "sangvesti_player_pos", "varptypes"),
             new GamevalEntry(5670, "SANGVESTI_PLAYER_LAST_DEATH_POS", "sangvesti_player_last_death_pos", "varptypes"),
+            new GamevalEntry(5671, "AFK_BLOODWOOD_TREE", "afk_bloodwood_tree", "varptypes"),
         };
     }
 

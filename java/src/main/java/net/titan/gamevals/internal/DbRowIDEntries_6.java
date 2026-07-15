@@ -10,6 +10,7 @@ final class DbRowIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3072, "MUSIC_START", "music_start", "rowtypes"),
             new GamevalEntry(3073, "MUSIC_STILL_NIGHT", "music_still_night", "rowtypes"),
             new GamevalEntry(3074, "MUSIC_STILLNESS", "music_stillness", "rowtypes"),
             new GamevalEntry(3075, "MUSIC_STORM_BREW", "music_storm_brew", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_6 {
             new GamevalEntry(3581, "PRIDE24_CAPE_NONBINARY", "pride24_cape_nonbinary", "rowtypes"),
             new GamevalEntry(3582, "PRIDE24_CAPE_GENDERQUEER", "pride24_cape_genderqueer", "rowtypes"),
             new GamevalEntry(3583, "PRIDE24_CAPE_LESBIAN", "pride24_cape_lesbian", "rowtypes"),
-            new GamevalEntry(3584, "PRIDE24_CAPE_GAY", "pride24_cape_gay", "rowtypes"),
         };
     }
 

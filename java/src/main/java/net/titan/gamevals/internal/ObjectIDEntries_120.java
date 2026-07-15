@@ -10,6 +10,7 @@ final class ObjectIDEntries_120 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(61515, "WALLKIT_DRAKAN01_WALLTOP01", "wallkit_drakan01_walltop01", "loctypes"),
             new GamevalEntry(61516, "DRAKAN_PAGES1", "drakan_pages1", "loctypes"),
             new GamevalEntry(61517, "DRAKAN_PAGES2", "drakan_pages2", "loctypes"),
             new GamevalEntry(61518, "WALLKIT_DRAKAN01_DEFAULT01_DARKMEYER", "wallkit_drakan01_default01_darkmeyer", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_120 {
             new GamevalEntry(62024, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE02_MIRROR", "vampyrium_jovkai01_bridge01_fence02_mirror", "loctypes"),
             new GamevalEntry(62025, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE03_MIRROR", "vampyrium_jovkai01_bridge01_fence03_mirror", "loctypes"),
             new GamevalEntry(62026, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE04", "vampyrium_jovkai01_bridge01_fence04", "loctypes"),
-            new GamevalEntry(62027, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE05", "vampyrium_jovkai01_bridge01_fence05", "loctypes"),
         };
     }
 

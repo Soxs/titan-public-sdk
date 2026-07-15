@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_60 {
+    int FOSSIL_U_ROCKS_BIG_SOFT_03 = 30786;
     int FOSSIL_U_ROCKS_SMALL_SOFT_01 = 30787;
     int FOSSIL_U_ROCKS_SMALL_SOFT_02 = 30788;
     int FOSSIL_U_ROCKS_SMALL_SOFT_03 = 30789;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_60 {
     int FOSSIL_VM_DISPLAY_26_2 = 31295;
     int FOSSIL_VM_DISPLAY_26_3 = 31296;
     int FOSSIL_VM_DISPLAY_26_4 = 31297;
-    int FOSSIL_VM_DISPLAY_26_5 = 31298;
 }

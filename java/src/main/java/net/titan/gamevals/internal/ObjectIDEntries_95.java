@@ -10,6 +10,7 @@ final class ObjectIDEntries_95 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(48708, "BRIDGEKIT_ZEMA_RAILING07", "bridgekit_zema_railing07", "loctypes"),
             new GamevalEntry(48709, "BRIDGEKIT_ZEMA_RAILING07_MIRROR", "bridgekit_zema_railing07_mirror", "loctypes"),
             new GamevalEntry(48710, "BRIDGEKIT_ZEMA_RAILING08", "bridgekit_zema_railing08", "loctypes"),
             new GamevalEntry(48711, "BRIDGEKIT_ZEMA_RAILING08_MIRROR", "bridgekit_zema_railing08_mirror", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_95 {
             new GamevalEntry(49217, "DT2_SCAR_BOAT_ALT_NOOP", "Rowboat", "loctypes"),
             new GamevalEntry(49218, "DT2_SCAR_DEBRIS", "dt2_scar_debris", "loctypes"),
             new GamevalEntry(49219, "DT2_SCAR_DEBRIS_OP", "Debris", "loctypes"),
-            new GamevalEntry(49220, "DT2_SCAR_DEBRIS_NOOP", "Debris", "loctypes"),
         };
     }
 

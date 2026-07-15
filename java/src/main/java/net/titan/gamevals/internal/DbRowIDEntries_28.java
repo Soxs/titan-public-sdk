@@ -10,6 +10,7 @@ final class DbRowIDEntries_28 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14565, "LEAGUE_TASK_PRAY_AT_THE_SOUTHERN_CHAOS_TEMPLE", "league_task_pray_at_the_southern_chaos_temple", "rowtypes"),
             new GamevalEntry(14566, "LEAGUE_TASK_PRAY_AT_THE_WESTERN_CHAOS_TEMPLE", "league_task_pray_at_the_western_chaos_temple", "rowtypes"),
             new GamevalEntry(14567, "LEAGUE_TASK_PROVIDE_TERRY_A_BUCKLE", "league_task_provide_terry_a_buckle", "rowtypes"),
             new GamevalEntry(14568, "LEAGUE_TASK_PURCHASE_A_HALO_FROM_CASTLEWARS", "league_task_purchase_a_halo_from_castlewars", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_28 {
             new GamevalEntry(15075, "LEAGUE_TASK_OBTAIN_50_MILLION_FLETCHING_XP", "league_task_obtain_50_million_fletching_xp", "rowtypes"),
             new GamevalEntry(15076, "LEAGUE_TASK_OBTAIN_50_MILLION_HERBLORE_XP", "league_task_obtain_50_million_herblore_xp", "rowtypes"),
             new GamevalEntry(15077, "LEAGUE_TASK_OBTAIN_50_MILLION_HITPOINTS_XP", "league_task_obtain_50_million_hitpoints_xp", "rowtypes"),
-            new GamevalEntry(15078, "LEAGUE_TASK_OBTAIN_50_MILLION_HUNTER_XP", "league_task_obtain_50_million_hunter_xp", "rowtypes"),
         };
     }
 

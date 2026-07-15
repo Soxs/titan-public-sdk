@@ -10,6 +10,7 @@ final class DbRowIDEntries_3 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1536, "CLUEHELPER_ANAGRAM_MEDIUM_KAYLEE", "cluehelper_anagram_medium_kaylee", "rowtypes"),
             new GamevalEntry(1537, "CLUEHELPER_ANAGRAM_MEDIUM_GALLOW", "cluehelper_anagram_medium_gallow", "rowtypes"),
             new GamevalEntry(1538, "CLUEHELPER_ANAGRAM_MEDIUM_FEMI", "cluehelper_anagram_medium_femi", "rowtypes"),
             new GamevalEntry(1539, "CLUEHELPER_ANAGRAM_MEDIUM_EDMOND", "cluehelper_anagram_medium_edmond", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_3 {
             new GamevalEntry(2045, "CLUEHELPER_COORDINATE_ELITE_27", "cluehelper_coordinate_elite_27", "rowtypes"),
             new GamevalEntry(2046, "CLUEHELPER_COORDINATE_ELITE_28", "cluehelper_coordinate_elite_28", "rowtypes"),
             new GamevalEntry(2047, "CLUEHELPER_COORDINATE_ELITE_29", "cluehelper_coordinate_elite_29", "rowtypes"),
-            new GamevalEntry(2048, "CLUEHELPER_COORDINATE_ELITE_30", "cluehelper_coordinate_elite_30", "rowtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_115 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(58954, "SAILING_BT_CRYSTAL_HEFIN_PARENT", "sailing_bt_crystal_hefin_parent", "loctypes"),
             new GamevalEntry(58955, "SAILING_BT_CRYSTAL_HEFIN_INACTIVE", "Crystal of Hefin", "loctypes"),
             new GamevalEntry(58956, "SAILING_BT_CRYSTAL_HEFIN_ACTIVATED", "Crystal of Hefin", "loctypes"),
             new GamevalEntry(58957, "SAILING_CRYSTAL_FLECKED_PORTAL_HEFIN_PARENT", "sailing_crystal_flecked_portal_hefin_parent", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_115 {
             new GamevalEntry(59463, "SAILING_COMBAT_HEAT_SHIELD_MEDIUM", "Warm brazier", "loctypes"),
             new GamevalEntry(59464, "SAILING_COMBAT_HEAT_SHIELD_MEDIUM_INACTIVE", "Warm brazier", "loctypes"),
             new GamevalEntry(59465, "SAILING_COMBAT_HEAT_SHIELD_HIGH", "Scorching brazier", "loctypes"),
-            new GamevalEntry(59466, "SAILING_COMBAT_HEAT_SHIELD_HIGH_INACTIVE", "Scorching brazier", "loctypes"),
         };
     }
 

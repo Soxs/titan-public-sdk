@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_22 {
+    int FEVER_SHIP_LADDERTOP = 11309;
     int FEVER_CLIMBING_NET = 11310;
     int FEVER_SWING_ROPE = 11311;
     int FEVER_CANNON_NON_ACTIVE = 11312;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_22 {
     int TZHAAR_CAVE_WALL_1 = 11818;
     int TZHAAR_CAVE_WALL_2 = 11819;
     int TZHAAR_CAVE_WALL_3 = 11820;
-    int TZHAAR_CAVE_WALL_4 = 11821;
 }

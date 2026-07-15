@@ -10,6 +10,7 @@ final class ObjectIDEntries_91 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(46660, "GHORROCK_METAL_GATE_PADLOCK_CLOSED", "Gate", "loctypes"),
             new GamevalEntry(46661, "GHORROCK_METAL_GATE_PADLOCK_OPEN", "Gate", "loctypes"),
             new GamevalEntry(46662, "GHORROCK_ICE01", "ghorrock_ice01", "loctypes"),
             new GamevalEntry(46663, "GHORROCK_ICE02", "ghorrock_ice02", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_91 {
             new GamevalEntry(47169, "CAVEKIT_WEB02_DEFAULT02_MIRROR", "cavekit_web02_default02_mirror", "loctypes"),
             new GamevalEntry(47170, "WILD_ESCAPECAVE_DUGUPSOIL_1", "wild_escapecave_dugupsoil_1", "loctypes"),
             new GamevalEntry(47171, "WILD_ESCAPECAVE_DUGUPSOIL_2", "wild_escapecave_dugupsoil_2", "loctypes"),
-            new GamevalEntry(47172, "WILD_ESCAPECAVE_DUGUPSOIL_3", "wild_escapecave_dugupsoil_3", "loctypes"),
         };
     }
 

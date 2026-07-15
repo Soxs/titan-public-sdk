@@ -10,6 +10,7 @@ final class ObjectIDEntries_77 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(39491, "DARKM_RICH_STAIRCASE_BOTTOM", "Staircase", "loctypes"),
             new GamevalEntry(39492, "DARKM_RICH_STAIRCASE_TOP", "Staircase", "loctypes"),
             new GamevalEntry(39493, "DARKM_RICH_STAIRCASE_RAILING", "darkm_rich_staircase_railing", "loctypes"),
             new GamevalEntry(39494, "DARKM_RICH_CHAIR", "Chair", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_77 {
             new GamevalEntry(40000, "CON_CONTRACT_VARROCK_SOUTH_HOTSPOT4", "con_contract_varrock_south_hotspot4", "loctypes"),
             new GamevalEntry(40001, "CON_CONTRACT_VARROCK_SOUTH_HOTSPOT6", "con_contract_varrock_south_hotspot6", "loctypes"),
             new GamevalEntry(40002, "CON_CONTRACT_HOSIDIUS_NORTH_HOTSPOT1", "con_contract_hosidius_north_hotspot1", "loctypes"),
-            new GamevalEntry(40003, "CON_CONTRACT_HOSIDIUS_NORTH_HOTSPOT3", "con_contract_hosidius_north_hotspot3", "loctypes"),
         };
     }
 

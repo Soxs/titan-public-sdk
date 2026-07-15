@@ -10,6 +10,7 @@ final class DbRowIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8421, "SAILING_CUSTOMISATION_TAB_SALVAGING", "sailing_customisation_tab_salvaging", "rowtypes"),
             new GamevalEntry(8422, "SAILING_CUSTOMISATION_TAB_TRAWLING", "sailing_customisation_tab_trawling", "rowtypes"),
             new GamevalEntry(8423, "SAILING_CUSTOMISATION_TAB_STORAGE", "sailing_customisation_tab_storage", "rowtypes"),
             new GamevalEntry(8424, "SAILING_CUSTOMISATION_TAB_STATIONS", "sailing_customisation_tab_stations", "rowtypes"),
@@ -521,7 +522,6 @@ final class DbRowIDEntries_16 {
             new GamevalEntry(8930, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_0", "port_task_civitas_illa_fortis_courier_0", "rowtypes"),
             new GamevalEntry(8931, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_1", "port_task_civitas_illa_fortis_courier_1", "rowtypes"),
             new GamevalEntry(8932, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_2", "port_task_civitas_illa_fortis_courier_2", "rowtypes"),
-            new GamevalEntry(8933, "PORT_TASK_CIVITAS_ILLA_FORTIS_COURIER_3", "port_task_civitas_illa_fortis_courier_3", "rowtypes"),
         };
     }
 

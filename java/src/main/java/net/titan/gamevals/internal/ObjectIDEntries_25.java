@@ -10,6 +10,7 @@ final class ObjectIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12845, "BURGH_DUNGEON", "burgh_dungeon", "loctypes"),
             new GamevalEntry(12846, "BURGH_DUNGEON_EXPOSED_PLASTER", "burgh_dungeon_exposed_plaster", "loctypes"),
             new GamevalEntry(12847, "BURGH_STONE_CRUMBLY_RIGHT_LEV2", "burgh_stone_crumbly_right_lev2", "loctypes"),
             new GamevalEntry(12848, "BURGH_STONE_CRUMBLY_LEFT_LEV2", "burgh_stone_crumbly_left_lev2", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_25 {
             new GamevalEntry(13360, "POH_TRAP_5", "Teleport trap", "loctypes"),
             new GamevalEntry(13361, "POH_TRAP_1_HIDDEN", "T Spike hidden", "loctypes"),
             new GamevalEntry(13362, "POH_TRAP_2_HIDDEN", "T Man hidden", "loctypes"),
-            new GamevalEntry(13363, "POH_TRAP_3_HIDDEN", "T Tangle hidden", "loctypes"),
         };
     }
 
