@@ -240,6 +240,51 @@ public final class Panel {
     // --- Tooltip on previous item ---
     public Panel tooltip(String t) { push(PanelElementType.SET_TOOLTIP, t); return this; }
 
+    // --- Groups / child regions ---
+    public Panel beginGroup() { push(PanelElementType.BEGIN_GROUP, ""); return this; }
+    public Panel endGroup() { push(PanelElementType.END_GROUP, ""); return this; }
+
+    /// Child-region flags for {@link #beginChild}. Combine with bitwise OR.
+    public static final int CHILD_BORDER = 1;
+    public static final int CHILD_PADDING = 2;
+    public static final int CHILD_AUTO_RESIZE_Y = 4;
+    public static final int CHILD_FRAME = 8;
+
+    public Panel beginChild(String id) { return beginChild(id, 0, 0.0f, 0.0f); }
+    public Panel beginChild(String id, int childFlags) { return beginChild(id, childFlags, 0.0f, 0.0f); }
+    public Panel beginChild(String id, int childFlags, float width, float height) {
+        PanelElement el = push(PanelElementType.BEGIN_CHILD, id);
+        el.intVal2 = childFlags;
+        el.widthVal = width;
+        el.heightVal = height;
+        return this;
+    }
+    public Panel endChild() { push(PanelElementType.END_CHILD, ""); return this; }
+
+    /// Framed, padded, auto-height "card" container. Pair with {@link #endCard}.
+    public Panel beginCard(String id) {
+        return beginChild(id, CHILD_FRAME | CHILD_AUTO_RESIZE_Y | CHILD_PADDING, 0.0f, 0.0f);
+    }
+    public Panel endCard() { push(PanelElementType.END_CHILD, ""); return this; }
+
+    /// Horizontal alignment for {@link #beginAlign}.
+    public enum Align {
+        LEFT(0), CENTER(1), RIGHT(2);
+        private final int protocolId;
+        Align(int id) { this.protocolId = id; }
+        public int protocolId() { return protocolId; }
+    }
+
+    /// Center/right-align a same-line run of buttons within the content width.
+    /// Emit the buttons (with {@link #sameLine()} between) between
+    /// {@code beginAlign()} and {@link #endAlign()}.
+    public Panel beginAlign(Align align) {
+        PanelElement el = push(PanelElementType.ALIGN_BEGIN, "");
+        el.intVal = align == null ? 0 : align.protocolId();
+        return this;
+    }
+    public Panel endAlign() { push(PanelElementType.ALIGN_END, ""); return this; }
+
     /// Raw escape hatch: append a custom element directly and return it so
     /// extra fields can be set in place.
     public PanelElement push(PanelElementType type, String text) {

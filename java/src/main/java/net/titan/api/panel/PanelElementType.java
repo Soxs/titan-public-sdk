@@ -58,7 +58,10 @@ public enum PanelElementType {
     PUSH_STYLE_COLOR(100),
     POP_STYLE_COLOR(101),
 
-    SET_TOOLTIP(110);
+    SET_TOOLTIP(110),
+
+    ALIGN_BEGIN(111),
+    ALIGN_END(112);
 
     private final int protocolId;
 
