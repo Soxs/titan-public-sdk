@@ -226,6 +226,15 @@ public final class Panel {
     public Panel tableNextColumn() { push(PanelElementType.TABLE_NEXT_COLUMN, ""); return this; }
     public Panel tableHeadersRow() { push(PanelElementType.TABLE_HEADERS_ROW, ""); return this; }
 
+    // --- Tabs ---
+    // Emit one or more beginTabItem(label)/endTabItem() blocks between
+    // beginTabBar()/endTabBar(). The controller renders only the selected tab's
+    // contents, so emit every tab's body unconditionally.
+    public Panel beginTabBar(String id) { push(PanelElementType.BEGIN_TAB_BAR, id); return this; }
+    public Panel endTabBar() { push(PanelElementType.END_TAB_BAR, ""); return this; }
+    public Panel beginTabItem(String label) { push(PanelElementType.BEGIN_TAB_ITEM, label); return this; }
+    public Panel endTabItem() { push(PanelElementType.END_TAB_ITEM, ""); return this; }
+
     public Panel tableSetupColumn(String label) {
         return tableSetupColumn(label, 0, 0.0f);
     }

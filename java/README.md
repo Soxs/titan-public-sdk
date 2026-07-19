@@ -25,7 +25,7 @@ runtime. Plugin JARs should contain plugin classes annotated with
 `@PluginDescriptor`, not their own copy of the SDK or Guice.
 
 Use `latest.release` while developing to pick up the newest published SDK.
-For reproducible plugin releases, pin an exact SDK version such as `0.1.3`.
+For reproducible plugin releases, pin an exact SDK version such as `0.1.24`.
 
 The SDK exposes Guice as a compile dependency so plugin authors can use:
 
@@ -114,6 +114,86 @@ editing the API itself.
   `Cache`, and `Magic`.
 - `net.titan.api.overlay`: in-game overlay draw and panel helpers, including
   WorldView-aware projection/draw methods.
+
+## Coordinated Breaks (0.1.24+)
+
+`net.titan.api.BreakHandler` mirrors the native and JavaScript Break Handler
+utility. Every call takes the exact `Plugin` object loaded by TitanClient.
+Helper classes may retain that owner and forward it; the embedded runtime
+validates object identity and the host stores only stable plugin id/load
+generation.
+
+```java
+import com.google.inject.Inject;
+import net.titan.api.BreakCommand;
+import net.titan.api.BreakHandler;
+import net.titan.api.Client;
+import net.titan.api.eventbus.Subscribe;
+import net.titan.api.events.ClientTick;
+import net.titan.api.plugins.Plugin;
+
+public final class MyPlugin implements Plugin {
+    @Inject
+    private Client client;
+
+    @Override
+    public void onEnable() {
+        BreakHandler.register(this); // true: configurable schedule owner
+        BreakHandler.start(this);
+        BreakHandler.poll(this);
+        BreakHandler.running(this);
+    }
+
+    @Subscribe
+    public void onClientTick(ClientTick event) {
+        BreakCommand command = BreakHandler.poll(this);
+        if (command.shouldBreak()) {
+            stopIssuingNewWork();
+            if (hasReachedSafeBoundary()) {
+                BreakHandler.paused(this);
+            }
+        } else if (command.shouldResume() && clientIsWorldReady()) {
+            resumeWork();
+            BreakHandler.running(this);
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        BreakHandler.stop(this);
+        BreakHandler.unregister(this);
+    }
+
+    private boolean clientIsWorldReady() {
+        return client.loggedIn()
+            && client.localPlayer().isPresent()
+            && client.currentWorldViewPtr().isPresent()
+            && client.sceneSizeX() > 0
+            && client.sceneSizeY() > 0;
+    }
+
+    private void stopIssuingNewWork() {
+        // Cancel/quiet this plugin's workers without starting another action.
+    }
+
+    private boolean hasReachedSafeBoundary() {
+        // Replace with the plugin-specific worker/player-idle checks.
+        return false;
+    }
+
+    private void resumeWork() {
+        // Restart this plugin's workers after the world-ready check.
+    }
+}
+```
+
+Pass `false` to `register(plugin, false)` for a participant-only plugin:
+it joins global pause/resume quorums but does not own a schedule. `stop` keeps
+the registration visible; `unregister` implies stop and removes it.
+`poll`, `shouldBreak`, `isBreakActive`, and `shouldResume` record the epoch
+used by subsequent `paused`, `defer`, `error`, and `running` reports. Stale
+reports fail closed. Cleanup is idempotent and the host also unregisters on
+disable, fault, reload, or unload.
 
 ## Build And Publish
 

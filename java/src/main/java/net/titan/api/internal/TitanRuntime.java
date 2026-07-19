@@ -23,6 +23,7 @@ public final class TitanRuntime {
     private static volatile InteractionBackend interactionBackend;
     private static volatile MouseBackend mouseBackend;
     private static volatile SchedulerBackend schedulerBackend;
+    private static volatile BreakHandlerBackend breakHandlerBackend;
     private static volatile LiveStateBackend liveStateBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
@@ -249,6 +250,25 @@ public final class TitanRuntime {
     public static void clearSchedulerBackend(SchedulerBackend backend) {
         if (schedulerBackend == backend) {
             schedulerBackend = null;
+        }
+    }
+
+    public static BreakHandlerBackend getBreakHandlerBackend() {
+        BreakHandlerBackend value = breakHandlerBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java Break Handler backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setBreakHandlerBackend(BreakHandlerBackend backend) {
+        breakHandlerBackend = backend;
+    }
+
+    public static void clearBreakHandlerBackend(BreakHandlerBackend backend) {
+        if (breakHandlerBackend == backend) {
+            breakHandlerBackend = null;
         }
     }
 
