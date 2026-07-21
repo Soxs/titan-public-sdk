@@ -842,6 +842,16 @@ interface ProtectedStringSettingInit extends SettingMetaBase {
     default?: string;
 }
 
+interface ButtonSettingInit extends SettingMetaBase {
+    key: string;
+    name: string;
+    /**
+     * Invoked when the button is clicked in the config UI. Runs on the game
+     * thread (main loop), including at the login screen. Keep it non-blocking.
+     */
+    onClick: () => void;
+}
+
 interface Setting<T> {
     readonly key: string;
     readonly name: string;
@@ -1296,6 +1306,12 @@ class Plugin {
     comboSetting(init: ComboSettingInit): Setting<number>;
     stringSetting(init: StringSettingInit): Setting<string>;
     protectedStringSetting(init: ProtectedStringSettingInit): Setting<string>;
+    /**
+     * Value-less action button. `init.onClick` runs on the game thread (main
+     * loop, including the login screen) when the button is clicked. Returns a
+     * Setting<void> that auto-registers.
+     */
+    buttonSetting(init: ButtonSettingInit): Setting<void>;
 
     // Section helper — auto-registers.
     section(key: string, name: string, opts?: SectionOptions): Section;

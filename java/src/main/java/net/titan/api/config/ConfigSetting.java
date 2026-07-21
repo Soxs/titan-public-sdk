@@ -11,7 +11,10 @@ public interface ConfigSetting {
         STRING,
         COLOR,
         COMBO,
-        PROTECTED_STRING
+        PROTECTED_STRING,
+        /// Value-less action button. Clicking it runs the plugin's attached
+        /// runnable ({@link ButtonSetting}) instead of storing a value.
+        BUTTON
     }
 
     String key();
