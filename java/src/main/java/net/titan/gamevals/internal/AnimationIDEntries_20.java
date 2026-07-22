@@ -10,6 +10,9 @@ final class AnimationIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10257, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_IDLE", "npc_whisperer_01_teleport_summon_souls_01_idle", "seqtypes"),
+            new GamevalEntry(10258, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_END", "npc_whisperer_01_teleport_summon_souls_01_end", "seqtypes"),
+            new GamevalEntry(10259, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_ATTACK", "npc_whisperer_01_teleport_summon_souls_01_attack", "seqtypes"),
             new GamevalEntry(10260, "NPC_WHISPERER_01_DEATH_01", "npc_whisperer_01_death_01", "seqtypes"),
             new GamevalEntry(10261, "NPC_WHISPERER_01_DEATH_02", "npc_whisperer_01_death_02", "seqtypes"),
             new GamevalEntry(10262, "NPC_WHISPERER_01_DEATH_02_PET", "npc_whisperer_01_death_02_pet", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_20 {
             new GamevalEntry(10766, "COA_ICTHLARIN_REFORMED", "coa_icthlarin_reformed", "seqtypes"),
             new GamevalEntry(10767, "COA_SCABARAS_REFORMED", "coa_scabaras_reformed", "seqtypes"),
             new GamevalEntry(10768, "COA_CRONDIS_REFORMED", "coa_crondis_reformed", "seqtypes"),
-            new GamevalEntry(10769, "COA_CANDLE_EFFECT", "coa_candle_effect", "seqtypes"),
-            new GamevalEntry(10770, "COA_TORCH", "coa_torch", "seqtypes"),
-            new GamevalEntry(10771, "COA_TORCH_LOW", "coa_torch_low", "seqtypes"),
         };
     }
 

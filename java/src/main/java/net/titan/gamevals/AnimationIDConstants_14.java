@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_14 {
+    int ROCK_GOLEM_WALK = 7181;
+    int CHINCHOMPA_CHATHEAD_IDLE = 7182;
+    int GIANT_BASIC_STAMP = 7183;
     int GIANT_BASIC_INJECT_GROW = 7184;
     int HUMAN_ZENYTECUTTING = 7185;
     int CHAIR_EAT_STOOL_1_DELAYOFFSET = 7186;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_14 {
     int FOSSIL_NPC_HERBIBOAR_BURROW = 7690;
     int FOSSIL_LOC_JUMPSHROOM_IDLE = 7691;
     int FOSSIL_LOC_JUMPSHROOM_JUMP = 7692;
-    int FOSSIL_LOC_JUMPSHROOM_SQUASH = 7693;
-    int FOSSIL_NPC_HERBIBOAR_IDLE = 7694;
-    int FOSSIL_NPC_HERBIBOAR_WALK = 7695;
 }

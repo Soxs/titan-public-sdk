@@ -10,6 +10,9 @@ final class AnimationIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2051, "LIGHT_CREATURE_READY", "light_creature_ready", "seqtypes"),
+            new GamevalEntry(2052, "LIGHT_CREATURE_GROW", "light_creature_grow", "seqtypes"),
+            new GamevalEntry(2053, "LIGHT_CREATURE_SHRINK", "light_creature_shrink", "seqtypes"),
             new GamevalEntry(2054, "TOG_WEEPING_WALL", "tog_weeping_wall", "seqtypes"),
             new GamevalEntry(2055, "TOG_SNAKE_OPENCLOSE", "tog_snake_openclose", "seqtypes"),
             new GamevalEntry(2056, "TOG_SNAKE_SLEEP", "tog_snake_sleep", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_4 {
             new GamevalEntry(2560, "WALL_CRUSH_SPELL_IMPACT", "wall_crush_spell_impact", "seqtypes"),
             new GamevalEntry(2561, "HUMAN_DH_WEAPON_READY", "human_dh_weapon_ready", "seqtypes"),
             new GamevalEntry(2562, "HUMAN_DH_WEAPON_WALK", "human_dh_weapon_walk", "seqtypes"),
-            new GamevalEntry(2563, "HUMAN_DH_WEAPON_RUN", "human_dh_weapon_run", "seqtypes"),
-            new GamevalEntry(2564, "CANDLE_FLICKER", "candle_flicker", "seqtypes"),
-            new GamevalEntry(2565, "GARDEN_PUSH_TROLLEY", "garden_push_trolley", "seqtypes"),
         };
     }
 

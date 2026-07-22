@@ -9,7 +9,7 @@ public final class SpotanimIDEntries {
     private SpotanimIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[4008];
+        GamevalEntry[] out = new GamevalEntry[4010];
         int offset = 0;
         offset = copy(out, offset, SpotanimIDEntries_0.entries());
         offset = copy(out, offset, SpotanimIDEntries_1.entries());

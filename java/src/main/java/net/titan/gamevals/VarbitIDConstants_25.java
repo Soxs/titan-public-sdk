@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface VarbitIDConstants_25 {
+    int MUSIC_PLAYLIST_3_TRACK_49 = 19986;
     int MUSIC_PLAYLIST_3_TRACK_50 = 19987;
     int MUSIC_PLAYLIST_3_TRACK_51 = 19988;
     int MUSIC_PLAYLIST_3_TRACK_52 = 19989;

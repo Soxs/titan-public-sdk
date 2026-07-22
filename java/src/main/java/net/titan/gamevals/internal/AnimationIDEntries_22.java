@@ -10,6 +10,9 @@ final class AnimationIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11284, "WGS_WASHERMAN_READY", "wgs_washerman_ready", "seqtypes"),
+            new GamevalEntry(11285, "HUMAN_FALL_LOOP", "human_fall_loop", "seqtypes"),
+            new GamevalEntry(11286, "HUMAN_GETUP_FROM_SLIP", "human_getup_from_slip", "seqtypes"),
             new GamevalEntry(11287, "WGS_SUROK_BANGING_PRISON_BARS", "wgs_surok_banging_prison_bars", "seqtypes"),
             new GamevalEntry(11288, "WGS_THAERSK_DRINKS_POTION", "wgs_thaersk_drinks_potion", "seqtypes"),
             new GamevalEntry(11289, "WGS_HEROIC_BRIDGE_JUMP", "wgs_heroic_bridge_jump", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_22 {
             new GamevalEntry(11793, "COA_ELIAS_BIND_SPOTANIM_01", "coa_elias_bind_spotanim_01", "seqtypes"),
             new GamevalEntry(11794, "COA_ARRAV_AXE_PROJANIM_01", "coa_arrav_axe_projanim_01", "seqtypes"),
             new GamevalEntry(11795, "COA_ARRAV_AXE_PROJANIM_02", "coa_arrav_axe_projanim_02", "seqtypes"),
-            new GamevalEntry(11796, "COA_ARRAV_AXE_SPOTANIM_01", "coa_arrav_axe_spotanim_01", "seqtypes"),
-            new GamevalEntry(11797, "COA_ZOMBIE_SPAWN", "coa_zombie_spawn", "seqtypes"),
-            new GamevalEntry(11798, "SHARATHTEERK_ATTACK_MAGIC_02", "sharathteerk_attack_magic_02", "seqtypes"),
         };
     }
 

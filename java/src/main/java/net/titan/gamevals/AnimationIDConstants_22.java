@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_22 {
+    int WGS_WASHERMAN_READY = 11284;
+    int HUMAN_FALL_LOOP = 11285;
+    int HUMAN_GETUP_FROM_SLIP = 11286;
     int WGS_SUROK_BANGING_PRISON_BARS = 11287;
     int WGS_THAERSK_DRINKS_POTION = 11288;
     int WGS_HEROIC_BRIDGE_JUMP = 11289;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_22 {
     int COA_ELIAS_BIND_SPOTANIM_01 = 11793;
     int COA_ARRAV_AXE_PROJANIM_01 = 11794;
     int COA_ARRAV_AXE_PROJANIM_02 = 11795;
-    int COA_ARRAV_AXE_SPOTANIM_01 = 11796;
-    int COA_ZOMBIE_SPAWN = 11797;
-    int SHARATHTEERK_ATTACK_MAGIC_02 = 11798;
 }

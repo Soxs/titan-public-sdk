@@ -505,6 +505,8 @@ final class ItemIDEntries_64 {
             new GamevalEntry(33830, "PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_MANGLED", "placeholder_ancient_sceptre_trouver_mangled", "objtypes"),
             new GamevalEntry(33831, "PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY", "placeholder_cert_aluft_coctail_glass_empty", "objtypes"),
             new GamevalEntry(33832, "PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY_DUMMY", "placeholder_cert_aluft_coctail_glass_empty_dummy", "objtypes"),
+            new GamevalEntry(33833, "LETVEK_IN_A_BUCKET", "Letvek in a bucket", "objtypes"),
+            new GamevalEntry(33834, "PLACEHOLDER_LETVEK_IN_A_BUCKET", "placeholder_letvek_in_a_bucket", "objtypes"),
         };
     }
 

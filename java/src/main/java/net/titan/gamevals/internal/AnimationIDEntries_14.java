@@ -10,6 +10,9 @@ final class AnimationIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7181, "ROCK_GOLEM_WALK", "rock_golem_walk", "seqtypes"),
+            new GamevalEntry(7182, "CHINCHOMPA_CHATHEAD_IDLE", "chinchompa_chathead_idle", "seqtypes"),
+            new GamevalEntry(7183, "GIANT_BASIC_STAMP", "giant_basic_stamp", "seqtypes"),
             new GamevalEntry(7184, "GIANT_BASIC_INJECT_GROW", "giant_basic_inject_grow", "seqtypes"),
             new GamevalEntry(7185, "HUMAN_ZENYTECUTTING", "human_zenytecutting", "seqtypes"),
             new GamevalEntry(7186, "CHAIR_EAT_STOOL_1_DELAYOFFSET", "chair_eat_stool_1_delayoffset", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_14 {
             new GamevalEntry(7690, "FOSSIL_NPC_HERBIBOAR_BURROW", "fossil_npc_herbiboar_burrow", "seqtypes"),
             new GamevalEntry(7691, "FOSSIL_LOC_JUMPSHROOM_IDLE", "fossil_loc_jumpshroom_idle", "seqtypes"),
             new GamevalEntry(7692, "FOSSIL_LOC_JUMPSHROOM_JUMP", "fossil_loc_jumpshroom_jump", "seqtypes"),
-            new GamevalEntry(7693, "FOSSIL_LOC_JUMPSHROOM_SQUASH", "fossil_loc_jumpshroom_squash", "seqtypes"),
-            new GamevalEntry(7694, "FOSSIL_NPC_HERBIBOAR_IDLE", "fossil_npc_herbiboar_idle", "seqtypes"),
-            new GamevalEntry(7695, "FOSSIL_NPC_HERBIBOAR_WALK", "fossil_npc_herbiboar_walk", "seqtypes"),
         };
     }
 

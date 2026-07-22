@@ -10,6 +10,9 @@ final class AnimationIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3075, "ENAKH_BONEGUARD_ATTACK", "enakh_boneguard_attack", "seqtypes"),
+            new GamevalEntry(3076, "ENAKH_BONEGUARD_DEATH", "enakh_boneguard_death", "seqtypes"),
+            new GamevalEntry(3077, "ENAKH_BONEGUARD_LARGE_DEATH", "enakh_boneguard_large_death", "seqtypes"),
             new GamevalEntry(3078, "ENAKH_BONEGUARD_WALK", "enakh_boneguard_walk", "seqtypes"),
             new GamevalEntry(3079, "SNP_FIRE_BOSS_READY", "snp_fire_boss_ready", "seqtypes"),
             new GamevalEntry(3080, "ENAKH_BONEGUARD_GLOW_SMALL_ATTACK", "enakh_boneguard_glow_small_attack", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_6 {
             new GamevalEntry(3585, "ELEMENTAL_ORB_CLOSES", "elemental_orb_closes", "seqtypes"),
             new GamevalEntry(3586, "MAGIC_CIRCLE_ZAP", "magic_circle_zap", "seqtypes"),
             new GamevalEntry(3587, "POH_JESTER_HOVER", "poh_jester_hover", "seqtypes"),
-            new GamevalEntry(3588, "POH_JESTER_ELEVATE", "poh_jester_elevate", "seqtypes"),
-            new GamevalEntry(3589, "POH_JESTER_DEELEVATE", "poh_jester_deelevate", "seqtypes"),
-            new GamevalEntry(3590, "POH_JESTER_DESCEND", "poh_jester_descend", "seqtypes"),
         };
     }
 

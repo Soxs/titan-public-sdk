@@ -36851,6 +36851,8 @@ interface PanelElement {
             readonly PLACEHOLDER_ANCIENT_SCEPTRE_TROUVER_MANGLED: 33830;
             readonly PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY: 33831;
             readonly PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY_DUMMY: 33832;
+            readonly LETVEK_IN_A_BUCKET: 33833;
+            readonly PLACEHOLDER_LETVEK_IN_A_BUCKET: 33834;
             byId(id: number): GamevalEntry | null;
         };
         readonly NpcID: {
@@ -125565,6 +125567,7 @@ interface PanelElement {
             readonly AFK_BLOODWOOD_TREE_DRAINING: 15685;
             readonly CRIMSON_KISTEN_WARNING: 15686;
             readonly SAILING_PLAYER_TRAWLING_SHOAL_BAITED_STEP: 15687;
+            readonly SLAYER_UNLOCK_HELM_LEAGUE_6: 15717;
             readonly XMAS24_INVITE_CHARLIE: 15796;
             readonly XMAS24_INVITES: 15800;
             readonly XMAS24_MATCH_AMIK: 15892;
@@ -132378,6 +132381,7 @@ interface PanelElement {
             readonly SANGVESTI_PLAYER_POS: 5669;
             readonly SANGVESTI_PLAYER_LAST_DEATH_POS: 5670;
             readonly AFK_BLOODWOOD_TREE: 5671;
+            readonly CA_TASK_COMPLETED_20: 5673;
             byId(id: number): GamevalEntry | null;
         };
         readonly VarClientID: {
@@ -145461,6 +145465,7 @@ interface PanelElement {
                 readonly COL_STREAM_FACING: 12;
                 readonly COL_SUCCESS_AUDIO: 13;
                 readonly COL_FAILURE_AUDIO: 14;
+                readonly COL_PET_RATE_SOURCE: 15;
             };
             readonly ArrowFletching: {
                 readonly ID: 258;
@@ -162999,6 +163004,7 @@ interface PanelElement {
             readonly CHATCON2: 576;
             readonly CHATCON3: 577;
             readonly CHATCON4: 578;
+            readonly ANCIENT_AXE_SPECIAL_OLD: 579;
             readonly CHATGOBLIN1: 580;
             readonly CHATGOBLIN2: 581;
             readonly CHATGOBLIN3: 582;
@@ -163023,10 +163029,12 @@ interface PanelElement {
             readonly CHATDRUNK2: 601;
             readonly CHATDRUNK3: 602;
             readonly CHATDRUNK4: 603;
+            readonly VFX_HUMAN_AXE_SOULREAPER_ORN_SPECIAL: 604;
             readonly CHATLAUGH1: 605;
             readonly CHATLAUGH2: 606;
             readonly CHATLAUGH3: 607;
             readonly CHATLAUGH4: 608;
+            readonly VFX_HUMAN_AXE_SOULREAPER_SPECIAL: 609;
             readonly CHATSAD1: 610;
             readonly CHATSAD2: 611;
             readonly CHATSAD3: 612;
@@ -180836,6 +180844,8 @@ interface PanelElement {
             readonly GARGBOSS_DEBRIS_SHADOW_240_DARK: 4005;
             readonly GARGBOSS_DEBRIS_SHADOW_270_DARK: 4006;
             readonly GARGBOSS_DEBRIS_SHADOW_300_DARK: 4007;
+            readonly ANCIENT_AXE_SPECIAL_SPOTANIM_ORN: 4008;
+            readonly ANCIENT_AXE_SPECIAL_SPOTANIM_OLD: 4009;
             byId(id: number): GamevalEntry | null;
         };
         readonly InterfaceID: {

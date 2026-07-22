@@ -10,6 +10,7 @@ final class VarbitIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(18902, "SAILING_CHARTING_CURRENT_DUCK_LITUS_LUCIS_COMPLETE", "sailing_charting_current_duck_litus_lucis_complete", "varbittypes"),
             new GamevalEntry(18903, "SAILING_CHARTING_CURRENT_DUCK_CRYSTAL_SEA_COMPLETE", "sailing_charting_current_duck_crystal_sea_complete", "varbittypes"),
             new GamevalEntry(18904, "SAILING_CHARTING_CURRENT_DUCK_MOONSHADOW_COMPLETE", "sailing_charting_current_duck_moonshadow_complete", "varbittypes"),
             new GamevalEntry(18905, "SAILING_CHARTING_DRINK_CRATE_WILD_WHISKY_COMPLETE", "sailing_charting_drink_crate_wild_whisky_complete", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_23 {
             new GamevalEntry(19423, "SAILING_BOAT_5_FLAG", "sailing_boat_5_flag", "varbittypes"),
             new GamevalEntry(19424, "SAILING_BOAT_5_BRAZIER", "sailing_boat_5_brazier", "varbittypes"),
             new GamevalEntry(19425, "SAILING_BOAT_5_HOTSPOT_0", "sailing_boat_5_hotspot_0", "varbittypes"),
-            new GamevalEntry(19426, "SAILING_BOAT_5_HOTSPOT_1", "sailing_boat_5_hotspot_1", "varbittypes"),
         };
     }
 

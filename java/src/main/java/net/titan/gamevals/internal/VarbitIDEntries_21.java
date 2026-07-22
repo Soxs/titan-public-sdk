@@ -10,6 +10,7 @@ final class VarbitIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(17733, "ENT_TOTEMS_SITE_7_MULTIANIMAL_C_1", "ent_totems_site_7_multianimal_c_1", "varbittypes"),
             new GamevalEntry(17734, "ENT_TOTEMS_SITE_7_MULTIANIMAL_D_1", "ent_totems_site_7_multianimal_d_1", "varbittypes"),
             new GamevalEntry(17735, "ENT_TOTEMS_SITE_7_MULTIANIMAL_E_1", "ent_totems_site_7_multianimal_e_1", "varbittypes"),
             new GamevalEntry(17736, "ENT_TOTEMS_SITE_7_ALL_MULTIANIMALS", "ent_totems_site_7_all_multianimals", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_21 {
             new GamevalEntry(18364, "AMENITY_WATER_PUMP_LAGUNA_AURORAE", "amenity_water_pump_laguna_aurorae", "varbittypes"),
             new GamevalEntry(18365, "AMENITY_COOKING_POT_LAGUNA_AURORAE", "amenity_cooking_pot_laguna_aurorae", "varbittypes"),
             new GamevalEntry(18366, "AMENITY_COOKING_POT_CHINCHOMPA", "amenity_cooking_pot_chinchompa", "varbittypes"),
-            new GamevalEntry(18367, "AMENITY_ANVIL_BUCCANEERS", "amenity_anvil_buccaneers", "varbittypes"),
         };
     }
 

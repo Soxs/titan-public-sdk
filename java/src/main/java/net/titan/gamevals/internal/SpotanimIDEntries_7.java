@@ -434,6 +434,8 @@ final class SpotanimIDEntries_7 {
             new GamevalEntry(4005, "GARGBOSS_DEBRIS_SHADOW_240_DARK", "gargboss_debris_shadow_240_dark", "spottypes"),
             new GamevalEntry(4006, "GARGBOSS_DEBRIS_SHADOW_270_DARK", "gargboss_debris_shadow_270_dark", "spottypes"),
             new GamevalEntry(4007, "GARGBOSS_DEBRIS_SHADOW_300_DARK", "gargboss_debris_shadow_300_dark", "spottypes"),
+            new GamevalEntry(4008, "ANCIENT_AXE_SPECIAL_SPOTANIM_ORN", "ancient_axe_special_spotanim_orn", "spottypes"),
+            new GamevalEntry(4009, "ANCIENT_AXE_SPECIAL_SPOTANIM_OLD", "ancient_axe_special_spotanim_old", "spottypes"),
         };
     }
 

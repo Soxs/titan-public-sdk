@@ -10,6 +10,9 @@ final class AnimationIDEntries_3 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1538, "ABYSSAL_DEATH", "abyssal_death", "seqtypes"),
+            new GamevalEntry(1539, "DEMON_SPAWN_FLY", "demon_spawn_fly", "seqtypes"),
+            new GamevalEntry(1540, "DEMON_SPAWN_ATTACK", "demon_spawn_attack", "seqtypes"),
             new GamevalEntry(1541, "DEMON_SPAWN_DEATH", "demon_spawn_death", "seqtypes"),
             new GamevalEntry(1542, "DEMON_SPAWN_PARRY", "demon_spawn_parry", "seqtypes"),
             new GamevalEntry(1543, "DEMON_SPAWN_SPOTANIM", "demon_spawn_spotanim", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_3 {
             new GamevalEntry(2048, "TOG_PLAYER_FLOAT_ACROSS", "tog_player_float_across", "seqtypes"),
             new GamevalEntry(2049, "TOG_CLIMB_SLOPE_UP", "tog_climb_slope_up", "seqtypes"),
             new GamevalEntry(2050, "TOG_CLIMB_SLOPE_DOWN", "tog_climb_slope_down", "seqtypes"),
-            new GamevalEntry(2051, "LIGHT_CREATURE_READY", "light_creature_ready", "seqtypes"),
-            new GamevalEntry(2052, "LIGHT_CREATURE_GROW", "light_creature_grow", "seqtypes"),
-            new GamevalEntry(2053, "LIGHT_CREATURE_SHRINK", "light_creature_shrink", "seqtypes"),
         };
     }
 

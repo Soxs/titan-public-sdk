@@ -10,6 +10,9 @@ final class AnimationIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12308, "SCRAMBLED_EGG_SPLAT", "scrambled_egg_splat", "seqtypes"),
+            new GamevalEntry(12309, "SCRAMBLED_EGG_SPLAT_OFFSET01", "scrambled_egg_splat_offset01", "seqtypes"),
+            new GamevalEntry(12310, "SCRAMBLED_EGG_SPLAT_OFFSET02", "scrambled_egg_splat_offset02", "seqtypes"),
             new GamevalEntry(12311, "SCRAMBLED_EGG_SPLATTERED_IDLE", "scrambled_egg_splattered_idle", "seqtypes"),
             new GamevalEntry(12312, "SCRAMBLED_ALAN_ENTER_HANDS_ON_HIP", "scrambled_alan_enter_hands_on_hip", "seqtypes"),
             new GamevalEntry(12313, "SCRAMBLED_ALAN_HANDS_ON_HIP", "scrambled_alan_hands_on_hip", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_24 {
             new GamevalEntry(12818, "LORE_BIRD_DEFEND", "lore_bird_defend", "seqtypes"),
             new GamevalEntry(12819, "LORE_BIRD_DEATH", "lore_bird_death", "seqtypes"),
             new GamevalEntry(12820, "LORE_MACAW_FLY_AWAY", "lore_macaw_fly_away", "seqtypes"),
-            new GamevalEntry(12821, "LORE_MACAW_FLY_BACK", "lore_macaw_fly_back", "seqtypes"),
-            new GamevalEntry(12822, "LORE_MAGPIE_SPECIAL", "lore_magpie_special", "seqtypes"),
-            new GamevalEntry(12823, "LORE_MINOTAUR_READY", "lore_minotaur_ready", "seqtypes"),
         };
     }
 

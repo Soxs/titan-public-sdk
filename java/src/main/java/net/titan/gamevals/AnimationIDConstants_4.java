@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_4 {
+    int LIGHT_CREATURE_READY = 2051;
+    int LIGHT_CREATURE_GROW = 2052;
+    int LIGHT_CREATURE_SHRINK = 2053;
     int TOG_WEEPING_WALL = 2054;
     int TOG_SNAKE_OPENCLOSE = 2055;
     int TOG_SNAKE_SLEEP = 2056;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_4 {
     int WALL_CRUSH_SPELL_IMPACT = 2560;
     int HUMAN_DH_WEAPON_READY = 2561;
     int HUMAN_DH_WEAPON_WALK = 2562;
-    int HUMAN_DH_WEAPON_RUN = 2563;
-    int CANDLE_FLICKER = 2564;
-    int GARDEN_PUSH_TROLLEY = 2565;
 }

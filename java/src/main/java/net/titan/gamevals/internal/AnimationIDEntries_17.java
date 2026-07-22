@@ -10,6 +10,9 @@ final class AnimationIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8720, "VYRELORD_VANSTROM_KLAUSE_DOUBLE_PUNCH_KICK", "vyrelord_vanstrom_klause_double_punch_kick", "seqtypes"),
+            new GamevalEntry(8721, "VYRELORD_VANSTROM_KLAUSE_DRAGON", "vyrelord_vanstrom_klause_dragon", "seqtypes"),
+            new GamevalEntry(8722, "VYRELORD_SUMMON", "vyrelord_summon", "seqtypes"),
             new GamevalEntry(8723, "VYRELORD_DISINTEGRATE", "vyrelord_disintegrate", "seqtypes"),
             new GamevalEntry(8724, "VYRELORD_DISINTEGRATE_SPOTANIM", "vyrelord_disintegrate_spotanim", "seqtypes"),
             new GamevalEntry(8725, "VYRELORD_DRAKAN_WALK", "vyrelord_drakan_walk", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_17 {
             new GamevalEntry(9229, "CANNON_LEAGUE03_ACTIVE", "cannon_league03_active", "seqtypes"),
             new GamevalEntry(9230, "CANNON_LEAGUE03_FIRE_N", "cannon_league03_fire_n", "seqtypes"),
             new GamevalEntry(9231, "CANNON_LEAGUE03_FIRE_NE", "cannon_league03_fire_ne", "seqtypes"),
-            new GamevalEntry(9232, "CANNON_LEAGUE03_FIRE_E", "cannon_league03_fire_e", "seqtypes"),
-            new GamevalEntry(9233, "CANNON_LEAGUE03_FIRE_SE", "cannon_league03_fire_se", "seqtypes"),
-            new GamevalEntry(9234, "CANNON_LEAGUE03_FIRE_S", "cannon_league03_fire_s", "seqtypes"),
         };
     }
 

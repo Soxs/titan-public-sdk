@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface VarbitIDConstants_24 {
+    int SAILING_BOAT_5_HOTSPOT_1 = 19426;
     int SAILING_BOAT_5_HOTSPOT_2 = 19427;
     int SAILING_BOAT_5_HOTSPOT_3 = 19428;
     int SAILING_BOAT_5_HOTSPOT_4 = 19429;
@@ -512,5 +513,4 @@ public interface VarbitIDConstants_24 {
     int MUSIC_PLAYLIST_3_TRACK_46 = 19983;
     int MUSIC_PLAYLIST_3_TRACK_47 = 19984;
     int MUSIC_PLAYLIST_3_TRACK_48 = 19985;
-    int MUSIC_PLAYLIST_3_TRACK_49 = 19986;
 }

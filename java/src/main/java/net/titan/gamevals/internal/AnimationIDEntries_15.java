@@ -10,6 +10,9 @@ final class AnimationIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7693, "FOSSIL_LOC_JUMPSHROOM_SQUASH", "fossil_loc_jumpshroom_squash", "seqtypes"),
+            new GamevalEntry(7694, "FOSSIL_NPC_HERBIBOAR_IDLE", "fossil_npc_herbiboar_idle", "seqtypes"),
+            new GamevalEntry(7695, "FOSSIL_NPC_HERBIBOAR_WALK", "fossil_npc_herbiboar_walk", "seqtypes"),
             new GamevalEntry(7696, "FOSSIL_NPC_HERBIBOAR_ATTACK", "fossil_npc_herbiboar_attack", "seqtypes"),
             new GamevalEntry(7697, "FOSSIL_NPC_FETAL", "fossil_npc_fetal", "seqtypes"),
             new GamevalEntry(7698, "FOSSIL_NPC_TARBEAST_SPLAT_SPOT", "fossil_npc_tarbeast_splat_spot", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_15 {
             new GamevalEntry(8202, "ARCEUUS_LORD_READY", "arceuus_lord_ready", "seqtypes"),
             new GamevalEntry(8203, "ARCEUUS_LORD_TRANCE", "arceuus_lord_trance", "seqtypes"),
             new GamevalEntry(8204, "AERIAL_FISHING_POOL", "aerial_fishing_pool", "seqtypes"),
-            new GamevalEntry(8205, "AERIAL_FISHING_LAUNCH", "aerial_fishing_launch", "seqtypes"),
-            new GamevalEntry(8206, "AERIAL_FISHING_TRAVEL", "aerial_fishing_travel", "seqtypes"),
-            new GamevalEntry(8207, "AERIAL_FISHING_SPLASH_MEDIUM", "aerial_fishing_splash_medium", "seqtypes"),
         };
     }
 

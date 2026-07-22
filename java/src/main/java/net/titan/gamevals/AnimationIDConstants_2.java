@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_2 {
+    int OGRE_LONGBOW = 1025;
+    int HUMAN_CHOMPYBIRD_OGREBELLOWS = 1026;
+    int ELEMENTAL_FIRE_READY = 1027;
     int ELEMENTAL_FIRE_WALK = 1028;
     int ELEMENTAL_FIRE_ATTACK = 1029;
     int ELEMENTAL_FIRE_DEFEND = 1030;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_2 {
     int ABYSSAL_TELEPORT = 1535;
     int ABYSSAL_READY = 1536;
     int ABYSSAL_ATTACK = 1537;
-    int ABYSSAL_DEATH = 1538;
-    int DEMON_SPAWN_FLY = 1539;
-    int DEMON_SPAWN_ATTACK = 1540;
 }

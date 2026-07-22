@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_3 {
+    int ABYSSAL_DEATH = 1538;
+    int DEMON_SPAWN_FLY = 1539;
+    int DEMON_SPAWN_ATTACK = 1540;
     int DEMON_SPAWN_DEATH = 1541;
     int DEMON_SPAWN_PARRY = 1542;
     int DEMON_SPAWN_SPOTANIM = 1543;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_3 {
     int TOG_PLAYER_FLOAT_ACROSS = 2048;
     int TOG_CLIMB_SLOPE_UP = 2049;
     int TOG_CLIMB_SLOPE_DOWN = 2050;
-    int LIGHT_CREATURE_READY = 2051;
-    int LIGHT_CREATURE_GROW = 2052;
-    int LIGHT_CREATURE_SHRINK = 2053;
 }

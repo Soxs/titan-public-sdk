@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_6 {
+    int ENAKH_BONEGUARD_ATTACK = 3075;
+    int ENAKH_BONEGUARD_DEATH = 3076;
+    int ENAKH_BONEGUARD_LARGE_DEATH = 3077;
     int ENAKH_BONEGUARD_WALK = 3078;
     int SNP_FIRE_BOSS_READY = 3079;
     int ENAKH_BONEGUARD_GLOW_SMALL_ATTACK = 3080;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_6 {
     int ELEMENTAL_ORB_CLOSES = 3585;
     int MAGIC_CIRCLE_ZAP = 3586;
     int POH_JESTER_HOVER = 3587;
-    int POH_JESTER_ELEVATE = 3588;
-    int POH_JESTER_DEELEVATE = 3589;
-    int POH_JESTER_DESCEND = 3590;
 }

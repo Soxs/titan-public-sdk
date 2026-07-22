@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_16 {
+    int AERIAL_FISHING_LAUNCH = 8205;
+    int AERIAL_FISHING_TRAVEL = 8206;
+    int AERIAL_FISHING_SPLASH_MEDIUM = 8207;
     int GOLDEN_TENCH_READY = 8208;
     int GOLDEN_TENCH_ATTACK = 8209;
     int KAHLITH_READY = 8210;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_16 {
     int VYRELORD_NEW_GROUND_ATTACK = 8717;
     int VYRELORD_ORB_TO_HUMAN_FADE = 8718;
     int VYRELORD_VANSTROM_KLAUS_DEFEND = 8719;
-    int VYRELORD_VANSTROM_KLAUSE_DOUBLE_PUNCH_KICK = 8720;
-    int VYRELORD_VANSTROM_KLAUSE_DRAGON = 8721;
-    int VYRELORD_SUMMON = 8722;
 }

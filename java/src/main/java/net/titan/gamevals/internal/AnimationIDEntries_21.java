@@ -10,6 +10,9 @@ final class AnimationIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10769, "COA_CANDLE_EFFECT", "coa_candle_effect", "seqtypes"),
+            new GamevalEntry(10770, "COA_TORCH", "coa_torch", "seqtypes"),
+            new GamevalEntry(10771, "COA_TORCH_LOW", "coa_torch_low", "seqtypes"),
             new GamevalEntry(10772, "COA_UZER_FIRE", "coa_uzer_fire", "seqtypes"),
             new GamevalEntry(10773, "COA_FORT_FIRE", "coa_fort_fire", "seqtypes"),
             new GamevalEntry(10774, "COA_FORT_FIRE_SMALL", "coa_fort_fire_small", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_21 {
             new GamevalEntry(11281, "WGS_PLAYER_SLIPPING_SPY_THE_ORB", "wgs_player_slipping_spy_the_orb", "seqtypes"),
             new GamevalEntry(11282, "WGS_PLAYER_SLIPPING_SPY_THE_ORB_PART_TWO", "wgs_player_slipping_spy_the_orb_part_two", "seqtypes"),
             new GamevalEntry(11283, "WGS_SHINING_LIGHT_ON_SEED", "wgs_shining_light_on_seed", "seqtypes"),
-            new GamevalEntry(11284, "WGS_WASHERMAN_READY", "wgs_washerman_ready", "seqtypes"),
-            new GamevalEntry(11285, "HUMAN_FALL_LOOP", "human_fall_loop", "seqtypes"),
-            new GamevalEntry(11286, "HUMAN_GETUP_FROM_SLIP", "human_getup_from_slip", "seqtypes"),
         };
     }
 

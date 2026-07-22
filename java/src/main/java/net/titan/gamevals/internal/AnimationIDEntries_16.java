@@ -10,6 +10,9 @@ final class AnimationIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8205, "AERIAL_FISHING_LAUNCH", "aerial_fishing_launch", "seqtypes"),
+            new GamevalEntry(8206, "AERIAL_FISHING_TRAVEL", "aerial_fishing_travel", "seqtypes"),
+            new GamevalEntry(8207, "AERIAL_FISHING_SPLASH_MEDIUM", "aerial_fishing_splash_medium", "seqtypes"),
             new GamevalEntry(8208, "GOLDEN_TENCH_READY", "golden_tench_ready", "seqtypes"),
             new GamevalEntry(8209, "GOLDEN_TENCH_ATTACK", "golden_tench_attack", "seqtypes"),
             new GamevalEntry(8210, "KAHLITH_READY", "kahlith_ready", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_16 {
             new GamevalEntry(8717, "VYRELORD_NEW_GROUND_ATTACK", "vyrelord_new_ground_attack", "seqtypes"),
             new GamevalEntry(8718, "VYRELORD_ORB_TO_HUMAN_FADE", "vyrelord_orb_to_human_fade", "seqtypes"),
             new GamevalEntry(8719, "VYRELORD_VANSTROM_KLAUS_DEFEND", "vyrelord_vanstrom_klaus_defend", "seqtypes"),
-            new GamevalEntry(8720, "VYRELORD_VANSTROM_KLAUSE_DOUBLE_PUNCH_KICK", "vyrelord_vanstrom_klause_double_punch_kick", "seqtypes"),
-            new GamevalEntry(8721, "VYRELORD_VANSTROM_KLAUSE_DRAGON", "vyrelord_vanstrom_klause_dragon", "seqtypes"),
-            new GamevalEntry(8722, "VYRELORD_SUMMON", "vyrelord_summon", "seqtypes"),
         };
     }
 

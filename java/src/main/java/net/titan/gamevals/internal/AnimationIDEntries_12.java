@@ -10,6 +10,9 @@ final class AnimationIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6155, "SLICE_SURFACE_GOBLIN_SERGENT_DEFEND", "slice_surface_goblin_sergent_defend", "seqtypes"),
+            new GamevalEntry(6156, "SLICE_SURFACE_GOBLIN_SERGENT_DEATH", "slice_surface_goblin_sergent_death", "seqtypes"),
+            new GamevalEntry(6157, "SLICE_SURFACE_GOBLIN_SERGENT_HIDE", "slice_surface_goblin_sergent_hide", "seqtypes"),
             new GamevalEntry(6158, "SLICE_SURFACE_GOBLIN_SERGENT_STAND_UP", "slice_surface_goblin_sergent_stand_up", "seqtypes"),
             new GamevalEntry(6159, "SLICE_DORGESH_URTAQ_ARGUING", "slice_dorgesh_urtaq_arguing", "seqtypes"),
             new GamevalEntry(6160, "SLICE_DWARF_ALVIJAR_ARGUING", "slice_dwarf_alvijar_arguing", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_12 {
             new GamevalEntry(6664, "PETROCK_HUMAN_STAY", "petrock_human_stay", "seqtypes"),
             new GamevalEntry(6665, "PETROCK_HUMAN_STICK", "petrock_human_stick", "seqtypes"),
             new GamevalEntry(6666, "DRAGON_SLAYER_CHILD_DEATH", "dragon_slayer_child_death", "seqtypes"),
-            new GamevalEntry(6667, "PETROCK_SPOTANIM_STAY", "petrock_spotanim_stay", "seqtypes"),
-            new GamevalEntry(6668, "PETROCK_SPOTANIM_STICK", "petrock_spotanim_stick", "seqtypes"),
-            new GamevalEntry(6669, "PETROCK_PROJANIM_STICK", "petrock_projanim_stick", "seqtypes"),
         };
     }
 

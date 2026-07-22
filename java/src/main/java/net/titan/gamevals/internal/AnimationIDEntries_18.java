@@ -10,6 +10,9 @@ final class AnimationIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9232, "CANNON_LEAGUE03_FIRE_E", "cannon_league03_fire_e", "seqtypes"),
+            new GamevalEntry(9233, "CANNON_LEAGUE03_FIRE_SE", "cannon_league03_fire_se", "seqtypes"),
+            new GamevalEntry(9234, "CANNON_LEAGUE03_FIRE_S", "cannon_league03_fire_s", "seqtypes"),
             new GamevalEntry(9235, "CANNON_LEAGUE03_FIRE_SW", "cannon_league03_fire_sw", "seqtypes"),
             new GamevalEntry(9236, "CANNON_LEAGUE03_FIRE_W", "cannon_league03_fire_w", "seqtypes"),
             new GamevalEntry(9237, "CANNON_LEAGUE03_FIRE_NW", "cannon_league03_fire_nw", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_18 {
             new GamevalEntry(9742, "NPC_MANDRILL_ATTACK_MELEE", "npc_mandrill_attack_melee", "seqtypes"),
             new GamevalEntry(9743, "NPC_BABA_ATTACK_MELEE", "npc_baba_attack_melee", "seqtypes"),
             new GamevalEntry(9744, "NPC_MANDRILL_ATTACK_RANGED_01", "npc_mandrill_attack_ranged_01", "seqtypes"),
-            new GamevalEntry(9745, "NPC_MANDRILL_ATTACK_RANGED_02", "npc_mandrill_attack_ranged_02", "seqtypes"),
-            new GamevalEntry(9746, "NPC_MANDRILL_ATTACK_MAGIC", "npc_mandrill_attack_magic", "seqtypes"),
-            new GamevalEntry(9747, "NPC_MANDRILL_ATTACK_MAGIC_02", "npc_mandrill_attack_magic_02", "seqtypes"),
         };
     }
 

@@ -10,6 +10,9 @@ final class AnimationIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3588, "POH_JESTER_ELEVATE", "poh_jester_elevate", "seqtypes"),
+            new GamevalEntry(3589, "POH_JESTER_DEELEVATE", "poh_jester_deelevate", "seqtypes"),
+            new GamevalEntry(3590, "POH_JESTER_DESCEND", "poh_jester_descend", "seqtypes"),
             new GamevalEntry(3591, "POH_JESTER_ASCEND", "poh_jester_ascend", "seqtypes"),
             new GamevalEntry(3592, "JESTER_JUMPS_OUT", "jester_jumps_out", "seqtypes"),
             new GamevalEntry(3593, "JESTER_JUMPS_IN", "jester_jumps_in", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_7 {
             new GamevalEntry(4097, "CHAIR_SIT_READY_DININGCHAIRS_5", "chair_sit_ready_diningchairs_5", "seqtypes"),
             new GamevalEntry(4098, "CHAIR_EAT_DININGCHAIRS_5", "chair_eat_diningchairs_5", "seqtypes"),
             new GamevalEntry(4099, "CHAIR_SIT_READY_DININGCHAIRS_6", "chair_sit_ready_diningchairs_6", "seqtypes"),
-            new GamevalEntry(4100, "CHAIR_EAT_DININGCHAIRS_6", "chair_eat_diningchairs_6", "seqtypes"),
-            new GamevalEntry(4101, "CHAIR_SIT_READY_DININGCHAIRS_7", "chair_sit_ready_diningchairs_7", "seqtypes"),
-            new GamevalEntry(4102, "CHAIR_EAT_DININGCHAIRS_7", "chair_eat_diningchairs_7", "seqtypes"),
         };
     }
 

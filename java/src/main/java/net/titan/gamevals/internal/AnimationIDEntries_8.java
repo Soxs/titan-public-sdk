@@ -10,6 +10,9 @@ final class AnimationIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4100, "CHAIR_EAT_DININGCHAIRS_6", "chair_eat_diningchairs_6", "seqtypes"),
+            new GamevalEntry(4101, "CHAIR_SIT_READY_DININGCHAIRS_7", "chair_sit_ready_diningchairs_7", "seqtypes"),
+            new GamevalEntry(4102, "CHAIR_EAT_DININGCHAIRS_7", "chair_eat_diningchairs_7", "seqtypes"),
             new GamevalEntry(4103, "CHAIR_SIT", "chair_sit", "seqtypes"),
             new GamevalEntry(4104, "CHAIR_SIT_DIAGONAL_RIGHT", "chair_sit_diagonal_right", "seqtypes"),
             new GamevalEntry(4105, "CHAIR_GET_UP", "chair_get_up", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_8 {
             new GamevalEntry(4616, "QIP_DS_READING_CRYSTALBALL", "qip_ds_reading_crystalball", "seqtypes"),
             new GamevalEntry(4617, "QIP_DS_DARK_WIZARD_CHANTING", "qip_ds_dark_wizard_chanting", "seqtypes"),
             new GamevalEntry(4618, "QIP_DS_DELRITH_STRUCK_DOWN", "qip_ds_delrith_struck_down", "seqtypes"),
-            new GamevalEntry(4619, "QIP_DS_DELRITH_WEAKENED_PORTAL", "qip_ds_delrith_weakened_portal", "seqtypes"),
-            new GamevalEntry(4620, "QIP_DS_DELRITH_PORTAL_FAILED", "qip_ds_delrith_portal_failed", "seqtypes"),
-            new GamevalEntry(4621, "QIP_DS_TABLE_EXPLOSION_FIRSTFRAME", "qip_ds_table_explosion_firstframe", "seqtypes"),
         };
     }
 

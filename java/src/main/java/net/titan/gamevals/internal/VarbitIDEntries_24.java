@@ -10,6 +10,7 @@ final class VarbitIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(19426, "SAILING_BOAT_5_HOTSPOT_1", "sailing_boat_5_hotspot_1", "varbittypes"),
             new GamevalEntry(19427, "SAILING_BOAT_5_HOTSPOT_2", "sailing_boat_5_hotspot_2", "varbittypes"),
             new GamevalEntry(19428, "SAILING_BOAT_5_HOTSPOT_3", "sailing_boat_5_hotspot_3", "varbittypes"),
             new GamevalEntry(19429, "SAILING_BOAT_5_HOTSPOT_4", "sailing_boat_5_hotspot_4", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_24 {
             new GamevalEntry(19983, "MUSIC_PLAYLIST_3_TRACK_46", "music_playlist_3_track_46", "varbittypes"),
             new GamevalEntry(19984, "MUSIC_PLAYLIST_3_TRACK_47", "music_playlist_3_track_47", "varbittypes"),
             new GamevalEntry(19985, "MUSIC_PLAYLIST_3_TRACK_48", "music_playlist_3_track_48", "varbittypes"),
-            new GamevalEntry(19986, "MUSIC_PLAYLIST_3_TRACK_49", "music_playlist_3_track_49", "varbittypes"),
         };
     }
 

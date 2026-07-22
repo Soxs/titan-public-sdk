@@ -77,6 +77,7 @@ final class AnimationIDEntries_1 {
             new GamevalEntry(576, "CHATCON2", "chatcon2", "seqtypes"),
             new GamevalEntry(577, "CHATCON3", "chatcon3", "seqtypes"),
             new GamevalEntry(578, "CHATCON4", "chatcon4", "seqtypes"),
+            new GamevalEntry(579, "ANCIENT_AXE_SPECIAL_OLD", "ancient_axe_special_old", "seqtypes"),
             new GamevalEntry(580, "CHATGOBLIN1", "chatgoblin1", "seqtypes"),
             new GamevalEntry(581, "CHATGOBLIN2", "chatgoblin2", "seqtypes"),
             new GamevalEntry(582, "CHATGOBLIN3", "chatgoblin3", "seqtypes"),
@@ -101,10 +102,12 @@ final class AnimationIDEntries_1 {
             new GamevalEntry(601, "CHATDRUNK2", "chatdrunk2", "seqtypes"),
             new GamevalEntry(602, "CHATDRUNK3", "chatdrunk3", "seqtypes"),
             new GamevalEntry(603, "CHATDRUNK4", "chatdrunk4", "seqtypes"),
+            new GamevalEntry(604, "VFX_HUMAN_AXE_SOULREAPER_ORN_SPECIAL", "vfx_human_axe_soulreaper_orn_special", "seqtypes"),
             new GamevalEntry(605, "CHATLAUGH1", "chatlaugh1", "seqtypes"),
             new GamevalEntry(606, "CHATLAUGH2", "chatlaugh2", "seqtypes"),
             new GamevalEntry(607, "CHATLAUGH3", "chatlaugh3", "seqtypes"),
             new GamevalEntry(608, "CHATLAUGH4", "chatlaugh4", "seqtypes"),
+            new GamevalEntry(609, "VFX_HUMAN_AXE_SOULREAPER_SPECIAL", "vfx_human_axe_soulreaper_special", "seqtypes"),
             new GamevalEntry(610, "CHATSAD1", "chatsad1", "seqtypes"),
             new GamevalEntry(611, "CHATSAD2", "chatsad2", "seqtypes"),
             new GamevalEntry(612, "CHATSAD3", "chatsad3", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_1 {
             new GamevalEntry(1022, "CHOMPY_TOAD_DEATH", "chompy_toad_death", "seqtypes"),
             new GamevalEntry(1023, "CHOMPY_TOAD_EXPLODE", "chompy_toad_explode", "seqtypes"),
             new GamevalEntry(1024, "OGRE_BELLOWS_USE", "ogre_bellows_use", "seqtypes"),
-            new GamevalEntry(1025, "OGRE_LONGBOW", "ogre_longbow", "seqtypes"),
-            new GamevalEntry(1026, "HUMAN_CHOMPYBIRD_OGREBELLOWS", "human_chompybird_ogrebellows", "seqtypes"),
-            new GamevalEntry(1027, "ELEMENTAL_FIRE_READY", "elemental_fire_ready", "seqtypes"),
         };
     }
 

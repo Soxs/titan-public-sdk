@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_8 {
+    int CHAIR_EAT_DININGCHAIRS_6 = 4100;
+    int CHAIR_SIT_READY_DININGCHAIRS_7 = 4101;
+    int CHAIR_EAT_DININGCHAIRS_7 = 4102;
     int CHAIR_SIT = 4103;
     int CHAIR_SIT_DIAGONAL_RIGHT = 4104;
     int CHAIR_GET_UP = 4105;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_8 {
     int QIP_DS_READING_CRYSTALBALL = 4616;
     int QIP_DS_DARK_WIZARD_CHANTING = 4617;
     int QIP_DS_DELRITH_STRUCK_DOWN = 4618;
-    int QIP_DS_DELRITH_WEAKENED_PORTAL = 4619;
-    int QIP_DS_DELRITH_PORTAL_FAILED = 4620;
-    int QIP_DS_TABLE_EXPLOSION_FIRSTFRAME = 4621;
 }

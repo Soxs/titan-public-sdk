@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_15 {
+    int FOSSIL_LOC_JUMPSHROOM_SQUASH = 7693;
+    int FOSSIL_NPC_HERBIBOAR_IDLE = 7694;
+    int FOSSIL_NPC_HERBIBOAR_WALK = 7695;
     int FOSSIL_NPC_HERBIBOAR_ATTACK = 7696;
     int FOSSIL_NPC_FETAL = 7697;
     int FOSSIL_NPC_TARBEAST_SPLAT_SPOT = 7698;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_15 {
     int ARCEUUS_LORD_READY = 8202;
     int ARCEUUS_LORD_TRANCE = 8203;
     int AERIAL_FISHING_POOL = 8204;
-    int AERIAL_FISHING_LAUNCH = 8205;
-    int AERIAL_FISHING_TRAVEL = 8206;
-    int AERIAL_FISHING_SPLASH_MEDIUM = 8207;
 }

@@ -179,7 +179,7 @@ final class ObjectIDEntries_13 {
             new GamevalEntry(6843, "ZOGRE_COFFIN_SPECIAL_ENTITY", "zogre_coffin_special_entity", "loctypes"),
             new GamevalEntry(6844, "ZOGRE_COFFIN_SPECIAL", "Ogre Coffin", "loctypes"),
             new GamevalEntry(6845, "ZOGRE_COFFIN_SPECIAL_SEARCHED", "Ogre Coffin", "loctypes"),
-            new GamevalEntry(6846, "ZOGRE_LECTURN", "Broken Lecturn", "loctypes"),
+            new GamevalEntry(6846, "ZOGRE_LECTURN", "Broken lectern", "loctypes"),
             new GamevalEntry(6847, "ZOGRE_OUTDOOR_BELL", "Bell", "loctypes"),
             new GamevalEntry(6848, "OGRE_COFFIN", "Ogre Coffin", "loctypes"),
             new GamevalEntry(6849, "ZOGRE_SIGNPOST", "Signpost", "loctypes"),

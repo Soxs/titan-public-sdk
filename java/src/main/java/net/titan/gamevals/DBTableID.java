@@ -12370,6 +12370,7 @@ public final class DBTableID
         public static final int COL_STREAM_FACING = 12;
         public static final int COL_SUCCESS_AUDIO = 13;
         public static final int COL_FAILURE_AUDIO = 14;
+        public static final int COL_PET_RATE_SOURCE = 15;
     }
 
     public static final class ArrowFletching {

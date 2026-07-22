@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_24 {
+    int SCRAMBLED_EGG_SPLAT = 12308;
+    int SCRAMBLED_EGG_SPLAT_OFFSET01 = 12309;
+    int SCRAMBLED_EGG_SPLAT_OFFSET02 = 12310;
     int SCRAMBLED_EGG_SPLATTERED_IDLE = 12311;
     int SCRAMBLED_ALAN_ENTER_HANDS_ON_HIP = 12312;
     int SCRAMBLED_ALAN_HANDS_ON_HIP = 12313;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_24 {
     int LORE_BIRD_DEFEND = 12818;
     int LORE_BIRD_DEATH = 12819;
     int LORE_MACAW_FLY_AWAY = 12820;
-    int LORE_MACAW_FLY_BACK = 12821;
-    int LORE_MAGPIE_SPECIAL = 12822;
-    int LORE_MINOTAUR_READY = 12823;
 }

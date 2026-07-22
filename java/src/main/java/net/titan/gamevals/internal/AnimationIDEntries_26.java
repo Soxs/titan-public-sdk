@@ -10,6 +10,9 @@ final class AnimationIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13333, "VFX_SAILING_CANNON01_SMALL01_IMPACT01", "vfx_sailing_cannon01_small01_impact01", "seqtypes"),
+            new GamevalEntry(13334, "SAILING_ALPHA_HELM_RAFT01_INACTIVE01", "sailing_alpha_helm_raft01_inactive01", "seqtypes"),
+            new GamevalEntry(13335, "SAILING_ALPHA_HELM_RAFT01_ACTIVE01", "sailing_alpha_helm_raft01_active01", "seqtypes"),
             new GamevalEntry(13336, "SAILING_ALPHA_HELM_RAFT01_ACTIVE01_LOOP", "sailing_alpha_helm_raft01_active01_loop", "seqtypes"),
             new GamevalEntry(13337, "SAILING_ALPHA_HELM_RAFT01_TRIM_SAILS01", "sailing_alpha_helm_raft01_trim_sails01", "seqtypes"),
             new GamevalEntry(13338, "SAILING_ALPHA_HELM_RAFT01_TRIM_SAILS01_LOOP", "sailing_alpha_helm_raft01_trim_sails01_loop", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_26 {
             new GamevalEntry(13842, "LEAGUES_6_THRALL_IMP_MAGIC_WALK", "leagues_6_thrall_imp_magic_walk", "seqtypes"),
             new GamevalEntry(13843, "LEAGUES_6_THRALL_IMP_RANGED_WALK", "leagues_6_thrall_imp_ranged_walk", "seqtypes"),
             new GamevalEntry(13844, "LEAGUES_6_THRALL_IMP_MELEE_WALK", "leagues_6_thrall_imp_melee_walk", "seqtypes"),
-            new GamevalEntry(13845, "LEAGUES_6_THRALL_IMP_MAGIC_RUN", "leagues_6_thrall_imp_magic_run", "seqtypes"),
-            new GamevalEntry(13846, "LEAGUES_6_THRALL_IMP_RANGED_RUN", "leagues_6_thrall_imp_ranged_run", "seqtypes"),
-            new GamevalEntry(13847, "LEAGUES_6_THRALL_IMP_MELEE_RUN", "leagues_6_thrall_imp_melee_run", "seqtypes"),
         };
     }
 

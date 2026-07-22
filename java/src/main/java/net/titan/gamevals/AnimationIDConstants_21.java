@@ -1,6 +1,9 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_21 {
+    int COA_CANDLE_EFFECT = 10769;
+    int COA_TORCH = 10770;
+    int COA_TORCH_LOW = 10771;
     int COA_UZER_FIRE = 10772;
     int COA_FORT_FIRE = 10773;
     int COA_FORT_FIRE_SMALL = 10774;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_21 {
     int WGS_PLAYER_SLIPPING_SPY_THE_ORB = 11281;
     int WGS_PLAYER_SLIPPING_SPY_THE_ORB_PART_TWO = 11282;
     int WGS_SHINING_LIGHT_ON_SEED = 11283;
-    int WGS_WASHERMAN_READY = 11284;
-    int HUMAN_FALL_LOOP = 11285;
-    int HUMAN_GETUP_FROM_SLIP = 11286;
 }

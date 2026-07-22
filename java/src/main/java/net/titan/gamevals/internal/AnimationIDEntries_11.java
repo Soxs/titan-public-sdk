@@ -10,6 +10,9 @@ final class AnimationIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5643, "BRAIN_SAWBONES_ATTACK", "brain_sawbones_attack", "seqtypes"),
+            new GamevalEntry(5644, "BRAIN_SAWBONES_DEFEND", "brain_sawbones_defend", "seqtypes"),
+            new GamevalEntry(5645, "BRAIN_ZOMBIE_PIRATE_WANDERERS_WALK", "brain_zombie_pirate_wanderers_walk", "seqtypes"),
             new GamevalEntry(5646, "BRAIN_ZOMBIE_PIRATE_WANDERERS_READY", "brain_zombie_pirate_wanderers_ready", "seqtypes"),
             new GamevalEntry(5647, "BRAIN_ZOMBIE_PIRATE_WANDERERS_ATTACK", "brain_zombie_pirate_wanderers_attack", "seqtypes"),
             new GamevalEntry(5648, "BRAIN_ZOMBIE_PIRATE_WANDERERS_DEFEND", "brain_zombie_pirate_wanderers_defend", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_11 {
             new GamevalEntry(6152, "SLICE_SURFACE_GOBLIN_SERGENT_WALK", "slice_surface_goblin_sergent_walk", "seqtypes"),
             new GamevalEntry(6153, "SLICE_SURFACE_GOBLIN_SERGENT_READY", "slice_surface_goblin_sergent_ready", "seqtypes"),
             new GamevalEntry(6154, "SLICE_SURFACE_GOBLIN_SERGENT_ATTACK", "slice_surface_goblin_sergent_attack", "seqtypes"),
-            new GamevalEntry(6155, "SLICE_SURFACE_GOBLIN_SERGENT_DEFEND", "slice_surface_goblin_sergent_defend", "seqtypes"),
-            new GamevalEntry(6156, "SLICE_SURFACE_GOBLIN_SERGENT_DEATH", "slice_surface_goblin_sergent_death", "seqtypes"),
-            new GamevalEntry(6157, "SLICE_SURFACE_GOBLIN_SERGENT_HIDE", "slice_surface_goblin_sergent_hide", "seqtypes"),
         };
     }
 

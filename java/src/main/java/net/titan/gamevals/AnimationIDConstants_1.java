@@ -68,6 +68,7 @@ public interface AnimationIDConstants_1 {
     int CHATCON2 = 576;
     int CHATCON3 = 577;
     int CHATCON4 = 578;
+    int ANCIENT_AXE_SPECIAL_OLD = 579;
     int CHATGOBLIN1 = 580;
     int CHATGOBLIN2 = 581;
     int CHATGOBLIN3 = 582;
@@ -92,10 +93,12 @@ public interface AnimationIDConstants_1 {
     int CHATDRUNK2 = 601;
     int CHATDRUNK3 = 602;
     int CHATDRUNK4 = 603;
+    int VFX_HUMAN_AXE_SOULREAPER_ORN_SPECIAL = 604;
     int CHATLAUGH1 = 605;
     int CHATLAUGH2 = 606;
     int CHATLAUGH3 = 607;
     int CHATLAUGH4 = 608;
+    int VFX_HUMAN_AXE_SOULREAPER_SPECIAL = 609;
     int CHATSAD1 = 610;
     int CHATSAD2 = 611;
     int CHATSAD3 = 612;
@@ -510,7 +513,4 @@ public interface AnimationIDConstants_1 {
     int CHOMPY_TOAD_DEATH = 1022;
     int CHOMPY_TOAD_EXPLODE = 1023;
     int OGRE_BELLOWS_USE = 1024;
-    int OGRE_LONGBOW = 1025;
-    int HUMAN_CHOMPYBIRD_OGREBELLOWS = 1026;
-    int ELEMENTAL_FIRE_READY = 1027;
 }

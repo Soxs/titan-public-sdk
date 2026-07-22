@@ -10,6 +10,9 @@ final class AnimationIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6667, "PETROCK_SPOTANIM_STAY", "petrock_spotanim_stay", "seqtypes"),
+            new GamevalEntry(6668, "PETROCK_SPOTANIM_STICK", "petrock_spotanim_stick", "seqtypes"),
+            new GamevalEntry(6669, "PETROCK_PROJANIM_STICK", "petrock_projanim_stick", "seqtypes"),
             new GamevalEntry(6670, "PETROCK_SPOTANIM_STICK_LAND", "petrock_spotanim_stick_land", "seqtypes"),
             new GamevalEntry(6671, "XBOWS_STRINGING_CROSSBOW_BRONZE", "xbows_stringing_crossbow_bronze", "seqtypes"),
             new GamevalEntry(6672, "XBOWS_STRINGING_CROSSBOW_BLURITE", "xbows_stringing_crossbow_blurite", "seqtypes"),
@@ -519,9 +522,6 @@ final class AnimationIDEntries_13 {
             new GamevalEntry(7178, "LORE_BEAVER_WALK", "lore_beaver_walk", "seqtypes"),
             new GamevalEntry(7179, "ROCK_GOLEM_CHATHEAD_IDLE", "rock_golem_chathead_idle", "seqtypes"),
             new GamevalEntry(7180, "ROCK_GOLEM_IDLE", "rock_golem_idle", "seqtypes"),
-            new GamevalEntry(7181, "ROCK_GOLEM_WALK", "rock_golem_walk", "seqtypes"),
-            new GamevalEntry(7182, "CHINCHOMPA_CHATHEAD_IDLE", "chinchompa_chathead_idle", "seqtypes"),
-            new GamevalEntry(7183, "GIANT_BASIC_STAMP", "giant_basic_stamp", "seqtypes"),
         };
     }
 

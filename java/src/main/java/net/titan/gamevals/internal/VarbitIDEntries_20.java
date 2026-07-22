@@ -59,6 +59,7 @@ final class VarbitIDEntries_20 {
             new GamevalEntry(15685, "AFK_BLOODWOOD_TREE_DRAINING", "afk_bloodwood_tree_draining", "varbittypes"),
             new GamevalEntry(15686, "CRIMSON_KISTEN_WARNING", "crimson_kisten_warning", "varbittypes"),
             new GamevalEntry(15687, "SAILING_PLAYER_TRAWLING_SHOAL_BAITED_STEP", "sailing_player_trawling_shoal_baited_step", "varbittypes"),
+            new GamevalEntry(15717, "SLAYER_UNLOCK_HELM_LEAGUE_6", "slayer_unlock_helm_league_6", "varbittypes"),
             new GamevalEntry(15796, "XMAS24_INVITE_CHARLIE", "xmas24_invite_charlie", "varbittypes"),
             new GamevalEntry(15800, "XMAS24_INVITES", "xmas24_invites", "varbittypes"),
             new GamevalEntry(15892, "XMAS24_MATCH_AMIK", "xmas24_match_amik", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_20 {
             new GamevalEntry(17730, "ENT_TOTEMS_SITE_7_POINTS", "ent_totems_site_7_points", "varbittypes"),
             new GamevalEntry(17731, "ENT_TOTEMS_SITE_7_MULTIANIMAL_A_1", "ent_totems_site_7_multianimal_a_1", "varbittypes"),
             new GamevalEntry(17732, "ENT_TOTEMS_SITE_7_MULTIANIMAL_B_1", "ent_totems_site_7_multianimal_b_1", "varbittypes"),
-            new GamevalEntry(17733, "ENT_TOTEMS_SITE_7_MULTIANIMAL_C_1", "ent_totems_site_7_multianimal_c_1", "varbittypes"),
         };
     }
 
