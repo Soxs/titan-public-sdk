@@ -2076,6 +2076,28 @@ interface PanelElement {
             setAutoRetaliate(enabled: boolean): boolean;
         };
 
+        /**
+         * Prayer active-state and toggle helpers. Mirrors
+         * `titan::utils::Prayers::*` from
+         * [shared/titan/utils/prayers.h](shared/titan/utils/prayers.h).
+         *
+         * Pass a `titan.Prayer.*` ordinal. Action methods return true when
+         * the requested action was accepted or no action was needed; confirm
+         * queued state changes through `isActive`.
+         */
+        const prayers: {
+            /** True when the prayer's active-state varbit is set. */
+            isActive(prayer: number): boolean;
+            /** Queue a click on the prayer's widget. */
+            toggle(prayer: number): boolean;
+            /** Set the prayer to the requested state, avoiding redundant clicks. */
+            setActive(prayer: number, enabled: boolean): boolean;
+            /** Enable the prayer, avoiding a redundant click when already active. */
+            enable(prayer: number): boolean;
+            /** Disable the prayer, avoiding a redundant click when already inactive. */
+            disable(prayer: number): boolean;
+        };
+
         /** Mouse and click-point helpers for action dispatch. */
         const mouse: {
             /** Resolve the screen click point Titan would use for a menu action, or null if off-screen/unresolvable. */
