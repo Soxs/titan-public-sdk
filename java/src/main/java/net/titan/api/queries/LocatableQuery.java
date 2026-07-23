@@ -8,6 +8,7 @@ import net.titan.api.NPC;
 import net.titan.api.Player;
 import net.titan.api.Tile;
 import net.titan.api.WorldPoint;
+import net.titan.api.WorldArea;
 import net.titan.api.WorldView;
 
 import java.util.Collection;
@@ -72,6 +73,12 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
         if (origin == null) return clear();
         Tile tile = new Tile(origin.sceneX(), origin.sceneY(), 0, origin.worldViewId());
         return where(item -> item.tile().distanceTo2D(tile) <= radius);
+    }
+
+    public Q within(WorldArea worldArea) {
+        return worldArea == null
+            ? clear()
+            : where(item -> worldArea.contains(item.worldPoint()));
     }
 
     public Optional<T> nearestTo(Tile origin) {

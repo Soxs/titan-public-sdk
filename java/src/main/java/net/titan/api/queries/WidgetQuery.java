@@ -63,6 +63,16 @@ public final class WidgetQuery extends Query<Widget, WidgetQuery> {
         return where(widget -> NamedQuery.containsIgnoreCase(widget.text(), needle));
     }
 
+    public WidgetQuery textContains(String... needles) {
+        return where(widget -> {
+            if (needles == null) return false;
+            for (String needle : needles) {
+                if (NamedQuery.containsIgnoreCase(widget.text(), needle)) return true;
+            }
+            return false;
+        });
+    }
+
     public WidgetQuery textEquals(String text) {
         return where(widget -> NamedQuery.equalsIgnoreCase(widget.text(), text));
     }

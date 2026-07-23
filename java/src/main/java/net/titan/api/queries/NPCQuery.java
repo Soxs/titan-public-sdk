@@ -6,6 +6,7 @@ import net.titan.api.EntityType;
 import net.titan.api.HeadIcon;
 import net.titan.api.NPC;
 import net.titan.api.Player;
+import net.titan.api.WorldView;
 
 public final class NPCQuery extends NamedLocatableQuery<NPC, NPCQuery> {
     public NPCQuery(Client client) {
@@ -22,6 +23,57 @@ public final class NPCQuery extends NamedLocatableQuery<NPC, NPCQuery> {
 
     public NPCQuery hasAction(String action) {
         return where(npc -> npc.hasAction(action));
+    }
+
+    /**
+     * Keeps NPCs exposing at least one of the supplied actions.
+     */
+    public NPCQuery hasAction(String... actions) {
+        return where(npc -> {
+            if (actions == null) return false;
+            for (String action : actions) {
+                if (npc.hasAction(action)) return true;
+            }
+            return false;
+        });
+    }
+
+    public NPCQuery combatLevelAbove(int minLevel) {
+        if (client == null) return where(npc -> false);
+        return where(npc -> client.npcDefinition(npc.id())
+            .map(definition -> definition.combatLevel() >= minLevel)
+            .orElse(false));
+    }
+
+    public NPCQuery combatLevelBelow(int maxLevel) {
+        if (client == null) return where(npc -> false);
+        return where(npc -> client.npcDefinition(npc.id())
+            .map(definition -> definition.combatLevel() <= maxLevel)
+            .orElse(false));
+    }
+
+    public NPCQuery combatLevelBetween(int low, int high) {
+        if (client == null) return where(npc -> false);
+        int minLevel = Math.min(low, high);
+        int maxLevel = Math.max(low, high);
+        return where(npc -> client.npcDefinition(npc.id())
+            .map(definition -> definition.combatLevel() >= minLevel
+                && definition.combatLevel() <= maxLevel)
+            .orElse(false));
+    }
+
+    public NPCQuery exclude(NPC npc) {
+        return where(candidate -> !sameNpc(candidate, npc));
+    }
+
+    public NPCQuery exclude(NPC... npcs) {
+        return where(candidate -> {
+            if (npcs == null) return true;
+            for (NPC npc : npcs) {
+                if (sameNpc(candidate, npc)) return false;
+            }
+            return true;
+        });
     }
 
     public NPCQuery notTargetedByOtherPlayers() {
@@ -138,5 +190,12 @@ public final class NPCQuery extends NamedLocatableQuery<NPC, NPCQuery> {
         if (target instanceof NPC) return EntityType.NPC;
         if (target instanceof Player) return EntityType.PLAYER;
         return EntityType.NONE;
+    }
+
+    private static boolean sameNpc(NPC left, NPC right) {
+        return left != null && right != null
+            && left.hashIndex() >= 0 && right.hashIndex() >= 0
+            && left.hashIndex() == right.hashIndex()
+            && WorldView.same(left.worldViewId(), right.worldViewId());
     }
 }

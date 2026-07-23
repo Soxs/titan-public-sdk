@@ -579,6 +579,8 @@ interface LocatableQuery<T> extends Query<T> {
     currentWorldView(): this;
     /** Keep only top-level WorldView entities (`WorldView.TOP_LEVEL`). SDK 85+. */
     topLevelWorldView(): this;
+    /** Keep only entities whose absolute world point is inside the area. SDK 100+. */
+    within(worldArea: titan.WorldArea): this;
     within(radius: number, origin: Tile | ActorBase | WorldPoint | LocalPoint): this;
     nearestTo(origin: Tile | ActorBase | WorldPoint | LocalPoint): T | null;
     /** Nearest entity to the local player, or null. */
@@ -597,7 +599,16 @@ interface NamedLocatableQuery<T> extends LocatableQuery<T>, NamedQuery<T> {}
 interface NpcQuery extends NamedLocatableQuery<Npc> {
     id(npcId: number): this;
     ids(...ids: number[]): this;
-    hasAction(action: string): this;
+    /** Keep NPCs exposing at least one supplied action (case-insensitive substring). */
+    hasAction(action: string, ...actions: string[]): this;
+    /** Keep NPCs with definition combat level >= min. SDK 101+. */
+    combatLevelAbove(minLevel: number): this;
+    /** Keep NPCs with definition combat level <= max. SDK 101+. */
+    combatLevelBelow(maxLevel: number): this;
+    /** Keep NPCs within the inclusive definition combat-level range. SDK 101+. */
+    combatLevelBetween(low: number, high: number): this;
+    /** Exclude exact NPC identities by WorldView and hash index. SDK 101+. */
+    exclude(npc: Npc, ...npcs: Npc[]): this;
     /** Keep only NPCs not actively targeted by any other player. */
     notTargetedByOtherPlayers(): this;
     /** Keep only NPCs actively interacting with a specific actor. */
@@ -679,7 +690,8 @@ interface PlayerQuery extends NamedLocatableQuery<Player> {
 interface ObjectQuery extends NamedLocatableQuery<TileObject> {
     id(locId: number): this;
     ids(...ids: number[]): this;
-    hasAction(action: string): this;
+    /** Keep tile objects exposing at least one supplied action (case-insensitive substring). */
+    hasAction(action: string, ...actions: string[]): this;
     ofType(typeName: string): this;
     /** Keep only objects on the given scene layer (0=Wall, 1=Decor, 2=Scenery, 3=GroundDecor). */
     layer(layerId: number): this;
@@ -708,6 +720,10 @@ interface InventoryQuery extends NamedQuery<Item> {
     minQuantity(n: number): this;
     /** Keep only items with per-slot quantity <= n. */
     maxQuantity(n: number): this;
+    /** Keep only items exposing the action in their runtime inventory actions. SDK 100+. */
+    hasAction(action: string): this;
+    /** Keep only noted item variants. SDK 100+. */
+    isNoted(): this;
     /** Remove items whose id matches any in the array. */
     excludeIds(ids: number[]): this;
     /** Remove items whose name matches any needle (CI substring). */
@@ -802,7 +818,8 @@ interface IntSettingInit extends SettingMetaBase {
     child(id: number): this;
     /** Replace matches with their direct dynamic child at this native slot. */
     slot(index: number): this;
-    textContains(text: string): this;
+    /** Match widgets containing any supplied text (case-insensitive substring). SDK 101+. */
+    textContains(text: string, ...texts: string[]): this;
     textEquals(text: string): this;
     isVisible(): this;
     isHidden(): this;

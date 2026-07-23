@@ -20,6 +20,19 @@ public final class ObjectQuery extends NamedLocatableQuery<TileObject, ObjectQue
         return where(object -> object.hasAction(action));
     }
 
+    /**
+     * Keeps tile objects exposing at least one of the supplied actions.
+     */
+    public ObjectQuery hasAction(String... actions) {
+        return where(object -> {
+            if (actions == null) return false;
+            for (String action : actions) {
+                if (object.hasAction(action)) return true;
+            }
+            return false;
+        });
+    }
+
     public ObjectQuery ofType(String typeName) {
         return where(object -> equalsIgnoreCase(object.typeName(), typeName));
     }
