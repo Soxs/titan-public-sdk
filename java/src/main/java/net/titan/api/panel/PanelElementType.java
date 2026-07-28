@@ -61,7 +61,12 @@ public enum PanelElementType {
     SET_TOOLTIP(110),
 
     ALIGN_BEGIN(111),
-    ALIGN_END(112);
+    ALIGN_END(112),
+
+    BEGIN_DISABLED(113),
+    END_DISABLED(114),
+    HELP_MARKER(115),
+    BADGE(116);
 
     private final int protocolId;
 

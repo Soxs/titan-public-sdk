@@ -43,6 +43,18 @@ public final class Panel {
         return this;
     }
 
+    /// Inline "(?)" marker that reveals {@code text} as a tooltip on hover.
+    public Panel help(String text) { push(PanelElementType.HELP_MARKER, text); return this; }
+
+    /// Compact colored status pill (e.g. "Ready", "AFK"). Sits inline.
+    public Panel badge(String text) { return badge(text, PanelTone.NEUTRAL); }
+
+    public Panel badge(String text, PanelTone tone) {
+        PanelElement el = push(PanelElementType.BADGE, text);
+        el.intVal3 = (tone == null ? PanelTone.NEUTRAL.protocolId() : tone.protocolId()) + 1;
+        return this;
+    }
+
     // --- Layout ---
     public Panel separator() { push(PanelElementType.SEPARATOR, ""); return this; }
     public Panel separatorText(String s) { push(PanelElementType.SEPARATOR_TEXT, s); return this; }
@@ -180,6 +192,29 @@ public final class Panel {
     public Panel inputPassword(String label, int actionId, int submitActionId, String value) {
         return inputText(label, actionId, submitActionId, value, PanelInputFlags.PASSWORD);
     }
+
+    /// Dropdown selector. {@code items} are the option labels; {@code selectedIndex}
+    /// is the current selection. Fires {@code actionId} with the chosen index
+    /// (an integer value) when the user picks a different option.
+    public Panel combo(String label, int actionId, java.util.List<String> items, int selectedIndex) {
+        PanelElement el = push(PanelElementType.COMBO, label);
+        el.actionId = actionId;
+        el.intVal = selectedIndex;
+        el.textSecondary = items == null ? "" : String.join("\n", items);
+        return this;
+    }
+
+    // --- Disabled scope ---
+    /// Grey-out and disable everything until the matching {@link #endDisabled()}.
+    public Panel beginDisabled() { return beginDisabled(true); }
+
+    /// Pass {@code disabled=false} to leave the block enabled (data-driven gate).
+    public Panel beginDisabled(boolean disabled) {
+        PanelElement el = push(PanelElementType.BEGIN_DISABLED, "");
+        el.boolVal = disabled;
+        return this;
+    }
+    public Panel endDisabled() { push(PanelElementType.END_DISABLED, ""); return this; }
 
     // --- Progress ---
     public Panel progress(float fraction) {

@@ -1440,6 +1440,10 @@ interface Panel {
     colored(s: string, color: number): Panel;
     status(s: string, tone?: PanelTone): Panel;
     label(label: string, value: string): Panel;
+    /** Inline "(?)" marker revealing 	ext as a tooltip on hover. */
+    help(text: string): Panel;
+    /** Compact colored status pill; sits inline (use after label().sameLine()). */
+    badge(text: string, tone?: PanelTone): Panel;
 
     separator(): Panel;
     separatorText(s: string): Panel;
@@ -1468,6 +1472,18 @@ interface Panel {
     inputText(label: string, actionId: number, submitActionId: number, value: string, flags: PanelInputFlags): Panel;
     inputPassword(label: string, actionId: number, value: string): Panel;
     inputPassword(label: string, actionId: number, submitActionId: number, value: string): Panel;
+    /**
+     * Dropdown selector. items are the option labels; selectedIndex is the
+     * current selection. Fires ctionId with the chosen index when changed.
+     */
+    combo(label: string, actionId: number, items: string[], selectedIndex: number): Panel;
+
+    /**
+     * Grey-out and disable everything until the matching endDisabled().
+     * Pass disabled=false to leave the block enabled. Always pair the calls.
+     */
+    beginDisabled(disabled?: boolean): Panel;
+    endDisabled(): Panel;
 
     progress(fraction: number, overlay?: string): Panel;
     collapsing(label: string): Panel;
