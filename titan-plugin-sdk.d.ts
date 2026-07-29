@@ -328,6 +328,15 @@ interface Npc extends ActorBase {
 
 type Actor = Player | Npc;
 
+/**
+ * A scene object (loc). SDK 105+: object handles are live cross-tick -- a
+ * cached reference re-resolves its fields against the live tile once per tick
+ * (matched on layer + id), so name/actions/worldPoint/animation/entityPtr/...
+ * reflect the current state rather than capture-time values. Repeated queries
+ * return the same handle for a given slot (identity dedup). Use exists to test
+ * whether the loc is still present and snapshot() to freeze a capture-time
+ * copy. (The Java SDK has always behaved this way.)
+ */
 interface TileObject extends InstanceConvertible {
     readonly tileX: number;
     readonly tileY: number;
@@ -335,6 +344,8 @@ interface TileObject extends InstanceConvertible {
     readonly worldViewId: number;
     readonly worldViewPtr: bigint;
     readonly id: number;
+    /** Raw Loc* scene pointer, or 0n when the host didn't populate it. */
+    readonly entityPtr: bigint;
     readonly sizeX: number;
     readonly sizeY: number;
     readonly type: string;
@@ -362,6 +373,8 @@ interface TileObject extends InstanceConvertible {
     readonly tile: Tile;
     readonly worldPoint: WorldPoint;
     readonly localPoint: LocalPoint;
+    /** True while a loc matching this handle (layer + id) still occupies the tile. Flips to false once it despawns or the slot changes id. SDK 105+. */
+    readonly exists: boolean;
 
     hasAction(action: string): boolean;
     /** RuneLite-style line of sight from this object's footprint to another locatable or world point. SDK 52+. */
@@ -370,12 +383,21 @@ interface TileObject extends InstanceConvertible {
     isInMeleeDistance(other: SpatialTarget): boolean;
     /** RuneLite-style dynamic scenery animation id lookup. SDK 71+. */
     getAnimation(): number;
-    /** Dispatch against this exact object instance, preserving its scene tile; returns false when actions does not contain it. */
+    /** Dispatch against the loc currently occupying this slot; re-resolves first (live handle), so a despawned object is a safe no-op. Returns false when actions does not contain it. */
     interact(action: string): boolean;
     /** Cast `spell` on this object. */
     castOn(spell: MagicSpell): boolean;
+    /** Freeze a capture-time copy whose fields never re-resolve. SDK 105+. */
+    snapshot(): Record<string, unknown>;
 }
 
+/**
+ * A ground item stack. SDK 105+: ground-item handles are live cross-tick
+ * (like TileObject) -- a cached reference re-resolves against the live tile
+ * once per tick (matched on item id), so quantity/name/... track the current
+ * stack. Use exists to test presence and snapshot() to freeze a capture-time
+ * copy.
+ */
 interface GroundItem extends InstanceConvertible {
     readonly tileX: number;
     readonly tileY: number;
@@ -390,6 +412,8 @@ interface GroundItem extends InstanceConvertible {
     readonly tile: Tile;
     readonly worldPoint: WorldPoint;
     readonly localPoint: LocalPoint;
+    /** True while a stack of this item id still lies on the tile. SDK 105+. */
+    readonly exists: boolean;
 
     /** True when this ground item is lootable for the current account mode. */
     canLoot(): boolean;
@@ -399,10 +423,12 @@ interface GroundItem extends InstanceConvertible {
     /** True when this item tile is exactly one orthogonal tile from another footprint/point. SDK 86+. */
     isInMeleeDistance(other: SpatialTarget): boolean;
 
-    /** Dispatch a ground-item action (e.g. "Take", "Examine"). */
+    /** Dispatch a ground-item action (e.g. "Take", "Examine"); re-resolves against the live tile first. */
     interact(action: string): boolean;
     /** Cast `spell` on this ground item. */
     castOn(spell: MagicSpell): boolean;
+    /** Freeze a capture-time copy whose fields never re-resolve. SDK 105+. */
+    snapshot(): Record<string, unknown>;
 }
 
 interface Item {
