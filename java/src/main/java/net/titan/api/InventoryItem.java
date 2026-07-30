@@ -23,6 +23,10 @@ public final class InventoryItem {
         return value == null ? "" : value;
     }
 
+    /**
+     * Dispatches an ordinary inventory action or a live opcode-43 submenu
+     * label. Ordinary actions take precedence when labels collide.
+     */
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
         InteractionBackend actions = TitanRuntime.getInteractionBackend();

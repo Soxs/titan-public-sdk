@@ -438,7 +438,9 @@ interface Item {
     readonly name: string;
 
     /**
-     * Dispatch an inventory action (e.g. "Eat", "Bury", "Drop").
+     * Dispatch an inventory action (e.g. "Eat", "Bury", "Drop") or a live
+     * opcode-43 submenu label. Ordinary actions take precedence when labels
+     * collide.
      * Returns true when the action was accepted / queued; inventory or
      * equipment state changes are confirmed later via `onItemContainerChanged`.
      */
@@ -1131,6 +1133,8 @@ interface ItemComposition {
     readonly linkedNoteId: number;
     /** Inventory-action slots with positional gaps preserved. */
     readonly inventoryActions: string[];
+    /** Opcode-43 submenu labels as a fixed 5 x 20 positional matrix. */
+    readonly subOps: string[][];
     readonly runtimeResolved: boolean;
 }
 
@@ -1881,6 +1885,9 @@ interface PanelElement {
         linkedId: number;
         inventoryActions: string[];
         groundActions: string[];
+        /** Raw opcode-43 submenu labels. Always 5 parent slots by 20 submenu
+         * slots; empty strings preserve positional gaps. Added in SDK 106. */
+        subOps: string[][];
     }
     interface NpcDef {
         id: number;

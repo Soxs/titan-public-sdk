@@ -115,6 +115,18 @@ editing the API itself.
 - `net.titan.api.overlay`: in-game overlay draw and panel helpers, including
   WorldView-aware projection/draw methods.
 
+## Item Sub-operations (0.1.32+)
+
+`ItemDefinition.subOps()` exposes raw cache opcode-43 submenu labels as a
+deeply unmodifiable five-by-twenty list. Empty strings preserve the original
+parent/submenu slot indexes.
+
+Java 0.1.33 adds the same deeply unmodifiable shape to
+`ItemComposition.subOps()`. Runtime-resolved compositions use the live ItemDef
+vectors; cache fallback uses the raw opcode-43 matrix. Existing
+`InventoryItem.interact(action)` calls transparently resolve ordinary actions
+first and then these live submenu labels.
+
 ## Coordinated Breaks (0.1.24+)
 
 `net.titan.api.BreakHandler` mirrors the native and JavaScript Break Handler

@@ -165,4 +165,8 @@ Use `titan-plugin-sdk.d.ts` for IntelliSense and type checking:
 ```
 
 JavaScript plugins still run in TitanClient's QuickJS runtime; this repository
-only publishes the type declarations and public Java SDK.
+only publishes the type declarations and public Java SDK. SDK 106 item cache
+definitions and SDK 107 runtime item compositions expose `subOps` as a fixed
+five-by-twenty nested string array with empty strings for unused slots.
+Inventory-item `interact(action)` resolves ordinary actions first and then live
+submenu labels through the existing cross-runtime HostApi path.
