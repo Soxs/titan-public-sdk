@@ -10,6 +10,7 @@ final class ObjectIDEntries_75 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(38466, "HALLOWED_FLOOR_2_NORTHPATH_STAIRS", "Stairs", "loctypes"),
             new GamevalEntry(38467, "HALLOWED_FLOOR_2_EASTPATH_STAIRS", "Stairs", "loctypes"),
             new GamevalEntry(38468, "HALLOWED_FLOOR_2_SOUTHPATH_STAIRS", "Stairs", "loctypes"),
             new GamevalEntry(38469, "HALLOWED_FLOOR_2_WESTPATH_DROP", "Stairs", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_75 {
             new GamevalEntry(38975, "HS_NPT2_WALL_CRACKS_03", "hs_npt2_wall_cracks_03", "loctypes"),
             new GamevalEntry(38976, "HS_NPT2_WALL_CRACKS_04", "hs_npt2_wall_cracks_04", "loctypes"),
             new GamevalEntry(38977, "HS_NPT2_WALL_CUTS_01", "hs_npt2_wall_cuts_01", "loctypes"),
-            new GamevalEntry(38978, "HS_NPT2_WALL_CUTS_02", "hs_npt2_wall_cuts_02", "loctypes"),
         };
     }
 

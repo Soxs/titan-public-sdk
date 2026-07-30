@@ -10,6 +10,12 @@ final class AnimationIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5125, "ZEP_BALLOON_JOURNEY_CRAFTING_TAVERLEY", "zep_balloon_journey_crafting_taverley", "seqtypes"),
+            new GamevalEntry(5126, "ZEP_BALLOON_JOURNEY_TAVERLEY_CASTLEWARS", "zep_balloon_journey_taverley_castlewars", "seqtypes"),
+            new GamevalEntry(5127, "ZEP_BALLOON_JOURNEY_CASTLEWARS_TAVERLEY", "zep_balloon_journey_castlewars_taverley", "seqtypes"),
+            new GamevalEntry(5128, "ZEP_BALLOON_JOURNEY_CRAFTING_CASTLEWARS", "zep_balloon_journey_crafting_castlewars", "seqtypes"),
+            new GamevalEntry(5129, "ZEP_BALLOON_JOURNEY_CASTLEWARS_CRAFTING", "zep_balloon_journey_castlewars_crafting", "seqtypes"),
+            new GamevalEntry(5130, "ZEP_BALLOON_JOURNEY_VARROCK_CASTLEWARS", "zep_balloon_journey_varrock_castlewars", "seqtypes"),
             new GamevalEntry(5131, "ZEP_BALLOON_JOURNEY_CASTLEWARS_VARROCK", "zep_balloon_journey_castlewars_varrock", "seqtypes"),
             new GamevalEntry(5132, "ZEP_BALLOON_JOURNEY_GRANDTREE_CASTLEWARS", "zep_balloon_journey_grandtree_castlewars", "seqtypes"),
             new GamevalEntry(5133, "ZEP_BALLOON_JOURNEY_CASTLEWARS_GRANDTREE", "zep_balloon_journey_castlewars_grandtree", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_10 {
             new GamevalEntry(5634, "SUROK_ZAFF_SPELL_CASTING_SPOT", "surok_zaff_spell_casting_spot", "seqtypes"),
             new GamevalEntry(5635, "SUROK_ZAFF_SPELL_CASTING_PROJ", "surok_zaff_spell_casting_proj", "seqtypes"),
             new GamevalEntry(5636, "SUROK_ZAFF_SPELL_CASTING_IMPACT", "surok_zaff_spell_casting_impact", "seqtypes"),
-            new GamevalEntry(5637, "LOTR_ENCHANT_AMULET_PLAYER_ANIM", "lotr_enchant_amulet_player_anim", "seqtypes"),
-            new GamevalEntry(5638, "SUROK_SUROK_SPELL_CASTING_SPOT", "surok_surok_spell_casting_spot", "seqtypes"),
-            new GamevalEntry(5639, "SUROK_SUROK_SPELL_CASTING_PROJ", "surok_surok_spell_casting_proj", "seqtypes"),
-            new GamevalEntry(5640, "SUROK_SUROK_SPELL_CASTING_IMPACT", "surok_surok_spell_casting_impact", "seqtypes"),
-            new GamevalEntry(5641, "BRAIN_SAWBONES_READY", "brain_sawbones_ready", "seqtypes"),
-            new GamevalEntry(5642, "BRAIN_SAWBONES_WALK", "brain_sawbones_walk", "seqtypes"),
         };
     }
 

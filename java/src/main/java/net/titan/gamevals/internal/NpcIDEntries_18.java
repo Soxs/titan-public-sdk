@@ -10,6 +10,7 @@ final class NpcIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9218, "DOOMION", "doomion", "npctypes"),
             new GamevalEntry(9219, "HOLTHION", "holthion", "npctypes"),
             new GamevalEntry(9220, "IBANMONK", "ibanmonk", "npctypes"),
             new GamevalEntry(9221, "IBAN", "3 4 5 6 ZJ", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_18 {
             new GamevalEntry(9727, "DARKM_JUVINATE_01", "+ Vampyre Juvinate", "npctypes"),
             new GamevalEntry(9728, "DARKM_JUVINATE_02", "+ Vampyre Juvinate", "npctypes"),
             new GamevalEntry(9729, "DARKM_JUVINATE_01_HELD", "+ Vampyre Juvinate", "npctypes"),
-            new GamevalEntry(9730, "DARKM_JUVINATE_02_HELD", "+ Vampyre Juvinate", "npctypes"),
         };
     }
 

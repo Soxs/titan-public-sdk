@@ -10,6 +10,7 @@ final class ObjectIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13882, "SOUL_BANE_AWALL_VOID_EXIT", "( Enter", "loctypes"),
             new GamevalEntry(13883, "SOUL_BANE_AWALL_TOP", "soul_bane_awall_top", "loctypes"),
             new GamevalEntry(13884, "SOUL_BANE_AWALL_FILL", "soul_bane_awall_fill", "loctypes"),
             new GamevalEntry(13885, "SOUL_BANE_FWALL", "soul_bane_fwall", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_27 {
             new GamevalEntry(14391, "WILDERNESS_ROCKS_FLOOR_HARD_02", "wilderness_rocks_floor_hard_02", "loctypes"),
             new GamevalEntry(14392, "WILDERNESS_ROCKS_FLOOR_HARD_03", "wilderness_rocks_floor_hard_03", "loctypes"),
             new GamevalEntry(14393, "WILDERNESS_ROCKS_FLOOR_HARD_04", "wilderness_rocks_floor_hard_04", "loctypes"),
-            new GamevalEntry(14394, "WILDERNESS_ROCKS_FLOOR_HARD_05", "wilderness_rocks_floor_hard_05", "loctypes"),
         };
     }
 

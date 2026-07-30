@@ -10,6 +10,7 @@ final class NpcIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12802, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN2_TEMPESTUS", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12803, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN3_FORTIS", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12804, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN3_ALDARIN", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12805, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN3_SUNSETCOAST", "Trader Crewmember", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_25 {
             new GamevalEntry(13311, "VARLAMORE_DODGY_CHARACTER_MET", "Oriana", "npctypes"),
             new GamevalEntry(13312, "VARLAMORE_THIEVING_HOUSE_OWNER_1", "Lavinia", "npctypes"),
             new GamevalEntry(13313, "VARLAMORE_THIEVING_HOUSE_OWNER_2", "Victor", "npctypes"),
-            new GamevalEntry(13314, "VARLAMORE_THIEVING_HOUSE_OWNER_3", "Caius", "npctypes"),
         };
     }
 

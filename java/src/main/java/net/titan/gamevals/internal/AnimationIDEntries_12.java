@@ -10,6 +10,12 @@ final class AnimationIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6149, "SLICE_ZANIK_PUBLIC_ADDRESS", "slice_zanik_public_address", "seqtypes"),
+            new GamevalEntry(6150, "SLICE_HOSTAGE_WALK", "slice_hostage_walk", "seqtypes"),
+            new GamevalEntry(6151, "SLICE_HOSTAGE_READY", "slice_hostage_ready", "seqtypes"),
+            new GamevalEntry(6152, "SLICE_SURFACE_GOBLIN_SERGENT_WALK", "slice_surface_goblin_sergent_walk", "seqtypes"),
+            new GamevalEntry(6153, "SLICE_SURFACE_GOBLIN_SERGENT_READY", "slice_surface_goblin_sergent_ready", "seqtypes"),
+            new GamevalEntry(6154, "SLICE_SURFACE_GOBLIN_SERGENT_ATTACK", "slice_surface_goblin_sergent_attack", "seqtypes"),
             new GamevalEntry(6155, "SLICE_SURFACE_GOBLIN_SERGENT_DEFEND", "slice_surface_goblin_sergent_defend", "seqtypes"),
             new GamevalEntry(6156, "SLICE_SURFACE_GOBLIN_SERGENT_DEATH", "slice_surface_goblin_sergent_death", "seqtypes"),
             new GamevalEntry(6157, "SLICE_SURFACE_GOBLIN_SERGENT_HIDE", "slice_surface_goblin_sergent_hide", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_12 {
             new GamevalEntry(6658, "PETROCK_HUMAN_WALK", "petrock_human_walk", "seqtypes"),
             new GamevalEntry(6659, "PETROCK_HUMAN_WALK_B", "petrock_human_walk_b", "seqtypes"),
             new GamevalEntry(6660, "PETROCK_HUMAN_RUNNING", "petrock_human_running", "seqtypes"),
-            new GamevalEntry(6661, "PETROCK_HUMAN_TURNONSPOT", "petrock_human_turnonspot", "seqtypes"),
-            new GamevalEntry(6662, "PETROCK_HUMAN_WALK_L", "petrock_human_walk_l", "seqtypes"),
-            new GamevalEntry(6663, "PETROCK_HUMAN_WALK_R", "petrock_human_walk_r", "seqtypes"),
-            new GamevalEntry(6664, "PETROCK_HUMAN_STAY", "petrock_human_stay", "seqtypes"),
-            new GamevalEntry(6665, "PETROCK_HUMAN_STICK", "petrock_human_stick", "seqtypes"),
-            new GamevalEntry(6666, "DRAGON_SLAYER_CHILD_DEATH", "dragon_slayer_child_death", "seqtypes"),
         };
     }
 

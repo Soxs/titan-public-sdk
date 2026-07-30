@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_15 {
+    int TZHAAR_HUR_CITY1 = 7682;
     int TZHAAR_HUR_CITY2 = 7683;
     int TZHAAR_HUR_CITY3 = 7684;
     int TZHAAR_HUR_CITY4 = 7685;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_15 {
     int RAIDS_TEMPLE_DUFFY = 8191;
     int RAIDS_TEMPLE_HISTORIAN = 8192;
     int BOND_JAMES_VISIBLE = 8193;
-    int GB_GROWTHLING = 8194;
 }

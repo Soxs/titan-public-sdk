@@ -10,6 +10,7 @@ final class NpcIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8194, "GB_GROWTHLING", "Growthling", "npctypes"),
             new GamevalEntry(8195, "GB_MOSSGIANT", "Bryophyta", "npctypes"),
             new GamevalEntry(8196, "POH_DOGADILE_PET", "Puppadile", "npctypes"),
             new GamevalEntry(8197, "POH_TEKTON_PET", "Tektiny", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_16 {
             new GamevalEntry(8703, "HOSDUN_SPIDER", "Temple Spider", "npctypes"),
             new GamevalEntry(8704, "HOSDUN_AIMERI_INJURED", "Brother Aimeri", "npctypes"),
             new GamevalEntry(8705, "HOSDUN_AIMERI_HEALED", "/ / Brother Aimeri", "npctypes"),
-            new GamevalEntry(8706, "HOSDUN_OLBERTUS_CORRUPTED", "Olbertus", "npctypes"),
         };
     }
 

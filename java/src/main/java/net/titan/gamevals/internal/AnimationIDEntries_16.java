@@ -10,6 +10,12 @@ final class AnimationIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8199, "SHAYZIEN_LIZARD_BOSS_PRAY", "shayzien_lizard_boss_pray", "seqtypes"),
+            new GamevalEntry(8200, "SHAYZIEN_LIZARD_BOSS_CHANT", "shayzien_lizard_boss_chant", "seqtypes"),
+            new GamevalEntry(8201, "ARCEUUS_ELDER_READY", "arceuus_elder_ready", "seqtypes"),
+            new GamevalEntry(8202, "ARCEUUS_LORD_READY", "arceuus_lord_ready", "seqtypes"),
+            new GamevalEntry(8203, "ARCEUUS_LORD_TRANCE", "arceuus_lord_trance", "seqtypes"),
+            new GamevalEntry(8204, "AERIAL_FISHING_POOL", "aerial_fishing_pool", "seqtypes"),
             new GamevalEntry(8205, "AERIAL_FISHING_LAUNCH", "aerial_fishing_launch", "seqtypes"),
             new GamevalEntry(8206, "AERIAL_FISHING_TRAVEL", "aerial_fishing_travel", "seqtypes"),
             new GamevalEntry(8207, "AERIAL_FISHING_SPLASH_MEDIUM", "aerial_fishing_splash_medium", "seqtypes"),
@@ -347,6 +353,9 @@ final class AnimationIDEntries_16 {
             new GamevalEntry(8539, "LEAGUE_TROPHY_GLINT_LONG_SPOT", "league_trophy_glint_long_spot", "seqtypes"),
             new GamevalEntry(8540, "LEAGUE_TROPHY_DRAGON_FIREBREATH", "league_trophy_dragon_firebreath", "seqtypes"),
             new GamevalEntry(8541, "EMOTE_EXPLORE", "emote_explore", "seqtypes"),
+            new GamevalEntry(8542, "VFX_MAD_ANGEL_ATTACK_SMITE", "vfx_mad_angel_attack_smite", "seqtypes"),
+            new GamevalEntry(8543, "NPC_MAD_ANGEL_ATTACK_SMITE_ENRAGED", "npc_mad_angel_attack_smite_enraged", "seqtypes"),
+            new GamevalEntry(8544, "VFX_MAD_ANGEL_ATTACK_SMITE_ENRAGED", "vfx_mad_angel_attack_smite_enraged", "seqtypes"),
             new GamevalEntry(8545, "NIGHTMARE_STAFF_VOLATILE_HIT", "nightmare_staff_volatile_hit", "seqtypes"),
             new GamevalEntry(8546, "NIGHTMARE_STAFF_VOLATILE_CAST", "nightmare_staff_volatile_cast", "seqtypes"),
             new GamevalEntry(8547, "NIGHTMARE_STAFF_ELDRITCH_HIT", "nightmare_staff_eldritch_hit", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_16 {
             new GamevalEntry(8708, "VYRELORD_GROUND_DEFEND_FEMALE", "vyrelord_ground_defend_female", "seqtypes"),
             new GamevalEntry(8709, "VYRELORD_GROUND_DEFEND_MALE", "vyrelord_ground_defend_male", "seqtypes"),
             new GamevalEntry(8710, "VYRELORD_GROUNDED_DEATH", "vyrelord_grounded_death", "seqtypes"),
-            new GamevalEntry(8711, "VYRELORD_HEAD_VAMP_SPELL", "vyrelord_head_vamp_spell", "seqtypes"),
-            new GamevalEntry(8712, "VYRELORD_HUMAN_TO_VAMPIRE_FADE", "vyrelord_human_to_vampire_fade", "seqtypes"),
-            new GamevalEntry(8713, "VYRELORD_JUVENILE_JUVINATE_DUST_START", "vyrelord_juvenile_juvinate_dust_start", "seqtypes"),
-            new GamevalEntry(8714, "VYRELORD_JUVENILE_JUVINATE_HOLD_CAPTURE", "vyrelord_juvenile_juvinate_hold_capture", "seqtypes"),
-            new GamevalEntry(8715, "VYRELORD_JUVINATE_TITHE_PUCH_READY", "vyrelord_juvinate_tithe_puch_ready", "seqtypes"),
-            new GamevalEntry(8716, "VYRELORD_MAGIC", "vyrelord_magic", "seqtypes"),
-            new GamevalEntry(8717, "VYRELORD_NEW_GROUND_ATTACK", "vyrelord_new_ground_attack", "seqtypes"),
-            new GamevalEntry(8718, "VYRELORD_ORB_TO_HUMAN_FADE", "vyrelord_orb_to_human_fade", "seqtypes"),
-            new GamevalEntry(8719, "VYRELORD_VANSTROM_KLAUS_DEFEND", "vyrelord_vanstrom_klaus_defend", "seqtypes"),
         };
     }
 

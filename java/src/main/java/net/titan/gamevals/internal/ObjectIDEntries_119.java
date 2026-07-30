@@ -10,6 +10,12 @@ final class ObjectIDEntries_119 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(60996, "STATUE_SANGVESTI01_JOVKAI01", "Statue", "loctypes"),
+            new GamevalEntry(60997, "STATUE_SANGVESTI01_MYRMEL01", "Statue", "loctypes"),
+            new GamevalEntry(60998, "STATUE_SANGVESTI01_PYRAH01", "Statue", "loctypes"),
+            new GamevalEntry(60999, "STATUE_SANGVESTI01_SHADUM01", "Statue", "loctypes"),
+            new GamevalEntry(61000, "STATUE_SANGVESTI01_VITUR01", "Statue", "loctypes"),
+            new GamevalEntry(61001, "STATUES_SANGVESTI01_DRAKAN01_AGILITY01", "Statue", "loctypes"),
             new GamevalEntry(61002, "LEVER_SANGVESTI_WALL01_UP01", "lever_sangvesti_wall01_up01", "loctypes"),
             new GamevalEntry(61003, "LEVER_SANGVESTI_WALL01_DOWN01", "lever_sangvesti_wall01_down01", "loctypes"),
             new GamevalEntry(61004, "LEVER_SANGVESTI_FLOOR01_UP01", "Lever", "loctypes"),
@@ -188,6 +194,7 @@ final class ObjectIDEntries_119 {
             new GamevalEntry(61177, "MYQ6_HIDEOUT_SHRINE_VIS", "Makeshift shrine", "loctypes"),
             new GamevalEntry(61178, "MYQ6_HIDEOUT_SHRINE_VIS_NOOP", "Makeshift shrine", "loctypes"),
             new GamevalEntry(61179, "MYQ6_HIDEOUT_SHRINE_HIDDEN", "Locker", "loctypes"),
+            new GamevalEntry(61180, "BASALT_SINGLE_02", "basalt_single_02", "loctypes"),
             new GamevalEntry(61181, "DARKM_CASTLE_DOOR_OUTSIDE_ESCAPE", "darkm_castle_door_outside_escape", "loctypes"),
             new GamevalEntry(61182, "DARKM_CASTLE_DOOR_INSIDE_ESCAPE", "Castle Gates", "loctypes"),
             new GamevalEntry(61183, "MYQ6_VELIAF_DRINK_TABLE", "myq6_veliaf_drink_table", "loctypes"),
@@ -515,13 +522,6 @@ final class ObjectIDEntries_119 {
             new GamevalEntry(61505, "TORCH_DRAKAN01_NW", "torch_drakan01_nw", "loctypes"),
             new GamevalEntry(61506, "TORCH_DAEYALT_LAB01", "torch_daeyalt_lab01", "loctypes"),
             new GamevalEntry(61507, "TORCH_DAEYALT_LAB01_N", "torch_daeyalt_lab01_n", "loctypes"),
-            new GamevalEntry(61508, "TORCH_DAEYALT_LAB01_E", "torch_daeyalt_lab01_e", "loctypes"),
-            new GamevalEntry(61509, "TORCH_DAEYALT_LAB01_S", "torch_daeyalt_lab01_s", "loctypes"),
-            new GamevalEntry(61510, "TORCH_DAEYALT_LAB01_W", "torch_daeyalt_lab01_w", "loctypes"),
-            new GamevalEntry(61511, "TORCH_DAEYALT_LAB01_NE", "torch_daeyalt_lab01_ne", "loctypes"),
-            new GamevalEntry(61512, "TORCH_DAEYALT_LAB01_SE", "torch_daeyalt_lab01_se", "loctypes"),
-            new GamevalEntry(61513, "TORCH_DAEYALT_LAB01_SW", "torch_daeyalt_lab01_sw", "loctypes"),
-            new GamevalEntry(61514, "TORCH_DAEYALT_LAB01_NW", "torch_daeyalt_lab01_nw", "loctypes"),
         };
     }
 

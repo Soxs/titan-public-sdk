@@ -10,6 +10,7 @@ final class ObjectIDEntries_100 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(51267, "PMOON_BLOOD_RIPPLE02", "pmoon_blood_ripple02", "loctypes"),
             new GamevalEntry(51268, "PMOON_BLOOD_DRIPS01", "Drip", "loctypes"),
             new GamevalEntry(51269, "PMOON_BLUE_DRIPS01", "pmoon_blue_drips01", "loctypes"),
             new GamevalEntry(51270, "CAVEKIT_WATERFALL_BLOOD01", "Blood", "loctypes"),
@@ -109,6 +110,10 @@ final class ObjectIDEntries_100 {
             new GamevalEntry(51364, "PMOON_BARRIER_FABRIC01_SHORT01", "Camp barrier", "loctypes"),
             new GamevalEntry(51365, "PMOON_GRUB_SAPLING", "Grubby sapling", "loctypes"),
             new GamevalEntry(51366, "PMOON_CAMP_BARRIER_SHORT", "pmoon_camp_barrier_short", "loctypes"),
+            new GamevalEntry(51367, "SAILING_GANGPLANK_PROXY_WIDE_VIKING", "sailing_gangplank_proxy_wide_viking", "loctypes"),
+            new GamevalEntry(51368, "WYRMSCRAIG_BANK_CHEST_BUILT", "Bank chest", "loctypes"),
+            new GamevalEntry(51369, "WYRMSCRAIG_BANK_CHEST_NOTBUILT", "Chest pieces", "loctypes"),
+            new GamevalEntry(51370, "WYRMSCRAIG_ROSE", "Roses", "loctypes"),
             new GamevalEntry(51371, "PMOON_SUPPLY_CRATE", "Supply crates", "loctypes"),
             new GamevalEntry(51372, "PMOON_ENTRY_STATUE_BLOOD", "Statue", "loctypes"),
             new GamevalEntry(51373, "PMOON_ENTRY_STATUE_BLUE", "Statue", "loctypes"),
@@ -517,11 +522,6 @@ final class ObjectIDEntries_100 {
             new GamevalEntry(51776, "PLANT_BUSH_MID", "plant_bush_mid", "loctypes"),
             new GamevalEntry(51777, "PLANT_BUSH_CORNER", "plant_bush_corner", "loctypes"),
             new GamevalEntry(51778, "PLANT_BUSH_THREEPEICE", "plant_bush_threepeice", "loctypes"),
-            new GamevalEntry(51779, "PLANT_BUSH_THREEPEICE_MIRR", "plant_bush_threepeice_mirr", "loctypes"),
-            new GamevalEntry(51780, "PLANT_BUSH_WWWPEICE", "plant_bush_wwwpeice", "loctypes"),
-            new GamevalEntry(51781, "PLANT_BUSH_WWWPEICE_MIRR", "plant_bush_wwwpeice_mirr", "loctypes"),
-            new GamevalEntry(51782, "PLANT_BUSH_EEEPEICE", "plant_bush_eeepeice_", "loctypes"),
-            new GamevalEntry(51783, "PLANT_BUSH_555PEICE", "plant_bush_555peice", "loctypes"),
         };
     }
 

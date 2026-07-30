@@ -10,6 +10,7 @@ final class VarPlayerIDEntries_5 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5168, "SAILING_CREW_VISIBILITY_1", "sailing_crew_visibility_1", "varptypes"),
             new GamevalEntry(5169, "SAILING_CREW_PERM_1", "sailing_crew_perm_1", "varptypes"),
             new GamevalEntry(5170, "SAILING_CREW_PERM_2", "sailing_crew_perm_2", "varptypes"),
             new GamevalEntry(5171, "SAILING_CREW_TEMP_1", "sailing_crew_temp_1", "varptypes"),
@@ -369,6 +370,17 @@ final class VarPlayerIDEntries_5 {
             new GamevalEntry(5670, "SANGVESTI_PLAYER_LAST_DEATH_POS", "sangvesti_player_last_death_pos", "varptypes"),
             new GamevalEntry(5671, "AFK_BLOODWOOD_TREE", "afk_bloodwood_tree", "varptypes"),
             new GamevalEntry(5673, "CA_TASK_COMPLETED_20", "ca_task_completed_20", "varptypes"),
+            new GamevalEntry(5705, "WYRMSCRAIG_VARP", "wyrmscraig_varp", "varptypes"),
+            new GamevalEntry(5706, "GOAT_PIT_VARP", "goat_pit_varp", "varptypes"),
+            new GamevalEntry(5709, "GOLEM_CRAFTING_CORE", "golem_crafting_core", "varptypes"),
+            new GamevalEntry(5710, "GOLEM_CRAFTING_SIDE", "golem_crafting_side", "varptypes"),
+            new GamevalEntry(5712, "TOTAL_MAD_ANGEL_KILLS", "total_mad_angel_kills", "varptypes"),
+            new GamevalEntry(5715, "FFG_PRIMARY", "ffg_primary", "varptypes"),
+            new GamevalEntry(5719, "SLAYER_MODIFIERS", "slayer_modifiers", "varptypes"),
+            new GamevalEntry(5721, "SLAYER_REWARDS_BLOCKED_14", "slayer_rewards_blocked_14", "varptypes"),
+            new GamevalEntry(5722, "SLAYER_MISC_PERM", "slayer_misc_perm", "varptypes"),
+            new GamevalEntry(5723, "SLAYER_MISC_PERM_2", "slayer_misc_perm_2", "varptypes"),
+            new GamevalEntry(5724, "SLAYER_MISC_PERM_3", "slayer_misc_perm_3", "varptypes"),
         };
     }
 

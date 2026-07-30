@@ -10,6 +10,12 @@ final class AnimationIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4613, "QIP_DS_READING_CRYSTALBALL_SPOTANIM", "qip_ds_reading_crystalball_spotanim", "seqtypes"),
+            new GamevalEntry(4614, "QIP_DS_ATTAINING_CRYSTALBALL", "qip_ds_attaining_crystalball", "seqtypes"),
+            new GamevalEntry(4615, "QIP_DS_RETURNING_CRYSTALBALL", "qip_ds_returning_crystalball", "seqtypes"),
+            new GamevalEntry(4616, "QIP_DS_READING_CRYSTALBALL", "qip_ds_reading_crystalball", "seqtypes"),
+            new GamevalEntry(4617, "QIP_DS_DARK_WIZARD_CHANTING", "qip_ds_dark_wizard_chanting", "seqtypes"),
+            new GamevalEntry(4618, "QIP_DS_DELRITH_STRUCK_DOWN", "qip_ds_delrith_struck_down", "seqtypes"),
             new GamevalEntry(4619, "QIP_DS_DELRITH_WEAKENED_PORTAL", "qip_ds_delrith_weakened_portal", "seqtypes"),
             new GamevalEntry(4620, "QIP_DS_DELRITH_PORTAL_FAILED", "qip_ds_delrith_portal_failed", "seqtypes"),
             new GamevalEntry(4621, "QIP_DS_TABLE_EXPLOSION_FIRSTFRAME", "qip_ds_table_explosion_firstframe", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_9 {
             new GamevalEntry(5122, "ZEP_BALLOON_JOURNEY_VARROCK_TAVERLEY", "zep_balloon_journey_varrock_taverley", "seqtypes"),
             new GamevalEntry(5123, "ZEP_BALLOON_JOURNEY_TAVERLEY_VARROCK", "zep_balloon_journey_taverley_varrock", "seqtypes"),
             new GamevalEntry(5124, "ZEP_BALLOON_JOURNEY_TAVERLEY_CRAFTING", "zep_balloon_journey_taverley_crafting", "seqtypes"),
-            new GamevalEntry(5125, "ZEP_BALLOON_JOURNEY_CRAFTING_TAVERLEY", "zep_balloon_journey_crafting_taverley", "seqtypes"),
-            new GamevalEntry(5126, "ZEP_BALLOON_JOURNEY_TAVERLEY_CASTLEWARS", "zep_balloon_journey_taverley_castlewars", "seqtypes"),
-            new GamevalEntry(5127, "ZEP_BALLOON_JOURNEY_CASTLEWARS_TAVERLEY", "zep_balloon_journey_castlewars_taverley", "seqtypes"),
-            new GamevalEntry(5128, "ZEP_BALLOON_JOURNEY_CRAFTING_CASTLEWARS", "zep_balloon_journey_crafting_castlewars", "seqtypes"),
-            new GamevalEntry(5129, "ZEP_BALLOON_JOURNEY_CASTLEWARS_CRAFTING", "zep_balloon_journey_castlewars_crafting", "seqtypes"),
-            new GamevalEntry(5130, "ZEP_BALLOON_JOURNEY_VARROCK_CASTLEWARS", "zep_balloon_journey_varrock_castlewars", "seqtypes"),
         };
     }
 

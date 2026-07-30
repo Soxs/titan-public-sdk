@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_27 {
+    int SOUL_BANE_AWALL_VOID_EXIT = 13882;
     int SOUL_BANE_AWALL_TOP = 13883;
     int SOUL_BANE_AWALL_FILL = 13884;
     int SOUL_BANE_FWALL = 13885;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_27 {
     int WILDERNESS_ROCKS_FLOOR_HARD_02 = 14391;
     int WILDERNESS_ROCKS_FLOOR_HARD_03 = 14392;
     int WILDERNESS_ROCKS_FLOOR_HARD_04 = 14393;
-    int WILDERNESS_ROCKS_FLOOR_HARD_05 = 14394;
 }

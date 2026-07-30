@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_29 {
+    int ROOFTOPS_FALADOR_TIGHTROPE_FORDIAGONAL = 14906;
     int ROOFTOPS_FALADOR_TIGHTROPE_END_FORDIAGONAL = 14907;
     int WOM_STAFFMULTI = 14908;
     int DEADMAN_FLAX = 14909;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_29 {
     int _100_ILM_CLIMBABLE_TREE_LEAF = 15416;
     int _100_ILM_MONKEYBARS_START = 15417;
     int _100_ILM_MONKEYBARS_MID = 15418;
-    int _100_ILM_MONKEYBARS_END = 15419;
 }

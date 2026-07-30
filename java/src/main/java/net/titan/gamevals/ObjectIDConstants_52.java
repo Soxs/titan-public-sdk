@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_52 {
+    int CLANWARS_PRISONWALL = 26689;
     int CLANWARS_SNOWFALLING = 26690;
     int WILD6_SKELETON_0 = 26691;
     int CLANWARS_TELEPORTER_ACTIVE = 26692;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_52 {
     int SHAYZIEN_PILLAR_02_MIDDLE = 27198;
     int SHAYZIEN_STAIRS_BOTTOM_01 = 27199;
     int SHAYZIEN_STAIRS_TOP_01 = 27200;
-    int SHAYZIEN_STAIRS_BOTTOM_02 = 27201;
 }

@@ -10,6 +10,7 @@ final class NpcIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6146, "ENAKH_DUMMY_FURNACE_MULTINPC", "enakh_dummy_furnace_multinpc", "npctypes"),
             new GamevalEntry(6147, "ENAKH_ENAKHRA_MULTINPC", "enakh_enakhra_multinpc", "npctypes"),
             new GamevalEntry(6148, "ENAKH_AKTHANAKOS_MULTINPC", "enakh_akthanakos_multinpc", "npctypes"),
             new GamevalEntry(6149, "DT2_CAMDOZAAL_ARCHAEOLOGIST_2", "dt2_camdozaal_archaeologist_2", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_12 {
             new GamevalEntry(6655, "POH_SMOKE_PET", "Smoke Devil", "npctypes"),
             new GamevalEntry(6656, "POH_KRAKEN_PET", "Kraken", "npctypes"),
             new GamevalEntry(6657, "POH_ROCK", "Pet rock", "npctypes"),
-            new GamevalEntry(6658, "POH_FISHBOWL_BLUEFISH", "Fishbowl", "npctypes"),
         };
     }
 

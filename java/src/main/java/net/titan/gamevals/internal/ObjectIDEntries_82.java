@@ -10,6 +10,7 @@ final class ObjectIDEntries_82 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(42050, "SHAYZIEN_FLAG_DEFAULT01", "Banner", "loctypes"),
             new GamevalEntry(42051, "SHAYZIEN_FLAG_AGILITY01", "Banner", "loctypes"),
             new GamevalEntry(42052, "SHAYZIEN_FLAG_ARROWS01", "Banner", "loctypes"),
             new GamevalEntry(42053, "SHAYZIEN_FLAG_ARROWS02", "Banner", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_82 {
             new GamevalEntry(42559, "TOBQUEST_FLOOR_TILE04_02", "tobquest_floor_tile04_02", "loctypes"),
             new GamevalEntry(42560, "TOBQUEST_FLOOR_TILE04_03", "tobquest_floor_tile04_03", "loctypes"),
             new GamevalEntry(42561, "TOBQUEST_FLOOR_TILE04_04", "tobquest_floor_tile04_04", "loctypes"),
-            new GamevalEntry(42562, "TOBQUEST_FLOOR_TILE04_05", "tobquest_floor_tile04_05", "loctypes"),
         };
     }
 

@@ -10,6 +10,12 @@ final class AnimationIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5637, "LOTR_ENCHANT_AMULET_PLAYER_ANIM", "lotr_enchant_amulet_player_anim", "seqtypes"),
+            new GamevalEntry(5638, "SUROK_SUROK_SPELL_CASTING_SPOT", "surok_surok_spell_casting_spot", "seqtypes"),
+            new GamevalEntry(5639, "SUROK_SUROK_SPELL_CASTING_PROJ", "surok_surok_spell_casting_proj", "seqtypes"),
+            new GamevalEntry(5640, "SUROK_SUROK_SPELL_CASTING_IMPACT", "surok_surok_spell_casting_impact", "seqtypes"),
+            new GamevalEntry(5641, "BRAIN_SAWBONES_READY", "brain_sawbones_ready", "seqtypes"),
+            new GamevalEntry(5642, "BRAIN_SAWBONES_WALK", "brain_sawbones_walk", "seqtypes"),
             new GamevalEntry(5643, "BRAIN_SAWBONES_ATTACK", "brain_sawbones_attack", "seqtypes"),
             new GamevalEntry(5644, "BRAIN_SAWBONES_DEFEND", "brain_sawbones_defend", "seqtypes"),
             new GamevalEntry(5645, "BRAIN_ZOMBIE_PIRATE_WANDERERS_WALK", "brain_zombie_pirate_wanderers_walk", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_11 {
             new GamevalEntry(6146, "SLICE_PLAYER_THROWN_OUT_ANIM", "slice_player_thrown_out_anim", "seqtypes"),
             new GamevalEntry(6147, "SLICE_PLAYER_MACE_SPECIAL_ATTACK", "slice_player_mace_special_attack", "seqtypes"),
             new GamevalEntry(6148, "SLICE_PLAYER_MACE_SPECIAL_ATTACK_SPOT", "slice_player_mace_special_attack_spot", "seqtypes"),
-            new GamevalEntry(6149, "SLICE_ZANIK_PUBLIC_ADDRESS", "slice_zanik_public_address", "seqtypes"),
-            new GamevalEntry(6150, "SLICE_HOSTAGE_WALK", "slice_hostage_walk", "seqtypes"),
-            new GamevalEntry(6151, "SLICE_HOSTAGE_READY", "slice_hostage_ready", "seqtypes"),
-            new GamevalEntry(6152, "SLICE_SURFACE_GOBLIN_SERGENT_WALK", "slice_surface_goblin_sergent_walk", "seqtypes"),
-            new GamevalEntry(6153, "SLICE_SURFACE_GOBLIN_SERGENT_READY", "slice_surface_goblin_sergent_ready", "seqtypes"),
-            new GamevalEntry(6154, "SLICE_SURFACE_GOBLIN_SERGENT_ATTACK", "slice_surface_goblin_sergent_attack", "seqtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_54 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(27713, "PISCARILIUS_WASHING_LINE_01", "piscarilius_washing_line_01", "loctypes"),
             new GamevalEntry(27714, "PISCARILIUS_WASHING_LINE_02", "piscarilius_washing_line_02", "loctypes"),
             new GamevalEntry(27715, "PISCARILIUS_WASHING_LINE_03", "piscarilius_washing_line_03", "loctypes"),
             new GamevalEntry(27716, "PISCARILIUS_WASHING_LINE_04", "piscarilius_washing_line_04", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_54 {
             new GamevalEntry(28222, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_04_RED", "Bookshelf", "loctypes"),
             new GamevalEntry(28223, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_05_TURQUOISE", "Bookshelf", "loctypes"),
             new GamevalEntry(28224, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_05_GREEN", "Bookshelf", "loctypes"),
-            new GamevalEntry(28225, "ARCHEUUS_LIBRARY_BOOKCASE_G2_MIDDLE_DOOR_05_BLUE", "Bookshelf", "loctypes"),
         };
     }
 

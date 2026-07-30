@@ -9,7 +9,7 @@ public final class VarbitIDEntries {
     private VarbitIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[13153];
+        GamevalEntry[] out = new GamevalEntry[13225];
         int offset = 0;
         offset = copy(out, offset, VarbitIDEntries_0.entries());
         offset = copy(out, offset, VarbitIDEntries_1.entries());

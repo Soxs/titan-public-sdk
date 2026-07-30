@@ -10,6 +10,7 @@ final class ObjectIDEntries_88 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(45122, "TOA_WALL_WARDEN_02_MIRROR", "toa_wall_warden_02_mirror", "loctypes"),
             new GamevalEntry(45123, "TOA_WALL_WARDEN_03", "toa_wall_warden_03", "loctypes"),
             new GamevalEntry(45124, "TOA_WALL_WARDEN_01_ALT01", "toa_wall_warden_01_alt01", "loctypes"),
             new GamevalEntry(45125, "TOA_WALL_WARDEN_02_ALT01", "toa_wall_warden_02_alt01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_88 {
             new GamevalEntry(45631, "TOA_WARDENS_CITIZEN_SKELETON", "Skeleton", "loctypes"),
             new GamevalEntry(45632, "TOA_WARDENS_WARPED_FLOATING_DEBRIS01", "toa_wardens_warped_floating_debris01", "loctypes"),
             new GamevalEntry(45633, "TOA_WARDENS_WARPED_FLOATING_DEBRIS02", "toa_wardens_warped_floating_debris02", "loctypes"),
-            new GamevalEntry(45634, "TOA_WARDENS_WARPED_FLOATING_DEBRIS03", "toa_wardens_warped_floating_debris03", "loctypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface VarbitIDConstants_8 {
+    int FOSSIL_VM_DISPLAY_36_STATE = 5911;
     int FOSSIL_VM_DISPLAY_37_STATE = 5912;
     int FOSSIL_VM_DISPLAY_38_STATE = 5913;
     int FOSSIL_VM_DISPLAY_39_STATE = 5914;
@@ -512,5 +513,4 @@ public interface VarbitIDConstants_8 {
     int POH_NEXUS_TELE_10 = 6663;
     int POH_NEXUS_TELE_11 = 6664;
     int POH_NEXUS_TELE_12 = 6665;
-    int POH_NEXUS_TELE_13 = 6666;
 }

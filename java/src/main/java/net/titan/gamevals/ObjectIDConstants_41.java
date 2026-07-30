@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_41 {
+    int PENG_BASE_BOOTH_FRONT = 21055;
     int PENG_BASE_BOOTH_SIDE = 21056;
     int PENG_BASE_BOOTH_END = 21057;
     int PENG_BASE_DOOR_FRONT_L = 21058;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_41 {
     int FRIS_RAMP_02_MIRROR = 21564;
     int FRIS_RAMP_MID_01_MIRROR = 21565;
     int FRIS_RAMP_MID_02_MIRROR = 21566;
-    int FRIS_WALL_RAMP_01_MIRROR = 21567;
 }

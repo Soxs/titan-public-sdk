@@ -10,6 +10,12 @@ final class ObjectIDEntries_112 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(57411, "ROOFKIT_TALKASTI01_ROOF01", "roofkit_talkasti01_roof01", "loctypes"),
+            new GamevalEntry(57412, "ROOFKIT_TALKASTI01_ROOF02", "roofkit_talkasti01_roof02", "loctypes"),
+            new GamevalEntry(57413, "ROOFKIT_TALKASTI01_ROOF01_CORNER01", "roofkit_talkasti01_roof01_corner01", "loctypes"),
+            new GamevalEntry(57414, "ROOFKIT_TALKASTI01_ROOF01_CORNER02", "roofkit_talkasti01_roof01_corner02", "loctypes"),
+            new GamevalEntry(57415, "ROOFKIT_TALKASTI01_ROOF03", "roofkit_talkasti01_roof03", "loctypes"),
+            new GamevalEntry(57416, "ROOFKIT_TALKASTI01_ROOF04", "roofkit_talkasti01_roof04", "loctypes"),
             new GamevalEntry(57417, "SKEWWALL_TALTEKLAN01_STRAIGHT01", "skewwall_talteklan01_straight01", "loctypes"),
             new GamevalEntry(57418, "SKEWWALL_TALTEKLAN01_CORNER01", "skewwall_talteklan01_corner01", "loctypes"),
             new GamevalEntry(57419, "SKEWWALL_TALTEKLAN01_CORNER02", "skewwall_talteklan01_corner02", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_112 {
             new GamevalEntry(57920, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_2", "Whirlwind", "loctypes"),
             new GamevalEntry(57921, "GRYPHON_BOSS_WHIRLWIND_INITIAL_3", "Whirlwind", "loctypes"),
             new GamevalEntry(57922, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_3", "Whirlwind", "loctypes"),
-            new GamevalEntry(57923, "GRYPHON_BOSS_WHIRLWIND_INITIAL_4", "Whirlwind", "loctypes"),
-            new GamevalEntry(57924, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_4", "Whirlwind", "loctypes"),
-            new GamevalEntry(57925, "GRYPHON_BOSS_WHIRLWIND_INITIAL_5", "Whirlwind", "loctypes"),
-            new GamevalEntry(57926, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_5", "Whirlwind", "loctypes"),
-            new GamevalEntry(57927, "GREAT_CONCH_CLIFF_SHORTCUT_TOWN_TOP", "Rocks", "loctypes"),
-            new GamevalEntry(57928, "GREAT_CONCH_CLIFF_SHORTCUT_TOWN_BOTTOM", "Rocks", "loctypes"),
         };
     }
 

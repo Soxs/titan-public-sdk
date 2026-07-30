@@ -323,6 +323,7 @@ final class VarbitIDEntries_7 {
             new GamevalEntry(5615, "EASTER17_EGG_3", "easter17_egg_3", "varbittypes"),
             new GamevalEntry(5616, "EASTER17_EGG_4", "easter17_egg_4", "varbittypes"),
             new GamevalEntry(5617, "SLAYER_WILDERNESS_TASKS_COMPLETED", "slayer_wilderness_tasks_completed", "varbittypes"),
+            new GamevalEntry(5618, "WILDERNESS_MASTER_WARNING", "wilderness_master_warning", "varbittypes"),
             new GamevalEntry(5619, "VEOS_PROGRESS", "veos_progress", "varbittypes"),
             new GamevalEntry(5620, "VEOS_PISCARILIUS", "veos_piscarilius", "varbittypes"),
             new GamevalEntry(5621, "VEOS_ARCEUUS", "veos_arceuus", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_7 {
             new GamevalEntry(5908, "FOSSIL_VM_DISPLAY_33_STATE", "fossil_vm_display_33_state", "varbittypes"),
             new GamevalEntry(5909, "FOSSIL_VM_DISPLAY_34_STATE", "fossil_vm_display_34_state", "varbittypes"),
             new GamevalEntry(5910, "FOSSIL_VM_DISPLAY_35_STATE", "fossil_vm_display_35_state", "varbittypes"),
-            new GamevalEntry(5911, "FOSSIL_VM_DISPLAY_36_STATE", "fossil_vm_display_36_state", "varbittypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class VarbitIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5911, "FOSSIL_VM_DISPLAY_36_STATE", "fossil_vm_display_36_state", "varbittypes"),
             new GamevalEntry(5912, "FOSSIL_VM_DISPLAY_37_STATE", "fossil_vm_display_37_state", "varbittypes"),
             new GamevalEntry(5913, "FOSSIL_VM_DISPLAY_38_STATE", "fossil_vm_display_38_state", "varbittypes"),
             new GamevalEntry(5914, "FOSSIL_VM_DISPLAY_39_STATE", "fossil_vm_display_39_state", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_8 {
             new GamevalEntry(6663, "POH_NEXUS_TELE_10", "poh_nexus_tele_10", "varbittypes"),
             new GamevalEntry(6664, "POH_NEXUS_TELE_11", "poh_nexus_tele_11", "varbittypes"),
             new GamevalEntry(6665, "POH_NEXUS_TELE_12", "poh_nexus_tele_12", "varbittypes"),
-            new GamevalEntry(6666, "POH_NEXUS_TELE_13", "poh_nexus_tele_13", "varbittypes"),
         };
     }
 

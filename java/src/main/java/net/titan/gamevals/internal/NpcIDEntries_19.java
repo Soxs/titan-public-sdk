@@ -10,6 +10,7 @@ final class NpcIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9730, "DARKM_JUVINATE_02_HELD", "+ Vampyre Juvinate", "npctypes"),
             new GamevalEntry(9731, "DARKM_JUVENILE_01", "Vampyre Juvenile", "npctypes"),
             new GamevalEntry(9732, "DARKM_JUVENILE_02", "Vampyre Juvenile", "npctypes"),
             new GamevalEntry(9733, "DARKM_JUVENILE_01_HELD", "Vampyre Juvenile", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_19 {
             new GamevalEntry(10239, "GRAVESTONE_ANGEL_127", "gravestone_angel_127", "npctypes"),
             new GamevalEntry(10240, "GRAVESTONE_ANGEL_128", "gravestone_angel_128", "npctypes"),
             new GamevalEntry(10241, "GRAVESTONE_ANGEL_129", "gravestone_angel_129", "npctypes"),
-            new GamevalEntry(10242, "GRAVESTONE_ANGEL_130", "gravestone_angel_130", "npctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class VarPlayerIDEntries_3 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3563, "BR_LOADOUTS_18", "br_loadouts_18", "varptypes"),
             new GamevalEntry(3564, "BR_LOADOUTS_19", "br_loadouts_19", "varptypes"),
             new GamevalEntry(3565, "BR_LOADOUTS_20", "br_loadouts_20", "varptypes"),
             new GamevalEntry(3566, "BR_LOADOUTS_21", "br_loadouts_21", "varptypes"),
@@ -521,7 +522,6 @@ final class VarPlayerIDEntries_3 {
             new GamevalEntry(4511, "TRACKING_ECHO_BOSSES_KILLED", "tracking_echo_bosses_killed", "varptypes"),
             new GamevalEntry(4512, "TRACKING_COINS_GAINED", "tracking_coins_gained", "varptypes"),
             new GamevalEntry(4513, "TRACKING_COINS_LOST", "tracking_coins_lost", "varptypes"),
-            new GamevalEntry(4514, "TRACKING_DAMAGE_DEALT_TO_NPCS", "tracking_damage_dealt_to_npcs", "varptypes"),
         };
     }
 

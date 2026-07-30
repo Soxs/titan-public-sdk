@@ -10,6 +10,7 @@ final class ObjectIDEntries_49 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(25153, "DRAGON_SLAYER_QIP_RUIN_PILLAR2", "Pillar", "loctypes"),
             new GamevalEntry(25154, "DRAGON_SLAYER_QIP_RUIN_ENTRANCE", "Hole", "loctypes"),
             new GamevalEntry(25155, "DRAGON_SLAYER_QIP_FIRE_2X2", "Fire", "loctypes"),
             new GamevalEntry(25156, "DRAGON_SLAYER_QIP_FIRE_1X1", "Fire", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_49 {
             new GamevalEntry(25662, "KR_UNDERGROUND_JAIL_LADDERTOP", "Ladder", "loctypes"),
             new GamevalEntry(25663, "KR_UNDERGROUND_JAIL_LADDER", "Ladder", "loctypes"),
             new GamevalEntry(25664, "KR_CAM_LUCAN_JAIL", "Sir Lucan", "loctypes"),
-            new GamevalEntry(25665, "KR_CAM_PALOMEDES_JAIL", "Sir Palomedes", "loctypes"),
         };
     }
 

@@ -10,6 +10,12 @@ final class ObjectIDEntries_110 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(56387, "SHAYZIEN_FLAG_ARROWS02_OFFSET", "Banner", "loctypes"),
+            new GamevalEntry(56388, "SHAYZIEN_FLAG_ARROWS02_OFFSET2", "Banner", "loctypes"),
+            new GamevalEntry(56389, "COF_OVER_FALLOFF_BOTTOM_FILLER", "cof_over_falloff_bottom_filler", "loctypes"),
+            new GamevalEntry(56390, "BED_ALDARIN01_BUNKBED01_SMALL", "Bunk bed", "loctypes"),
+            new GamevalEntry(56391, "BED_ALDARIN01_BUNKBED01_SMALL2", "Bunk bed", "loctypes"),
+            new GamevalEntry(56392, "MAGIC_HUNTER_EXIT", "?'2 Enter", "loctypes"),
             new GamevalEntry(56393, "MAGIC_HUNTER_RUNE_INACTIVE", "Inactive Rune", "loctypes"),
             new GamevalEntry(56394, "MAGIC_HUNTER_RUNE_ACTIVE", "magic_hunter_rune_active", "loctypes"),
             new GamevalEntry(56395, "MAGIC_HUNTER_RUNE_ACTIVATING", "magic_hunter_rune_activating", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_110 {
             new GamevalEntry(56896, "WALLKIT_TONALI03_DEFAULT03", "wallkit_tonali03_default03", "loctypes"),
             new GamevalEntry(56897, "WALLKIT_TONALI03_DEFAULT03_M", "wallkit_tonali03_default03_m", "loctypes"),
             new GamevalEntry(56898, "WALLKIT_TONALI03_TRANSITION01", "wallkit_tonali03_transition01", "loctypes"),
-            new GamevalEntry(56899, "WALLKIT_TONALI03_TRANSITION01_M", "wallkit_tonali03_transition01_m", "loctypes"),
-            new GamevalEntry(56900, "WALLKIT_TONALI03_PILLAR01", "wallkit_tonali03_pillar01", "loctypes"),
-            new GamevalEntry(56901, "WALLKIT_TONALI03_PILLAR02", "wallkit_tonali03_pillar02", "loctypes"),
-            new GamevalEntry(56902, "WALLKIT_TONALI03_CAVE01", "wallkit_tonali03_cave01", "loctypes"),
-            new GamevalEntry(56903, "WALLKIT_TONALI03_CAVE01_LIGHT01", "wallkit_tonali03_cave01_light01", "loctypes"),
-            new GamevalEntry(56904, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01", "cavekit_tonali01_rock01_falloff01_ledge01", "loctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class NpcIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13314, "VARLAMORE_THIEVING_HOUSE_OWNER_3", "Caius", "npctypes"),
             new GamevalEntry(13315, "VARLAMORE_THIEVING_HOUSE_URCHIN_A", "Rufus", "npctypes"),
             new GamevalEntry(13316, "VARLAMORE_THIEVING_HOUSE_URCHIN_B", "Ava", "npctypes"),
             new GamevalEntry(13317, "VARLAMORE_THIEVING_HOUSE_URCHIN_C", "Lucia", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_26 {
             new GamevalEntry(13823, "DOTI_ADALA_MASK_INSIDE_PICKPOCKET", "Adala", "npctypes"),
             new GamevalEntry(13824, "DOTI_ADALA_BOSS", "Adala", "npctypes"),
             new GamevalEntry(13825, "DOTI_CONSTANTINIUS", "Constantinius", "npctypes"),
-            new GamevalEntry(13826, "DOTI_CONSTANTINIUS_PICKPOCKET", "Constantinius", "npctypes"),
         };
     }
 

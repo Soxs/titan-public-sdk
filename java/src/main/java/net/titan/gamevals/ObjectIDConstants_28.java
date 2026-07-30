@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_28 {
+    int WILDERNESS_ROCKS_FLOOR_HARD_05 = 14394;
     int DWARF_KELDAGRIM_WOODEN_BOXES_NO_OPS = 14395;
     int FAI_VARROCK_SHANTY_RUG_CORNER = 14396;
     int FAI_VARROCK_SHANTY_RUG_MIDDLE = 14397;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_28 {
     int ROOFTOPS_FALADOR_GAP_1 = 14903;
     int ROOFTOPS_FALADOR_GAP_2 = 14904;
     int ROOFTOPS_FALADOR_TIGHTROPE_2 = 14905;
-    int ROOFTOPS_FALADOR_TIGHTROPE_FORDIAGONAL = 14906;
 }

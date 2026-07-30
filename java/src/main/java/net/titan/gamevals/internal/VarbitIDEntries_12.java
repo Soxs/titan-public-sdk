@@ -10,6 +10,7 @@ final class VarbitIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10356, "MYQ5_KAEL_HIDEOUT", "myq5_kael_hideout", "varbittypes"),
             new GamevalEntry(10357, "MYQ5_VERTIDA_HIDEOUT", "myq5_vertida_hideout", "varbittypes"),
             new GamevalEntry(10358, "MYQ5_VELIAF_GRAVEYARD_CHAT", "myq5_veliaf_graveyard_chat", "varbittypes"),
             new GamevalEntry(10359, "MYQ5_TRADER_SVEN_MET", "myq5_trader_sven_met", "varbittypes"),
@@ -491,6 +492,8 @@ final class VarbitIDEntries_12 {
             new GamevalEntry(10987, "DEATH_WAIVECOSMETICSPROTECTION", "death_waivecosmeticsprotection", "varbittypes"),
             new GamevalEntry(10988, "SETTINGS_TRANSMIT_PRONOUNS", "settings_transmit_pronouns", "varbittypes"),
             new GamevalEntry(10989, "MAKEOVER_BODYTYPE", "makeover_bodytype", "varbittypes"),
+            new GamevalEntry(10993, "SLAYER_TASK_IS_PARTNER", "slayer_task_is_partner", "varbittypes"),
+            new GamevalEntry(10994, "SLAYER_TASK_IS_PARTNER_STORED", "slayer_task_is_partner_stored", "varbittypes"),
             new GamevalEntry(10995, "BOOKOFSCROLLS_SPIDERCAVE", "bookofscrolls_spidercave", "varbittypes"),
             new GamevalEntry(10996, "TOBQUEST_IN_INSTANCED_CAVE", "tobquest_in_instanced_cave", "varbittypes"),
             new GamevalEntry(11009, "COLLECTION_BOSSES_ARAXXOR_COMPLETED", "collection_bosses_araxxor_completed", "varbittypes"),
@@ -519,9 +522,6 @@ final class VarbitIDEntries_12 {
             new GamevalEntry(11046, "POTIONSTORE_VILE_SIZE_COMPOST_POTION", "potionstore_vile_size_compost_potion", "varbittypes"),
             new GamevalEntry(11047, "POTIONSTORE_VILE_SIZE_DEFENCE_POTION", "potionstore_vile_size_defence_potion", "varbittypes"),
             new GamevalEntry(11048, "POTIONSTORE_VILE_SIZE_DIVINE_BASTION_POTION", "potionstore_vile_size_divine_bastion_potion", "varbittypes"),
-            new GamevalEntry(11049, "POTIONSTORE_VILE_SIZE_DIVINE_BATTLEMAGE_POTION", "potionstore_vile_size_divine_battlemage_potion", "varbittypes"),
-            new GamevalEntry(11050, "POTIONSTORE_VILE_SIZE_DIVINE_MAGIC_POTION", "potionstore_vile_size_divine_magic_potion", "varbittypes"),
-            new GamevalEntry(11051, "POTIONSTORE_VILE_SIZE_DIVINE_RANGING_POTION", "potionstore_vile_size_divine_ranging_potion", "varbittypes"),
         };
     }
 

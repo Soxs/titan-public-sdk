@@ -10,6 +10,15 @@ final class AnimationIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9736, "FX_WARDENS_ENERGY_GROUNDED01", "fx_wardens_energy_grounded01", "seqtypes"),
+            new GamevalEntry(9737, "NPC_MANDRILL_WALK01", "npc_mandrill_walk01", "seqtypes"),
+            new GamevalEntry(9738, "NPC_MANDRILL_WALK01_BACKWARDS", "npc_mandrill_walk01_backwards", "seqtypes"),
+            new GamevalEntry(9739, "NPC_MANDRILL_WALK02", "npc_mandrill_walk02", "seqtypes"),
+            new GamevalEntry(9740, "NPC_MANDRILL_WALK02_BACKWARDS", "npc_mandrill_walk02_backwards", "seqtypes"),
+            new GamevalEntry(9741, "NPC_MANDRILL_IDLE", "npc_mandrill_idle", "seqtypes"),
+            new GamevalEntry(9742, "NPC_MANDRILL_ATTACK_MELEE", "npc_mandrill_attack_melee", "seqtypes"),
+            new GamevalEntry(9743, "NPC_BABA_ATTACK_MELEE", "npc_baba_attack_melee", "seqtypes"),
+            new GamevalEntry(9744, "NPC_MANDRILL_ATTACK_RANGED_01", "npc_mandrill_attack_ranged_01", "seqtypes"),
             new GamevalEntry(9745, "NPC_MANDRILL_ATTACK_RANGED_02", "npc_mandrill_attack_ranged_02", "seqtypes"),
             new GamevalEntry(9746, "NPC_MANDRILL_ATTACK_MAGIC", "npc_mandrill_attack_magic", "seqtypes"),
             new GamevalEntry(9747, "NPC_MANDRILL_ATTACK_MAGIC_02", "npc_mandrill_attack_magic_02", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_19 {
             new GamevalEntry(10245, "NPC_WHISPERER_01_ATTACK_MAGIC_05", "npc_whisperer_01_attack_magic_05", "seqtypes"),
             new GamevalEntry(10246, "NPC_WHISPERER_01_ATTACK_MAGIC_06", "npc_whisperer_01_attack_magic_06", "seqtypes"),
             new GamevalEntry(10247, "NPC_WHISPERER_01_TELEPORT_01", "npc_whisperer_01_teleport_01", "seqtypes"),
-            new GamevalEntry(10248, "NPC_WHISPERER_01_TELEPORT_02", "npc_whisperer_01_teleport_02", "seqtypes"),
-            new GamevalEntry(10249, "NPC_WHISPERER_01_TELEPORT_02_PET", "npc_whisperer_01_teleport_02_pet", "seqtypes"),
-            new GamevalEntry(10250, "NPC_WHISPERER_01_ATTACK_SCREECH_01_START", "npc_whisperer_01_attack_screech_01_start", "seqtypes"),
-            new GamevalEntry(10251, "NPC_WHISPERER_01_ATTACK_SCREECH_01_IDLE", "npc_whisperer_01_attack_screech_01_idle", "seqtypes"),
-            new GamevalEntry(10252, "NPC_WHISPERER_01_ATTACK_SCREECH_01_END", "npc_whisperer_01_attack_screech_01_end", "seqtypes"),
-            new GamevalEntry(10253, "NPC_WHISPERER_01_ATTACK_SCREECH_01_END_PET", "npc_whisperer_01_attack_screech_01_end_pet", "seqtypes"),
-            new GamevalEntry(10254, "NPC_WHISPERER_01_SUMMON_LEECHES_01", "npc_whisperer_01_summon_leeches_01", "seqtypes"),
-            new GamevalEntry(10255, "NPC_WHISPERER_01_TELEPORT_SUMMON_LEECHES_01", "npc_whisperer_01_teleport_summon_leeches_01", "seqtypes"),
-            new GamevalEntry(10256, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_START", "npc_whisperer_01_teleport_summon_souls_01_start", "seqtypes"),
         };
     }
 

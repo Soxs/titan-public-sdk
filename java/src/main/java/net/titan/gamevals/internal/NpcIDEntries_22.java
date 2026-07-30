@@ -10,6 +10,7 @@ final class NpcIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11266, "LOTG_OLDAK_YUBIUSK", "Oldak", "npctypes"),
             new GamevalEntry(11267, "LOTG_GOBLIN_HIGH_PRIEST", "High Priest Bighead", "npctypes"),
             new GamevalEntry(11268, "LOTG_GOBLIN_SKELETON", "Skoblin", "npctypes"),
             new GamevalEntry(11269, "LOTG_GOBLIN_SKELETON_HIGH_PRIEST1", "Snothead", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_22 {
             new GamevalEntry(11775, "TOA_WARDENS_BABA", "Ba-Ba's Phantom", "npctypes"),
             new GamevalEntry(11776, "TOA_WARDENS_KEPHRI", "Kephri's Phantom", "npctypes"),
             new GamevalEntry(11777, "TOA_WARDENS_AKKHA", "Akkha's Phantom", "npctypes"),
-            new GamevalEntry(11778, "TOA_BABA", "Ba-Ba", "npctypes"),
         };
     }
 

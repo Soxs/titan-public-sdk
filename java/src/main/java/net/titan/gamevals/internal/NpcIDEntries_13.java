@@ -10,6 +10,7 @@ final class NpcIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6658, "POH_FISHBOWL_BLUEFISH", "Fishbowl", "npctypes"),
             new GamevalEntry(6659, "POH_FISHBOWL_GREENFISH", "Fishbowl", "npctypes"),
             new GamevalEntry(6660, "POH_FISHBOWL_SPINEFISH", "Fishbowl", "npctypes"),
             new GamevalEntry(6661, "POH_TOY_CAT_MENAGERIE", "Clockwork cat", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_13 {
             new GamevalEntry(7167, "MM_BUNKWICKET_GS", "Bunkwicket", "npctypes"),
             new GamevalEntry(7168, "MM_WAYMOTTIN_AA", "Waymottin", "npctypes"),
             new GamevalEntry(7169, "MM_WAYMOTTIN_GS", "Waymottin", "npctypes"),
-            new GamevalEntry(7170, "MM_ZOOKNOCK_AA", "Zooknock", "npctypes"),
         };
     }
 

@@ -10,6 +10,8 @@ final class DbRowIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6260, "SLAYER_TARGET_PYREFIENDS", "slayer_target_pyrefiends", "rowtypes"),
+            new GamevalEntry(6261, "SLAYER_TARGET_BLOODVELD", "slayer_target_bloodveld", "rowtypes"),
             new GamevalEntry(6262, "SLAYER_TARGET_DUSTDEVILS", "slayer_target_dustdevils", "rowtypes"),
             new GamevalEntry(6263, "SLAYER_TARGET_JELLIES", "slayer_target_jellies", "rowtypes"),
             new GamevalEntry(6264, "SLAYER_TARGET_ROCKSLUGS", "slayer_target_rockslugs", "rowtypes"),
@@ -520,8 +522,6 @@ final class DbRowIDEntries_12 {
             new GamevalEntry(6769, "SPRIA_BANSHEES", "spria_banshees", "rowtypes"),
             new GamevalEntry(6770, "ACTION_KALPHITE_QUEEN_UNIQUE", "action_kalphite_queen_unique", "rowtypes"),
             new GamevalEntry(6771, "ACTION_YAMA_UNIQUE", "action_yama_unique", "rowtypes"),
-            new GamevalEntry(6772, "ACTION_HUEY_UNIQUE", "action_huey_unique", "rowtypes"),
-            new GamevalEntry(6773, "ACTION_LOOT_BARROWS_UNIQUE_WHILE_WEARING_BARROWS_ITEM", "action_loot_barrows_unique_while_wearing_barrows_item", "rowtypes"),
         };
     }
 

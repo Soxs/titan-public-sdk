@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_28 {
+    int VMQ4_ATTALA_TEUMO_HOUSE_DOWNSTAIRS = 14338;
     int VMQ4_ATTALA_VIS = 14339;
     int VMQ4_ATTALA_KEYSTONE_CHAMBER = 14340;
     int VMQ4_TEUMO_WIFE = 14341;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_28 {
     int TORTUGAN_BANKER = 14847;
     int TORTUGAN_LEFF = 14848;
     int TORTUGAN_DALNA = 14849;
-    int TORTUGAN_FINN = 14850;
 }

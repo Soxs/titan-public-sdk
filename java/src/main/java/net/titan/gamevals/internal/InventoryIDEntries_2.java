@@ -12,6 +12,8 @@ final class InventoryIDEntries_2 {
         return new GamevalEntry[] {
             new GamevalEntry(1024, "SKILLING_MODE_HOLDING_INV", "skilling_mode_holding_inv", "invtypes"),
             new GamevalEntry(1025, "PUB_BURGH_DE_ROTT", "pub_burgh_de_rott", "invtypes"),
+            new GamevalEntry(1026, "WYRMSCRAIG_GENERAL_SHOP", "wyrmscraig_general_shop", "invtypes"),
+            new GamevalEntry(1027, "WYRMSCRAIG_CLOTHES_SHOP", "wyrmscraig_clothes_shop", "invtypes"),
         };
     }
 

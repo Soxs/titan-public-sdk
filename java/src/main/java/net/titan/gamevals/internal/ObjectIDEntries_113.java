@@ -10,6 +10,12 @@ final class ObjectIDEntries_113 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(57923, "GRYPHON_BOSS_WHIRLWIND_INITIAL_4", "Whirlwind", "loctypes"),
+            new GamevalEntry(57924, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_4", "Whirlwind", "loctypes"),
+            new GamevalEntry(57925, "GRYPHON_BOSS_WHIRLWIND_INITIAL_5", "Whirlwind", "loctypes"),
+            new GamevalEntry(57926, "GRYPHON_BOSS_WHIRLWIND_ACTIVE_5", "Whirlwind", "loctypes"),
+            new GamevalEntry(57927, "GREAT_CONCH_CLIFF_SHORTCUT_TOWN_TOP", "Rocks", "loctypes"),
+            new GamevalEntry(57928, "GREAT_CONCH_CLIFF_SHORTCUT_TOWN_BOTTOM", "Rocks", "loctypes"),
             new GamevalEntry(57929, "GREAT_CONCH_CLIFF_SHORTCUT_SOUTHEAST_TOP", "Rocks", "loctypes"),
             new GamevalEntry(57930, "GREAT_CONCH_CLIFF_SHORTCUT_SOUTHEAST_BOTTOM", "Rocks", "loctypes"),
             new GamevalEntry(57931, "GREAT_CONCH_CLIFF_SHORTCUT_EAST_1_TOP", "Rocks", "loctypes"),
@@ -281,9 +287,9 @@ final class ObjectIDEntries_113 {
             new GamevalEntry(58197, "REGICIDE_DENSE_TREES2", "Trees", "loctypes"),
             new GamevalEntry(58198, "REGICIDE_DENSE_TREES3", "Trees", "loctypes"),
             new GamevalEntry(58199, "FAIRY2_PINE_TREE_SMALL", "Tree", "loctypes"),
-            new GamevalEntry(58200, "VIKING_PIER_PORT_TASK_BOARD_ICON", "viking_pier_port_task_board_icon", "loctypes"),
-            new GamevalEntry(58201, "VIKING_PIER_SALVAGING_STATION_ICON", "viking_pier_salvaging_station_icon", "loctypes"),
-            new GamevalEntry(58202, "VIKING_PIER_LEDGER_TABLE_ICON", "viking_pier_ledger_table_icon", "loctypes"),
+            new GamevalEntry(58200, "VIKING_PIER_PORT_TASK_BOARD_ICON", "( )", "loctypes"),
+            new GamevalEntry(58201, "VIKING_PIER_SALVAGING_STATION_ICON", "( )", "loctypes"),
+            new GamevalEntry(58202, "VIKING_PIER_LEDGER_TABLE_ICON", "( )", "loctypes"),
             new GamevalEntry(58203, "HORROR_LIGHTHOUSE_COG_BROKEN_NOOP", "Lighting mechanism", "loctypes"),
             new GamevalEntry(58204, "PIRATE_LEANING_ANCHOR", "Anchor", "loctypes"),
             new GamevalEntry(58205, "QUEST_LUNAR_PIER1_LOW_LEDGER_TABLE_ICON", "quest_lunar_pier1_low_ledger_table_icon", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_113 {
             new GamevalEntry(58432, "TT_REPAIR_CRATES_FIXED", "Crate", "loctypes"),
             new GamevalEntry(58433, "TT_REPAIR_CRATES_COCO_BROKEN_NOOP", "Broken coconut crate", "loctypes"),
             new GamevalEntry(58434, "TT_REPAIR_CRATES_COCO_BROKEN", "Broken coconut crate", "loctypes"),
-            new GamevalEntry(58435, "TT_REPAIR_CRATES_COCO_FIXED", "Coconut crate", "loctypes"),
-            new GamevalEntry(58436, "TT_REPAIR_WALL_BROKEN_NOOP", "Damaged wall", "loctypes"),
-            new GamevalEntry(58437, "TT_REPAIR_WALL_BROKEN", "Damaged wall", "loctypes"),
-            new GamevalEntry(58438, "TT_REPAIR_WALL_FIXED", "Wall", "loctypes"),
-            new GamevalEntry(58439, "TT_LAIR_ENTRANCE", "tt_lair_entrance", "loctypes"),
-            new GamevalEntry(58440, "TT_LAIR_ENTRANCE_BLOCKED", "Cave entrance", "loctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class AnimationIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3074, "ENAKH_BONEGUARD_BLOCK", "enakh_boneguard_block", "seqtypes"),
             new GamevalEntry(3075, "ENAKH_BONEGUARD_ATTACK", "enakh_boneguard_attack", "seqtypes"),
             new GamevalEntry(3076, "ENAKH_BONEGUARD_DEATH", "enakh_boneguard_death", "seqtypes"),
             new GamevalEntry(3077, "ENAKH_BONEGUARD_LARGE_DEATH", "enakh_boneguard_large_death", "seqtypes"),
@@ -256,6 +257,7 @@ final class AnimationIDEntries_6 {
             new GamevalEntry(3318, "MOLE_MUD_HOLE", "mole_mud_hole", "seqtypes"),
             new GamevalEntry(3319, "MOLE_MUD_HOLE_UP", "mole_mud_hole_up", "seqtypes"),
             new GamevalEntry(3320, "MOLE_MUD_SPLAT_INTERFACE", "mole_mud_splat_interface", "seqtypes"),
+            new GamevalEntry(3321, "NPC_MAD_ANGEL_SPAWN", "npc_mad_angel_spawn", "seqtypes"),
             new GamevalEntry(3322, "ZYGOMITE_ADULT_WALK", "zygomite_adult_walk", "seqtypes"),
             new GamevalEntry(3323, "ZYGOMITE_ADOLESCENT_WALK", "zygomite_adolescent_walk", "seqtypes"),
             new GamevalEntry(3324, "ZYGOMITE_READY", "zygomite_ready", "seqtypes"),
@@ -520,8 +522,6 @@ final class AnimationIDEntries_6 {
             new GamevalEntry(3583, "ELEMENTAL_ORB_OPENS", "elemental_orb_opens", "seqtypes"),
             new GamevalEntry(3584, "ELEMENTAL_ORB_SPINS", "elemental_orb_spins", "seqtypes"),
             new GamevalEntry(3585, "ELEMENTAL_ORB_CLOSES", "elemental_orb_closes", "seqtypes"),
-            new GamevalEntry(3586, "MAGIC_CIRCLE_ZAP", "magic_circle_zap", "seqtypes"),
-            new GamevalEntry(3587, "POH_JESTER_HOVER", "poh_jester_hover", "seqtypes"),
         };
     }
 

@@ -10,6 +10,15 @@ final class AnimationIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10760, "COA_ICTHLARIN_REFORM", "coa_icthlarin_reform", "seqtypes"),
+            new GamevalEntry(10761, "COA_SCABARAS_REFORM", "coa_scabaras_reform", "seqtypes"),
+            new GamevalEntry(10762, "COA_CRONDIS_REFORM", "coa_crondis_reform", "seqtypes"),
+            new GamevalEntry(10763, "COA_AMASCUT_REFORMED", "coa_amascut_reformed", "seqtypes"),
+            new GamevalEntry(10764, "COA_HET_REFORMED", "coa_het_reformed", "seqtypes"),
+            new GamevalEntry(10765, "COA_APMEKEN_REFORMED", "coa_apmeken_reformed", "seqtypes"),
+            new GamevalEntry(10766, "COA_ICTHLARIN_REFORMED", "coa_icthlarin_reformed", "seqtypes"),
+            new GamevalEntry(10767, "COA_SCABARAS_REFORMED", "coa_scabaras_reformed", "seqtypes"),
+            new GamevalEntry(10768, "COA_CRONDIS_REFORMED", "coa_crondis_reformed", "seqtypes"),
             new GamevalEntry(10769, "COA_CANDLE_EFFECT", "coa_candle_effect", "seqtypes"),
             new GamevalEntry(10770, "COA_TORCH", "coa_torch", "seqtypes"),
             new GamevalEntry(10771, "COA_TORCH_LOW", "coa_torch_low", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_21 {
             new GamevalEntry(11272, "WGS_PLAYER_GOING_UNCONSCIOUS", "wgs_player_going_unconscious", "seqtypes"),
             new GamevalEntry(11273, "WGS_PLAYER_UNCONSCIOUS", "wgs_player_unconscious", "seqtypes"),
             new GamevalEntry(11274, "WGS_PLAYER_REGAINING_CONSCIOUSNESS", "wgs_player_regaining_consciousness", "seqtypes"),
-            new GamevalEntry(11275, "HUMAN_SPECIAL02_VOIDWAKER", "human_special02_voidwaker", "seqtypes"),
-            new GamevalEntry(11276, "WGS_HIT_BY_DARTS", "wgs_hit_by_darts", "seqtypes"),
-            new GamevalEntry(11277, "DAGGERHELD_PUNCTURE", "daggerheld_puncture", "seqtypes"),
-            new GamevalEntry(11278, "WGS_ASSASSIN_SMOKEBOMB", "wgs_assassin_smokebomb", "seqtypes"),
-            new GamevalEntry(11279, "WGS_OLD_DRUID_DROP", "wgs_old_druid_drop", "seqtypes"),
-            new GamevalEntry(11280, "WGS_OLD_DRUID_DROP_READY", "wgs_old_druid_drop_ready", "seqtypes"),
-            new GamevalEntry(11281, "WGS_PLAYER_SLIPPING_SPY_THE_ORB", "wgs_player_slipping_spy_the_orb", "seqtypes"),
-            new GamevalEntry(11282, "WGS_PLAYER_SLIPPING_SPY_THE_ORB_PART_TWO", "wgs_player_slipping_spy_the_orb_part_two", "seqtypes"),
-            new GamevalEntry(11283, "WGS_SHINING_LIGHT_ON_SEED", "wgs_shining_light_on_seed", "seqtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class NpcIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11778, "TOA_BABA", "Ba-Ba", "npctypes"),
             new GamevalEntry(11779, "TOA_BABA_COFFIN", "Ba-Ba", "npctypes"),
             new GamevalEntry(11780, "TOA_BABA_DIGGING", "Ba-Ba", "npctypes"),
             new GamevalEntry(11781, "TOA_BABA_BABOON", "Baboon", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_23 {
             new GamevalEntry(12287, "DT2_STRANGLED_T2_3_CUTSCENE", "Strangled", "npctypes"),
             new GamevalEntry(12288, "DT2_STRANGLED_BEAR", "Strangled Bear", "npctypes"),
             new GamevalEntry(12289, "DT2_STRANGLED_BOAR", "Strangled Boar", "npctypes"),
-            new GamevalEntry(12290, "DT2_STRANGLED_LYNX", "Strangled Lynx", "npctypes"),
         };
     }
 

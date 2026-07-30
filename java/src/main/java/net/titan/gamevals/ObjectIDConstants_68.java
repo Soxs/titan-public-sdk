@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_68 {
+    int HOSDUN_CATAVINE_END = 34882;
     int HOSDUN_CATAVINE_END_DIAG = 34883;
     int HOSDUN_BRICK_WALL = 34884;
     int HOSDUN_BRICK_WALL_END_R = 34885;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_68 {
     int SOTE_WARPED_LIBRARY_DESK_01_CHAIR_A = 35391;
     int SOTE_WARPED_LIBRARY_DESK_01_CHAIR_B = 35392;
     int SOTE_WARPED_LIBRARY_DESK_01_CHAIR_C = 35393;
-    int SOTE_WARPED_LIBRARY_DESK_02 = 35394;
 }

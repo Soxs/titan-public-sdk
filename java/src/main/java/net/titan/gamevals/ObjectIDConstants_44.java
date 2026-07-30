@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_44 {
+    int DORGESH_CAVES_PYLON_2 = 22591;
     int DORGESH_CAVEWALL_SLOPE_EDGE = 22592;
     int DORGESH_CAVEWALL_SLOPE_EDGE2 = 22593;
     int DORGESH_CAVEWALL_SLOPE_EDGE3 = 22594;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_44 {
     int SOUL_WAVE = 23100;
     int SOUL_BOAT = 23101;
     int HELLHOUND_IRON_GATE_LOWERED = 23102;
-    int BRUT_SHADOW_ON_FLOOR = 23103;
 }

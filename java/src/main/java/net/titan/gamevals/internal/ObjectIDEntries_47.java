@@ -10,6 +10,7 @@ final class ObjectIDEntries_47 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(24129, "FAI_FALADOR_ROOFKIT_CORNERCUT", "'(Z ?(L", "loctypes"),
             new GamevalEntry(24130, "FAI_FALADOR_ROOFKIT_SLATE_CUT", "'(Z ?(L", "loctypes"),
             new GamevalEntry(24131, "FAI_FALADOR_ROOFKIT_SLATE_TWO", "'(Z ?(L", "loctypes"),
             new GamevalEntry(24132, "FAI_FALADOR_ROOFKIT_SLATE_THREE", "'(Z ?(L", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_47 {
             new GamevalEntry(24638, "VM_TIMELINE_SHIELD_OF_ARRAV", "vm_timeline_shield_of_arrav", "loctypes"),
             new GamevalEntry(24639, "VM_TIMELINE_SHIELD_OF_ARRAV_MULTI", "Display case", "loctypes"),
             new GamevalEntry(24640, "VM_TIMELINE_MAP_OF_MORYTANIA", "Display case", "loctypes"),
-            new GamevalEntry(24641, "VM_TIMELINE_BRIDGE_OVER_WATER_MODEL", "Display case", "loctypes"),
         };
     }
 

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_9 {
+    int PITRAT_VARROCK_DEF = 4610;
     int PITRAT_VARROCK_AGR = 4611;
     int PITRAT_VARROCK_NEU = 4612;
     int PITRAT_ARDOUGNE_DEF = 4613;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_9 {
     int GRIM_GRIMGNASH_AWAKE = 5119;
     int GRIM_RUPERT_VISIBLE = 5120;
     int GRIM_RUPERT_INVISIBLE = 5121;
-    int GRIM_RUPERT_PIPE = 5122;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_6 {
+    int ENAKH_BONEGUARD_BLOCK = 3074;
     int ENAKH_BONEGUARD_ATTACK = 3075;
     int ENAKH_BONEGUARD_DEATH = 3076;
     int ENAKH_BONEGUARD_LARGE_DEATH = 3077;
@@ -247,6 +248,7 @@ public interface AnimationIDConstants_6 {
     int MOLE_MUD_HOLE = 3318;
     int MOLE_MUD_HOLE_UP = 3319;
     int MOLE_MUD_SPLAT_INTERFACE = 3320;
+    int NPC_MAD_ANGEL_SPAWN = 3321;
     int ZYGOMITE_ADULT_WALK = 3322;
     int ZYGOMITE_ADOLESCENT_WALK = 3323;
     int ZYGOMITE_READY = 3324;
@@ -511,6 +513,4 @@ public interface AnimationIDConstants_6 {
     int ELEMENTAL_ORB_OPENS = 3583;
     int ELEMENTAL_ORB_SPINS = 3584;
     int ELEMENTAL_ORB_CLOSES = 3585;
-    int MAGIC_CIRCLE_ZAP = 3586;
-    int POH_JESTER_HOVER = 3587;
 }

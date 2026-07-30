@@ -221,6 +221,7 @@ final class VarPlayerIDEntries_2 {
             new GamevalEntry(3081, "CLAN_EVENTS_GENERAL4", "clan_events_general4", "varptypes"),
             new GamevalEntry(3108, "OPTION_HIGHLIGHTING_PLAYER_TILE_COLOUR", "option_highlighting_player_tile_colour", "varptypes"),
             new GamevalEntry(3109, "OPTIONS_SAVE_SOUNDS", "options_save_sounds", "varptypes"),
+            new GamevalEntry(3113, "SLAYER_STORED_VARP", "slayer_stored_varp", "varptypes"),
             new GamevalEntry(3115, "ACHIEVEMENT_TASK_COMPLETED_0", "achievement_task_completed_0", "varptypes"),
             new GamevalEntry(3116, "CA_TASK_COMPLETED_0", "ca_task_completed_0", "varptypes"),
             new GamevalEntry(3117, "CA_TASK_COMPLETED_1", "ca_task_completed_1", "varptypes"),
@@ -521,7 +522,6 @@ final class VarPlayerIDEntries_2 {
             new GamevalEntry(3560, "BR_LOADOUTS_15", "br_loadouts_15", "varptypes"),
             new GamevalEntry(3561, "BR_LOADOUTS_16", "br_loadouts_16", "varptypes"),
             new GamevalEntry(3562, "BR_LOADOUTS_17", "br_loadouts_17", "varptypes"),
-            new GamevalEntry(3563, "BR_LOADOUTS_18", "br_loadouts_18", "varptypes"),
         };
     }
 

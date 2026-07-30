@@ -214,4 +214,5 @@ public interface QuestIDConstants_0 {
     int QUEST_BURIALATSEA = 211;
     int QUEST_IDESOFMILK = 212;
     int QUEST_BLOODMOONRISES = 213;
+    int QUEST_FALLENFROMGRACE = 214;
 }

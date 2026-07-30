@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_74 {
+    int TUT2_COMBAT_ENTRY_R = 37954;
     int TUT2_COMBAT_LADDER = 37955;
     int TUT2_BANK_LADDER = 37956;
     int TOURNAMENT_CLANWARS_TEMPPORTAL_HUB = 37957;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_74 {
     int HALLOWED_FLOOR_1_EASTPATH_STAIRS = 38463;
     int HALLOWED_FLOOR_1_SOUTHPATH_STAIRS = 38464;
     int HALLOWED_FLOOR_1_WESTPATH_DROP = 38465;
-    int HALLOWED_FLOOR_2_NORTHPATH_STAIRS = 38466;
 }

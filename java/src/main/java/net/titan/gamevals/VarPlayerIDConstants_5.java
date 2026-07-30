@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface VarPlayerIDConstants_5 {
+    int SAILING_CREW_VISIBILITY_1 = 5168;
     int SAILING_CREW_PERM_1 = 5169;
     int SAILING_CREW_PERM_2 = 5170;
     int SAILING_CREW_TEMP_1 = 5171;
@@ -360,4 +361,15 @@ public interface VarPlayerIDConstants_5 {
     int SANGVESTI_PLAYER_LAST_DEATH_POS = 5670;
     int AFK_BLOODWOOD_TREE = 5671;
     int CA_TASK_COMPLETED_20 = 5673;
+    int WYRMSCRAIG_VARP = 5705;
+    int GOAT_PIT_VARP = 5706;
+    int GOLEM_CRAFTING_CORE = 5709;
+    int GOLEM_CRAFTING_SIDE = 5710;
+    int TOTAL_MAD_ANGEL_KILLS = 5712;
+    int FFG_PRIMARY = 5715;
+    int SLAYER_MODIFIERS = 5719;
+    int SLAYER_REWARDS_BLOCKED_14 = 5721;
+    int SLAYER_MISC_PERM = 5722;
+    int SLAYER_MISC_PERM_2 = 5723;
+    int SLAYER_MISC_PERM_3 = 5724;
 }

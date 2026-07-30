@@ -10,6 +10,13 @@ final class ObjectIDEntries_120 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(61508, "TORCH_DAEYALT_LAB01_E", "torch_daeyalt_lab01_e", "loctypes"),
+            new GamevalEntry(61509, "TORCH_DAEYALT_LAB01_S", "torch_daeyalt_lab01_s", "loctypes"),
+            new GamevalEntry(61510, "TORCH_DAEYALT_LAB01_W", "torch_daeyalt_lab01_w", "loctypes"),
+            new GamevalEntry(61511, "TORCH_DAEYALT_LAB01_NE", "torch_daeyalt_lab01_ne", "loctypes"),
+            new GamevalEntry(61512, "TORCH_DAEYALT_LAB01_SE", "torch_daeyalt_lab01_se", "loctypes"),
+            new GamevalEntry(61513, "TORCH_DAEYALT_LAB01_SW", "torch_daeyalt_lab01_sw", "loctypes"),
+            new GamevalEntry(61514, "TORCH_DAEYALT_LAB01_NW", "torch_daeyalt_lab01_nw", "loctypes"),
             new GamevalEntry(61515, "WALLKIT_DRAKAN01_WALLTOP01", "wallkit_drakan01_walltop01", "loctypes"),
             new GamevalEntry(61516, "DRAKAN_PAGES1", "drakan_pages1", "loctypes"),
             new GamevalEntry(61517, "DRAKAN_PAGES2", "drakan_pages2", "loctypes"),
@@ -515,13 +522,6 @@ final class ObjectIDEntries_120 {
             new GamevalEntry(62017, "VAMPYRIUM_JOVKAI01_BRIDGE05", "vampyrium_jovkai01_bridge05", "loctypes"),
             new GamevalEntry(62018, "VAMPYRIUM_JOVKAI01_BRIDGE06", "vampyrium_jovkai01_bridge06", "loctypes"),
             new GamevalEntry(62019, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE01", "vampyrium_jovkai01_bridge01_fence01", "loctypes"),
-            new GamevalEntry(62020, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE02", "vampyrium_jovkai01_bridge01_fence02", "loctypes"),
-            new GamevalEntry(62021, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE03", "vampyrium_jovkai01_bridge01_fence03", "loctypes"),
-            new GamevalEntry(62022, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE03_RUINED", "vampyrium_jovkai01_bridge01_fence03_ruined", "loctypes"),
-            new GamevalEntry(62023, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE01_MIRROR", "vampyrium_jovkai01_bridge01_fence01_mirror", "loctypes"),
-            new GamevalEntry(62024, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE02_MIRROR", "vampyrium_jovkai01_bridge01_fence02_mirror", "loctypes"),
-            new GamevalEntry(62025, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE03_MIRROR", "vampyrium_jovkai01_bridge01_fence03_mirror", "loctypes"),
-            new GamevalEntry(62026, "VAMPYRIUM_JOVKAI01_BRIDGE01_FENCE04", "vampyrium_jovkai01_bridge01_fence04", "loctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_93 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(47683, "WALLKIT_LASSAR01_WINDOW01_SHADOW", "wallkit_lassar01_window01_shadow", "loctypes"),
             new GamevalEntry(47684, "WALLKIT_LASSAR02_WINDOW01_SHADOW", "wallkit_lassar02_window01_shadow", "loctypes"),
             new GamevalEntry(47685, "WALLKIT_LASSAR08_FENCE01_SHADOW", "wallkit_lassar08_fence01_shadow", "loctypes"),
             new GamevalEntry(47686, "WALLKIT_LASSAR08_SUPPORT01_SHADOW", "wallkit_lassar08_support01_shadow", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_93 {
             new GamevalEntry(48192, "LASSAR_MIRROR_DEFAULT01", "Mirror", "loctypes"),
             new GamevalEntry(48193, "LASSAR_SCREEN_DEFAULT01", "Bath screen", "loctypes"),
             new GamevalEntry(48194, "TRANSPORT_CART01_LASSAR01", "Wooden cart", "loctypes"),
-            new GamevalEntry(48195, "DT2_LASSAR_ENTRY_ROCK_NOOP", "Rock", "loctypes"),
         };
     }
 

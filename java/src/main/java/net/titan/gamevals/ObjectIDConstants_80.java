@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_80 {
+    int POH_LEAGUEHALL_PEDESTAL_HOTSPOT_3 = 41026;
     int POH_LEAGUEHALL_TROPHYCASE_HOTSPOT = 41027;
     int POH_LEAGUEHALL_BANNERSTAND_HOTSPOT = 41028;
     int POH_LEAGUEHALL_OUTFITSTAND_HOTSPOT = 41029;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_80 {
     int BIM_VAULT_FOG03 = 41535;
     int BIM_VAULT_FOG04 = 41536;
     int CAMDOZAAL_VAULT_DOOR = 41537;
-    int LEAVES_ROTTEN_FULL = 41538;
 }

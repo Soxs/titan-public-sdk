@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_30 {
+    int SAILING_SHIPYARD_WORKER_9 = 15362;
     int SAILING_SHIPWRIGHT_PORT_SARIM = 15363;
     int SAILING_SHIPWRIGHT_MUSA_POINT = 15364;
     int SAILING_SHIPWRIGHT_CATHERBY = 15365;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_30 {
     int MYQ6_VELIAF_SUGADINTI_HIDEOUT = 15871;
     int MYQ6_VELIAF_BURGH_DE_ROTT = 15872;
     int MYQ6_VELIAF_BURGH_DE_ROTT_INJURED = 15873;
-    int MYQ6_VELIAF_OLD_LAB = 15874;
 }

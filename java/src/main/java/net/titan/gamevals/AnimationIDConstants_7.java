@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_7 {
+    int MAGIC_CIRCLE_ZAP = 3586;
+    int POH_JESTER_HOVER = 3587;
     int POH_JESTER_ELEVATE = 3588;
     int POH_JESTER_DEELEVATE = 3589;
     int POH_JESTER_DESCEND = 3590;
@@ -511,6 +513,4 @@ public interface AnimationIDConstants_7 {
     int CHAIR_SIT_READY_DININGCHAIRS_4 = 4095;
     int CHAIR_EAT_DININGCHAIRS_4 = 4096;
     int CHAIR_SIT_READY_DININGCHAIRS_5 = 4097;
-    int CHAIR_EAT_DININGCHAIRS_5 = 4098;
-    int CHAIR_SIT_READY_DININGCHAIRS_6 = 4099;
 }

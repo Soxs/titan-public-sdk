@@ -246,7 +246,7 @@ final class InterfaceIDEntries_0 {
             new GamevalEntry(233, "LEVELUP_DISPLAY", "levelup_display", "iftypes"),
             new GamevalEntry(234, "DEADMANLOOT", "deadmanloot", "iftypes"),
             new GamevalEntry(235, "HOSIDIUS_SERVERY_HUD", "hosidius_servery_hud", "iftypes"),
-            new GamevalEntry(236, "HOSIDIUS_STRIP_REWARDS", "hosidius_strip_rewards", "iftypes"),
+            new GamevalEntry(236, "SLAYER_TASK_CHOICE", "slayer_task_choice", "iftypes"),
             new GamevalEntry(237, "GE_PRICELIST", "ge_pricelist", "iftypes"),
             new GamevalEntry(238, "GE_PRICECHECKER_SIDE", "ge_pricechecker_side", "iftypes"),
             new GamevalEntry(239, "MUSIC", "music", "iftypes"),

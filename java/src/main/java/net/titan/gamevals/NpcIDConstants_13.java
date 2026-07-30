@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_13 {
+    int POH_FISHBOWL_BLUEFISH = 6658;
     int POH_FISHBOWL_GREENFISH = 6659;
     int POH_FISHBOWL_SPINEFISH = 6660;
     int POH_TOY_CAT_MENAGERIE = 6661;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_13 {
     int MM_BUNKWICKET_GS = 7167;
     int MM_WAYMOTTIN_AA = 7168;
     int MM_WAYMOTTIN_GS = 7169;
-    int MM_ZOOKNOCK_AA = 7170;
 }

@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_99 {
+    int SHIELD_COMBATANT_3 = 50755;
     int SHIELD_COMBATANT_4 = 50756;
     int SHIELD_COMBATANT_5 = 50757;
     int SHIELD_COMBATANT_6 = 50758;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_99 {
     int DUNGEONKIT_MOSS01_BUILDUP04_MIRROR = 51264;
     int DUNGEONKIT_LAVA01_GRADIENT01 = 51265;
     int PMOON_BLOOD_RIPPLE01 = 51266;
-    int PMOON_BLOOD_RIPPLE02 = 51267;
 }

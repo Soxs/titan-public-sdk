@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_21 {
+    int CLAN_HALL_GEM_LIGHTBLUE = 10754;
     int CLAN_HALL_GEM_PINK = 10755;
     int CLAN_HALL_GARDENER = 10756;
     int CLAN_HALL_GARDENER_RAKE = 10757;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_21 {
     int LOTG_ZANIK_CUTSCENE_ALT = 11263;
     int LOTG_ZANIK_YUBIUSK = 11264;
     int LOTG_OLDAK_CUTSCENE = 11265;
-    int LOTG_OLDAK_YUBIUSK = 11266;
 }

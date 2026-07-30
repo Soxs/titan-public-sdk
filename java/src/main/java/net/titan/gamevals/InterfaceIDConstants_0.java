@@ -237,7 +237,7 @@ public interface InterfaceIDConstants_0 {
     int LEVELUP_DISPLAY = 233;
     int DEADMANLOOT = 234;
     int HOSIDIUS_SERVERY_HUD = 235;
-    int HOSIDIUS_STRIP_REWARDS = 236;
+    int SLAYER_TASK_CHOICE = 236;
     int GE_PRICELIST = 237;
     int GE_PRICECHECKER_SIDE = 238;
     int MUSIC = 239;

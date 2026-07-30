@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_14 {
+    int MM_ZOOKNOCK_AA = 7170;
     int MM_ZOOKNOCK_GS = 7171;
     int MM_KARAM_AA1 = 7172;
     int MM_KARAM_AA2 = 7173;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_14 {
     int TZHAAR_KET_STRONG = 7679;
     int TZHAAR_ELDER1 = 7680;
     int TZHAAR_ELDER2 = 7681;
-    int TZHAAR_HUR_CITY1 = 7682;
 }

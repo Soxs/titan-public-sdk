@@ -10,6 +10,7 @@ final class ObjectIDEntries_39 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(20027, "QIP_WATCHTOWER_PILLAR_CRYSTAL_YELLOW", "Pillar", "loctypes"),
             new GamevalEntry(20028, "QIP_WATCHTOWER_PILLAR_GLOWING_CRYSTAL_YELLOW", "Pillar", "loctypes"),
             new GamevalEntry(20029, "QIP_WATCHTOWER_PILLAR_NOCRYSTAL_MULTI_YELLOW", "qip_watchtower_pillar_nocrystal_multi_yellow", "loctypes"),
             new GamevalEntry(20030, "QIP_WATCHTOWER_PILLAR_NOCRYSTAL_MAGENTA", "Pillar", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_39 {
             new GamevalEntry(20536, "LOTR_RUINS_DOOR_28B", "Passageway", "loctypes"),
             new GamevalEntry(20537, "LOTR_RUINS_DOOR_29A", "Passageway", "loctypes"),
             new GamevalEntry(20538, "LOTR_RUINS_DOOR_29B", "Passageway", "loctypes"),
-            new GamevalEntry(20539, "LOTR_RUINS_DOOR_30", "Passageway", "loctypes"),
         };
     }
 

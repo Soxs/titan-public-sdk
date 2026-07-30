@@ -365,6 +365,7 @@ public interface NpcIDConstants_8 {
     int BURGH_FARMER = 4459;
     int BURGH_BED_MAN = 4460;
     int BURGH_BED_MAN_WIFE = 4461;
+    int SLAYER_MASTER_MORTIMER = 4462;
     int BURGH_VILAGER_SIT1 = 4463;
     int BURGH_VILAGER_SIT2 = 4464;
     int BURGH_VILAGER_SIT3 = 4465;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_8 {
     int VC_DWARF_POOR2 = 4607;
     int VC_DWARF_POOR3 = 4608;
     int VC_DWARF_POOR4 = 4609;
-    int PITRAT_VARROCK_DEF = 4610;
 }

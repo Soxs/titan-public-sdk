@@ -10,6 +10,10 @@ final class VarbitIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12477, "CA_TASK_BANDOS_MECHANICAL_2_COMPLETED", "ca_task_bandos_mechanical_2_completed", "varbittypes"),
+            new GamevalEntry(12478, "CA_TASK_BANDOS_MECHANICAL_3_COMPLETED", "ca_task_bandos_mechanical_3_completed", "varbittypes"),
+            new GamevalEntry(12479, "CA_TASK_BANDOS_PERFECTION_1_COMPLETED", "ca_task_bandos_perfection_1_completed", "varbittypes"),
+            new GamevalEntry(12480, "CA_TASK_BANDOS_PERFECTION_2_COMPLETED", "ca_task_bandos_perfection_2_completed", "varbittypes"),
             new GamevalEntry(12481, "CA_TASK_BANDOS_STAMINA_1_COMPLETED", "ca_task_bandos_stamina_1_completed", "varbittypes"),
             new GamevalEntry(12482, "CA_TASK_BARROWS_KILLCOUNT_1_COMPLETED", "ca_task_barrows_killcount_1_completed", "varbittypes"),
             new GamevalEntry(12483, "CA_TASK_BARROWS_KILLCOUNT_2_COMPLETED", "ca_task_barrows_killcount_2_completed", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_15 {
             new GamevalEntry(13025, "DEADMAN_BRACKET_TRANSMIT", "deadman_bracket_transmit", "varbittypes"),
             new GamevalEntry(13027, "COMBATLEVEL_TRANSMIT", "combatlevel_transmit", "varbittypes"),
             new GamevalEntry(13030, "DEADMAN_RAMP_COUNT", "deadman_ramp_count", "varbittypes"),
-            new GamevalEntry(13031, "FOSSIL_HERBIBOAR_ALREADY_CAUGHT_IGNORE_WARNING", "fossil_herbiboar_already_caught_ignore_warning", "varbittypes"),
-            new GamevalEntry(13032, "DEADMAN_STARTER_PACK_SIGILS_RECEIVED", "deadman_starter_pack_sigils_received", "varbittypes"),
-            new GamevalEntry(13033, "DEADMAN_STARTER_PACK_SIGIL_HOTFIX", "deadman_starter_pack_sigil_hotfix", "varbittypes"),
-            new GamevalEntry(13034, "DEADMAN_DAILY_PROTECTION_RECEIVED", "deadman_daily_protection_received", "varbittypes"),
         };
     }
 

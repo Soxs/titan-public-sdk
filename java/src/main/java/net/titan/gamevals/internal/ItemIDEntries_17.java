@@ -225,7 +225,7 @@ final class ItemIDEntries_17 {
             new GamevalEntry(9106, "TIARA_ASTRAL", "Astral tiara", "objtypes"),
             new GamevalEntry(9107, "_65_BAKE_PIE", "ZBake pies without a stove", "objtypes"),
             new GamevalEntry(9108, "_66_CURE_PLANT", "ZCures disease on farming patch", "objtypes"),
-            new GamevalEntry(9109, "_67_NPC_CONTACT", "ZSpeak with various NPCs", "objtypes"),
+            new GamevalEntry(9109, "_67_NPC_CONTACT", "ZContact various characters across long distances", "objtypes"),
             new GamevalEntry(9110, "_68_CURE_OTHER", "ZCure poisoned players", "objtypes"),
             new GamevalEntry(9111, "_69_TELE_MOONCLAN", "ZTeleports you to Moonclan Island", "objtypes"),
             new GamevalEntry(9112, "_70_TELE_MOONCLAN_GROUP", "ZTeleports players to Moonclan Island", "objtypes"),

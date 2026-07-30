@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface VarPlayerIDConstants_3 {
+    int BR_LOADOUTS_18 = 3563;
     int BR_LOADOUTS_19 = 3564;
     int BR_LOADOUTS_20 = 3565;
     int BR_LOADOUTS_21 = 3566;
@@ -512,5 +513,4 @@ public interface VarPlayerIDConstants_3 {
     int TRACKING_ECHO_BOSSES_KILLED = 4511;
     int TRACKING_COINS_GAINED = 4512;
     int TRACKING_COINS_LOST = 4513;
-    int TRACKING_DAMAGE_DEALT_TO_NPCS = 4514;
 }

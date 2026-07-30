@@ -10,6 +10,7 @@ final class ObjectIDEntries_44 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(22591, "DORGESH_CAVES_PYLON_2", "Pylon", "loctypes"),
             new GamevalEntry(22592, "DORGESH_CAVEWALL_SLOPE_EDGE", "T ( i (", "loctypes"),
             new GamevalEntry(22593, "DORGESH_CAVEWALL_SLOPE_EDGE2", "T ( i (", "loctypes"),
             new GamevalEntry(22594, "DORGESH_CAVEWALL_SLOPE_EDGE3", "T ( i (", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_44 {
             new GamevalEntry(23100, "SOUL_WAVE", "soul_wave", "loctypes"),
             new GamevalEntry(23101, "SOUL_BOAT", "Soul boat", "loctypes"),
             new GamevalEntry(23102, "HELLHOUND_IRON_GATE_LOWERED", "hellhound_iron_gate_lowered", "loctypes"),
-            new GamevalEntry(23103, "BRUT_SHADOW_ON_FLOOR", "brut_shadow_on_floor", "loctypes"),
         };
     }
 

@@ -374,6 +374,7 @@ final class NpcIDEntries_8 {
             new GamevalEntry(4459, "BURGH_FARMER", "X Talk-to", "npctypes"),
             new GamevalEntry(4460, "BURGH_BED_MAN", "Xg", "npctypes"),
             new GamevalEntry(4461, "BURGH_BED_MAN_WIFE", "Gabriela", "npctypes"),
+            new GamevalEntry(4462, "SLAYER_MASTER_MORTIMER", "slayer_master_mortimer", "npctypes"),
             new GamevalEntry(4463, "BURGH_VILAGER_SIT1", "Calin", "npctypes"),
             new GamevalEntry(4464, "BURGH_VILAGER_SIT2", "Mihail", "npctypes"),
             new GamevalEntry(4465, "BURGH_VILAGER_SIT3", "Nicoleta", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_8 {
             new GamevalEntry(4607, "VC_DWARF_POOR2", "Fior", "npctypes"),
             new GamevalEntry(4608, "VC_DWARF_POOR3", "Sagira", "npctypes"),
             new GamevalEntry(4609, "VC_DWARF_POOR4", "Anleif", "npctypes"),
-            new GamevalEntry(4610, "PITRAT_VARROCK_DEF", "Rat", "npctypes"),
         };
     }
 

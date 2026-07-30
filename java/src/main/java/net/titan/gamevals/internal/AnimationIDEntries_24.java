@@ -10,6 +10,15 @@ final class AnimationIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12299, "VMQ4_ARKAN_BLADE_SPECIAL_SPOTANIM_F", "vmq4_arkan_blade_special_spotanim_f", "seqtypes"),
+            new GamevalEntry(12300, "VMQ4_SLAP_ANIM", "vmq4_slap_anim", "seqtypes"),
+            new GamevalEntry(12301, "VMQ4_CHAMBER_GUARD_CHARGE", "vmq4_chamber_guard_charge", "seqtypes"),
+            new GamevalEntry(12302, "VMQ4_CHAMBER_GUARD_SMOKE", "vmq4_chamber_guard_smoke", "seqtypes"),
+            new GamevalEntry(12303, "VMQ4_ZYANYI_SITTING_IDLE", "vmq4_zyanyi_sitting_idle", "seqtypes"),
+            new GamevalEntry(12304, "VMQ4_IKNIU_IDLE", "vmq4_ikniu_idle", "seqtypes"),
+            new GamevalEntry(12305, "VMQ4_HUMAN_CAIQUE_PET", "vmq4_human_caique_pet", "seqtypes"),
+            new GamevalEntry(12306, "VMQ4_CAIQUE_PECK", "vmq4_caique_peck", "seqtypes"),
+            new GamevalEntry(12307, "SCRAMBLED_EGG_IDLE", "scrambled_egg_idle", "seqtypes"),
             new GamevalEntry(12308, "SCRAMBLED_EGG_SPLAT", "scrambled_egg_splat", "seqtypes"),
             new GamevalEntry(12309, "SCRAMBLED_EGG_SPLAT_OFFSET01", "scrambled_egg_splat_offset01", "seqtypes"),
             new GamevalEntry(12310, "SCRAMBLED_EGG_SPLAT_OFFSET02", "scrambled_egg_splat_offset02", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_24 {
             new GamevalEntry(12809, "LORE_LOCUST_JUMP_AWAY", "lore_locust_jump_away", "seqtypes"),
             new GamevalEntry(12810, "LORE_LOCUST_JUMP_TO", "lore_locust_jump_to", "seqtypes"),
             new GamevalEntry(12811, "LORE_LOCUST_FLYING", "lore_locust_flying", "seqtypes"),
-            new GamevalEntry(12812, "LORE_BIRD_SUMMON", "lore_bird_summon", "seqtypes"),
-            new GamevalEntry(12813, "LORE_BIRD_RANGED_VIEWING", "lore_bird_ranged_viewing", "seqtypes"),
-            new GamevalEntry(12814, "LORE_BIRD_WALK", "lore_bird_walk", "seqtypes"),
-            new GamevalEntry(12815, "LORE_BIRD_READY", "lore_bird_ready", "seqtypes"),
-            new GamevalEntry(12816, "LORE_BIRD_READY_TIMER", "lore_bird_ready_timer", "seqtypes"),
-            new GamevalEntry(12817, "LORE_BIRD_ATTACK", "lore_bird_attack", "seqtypes"),
-            new GamevalEntry(12818, "LORE_BIRD_DEFEND", "lore_bird_defend", "seqtypes"),
-            new GamevalEntry(12819, "LORE_BIRD_DEATH", "lore_bird_death", "seqtypes"),
-            new GamevalEntry(12820, "LORE_MACAW_FLY_AWAY", "lore_macaw_fly_away", "seqtypes"),
         };
     }
 

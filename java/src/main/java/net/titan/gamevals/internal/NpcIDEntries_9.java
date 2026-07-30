@@ -10,6 +10,7 @@ final class NpcIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4610, "PITRAT_VARROCK_DEF", "Rat", "npctypes"),
             new GamevalEntry(4611, "PITRAT_VARROCK_AGR", "Rat", "npctypes"),
             new GamevalEntry(4612, "PITRAT_VARROCK_NEU", "Rat", "npctypes"),
             new GamevalEntry(4613, "PITRAT_ARDOUGNE_DEF", "Rat", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_9 {
             new GamevalEntry(5119, "GRIM_GRIMGNASH_AWAKE", "Grimgnash", "npctypes"),
             new GamevalEntry(5120, "GRIM_RUPERT_VISIBLE", "Rupert the Beard", "npctypes"),
             new GamevalEntry(5121, "GRIM_RUPERT_INVISIBLE", "Rupert the Beard", "npctypes"),
-            new GamevalEntry(5122, "GRIM_RUPERT_PIPE", "Drain pipe", "npctypes"),
         };
     }
 

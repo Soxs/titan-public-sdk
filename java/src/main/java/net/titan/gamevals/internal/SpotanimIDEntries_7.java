@@ -436,6 +436,14 @@ final class SpotanimIDEntries_7 {
             new GamevalEntry(4007, "GARGBOSS_DEBRIS_SHADOW_300_DARK", "gargboss_debris_shadow_300_dark", "spottypes"),
             new GamevalEntry(4008, "ANCIENT_AXE_SPECIAL_SPOTANIM_ORN", "ancient_axe_special_spotanim_orn", "spottypes"),
             new GamevalEntry(4009, "ANCIENT_AXE_SPECIAL_SPOTANIM_OLD", "ancient_axe_special_spotanim_old", "spottypes"),
+            new GamevalEntry(4010, "VFX_MAD_ANGEL_SPAWN", "vfx_mad_angel_spawn", "spottypes"),
+            new GamevalEntry(4011, "VFX_MAD_ANGEL_ATTACK_SMITE", "vfx_mad_angel_attack_smite", "spottypes"),
+            new GamevalEntry(4012, "VFX_MAD_ANGEL_ATTACK_SMITE_ENRAGED", "vfx_mad_angel_attack_smite_enraged", "spottypes"),
+            new GamevalEntry(4013, "VFX_MAD_ANGEL_ATTACK_SMITE_IMPACT", "vfx_mad_angel_attack_smite_impact", "spottypes"),
+            new GamevalEntry(4014, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW", "vfx_mad_angel_attack_bomb_throw", "spottypes"),
+            new GamevalEntry(4015, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW_PROJECTILE", "vfx_mad_angel_attack_bomb_throw_projectile", "spottypes"),
+            new GamevalEntry(4016, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW_IMPACT_01", "vfx_mad_angel_attack_bomb_throw_impact_01", "spottypes"),
+            new GamevalEntry(4017, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW_IMPACT_02", "vfx_mad_angel_attack_bomb_throw_impact_02", "spottypes"),
         };
     }
 

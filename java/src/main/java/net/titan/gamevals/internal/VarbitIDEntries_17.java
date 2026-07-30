@@ -10,6 +10,10 @@ final class VarbitIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13576, "LEAGUE_3_QUEST_COST_DRUID", "league_3_quest_cost_druid", "varbittypes"),
+            new GamevalEntry(13577, "LEAGUE_3_QUEST_COST_CHAMPIONS", "league_3_quest_cost_champions", "varbittypes"),
+            new GamevalEntry(13578, "LEAGUE_3_QUEST_COST_HEROES", "league_3_quest_cost_heroes", "varbittypes"),
+            new GamevalEntry(13579, "LEAGUE_3_QUEST_COST_LEGENDS", "league_3_quest_cost_legends", "varbittypes"),
             new GamevalEntry(13580, "LEAGUE_3_QUEST_COST_MYTHS", "league_3_quest_cost_myths", "varbittypes"),
             new GamevalEntry(13581, "LEAGUE_3_QUEST_TRACKER_RFD", "league_3_quest_tracker_rfd", "varbittypes"),
             new GamevalEntry(13585, "LEAGUE_3_ARG_A", "league_3_arg_a", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_17 {
             new GamevalEntry(14170, "OPTION_NPC_INDICATORS_OUTLINE_ENABLED", "option_npc_indicators_outline_enabled", "varbittypes"),
             new GamevalEntry(14171, "OPTION_NPC_INDICATORS_TILE", "option_npc_indicators_tile", "varbittypes"),
             new GamevalEntry(14172, "HERBIBOAR_HELPER_DISABLED", "herbiboar_helper_disabled", "varbittypes"),
-            new GamevalEntry(14173, "BUFF_CANNON_DECAY_DISABLED", "buff_cannon_decay_disabled", "varbittypes"),
-            new GamevalEntry(14174, "CANNON_HUD_DISABLED", "cannon_hud_disabled", "varbittypes"),
-            new GamevalEntry(14175, "CANNON_LOW_NOTIFICATION_ENABLED", "cannon_low_notification_enabled", "varbittypes"),
-            new GamevalEntry(14176, "CANNON_LOW_AMOUNT", "cannon_low_amount", "varbittypes"),
         };
     }
 

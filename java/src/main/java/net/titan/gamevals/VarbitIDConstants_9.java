@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface VarbitIDConstants_9 {
+    int POH_NEXUS_TELE_13 = 6666;
     int POH_NEXUS_TELE_14 = 6667;
     int POH_NEXUS_TELE_15 = 6668;
     int POH_NEXUS_LEFT_CLICK_TEMP = 6669;
@@ -94,6 +95,7 @@ public interface VarbitIDConstants_9 {
     int XMAS18_COW_FIXED = 7769;
     int XMAS18_SPADE = 7770;
     int FARMING_TOOLS_SELECTEDQUANTITY = 7792;
+    int KONAR_SPOKEN = 7793;
     int PET_INSURANCE_HYDRA = 7794;
     int PET_MENAGERIE_HYDRA = 7795;
     int LOVAQUEST = 7796;
@@ -511,6 +513,4 @@ public interface VarbitIDConstants_9 {
     int SOTE_LIGHT_2_G_8_EAST = 8822;
     int SOTE_LIGHT_2_H_8_TO_2_H_7 = 8823;
     int SOTE_LIGHT_2_I_7_SOUTH = 8824;
-    int SOTE_LIGHT_2_I_7_TO_2_I_8 = 8825;
-    int SOTE_LIGHT_2_I_7_WEST = 8826;
 }

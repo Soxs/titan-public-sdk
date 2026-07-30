@@ -10,6 +10,7 @@ final class ObjectIDEntries_52 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(26689, "CLANWARS_PRISONWALL", "clanwars_prisonwall", "loctypes"),
             new GamevalEntry(26690, "CLANWARS_SNOWFALLING", "clanwars_snowfalling", "loctypes"),
             new GamevalEntry(26691, "WILD6_SKELETON_0", "wild6_skeleton_0", "loctypes"),
             new GamevalEntry(26692, "CLANWARS_TELEPORTER_ACTIVE", "Mystic symbol", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_52 {
             new GamevalEntry(27198, "SHAYZIEN_PILLAR_02_MIDDLE", "shayzien_pillar_02_middle", "loctypes"),
             new GamevalEntry(27199, "SHAYZIEN_STAIRS_BOTTOM_01", "Stairs", "loctypes"),
             new GamevalEntry(27200, "SHAYZIEN_STAIRS_TOP_01", "Stairs", "loctypes"),
-            new GamevalEntry(27201, "SHAYZIEN_STAIRS_BOTTOM_02", "Stairs", "loctypes"),
         };
     }
 

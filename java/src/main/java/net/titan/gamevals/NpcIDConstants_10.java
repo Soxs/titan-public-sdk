@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_10 {
+    int GRIM_RUPERT_PIPE = 5122;
     int GRIM_RUPERT_VISIBLE_INTOWER = 5123;
     int GRIM_RUPERT_INVISIBLE_INTOWER = 5124;
     int GRIM_MIAZRQA = 5125;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_10 {
     int TEMPLETREK_SHADE_1 = 5631;
     int TEMPLETREK_SHADE_2 = 5632;
     int TEMPLETREK_SHADE_3 = 5633;
-    int TEMPLETREK_VAMPIRE_1 = 5634;
 }

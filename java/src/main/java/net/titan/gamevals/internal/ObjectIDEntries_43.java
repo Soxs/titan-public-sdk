@@ -10,6 +10,7 @@ final class ObjectIDEntries_43 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(22079, "BRAIN_BELLTOWER_BELL", "brain_belltower_bell", "loctypes"),
             new GamevalEntry(22080, "BRAIN_BELLTOWER_BELL_FLOOR", "brain_belltower_bell_floor", "loctypes"),
             new GamevalEntry(22081, "BRAIN_BALCONY_FLOORING", "brain_balcony_flooring", "loctypes"),
             new GamevalEntry(22082, "BRAIN_BALCONY_FLOORING_HALF", "brain_balcony_flooring_half", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_43 {
             new GamevalEntry(22588, "DORGESH_CAVES_CABLE_END", "dorgesh_caves_cable_end", "loctypes"),
             new GamevalEntry(22589, "DORGESH_CAVES_PYLON", "Pylon", "loctypes"),
             new GamevalEntry(22590, "DORGESH_CAVES_PYLON_CABLE", "Pylon", "loctypes"),
-            new GamevalEntry(22591, "DORGESH_CAVES_PYLON_2", "Pylon", "loctypes"),
         };
     }
 

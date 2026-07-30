@@ -10,6 +10,7 @@ final class NpcIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7682, "TZHAAR_HUR_CITY1", "TzHaar-Hur", "npctypes"),
             new GamevalEntry(7683, "TZHAAR_HUR_CITY2", "TzHaar-Hur", "npctypes"),
             new GamevalEntry(7684, "TZHAAR_HUR_CITY3", "TzHaar-Hur", "npctypes"),
             new GamevalEntry(7685, "TZHAAR_HUR_CITY4", "TzHaar-Hur", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_15 {
             new GamevalEntry(8191, "RAIDS_TEMPLE_DUFFY", "raids_temple_duffy", "npctypes"),
             new GamevalEntry(8192, "RAIDS_TEMPLE_HISTORIAN", "raids_temple_historian", "npctypes"),
             new GamevalEntry(8193, "BOND_JAMES_VISIBLE", "James", "npctypes"),
-            new GamevalEntry(8194, "GB_GROWTHLING", "Growthling", "npctypes"),
         };
     }
 

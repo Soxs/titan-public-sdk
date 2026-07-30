@@ -10,6 +10,15 @@ final class AnimationIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13836, "LEAGUES_6_THRALL_IMP_RANGED_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_ranged_spawn_vfx_spotanim", "seqtypes"),
+            new GamevalEntry(13837, "LEAGUES_6_THRALL_IMP_MELEE_SPAWN", "leagues_6_thrall_imp_melee_spawn", "seqtypes"),
+            new GamevalEntry(13838, "LEAGUES_6_THRALL_IMP_MELEE_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_melee_spawn_vfx_spotanim", "seqtypes"),
+            new GamevalEntry(13839, "LEAGUES_6_THRALL_IMP_MAGIC_IDLE", "leagues_6_thrall_imp_magic_idle", "seqtypes"),
+            new GamevalEntry(13840, "LEAGUES_6_THRALL_IMP_RANGED_IDLE", "leagues_6_thrall_imp_ranged_idle", "seqtypes"),
+            new GamevalEntry(13841, "LEAGUES_6_THRALL_IMP_MELEE_IDLE", "leagues_6_thrall_imp_melee_idle", "seqtypes"),
+            new GamevalEntry(13842, "LEAGUES_6_THRALL_IMP_MAGIC_WALK", "leagues_6_thrall_imp_magic_walk", "seqtypes"),
+            new GamevalEntry(13843, "LEAGUES_6_THRALL_IMP_RANGED_WALK", "leagues_6_thrall_imp_ranged_walk", "seqtypes"),
+            new GamevalEntry(13844, "LEAGUES_6_THRALL_IMP_MELEE_WALK", "leagues_6_thrall_imp_melee_walk", "seqtypes"),
             new GamevalEntry(13845, "LEAGUES_6_THRALL_IMP_MAGIC_RUN", "leagues_6_thrall_imp_magic_run", "seqtypes"),
             new GamevalEntry(13846, "LEAGUES_6_THRALL_IMP_RANGED_RUN", "leagues_6_thrall_imp_ranged_run", "seqtypes"),
             new GamevalEntry(13847, "LEAGUES_6_THRALL_IMP_MELEE_RUN", "leagues_6_thrall_imp_melee_run", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_27 {
             new GamevalEntry(14345, "CUTSCENE_LOWERNIEL_DRAKAN_DRAMATIC_WALK_RECREATION01", "cutscene_lowerniel_drakan_dramatic_walk_recreation01", "seqtypes"),
             new GamevalEntry(14346, "CUTSCENE_LOWERNIEL_DRAKAN_DRAMATIC_WALK_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_dramatic_walk_recreation_lame_wing01", "seqtypes"),
             new GamevalEntry(14347, "CUTSCENE_LOWERNIEL_DRAKAN_OBLITERATE_RECREATION01", "cutscene_lowerniel_drakan_obliterate_recreation01", "seqtypes"),
-            new GamevalEntry(14348, "CUTSCENE_LOWERNIEL_DRAKAN_OBLITERATE_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_obliterate_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14349, "CUTSCENE_LOWERNIEL_DRAKAN_INCINERATE_RECREATION01", "cutscene_lowerniel_drakan_incinerate_recreation01", "seqtypes"),
-            new GamevalEntry(14350, "CUTSCENE_LOWERNIEL_DRAKAN_INCINERATE_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_incinerate_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14351, "CUTSCENE_LOWERNIEL_DRAKAN_IMPRISON_RECREATION01", "cutscene_lowerniel_drakan_imprison_recreation01", "seqtypes"),
-            new GamevalEntry(14352, "CUTSCENE_LOWERNIEL_DRAKAN_IMPRISON_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_imprison_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14353, "CUTSCENE_LOWERNIEL_DRAKAN_SPAWN_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_spawn_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14354, "CUTSCENE_LOWERNIEL_DRAKAN_DESPAWN_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_despawn_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14355, "LOWERNIEL_DRAKAN_CUTSCENE_PART01", "lowerniel_drakan_cutscene_part01", "seqtypes"),
-            new GamevalEntry(14356, "LOWERNIEL_DRAKAN_CUTSCENE_PART02", "lowerniel_drakan_cutscene_part02", "seqtypes"),
         };
     }
 

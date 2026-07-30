@@ -10,6 +10,12 @@ final class ObjectIDEntries_118 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(60484, "SALVAGING_HOOK_RAFT_IRON", "Iron salvaging hook", "loctypes"),
+            new GamevalEntry(60485, "SALVAGING_HOOK_RAFT_STEEL", "Steel salvaging hook", "loctypes"),
+            new GamevalEntry(60486, "SALVAGING_HOOK_RAFT_MITHRIL", "Mithril salvaging hook", "loctypes"),
+            new GamevalEntry(60487, "SALVAGING_HOOK_RAFT_ADAMANT", "Adamant salvaging hook", "loctypes"),
+            new GamevalEntry(60488, "SALVAGING_HOOK_RAFT_RUNE", "Rune salvaging hook", "loctypes"),
+            new GamevalEntry(60489, "SALVAGING_HOOK_RAFT_DRAGON", "Dragon salvaging hook", "loctypes"),
             new GamevalEntry(60490, "SALVAGING_HOOK_BRONZE", "Bronze salvaging hook", "loctypes"),
             new GamevalEntry(60491, "SALVAGING_HOOK_IRON", "Iron salvaging hook", "loctypes"),
             new GamevalEntry(60492, "SALVAGING_HOOK_STEEL", "Steel salvaging hook", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_118 {
             new GamevalEntry(60993, "STATUE_SANGVESTI01_ALZEPH01", "Statue", "loctypes"),
             new GamevalEntry(60994, "STATUE_SANGVESTI01_DRAKAN01", "Statue", "loctypes"),
             new GamevalEntry(60995, "STATUE_SANGVESTI01_GHRAZI01", "Statue", "loctypes"),
-            new GamevalEntry(60996, "STATUE_SANGVESTI01_JOVKAI01", "Statue", "loctypes"),
-            new GamevalEntry(60997, "STATUE_SANGVESTI01_MYRMEL01", "Statue", "loctypes"),
-            new GamevalEntry(60998, "STATUE_SANGVESTI01_PYRAH01", "Statue", "loctypes"),
-            new GamevalEntry(60999, "STATUE_SANGVESTI01_SHADUM01", "Statue", "loctypes"),
-            new GamevalEntry(61000, "STATUE_SANGVESTI01_VITUR01", "Statue", "loctypes"),
-            new GamevalEntry(61001, "STATUES_SANGVESTI01_DRAKAN01_AGILITY01", "Statue", "loctypes"),
         };
     }
 

@@ -279,6 +279,7 @@ public final class DBTableID
             public static final int QUEST_TROUBLEDTORTUGANS = 7106;
             public static final int QUEST_REDREEF = 7107;
             public static final int QUEST_BURIALATSEA = 7108;
+            public static final int QUEST_FALLENFROMGRACE = 7133;
             public static final int QUEST_LEARNINGTHEROPES = 9643;
             public static final int QUEST_IDESOFMILK = 9645;
             public static final int QUEST_BLOODMOONRISES = 16414;
@@ -4417,6 +4418,7 @@ public final class DBTableID
             public static final int MUSIC_GREAT_CONCH_2 = 7094;
             public static final int MUSIC_GREAT_CONCH_UNDERGROUND = 7095;
             public static final int MUSIC_SCAPE_SAIL = 7096;
+            public static final int MUSIC_MAD_ANGEL_BOSS = 7132;
             public static final int MUSIC_BRUTUS_COW_BOSS = 8662;
             public static final int MUSIC_SAILING_COMBAT = 16223;
             public static final int MUSIC_RED_ROCK_ISLAND = 16224;
@@ -7600,6 +7602,7 @@ public final class DBTableID
             public static final int SLAYER_TARGET_LESSER_NAGUA = 6338;
             public static final int SLAYER_TARGET_ARAXYTES = 6339;
             public static final int SLAYER_TARGET_CUSTODIANS = 6340;
+            public static final int SLAYER_TARGET_VENATORS = 7201;
             public static final int SLAYER_TASK_GRYPHONBOSS = 9405;
             public static final int SLAYER_TARGET_GRYPHONS = 9414;
             public static final int SLAYER_TARGET_AQUANITES = 9415;
@@ -7619,6 +7622,8 @@ public final class DBTableID
         public static final int COL_MAX_AMOUNT = 4;
         public static final int COL_AREAS = 5;
         public static final int COL_TASK_UNLOCK = 6;
+        public static final int COL_MODIFIER = 7;
+        public static final int COL_SKILL_GUIDE_ICON = 8;
 
         public static final class Row {
             private Row() {}
@@ -7626,6 +7631,9 @@ public final class DBTableID
             public static final int CHAELDAR_CUSTODIANS = 4097;
             public static final int NIEVE_CUSTODIANS = 4098;
             public static final int KONAR_LESSER_NAGUA = 6450;
+            public static final int KONAR_WARPEDCREATURES = 6451;
+            public static final int KONAR_VAMPYRES = 6452;
+            public static final int KONAR_BASILISKS = 6453;
             public static final int KONAR_MUTATEDZYGOMITES = 6454;
             public static final int KONAR_BRINERATS = 6455;
             public static final int KONAR_WATERFIENDS = 6456;
@@ -7635,6 +7643,7 @@ public final class DBTableID
             public static final int KONAR_SKELETALWYVERNS = 6460;
             public static final int KONAR_FOSSILWYVERNS = 6461;
             public static final int KONAR_ANKOU = 6462;
+            public static final int KONAR_REDDRAGONS = 6463;
             public static final int KONAR_DARKBEASTS = 6464;
             public static final int KONAR_BLACKDRAGONS = 6465;
             public static final int KONAR_JELLIES = 6466;
@@ -7642,9 +7651,11 @@ public final class DBTableID
             public static final int KONAR_ABERRANTSPECTRES = 6468;
             public static final int KONAR_DUSTDEVILS = 6469;
             public static final int KONAR_GARGOYLES = 6470;
+            public static final int KONAR_AVIANSIES = 6471;
             public static final int KONAR_GREATERDEMONS = 6472;
             public static final int KONAR_SMOKEDEVIL = 6473;
             public static final int KONAR_NECHRYAEL = 6474;
+            public static final int KONAR_LIZARDMEN = 6475;
             public static final int KONAR_HELLHOUNDS = 6476;
             public static final int KONAR_DAGANNOTH = 6477;
             public static final int KONAR_BOSS = 6478;
@@ -7939,6 +7950,35 @@ public final class DBTableID
             public static final int SPRIA_SKELETONS = 6767;
             public static final int SPRIA_CRAWLINGHANDS = 6768;
             public static final int SPRIA_BANSHEES = 6769;
+            public static final int MORTIMER_CRAWLINGHANDS = 7172;
+            public static final int MORTIMER_CAVECRAWLERS = 7173;
+            public static final int MORTIMER_BANSHEES = 7174;
+            public static final int MORTIMER_ROCKSLUGS = 7175;
+            public static final int MORTIMER_COCKATRICE = 7176;
+            public static final int MORTIMER_PYREFIENDS = 7177;
+            public static final int MORTIMER_INFERNALMAGES = 7178;
+            public static final int MORTIMER_BLOODVELD = 7179;
+            public static final int MORTIMER_GRYPHONS = 7180;
+            public static final int MORTIMER_JELLIES = 7181;
+            public static final int MORTIMER_CUSTODIANS = 7182;
+            public static final int MORTIMER_TUROTH = 7183;
+            public static final int MORTIMER_WARPEDCREATURES = 7184;
+            public static final int MORTIMER_CAVEHORRORS = 7185;
+            public static final int MORTIMER_ABERRANTSPECTRES = 7186;
+            public static final int MORTIMER_BASILISKS = 7187;
+            public static final int MORTIMER_WYRMS = 7188;
+            public static final int MORTIMER_DUSTDEVILS = 7189;
+            public static final int MORTIMER_KURASK = 7190;
+            public static final int MORTIMER_VENATORS = 7191;
+            public static final int MORTIMER_GARGOYLES = 7192;
+            public static final int MORTIMER_AQUANITES = 7193;
+            public static final int MORTIMER_NECHRYAEL = 7194;
+            public static final int MORTIMER_DRAKES = 7195;
+            public static final int MORTIMER_ABYSSALDEMONS = 7196;
+            public static final int MORTIMER_DARKBEASTS = 7197;
+            public static final int MORTIMER_ARAXYTES = 7198;
+            public static final int MORTIMER_SMOKEDEVIL = 7199;
+            public static final int MORTIMER_HYDRAS = 7200;
             public static final int CHAELDAR_GRYPHONS = 9406;
             public static final int DURADEL_GRYPHONS = 9407;
             public static final int DURADEL_AQUANITES = 9408;
@@ -8021,6 +8061,7 @@ public final class DBTableID
             public static final int SLAYERAREA_PERILOUSMOONSDUNGEON = 6389;
             public static final int SLAYERAREA_TAPOYAUIK = 6390;
             public static final int SLAYERAREA_ICEDUNGEON = 6391;
+            public static final int SLAYERAREA_WYRMSCRAIG = 7171;
             public static final int SLAYERAREA_GREATCONCH = 9402;
             public static final int SLAYERAREA_CHARRED_ISLAND_DUNGEON = 9403;
             public static final int SLAYERAREA_VAMPYRIUM = 16937;
@@ -10651,7 +10692,44 @@ public final class DBTableID
             public static final int AMENITY_ROWBOAT = 7116;
             public static final int AMENITY_FURNACE = 7117;
             public static final int AMENITY_BANKCHEST = 7118;
+            public static final int AMENITY_BANKCHEST_WYRMSCRAIG = 7145;
         }
+    }
+
+    public static final class NpcContact {
+        private NpcContact() {}
+
+        public static final int ID = 130;
+        public static final int COL_ID = 0;
+        public static final int COL_CONTACT_ID = 1;
+        public static final int COL_NAME = 2;
+        public static final int COL_HEAD_MODEL = 3;
+        public static final int COL_ZOOM = 4;
+        public static final int COL_Y_ANGLE = 5;
+        public static final int COL_ALT_NAME = 6;
+        public static final int COL_ALT_HEAD_MODEL = 7;
+        public static final int COL_ALT_ZOOM = 8;
+        public static final int COL_ALT_Y_ANGLE = 9;
+
+        public static final class Row {
+            private Row() {}
+
+            public static final int PMOON_RIVER1 = 16920;
+            public static final int PMOON_RIVER2 = 16921;
+            public static final int SOTFA_RIVER1 = 16922;
+            public static final int SOTFA_RIVER2 = 16923;
+        }
+    }
+
+    public static final class SlayerModifiers {
+        private SlayerModifiers() {}
+
+        public static final int ID = 131;
+        public static final int COL_ID = 0;
+        public static final int COL_NAME = 1;
+        public static final int COL_DESCRIPTION = 2;
+        public static final int COL_REQUIREMENT = 3;
+        public static final int COL_SPRITE = 4;
     }
 
     public static final class FletchingBlowpipeCrafting {
@@ -12371,6 +12449,34 @@ public final class DBTableID
         public static final int COL_SUCCESS_AUDIO = 13;
         public static final int COL_FAILURE_AUDIO = 14;
         public static final int COL_PET_RATE_SOURCE = 15;
+
+        public static final class Row {
+            private Row() {}
+
+            public static final int NPC_CONTACT_HONEST_JIMMY = 7146;
+            public static final int NPC_CONTACT_BERT = 7147;
+            public static final int NPC_CONTACT_ADVISOR_GHRIM = 7148;
+            public static final int NPC_CONTACT_DARK_MAGE = 7149;
+            public static final int NPC_CONTACT_LANTHUS = 7150;
+            public static final int NPC_CONTACT_SLAYER_MASTER_DRAYNOR = 7151;
+            public static final int NPC_CONTACT_SLAYER_MASTER_BURTHORPE = 7152;
+            public static final int NPC_CONTACT_SLAYER_MASTER_CANIFIS = 7153;
+            public static final int NPC_CONTACT_SLAYER_MASTER_EDGEVILLE = 7154;
+            public static final int NPC_CONTACT_SLAYER_MASTER_ZANARIS = 7155;
+            public static final int NPC_CONTACT_SLAYER_MASTER_GNOME_STRONGHOLD = 7156;
+            public static final int NPC_CONTACT_SLAYER_MASTER_SHILO_VILLAGE = 7157;
+            public static final int NPC_CONTACT_SLAYER_MASTER_WILDERNESS = 7158;
+            public static final int NPC_CONTACT_SLAYER_MASTER_MOUNT_KARUULM = 7159;
+            public static final int NPC_CONTACT_SLAYER_MASTER_WYRMSCRAIG = 7160;
+            public static final int NPC_CONTACT_MURPHY = 7161;
+            public static final int NPC_CONTACT_CYRISUS = 7162;
+            public static final int NPC_CONTACT_SMOGGY = 7163;
+            public static final int NPC_CONTACT_CAPTAIN_GINEA = 7164;
+            public static final int NPC_CONTACT_WATSON = 7165;
+            public static final int NPC_CONTACT_BARBARIAN_GUARD = 7166;
+            public static final int NPC_CONTACT_AMY = 7167;
+            public static final int NPC_CONTACT_RANDOM = 7168;
+        }
     }
 
     public static final class ArrowFletching {

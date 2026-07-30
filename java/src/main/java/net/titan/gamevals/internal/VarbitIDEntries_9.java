@@ -10,6 +10,7 @@ final class VarbitIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6666, "POH_NEXUS_TELE_13", "poh_nexus_tele_13", "varbittypes"),
             new GamevalEntry(6667, "POH_NEXUS_TELE_14", "poh_nexus_tele_14", "varbittypes"),
             new GamevalEntry(6668, "POH_NEXUS_TELE_15", "poh_nexus_tele_15", "varbittypes"),
             new GamevalEntry(6669, "POH_NEXUS_LEFT_CLICK_TEMP", "poh_nexus_left_click_temp", "varbittypes"),
@@ -103,6 +104,7 @@ final class VarbitIDEntries_9 {
             new GamevalEntry(7769, "XMAS18_COW_FIXED", "xmas18_cow_fixed", "varbittypes"),
             new GamevalEntry(7770, "XMAS18_SPADE", "xmas18_spade", "varbittypes"),
             new GamevalEntry(7792, "FARMING_TOOLS_SELECTEDQUANTITY", "farming_tools_selectedquantity", "varbittypes"),
+            new GamevalEntry(7793, "KONAR_SPOKEN", "konar_spoken", "varbittypes"),
             new GamevalEntry(7794, "PET_INSURANCE_HYDRA", "pet_insurance_hydra", "varbittypes"),
             new GamevalEntry(7795, "PET_MENAGERIE_HYDRA", "pet_menagerie_hydra", "varbittypes"),
             new GamevalEntry(7796, "LOVAQUEST", "lovaquest", "varbittypes"),
@@ -520,8 +522,6 @@ final class VarbitIDEntries_9 {
             new GamevalEntry(8822, "SOTE_LIGHT_2_G_8_EAST", "sote_light_2_g_8_east", "varbittypes"),
             new GamevalEntry(8823, "SOTE_LIGHT_2_H_8_TO_2_H_7", "sote_light_2_h_8_to_2_h_7", "varbittypes"),
             new GamevalEntry(8824, "SOTE_LIGHT_2_I_7_SOUTH", "sote_light_2_i_7_south", "varbittypes"),
-            new GamevalEntry(8825, "SOTE_LIGHT_2_I_7_TO_2_I_8", "sote_light_2_i_7_to_2_i_8", "varbittypes"),
-            new GamevalEntry(8826, "SOTE_LIGHT_2_I_7_WEST", "sote_light_2_i_7_west", "varbittypes"),
         };
     }
 

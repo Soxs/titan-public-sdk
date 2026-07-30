@@ -10,6 +10,7 @@ final class ObjectIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11308, "FEVER_SHIP_LADDER", "Ship's ladder", "loctypes"),
             new GamevalEntry(11309, "FEVER_SHIP_LADDERTOP", "Ship's ladder", "loctypes"),
             new GamevalEntry(11310, "FEVER_CLIMBING_NET", "Climbing net", "loctypes"),
             new GamevalEntry(11311, "FEVER_SWING_ROPE", "Rope", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_22 {
             new GamevalEntry(11817, "GRAPEVINE_PATCH_CLICKZONE_08", "grapevine_patch_clickzone_08", "loctypes"),
             new GamevalEntry(11818, "TZHAAR_CAVE_WALL_1", "tzhaar_cave_wall_1", "loctypes"),
             new GamevalEntry(11819, "TZHAAR_CAVE_WALL_2", "tzhaar_cave_wall_2", "loctypes"),
-            new GamevalEntry(11820, "TZHAAR_CAVE_WALL_3", "tzhaar_cave_wall_3", "loctypes"),
         };
     }
 

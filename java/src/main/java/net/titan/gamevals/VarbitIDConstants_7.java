@@ -314,6 +314,7 @@ public interface VarbitIDConstants_7 {
     int EASTER17_EGG_3 = 5615;
     int EASTER17_EGG_4 = 5616;
     int SLAYER_WILDERNESS_TASKS_COMPLETED = 5617;
+    int WILDERNESS_MASTER_WARNING = 5618;
     int VEOS_PROGRESS = 5619;
     int VEOS_PISCARILIUS = 5620;
     int VEOS_ARCEUUS = 5621;
@@ -512,5 +513,4 @@ public interface VarbitIDConstants_7 {
     int FOSSIL_VM_DISPLAY_33_STATE = 5908;
     int FOSSIL_VM_DISPLAY_34_STATE = 5909;
     int FOSSIL_VM_DISPLAY_35_STATE = 5910;
-    int FOSSIL_VM_DISPLAY_36_STATE = 5911;
 }

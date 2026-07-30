@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_37 {
+    int SOS_FAM_LADD_UP = 19003;
     int SOS_FAM_LADD_DOWN = 19004;
     int SOS_FAM_PORTAL = 19005;
     int LOTR_RUINS_WALL_SKULLS_NO_WATER_LVL2 = 19006;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_37 {
     int HUNTING_TRAIL7_3L = 19512;
     int HUNTING_TRAIL7_4L = 19513;
     int HUNTING_TRAIL1_1R = 19514;
-    int HUNTING_TRAIL7_5L = 19515;
 }

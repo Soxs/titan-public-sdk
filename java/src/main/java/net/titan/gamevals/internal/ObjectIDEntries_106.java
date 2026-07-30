@@ -10,6 +10,12 @@ final class ObjectIDEntries_106 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(54339, "DECOKIT_ICE01_TAPOYAUIK01", "decokit_ice01_tapoyauik01", "loctypes"),
+            new GamevalEntry(54340, "DECOKIT_ICE01_TAPOYAUIK02", "decokit_ice01_tapoyauik02", "loctypes"),
+            new GamevalEntry(54341, "DECOKIT_ICE01_TAPOYAUIK03", "decokit_ice01_tapoyauik03", "loctypes"),
+            new GamevalEntry(54342, "DECOKIT_ICE01_TAPOYAUIK04", "decokit_ice01_tapoyauik04", "loctypes"),
+            new GamevalEntry(54343, "DECOKIT_ICE01_TAPOYAUIK05", "decokit_ice01_tapoyauik05", "loctypes"),
+            new GamevalEntry(54344, "DECOKIT_ICE01_TAPOYAUIK06", "decokit_ice01_tapoyauik06", "loctypes"),
             new GamevalEntry(54345, "DECOKIT_ICE01_TAPOYAUIK07", "decokit_ice01_tapoyauik07", "loctypes"),
             new GamevalEntry(54346, "DECOKIT_ICE01_TAPOYAUIK08", "decokit_ice01_tapoyauik08", "loctypes"),
             new GamevalEntry(54347, "DECOKIT_ICE01_TAPOYAUIK09", "decokit_ice01_tapoyauik09", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_106 {
             new GamevalEntry(54848, "PILLAR_ALDARIN01_CITY01_LOWER01", "pillar_aldarin01_city01_lower01", "loctypes"),
             new GamevalEntry(54849, "WALLKIT_ALDARIN01_TOWER01", "wallkit_aldarin01_tower01", "loctypes"),
             new GamevalEntry(54850, "WALLKIT_ALDARIN02_TOWER01", "wallkit_aldarin02_tower01", "loctypes"),
-            new GamevalEntry(54851, "WALLKIT_ALDARIN03_TOWER01", "wallkit_aldarin03_tower01", "loctypes"),
-            new GamevalEntry(54852, "WALLKIT_ALDARIN03_TOWER01_INNER01", "wallkit_aldarin03_tower01_inner01", "loctypes"),
-            new GamevalEntry(54853, "WALLKIT_ALDARIN04_TOWER01", "wallkit_aldarin04_tower01", "loctypes"),
-            new GamevalEntry(54854, "WALLKIT_MISTROCK01_LVL0", "wallkit_mistrock01_lvl0", "loctypes"),
-            new GamevalEntry(54855, "WALLKIT_MISTROCK01_WINDOW01", "wallkit_mistrock01_window01", "loctypes"),
-            new GamevalEntry(54856, "WALLKIT_MISTROCK01_POST01", "wallkit_mistrock01_post01", "loctypes"),
         };
     }
 

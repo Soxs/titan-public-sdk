@@ -10,6 +10,7 @@ final class ObjectIDEntries_98 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(50243, "MOM2_DUNGEON_WALL_TOP_CORNER2_MED_HIGHER", "mom2_dungeon_wall_top_corner2_med_higher", "loctypes"),
             new GamevalEntry(50244, "MOM2_DUNGEON_WALL_TOP_CORNER", "mom2_dungeon_wall_top_corner", "loctypes"),
             new GamevalEntry(50245, "MOM2_DUNGEON_WALL_TOP_CORNER_HIGHER", "mom2_dungeon_wall_top_corner_higher", "loctypes"),
             new GamevalEntry(50246, "MOM2_DUNGEON_WALL_TOP_CORNER_MED_HIGHER", "mom2_dungeon_wall_top_corner_med_higher", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_98 {
             new GamevalEntry(50752, "COLOSSEUM_EXIT", "Gate", "loctypes"),
             new GamevalEntry(50753, "SHIELD_COMBATANT_1", "shield_combatant_1", "loctypes"),
             new GamevalEntry(50754, "SHIELD_COMBATANT_2", "shield_combatant_2", "loctypes"),
-            new GamevalEntry(50755, "SHIELD_COMBATANT_3", "shield_combatant_3", "loctypes"),
         };
     }
 

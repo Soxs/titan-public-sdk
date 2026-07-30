@@ -10,6 +10,7 @@ final class ObjectIDEntries_71 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(36418, "CRYSTAL_TOWER_TOP_ROOF_D4", "crystal_tower_top_roof_d4", "loctypes"),
             new GamevalEntry(36419, "CRYSTAL_TOWER_TOP_ROOF_E1", "crystal_tower_top_roof_e1", "loctypes"),
             new GamevalEntry(36420, "CRYSTAL_TOWER_TOP_ROOF_E2", "crystal_tower_top_roof_e2", "loctypes"),
             new GamevalEntry(36421, "CRYSTAL_TOWER_TOP_ROOF_E3", "crystal_tower_top_roof_e3", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_71 {
             new GamevalEntry(36927, "SOTE_LIGHT_2_A_7_TO_2_A_8_SIZE4", "sote_light_2_a_7_to_2_a_8_size4", "loctypes"),
             new GamevalEntry(36928, "SOTE_LIGHT_2_A_8_EAST", "sote_light_2_a_8_east", "loctypes"),
             new GamevalEntry(36929, "SOTE_LIGHT_2_A_8_EAST_SIZE3", "sote_light_2_a_8_east_size3", "loctypes"),
-            new GamevalEntry(36930, "SOTE_LIGHT_2_A_8_EAST_SIZE4", "sote_light_2_a_8_east_size4", "loctypes"),
         };
     }
 

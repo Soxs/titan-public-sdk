@@ -1,6 +1,12 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_13 {
+    int PETROCK_HUMAN_TURNONSPOT = 6661;
+    int PETROCK_HUMAN_WALK_L = 6662;
+    int PETROCK_HUMAN_WALK_R = 6663;
+    int PETROCK_HUMAN_STAY = 6664;
+    int PETROCK_HUMAN_STICK = 6665;
+    int DRAGON_SLAYER_CHILD_DEATH = 6666;
     int PETROCK_SPOTANIM_STAY = 6667;
     int PETROCK_SPOTANIM_STICK = 6668;
     int PETROCK_PROJANIM_STICK = 6669;
@@ -507,10 +513,4 @@ public interface AnimationIDConstants_13 {
     int XBOWS_FLETCHING_BLANK = 7172;
     int GIANT_BASIC_SPELL = 7173;
     int WINT_LIGHT_BRAZIER_BRUMA = 7174;
-    int CHATHYPNOBUNNY4_2006 = 7175;
-    int GIANT_BASIC_SPELL_LOOP = 7176;
-    int LORE_BEAVER_READY = 7177;
-    int LORE_BEAVER_WALK = 7178;
-    int ROCK_GOLEM_CHATHEAD_IDLE = 7179;
-    int ROCK_GOLEM_IDLE = 7180;
 }

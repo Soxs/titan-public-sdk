@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_61 {
+    int FOSSIL_VM_DISPLAY_26_4 = 31297;
     int FOSSIL_VM_DISPLAY_26_5 = 31298;
     int VM_FOSSIL_VIEWER = 31299;
     int FARMING_HARDWOOD_TREE_PATCH_1_CANOPY = 31300;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_61 {
     int DS2_OGRE_CORSAIR_DUNGEON_EXIT_TO_FELDIP = 31806;
     int DS2_OGRE_CORSAIR_DUNGEON_EXIT_TO_ALTAR = 31807;
     int DS2_OGRE_CORSAIR_DUNGEON_GUILD_ENTRANCE = 31808;
-    int DS2_OGRE_CORSAIR_DUNGEON_SHORTCUT = 31809;
 }

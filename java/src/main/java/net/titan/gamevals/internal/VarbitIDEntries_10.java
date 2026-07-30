@@ -10,6 +10,8 @@ final class VarbitIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8825, "SOTE_LIGHT_2_I_7_TO_2_I_8", "sote_light_2_i_7_to_2_i_8", "varbittypes"),
+            new GamevalEntry(8826, "SOTE_LIGHT_2_I_7_WEST", "sote_light_2_i_7_west", "varbittypes"),
             new GamevalEntry(8827, "SOTE_LIGHT_2_I_8_TO_2_H_8", "sote_light_2_i_8_to_2_h_8", "varbittypes"),
             new GamevalEntry(8828, "SOTE_LIGHT_2_B_8_EAST", "sote_light_2_b_8_east", "varbittypes"),
             new GamevalEntry(8829, "SOTE_LIGHT_2_G_8_SOUTH", "sote_light_2_g_8_south", "varbittypes"),
@@ -520,8 +522,6 @@ final class VarbitIDEntries_10 {
             new GamevalEntry(9548, "XMAS23_ACHIEVEMENTS", "xmas23_achievements", "varbittypes"),
             new GamevalEntry(9550, "XMAS23_ACHIEVEMENT_CANT_STOP", "xmas23_achievement_cant_stop", "varbittypes"),
             new GamevalEntry(9551, "FAIRYRINGS_LOG_BJP", "fairyrings_log_bjp", "varbittypes"),
-            new GamevalEntry(9562, "XMAS23_ACHIEVEMENT_URGE_TO_JUMP", "xmas23_achievement_urge_to_jump", "varbittypes"),
-            new GamevalEntry(9563, "XMAS23_ACHIEVEMENT_SEE_MYSELF_OUT", "xmas23_achievement_see_myself_out", "varbittypes"),
         };
     }
 

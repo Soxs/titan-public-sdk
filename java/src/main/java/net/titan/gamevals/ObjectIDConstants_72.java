@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_72 {
+    int SOTE_LIGHT_2_A_8_EAST_SIZE4 = 36930;
     int SOTE_LIGHT_2_B_7_EAST = 36931;
     int SOTE_LIGHT_2_B_7_EAST_SIZE3 = 36932;
     int SOTE_LIGHT_2_B_7_EAST_SIZE4 = 36933;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_72 {
     int FAI_VARROCK_CASTLE_DOOR_INACTIVE = 37439;
     int LEAGUE_TUTOR_ICON = 37440;
     int POH_TWISTED_WINDOW_SHUTTERS = 37441;
-    int POH_TWISTED_WINDOW_BOB = 37442;
 }

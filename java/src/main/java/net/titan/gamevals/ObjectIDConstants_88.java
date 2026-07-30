@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_88 {
+    int TOA_WALL_WARDEN_02_MIRROR = 45122;
     int TOA_WALL_WARDEN_03 = 45123;
     int TOA_WALL_WARDEN_01_ALT01 = 45124;
     int TOA_WALL_WARDEN_02_ALT01 = 45125;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_88 {
     int TOA_WARDENS_CITIZEN_SKELETON = 45631;
     int TOA_WARDENS_WARPED_FLOATING_DEBRIS01 = 45632;
     int TOA_WARDENS_WARPED_FLOATING_DEBRIS02 = 45633;
-    int TOA_WARDENS_WARPED_FLOATING_DEBRIS03 = 45634;
 }

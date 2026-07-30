@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_49 {
+    int DRAGON_SLAYER_QIP_RUIN_PILLAR2 = 25153;
     int DRAGON_SLAYER_QIP_RUIN_ENTRANCE = 25154;
     int DRAGON_SLAYER_QIP_FIRE_2X2 = 25155;
     int DRAGON_SLAYER_QIP_FIRE_1X1 = 25156;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_49 {
     int KR_UNDERGROUND_JAIL_LADDERTOP = 25662;
     int KR_UNDERGROUND_JAIL_LADDER = 25663;
     int KR_CAM_LUCAN_JAIL = 25664;
-    int KR_CAM_PALOMEDES_JAIL = 25665;
 }

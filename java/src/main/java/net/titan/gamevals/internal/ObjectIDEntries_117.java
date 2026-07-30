@@ -10,6 +10,12 @@ final class ObjectIDEntries_117 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(59972, "BOATKIT_MAST_MIDDLEMAST_HALF_PIRATE", "Unfurled sail", "loctypes"),
+            new GamevalEntry(59973, "BOATKIT_MAST_MIDDLEMAST_FULL_PIRATE", "Unfurled sail", "loctypes"),
+            new GamevalEntry(59974, "BOATKIT_MAST_REARMAST_HOISTED_PIRATE", "Hoisted sail", "loctypes"),
+            new GamevalEntry(59975, "BOATKIT_DECK_HOLE01_PIRATE", "boatkit_deck_hole01_pirate", "loctypes"),
+            new GamevalEntry(59976, "BOATKIT_DECK_STRAIGHT01_PIRATE", "boatkit_deck_straight01_pirate", "loctypes"),
+            new GamevalEntry(59977, "BOATKIT_DECK_STRAIGHT02_PIRATE", "boatkit_deck_straight02_pirate", "loctypes"),
             new GamevalEntry(59978, "BOATKIT_DECK_STRAIGHT03_PIRATE", "boatkit_deck_straight03_pirate", "loctypes"),
             new GamevalEntry(59979, "BOATKIT_DECK_DIAGONAL01_PIRATE", "boatkit_deck_diagonal01_pirate", "loctypes"),
             new GamevalEntry(59980, "BOATKIT_DECK_DIAGONAL01_MIRROR_PIRATE", "boatkit_deck_diagonal01_mirror_pirate", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_117 {
             new GamevalEntry(60481, "SAILING_INTRO_SALVAGING_HOOK_NOOPS", "Salvaging hook", "loctypes"),
             new GamevalEntry(60482, "SAILING_INTRO_SALVAGING_HOOK_OPS", "Salvaging hook", "loctypes"),
             new GamevalEntry(60483, "SALVAGING_HOOK_RAFT_BRONZE", "Bronze salvaging hook", "loctypes"),
-            new GamevalEntry(60484, "SALVAGING_HOOK_RAFT_IRON", "Iron salvaging hook", "loctypes"),
-            new GamevalEntry(60485, "SALVAGING_HOOK_RAFT_STEEL", "Steel salvaging hook", "loctypes"),
-            new GamevalEntry(60486, "SALVAGING_HOOK_RAFT_MITHRIL", "Mithril salvaging hook", "loctypes"),
-            new GamevalEntry(60487, "SALVAGING_HOOK_RAFT_ADAMANT", "Adamant salvaging hook", "loctypes"),
-            new GamevalEntry(60488, "SALVAGING_HOOK_RAFT_RUNE", "Rune salvaging hook", "loctypes"),
-            new GamevalEntry(60489, "SALVAGING_HOOK_RAFT_DRAGON", "Dragon salvaging hook", "loctypes"),
         };
     }
 

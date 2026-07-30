@@ -10,6 +10,11 @@ final class ObjectIDEntries_101 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(51779, "PLANT_BUSH_THREEPEICE_MIRR", "plant_bush_threepeice_mirr", "loctypes"),
+            new GamevalEntry(51780, "PLANT_BUSH_WWWPEICE", "plant_bush_wwwpeice", "loctypes"),
+            new GamevalEntry(51781, "PLANT_BUSH_WWWPEICE_MIRR", "plant_bush_wwwpeice_mirr", "loctypes"),
+            new GamevalEntry(51782, "PLANT_BUSH_EEEPEICE", "plant_bush_eeepeice_", "loctypes"),
+            new GamevalEntry(51783, "PLANT_BUSH_555PEICE", "plant_bush_555peice", "loctypes"),
             new GamevalEntry(51784, "PLANT_BUSH_CLUMP", "plant_bush_clump", "loctypes"),
             new GamevalEntry(51785, "DECAL_LEDGE01_GRASS01", "decal_ledge01_grass01", "loctypes"),
             new GamevalEntry(51786, "DECAL_LEDGE01_GRASS02", "decal_ledge01_grass02", "loctypes"),
@@ -517,11 +522,6 @@ final class ObjectIDEntries_101 {
             new GamevalEntry(52288, "WALLKIT_FORTIS01_WALL01_MIRROR", "wallkit_fortis01_wall01_mirror", "loctypes"),
             new GamevalEntry(52289, "WALLKIT_FORTIS01_WALL02", "wallkit_fortis01_wall02", "loctypes"),
             new GamevalEntry(52290, "WALLKIT_FORTIS01_WALL01_GATEHOUSE_CORNER", "wallkit_fortis01_wall01_gatehouse_corner", "loctypes"),
-            new GamevalEntry(52291, "WALLKIT_FORTIS01_WALL02_MIRROR", "wallkit_fortis01_wall02_mirror", "loctypes"),
-            new GamevalEntry(52292, "WALLKIT_FORTIS02_WALL01", "wallkit_fortis02_wall01", "loctypes"),
-            new GamevalEntry(52293, "WALLKIT_FORTIS02_WALL01_MIRROR", "wallkit_fortis02_wall01_mirror", "loctypes"),
-            new GamevalEntry(52294, "WALLKIT_FORTIS02_ARROWSLIT01", "wallkit_fortis02_arrowslit01", "loctypes"),
-            new GamevalEntry(52295, "WALLKIT_FORTIS02_ARROWSLIT01_MIRROR", "wallkit_fortis02_arrowslit01_mirror", "loctypes"),
         };
     }
 

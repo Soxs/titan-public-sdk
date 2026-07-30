@@ -10,6 +10,9 @@ final class VarbitIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11049, "POTIONSTORE_VILE_SIZE_DIVINE_BATTLEMAGE_POTION", "potionstore_vile_size_divine_battlemage_potion", "varbittypes"),
+            new GamevalEntry(11050, "POTIONSTORE_VILE_SIZE_DIVINE_MAGIC_POTION", "potionstore_vile_size_divine_magic_potion", "varbittypes"),
+            new GamevalEntry(11051, "POTIONSTORE_VILE_SIZE_DIVINE_RANGING_POTION", "potionstore_vile_size_divine_ranging_potion", "varbittypes"),
             new GamevalEntry(11052, "POTIONSTORE_VILE_SIZE_DIVINE_SUPER_ATTACK_POTION", "potionstore_vile_size_divine_super_attack_potion", "varbittypes"),
             new GamevalEntry(11053, "POTIONSTORE_VILE_SIZE_DIVINE_SUPER_COMBAT_POTION", "potionstore_vile_size_divine_super_combat_potion", "varbittypes"),
             new GamevalEntry(11054, "POTIONSTORE_VILE_SIZE_DIVINE_SUPER_DEFENCE_POTION", "potionstore_vile_size_divine_super_defence_potion", "varbittypes"),
@@ -432,7 +435,6 @@ final class VarbitIDEntries_13 {
             new GamevalEntry(11618, "TALENT_EXTRA_RETRO_EQUIP_ECHO_WEP", "talent_extra_retro_equip_echo_wep", "varbittypes"),
             new GamevalEntry(11619, "TALENT_EXTRA_RETRO_EQUIP_MOONS_ITEM", "talent_extra_retro_equip_moons_item", "varbittypes"),
             new GamevalEntry(11620, "ENDLESS_HARVEST_LAST_OP", "endless_harvest_last_op", "varbittypes"),
-            new GamevalEntry(11621, "LEAGUE_CULLING_SPREE_ROLLED_MASTER", "league_culling_spree_rolled_master", "varbittypes"),
             new GamevalEntry(11622, "TALENT_FREE_RESET_2", "talent_free_reset_2", "varbittypes"),
             new GamevalEntry(11623, "GRIMSTONE_UNCERTER_STATUS", "grimstone_uncerter_status", "varbittypes"),
             new GamevalEntry(11624, "SETTINGS_SAILING_WIND_ON_ORB_DISABLED", "settings_sailing_wind_on_orb_disabled", "varbittypes"),
@@ -520,8 +522,6 @@ final class VarbitIDEntries_13 {
             new GamevalEntry(11720, "XMAS20_TREE", "xmas20_tree", "varbittypes"),
             new GamevalEntry(11721, "XMAS20_FIREPLACE", "xmas20_fireplace", "varbittypes"),
             new GamevalEntry(11722, "XMAS20_CURTAIN", "xmas20_curtain", "varbittypes"),
-            new GamevalEntry(11723, "XMAS20_POH_WALLKIT", "xmas20_poh_wallkit", "varbittypes"),
-            new GamevalEntry(11724, "XMAS20_BOULDER", "xmas20_boulder", "varbittypes"),
         };
     }
 

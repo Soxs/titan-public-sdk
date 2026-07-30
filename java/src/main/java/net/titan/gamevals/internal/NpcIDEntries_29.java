@@ -10,6 +10,7 @@ final class NpcIDEntries_29 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14850, "TORTUGAN_FINN", "Finn", "npctypes"),
             new GamevalEntry(14851, "TORTUGAN_AMMA", "Amma", "npctypes"),
             new GamevalEntry(14852, "GREAT_CONCH_HERMIT_CRAB", "Hermit crab", "npctypes"),
             new GamevalEntry(14853, "GREAT_CONCH_HERMIT_CRAB_INACTIVE_NORTH", "Suspicious shell", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_29 {
             new GamevalEntry(15359, "SAILING_SHIPYARD_WORKER_6", "Shipyard Worker", "npctypes"),
             new GamevalEntry(15360, "SAILING_SHIPYARD_WORKER_7", "Shipyard Worker", "npctypes"),
             new GamevalEntry(15361, "SAILING_SHIPYARD_WORKER_8", "Shipyard Worker", "npctypes"),
-            new GamevalEntry(15362, "SAILING_SHIPYARD_WORKER_9", "Shipyard Worker", "npctypes"),
         };
     }
 

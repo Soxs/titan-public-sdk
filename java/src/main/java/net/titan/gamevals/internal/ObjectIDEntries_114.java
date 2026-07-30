@@ -10,6 +10,12 @@ final class ObjectIDEntries_114 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(58435, "TT_REPAIR_CRATES_COCO_FIXED", "Coconut crate", "loctypes"),
+            new GamevalEntry(58436, "TT_REPAIR_WALL_BROKEN_NOOP", "Damaged wall", "loctypes"),
+            new GamevalEntry(58437, "TT_REPAIR_WALL_BROKEN", "Damaged wall", "loctypes"),
+            new GamevalEntry(58438, "TT_REPAIR_WALL_FIXED", "Wall", "loctypes"),
+            new GamevalEntry(58439, "TT_LAIR_ENTRANCE", "tt_lair_entrance", "loctypes"),
+            new GamevalEntry(58440, "TT_LAIR_ENTRANCE_BLOCKED", "Cave entrance", "loctypes"),
             new GamevalEntry(58441, "TT_LAIR_ENTRANCE_CLEAR", "Cave entrance", "loctypes"),
             new GamevalEntry(58442, "TT_LAIR_EXIT", "Cave exit", "loctypes"),
             new GamevalEntry(58443, "TT_LAIR_EXIT_FIGHT", "Cave exit", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_114 {
             new GamevalEntry(58945, "SAILING_BT_CRYSTAL_CADARN_ACTIVATED", "Crystal of Cadarn", "loctypes"),
             new GamevalEntry(58946, "SAILING_CRYSTAL_FLECKED_PORTAL_CADARN", "Portal of Cadarn", "loctypes"),
             new GamevalEntry(58947, "SAILING_CRYSTAL_FLECKED_PORTAL_CADARN_2_PARENT", "sailing_crystal_flecked_portal_cadarn_2_parent", "loctypes"),
-            new GamevalEntry(58948, "SAILING_CRYSTAL_FLECKED_PORTAL_CADARN_2", "Portal of Cadarn", "loctypes"),
-            new GamevalEntry(58949, "SAILING_BT_CRYSTAL_CRWYS_PARENT", "sailing_bt_crystal_crwys_parent", "loctypes"),
-            new GamevalEntry(58950, "SAILING_BT_CRYSTAL_CRWYS_INACTIVE", "Crystal of Crwys", "loctypes"),
-            new GamevalEntry(58951, "SAILING_BT_CRYSTAL_CRWYS_ACTIVATED", "Crystal of Crwys", "loctypes"),
-            new GamevalEntry(58952, "SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS_PARENT", "sailing_crystal_flecked_portal_crwys_parent", "loctypes"),
-            new GamevalEntry(58953, "SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS", "Portal of Crwys", "loctypes"),
         };
     }
 

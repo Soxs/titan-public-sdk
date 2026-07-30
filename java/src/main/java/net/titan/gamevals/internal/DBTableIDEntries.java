@@ -9,7 +9,7 @@ public final class DBTableIDEntries {
     private DBTableIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[246];
+        GamevalEntry[] out = new GamevalEntry[248];
         int offset = 0;
         offset = copy(out, offset, DBTableIDEntries_0.entries());
         return out;

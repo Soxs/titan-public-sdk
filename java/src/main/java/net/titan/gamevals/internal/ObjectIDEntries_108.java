@@ -10,6 +10,12 @@ final class ObjectIDEntries_108 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(55363, "VMQ3_RUINS_WALL_CLUE_AIR", "vmq3_ruins_wall_clue_air", "loctypes"),
+            new GamevalEntry(55364, "VMQ3_RUINS_WALL_CLUE_EARTH", "vmq3_ruins_wall_clue_earth", "loctypes"),
+            new GamevalEntry(55365, "VMQ3_RUINS_WALL_LEVER_1", "vmq3_ruins_wall_lever_1", "loctypes"),
+            new GamevalEntry(55366, "VMQ3_RUINS_WALL_LEVER_2", "vmq3_ruins_wall_lever_2", "loctypes"),
+            new GamevalEntry(55367, "VMQ3_RUINS_WALL_LEVER_3", "vmq3_ruins_wall_lever_3", "loctypes"),
+            new GamevalEntry(55368, "VMQ3_RUINS_WALL_LEVER_4", "vmq3_ruins_wall_lever_4", "loctypes"),
             new GamevalEntry(55369, "VMQ3_RUINS_BRAZIER_1", "vmq3_ruins_brazier_1", "loctypes"),
             new GamevalEntry(55370, "VMQ3_RUINS_BRAZIER_2", "vmq3_ruins_brazier_2", "loctypes"),
             new GamevalEntry(55371, "VMQ3_RUINS_BRAZIER_3", "vmq3_ruins_brazier_3", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_108 {
             new GamevalEntry(55872, "LEAGUE05_BASALT_GROUP02", "Runestone basalt", "loctypes"),
             new GamevalEntry(55873, "LEAGUE05_BASALT_GROUP03", "Runestone basalt", "loctypes"),
             new GamevalEntry(55874, "LEAGUE05_BASALT_BOARD01", "Info Board", "loctypes"),
-            new GamevalEntry(55875, "LEAGUE_RAGINGECHOES_BLOCKING", "league_ragingechoes_blocking", "loctypes"),
-            new GamevalEntry(55876, "LEAGUE_RAGINGECHOES_ROOTS", "league_ragingechoes_roots", "loctypes"),
-            new GamevalEntry(55877, "LEAGUE_RAGINGECHOES_ROOTS_CORNER", "league_ragingechoes_roots_corner", "loctypes"),
-            new GamevalEntry(55878, "LEAGUE_RAGINGECHOES_BLOCK_2X2", "Rock", "loctypes"),
-            new GamevalEntry(55879, "LEAGUE_RAGINGECHOES_BLOCK_2X2_B", "Rock", "loctypes"),
-            new GamevalEntry(55880, "LEAGUE_RAGINGECHOES_BLOCK_2X1", "Rock", "loctypes"),
         };
     }
 

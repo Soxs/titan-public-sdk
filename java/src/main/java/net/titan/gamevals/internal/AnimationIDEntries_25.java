@@ -10,6 +10,15 @@ final class AnimationIDEntries_25 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12812, "LORE_BIRD_SUMMON", "lore_bird_summon", "seqtypes"),
+            new GamevalEntry(12813, "LORE_BIRD_RANGED_VIEWING", "lore_bird_ranged_viewing", "seqtypes"),
+            new GamevalEntry(12814, "LORE_BIRD_WALK", "lore_bird_walk", "seqtypes"),
+            new GamevalEntry(12815, "LORE_BIRD_READY", "lore_bird_ready", "seqtypes"),
+            new GamevalEntry(12816, "LORE_BIRD_READY_TIMER", "lore_bird_ready_timer", "seqtypes"),
+            new GamevalEntry(12817, "LORE_BIRD_ATTACK", "lore_bird_attack", "seqtypes"),
+            new GamevalEntry(12818, "LORE_BIRD_DEFEND", "lore_bird_defend", "seqtypes"),
+            new GamevalEntry(12819, "LORE_BIRD_DEATH", "lore_bird_death", "seqtypes"),
+            new GamevalEntry(12820, "LORE_MACAW_FLY_AWAY", "lore_macaw_fly_away", "seqtypes"),
             new GamevalEntry(12821, "LORE_MACAW_FLY_BACK", "lore_macaw_fly_back", "seqtypes"),
             new GamevalEntry(12822, "LORE_MAGPIE_SPECIAL", "lore_magpie_special", "seqtypes"),
             new GamevalEntry(12823, "LORE_MINOTAUR_READY", "lore_minotaur_ready", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_25 {
             new GamevalEntry(13321, "SAILING_CANNON01_SMALL01_IDLE01", "sailing_cannon01_small01_idle01", "seqtypes"),
             new GamevalEntry(13322, "SAILING_CANNON01_SMALL01_IDLE02", "sailing_cannon01_small01_idle02", "seqtypes"),
             new GamevalEntry(13323, "SAILING_CANNON01_SMALL01_ATTACK01", "sailing_cannon01_small01_attack01", "seqtypes"),
-            new GamevalEntry(13324, "SAILING_CANNON01_SMALL01_IDLE03", "sailing_cannon01_small01_idle03", "seqtypes"),
-            new GamevalEntry(13325, "HUMAN_SAILING_CANNON01_SMALL01_ENGAGE01", "human_sailing_cannon01_small01_engage01", "seqtypes"),
-            new GamevalEntry(13326, "HUMAN_SAILING_CANNON01_SMALL01_ATTACK01", "human_sailing_cannon01_small01_attack01", "seqtypes"),
-            new GamevalEntry(13327, "HUMAN_SAILING_CANNON01_SMALL01_IDLE01", "human_sailing_cannon01_small01_idle01", "seqtypes"),
-            new GamevalEntry(13328, "VFX_SAILING_CANNON01_SMALL01_ATTACK01", "vfx_sailing_cannon01_small01_attack01", "seqtypes"),
-            new GamevalEntry(13329, "VFX_SAILING_CANNON01_SMALL01_ATTACK02", "vfx_sailing_cannon01_small01_attack02", "seqtypes"),
-            new GamevalEntry(13330, "VFX_SAILING_CANNON01_SMALL01_ATTACK03", "vfx_sailing_cannon01_small01_attack03", "seqtypes"),
-            new GamevalEntry(13331, "VFX_SAILING_CANNON01_SMALL01_ATTACK04", "vfx_sailing_cannon01_small01_attack04", "seqtypes"),
-            new GamevalEntry(13332, "VFX_SAILING_CANNON01_SMALL01_PROJ01", "vfx_sailing_cannon01_small01_proj01", "seqtypes"),
         };
     }
 

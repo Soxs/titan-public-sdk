@@ -10,6 +10,7 @@ final class ObjectIDEntries_37 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(19003, "SOS_FAM_LADD_UP", "Ladder", "loctypes"),
             new GamevalEntry(19004, "SOS_FAM_LADD_DOWN", "Ladder", "loctypes"),
             new GamevalEntry(19005, "SOS_FAM_PORTAL", "Portal", "loctypes"),
             new GamevalEntry(19006, "LOTR_RUINS_WALL_SKULLS_NO_WATER_LVL2", "lotr_ruins_wall_skulls_no_water_lvl2", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_37 {
             new GamevalEntry(19512, "HUNTING_TRAIL7_3L", "hunting_trail7_3l", "loctypes"),
             new GamevalEntry(19513, "HUNTING_TRAIL7_4L", "hunting_trail7_4l", "loctypes"),
             new GamevalEntry(19514, "HUNTING_TRAIL1_1R", "hunting_trail1_1r", "loctypes"),
-            new GamevalEntry(19515, "HUNTING_TRAIL7_5L", "hunting_trail7_5l", "loctypes"),
         };
     }
 

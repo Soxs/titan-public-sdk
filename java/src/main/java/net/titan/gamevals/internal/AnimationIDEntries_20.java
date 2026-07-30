@@ -10,6 +10,15 @@ final class AnimationIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10248, "NPC_WHISPERER_01_TELEPORT_02", "npc_whisperer_01_teleport_02", "seqtypes"),
+            new GamevalEntry(10249, "NPC_WHISPERER_01_TELEPORT_02_PET", "npc_whisperer_01_teleport_02_pet", "seqtypes"),
+            new GamevalEntry(10250, "NPC_WHISPERER_01_ATTACK_SCREECH_01_START", "npc_whisperer_01_attack_screech_01_start", "seqtypes"),
+            new GamevalEntry(10251, "NPC_WHISPERER_01_ATTACK_SCREECH_01_IDLE", "npc_whisperer_01_attack_screech_01_idle", "seqtypes"),
+            new GamevalEntry(10252, "NPC_WHISPERER_01_ATTACK_SCREECH_01_END", "npc_whisperer_01_attack_screech_01_end", "seqtypes"),
+            new GamevalEntry(10253, "NPC_WHISPERER_01_ATTACK_SCREECH_01_END_PET", "npc_whisperer_01_attack_screech_01_end_pet", "seqtypes"),
+            new GamevalEntry(10254, "NPC_WHISPERER_01_SUMMON_LEECHES_01", "npc_whisperer_01_summon_leeches_01", "seqtypes"),
+            new GamevalEntry(10255, "NPC_WHISPERER_01_TELEPORT_SUMMON_LEECHES_01", "npc_whisperer_01_teleport_summon_leeches_01", "seqtypes"),
+            new GamevalEntry(10256, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_START", "npc_whisperer_01_teleport_summon_souls_01_start", "seqtypes"),
             new GamevalEntry(10257, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_IDLE", "npc_whisperer_01_teleport_summon_souls_01_idle", "seqtypes"),
             new GamevalEntry(10258, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_END", "npc_whisperer_01_teleport_summon_souls_01_end", "seqtypes"),
             new GamevalEntry(10259, "NPC_WHISPERER_01_TELEPORT_SUMMON_SOULS_01_ATTACK", "npc_whisperer_01_teleport_summon_souls_01_attack", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_20 {
             new GamevalEntry(10757, "COA_AMASCUT_REFORM", "coa_amascut_reform", "seqtypes"),
             new GamevalEntry(10758, "COA_HET_REFORM", "coa_het_reform", "seqtypes"),
             new GamevalEntry(10759, "COA_APMEKEN_REFORM", "coa_apmeken_reform", "seqtypes"),
-            new GamevalEntry(10760, "COA_ICTHLARIN_REFORM", "coa_icthlarin_reform", "seqtypes"),
-            new GamevalEntry(10761, "COA_SCABARAS_REFORM", "coa_scabaras_reform", "seqtypes"),
-            new GamevalEntry(10762, "COA_CRONDIS_REFORM", "coa_crondis_reform", "seqtypes"),
-            new GamevalEntry(10763, "COA_AMASCUT_REFORMED", "coa_amascut_reformed", "seqtypes"),
-            new GamevalEntry(10764, "COA_HET_REFORMED", "coa_het_reformed", "seqtypes"),
-            new GamevalEntry(10765, "COA_APMEKEN_REFORMED", "coa_apmeken_reformed", "seqtypes"),
-            new GamevalEntry(10766, "COA_ICTHLARIN_REFORMED", "coa_icthlarin_reformed", "seqtypes"),
-            new GamevalEntry(10767, "COA_SCABARAS_REFORMED", "coa_scabaras_reformed", "seqtypes"),
-            new GamevalEntry(10768, "COA_CRONDIS_REFORMED", "coa_crondis_reformed", "seqtypes"),
         };
     }
 

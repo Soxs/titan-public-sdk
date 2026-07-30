@@ -10,6 +10,7 @@ final class ObjectIDEntries_41 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(21055, "PENG_BASE_BOOTH_FRONT", "Control panel", "loctypes"),
             new GamevalEntry(21056, "PENG_BASE_BOOTH_SIDE", "peng_base_booth_side", "loctypes"),
             new GamevalEntry(21057, "PENG_BASE_BOOTH_END", "peng_base_booth_end", "loctypes"),
             new GamevalEntry(21058, "PENG_BASE_DOOR_FRONT_L", "peng_base_door_front_l", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_41 {
             new GamevalEntry(21564, "FRIS_RAMP_02_MIRROR", "fris_ramp_02_mirror", "loctypes"),
             new GamevalEntry(21565, "FRIS_RAMP_MID_01_MIRROR", "fris_ramp_mid_01_mirror", "loctypes"),
             new GamevalEntry(21566, "FRIS_RAMP_MID_02_MIRROR", "fris_ramp_mid_02_mirror", "loctypes"),
-            new GamevalEntry(21567, "FRIS_WALL_RAMP_01_MIRROR", "fris_wall_ramp_01_mirror", "loctypes"),
         };
     }
 

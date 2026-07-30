@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_56 {
+    int MM2_CAVE_SECRET_BUNKER_PIT_LEV0 = 28737;
     int MM2_CAVE_SECRET_BUNKER_LEV0_HOLD = 28738;
     int MM2_CAVE_SECRET_BUNKER_TOP = 28739;
     int MM2_CAVE_SECRET_BUNKER_TOP5 = 28740;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_56 {
     int POH_THEME_ZEN_OUTER_CORNER = 29246;
     int POH_THEME_ZEN_HERO = 29247;
     int POH_THEME_ZANARIS_PATH = 29248;
-    int POH_THEME_ZANARIS_PATH_CORNER = 29249;
 }

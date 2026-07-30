@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_5 {
+    int HUMAN_DH_WEAPON_WALK = 2562;
     int HUMAN_DH_WEAPON_RUN = 2563;
     int CANDLE_FLICKER = 2564;
     int GARDEN_PUSH_TROLLEY = 2565;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_5 {
     int HUMAN_DWARF_RECIEVE = 3071;
     int DWARF_HAND_OVER = 3072;
     int ENAKH_BONEGUARD_READY = 3073;
-    int ENAKH_BONEGUARD_BLOCK = 3074;
 }

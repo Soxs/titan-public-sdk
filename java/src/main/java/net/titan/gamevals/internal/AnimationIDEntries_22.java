@@ -10,6 +10,15 @@ final class AnimationIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11275, "HUMAN_SPECIAL02_VOIDWAKER", "human_special02_voidwaker", "seqtypes"),
+            new GamevalEntry(11276, "WGS_HIT_BY_DARTS", "wgs_hit_by_darts", "seqtypes"),
+            new GamevalEntry(11277, "DAGGERHELD_PUNCTURE", "daggerheld_puncture", "seqtypes"),
+            new GamevalEntry(11278, "WGS_ASSASSIN_SMOKEBOMB", "wgs_assassin_smokebomb", "seqtypes"),
+            new GamevalEntry(11279, "WGS_OLD_DRUID_DROP", "wgs_old_druid_drop", "seqtypes"),
+            new GamevalEntry(11280, "WGS_OLD_DRUID_DROP_READY", "wgs_old_druid_drop_ready", "seqtypes"),
+            new GamevalEntry(11281, "WGS_PLAYER_SLIPPING_SPY_THE_ORB", "wgs_player_slipping_spy_the_orb", "seqtypes"),
+            new GamevalEntry(11282, "WGS_PLAYER_SLIPPING_SPY_THE_ORB_PART_TWO", "wgs_player_slipping_spy_the_orb_part_two", "seqtypes"),
+            new GamevalEntry(11283, "WGS_SHINING_LIGHT_ON_SEED", "wgs_shining_light_on_seed", "seqtypes"),
             new GamevalEntry(11284, "WGS_WASHERMAN_READY", "wgs_washerman_ready", "seqtypes"),
             new GamevalEntry(11285, "HUMAN_FALL_LOOP", "human_fall_loop", "seqtypes"),
             new GamevalEntry(11286, "HUMAN_GETUP_FROM_SLIP", "human_getup_from_slip", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_22 {
             new GamevalEntry(11784, "MOM2_SCARAB_WALK", "mom2_scarab_walk", "seqtypes"),
             new GamevalEntry(11785, "COA_ARRAV_THROWAXE", "coa_arrav_throwaxe", "seqtypes"),
             new GamevalEntry(11786, "COA_ARRAV_CATCHAXE", "coa_arrav_catchaxe", "seqtypes"),
-            new GamevalEntry(11787, "COA_ARRAV_CATCHAXE_BACK", "coa_arrav_catchaxe_back", "seqtypes"),
-            new GamevalEntry(11788, "COA_TUMEKEN_FIRE", "coa_tumeken_fire", "seqtypes"),
-            new GamevalEntry(11789, "COA_GRAPPLE_START", "coa_grapple_start", "seqtypes"),
-            new GamevalEntry(11790, "COA_GRAPPLE_CROSS", "coa_grapple_cross", "seqtypes"),
-            new GamevalEntry(11791, "COA_GRAPPLE_DROP", "coa_grapple_drop", "seqtypes"),
-            new GamevalEntry(11792, "COA_ELIAS_BIND_01", "coa_elias_bind_01", "seqtypes"),
-            new GamevalEntry(11793, "COA_ELIAS_BIND_SPOTANIM_01", "coa_elias_bind_spotanim_01", "seqtypes"),
-            new GamevalEntry(11794, "COA_ARRAV_AXE_PROJANIM_01", "coa_arrav_axe_projanim_01", "seqtypes"),
-            new GamevalEntry(11795, "COA_ARRAV_AXE_PROJANIM_02", "coa_arrav_axe_projanim_02", "seqtypes"),
         };
     }
 

@@ -10,6 +10,10 @@ final class VarbitIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14173, "BUFF_CANNON_DECAY_DISABLED", "buff_cannon_decay_disabled", "varbittypes"),
+            new GamevalEntry(14174, "CANNON_HUD_DISABLED", "cannon_hud_disabled", "varbittypes"),
+            new GamevalEntry(14175, "CANNON_LOW_NOTIFICATION_ENABLED", "cannon_low_notification_enabled", "varbittypes"),
+            new GamevalEntry(14176, "CANNON_LOW_AMOUNT", "cannon_low_amount", "varbittypes"),
             new GamevalEntry(14177, "CANNON_NO_AMMO_NOTIFICATION_ENABLED", "cannon_no_ammo_notification_enabled", "varbittypes"),
             new GamevalEntry(14178, "OPTION_NPC_NAME_ALL", "option_npc_name_all", "varbittypes"),
             new GamevalEntry(14179, "OPTION_MINIMAP_ICONS_MAX_ZOOM_DISABLED", "option_minimap_icons_max_zoom_disabled", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_18 {
             new GamevalEntry(14866, "POPOUT_LOOTTOOLS_MOBILE_DISABLED", "popout_loottools_mobile_disabled", "varbittypes"),
             new GamevalEntry(14867, "POPOUT_LOOTTOOLS_DESKTOP_DISABLED", "popout_loottools_desktop_disabled", "varbittypes"),
             new GamevalEntry(14868, "ITEM_CHARGE_OVERLAY_DISABLED", "item_charge_overlay_disabled", "varbittypes"),
-            new GamevalEntry(14869, "GROUND_ITEMS_ENABLED", "ground_items_enabled", "varbittypes"),
-            new GamevalEntry(14870, "GROUND_ITEMS_PRICE_TYPE", "ground_items_price_type", "varbittypes"),
-            new GamevalEntry(14871, "GROUND_ITEMS_EDIT_MODE_ENABLED_DESKTOP", "ground_items_edit_mode_enabled_desktop", "varbittypes"),
-            new GamevalEntry(14872, "GROUND_ITEMS_EDIT_MODE_ENABLED_MOBILE", "ground_items_edit_mode_enabled_mobile", "varbittypes"),
         };
     }
 

@@ -10,6 +10,12 @@ final class AnimationIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7687, "FOSSIL_NPC_HERBIBOAR_APPEAR", "fossil_npc_herbiboar_appear", "seqtypes"),
+            new GamevalEntry(7688, "FOSSIL_NPC_HERBIBOAR_STUNNED", "fossil_npc_herbiboar_stunned", "seqtypes"),
+            new GamevalEntry(7689, "FOSSIL_NPC_HERBIBOAR_WAKE", "fossil_npc_herbiboar_wake", "seqtypes"),
+            new GamevalEntry(7690, "FOSSIL_NPC_HERBIBOAR_BURROW", "fossil_npc_herbiboar_burrow", "seqtypes"),
+            new GamevalEntry(7691, "FOSSIL_LOC_JUMPSHROOM_IDLE", "fossil_loc_jumpshroom_idle", "seqtypes"),
+            new GamevalEntry(7692, "FOSSIL_LOC_JUMPSHROOM_JUMP", "fossil_loc_jumpshroom_jump", "seqtypes"),
             new GamevalEntry(7693, "FOSSIL_LOC_JUMPSHROOM_SQUASH", "fossil_loc_jumpshroom_squash", "seqtypes"),
             new GamevalEntry(7694, "FOSSIL_NPC_HERBIBOAR_IDLE", "fossil_npc_herbiboar_idle", "seqtypes"),
             new GamevalEntry(7695, "FOSSIL_NPC_HERBIBOAR_WALK", "fossil_npc_herbiboar_walk", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_15 {
             new GamevalEntry(8196, "STONEGLOW_LONG", "stoneglow_long", "seqtypes"),
             new GamevalEntry(8197, "FARMING_POUR_WATER_BOTTOMLESSBUCKET", "farming_pour_water_bottomlessbucket", "seqtypes"),
             new GamevalEntry(8198, "SHAYZIEN_LIZARD_BOSS_SIT", "shayzien_lizard_boss_sit", "seqtypes"),
-            new GamevalEntry(8199, "SHAYZIEN_LIZARD_BOSS_PRAY", "shayzien_lizard_boss_pray", "seqtypes"),
-            new GamevalEntry(8200, "SHAYZIEN_LIZARD_BOSS_CHANT", "shayzien_lizard_boss_chant", "seqtypes"),
-            new GamevalEntry(8201, "ARCEUUS_ELDER_READY", "arceuus_elder_ready", "seqtypes"),
-            new GamevalEntry(8202, "ARCEUUS_LORD_READY", "arceuus_lord_ready", "seqtypes"),
-            new GamevalEntry(8203, "ARCEUUS_LORD_TRANCE", "arceuus_lord_trance", "seqtypes"),
-            new GamevalEntry(8204, "AERIAL_FISHING_POOL", "aerial_fishing_pool", "seqtypes"),
         };
     }
 

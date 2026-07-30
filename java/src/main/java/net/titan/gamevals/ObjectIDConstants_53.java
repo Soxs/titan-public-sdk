@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_53 {
+    int SHAYZIEN_STAIRS_BOTTOM_02 = 27201;
     int SHAYZIEN_STAIRS_TOP_02 = 27202;
     int SHAYZIEN_STAIRS_BOTTOM_03 = 27203;
     int SHAYZIEN_STAIRS_TOP_03 = 27204;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_53 {
     int PISCARILIUS_POTS_02 = 27710;
     int PISCARILIUS_WASHING_LINE_END_01 = 27711;
     int PISCARILIUS_WASHING_LINE_END_02 = 27712;
-    int PISCARILIUS_WASHING_LINE_01 = 27713;
 }

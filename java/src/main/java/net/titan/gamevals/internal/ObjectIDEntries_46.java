@@ -10,6 +10,7 @@ final class ObjectIDEntries_46 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(23616, "FAI_VARROCK_ROSEBUSH", "Roses", "loctypes"),
             new GamevalEntry(23617, "FAI_VARROCK_ROSES_EDGE", "fai_varrock_roses_edge", "loctypes"),
             new GamevalEntry(23618, "FAI_VARROCK_ROSES_EDGE_B", "fai_varrock_roses_edge_b", "loctypes"),
             new GamevalEntry(23619, "FAI_VARROCK_ROSES_EDGE_SHAPE_8", "fai_varrock_roses_edge_shape_8", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_46 {
             new GamevalEntry(24126, "FAI_FALADOR_ROOFKIT_SLATE_CORNER_LEFT", "'(Z ?(L", "loctypes"),
             new GamevalEntry(24127, "FAI_FALADOR_ROOFKIT_SLATE_CORNER_RIGHT", "'(Z ?(L", "loctypes"),
             new GamevalEntry(24128, "FAI_FALADOR_ROOFKIT_SLATE_EDGECUT", "'(Z ?(L", "loctypes"),
-            new GamevalEntry(24129, "FAI_FALADOR_ROOFKIT_CORNERCUT", "'(Z ?(L", "loctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_99 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(50755, "SHIELD_COMBATANT_3", "shield_combatant_3", "loctypes"),
             new GamevalEntry(50756, "SHIELD_COMBATANT_4", "shield_combatant_4", "loctypes"),
             new GamevalEntry(50757, "SHIELD_COMBATANT_5", "shield_combatant_5", "loctypes"),
             new GamevalEntry(50758, "SHIELD_COMBATANT_6", "shield_combatant_6", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_99 {
             new GamevalEntry(51264, "DUNGEONKIT_MOSS01_BUILDUP04_MIRROR", "dungeonkit_moss01_buildup04_mirror", "loctypes"),
             new GamevalEntry(51265, "DUNGEONKIT_LAVA01_GRADIENT01", "dungeonkit_lava01_gradient01", "loctypes"),
             new GamevalEntry(51266, "PMOON_BLOOD_RIPPLE01", "pmoon_blood_ripple01", "loctypes"),
-            new GamevalEntry(51267, "PMOON_BLOOD_RIPPLE02", "pmoon_blood_ripple02", "loctypes"),
         };
     }
 

@@ -10,6 +10,11 @@ final class ObjectIDEntries_102 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(52291, "WALLKIT_FORTIS01_WALL02_MIRROR", "wallkit_fortis01_wall02_mirror", "loctypes"),
+            new GamevalEntry(52292, "WALLKIT_FORTIS02_WALL01", "wallkit_fortis02_wall01", "loctypes"),
+            new GamevalEntry(52293, "WALLKIT_FORTIS02_WALL01_MIRROR", "wallkit_fortis02_wall01_mirror", "loctypes"),
+            new GamevalEntry(52294, "WALLKIT_FORTIS02_ARROWSLIT01", "wallkit_fortis02_arrowslit01", "loctypes"),
+            new GamevalEntry(52295, "WALLKIT_FORTIS02_ARROWSLIT01_MIRROR", "wallkit_fortis02_arrowslit01_mirror", "loctypes"),
             new GamevalEntry(52296, "WALLKIT_FORTIS03_PARAPET01", "wallkit_fortis03_parapet01", "loctypes"),
             new GamevalEntry(52297, "WALLKIT_FORTIS03_PARAPET02", "wallkit_fortis03_parapet02", "loctypes"),
             new GamevalEntry(52298, "WALLKIT_FORTIS02_BRICKS01", "wallkit_fortis02_bricks01", "loctypes"),
@@ -517,11 +522,6 @@ final class ObjectIDEntries_102 {
             new GamevalEntry(52800, "VARLAMORE_PRAYER_ACTIVITY_ALTAR_NOOP", "Exposed altar", "loctypes"),
             new GamevalEntry(52801, "TABLE_SHRINE01_TEOMAT01", "Sacrifice", "loctypes"),
             new GamevalEntry(52802, "WALLKIT_TEOMAT01_STAINGLASS01", "wallkit_teomat01_stainglass01", "loctypes"),
-            new GamevalEntry(52803, "WALLKIT_TEOMAT01_STAINGLASS01_M", "wallkit_teomat01_stainglass01_m", "loctypes"),
-            new GamevalEntry(52804, "WALLKIT_TEOMAT01_STAINGLASS02", "wallkit_teomat01_stainglass02", "loctypes"),
-            new GamevalEntry(52805, "WALLKIT_TEOMAT01_STAINGLASS02_M", "wallkit_teomat01_stainglass02_m", "loctypes"),
-            new GamevalEntry(52806, "TEOMAT_SHELF01_BOOKS01", "Bookshelf", "loctypes"),
-            new GamevalEntry(52807, "TEOMAT_SHELF01_BOOKS02", "Bookshelf", "loctypes"),
         };
     }
 

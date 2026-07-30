@@ -10,6 +10,12 @@ final class ObjectIDEntries_105 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(53827, "LUC2_GUTHIX_TEMPLE_TUNNEL", "luc2_guthix_temple_tunnel", "loctypes"),
+            new GamevalEntry(53828, "LUC2_GUTHIX_TEMPLE_TUNNEL_LIGHT", "luc2_guthix_temple_tunnel_light", "loctypes"),
+            new GamevalEntry(53829, "LUC2_GUTHIX_TEMPLE_TUNNEL_LIGHT_MIRROR", "luc2_guthix_temple_tunnel_light_mirror", "loctypes"),
+            new GamevalEntry(53830, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT1", "Hole", "loctypes"),
+            new GamevalEntry(53831, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT2", "Hole", "loctypes"),
+            new GamevalEntry(53832, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT3", "Hole", "loctypes"),
             new GamevalEntry(53833, "LUC2_GT_PILLAR_TORCH", "luc2_gt_pillar_torch", "loctypes"),
             new GamevalEntry(53834, "LUC2_GT_BASE_PILLAR_LEVEL2", "luc2_gt_base_pillar_level2", "loctypes"),
             new GamevalEntry(53835, "LUC2_GT_MAIN_PILLAR_LEVEL1_L", "luc2_gt_main_pillar_level1_l", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_105 {
             new GamevalEntry(54336, "ROCK_ICE02_DIAGONAL02", "rock_ice02_diagonal02", "loctypes"),
             new GamevalEntry(54337, "ROCK_ICE02_DIAGONAL03", "rock_ice02_diagonal03", "loctypes"),
             new GamevalEntry(54338, "ROCK_ICE02_DIAGONAL04", "rock_ice02_diagonal04", "loctypes"),
-            new GamevalEntry(54339, "DECOKIT_ICE01_TAPOYAUIK01", "decokit_ice01_tapoyauik01", "loctypes"),
-            new GamevalEntry(54340, "DECOKIT_ICE01_TAPOYAUIK02", "decokit_ice01_tapoyauik02", "loctypes"),
-            new GamevalEntry(54341, "DECOKIT_ICE01_TAPOYAUIK03", "decokit_ice01_tapoyauik03", "loctypes"),
-            new GamevalEntry(54342, "DECOKIT_ICE01_TAPOYAUIK04", "decokit_ice01_tapoyauik04", "loctypes"),
-            new GamevalEntry(54343, "DECOKIT_ICE01_TAPOYAUIK05", "decokit_ice01_tapoyauik05", "loctypes"),
-            new GamevalEntry(54344, "DECOKIT_ICE01_TAPOYAUIK06", "decokit_ice01_tapoyauik06", "loctypes"),
         };
     }
 

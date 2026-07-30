@@ -10,6 +10,12 @@ final class AnimationIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7175, "CHATHYPNOBUNNY4_2006", "chathypnobunny4_2006", "seqtypes"),
+            new GamevalEntry(7176, "GIANT_BASIC_SPELL_LOOP", "giant_basic_spell_loop", "seqtypes"),
+            new GamevalEntry(7177, "LORE_BEAVER_READY", "lore_beaver_ready", "seqtypes"),
+            new GamevalEntry(7178, "LORE_BEAVER_WALK", "lore_beaver_walk", "seqtypes"),
+            new GamevalEntry(7179, "ROCK_GOLEM_CHATHEAD_IDLE", "rock_golem_chathead_idle", "seqtypes"),
+            new GamevalEntry(7180, "ROCK_GOLEM_IDLE", "rock_golem_idle", "seqtypes"),
             new GamevalEntry(7181, "ROCK_GOLEM_WALK", "rock_golem_walk", "seqtypes"),
             new GamevalEntry(7182, "CHINCHOMPA_CHATHEAD_IDLE", "chinchompa_chathead_idle", "seqtypes"),
             new GamevalEntry(7183, "GIANT_BASIC_STAMP", "giant_basic_stamp", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_14 {
             new GamevalEntry(7684, "FOSSIL_PROJECTILE_HOOPSNAKE", "fossil_projectile_hoopsnake", "seqtypes"),
             new GamevalEntry(7685, "FOSSIL_NPC_HOOPSNAKE_ATTACK", "fossil_npc_hoopsnake_attack", "seqtypes"),
             new GamevalEntry(7686, "FOSSIL_NPC_HOOPSNAKE_DEFEND", "fossil_npc_hoopsnake_defend", "seqtypes"),
-            new GamevalEntry(7687, "FOSSIL_NPC_HERBIBOAR_APPEAR", "fossil_npc_herbiboar_appear", "seqtypes"),
-            new GamevalEntry(7688, "FOSSIL_NPC_HERBIBOAR_STUNNED", "fossil_npc_herbiboar_stunned", "seqtypes"),
-            new GamevalEntry(7689, "FOSSIL_NPC_HERBIBOAR_WAKE", "fossil_npc_herbiboar_wake", "seqtypes"),
-            new GamevalEntry(7690, "FOSSIL_NPC_HERBIBOAR_BURROW", "fossil_npc_herbiboar_burrow", "seqtypes"),
-            new GamevalEntry(7691, "FOSSIL_LOC_JUMPSHROOM_IDLE", "fossil_loc_jumpshroom_idle", "seqtypes"),
-            new GamevalEntry(7692, "FOSSIL_LOC_JUMPSHROOM_JUMP", "fossil_loc_jumpshroom_jump", "seqtypes"),
         };
     }
 

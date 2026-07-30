@@ -138,6 +138,8 @@ final class DbRowIDEntries_8 {
             new GamevalEntry(4240, "MAGIC_ENCHANT_OPAL_RING", "magic_enchant_opal_ring", "rowtypes"),
             new GamevalEntry(4241, "MAGIC_ENCHANT_OPAL_NECKLACE", "magic_enchant_opal_necklace", "rowtypes"),
             new GamevalEntry(4242, "MAGIC_ENCHANT_OPAL_BRACELET", "magic_enchant_opal_bracelet", "rowtypes"),
+            new GamevalEntry(4243, "WYRMSCRAIG", "wyrmscraig", "rowtypes"),
+            new GamevalEntry(4244, "WYRMSCRAIG_UNDERGROUND", "wyrmscraig_underground", "rowtypes"),
             new GamevalEntry(4245, "MAGIC_ENCHANT_UNSTRUNG_SAPPHIRE_AMULET", "magic_enchant_unstrung_sapphire_amulet", "rowtypes"),
             new GamevalEntry(4246, "MAGIC_ENCHANT_UNSTRUNG_OPAL_AMULET", "magic_enchant_unstrung_opal_amulet", "rowtypes"),
             new GamevalEntry(4247, "MAGIC_ENCHANT_EMERALD_AMULET", "magic_enchant_emerald_amulet", "rowtypes"),
@@ -520,8 +522,6 @@ final class DbRowIDEntries_8 {
             new GamevalEntry(4624, "SYNTH_ICELORD", "synth_icelord", "rowtypes"),
             new GamevalEntry(4625, "SYNTH_ICEWARRIOR", "synth_icewarrior", "rowtypes"),
             new GamevalEntry(4626, "SYNTH_ICEFIEND", "synth_icefiend", "rowtypes"),
-            new GamevalEntry(4627, "SYNTH_IMP", "synth_imp", "rowtypes"),
-            new GamevalEntry(4628, "SYNTH_INSECT", "synth_insect", "rowtypes"),
         };
     }
 

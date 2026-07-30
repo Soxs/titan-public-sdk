@@ -10,6 +10,7 @@ final class ObjectIDEntries_73 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(37442, "POH_TWISTED_WINDOW_BOB", "Decorative window", "loctypes"),
             new GamevalEntry(37443, "POH_TWISTED_WINDOW_BOB2", "Stained-glass window", "loctypes"),
             new GamevalEntry(37444, "LOGPILE_SMALL", "Log pile", "loctypes"),
             new GamevalEntry(37445, "POH_HOSIDIUS_WINDOW_SHUTTERS", "Shuttered window", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_73 {
             new GamevalEntry(37951, "SANCTUARY_COFFIN_MOTHER", "Coffin", "loctypes"),
             new GamevalEntry(37952, "TUT2_MINING_EXIT_R", "Gate", "loctypes"),
             new GamevalEntry(37953, "TUT2_COMBAT_ENTRY_L", "Gate", "loctypes"),
-            new GamevalEntry(37954, "TUT2_COMBAT_ENTRY_R", "Gate", "loctypes"),
         };
     }
 

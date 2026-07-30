@@ -10,6 +10,7 @@ final class ObjectIDEntries_90 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(46146, "TOA_LOBBY_WALL01_SAND02", "toa_lobby_wall01_sand02", "loctypes"),
             new GamevalEntry(46147, "TOA_LOBBY_WALL_RETAINING01", "toa_lobby_wall_retaining01", "loctypes"),
             new GamevalEntry(46148, "TOA_LOBBY_INVISWALL_ACTIVE", "toa_lobby_inviswall_active", "loctypes"),
             new GamevalEntry(46149, "TOA_LOBBY_SCAFFOLDING01", "toa_lobby_scaffolding01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_90 {
             new GamevalEntry(46656, "GHORROCK_GATEWAY01_RIGHT_LVL1", "ghorrock_gateway01_right_lvl1", "loctypes"),
             new GamevalEntry(46657, "GHORROCK_GATEWAY01_MIDDLE_LVL1", "ghorrock_gateway01_middle_lvl1", "loctypes"),
             new GamevalEntry(46658, "GHORROCK_METAL_GATE_CLOSED", "Gate", "loctypes"),
-            new GamevalEntry(46659, "GHORROCK_METAL_GATE_OPEN", "Gate", "loctypes"),
         };
     }
 

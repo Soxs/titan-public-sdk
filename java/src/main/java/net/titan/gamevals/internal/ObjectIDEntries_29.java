@@ -10,6 +10,7 @@ final class ObjectIDEntries_29 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14906, "ROOFTOPS_FALADOR_TIGHTROPE_FORDIAGONAL", "rooftops_falador_tightrope_fordiagonal", "loctypes"),
             new GamevalEntry(14907, "ROOFTOPS_FALADOR_TIGHTROPE_END_FORDIAGONAL", "I( 1 '", "loctypes"),
             new GamevalEntry(14908, "WOM_STAFFMULTI", "wom_staffmulti", "loctypes"),
             new GamevalEntry(14909, "DEADMAN_FLAX", "deadman_flax", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_29 {
             new GamevalEntry(15416, "_100_ILM_CLIMBABLE_TREE_LEAF", "Tropical tree", "loctypes"),
             new GamevalEntry(15417, "_100_ILM_MONKEYBARS_START", "Monkeybars", "loctypes"),
             new GamevalEntry(15418, "_100_ILM_MONKEYBARS_MID", "100_ilm_monkeybars_mid", "loctypes"),
-            new GamevalEntry(15419, "_100_ILM_MONKEYBARS_END", "Monkeybars", "loctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_72 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(36930, "SOTE_LIGHT_2_A_8_EAST_SIZE4", "sote_light_2_a_8_east_size4", "loctypes"),
             new GamevalEntry(36931, "SOTE_LIGHT_2_B_7_EAST", "sote_light_2_b_7_east", "loctypes"),
             new GamevalEntry(36932, "SOTE_LIGHT_2_B_7_EAST_SIZE3", "sote_light_2_b_7_east_size3", "loctypes"),
             new GamevalEntry(36933, "SOTE_LIGHT_2_B_7_EAST_SIZE4", "sote_light_2_b_7_east_size4", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_72 {
             new GamevalEntry(37439, "FAI_VARROCK_CASTLE_DOOR_INACTIVE", "fai_varrock_castle_door_inactive", "loctypes"),
             new GamevalEntry(37440, "LEAGUE_TUTOR_ICON", "league_tutor_icon", "loctypes"),
             new GamevalEntry(37441, "POH_TWISTED_WINDOW_SHUTTERS", "Shuttered window", "loctypes"),
-            new GamevalEntry(37442, "POH_TWISTED_WINDOW_BOB", "Decorative window", "loctypes"),
         };
     }
 

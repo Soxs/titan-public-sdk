@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_31 {
+    int BREW_LOG_STORE = 15931;
     int BREW_WORKBENCH = 15932;
     int BREW_PARTS_TABLE_EMPTY = 15933;
     int BREW_PARTS_TABLE_FULL = 15934;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_31 {
     int RANDOMSOUND_FARMYARD_AMBIENCE = 16440;
     int RANDOMSOUND_JUNGLE_AMBIENCE = 16441;
     int RANDOMSOUND_FOREST_AMBIENCE = 16442;
-    int RANDOMSOUND_WILDERNESS_AMBIENCE = 16443;
 }

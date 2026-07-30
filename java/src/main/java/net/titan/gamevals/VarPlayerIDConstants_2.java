@@ -212,6 +212,7 @@ public interface VarPlayerIDConstants_2 {
     int CLAN_EVENTS_GENERAL4 = 3081;
     int OPTION_HIGHLIGHTING_PLAYER_TILE_COLOUR = 3108;
     int OPTIONS_SAVE_SOUNDS = 3109;
+    int SLAYER_STORED_VARP = 3113;
     int ACHIEVEMENT_TASK_COMPLETED_0 = 3115;
     int CA_TASK_COMPLETED_0 = 3116;
     int CA_TASK_COMPLETED_1 = 3117;
@@ -512,5 +513,4 @@ public interface VarPlayerIDConstants_2 {
     int BR_LOADOUTS_15 = 3560;
     int BR_LOADOUTS_16 = 3561;
     int BR_LOADOUTS_17 = 3562;
-    int BR_LOADOUTS_18 = 3563;
 }

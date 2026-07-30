@@ -10,6 +10,7 @@ final class NpcIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7170, "MM_ZOOKNOCK_AA", "Zooknock", "npctypes"),
             new GamevalEntry(7171, "MM_ZOOKNOCK_GS", "Zooknock", "npctypes"),
             new GamevalEntry(7172, "MM_KARAM_AA1", "Karam", "npctypes"),
             new GamevalEntry(7173, "MM_KARAM_AA2", "Karam", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_14 {
             new GamevalEntry(7679, "TZHAAR_KET_STRONG", "TzHaar-Ket", "npctypes"),
             new GamevalEntry(7680, "TZHAAR_ELDER1", "TzHaar-Mej-Dir", "npctypes"),
             new GamevalEntry(7681, "TZHAAR_ELDER2", "TzHaar-Mej-Bal", "npctypes"),
-            new GamevalEntry(7682, "TZHAAR_HUR_CITY1", "TzHaar-Hur", "npctypes"),
         };
     }
 

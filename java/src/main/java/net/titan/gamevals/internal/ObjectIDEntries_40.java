@@ -10,6 +10,7 @@ final class ObjectIDEntries_40 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(20539, "LOTR_RUINS_DOOR_30", "Passageway", "loctypes"),
             new GamevalEntry(20540, "LOTR_RUINS_PILLAR_JUMP_01", "Pillar", "loctypes"),
             new GamevalEntry(20541, "LOTR_RUINS_PILLAR_JUMP_02", "Pillar", "loctypes"),
             new GamevalEntry(20542, "LOTR_RUINS_PILLAR_JUMP_03", "Pillar", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_40 {
             new GamevalEntry(21052, "PENG_BASE_ROOF2_L", "peng_base_roof2_l", "loctypes"),
             new GamevalEntry(21053, "PENG_BASE_ROOF2_R", "peng_base_roof2_r", "loctypes"),
             new GamevalEntry(21054, "PENG_BASE_BOOTH_JOIN", "peng_base_booth_join", "loctypes"),
-            new GamevalEntry(21055, "PENG_BASE_BOOTH_FRONT", "Control panel", "loctypes"),
         };
     }
 

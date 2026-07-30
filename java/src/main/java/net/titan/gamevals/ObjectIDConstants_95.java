@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_95 {
+    int BRIDGEKIT_ZEMA_RAILING06_MIRROR = 48707;
     int BRIDGEKIT_ZEMA_RAILING07 = 48708;
     int BRIDGEKIT_ZEMA_RAILING07_MIRROR = 48709;
     int BRIDGEKIT_ZEMA_RAILING08 = 48710;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_95 {
     int DT2_SCAR_BOAT_NOOP = 49216;
     int DT2_SCAR_BOAT_ALT_NOOP = 49217;
     int DT2_SCAR_DEBRIS = 49218;
-    int DT2_SCAR_DEBRIS_OP = 49219;
 }

@@ -323,7 +323,7 @@ final class ItemIDEntries_18 {
             new GamevalEntry(9732, "CERT_ELEMENTAL_MIND_SHIELD", "cert_elemental_mind_shield", "objtypes"),
             new GamevalEntry(9733, "ELEM_MIND_HELM", "Mind helmet", "objtypes"),
             new GamevalEntry(9734, "CERT_ELEM_MIND_HELM", "cert_elem_mind_helm", "objtypes"),
-            new GamevalEntry(9735, "DESERT_GOAT_HORN", "Desert goat horn", "objtypes"),
+            new GamevalEntry(9735, "DESERT_GOAT_HORN", "Goat horn", "objtypes"),
             new GamevalEntry(9736, "GROUND_DESERT_GOAT_HORN", "Goat horn dust", "objtypes"),
             new GamevalEntry(9737, "CERT_GROUND_DESERT_GOAT_HORN", "cert_ground_desert_goat_horn", "objtypes"),
             new GamevalEntry(9738, "CERT_DESERT_GOAT_HORN", "cert_desert_goat_horn", "objtypes"),

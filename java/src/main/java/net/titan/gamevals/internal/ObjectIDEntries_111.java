@@ -10,6 +10,12 @@ final class ObjectIDEntries_111 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(56899, "WALLKIT_TONALI03_TRANSITION01_M", "wallkit_tonali03_transition01_m", "loctypes"),
+            new GamevalEntry(56900, "WALLKIT_TONALI03_PILLAR01", "wallkit_tonali03_pillar01", "loctypes"),
+            new GamevalEntry(56901, "WALLKIT_TONALI03_PILLAR02", "wallkit_tonali03_pillar02", "loctypes"),
+            new GamevalEntry(56902, "WALLKIT_TONALI03_CAVE01", "wallkit_tonali03_cave01", "loctypes"),
+            new GamevalEntry(56903, "WALLKIT_TONALI03_CAVE01_LIGHT01", "wallkit_tonali03_cave01_light01", "loctypes"),
+            new GamevalEntry(56904, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01", "cavekit_tonali01_rock01_falloff01_ledge01", "loctypes"),
             new GamevalEntry(56905, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01_ACTIVE", "Ledge", "loctypes"),
             new GamevalEntry(56906, "CAVEKIT_TONALI01_ROCK01_FALLOFF01_LEDGE01_NOBLOCK", "cavekit_tonali01_rock01_falloff01_ledge01_noblock", "loctypes"),
             new GamevalEntry(56907, "WALLKIT_TONALI04_CAVE01", "wallkit_tonali04_cave01", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_111 {
             new GamevalEntry(57408, "WALLKIT_TALTEKLAN03_POLE02_M", "wallkit_talteklan03_pole02_m", "loctypes"),
             new GamevalEntry(57409, "WALLKIT_TALTEKLAN01_FENCE01", "wallkit_talteklan01_fence01", "loctypes"),
             new GamevalEntry(57410, "WALLKIT_TALTEKLAN04_ROOF01", "wallkit_talteklan04_roof01", "loctypes"),
-            new GamevalEntry(57411, "ROOFKIT_TALKASTI01_ROOF01", "roofkit_talkasti01_roof01", "loctypes"),
-            new GamevalEntry(57412, "ROOFKIT_TALKASTI01_ROOF02", "roofkit_talkasti01_roof02", "loctypes"),
-            new GamevalEntry(57413, "ROOFKIT_TALKASTI01_ROOF01_CORNER01", "roofkit_talkasti01_roof01_corner01", "loctypes"),
-            new GamevalEntry(57414, "ROOFKIT_TALKASTI01_ROOF01_CORNER02", "roofkit_talkasti01_roof01_corner02", "loctypes"),
-            new GamevalEntry(57415, "ROOFKIT_TALKASTI01_ROOF03", "roofkit_talkasti01_roof03", "loctypes"),
-            new GamevalEntry(57416, "ROOFKIT_TALKASTI01_ROOF04", "roofkit_talkasti01_roof04", "loctypes"),
         };
     }
 

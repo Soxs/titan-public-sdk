@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_62 {
+    int DS2_OGRE_CORSAIR_DUNGEON_SHORTCUT = 31809;
     int DS2_CORSAIR_COVE_PIRATE_THRONE = 31810;
     int CRANDOR_LAB_BIRTHING_POOL_WATER = 31811;
     int DS2_VIKING_SHIP_FRONT_SMALL_LV0 = 31812;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_62 {
     int DS2_AGILITY_STEPPING_STONE_NO_OP = 32318;
     int DS2_AGILITY_STEPPING_STONE = 32319;
     int DS2_AGILITY_STEPPING_STONE_SHIP = 32320;
-    int DS2_BOAT_KAND_AGILITY_CLIMB = 32321;
 }

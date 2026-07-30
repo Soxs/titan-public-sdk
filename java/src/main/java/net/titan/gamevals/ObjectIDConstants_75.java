@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_75 {
+    int HALLOWED_FLOOR_2_NORTHPATH_STAIRS = 38466;
     int HALLOWED_FLOOR_2_EASTPATH_STAIRS = 38467;
     int HALLOWED_FLOOR_2_SOUTHPATH_STAIRS = 38468;
     int HALLOWED_FLOOR_2_WESTPATH_DROP = 38469;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_75 {
     int HS_NPT2_WALL_CRACKS_03 = 38975;
     int HS_NPT2_WALL_CRACKS_04 = 38976;
     int HS_NPT2_WALL_CUTS_01 = 38977;
-    int HS_NPT2_WALL_CUTS_02 = 38978;
 }

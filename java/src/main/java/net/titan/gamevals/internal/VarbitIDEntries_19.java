@@ -10,6 +10,10 @@ final class VarbitIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14869, "GROUND_ITEMS_ENABLED", "ground_items_enabled", "varbittypes"),
+            new GamevalEntry(14870, "GROUND_ITEMS_PRICE_TYPE", "ground_items_price_type", "varbittypes"),
+            new GamevalEntry(14871, "GROUND_ITEMS_EDIT_MODE_ENABLED_DESKTOP", "ground_items_edit_mode_enabled_desktop", "varbittypes"),
+            new GamevalEntry(14872, "GROUND_ITEMS_EDIT_MODE_ENABLED_MOBILE", "ground_items_edit_mode_enabled_mobile", "varbittypes"),
             new GamevalEntry(14873, "GROUND_ITEMS_DESPAWN_TIME_ENABLED_DESKTOP", "ground_items_despawn_time_enabled_desktop", "varbittypes"),
             new GamevalEntry(14874, "GROUND_ITEMS_DESPAWN_TIME_ENABLED_MOBILE", "ground_items_despawn_time_enabled_mobile", "varbittypes"),
             new GamevalEntry(14875, "GROUND_ITEMS_VISIBILITY_TIME_ENABLED_DESKTOP", "ground_items_visibility_time_enabled_desktop", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_19 {
             new GamevalEntry(15632, "SANGVESTI_FANCY_HOUSE_3_BACK_DOOR_FOUND", "sangvesti_fancy_house_3_back_door_found", "varbittypes"),
             new GamevalEntry(15633, "SANGVESTI_CHAPEL_BACK_DOOR_1_FOUND", "sangvesti_chapel_back_door_1_found", "varbittypes"),
             new GamevalEntry(15634, "SANGVESTI_CHAPEL_BACK_DOOR_2_FOUND", "sangvesti_chapel_back_door_2_found", "varbittypes"),
-            new GamevalEntry(15635, "SANGVESTI_TRAPDOOR_FOUND", "sangvesti_trapdoor_found", "varbittypes"),
-            new GamevalEntry(15636, "SANGVESTI_BLACKSMITH_DOOR_FOUND", "sangvesti_blacksmith_door_found", "varbittypes"),
-            new GamevalEntry(15637, "SANGVESTI_BASIC_HOUSE_DOOR_FOUND", "sangvesti_basic_house_door_found", "varbittypes"),
-            new GamevalEntry(15638, "SANGVESTI_PUB_DOOR_FOUND", "sangvesti_pub_door_found", "varbittypes"),
         };
     }
 

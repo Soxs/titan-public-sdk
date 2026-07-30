@@ -10,6 +10,8 @@ final class VarbitIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11723, "XMAS20_POH_WALLKIT", "xmas20_poh_wallkit", "varbittypes"),
+            new GamevalEntry(11724, "XMAS20_BOULDER", "xmas20_boulder", "varbittypes"),
             new GamevalEntry(11725, "XMAS20_GIFTS", "xmas20_gifts", "varbittypes"),
             new GamevalEntry(11726, "XMAS20_SLED", "xmas20_sled", "varbittypes"),
             new GamevalEntry(11727, "XMAS20_FOOD", "xmas20_food", "varbittypes"),
@@ -494,6 +496,8 @@ final class VarbitIDEntries_14 {
             new GamevalEntry(12439, "WORN_ITEMS_CRYSTAL_CHEST", "worn_items_crystal_chest", "varbittypes"),
             new GamevalEntry(12440, "WORN_ITEMS_CRYSTAL_LEGS", "worn_items_crystal_legs", "varbittypes"),
             new GamevalEntry(12442, "SLAYER_UNLOCK_STORAGE", "slayer_unlock_storage", "varbittypes"),
+            new GamevalEntry(12443, "SLAYER_MASTER_STORED", "slayer_master_stored", "varbittypes"),
+            new GamevalEntry(12444, "SLAYER_TARGET_BOSSID_STORED", "slayer_target_bossid_stored", "varbittypes"),
             new GamevalEntry(12453, "TEMPOROSS_DEBUG", "tempoross_debug", "varbittypes"),
             new GamevalEntry(12454, "CA_FAILURE_NOTIFICATIONS_ENABLED", "ca_failure_notifications_enabled", "varbittypes"),
             new GamevalEntry(12455, "CA_TASK_POPUP", "ca_task_popup", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_14 {
             new GamevalEntry(12474, "CA_TASK_BANDOS_KILLCOUNT_1_COMPLETED", "ca_task_bandos_killcount_1_completed", "varbittypes"),
             new GamevalEntry(12475, "CA_TASK_BANDOS_KILLCOUNT_2_COMPLETED", "ca_task_bandos_killcount_2_completed", "varbittypes"),
             new GamevalEntry(12476, "CA_TASK_BANDOS_MECHANICAL_1_COMPLETED", "ca_task_bandos_mechanical_1_completed", "varbittypes"),
-            new GamevalEntry(12477, "CA_TASK_BANDOS_MECHANICAL_2_COMPLETED", "ca_task_bandos_mechanical_2_completed", "varbittypes"),
-            new GamevalEntry(12478, "CA_TASK_BANDOS_MECHANICAL_3_COMPLETED", "ca_task_bandos_mechanical_3_completed", "varbittypes"),
-            new GamevalEntry(12479, "CA_TASK_BANDOS_PERFECTION_1_COMPLETED", "ca_task_bandos_perfection_1_completed", "varbittypes"),
-            new GamevalEntry(12480, "CA_TASK_BANDOS_PERFECTION_2_COMPLETED", "ca_task_bandos_perfection_2_completed", "varbittypes"),
         };
     }
 

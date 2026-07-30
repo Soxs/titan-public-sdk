@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_47 {
+    int FAI_FALADOR_ROOFKIT_CORNERCUT = 24129;
     int FAI_FALADOR_ROOFKIT_SLATE_CUT = 24130;
     int FAI_FALADOR_ROOFKIT_SLATE_TWO = 24131;
     int FAI_FALADOR_ROOFKIT_SLATE_THREE = 24132;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_47 {
     int VM_TIMELINE_SHIELD_OF_ARRAV = 24638;
     int VM_TIMELINE_SHIELD_OF_ARRAV_MULTI = 24639;
     int VM_TIMELINE_MAP_OF_MORYTANIA = 24640;
-    int VM_TIMELINE_BRIDGE_OVER_WATER_MODEL = 24641;
 }

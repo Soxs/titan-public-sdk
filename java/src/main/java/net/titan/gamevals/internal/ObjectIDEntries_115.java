@@ -10,6 +10,12 @@ final class ObjectIDEntries_115 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(58948, "SAILING_CRYSTAL_FLECKED_PORTAL_CADARN_2", "Portal of Cadarn", "loctypes"),
+            new GamevalEntry(58949, "SAILING_BT_CRYSTAL_CRWYS_PARENT", "sailing_bt_crystal_crwys_parent", "loctypes"),
+            new GamevalEntry(58950, "SAILING_BT_CRYSTAL_CRWYS_INACTIVE", "Crystal of Crwys", "loctypes"),
+            new GamevalEntry(58951, "SAILING_BT_CRYSTAL_CRWYS_ACTIVATED", "Crystal of Crwys", "loctypes"),
+            new GamevalEntry(58952, "SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS_PARENT", "sailing_crystal_flecked_portal_crwys_parent", "loctypes"),
+            new GamevalEntry(58953, "SAILING_CRYSTAL_FLECKED_PORTAL_CRWYS", "Portal of Crwys", "loctypes"),
             new GamevalEntry(58954, "SAILING_BT_CRYSTAL_HEFIN_PARENT", "sailing_bt_crystal_hefin_parent", "loctypes"),
             new GamevalEntry(58955, "SAILING_BT_CRYSTAL_HEFIN_INACTIVE", "Crystal of Hefin", "loctypes"),
             new GamevalEntry(58956, "SAILING_BT_CRYSTAL_HEFIN_ACTIVATED", "Crystal of Hefin", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_115 {
             new GamevalEntry(59457, "SAILING_COMBAT_RUNIC_SHIELD_MEDIUM", "Strong runic shield generator", "loctypes"),
             new GamevalEntry(59458, "SAILING_COMBAT_RUNIC_SHIELD_MEDIUM_INACTIVE", "Runic shield generator", "loctypes"),
             new GamevalEntry(59459, "SAILING_COMBAT_RUNIC_SHIELD_HIGH", "Powerful runic shield generator", "loctypes"),
-            new GamevalEntry(59460, "SAILING_COMBAT_RUNIC_SHIELD_HIGH_INACTIVE", "Runic shield generator", "loctypes"),
-            new GamevalEntry(59461, "SAILING_COMBAT_HEAT_SHIELD_LOW", "Small brazier", "loctypes"),
-            new GamevalEntry(59462, "SAILING_COMBAT_HEAT_SHIELD_LOW_INACTIVE", "Small brazier", "loctypes"),
-            new GamevalEntry(59463, "SAILING_COMBAT_HEAT_SHIELD_MEDIUM", "Warm brazier", "loctypes"),
-            new GamevalEntry(59464, "SAILING_COMBAT_HEAT_SHIELD_MEDIUM_INACTIVE", "Warm brazier", "loctypes"),
-            new GamevalEntry(59465, "SAILING_COMBAT_HEAT_SHIELD_HIGH", "Scorching brazier", "loctypes"),
         };
     }
 

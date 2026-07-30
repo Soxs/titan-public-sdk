@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_42 {
+    int FRIS_WALL_RAMP_01_MIRROR = 21567;
     int FRIS_WALL_RAMP_02_MIRROR = 21568;
     int FRISD_IZSO_MUSHROOMS_COLDTOP = 21569;
     int FRISD_IZSO_MUSHROOMS_LONG = 21570;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_42 {
     int BRAIN_BELLTOWER_ROOF_JOIN_05_MIRROR = 22076;
     int BRAIN_BELLTOWER_ROOF_JOIN_06 = 22077;
     int BRAIN_BELLTOWER_ROOF_JOIN_06_MIRROR = 22078;
-    int BRAIN_BELLTOWER_BELL = 22079;
 }

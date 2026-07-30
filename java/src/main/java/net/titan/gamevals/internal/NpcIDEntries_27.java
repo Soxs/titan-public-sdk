@@ -10,6 +10,7 @@ final class NpcIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13826, "DOTI_CONSTANTINIUS_PICKPOCKET", "Constantinius", "npctypes"),
             new GamevalEntry(13827, "DOTI_COZYAC", "Cozyac", "npctypes"),
             new GamevalEntry(13828, "DOTI_COZYAC_PICKPOCKET", "Cozyac", "npctypes"),
             new GamevalEntry(13829, "DOTI_XOCOTLA", "Xocotla", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_27 {
             new GamevalEntry(14335, "VMQ4_ENNIUS_CS", "Ennius Tullus", "npctypes"),
             new GamevalEntry(14336, "VMQ4_ATTALA_CS", "Attala", "npctypes"),
             new GamevalEntry(14337, "VMQ4_ATTALA_TEUMO_HOUSE", "vmq4_attala_teumo_house", "npctypes"),
-            new GamevalEntry(14338, "VMQ4_ATTALA_TEUMO_HOUSE_DOWNSTAIRS", "vmq4_attala_teumo_house_downstairs", "npctypes"),
         };
     }
 

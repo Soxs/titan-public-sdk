@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_98 {
+    int MOM2_DUNGEON_WALL_TOP_CORNER2_MED_HIGHER = 50243;
     int MOM2_DUNGEON_WALL_TOP_CORNER = 50244;
     int MOM2_DUNGEON_WALL_TOP_CORNER_HIGHER = 50245;
     int MOM2_DUNGEON_WALL_TOP_CORNER_MED_HIGHER = 50246;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_98 {
     int COLOSSEUM_EXIT = 50752;
     int SHIELD_COMBATANT_1 = 50753;
     int SHIELD_COMBATANT_2 = 50754;
-    int SHIELD_COMBATANT_3 = 50755;
 }

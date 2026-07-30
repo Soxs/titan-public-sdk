@@ -10,6 +10,7 @@ final class ObjectIDEntries_61 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(31297, "FOSSIL_VM_DISPLAY_26_4", "Medium Fossil Display", "loctypes"),
             new GamevalEntry(31298, "FOSSIL_VM_DISPLAY_26_5", "Lava Monster", "loctypes"),
             new GamevalEntry(31299, "VM_FOSSIL_VIEWER", "Viewer", "loctypes"),
             new GamevalEntry(31300, "FARMING_HARDWOOD_TREE_PATCH_1_CANOPY", "w w", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_61 {
             new GamevalEntry(31806, "DS2_OGRE_CORSAIR_DUNGEON_EXIT_TO_FELDIP", "Cave", "loctypes"),
             new GamevalEntry(31807, "DS2_OGRE_CORSAIR_DUNGEON_EXIT_TO_ALTAR", "Cave", "loctypes"),
             new GamevalEntry(31808, "DS2_OGRE_CORSAIR_DUNGEON_GUILD_ENTRANCE", "Magical Barrier", "loctypes"),
-            new GamevalEntry(31809, "DS2_OGRE_CORSAIR_DUNGEON_SHORTCUT", "Pillar", "loctypes"),
         };
     }
 

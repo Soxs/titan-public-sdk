@@ -9,7 +9,7 @@ public final class ItemIDEntries {
     private ItemIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[33265];
+        GamevalEntry[] out = new GamevalEntry[33489];
         int offset = 0;
         offset = copy(out, offset, ItemIDEntries_0.entries());
         offset = copy(out, offset, ItemIDEntries_1.entries());
@@ -76,6 +76,7 @@ public final class ItemIDEntries {
         offset = copy(out, offset, ItemIDEntries_62.entries());
         offset = copy(out, offset, ItemIDEntries_63.entries());
         offset = copy(out, offset, ItemIDEntries_64.entries());
+        offset = copy(out, offset, ItemIDEntries_65.entries());
         return out;
     }
 
@@ -215,6 +216,8 @@ public final class ItemIDEntries {
         hit = ItemIDEntries_63.byId(id);
         if (hit.isPresent()) return hit;
         hit = ItemIDEntries_64.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = ItemIDEntries_65.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

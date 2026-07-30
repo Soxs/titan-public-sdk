@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_90 {
+    int TOA_LOBBY_WALL01_SAND02 = 46146;
     int TOA_LOBBY_WALL_RETAINING01 = 46147;
     int TOA_LOBBY_INVISWALL_ACTIVE = 46148;
     int TOA_LOBBY_SCAFFOLDING01 = 46149;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_90 {
     int GHORROCK_GATEWAY01_RIGHT_LVL1 = 46656;
     int GHORROCK_GATEWAY01_MIDDLE_LVL1 = 46657;
     int GHORROCK_METAL_GATE_CLOSED = 46658;
-    int GHORROCK_METAL_GATE_OPEN = 46659;
 }

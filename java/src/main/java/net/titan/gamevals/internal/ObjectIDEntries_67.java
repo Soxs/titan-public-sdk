@@ -10,6 +10,7 @@ final class ObjectIDEntries_67 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(34370, "BRIMSTONE_DECO_CORN", "brimstone_deco_corn", "loctypes"),
             new GamevalEntry(34371, "BRIMSTONE_DECO_SIDE", "brimstone_deco_side", "loctypes"),
             new GamevalEntry(34372, "BRIMSTONE_SULPHUR_CLIFF_1", "brimstone_sulphur_cliff_1", "loctypes"),
             new GamevalEntry(34373, "BRIMSTONE_SULPHUR_CLIFF_2", "brimstone_sulphur_cliff_2", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_67 {
             new GamevalEntry(34879, "HOSDUN_CATAVINE_DIAG2", "hosdun_catavine_diag2", "loctypes"),
             new GamevalEntry(34880, "HOSDUN_CATAVINE_DIAG3", "hosdun_catavine_diag3", "loctypes"),
             new GamevalEntry(34881, "HOSDUN_CATAVINE_DIAGFILLER", "hosdun_catavine_diagfiller", "loctypes"),
-            new GamevalEntry(34882, "HOSDUN_CATAVINE_END", "hosdun_catavine_end", "loctypes"),
         };
     }
 

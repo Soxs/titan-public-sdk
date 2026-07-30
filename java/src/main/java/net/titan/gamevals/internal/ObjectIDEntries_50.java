@@ -10,6 +10,7 @@ final class ObjectIDEntries_50 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(25665, "KR_CAM_PALOMEDES_JAIL", "Sir Palomedes", "loctypes"),
             new GamevalEntry(25666, "KR_CAM_LANCELOT_JAIL", "Sir Lancelot", "loctypes"),
             new GamevalEntry(25667, "KR_CAM_BEDIVERE_JAIL", "Sir Bedivere", "loctypes"),
             new GamevalEntry(25668, "MURDER_QIP_GARDEN_HEDGE", "Hedge", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_50 {
             new GamevalEntry(26174, "RCU_ABYSSAL_SPLAT_1", "rcu_abyssal_splat_1", "loctypes"),
             new GamevalEntry(26175, "_100_ILM_LONG_HOT_ROCK_MULTI", "100_ilm_long_hot_rock_multi", "loctypes"),
             new GamevalEntry(26176, "RCU_ABYSSAL_SPLAT_2", "rcu_abyssal_splat_2", "loctypes"),
-            new GamevalEntry(26177, "RCU_ABYSSAL_SPLAT_3", "rcu_abyssal_splat_3", "loctypes"),
         };
     }
 

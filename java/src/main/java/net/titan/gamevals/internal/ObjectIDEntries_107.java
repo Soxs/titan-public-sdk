@@ -10,6 +10,12 @@ final class ObjectIDEntries_107 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(54851, "WALLKIT_ALDARIN03_TOWER01", "wallkit_aldarin03_tower01", "loctypes"),
+            new GamevalEntry(54852, "WALLKIT_ALDARIN03_TOWER01_INNER01", "wallkit_aldarin03_tower01_inner01", "loctypes"),
+            new GamevalEntry(54853, "WALLKIT_ALDARIN04_TOWER01", "wallkit_aldarin04_tower01", "loctypes"),
+            new GamevalEntry(54854, "WALLKIT_MISTROCK01_LVL0", "wallkit_mistrock01_lvl0", "loctypes"),
+            new GamevalEntry(54855, "WALLKIT_MISTROCK01_WINDOW01", "wallkit_mistrock01_window01", "loctypes"),
+            new GamevalEntry(54856, "WALLKIT_MISTROCK01_POST01", "wallkit_mistrock01_post01", "loctypes"),
             new GamevalEntry(54857, "WALLKIT_MISTROCK01_POST02", "wallkit_mistrock01_post02", "loctypes"),
             new GamevalEntry(54858, "WALLKIT_MISTROCK02_DEFAULT01", "wallkit_mistrock02_default01", "loctypes"),
             new GamevalEntry(54859, "WALLKIT_MISTROCK02_WINDOW01", "wallkit_mistrock02_window01", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_107 {
             new GamevalEntry(55360, "VMQ3_RUINS_URN", "vmq3_ruins_urn", "loctypes"),
             new GamevalEntry(55361, "VMQ3_RUINS_WALL_CLUE_FIRE", "vmq3_ruins_wall_clue_fire", "loctypes"),
             new GamevalEntry(55362, "VMQ3_RUINS_WALL_CLUE_WATER", "vmq3_ruins_wall_clue_water", "loctypes"),
-            new GamevalEntry(55363, "VMQ3_RUINS_WALL_CLUE_AIR", "vmq3_ruins_wall_clue_air", "loctypes"),
-            new GamevalEntry(55364, "VMQ3_RUINS_WALL_CLUE_EARTH", "vmq3_ruins_wall_clue_earth", "loctypes"),
-            new GamevalEntry(55365, "VMQ3_RUINS_WALL_LEVER_1", "vmq3_ruins_wall_lever_1", "loctypes"),
-            new GamevalEntry(55366, "VMQ3_RUINS_WALL_LEVER_2", "vmq3_ruins_wall_lever_2", "loctypes"),
-            new GamevalEntry(55367, "VMQ3_RUINS_WALL_LEVER_3", "vmq3_ruins_wall_lever_3", "loctypes"),
-            new GamevalEntry(55368, "VMQ3_RUINS_WALL_LEVER_4", "vmq3_ruins_wall_lever_4", "loctypes"),
         };
     }
 

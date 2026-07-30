@@ -10,6 +10,12 @@ final class ObjectIDEntries_104 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(53315, "LUC2_CHURCHDOORL_INACTIVE", "luc2_churchdoorl_inactive", "loctypes"),
+            new GamevalEntry(53316, "LUC2_CHURCHDOORR_INACTIVE", "luc2_churchdoorr_inactive", "loctypes"),
+            new GamevalEntry(53317, "LUC2_CHURCHDOOR_OPENL", "Large door", "loctypes"),
+            new GamevalEntry(53318, "LUC2_CHURCHDOOR_OPENR", "Large door", "loctypes"),
+            new GamevalEntry(53319, "LUC2_BF_LADDER_UP", "Ladder", "loctypes"),
+            new GamevalEntry(53320, "LUC2_BF_LADDER_DOWN", "Ladder", "loctypes"),
             new GamevalEntry(53321, "LUC2_BF_DOOR_OPEN", "Large doors", "loctypes"),
             new GamevalEntry(53322, "LUC2_BF_DOOR_CLOSE", "Large doors", "loctypes"),
             new GamevalEntry(53323, "LUC2_TILE_02", "luc2_tile_02", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_104 {
             new GamevalEntry(53824, "LUC2_STONE_OF_JAS_NAMED_NOOP", "Stone of Jas", "loctypes"),
             new GamevalEntry(53825, "LUC2_STONE_OF_JAS_NAMED_SINKING", "Stone of Jas", "loctypes"),
             new GamevalEntry(53826, "LUC2_STONE_OF_JAS_PLINTH", "Plinth", "loctypes"),
-            new GamevalEntry(53827, "LUC2_GUTHIX_TEMPLE_TUNNEL", "luc2_guthix_temple_tunnel", "loctypes"),
-            new GamevalEntry(53828, "LUC2_GUTHIX_TEMPLE_TUNNEL_LIGHT", "luc2_guthix_temple_tunnel_light", "loctypes"),
-            new GamevalEntry(53829, "LUC2_GUTHIX_TEMPLE_TUNNEL_LIGHT_MIRROR", "luc2_guthix_temple_tunnel_light_mirror", "loctypes"),
-            new GamevalEntry(53830, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT1", "Hole", "loctypes"),
-            new GamevalEntry(53831, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT2", "Hole", "loctypes"),
-            new GamevalEntry(53832, "LUC2_GUTHIX_TEMPLE_FLOOR_LIGHT3", "Hole", "loctypes"),
         };
     }
 

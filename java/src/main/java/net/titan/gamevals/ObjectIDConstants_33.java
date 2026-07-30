@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_33 {
+    int QUEST_LUNAR_WALLCHART_WITH_SYMBOL = 16955;
     int QUEST_LUNAR_CHEST_WITH_SYMBOL = 16956;
     int QUEST_LUNAR_CRANE_NOSCRIPT = 16957;
     int QUEST_LUNAR_ROWBOAT = 16958;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_33 {
     int LOTR_RUINS_WALL_POTS_NO_WATER_LVL1 = 17464;
     int LOTR_RUINS_WALL_SKULLS_LVL1 = 17465;
     int LOTR_RUINS_WALL_SKULLS_NO_WATER_LVL1 = 17466;
-    int LOTR_RUINS_WALL_NO_WATER_LVL1 = 17467;
 }

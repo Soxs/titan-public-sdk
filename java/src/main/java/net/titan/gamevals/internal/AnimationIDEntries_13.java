@@ -10,6 +10,12 @@ final class AnimationIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6661, "PETROCK_HUMAN_TURNONSPOT", "petrock_human_turnonspot", "seqtypes"),
+            new GamevalEntry(6662, "PETROCK_HUMAN_WALK_L", "petrock_human_walk_l", "seqtypes"),
+            new GamevalEntry(6663, "PETROCK_HUMAN_WALK_R", "petrock_human_walk_r", "seqtypes"),
+            new GamevalEntry(6664, "PETROCK_HUMAN_STAY", "petrock_human_stay", "seqtypes"),
+            new GamevalEntry(6665, "PETROCK_HUMAN_STICK", "petrock_human_stick", "seqtypes"),
+            new GamevalEntry(6666, "DRAGON_SLAYER_CHILD_DEATH", "dragon_slayer_child_death", "seqtypes"),
             new GamevalEntry(6667, "PETROCK_SPOTANIM_STAY", "petrock_spotanim_stay", "seqtypes"),
             new GamevalEntry(6668, "PETROCK_SPOTANIM_STICK", "petrock_spotanim_stick", "seqtypes"),
             new GamevalEntry(6669, "PETROCK_PROJANIM_STICK", "petrock_projanim_stick", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_13 {
             new GamevalEntry(7172, "XBOWS_FLETCHING_BLANK", "xbows_fletching_blank", "seqtypes"),
             new GamevalEntry(7173, "GIANT_BASIC_SPELL", "giant_basic_spell", "seqtypes"),
             new GamevalEntry(7174, "WINT_LIGHT_BRAZIER_BRUMA", "wint_light_brazier_bruma", "seqtypes"),
-            new GamevalEntry(7175, "CHATHYPNOBUNNY4_2006", "chathypnobunny4_2006", "seqtypes"),
-            new GamevalEntry(7176, "GIANT_BASIC_SPELL_LOOP", "giant_basic_spell_loop", "seqtypes"),
-            new GamevalEntry(7177, "LORE_BEAVER_READY", "lore_beaver_ready", "seqtypes"),
-            new GamevalEntry(7178, "LORE_BEAVER_WALK", "lore_beaver_walk", "seqtypes"),
-            new GamevalEntry(7179, "ROCK_GOLEM_CHATHEAD_IDLE", "rock_golem_chathead_idle", "seqtypes"),
-            new GamevalEntry(7180, "ROCK_GOLEM_IDLE", "rock_golem_idle", "seqtypes"),
         };
     }
 

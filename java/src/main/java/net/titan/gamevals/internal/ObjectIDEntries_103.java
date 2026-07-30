@@ -10,6 +10,11 @@ final class ObjectIDEntries_103 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(52803, "WALLKIT_TEOMAT01_STAINGLASS01_M", "wallkit_teomat01_stainglass01_m", "loctypes"),
+            new GamevalEntry(52804, "WALLKIT_TEOMAT01_STAINGLASS02", "wallkit_teomat01_stainglass02", "loctypes"),
+            new GamevalEntry(52805, "WALLKIT_TEOMAT01_STAINGLASS02_M", "wallkit_teomat01_stainglass02_m", "loctypes"),
+            new GamevalEntry(52806, "TEOMAT_SHELF01_BOOKS01", "Bookshelf", "loctypes"),
+            new GamevalEntry(52807, "TEOMAT_SHELF01_BOOKS02", "Bookshelf", "loctypes"),
             new GamevalEntry(52808, "CAVE_ROCK01_ENTRANCE01_MOUNTAIN01", "Cave", "loctypes"),
             new GamevalEntry(52809, "TEOMAT_PIPES01_UP01", "Pipes", "loctypes"),
             new GamevalEntry(52810, "TEOMAT_PIPES01_CORNER01", "teomat_pipes01_corner01", "loctypes"),
@@ -199,6 +204,7 @@ final class ObjectIDEntries_103 {
             new GamevalEntry(52994, "PMOON_TRAP_1", "pmoon_trap_1", "loctypes"),
             new GamevalEntry(52995, "PMOON_TRAP_2", "pmoon_trap_2", "loctypes"),
             new GamevalEntry(52996, "PMOON_TRAP_3", "pmoon_trap_3", "loctypes"),
+            new GamevalEntry(52997, "BASALT_SINGLE_01", "basalt_single_01", "loctypes"),
             new GamevalEntry(52998, "VARLAMORE_THIEVING_HOUSE_WINDOW_MULTI", "varlamore_thieving_house_window_multi", "loctypes"),
             new GamevalEntry(52999, "FORTIS_WINDMILL_BASE", "fortis_windmill_base", "loctypes"),
             new GamevalEntry(53000, "HUNTER_PITFALL_FULL_ANTELOPE_SUNLIGHT", "hunter_pitfall_full_antelope_sunlight", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_103 {
             new GamevalEntry(53312, "LUC2_RUG_CORNER", "luc2_rug_corner", "loctypes"),
             new GamevalEntry(53313, "LUC2_CHURCHDOORL", "Large door", "loctypes"),
             new GamevalEntry(53314, "LUC2_CHURCHDOORR", "Large door", "loctypes"),
-            new GamevalEntry(53315, "LUC2_CHURCHDOORL_INACTIVE", "luc2_churchdoorl_inactive", "loctypes"),
-            new GamevalEntry(53316, "LUC2_CHURCHDOORR_INACTIVE", "luc2_churchdoorr_inactive", "loctypes"),
-            new GamevalEntry(53317, "LUC2_CHURCHDOOR_OPENL", "Large door", "loctypes"),
-            new GamevalEntry(53318, "LUC2_CHURCHDOOR_OPENR", "Large door", "loctypes"),
-            new GamevalEntry(53319, "LUC2_BF_LADDER_UP", "Ladder", "loctypes"),
-            new GamevalEntry(53320, "LUC2_BF_LADDER_DOWN", "Ladder", "loctypes"),
         };
     }
 

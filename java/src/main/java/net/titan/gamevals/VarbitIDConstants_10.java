@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface VarbitIDConstants_10 {
+    int SOTE_LIGHT_2_I_7_TO_2_I_8 = 8825;
+    int SOTE_LIGHT_2_I_7_WEST = 8826;
     int SOTE_LIGHT_2_I_8_TO_2_H_8 = 8827;
     int SOTE_LIGHT_2_B_8_EAST = 8828;
     int SOTE_LIGHT_2_G_8_SOUTH = 8829;
@@ -511,6 +513,4 @@ public interface VarbitIDConstants_10 {
     int XMAS23_ACHIEVEMENTS = 9548;
     int XMAS23_ACHIEVEMENT_CANT_STOP = 9550;
     int FAIRYRINGS_LOG_BJP = 9551;
-    int XMAS23_ACHIEVEMENT_URGE_TO_JUMP = 9562;
-    int XMAS23_ACHIEVEMENT_SEE_MYSELF_OUT = 9563;
 }

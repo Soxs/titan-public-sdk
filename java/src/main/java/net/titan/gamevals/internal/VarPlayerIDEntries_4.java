@@ -10,6 +10,7 @@ final class VarPlayerIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4514, "TRACKING_DAMAGE_DEALT_TO_NPCS", "tracking_damage_dealt_to_npcs", "varptypes"),
             new GamevalEntry(4515, "TRACKING_CLUES_COMPLETED", "tracking_clues_completed", "varptypes"),
             new GamevalEntry(4516, "TRACKING_DAMAGE_TAKEN_FROM_NPCS", "tracking_damage_taken_from_npcs", "varptypes"),
             new GamevalEntry(4517, "TRACKING_DEATHS", "tracking_deaths", "varptypes"),
@@ -521,7 +522,6 @@ final class VarPlayerIDEntries_4 {
             new GamevalEntry(5164, "SAILING_SIDEPANEL_BOATSTAT_TOTAL_STANDARDRANGEDDEF", "sailing_sidepanel_boatstat_total_standardrangeddef", "varptypes"),
             new GamevalEntry(5165, "SAILING_SIDEPANEL_BOATSTAT_TOTAL_LIGHTRANGEDDEF", "sailing_sidepanel_boatstat_total_lightrangeddef", "varptypes"),
             new GamevalEntry(5167, "SAILING_CREW_UNLOCKS_1", "sailing_crew_unlocks_1", "varptypes"),
-            new GamevalEntry(5168, "SAILING_CREW_VISIBILITY_1", "sailing_crew_visibility_1", "varptypes"),
         };
     }
 

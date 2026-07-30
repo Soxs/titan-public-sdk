@@ -463,6 +463,7 @@ final class AnimationIDEntries_3 {
             new GamevalEntry(1988, "ZAROS_TELEPORT", "zaros_teleport", "seqtypes"),
             new GamevalEntry(1989, "HUMAN_CHOCOLATE_FLETCHING", "human_chocolate_fletching", "seqtypes"),
             new GamevalEntry(1990, "DRAGON_RANGED_ATTACKS", "dragon_ranged_attacks", "seqtypes"),
+            new GamevalEntry(1991, "NPC_MAD_ANGEL_INACTIVE", "npc_mad_angel_inactive", "seqtypes"),
             new GamevalEntry(1992, "IC_PIT_JUMP", "ic_pit_jump", "seqtypes"),
             new GamevalEntry(1993, "IC_UP_ONS", "ic_up_ons", "seqtypes"),
             new GamevalEntry(1994, "IC_PIT_FALL", "ic_pit_fall", "seqtypes"),
@@ -521,7 +522,6 @@ final class AnimationIDEntries_3 {
             new GamevalEntry(2047, "TOG_PLAYER_FLOAT_DOWN", "tog_player_float_down", "seqtypes"),
             new GamevalEntry(2048, "TOG_PLAYER_FLOAT_ACROSS", "tog_player_float_across", "seqtypes"),
             new GamevalEntry(2049, "TOG_CLIMB_SLOPE_UP", "tog_climb_slope_up", "seqtypes"),
-            new GamevalEntry(2050, "TOG_CLIMB_SLOPE_DOWN", "tog_climb_slope_down", "seqtypes"),
         };
     }
 

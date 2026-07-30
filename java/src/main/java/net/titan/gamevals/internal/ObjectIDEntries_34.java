@@ -10,6 +10,7 @@ final class ObjectIDEntries_34 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(17467, "LOTR_RUINS_WALL_NO_WATER_LVL1", "lotr_ruins_wall_no_water_lvl1", "loctypes"),
             new GamevalEntry(17468, "LOTR_RUINS_WALL_CORNER_LVL1", "lotr_ruins_wall_corner_lvl1", "loctypes"),
             new GamevalEntry(17469, "LOTR_RUINS_WALL_INSIDE_CORNER_LVL1", "lotr_ruins_wall_inside_corner_lvl1", "loctypes"),
             new GamevalEntry(17470, "LOTR_RUINS_WALL_INSIDE_CORNER_NO_WATER_LVL1", "lotr_ruins_wall_inside_corner_no_water_lvl1", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_34 {
             new GamevalEntry(17976, "AREA_SANGUINE_GHETTO_STAIRS_UP", "Stairs up", "loctypes"),
             new GamevalEntry(17977, "AREA_SANGUINE_GHETTO_STAIRS_UP_BROKEN", "Broken stairs", "loctypes"),
             new GamevalEntry(17978, "AREA_SANGUINE_GHETTO_STAIRS_DOWN", "Stairs down", "loctypes"),
-            new GamevalEntry(17979, "AREA_SANGUINE_GHETTO_STAIRS_DOWN_BROKEN", "Broken stairs", "loctypes"),
         };
     }
 

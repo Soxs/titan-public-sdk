@@ -454,6 +454,7 @@ public interface AnimationIDConstants_3 {
     int ZAROS_TELEPORT = 1988;
     int HUMAN_CHOCOLATE_FLETCHING = 1989;
     int DRAGON_RANGED_ATTACKS = 1990;
+    int NPC_MAD_ANGEL_INACTIVE = 1991;
     int IC_PIT_JUMP = 1992;
     int IC_UP_ONS = 1993;
     int IC_PIT_FALL = 1994;
@@ -512,5 +513,4 @@ public interface AnimationIDConstants_3 {
     int TOG_PLAYER_FLOAT_DOWN = 2047;
     int TOG_PLAYER_FLOAT_ACROSS = 2048;
     int TOG_CLIMB_SLOPE_UP = 2049;
-    int TOG_CLIMB_SLOPE_DOWN = 2050;
 }

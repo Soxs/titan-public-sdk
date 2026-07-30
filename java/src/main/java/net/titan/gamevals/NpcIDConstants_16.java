@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_16 {
+    int GB_GROWTHLING = 8194;
     int GB_MOSSGIANT = 8195;
     int POH_DOGADILE_PET = 8196;
     int POH_TEKTON_PET = 8197;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_16 {
     int HOSDUN_SPIDER = 8703;
     int HOSDUN_AIMERI_INJURED = 8704;
     int HOSDUN_AIMERI_HEALED = 8705;
-    int HOSDUN_OLBERTUS_CORRUPTED = 8706;
 }

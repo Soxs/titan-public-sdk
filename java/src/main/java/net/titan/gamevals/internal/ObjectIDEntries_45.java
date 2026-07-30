@@ -10,6 +10,7 @@ final class ObjectIDEntries_45 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(23103, "BRUT_SHADOW_ON_FLOOR", "brut_shadow_on_floor", "loctypes"),
             new GamevalEntry(23104, "HELLHOUND_WINCH", "Iron Winch", "loctypes"),
             new GamevalEntry(23105, "HELLHOUND_FIREWALL", "Flames", "loctypes"),
             new GamevalEntry(23106, "BROKEN_GREY_TILE_01", "broken_grey_tile_01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_45 {
             new GamevalEntry(23612, "RANDOMSOUND_DESERT_CAVE_AMBIENCE", "randomsound_desert_cave_ambience", "loctypes"),
             new GamevalEntry(23614, "QIP_GERTRUDE_LOG_STACK", "qip_gertrude_log_stack", "loctypes"),
             new GamevalEntry(23615, "QIP_GERTRUDE_CART", "qip_gertrude_cart", "loctypes"),
-            new GamevalEntry(23616, "FAI_VARROCK_ROSEBUSH", "Roses", "loctypes"),
         };
     }
 

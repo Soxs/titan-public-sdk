@@ -10,6 +10,7 @@ final class NpcIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10242, "GRAVESTONE_ANGEL_130", "gravestone_angel_130", "npctypes"),
             new GamevalEntry(10243, "GRAVESTONE_ANGEL_131", "gravestone_angel_131", "npctypes"),
             new GamevalEntry(10244, "GRAVESTONE_ANGEL_132", "gravestone_angel_132", "npctypes"),
             new GamevalEntry(10245, "GRAVESTONE_ANGEL_133", "gravestone_angel_133", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_20 {
             new GamevalEntry(10751, "CLAN_HALL_GEM_RED", "Gem", "npctypes"),
             new GamevalEntry(10752, "CLAN_HALL_GEM_GREEN", "Gem", "npctypes"),
             new GamevalEntry(10753, "CLAN_HALL_GEM_YELLOW", "Gem", "npctypes"),
-            new GamevalEntry(10754, "CLAN_HALL_GEM_LIGHTBLUE", "Gem", "npctypes"),
         };
     }
 

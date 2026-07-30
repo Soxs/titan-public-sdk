@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_91 {
+    int GHORROCK_METAL_GATE_OPEN = 46659;
     int GHORROCK_METAL_GATE_PADLOCK_CLOSED = 46660;
     int GHORROCK_METAL_GATE_PADLOCK_OPEN = 46661;
     int GHORROCK_ICE01 = 46662;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_91 {
     int CAVEKIT_WEB02_DEFAULT02 = 47168;
     int CAVEKIT_WEB02_DEFAULT02_MIRROR = 47169;
     int WILD_ESCAPECAVE_DUGUPSOIL_1 = 47170;
-    int WILD_ESCAPECAVE_DUGUPSOIL_2 = 47171;
 }

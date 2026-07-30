@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_17 {
+    int HOSDUN_OLBERTUS_CORRUPTED = 8706;
     int HOSDUN_OLBERTUS_RESTORED = 8707;
     int HOSDUN_OLBERTUS_CUTSCENE = 8708;
     int HOSDUN_SHAEDED_BEAST = 8709;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_17 {
     int CAVEWITCHCAT = 9215;
     int KALRAG = 9216;
     int OTHAINIAN = 9217;
-    int DOOMION = 9218;
 }

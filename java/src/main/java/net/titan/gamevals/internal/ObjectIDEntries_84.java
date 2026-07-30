@@ -10,6 +10,7 @@ final class ObjectIDEntries_84 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(43074, "LEAGUE_3_WAYPOINT_MULTI_BRIMHAVEN", "league_3_waypoint_multi_brimhaven", "loctypes"),
             new GamevalEntry(43075, "LEAGUE_3_WAYPOINT_MULTI_RELLEKKA", "league_3_waypoint_multi_rellekka", "loctypes"),
             new GamevalEntry(43076, "LEAGUE_3_WAYPOINT_MULTI_FEROX", "league_3_waypoint_multi_ferox", "loctypes"),
             new GamevalEntry(43077, "LEAGUE_3_WAYPOINT_MULTI_CANIFIS", "league_3_waypoint_multi_canifis", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_84 {
             new GamevalEntry(43583, "DECOKIT_VINES01_ABYSSAL_DIAGFILLER", "decokit_vines01_abyssal_diagfiller", "loctypes"),
             new GamevalEntry(43584, "DECOKIT_VINES01_ABYSSAL_END01", "decokit_vines01_abyssal_end01", "loctypes"),
             new GamevalEntry(43585, "DECOKIT_VINES01_ABYSSAL_END02", "decokit_vines01_abyssal_end02", "loctypes"),
-            new GamevalEntry(43586, "DECOKIT_VINES01_ABYSSAL02_STRAIGHT", "decokit_vines01_abyssal02_straight", "loctypes"),
         };
     }
 

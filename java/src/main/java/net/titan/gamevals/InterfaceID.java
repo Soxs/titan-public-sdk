@@ -2744,73 +2744,7 @@ public final class InterfaceID
         public static final int FRAME = 4915202;
         public static final int CONTENTS = 4915203;
         public static final int SCROLLLAYER = 4915204;
-        public static final int HONESTJIMMY = 4915205;
-        public static final int HONESTJIMMY_MODEL = 4915206;
-        public static final int HONESTJIMMY_TEXT = 4915207;
-        public static final int SANDMAN = 4915208;
-        public static final int SANDMAN_MODEL = 4915209;
-        public static final int SANDMAN_TEXT = 4915210;
-        public static final int GHRIM = 4915211;
-        public static final int GHRIM_MODEL = 4915212;
-        public static final int GHRIM_TEXT = 4915213;
-        public static final int DARKMAGE = 4915214;
-        public static final int DARKMAGE_MODEL = 4915215;
-        public static final int DARKMAGE_TEXT = 4915216;
-        public static final int LANTHUS = 4915217;
-        public static final int LANTHUS_MODEL = 4915218;
-        public static final int LANTHUS_TEXT = 4915219;
-        public static final int SLAYERMASTER1 = 4915220;
-        public static final int SLAYERMASTER1_MODEL = 4915221;
-        public static final int SLAYERMASTER1_TEXT = 4915222;
-        public static final int SLAYERMASTER2 = 4915223;
-        public static final int SLAYERMASTER2_MODEL = 4915224;
-        public static final int SLAYERMASTER2_TEXT = 4915225;
-        public static final int SLAYERMASTER3 = 4915226;
-        public static final int SLAYERMASTER3_MODEL = 4915227;
-        public static final int SLAYERMASTER3_TEXT = 4915228;
-        public static final int SLAYERMASTER4 = 4915229;
-        public static final int SLAYERMASTER4_MODEL = 4915230;
-        public static final int SLAYERMASTER4_TEXT = 4915231;
-        public static final int SLAYERMASTER6 = 4915232;
-        public static final int SLAYERMASTER6_MODEL = 4915233;
-        public static final int SLAYERMASTER6_TEXT = 4915234;
-        public static final int SLAYERMASTER5 = 4915235;
-        public static final int SLAYERMASTER5_MODEL = 4915236;
-        public static final int SLAYERMASTER5_TEXT = 4915237;
-        public static final int SLAYERMASTER7 = 4915238;
-        public static final int SLAYERMASTER7_MODEL = 4915239;
-        public static final int SLAYERMASTER7_TEXT = 4915240;
-        public static final int MURPHY = 4915241;
-        public static final int MURPHY_MODEL = 4915242;
-        public static final int MURPHY_TEXT = 4915243;
-        public static final int CYRISUS = 4915244;
-        public static final int CYRISUS_MODEL = 4915245;
-        public static final int CYRISUS_TEXT = 4915246;
-        public static final int SMOGGY = 4915247;
-        public static final int SMOGGY_MODEL = 4915248;
-        public static final int SMOGGY_TEXT = 4915249;
-        public static final int CRIMEFIGHTER = 4915250;
-        public static final int CRIMEFIGHTER_MODEL = 4915251;
-        public static final int CRIMEFIGHTER_TEXT = 4915252;
-        public static final int WATSON = 4915253;
-        public static final int WATSON_MODEL = 4915254;
-        public static final int WATSON_TEXT = 4915255;
-        public static final int BARBGUARD = 4915256;
-        public static final int BARBGUARD_MODEL = 4915257;
-        public static final int BARBGUARD_TEXT = 4915258;
-        public static final int RANDOM = 4915259;
-        public static final int RANDOM_MODEL = 4915260;
-        public static final int RANDOM_TEXT = 4915261;
-        public static final int CON_CONTRACTOR_AMY = 4915262;
-        public static final int CON_CONTRACTOR_AMY_MODEL = 4915263;
-        public static final int CON_CONTRACTOR_AMY_TEXT = 4915264;
-        public static final int SLAYERMASTER8 = 4915265;
-        public static final int SLAYERMASTER8_MODEL = 4915266;
-        public static final int SLAYERMASTER8_TEXT = 4915267;
-        public static final int SLAYERMASTER9 = 4915268;
-        public static final int SLAYERMASTER9_MODEL = 4915269;
-        public static final int SLAYERMASTER9_TEXT = 4915270;
-        public static final int SCROLLBAR = 4915271;
+        public static final int SCROLLBAR = 4915205;
     }
 
     public static final class Grouping {
@@ -8540,50 +8474,14 @@ public final class InterfaceID
         public static final int TOOLTIP = 15400975;
     }
 
-    public static final class HosidiusStripRewards {
-        private HosidiusStripRewards() {}
+    public static final class SlayerTaskChoice {
+        private SlayerTaskChoice() {}
 
-        public static final int UNIVERSE = 15466496;
-        public static final int FRAME = 15466497;
-        public static final int COM_2 = 15466498;
-        public static final int POINTS = 15466499;
-        public static final int COM_4 = 15466500;
-        public static final int COM_5 = 15466501;
-        public static final int CAN_TEXT = 15466502;
-        public static final int ITEMS = 15466503;
-        public static final int ITEMPRICES = 15466504;
-        public static final int CAN = 15466505;
-        public static final int SEEDBOX = 15466506;
-        public static final int SEEDBOX_TITLE = 15466507;
-        public static final int SEEDBOX_COST = 15466508;
-        public static final int SEEDBOX_GFX = 15466509;
-        public static final int HERBSACK = 15466510;
-        public static final int AUTOWEED = 15466511;
-        public static final int AUTOWEED_TITLE = 15466512;
-        public static final int AUTOWEED_COST = 15466513;
-        public static final int AUTOWEED_GFX = 15466514;
-        public static final int AUTOWEED_INDICATOR = 15466515;
-        public static final int OUTFIT = 15466516;
-        public static final int OUTFIT_TITLE = 15466517;
-        public static final int HAT = 15466518;
-        public static final int HAT_TITLE = 15466519;
-        public static final int HAT_COST = 15466520;
-        public static final int HAT_GFX = 15466521;
-        public static final int TORSO = 15466522;
-        public static final int TORSO_TITLE = 15466523;
-        public static final int TORSO_COST = 15466524;
-        public static final int TORSO_GFX = 15466525;
-        public static final int LEGS = 15466526;
-        public static final int LEG_TITLE = 15466527;
-        public static final int LEG_COST = 15466528;
-        public static final int LEG_GFX = 15466529;
-        public static final int FEET = 15466530;
-        public static final int FEET_TITLE = 15466531;
-        public static final int FEET_COST = 15466532;
-        public static final int FEET_GFX = 15466533;
-        public static final int HERBSACK_TITLE = 15466534;
-        public static final int HERBSACK_COST = 15466535;
-        public static final int HERBSACK_GFX = 15466536;
+        public static final int INFINITY_ = 15466496;
+        public static final int UNIVERSE = 15466497;
+        public static final int FRAME = 15466498;
+        public static final int CONTENT = 15466499;
+        public static final int CLOSE_BUTTON = 15466500;
     }
 
     public static final class GePricelist {
@@ -15622,30 +15520,16 @@ public final class InterfaceID
         public static final int BUY_PRICES = 27918361;
         public static final int BUY_SCROLLBAR = 27918362;
         public static final int TASKS = 27918363;
-        public static final int REWARDS = 27918364;
-        public static final int VIEW_TASKS = 27918365;
-        public static final int TASKS_STORED_CONTAINER = 27918366;
+        public static final int TASKS_CONTENTS_UPPER = 27918364;
+        public static final int REWARDS = 27918365;
+        public static final int TASKS_CONTENT_LOWER = 27918366;
         public static final int COM_31 = 27918367;
-        public static final int TASKS_INTRODUCTION = 27918368;
-        public static final int TASKS_CURRENT_CONTAINER = 27918369;
-        public static final int COM_34 = 27918370;
-        public static final int COM_35 = 27918371;
-        public static final int COM_36 = 27918372;
-        public static final int COM_37 = 27918373;
-        public static final int TASKS_CURRENT = 27918374;
-        public static final int COM_39 = 27918375;
-        public static final int TASKS_SLOT_1 = 27918376;
-        public static final int TASKS_SLOT_2 = 27918377;
-        public static final int TASKS_SLOT_3 = 27918378;
-        public static final int TASKS_SLOT_4 = 27918379;
-        public static final int TASKS_SLOT_5 = 27918380;
-        public static final int TASKS_SLOT_6 = 27918381;
-        public static final int TASKS_SLOT_DIARY = 27918382;
-        public static final int COM_47 = 27918383;
-        public static final int COM_48 = 27918384;
-        public static final int TASKS_STORED = 27918385;
-        public static final int REWARDS_CONTENTS = 27918386;
-        public static final int REWARDS_SCROLLBAR = 27918387;
+        public static final int COM_32 = 27918368;
+        public static final int TASKS_CONTENTS_SCROLLABLE = 27918369;
+        public static final int TASKS_SCROLLBAR = 27918370;
+        public static final int VIEW_TASKS = 27918371;
+        public static final int REWARDS_CONTENTS = 27918372;
+        public static final int REWARDS_SCROLLBAR = 27918373;
     }
 
     public static final class ScrollGodfather {
@@ -20963,12 +20847,16 @@ public final class InterfaceID
         public static final int TITLE_SPIDERCAVE = 39125064;
         public static final int TELEPORTSCROLL_COLOSSAL_WYRM = 39125065;
         public static final int TELEPORTSCROLL_CHASMOFFIRE = 39125066;
-        public static final int GFX_COLOSSAL_WYRM = 39125067;
-        public static final int TEXT_COLOSSAL_WYRM = 39125068;
-        public static final int TITLE_COLOSSAL_WYRM = 39125069;
-        public static final int GFX_CHASMOFFIRE = 39125070;
-        public static final int TEXT_CHASMOFFIRE = 39125071;
-        public static final int TITLE_CHASMOFFIRE = 39125072;
+        public static final int TELEPORTSCROLL_ARDEAGLAIS = 39125067;
+        public static final int GFX_COLOSSAL_WYRM = 39125068;
+        public static final int TEXT_COLOSSAL_WYRM = 39125069;
+        public static final int TITLE_COLOSSAL_WYRM = 39125070;
+        public static final int GFX_CHASMOFFIRE = 39125071;
+        public static final int TEXT_CHASMOFFIRE = 39125072;
+        public static final int TITLE_CHASMOFFIRE = 39125073;
+        public static final int GFX_ARDEAGLAIS = 39125074;
+        public static final int TEXT_ARDEAGLAIS = 39125075;
+        public static final int TITLE_ARDEAGLAIS = 39125076;
     }
 
     public static final class LovakengjBlastMiningHud {

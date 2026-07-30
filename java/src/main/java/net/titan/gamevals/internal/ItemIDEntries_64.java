@@ -507,6 +507,21 @@ final class ItemIDEntries_64 {
             new GamevalEntry(33832, "PLACEHOLDER_CERT_ALUFT_COCTAIL_GLASS_EMPTY_DUMMY", "placeholder_cert_aluft_coctail_glass_empty_dummy", "objtypes"),
             new GamevalEntry(33833, "LETVEK_IN_A_BUCKET", "Letvek in a bucket", "objtypes"),
             new GamevalEntry(33834, "PLACEHOLDER_LETVEK_IN_A_BUCKET", "placeholder_letvek_in_a_bucket", "objtypes"),
+            new GamevalEntry(33835, "HG_GOAT_PIT_HOOF", "Wyrmscraig goat hoof", "objtypes"),
+            new GamevalEntry(33836, "WYRMSCRAIG_NOBLE_ROBETOP01", "Noble robe top", "objtypes"),
+            new GamevalEntry(33837, "CERT_WYRMSCRAIG_NOBLE_ROBETOP01", "cert_wyrmscraig_noble_robetop01", "objtypes"),
+            new GamevalEntry(33838, "PLACEHOLDER_WYRMSCRAIG_NOBLE_ROBETOP01", "placeholder_wyrmscraig_noble_robetop01", "objtypes"),
+            new GamevalEntry(33839, "WYRMSCRAIG_NOBLE_ROBETOP02", "Noble robe top", "objtypes"),
+            new GamevalEntry(33840, "CERT_WYRMSCRAIG_NOBLE_ROBETOP02", "cert_wyrmscraig_noble_robetop02", "objtypes"),
+            new GamevalEntry(33841, "PLACEHOLDER_WYRMSCRAIG_NOBLE_ROBETOP02", "placeholder_wyrmscraig_noble_robetop02", "objtypes"),
+            new GamevalEntry(33842, "WYRMSCRAIG_NOBLE_ROBETOP03", "Noble robe top", "objtypes"),
+            new GamevalEntry(33843, "CERT_WYRMSCRAIG_NOBLE_ROBETOP03", "cert_wyrmscraig_noble_robetop03", "objtypes"),
+            new GamevalEntry(33844, "PLACEHOLDER_WYRMSCRAIG_NOBLE_ROBETOP03", "placeholder_wyrmscraig_noble_robetop03", "objtypes"),
+            new GamevalEntry(33845, "WYRMSCRAIG_NOBLE_ROBETOP04", "Noble robe top", "objtypes"),
+            new GamevalEntry(33846, "CERT_WYRMSCRAIG_NOBLE_ROBETOP04", "cert_wyrmscraig_noble_robetop04", "objtypes"),
+            new GamevalEntry(33847, "PLACEHOLDER_WYRMSCRAIG_NOBLE_ROBETOP04", "placeholder_wyrmscraig_noble_robetop04", "objtypes"),
+            new GamevalEntry(33848, "WYRMSCRAIG_NOBLE_ROBETOP05", "Noble robe top", "objtypes"),
+            new GamevalEntry(33849, "CERT_WYRMSCRAIG_NOBLE_ROBETOP05", "cert_wyrmscraig_noble_robetop05", "objtypes"),
         };
     }
 

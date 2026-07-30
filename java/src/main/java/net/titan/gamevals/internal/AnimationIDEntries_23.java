@@ -10,6 +10,15 @@ final class AnimationIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11787, "COA_ARRAV_CATCHAXE_BACK", "coa_arrav_catchaxe_back", "seqtypes"),
+            new GamevalEntry(11788, "COA_TUMEKEN_FIRE", "coa_tumeken_fire", "seqtypes"),
+            new GamevalEntry(11789, "COA_GRAPPLE_START", "coa_grapple_start", "seqtypes"),
+            new GamevalEntry(11790, "COA_GRAPPLE_CROSS", "coa_grapple_cross", "seqtypes"),
+            new GamevalEntry(11791, "COA_GRAPPLE_DROP", "coa_grapple_drop", "seqtypes"),
+            new GamevalEntry(11792, "COA_ELIAS_BIND_01", "coa_elias_bind_01", "seqtypes"),
+            new GamevalEntry(11793, "COA_ELIAS_BIND_SPOTANIM_01", "coa_elias_bind_spotanim_01", "seqtypes"),
+            new GamevalEntry(11794, "COA_ARRAV_AXE_PROJANIM_01", "coa_arrav_axe_projanim_01", "seqtypes"),
+            new GamevalEntry(11795, "COA_ARRAV_AXE_PROJANIM_02", "coa_arrav_axe_projanim_02", "seqtypes"),
             new GamevalEntry(11796, "COA_ARRAV_AXE_SPOTANIM_01", "coa_arrav_axe_spotanim_01", "seqtypes"),
             new GamevalEntry(11797, "COA_ZOMBIE_SPAWN", "coa_zombie_spawn", "seqtypes"),
             new GamevalEntry(11798, "SHARATHTEERK_ATTACK_MAGIC_02", "sharathteerk_attack_magic_02", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_23 {
             new GamevalEntry(12296, "STATUE_ICOSAHEDRON01_DESPAWN", "statue_icosahedron01_despawn", "seqtypes"),
             new GamevalEntry(12297, "VMQ4_ARKAN_BLADE_SPECIAL", "vmq4_arkan_blade_special", "seqtypes"),
             new GamevalEntry(12298, "VMQ4_ARKAN_BLADE_SPECIAL_SPOTANIM", "vmq4_arkan_blade_special_spotanim", "seqtypes"),
-            new GamevalEntry(12299, "VMQ4_ARKAN_BLADE_SPECIAL_SPOTANIM_F", "vmq4_arkan_blade_special_spotanim_f", "seqtypes"),
-            new GamevalEntry(12300, "VMQ4_SLAP_ANIM", "vmq4_slap_anim", "seqtypes"),
-            new GamevalEntry(12301, "VMQ4_CHAMBER_GUARD_CHARGE", "vmq4_chamber_guard_charge", "seqtypes"),
-            new GamevalEntry(12302, "VMQ4_CHAMBER_GUARD_SMOKE", "vmq4_chamber_guard_smoke", "seqtypes"),
-            new GamevalEntry(12303, "VMQ4_ZYANYI_SITTING_IDLE", "vmq4_zyanyi_sitting_idle", "seqtypes"),
-            new GamevalEntry(12304, "VMQ4_IKNIU_IDLE", "vmq4_ikniu_idle", "seqtypes"),
-            new GamevalEntry(12305, "VMQ4_HUMAN_CAIQUE_PET", "vmq4_human_caique_pet", "seqtypes"),
-            new GamevalEntry(12306, "VMQ4_CAIQUE_PECK", "vmq4_caique_peck", "seqtypes"),
-            new GamevalEntry(12307, "SCRAMBLED_EGG_IDLE", "scrambled_egg_idle", "seqtypes"),
         };
     }
 

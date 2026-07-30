@@ -10,6 +10,7 @@ final class ObjectIDEntries_38 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(19515, "HUNTING_TRAIL7_5L", "hunting_trail7_5l", "loctypes"),
             new GamevalEntry(19516, "HUNTING_TRAIL1_2R", "hunting_trail1_2r", "loctypes"),
             new GamevalEntry(19517, "HUNTING_TRAIL7_6L", "hunting_trail7_6l", "loctypes"),
             new GamevalEntry(19518, "HUNTING_TRAIL1_3", "hunting_trail1_3", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_38 {
             new GamevalEntry(20024, "QIP_WATCHTOWER_PILLAR_GLOWING_CRYSTAL_CYAN", "Pillar", "loctypes"),
             new GamevalEntry(20025, "QIP_WATCHTOWER_PILLAR_NOCRYSTAL_MULTI_CYAN", "N6N7N8", "loctypes"),
             new GamevalEntry(20026, "QIP_WATCHTOWER_PILLAR_NOCRYSTAL_YELLOW", "Pillar", "loctypes"),
-            new GamevalEntry(20027, "QIP_WATCHTOWER_PILLAR_CRYSTAL_YELLOW", "Pillar", "loctypes"),
         };
     }
 

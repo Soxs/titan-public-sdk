@@ -10,6 +10,8 @@ final class VarbitIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9562, "XMAS23_ACHIEVEMENT_URGE_TO_JUMP", "xmas23_achievement_urge_to_jump", "varbittypes"),
+            new GamevalEntry(9563, "XMAS23_ACHIEVEMENT_SEE_MYSELF_OUT", "xmas23_achievement_see_myself_out", "varbittypes"),
             new GamevalEntry(9564, "XMAS23_ACHIEVEMENT_GIVE_IT_A_TWIRL", "xmas23_achievement_give_it_a_twirl", "varbittypes"),
             new GamevalEntry(9565, "XMAS23_ACHIEVEMENT_GETTING_DIZZY", "xmas23_achievement_getting_dizzy", "varbittypes"),
             new GamevalEntry(9567, "PILOT_MULTINPC_VAR", "pilot_multinpc_var", "varbittypes"),
@@ -317,7 +319,6 @@ final class VarbitIDEntries_11 {
             new GamevalEntry(10032, "LEAGUE_TYPE", "league_type", "varbittypes"),
             new GamevalEntry(10033, "LEAGUE_TASK_FILTER_TIER", "league_task_filter_tier", "varbittypes"),
             new GamevalEntry(10034, "LEAGUE_TASK_FILTER_COMPLETED", "league_task_filter_completed", "varbittypes"),
-            new GamevalEntry(10035, "LEAGUE_TASK_SELECT_WARNING", "league_task_select_warning", "varbittypes"),
             new GamevalEntry(10036, "LEAGUE_MAIN_PROFILE_INTRO", "league_main_profile_intro", "varbittypes"),
             new GamevalEntry(10037, "LEAGUE_TUTORIAL_COMPLETED", "league_tutorial_completed", "varbittypes"),
             new GamevalEntry(10038, "LEAGUE_GRUBBY_CHEST_COUNTER", "league_grubby_chest_counter", "varbittypes"),
@@ -521,7 +522,6 @@ final class VarbitIDEntries_11 {
             new GamevalEntry(10353, "MYQ5_KROY_TABLE_1", "myq5_kroy_table_1", "varbittypes"),
             new GamevalEntry(10354, "MYQ5_KROY_TABLE_2", "myq5_kroy_table_2", "varbittypes"),
             new GamevalEntry(10355, "MYQ5_SAFALAAN_HIDEOUT", "myq5_safalaan_hideout", "varbittypes"),
-            new GamevalEntry(10356, "MYQ5_KAEL_HIDEOUT", "myq5_kael_hideout", "varbittypes"),
         };
     }
 

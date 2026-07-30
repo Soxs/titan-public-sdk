@@ -207,7 +207,7 @@ final class ItemIDEntries_58 {
             new GamevalEntry(30454, "PLACEHOLDER_LEAGUE_5_HOME_TELEPORT_SCROLL", "placeholder_league_5_home_teleport_scroll", "objtypes"),
             new GamevalEntry(30455, "LEAGUE_5_DEATH_SCROLL", "Raging echoes death scroll", "objtypes"),
             new GamevalEntry(30456, "PLACEHOLDER_LEAGUE_5_DEATH_SCROLL", "placeholder_league_5_death_scroll", "objtypes"),
-            new GamevalEntry(30457, "LEAGUE_5_CONTACT_SCROLL", "Raging echoes npc contact scroll", "objtypes"),
+            new GamevalEntry(30457, "LEAGUE_5_CONTACT_SCROLL", "Raging echoes astral contact scroll", "objtypes"),
             new GamevalEntry(30458, "PLACEHOLDER_LEAGUE_5_CONTACT_SCROLL", "placeholder_league_5_contact_scroll", "objtypes"),
             new GamevalEntry(30459, "LEAGUE_5_NEXUS_SCROLL", "Raging echoes nexus scroll", "objtypes"),
             new GamevalEntry(30460, "PLACEHOLDER_LEAGUE_5_NEXUS_SCROLL", "placeholder_league_5_nexus_scroll", "objtypes"),

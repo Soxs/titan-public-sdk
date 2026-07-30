@@ -10,6 +10,15 @@ final class AnimationIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8711, "VYRELORD_HEAD_VAMP_SPELL", "vyrelord_head_vamp_spell", "seqtypes"),
+            new GamevalEntry(8712, "VYRELORD_HUMAN_TO_VAMPIRE_FADE", "vyrelord_human_to_vampire_fade", "seqtypes"),
+            new GamevalEntry(8713, "VYRELORD_JUVENILE_JUVINATE_DUST_START", "vyrelord_juvenile_juvinate_dust_start", "seqtypes"),
+            new GamevalEntry(8714, "VYRELORD_JUVENILE_JUVINATE_HOLD_CAPTURE", "vyrelord_juvenile_juvinate_hold_capture", "seqtypes"),
+            new GamevalEntry(8715, "VYRELORD_JUVINATE_TITHE_PUCH_READY", "vyrelord_juvinate_tithe_puch_ready", "seqtypes"),
+            new GamevalEntry(8716, "VYRELORD_MAGIC", "vyrelord_magic", "seqtypes"),
+            new GamevalEntry(8717, "VYRELORD_NEW_GROUND_ATTACK", "vyrelord_new_ground_attack", "seqtypes"),
+            new GamevalEntry(8718, "VYRELORD_ORB_TO_HUMAN_FADE", "vyrelord_orb_to_human_fade", "seqtypes"),
+            new GamevalEntry(8719, "VYRELORD_VANSTROM_KLAUS_DEFEND", "vyrelord_vanstrom_klaus_defend", "seqtypes"),
             new GamevalEntry(8720, "VYRELORD_VANSTROM_KLAUSE_DOUBLE_PUNCH_KICK", "vyrelord_vanstrom_klause_double_punch_kick", "seqtypes"),
             new GamevalEntry(8721, "VYRELORD_VANSTROM_KLAUSE_DRAGON", "vyrelord_vanstrom_klause_dragon", "seqtypes"),
             new GamevalEntry(8722, "VYRELORD_SUMMON", "vyrelord_summon", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_17 {
             new GamevalEntry(9220, "LEAGUE03_HOME_TELEPORT_SPOTANIM_6", "league03_home_teleport_spotanim_6", "seqtypes"),
             new GamevalEntry(9221, "LEAGUES03_CUTSCENE01_FADEIN01", "leagues03_cutscene01_fadein01", "seqtypes"),
             new GamevalEntry(9222, "LEAGUES03_CUTSCENE01_FADEOUT01", "leagues03_cutscene01_fadeout01", "seqtypes"),
-            new GamevalEntry(9223, "KRONIS_CHAINS_IDLE", "kronis_chains_idle", "seqtypes"),
-            new GamevalEntry(9224, "KRONIS_CHAINS_IDLE_TYPEQ", "kronis_chains_idle_typeq", "seqtypes"),
-            new GamevalEntry(9225, "KRONIS_CHAINS_UNLOCK", "kronis_chains_unlock", "seqtypes"),
-            new GamevalEntry(9226, "KRONIS_CHAINS_UNLOCK_TYPEQ", "kronis_chains_unlock_typeq", "seqtypes"),
-            new GamevalEntry(9227, "LEAGUE3_FOG_IDLE", "league3_fog_idle", "seqtypes"),
-            new GamevalEntry(9228, "LEAGUE3_ROCKS01_IDLE", "league3_rocks01_idle", "seqtypes"),
-            new GamevalEntry(9229, "CANNON_LEAGUE03_ACTIVE", "cannon_league03_active", "seqtypes"),
-            new GamevalEntry(9230, "CANNON_LEAGUE03_FIRE_N", "cannon_league03_fire_n", "seqtypes"),
-            new GamevalEntry(9231, "CANNON_LEAGUE03_FIRE_NE", "cannon_league03_fire_ne", "seqtypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_56 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(28737, "MM2_CAVE_SECRET_BUNKER_PIT_LEV0", "mm2_cave_secret_bunker_pit_lev0", "loctypes"),
             new GamevalEntry(28738, "MM2_CAVE_SECRET_BUNKER_LEV0_HOLD", "mm2_cave_secret_bunker_lev0_hold", "loctypes"),
             new GamevalEntry(28739, "MM2_CAVE_SECRET_BUNKER_TOP", "mm2_cave_secret_bunker_top", "loctypes"),
             new GamevalEntry(28740, "MM2_CAVE_SECRET_BUNKER_TOP5", "mm2_cave_secret_bunker_top5", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_56 {
             new GamevalEntry(29246, "POH_THEME_ZEN_OUTER_CORNER", "Zen garden", "loctypes"),
             new GamevalEntry(29247, "POH_THEME_ZEN_HERO", "Zen theme", "loctypes"),
             new GamevalEntry(29248, "POH_THEME_ZANARIS_PATH", "Otherworldly garden", "loctypes"),
-            new GamevalEntry(29249, "POH_THEME_ZANARIS_PATH_CORNER", "Otherworldly garden", "loctypes"),
         };
     }
 

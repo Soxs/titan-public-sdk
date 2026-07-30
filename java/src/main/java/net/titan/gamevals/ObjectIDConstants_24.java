@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_24 {
+    int HUNDRED_GOBLIN1_BASE = 12332;
     int HUNDRED_GOBLIN2_MULTI = 12333;
     int HUNDRED_GOBLIN2_BASE = 12334;
     int HUNDRED_GOBLIN_CHAIR = 12335;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_24 {
     int BURGH_STONE_CRUMBLY_LOW_RIGHT = 12841;
     int BURGH_STONE_CRUMBLY_LOW2_LEFT = 12842;
     int BURGH_STONE_WINDOW = 12843;
-    int BURGH_STONE_PILE_OF_BICKS = 12844;
 }

@@ -10,6 +10,15 @@ final class AnimationIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9223, "KRONIS_CHAINS_IDLE", "kronis_chains_idle", "seqtypes"),
+            new GamevalEntry(9224, "KRONIS_CHAINS_IDLE_TYPEQ", "kronis_chains_idle_typeq", "seqtypes"),
+            new GamevalEntry(9225, "KRONIS_CHAINS_UNLOCK", "kronis_chains_unlock", "seqtypes"),
+            new GamevalEntry(9226, "KRONIS_CHAINS_UNLOCK_TYPEQ", "kronis_chains_unlock_typeq", "seqtypes"),
+            new GamevalEntry(9227, "LEAGUE3_FOG_IDLE", "league3_fog_idle", "seqtypes"),
+            new GamevalEntry(9228, "LEAGUE3_ROCKS01_IDLE", "league3_rocks01_idle", "seqtypes"),
+            new GamevalEntry(9229, "CANNON_LEAGUE03_ACTIVE", "cannon_league03_active", "seqtypes"),
+            new GamevalEntry(9230, "CANNON_LEAGUE03_FIRE_N", "cannon_league03_fire_n", "seqtypes"),
+            new GamevalEntry(9231, "CANNON_LEAGUE03_FIRE_NE", "cannon_league03_fire_ne", "seqtypes"),
             new GamevalEntry(9232, "CANNON_LEAGUE03_FIRE_E", "cannon_league03_fire_e", "seqtypes"),
             new GamevalEntry(9233, "CANNON_LEAGUE03_FIRE_SE", "cannon_league03_fire_se", "seqtypes"),
             new GamevalEntry(9234, "CANNON_LEAGUE03_FIRE_S", "cannon_league03_fire_s", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_18 {
             new GamevalEntry(9733, "FX_OBELISK_WARDENS02_SWEEP", "fx_obelisk_wardens02_sweep", "seqtypes"),
             new GamevalEntry(9734, "FX_OBELISK_WARDENS02_DEATH", "fx_obelisk_wardens02_death", "seqtypes"),
             new GamevalEntry(9735, "FX_WARDENS_ENERGY_DEATH01", "fx_wardens_energy_death01", "seqtypes"),
-            new GamevalEntry(9736, "FX_WARDENS_ENERGY_GROUNDED01", "fx_wardens_energy_grounded01", "seqtypes"),
-            new GamevalEntry(9737, "NPC_MANDRILL_WALK01", "npc_mandrill_walk01", "seqtypes"),
-            new GamevalEntry(9738, "NPC_MANDRILL_WALK01_BACKWARDS", "npc_mandrill_walk01_backwards", "seqtypes"),
-            new GamevalEntry(9739, "NPC_MANDRILL_WALK02", "npc_mandrill_walk02", "seqtypes"),
-            new GamevalEntry(9740, "NPC_MANDRILL_WALK02_BACKWARDS", "npc_mandrill_walk02_backwards", "seqtypes"),
-            new GamevalEntry(9741, "NPC_MANDRILL_IDLE", "npc_mandrill_idle", "seqtypes"),
-            new GamevalEntry(9742, "NPC_MANDRILL_ATTACK_MELEE", "npc_mandrill_attack_melee", "seqtypes"),
-            new GamevalEntry(9743, "NPC_BABA_ATTACK_MELEE", "npc_baba_attack_melee", "seqtypes"),
-            new GamevalEntry(9744, "NPC_MANDRILL_ATTACK_RANGED_01", "npc_mandrill_attack_ranged_01", "seqtypes"),
         };
     }
 

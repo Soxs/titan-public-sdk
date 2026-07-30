@@ -139,6 +139,8 @@ final class DBTableIDEntries_0 {
             new GamevalEntry(127, "RESTRICT_CONTENT_OBJ", "restrict_content_obj", "tabletypes"),
             new GamevalEntry(128, "MUSIC_AREA_GROUP", "music_area_group", "tabletypes"),
             new GamevalEntry(129, "AMENITY", "amenity", "tabletypes"),
+            new GamevalEntry(130, "NPC_CONTACT", "npc_contact", "tabletypes"),
+            new GamevalEntry(131, "SLAYER_MODIFIERS", "slayer_modifiers", "tabletypes"),
             new GamevalEntry(142, "FLETCHING_BLOWPIPE_CRAFTING", "fletching_blowpipe_crafting", "tabletypes"),
             new GamevalEntry(143, "SAILING_BT_TRIAL_CORE", "sailing_bt_trial_core", "tabletypes"),
             new GamevalEntry(144, "SAILING_BT_GWENITH_GLIDE_CRYSTAL_DATA", "sailing_bt_gwenith_glide_crystal_data", "tabletypes"),

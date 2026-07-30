@@ -35,6 +35,7 @@ final class ObjectIDEntries_21 {
             new GamevalEntry(10801, "SHAYZIEN_SILK_STALL", "Tailor's materials", "loctypes"),
             new GamevalEntry(10802, "CW_BANK_BOXES_1", "Boxes", "loctypes"),
             new GamevalEntry(10803, "CW_BANK_BOXES_2", "Boxes", "loctypes"),
+            new GamevalEntry(10804, "WALLKIT_WOODEN01_WINDOW01_UPPER", "wallkit_wooden01_window01_upper", "loctypes"),
             new GamevalEntry(10805, "HANDSAND_DESK", "Sandy's Desk", "loctypes"),
             new GamevalEntry(10806, "HANDSAND_COFFEE_MULTILOC", "handsand_coffee_multiloc", "loctypes"),
             new GamevalEntry(10807, "HANDSAND_COFFEE", "Sandy's Coffee Mug", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_21 {
             new GamevalEntry(11305, "FEVER_BARREL", "Barrel", "loctypes"),
             new GamevalEntry(11306, "FEVER_STEERINGWHEEL", "Ship's wheel", "loctypes"),
             new GamevalEntry(11307, "FEVER_ANCHOR", "Anchor", "loctypes"),
-            new GamevalEntry(11308, "FEVER_SHIP_LADDER", "Ship's ladder", "loctypes"),
         };
     }
 

@@ -10,6 +10,7 @@ final class ObjectIDEntries_28 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14394, "WILDERNESS_ROCKS_FLOOR_HARD_05", "wilderness_rocks_floor_hard_05", "loctypes"),
             new GamevalEntry(14395, "DWARF_KELDAGRIM_WOODEN_BOXES_NO_OPS", "Boxes", "loctypes"),
             new GamevalEntry(14396, "FAI_VARROCK_SHANTY_RUG_CORNER", "fai_varrock_shanty_rug_corner", "loctypes"),
             new GamevalEntry(14397, "FAI_VARROCK_SHANTY_RUG_MIDDLE", "fai_varrock_shanty_rug_middle", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_28 {
             new GamevalEntry(14903, "ROOFTOPS_FALADOR_GAP_1", "Gap", "loctypes"),
             new GamevalEntry(14904, "ROOFTOPS_FALADOR_GAP_2", "Gap", "loctypes"),
             new GamevalEntry(14905, "ROOFTOPS_FALADOR_TIGHTROPE_2", "Tightrope", "loctypes"),
-            new GamevalEntry(14906, "ROOFTOPS_FALADOR_TIGHTROPE_FORDIAGONAL", "rooftops_falador_tightrope_fordiagonal", "loctypes"),
         };
     }
 

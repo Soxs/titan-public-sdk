@@ -10,6 +10,12 @@ final class ObjectIDEntries_109 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(55875, "LEAGUE_RAGINGECHOES_BLOCKING", "league_ragingechoes_blocking", "loctypes"),
+            new GamevalEntry(55876, "LEAGUE_RAGINGECHOES_ROOTS", "league_ragingechoes_roots", "loctypes"),
+            new GamevalEntry(55877, "LEAGUE_RAGINGECHOES_ROOTS_CORNER", "league_ragingechoes_roots_corner", "loctypes"),
+            new GamevalEntry(55878, "LEAGUE_RAGINGECHOES_BLOCK_2X2", "Rock", "loctypes"),
+            new GamevalEntry(55879, "LEAGUE_RAGINGECHOES_BLOCK_2X2_B", "Rock", "loctypes"),
+            new GamevalEntry(55880, "LEAGUE_RAGINGECHOES_BLOCK_2X1", "Rock", "loctypes"),
             new GamevalEntry(55881, "LEAGUE_RAGINGECHOES_BLOCK_1X1", "Rock", "loctypes"),
             new GamevalEntry(55882, "LEAGUE_RAGINGECHOES_GATEWAY_MISTHALIN_W", "Archway", "loctypes"),
             new GamevalEntry(55883, "LEAGUE_RAGINGECHOES_GATEWAY_MISTHALIN_W_2", "Archway", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_109 {
             new GamevalEntry(56384, "SHAYZIEN_FLAG_AGILITY01_OFFSET2", "Banner", "loctypes"),
             new GamevalEntry(56385, "SHAYZIEN_FLAG_ARROWS01_OFFSET", "Banner", "loctypes"),
             new GamevalEntry(56386, "SHAYZIEN_FLAG_ARROWS01_OFFSET2", "Banner", "loctypes"),
-            new GamevalEntry(56387, "SHAYZIEN_FLAG_ARROWS02_OFFSET", "Banner", "loctypes"),
-            new GamevalEntry(56388, "SHAYZIEN_FLAG_ARROWS02_OFFSET2", "Banner", "loctypes"),
-            new GamevalEntry(56389, "COF_OVER_FALLOFF_BOTTOM_FILLER", "cof_over_falloff_bottom_filler", "loctypes"),
-            new GamevalEntry(56390, "BED_ALDARIN01_BUNKBED01_SMALL", "Bunk bed", "loctypes"),
-            new GamevalEntry(56391, "BED_ALDARIN01_BUNKBED01_SMALL2", "Bunk bed", "loctypes"),
-            new GamevalEntry(56392, "MAGIC_HUNTER_EXIT", "?'2 Enter", "loctypes"),
         };
     }
 

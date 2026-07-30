@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_64 {
+    int TOB_DUNGEON_WALKWAY_FLOOR_WIDE_A = 32834;
     int TOB_DUNGEON_WALKWAY_FLOOR_WIDE_B = 32835;
     int TOB_DUNGEON_WALKWAY_FLOOR_WIDE_C = 32836;
     int TOB_DUNGEON_WALKWAY_FLOOR_WIDE_D = 32837;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_64 {
     int SLAYER_LARRAN_CHEST_SMALL_CLOSED = 33343;
     int KHARID_POSHWALL_TOPLESS = 33344;
     int KHARID_POSHWALL_FALLENTOP = 33345;
-    int POH_TELENEXUS_1 = 33346;
 }

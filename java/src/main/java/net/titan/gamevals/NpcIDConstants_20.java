@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_20 {
+    int GRAVESTONE_ANGEL_130 = 10242;
     int GRAVESTONE_ANGEL_131 = 10243;
     int GRAVESTONE_ANGEL_132 = 10244;
     int GRAVESTONE_ANGEL_133 = 10245;
@@ -512,5 +513,4 @@ public interface NpcIDConstants_20 {
     int CLAN_HALL_GEM_RED = 10751;
     int CLAN_HALL_GEM_GREEN = 10752;
     int CLAN_HALL_GEM_YELLOW = 10753;
-    int CLAN_HALL_GEM_LIGHTBLUE = 10754;
 }

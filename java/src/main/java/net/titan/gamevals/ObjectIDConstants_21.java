@@ -26,6 +26,7 @@ public interface ObjectIDConstants_21 {
     int SHAYZIEN_SILK_STALL = 10801;
     int CW_BANK_BOXES_1 = 10802;
     int CW_BANK_BOXES_2 = 10803;
+    int WALLKIT_WOODEN01_WINDOW01_UPPER = 10804;
     int HANDSAND_DESK = 10805;
     int HANDSAND_COFFEE_MULTILOC = 10806;
     int HANDSAND_COFFEE = 10807;
@@ -512,5 +513,4 @@ public interface ObjectIDConstants_21 {
     int FEVER_BARREL = 11305;
     int FEVER_STEERINGWHEEL = 11306;
     int FEVER_ANCHOR = 11307;
-    int FEVER_SHIP_LADDER = 11308;
 }

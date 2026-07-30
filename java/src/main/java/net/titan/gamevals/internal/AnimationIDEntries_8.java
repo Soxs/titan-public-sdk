@@ -10,6 +10,8 @@ final class AnimationIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4098, "CHAIR_EAT_DININGCHAIRS_5", "chair_eat_diningchairs_5", "seqtypes"),
+            new GamevalEntry(4099, "CHAIR_SIT_READY_DININGCHAIRS_6", "chair_sit_ready_diningchairs_6", "seqtypes"),
             new GamevalEntry(4100, "CHAIR_EAT_DININGCHAIRS_6", "chair_eat_diningchairs_6", "seqtypes"),
             new GamevalEntry(4101, "CHAIR_SIT_READY_DININGCHAIRS_7", "chair_sit_ready_diningchairs_7", "seqtypes"),
             new GamevalEntry(4102, "CHAIR_EAT_DININGCHAIRS_7", "chair_eat_diningchairs_7", "seqtypes"),
@@ -494,6 +496,10 @@ final class AnimationIDEntries_8 {
             new GamevalEntry(4584, "EYEGLO_HAZELMERE_MIND_MELD_SPOT_ANIM", "eyeglo_hazelmere_mind_meld_spot_anim", "seqtypes"),
             new GamevalEntry(4585, "EYEGLO_HAZELMERE_MIND_MELD", "eyeglo_hazelmere_mind_meld", "seqtypes"),
             new GamevalEntry(4586, "EYEGLO_MIND_MELD_PLAYER", "eyeglo_mind_meld_player", "seqtypes"),
+            new GamevalEntry(4587, "VFX_MAD_ANGEL_SPAWN", "vfx_mad_angel_spawn", "seqtypes"),
+            new GamevalEntry(4588, "NPC_MAD_ANGEL_IDLE", "npc_mad_angel_idle", "seqtypes"),
+            new GamevalEntry(4589, "NPC_MAD_ANGEL_ATTACK_MELEE", "npc_mad_angel_attack_melee", "seqtypes"),
+            new GamevalEntry(4590, "NPC_MAD_ANGEL_ATTACK_SMITE", "npc_mad_angel_attack_smite", "seqtypes"),
             new GamevalEntry(4591, "XBOWS_HUMAN_READY", "xbows_human_ready", "seqtypes"),
             new GamevalEntry(4592, "QIP_DIGISITE_ROCKPICK_ANIM", "qip_digisite_rockpick_anim", "seqtypes"),
             new GamevalEntry(4593, "QIP_DIGSITE_PANNING_01", "qip_digsite_panning_01", "seqtypes"),
@@ -516,12 +522,6 @@ final class AnimationIDEntries_8 {
             new GamevalEntry(4610, "QIP_DS_CRYSTALBALL_RETURN", "qip_ds_crystalball_return", "seqtypes"),
             new GamevalEntry(4611, "QIP_DS_ATTAINING_CRYSTALBALL_SPOTANIM", "qip_ds_attaining_crystalball_spotanim", "seqtypes"),
             new GamevalEntry(4612, "QIP_DS_RETURNING_CRYSTALBALL_SPOTANIM", "qip_ds_returning_crystalball_spotanim", "seqtypes"),
-            new GamevalEntry(4613, "QIP_DS_READING_CRYSTALBALL_SPOTANIM", "qip_ds_reading_crystalball_spotanim", "seqtypes"),
-            new GamevalEntry(4614, "QIP_DS_ATTAINING_CRYSTALBALL", "qip_ds_attaining_crystalball", "seqtypes"),
-            new GamevalEntry(4615, "QIP_DS_RETURNING_CRYSTALBALL", "qip_ds_returning_crystalball", "seqtypes"),
-            new GamevalEntry(4616, "QIP_DS_READING_CRYSTALBALL", "qip_ds_reading_crystalball", "seqtypes"),
-            new GamevalEntry(4617, "QIP_DS_DARK_WIZARD_CHANTING", "qip_ds_dark_wizard_chanting", "seqtypes"),
-            new GamevalEntry(4618, "QIP_DS_DELRITH_STRUCK_DOWN", "qip_ds_delrith_struck_down", "seqtypes"),
         };
     }
 

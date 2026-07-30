@@ -10,6 +10,12 @@ final class ObjectIDEntries_116 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(59460, "SAILING_COMBAT_RUNIC_SHIELD_HIGH_INACTIVE", "Runic shield generator", "loctypes"),
+            new GamevalEntry(59461, "SAILING_COMBAT_HEAT_SHIELD_LOW", "Small brazier", "loctypes"),
+            new GamevalEntry(59462, "SAILING_COMBAT_HEAT_SHIELD_LOW_INACTIVE", "Small brazier", "loctypes"),
+            new GamevalEntry(59463, "SAILING_COMBAT_HEAT_SHIELD_MEDIUM", "Warm brazier", "loctypes"),
+            new GamevalEntry(59464, "SAILING_COMBAT_HEAT_SHIELD_MEDIUM_INACTIVE", "Warm brazier", "loctypes"),
+            new GamevalEntry(59465, "SAILING_COMBAT_HEAT_SHIELD_HIGH", "Scorching brazier", "loctypes"),
             new GamevalEntry(59466, "SAILING_COMBAT_HEAT_SHIELD_HIGH_INACTIVE", "Scorching brazier", "loctypes"),
             new GamevalEntry(59467, "SAILING_BOAT_NPC_KANDARIN_LARGE01A", "sailing_boat_npc_kandarin_large01a", "loctypes"),
             new GamevalEntry(59468, "SAILING_BOAT_NPC_KANDARIN_LARGE01B1", "sailing_boat_npc_kandarin_large01b1", "loctypes"),
@@ -516,12 +522,6 @@ final class ObjectIDEntries_116 {
             new GamevalEntry(59969, "BOATKIT_MAST_FRONTMAST_HOISTED_PIRATE", "Hoisted sail", "loctypes"),
             new GamevalEntry(59970, "BOATKIT_MAST_MIDDLEMAST_HOISTED_PIRATE", "Hoisted sail", "loctypes"),
             new GamevalEntry(59971, "BOATKIT_MAST_MIDDLEMAST_UNFURLED_PIRATE", "Unfurled sail", "loctypes"),
-            new GamevalEntry(59972, "BOATKIT_MAST_MIDDLEMAST_HALF_PIRATE", "Unfurled sail", "loctypes"),
-            new GamevalEntry(59973, "BOATKIT_MAST_MIDDLEMAST_FULL_PIRATE", "Unfurled sail", "loctypes"),
-            new GamevalEntry(59974, "BOATKIT_MAST_REARMAST_HOISTED_PIRATE", "Hoisted sail", "loctypes"),
-            new GamevalEntry(59975, "BOATKIT_DECK_HOLE01_PIRATE", "boatkit_deck_hole01_pirate", "loctypes"),
-            new GamevalEntry(59976, "BOATKIT_DECK_STRAIGHT01_PIRATE", "boatkit_deck_straight01_pirate", "loctypes"),
-            new GamevalEntry(59977, "BOATKIT_DECK_STRAIGHT02_PIRATE", "boatkit_deck_straight02_pirate", "loctypes"),
         };
     }
 

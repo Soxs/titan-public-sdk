@@ -10,6 +10,7 @@ final class ObjectIDEntries_60 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(30785, "FOSSIL_U_ROCKS_BIG_SOFT_02", "fossil_u_rocks_big_soft_02", "loctypes"),
             new GamevalEntry(30786, "FOSSIL_U_ROCKS_BIG_SOFT_03", "fossil_u_rocks_big_soft_03", "loctypes"),
             new GamevalEntry(30787, "FOSSIL_U_ROCKS_SMALL_SOFT_01", "fossil_u_rocks_small_soft_01", "loctypes"),
             new GamevalEntry(30788, "FOSSIL_U_ROCKS_SMALL_SOFT_02", "fossil_u_rocks_small_soft_02", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_60 {
             new GamevalEntry(31294, "FOSSIL_VM_DISPLAY_26_1", "Medium Fossil Display", "loctypes"),
             new GamevalEntry(31295, "FOSSIL_VM_DISPLAY_26_2", "Medium Fossil Display", "loctypes"),
             new GamevalEntry(31296, "FOSSIL_VM_DISPLAY_26_3", "Medium Fossil Display", "loctypes"),
-            new GamevalEntry(31297, "FOSSIL_VM_DISPLAY_26_4", "Medium Fossil Display", "loctypes"),
         };
     }
 

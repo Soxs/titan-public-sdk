@@ -10,6 +10,15 @@ final class AnimationIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13324, "SAILING_CANNON01_SMALL01_IDLE03", "sailing_cannon01_small01_idle03", "seqtypes"),
+            new GamevalEntry(13325, "HUMAN_SAILING_CANNON01_SMALL01_ENGAGE01", "human_sailing_cannon01_small01_engage01", "seqtypes"),
+            new GamevalEntry(13326, "HUMAN_SAILING_CANNON01_SMALL01_ATTACK01", "human_sailing_cannon01_small01_attack01", "seqtypes"),
+            new GamevalEntry(13327, "HUMAN_SAILING_CANNON01_SMALL01_IDLE01", "human_sailing_cannon01_small01_idle01", "seqtypes"),
+            new GamevalEntry(13328, "VFX_SAILING_CANNON01_SMALL01_ATTACK01", "vfx_sailing_cannon01_small01_attack01", "seqtypes"),
+            new GamevalEntry(13329, "VFX_SAILING_CANNON01_SMALL01_ATTACK02", "vfx_sailing_cannon01_small01_attack02", "seqtypes"),
+            new GamevalEntry(13330, "VFX_SAILING_CANNON01_SMALL01_ATTACK03", "vfx_sailing_cannon01_small01_attack03", "seqtypes"),
+            new GamevalEntry(13331, "VFX_SAILING_CANNON01_SMALL01_ATTACK04", "vfx_sailing_cannon01_small01_attack04", "seqtypes"),
+            new GamevalEntry(13332, "VFX_SAILING_CANNON01_SMALL01_PROJ01", "vfx_sailing_cannon01_small01_proj01", "seqtypes"),
             new GamevalEntry(13333, "VFX_SAILING_CANNON01_SMALL01_IMPACT01", "vfx_sailing_cannon01_small01_impact01", "seqtypes"),
             new GamevalEntry(13334, "SAILING_ALPHA_HELM_RAFT01_INACTIVE01", "sailing_alpha_helm_raft01_inactive01", "seqtypes"),
             new GamevalEntry(13335, "SAILING_ALPHA_HELM_RAFT01_ACTIVE01", "sailing_alpha_helm_raft01_active01", "seqtypes"),
@@ -513,15 +522,6 @@ final class AnimationIDEntries_26 {
             new GamevalEntry(13833, "LEAGUES_6_THRALL_IMP_MAGIC_SPAWN", "leagues_6_thrall_imp_magic_spawn", "seqtypes"),
             new GamevalEntry(13834, "LEAGUES_6_THRALL_IMP_MAGIC_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_magic_spawn_vfx_spotanim", "seqtypes"),
             new GamevalEntry(13835, "LEAGUES_6_THRALL_IMP_RANGED_SPAWN", "leagues_6_thrall_imp_ranged_spawn", "seqtypes"),
-            new GamevalEntry(13836, "LEAGUES_6_THRALL_IMP_RANGED_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_ranged_spawn_vfx_spotanim", "seqtypes"),
-            new GamevalEntry(13837, "LEAGUES_6_THRALL_IMP_MELEE_SPAWN", "leagues_6_thrall_imp_melee_spawn", "seqtypes"),
-            new GamevalEntry(13838, "LEAGUES_6_THRALL_IMP_MELEE_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_melee_spawn_vfx_spotanim", "seqtypes"),
-            new GamevalEntry(13839, "LEAGUES_6_THRALL_IMP_MAGIC_IDLE", "leagues_6_thrall_imp_magic_idle", "seqtypes"),
-            new GamevalEntry(13840, "LEAGUES_6_THRALL_IMP_RANGED_IDLE", "leagues_6_thrall_imp_ranged_idle", "seqtypes"),
-            new GamevalEntry(13841, "LEAGUES_6_THRALL_IMP_MELEE_IDLE", "leagues_6_thrall_imp_melee_idle", "seqtypes"),
-            new GamevalEntry(13842, "LEAGUES_6_THRALL_IMP_MAGIC_WALK", "leagues_6_thrall_imp_magic_walk", "seqtypes"),
-            new GamevalEntry(13843, "LEAGUES_6_THRALL_IMP_RANGED_WALK", "leagues_6_thrall_imp_ranged_walk", "seqtypes"),
-            new GamevalEntry(13844, "LEAGUES_6_THRALL_IMP_MELEE_WALK", "leagues_6_thrall_imp_melee_walk", "seqtypes"),
         };
     }
 

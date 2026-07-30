@@ -10,6 +10,7 @@ final class NpcIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8706, "HOSDUN_OLBERTUS_CORRUPTED", "Olbertus", "npctypes"),
             new GamevalEntry(8707, "HOSDUN_OLBERTUS_RESTORED", "Olbertus", "npctypes"),
             new GamevalEntry(8708, "HOSDUN_OLBERTUS_CUTSCENE", "Olbertus", "npctypes"),
             new GamevalEntry(8709, "HOSDUN_SHAEDED_BEAST", "Shaeded Beast", "npctypes"),
@@ -521,7 +522,6 @@ final class NpcIDEntries_17 {
             new GamevalEntry(9215, "CAVEWITCHCAT", "cavewitchcat", "npctypes"),
             new GamevalEntry(9216, "KALRAG", "kalrag", "npctypes"),
             new GamevalEntry(9217, "OTHAINIAN", "othainian", "npctypes"),
-            new GamevalEntry(9218, "DOOMION", "doomion", "npctypes"),
         };
     }
 

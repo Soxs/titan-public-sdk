@@ -10,6 +10,7 @@ final class ObjectIDEntries_85 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(43586, "DECOKIT_VINES01_ABYSSAL02_STRAIGHT", "decokit_vines01_abyssal02_straight", "loctypes"),
             new GamevalEntry(43587, "DECOKIT_VINES01_ABYSSAL02_CORNER", "decokit_vines01_abyssal02_corner", "loctypes"),
             new GamevalEntry(43588, "DECOKIT_VINES01_ABYSSAL02_JUNCTION", "decokit_vines01_abyssal02_junction", "loctypes"),
             new GamevalEntry(43589, "DECOKIT_VINES01_ABYSSAL02_DIAG01", "decokit_vines01_abyssal02_diag01", "loctypes"),
@@ -521,7 +522,6 @@ final class ObjectIDEntries_85 {
             new GamevalEntry(44095, "CLIFF_DESERT_WALLTOP", "cliff_desert_walltop", "loctypes"),
             new GamevalEntry(44096, "CLIFF_DESERT_WALLTOP02", "cliff_desert_walltop02", "loctypes"),
             new GamevalEntry(44097, "CLIFF_DESERT_ROCK01", "cliff_desert_rock01", "loctypes"),
-            new GamevalEntry(44098, "CLIFF_DESERT_ROCK01_BARRICADE", "cliff_desert_rock01_barricade", "loctypes"),
         };
     }
 

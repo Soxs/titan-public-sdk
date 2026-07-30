@@ -10,6 +10,10 @@ final class VarbitIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13031, "FOSSIL_HERBIBOAR_ALREADY_CAUGHT_IGNORE_WARNING", "fossil_herbiboar_already_caught_ignore_warning", "varbittypes"),
+            new GamevalEntry(13032, "DEADMAN_STARTER_PACK_SIGILS_RECEIVED", "deadman_starter_pack_sigils_received", "varbittypes"),
+            new GamevalEntry(13033, "DEADMAN_STARTER_PACK_SIGIL_HOTFIX", "deadman_starter_pack_sigil_hotfix", "varbittypes"),
+            new GamevalEntry(13034, "DEADMAN_DAILY_PROTECTION_RECEIVED", "deadman_daily_protection_received", "varbittypes"),
             new GamevalEntry(13035, "KARUULM_NOTES_BOOK", "karuulm_notes_book", "varbittypes"),
             new GamevalEntry(13036, "TLI_STOREBUTTON_TOGGLE_MOBILE", "tli_storebutton_toggle_mobile", "varbittypes"),
             new GamevalEntry(13037, "TLI_STOREBUTTON_TOGGLE_DESKTOP", "tli_storebutton_toggle_desktop", "varbittypes"),
@@ -518,10 +522,6 @@ final class VarbitIDEntries_16 {
             new GamevalEntry(13573, "LEAGUE_3_QUEST_COST_FAIRY_1", "league_3_quest_cost_fairy_1", "varbittypes"),
             new GamevalEntry(13574, "LEAGUE_3_QUEST_COST_FAIRY_2", "league_3_quest_cost_fairy_2", "varbittypes"),
             new GamevalEntry(13575, "LEAGUE_3_QUEST_COST_ELEMENTAL", "league_3_quest_cost_elemental", "varbittypes"),
-            new GamevalEntry(13576, "LEAGUE_3_QUEST_COST_DRUID", "league_3_quest_cost_druid", "varbittypes"),
-            new GamevalEntry(13577, "LEAGUE_3_QUEST_COST_CHAMPIONS", "league_3_quest_cost_champions", "varbittypes"),
-            new GamevalEntry(13578, "LEAGUE_3_QUEST_COST_HEROES", "league_3_quest_cost_heroes", "varbittypes"),
-            new GamevalEntry(13579, "LEAGUE_3_QUEST_COST_LEGENDS", "league_3_quest_cost_legends", "varbittypes"),
         };
     }
 
