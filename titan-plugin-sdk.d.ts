@@ -2572,6 +2572,8 @@ interface PanelElement {
         scrollY: number;
         type: number;
         contentType: number;
+        /** Primary native sprite id, or -1 when absent/unavailable. SDK v110+. */
+        spriteId: number;
         opacity: number;
         itemId: number;
         itemQuantity: number;

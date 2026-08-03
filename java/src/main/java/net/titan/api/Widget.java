@@ -20,6 +20,7 @@ public final class Widget {
     private int scrollY;
     private int type;
     private int contentType;
+    private int spriteId = -1;
     private int opacity;
     private int itemId = -1;
     private int itemQuantity;
@@ -46,6 +47,7 @@ public final class Widget {
     public int scrollY() { return live().scrollY; }
     public int type() { return live().type; }
     public int contentType() { return live().contentType; }
+    public int spriteId() { return live().spriteId; }
     public int opacity() { return live().opacity; }
     public int itemId() { return live().itemId; }
     public int itemQuantity() { return live().itemQuantity; }
