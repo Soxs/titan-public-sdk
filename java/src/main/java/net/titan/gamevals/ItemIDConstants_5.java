@@ -1,6 +1,12 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_5 {
+    int RING_OF_DUELING_4 = 2560;
+    int CERT_RING_OF_DUELING_4 = 2561;
+    int RING_OF_DUELING_3 = 2562;
+    int CERT_RING_OF_DUELING_3 = 2563;
+    int RING_OF_DUELING_2 = 2564;
+    int CERT_RING_OF_DUELING_2 = 2565;
     int RING_OF_DUELING_1 = 2566;
     int CERT_RING_OF_DUELING_1 = 2567;
     int RING_OF_FORGING = 2568;
@@ -507,10 +513,4 @@ public interface ItemIDConstants_5 {
     int MACRO_CUBE_REDSQUARE = 3069;
     int CERT_MACRO_CUBE_REDSQUARE = 3070;
     int MACRO_CUBE_BLUESQUARE = 3071;
-    int CERT_MACRO_CUBE_BLUESQUARE = 3072;
-    int MACRO_CUBE_YELLOWSQUARE = 3073;
-    int CERT_MACRO_CUBE_YELLOWSQUARE = 3074;
-    int MACRO_CUBE_REDCIRCLE = 3075;
-    int CERT_MACRO_CUBE_REDCIRCLE = 3076;
-    int MACRO_CUBE_BLUECIRCLE = 3077;
 }

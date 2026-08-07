@@ -1122,9 +1122,9 @@ interface ItemContainerChangedEvent {
     readonly items: ItemContainerSlot[];
 }
 
-/** Runtime ItemDef snapshot (RuneLite's Client.getItemDefinition parity).
- * When `runtimeResolved` is true the fields came from the native
- * ITEM_DEF_LOOKUP (includes varbit/varp transforms and preserves runtime
+/** Runtime ItemDef snapshot (RuneLite Client parity).
+ * When `runtimeResolved` is true the fields came from the live game table or
+ * native ITEM_DEF_LOOKUP (includes resolved transforms and preserves runtime
  * inventory-action slots, including empty gaps); when false they came from
  * the cache file's raw 5-slot inventory-action array. Added in SDK 26. */
 interface ItemComposition {
@@ -3087,12 +3087,12 @@ interface PanelElement {
         function itemContainer(id: number): ItemContainerSnapshot | null;
 
         /**
-         * Resolve the RUNTIME ItemDef for the given id -- applies
-         * varbit/varp transforms and preserves inventory-action slots
-         * when the analyzer detected the native lookup on this
-         * revision (check the `runtimeResolved` flag). Returns null
-         * only when the id is entirely unknown to both the runtime and
-         * the cache. Added in SDK 26.
+         * Resolve the RUNTIME ItemDef for the given id. Game-thread calls may
+         * invoke the native resolver on a live-table miss. Off-thread calls
+         * emit a rate-limited warning, check the live table without invoking
+         * native code, then fall back to raw cache metadata when absent (check
+         * `runtimeResolved`). Returns null when neither source contains the id.
+         * Added in SDK 26.
          */
         function itemDef(id: number): ItemComposition | null;
     }

@@ -9,22 +9,25 @@ public final class SpotanimIDEntries {
     private SpotanimIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[4018];
+        GamevalEntry[][] parts = {
+            SpotanimIDEntries_0.entries(),
+            SpotanimIDEntries_1.entries(),
+            SpotanimIDEntries_2.entries(),
+            SpotanimIDEntries_3.entries(),
+            SpotanimIDEntries_4.entries(),
+            SpotanimIDEntries_5.entries(),
+            SpotanimIDEntries_6.entries(),
+            SpotanimIDEntries_7.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, SpotanimIDEntries_0.entries());
-        offset = copy(out, offset, SpotanimIDEntries_1.entries());
-        offset = copy(out, offset, SpotanimIDEntries_2.entries());
-        offset = copy(out, offset, SpotanimIDEntries_3.entries());
-        offset = copy(out, offset, SpotanimIDEntries_4.entries());
-        offset = copy(out, offset, SpotanimIDEntries_5.entries());
-        offset = copy(out, offset, SpotanimIDEntries_6.entries());
-        offset = copy(out, offset, SpotanimIDEntries_7.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {

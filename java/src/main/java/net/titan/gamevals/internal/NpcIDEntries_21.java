@@ -10,6 +10,8 @@ final class NpcIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10752, "CLAN_HALL_GEM_GREEN", "Gem", "npctypes"),
+            new GamevalEntry(10753, "CLAN_HALL_GEM_YELLOW", "Gem", "npctypes"),
             new GamevalEntry(10754, "CLAN_HALL_GEM_LIGHTBLUE", "Gem", "npctypes"),
             new GamevalEntry(10755, "CLAN_HALL_GEM_PINK", "Gem", "npctypes"),
             new GamevalEntry(10756, "CLAN_HALL_GARDENER", "Gardener Jay Jr.", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_21 {
             new GamevalEntry(11261, "LOTG_ZANIK_FOLLOWER", "Zanik", "npctypes"),
             new GamevalEntry(11262, "LOTG_ZANIK_CUTSCENE", "Zanik", "npctypes"),
             new GamevalEntry(11263, "LOTG_ZANIK_CUTSCENE_ALT", "Zanik", "npctypes"),
-            new GamevalEntry(11264, "LOTG_ZANIK_YUBIUSK", "Zanik", "npctypes"),
-            new GamevalEntry(11265, "LOTG_OLDAK_CUTSCENE", "Oldak", "npctypes"),
         };
     }
 

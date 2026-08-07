@@ -10,6 +10,8 @@ final class NpcIDEntries_31 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(15872, "MYQ6_VELIAF_BURGH_DE_ROTT", "myq6_veliaf_burgh_de_rott", "npctypes"),
+            new GamevalEntry(15873, "MYQ6_VELIAF_BURGH_DE_ROTT_INJURED", "myq6_veliaf_burgh_de_rott_injured", "npctypes"),
             new GamevalEntry(15874, "MYQ6_VELIAF_OLD_LAB", "myq6_veliaf_old_lab", "npctypes"),
             new GamevalEntry(15875, "MYQ6_VELIAF_CASTLE_DRAKAN", "myq6_veliaf_castle_drakan", "npctypes"),
             new GamevalEntry(15876, "MYQ6_VELIAF_POSTQUEST", "myq6_veliaf_postquest", "npctypes"),
@@ -474,6 +476,12 @@ final class NpcIDEntries_31 {
             new GamevalEntry(16335, "_0_40_34_MEMBERFISH", "Fishing spot", "npctypes"),
             new GamevalEntry(16336, "_0_40_34_RAREFISH", "Fishing spot", "npctypes"),
             new GamevalEntry(16337, "_0_40_134_LAVAFISH", "Fishing spot", "npctypes"),
+            new GamevalEntry(16338, "FISHING_BOAT_SALTFISH", "Fishing spot", "npctypes"),
+            new GamevalEntry(16339, "FISHING_BOAT_MEMBERFISH", "Fishing spot", "npctypes"),
+            new GamevalEntry(16340, "FISHING_BOAT_RAREFISH", "Fishing spot", "npctypes"),
+            new GamevalEntry(16341, "FISHING_BOAT_KARAMBWANFISH", "Fishing spot", "npctypes"),
+            new GamevalEntry(16342, "FISHING_BOAT_PISCARILIUSFISH", "Fishing spot", "npctypes"),
+            new GamevalEntry(16343, "FISHING_BOAT_MONKFISH", "Fishing spot", "npctypes"),
         };
     }
 

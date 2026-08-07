@@ -10,6 +10,11 @@ final class AnimationIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6144, "SLICE_HAM_AGENT_ARROW_LAUNCH_SPOT", "slice_ham_agent_arrow_launch_spot", "seqtypes"),
+            new GamevalEntry(6145, "SLICE_HAM_AGENT_ARROW_LAUNCH_PROJ", "slice_ham_agent_arrow_launch_proj", "seqtypes"),
+            new GamevalEntry(6146, "SLICE_PLAYER_THROWN_OUT_ANIM", "slice_player_thrown_out_anim", "seqtypes"),
+            new GamevalEntry(6147, "SLICE_PLAYER_MACE_SPECIAL_ATTACK", "slice_player_mace_special_attack", "seqtypes"),
+            new GamevalEntry(6148, "SLICE_PLAYER_MACE_SPECIAL_ATTACK_SPOT", "slice_player_mace_special_attack_spot", "seqtypes"),
             new GamevalEntry(6149, "SLICE_ZANIK_PUBLIC_ADDRESS", "slice_zanik_public_address", "seqtypes"),
             new GamevalEntry(6150, "SLICE_HOSTAGE_WALK", "slice_hostage_walk", "seqtypes"),
             new GamevalEntry(6151, "SLICE_HOSTAGE_READY", "slice_hostage_ready", "seqtypes"),
@@ -517,11 +522,6 @@ final class AnimationIDEntries_12 {
             new GamevalEntry(6653, "DRAGON_SLAYER_QIP_FLAMES_ANIM", "dragon_slayer_qip_flames_anim", "seqtypes"),
             new GamevalEntry(6654, "DRAGON_SLAYER_QIP_REMOVE_HEAD_PART1", "dragon_slayer_qip_remove_head_part1", "seqtypes"),
             new GamevalEntry(6655, "DRAGON_SLAYER_QIP_REMOVE_HEAD_PART2", "dragon_slayer_qip_remove_head_part2", "seqtypes"),
-            new GamevalEntry(6656, "DRAGON_SLAYER_QIP_ORACLE_FLAPPING_FLAG", "dragon_slayer_qip_oracle_flapping_flag", "seqtypes"),
-            new GamevalEntry(6657, "PETROCK_HUMAN_READY", "petrock_human_ready", "seqtypes"),
-            new GamevalEntry(6658, "PETROCK_HUMAN_WALK", "petrock_human_walk", "seqtypes"),
-            new GamevalEntry(6659, "PETROCK_HUMAN_WALK_B", "petrock_human_walk_b", "seqtypes"),
-            new GamevalEntry(6660, "PETROCK_HUMAN_RUNNING", "petrock_human_running", "seqtypes"),
         };
     }
 

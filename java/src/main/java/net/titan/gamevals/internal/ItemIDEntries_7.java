@@ -10,6 +10,20 @@ final class ItemIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3584, "TRAIL_CLUE_MEDIUM_SEXTANT015", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3585, "TRAIL_CLUE_MEDIUM_SEXTANT015_CASKET", "Casket (medium)", "objtypes"),
+            new GamevalEntry(3586, "TRAIL_CLUE_MEDIUM_SEXTANT016", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3587, "TRAIL_CLUE_MEDIUM_SEXTANT016_CASKET", "Casket (medium)", "objtypes"),
+            new GamevalEntry(3588, "TRAIL_CLUE_MEDIUM_SEXTANT017", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3589, "TRAIL_CLUE_MEDIUM_SEXTANT017_CASKET", "Casket (medium)", "objtypes"),
+            new GamevalEntry(3590, "TRAIL_CLUE_MEDIUM_SEXTANT018", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3591, "TRAIL_CLUE_MEDIUM_SEXTANT018_CASKET", "Casket (medium)", "objtypes"),
+            new GamevalEntry(3592, "TRAIL_CLUE_MEDIUM_SEXTANT019", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3593, "TRAIL_CLUE_MEDIUM_SEXTANT019_CASKET", "Casket (medium)", "objtypes"),
+            new GamevalEntry(3594, "TRAIL_CLUE_MEDIUM_SEXTANT020", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3595, "TRAIL_CLUE_MEDIUM_SEXTANT020_CASKET", "Casket (medium)", "objtypes"),
+            new GamevalEntry(3596, "TRAIL_CLUE_MEDIUM_MAP003", "Clue scroll (medium)", "objtypes"),
+            new GamevalEntry(3597, "TRAIL_CLUE_MEDIUM_MAP003_CASKET", "Casket (medium)", "objtypes"),
             new GamevalEntry(3598, "TRAIL_CLUE_MEDIUM_MAP004", "Clue scroll (medium)", "objtypes"),
             new GamevalEntry(3599, "TRAIL_CLUE_MEDIUM_MAP005", "Clue scroll (medium)", "objtypes"),
             new GamevalEntry(3600, "TRAIL_CLUE_MEDIUM_MAP005_CASKET", "Casket (medium)", "objtypes"),
@@ -508,20 +522,6 @@ final class ItemIDEntries_7 {
             new GamevalEntry(4093, "MYSTIC_ROBE_BOTTOM", "Mystic robe bottom", "objtypes"),
             new GamevalEntry(4094, "CERT_MYSTIC_ROBE_BOTTOM", "cert_mystic_robe_bottom", "objtypes"),
             new GamevalEntry(4095, "MYSTIC_GLOVES", "Mystic gloves", "objtypes"),
-            new GamevalEntry(4096, "CERT_MYSTIC_GLOVES", "cert_mystic_gloves", "objtypes"),
-            new GamevalEntry(4097, "MYSTIC_BOOTS", "Mystic boots", "objtypes"),
-            new GamevalEntry(4098, "CERT_MYSTIC_BOOTS", "cert_mystic_boots", "objtypes"),
-            new GamevalEntry(4099, "MYSTIC_HAT_DARK", "Mystic hat (dark)", "objtypes"),
-            new GamevalEntry(4100, "CERT_MYSTIC_HAT_DARK", "cert_mystic_hat_dark", "objtypes"),
-            new GamevalEntry(4101, "MYSTIC_ROBE_TOP_DARK", "Mystic robe top (dark)", "objtypes"),
-            new GamevalEntry(4102, "CERT_MYSTIC_ROBE_TOP_DARK", "cert_mystic_robe_top_dark", "objtypes"),
-            new GamevalEntry(4103, "MYSTIC_ROBE_BOTTOM_DARK", "Mystic robe bottom (dark)", "objtypes"),
-            new GamevalEntry(4104, "CERT_MYSTIC_ROBE_BOTTOM_DARK", "cert_mystic_robe_bottom_dark", "objtypes"),
-            new GamevalEntry(4105, "MYSTIC_GLOVES_DARK", "Mystic gloves (dark)", "objtypes"),
-            new GamevalEntry(4106, "CERT_MYSTIC_GLOVES_DARK", "cert_mystic_gloves_dark", "objtypes"),
-            new GamevalEntry(4107, "MYSTIC_BOOTS_DARK", "Mystic boots (dark)", "objtypes"),
-            new GamevalEntry(4108, "CERT_MYSTIC_BOOTS_DARK", "cert_mystic_boots_dark", "objtypes"),
-            new GamevalEntry(4109, "MYSTIC_HAT_LIGHT", "Mystic hat (light)", "objtypes"),
         };
     }
 

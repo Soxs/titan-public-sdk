@@ -10,6 +10,8 @@ final class AnimationIDEntries_5 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2560, "WALL_CRUSH_SPELL_IMPACT", "wall_crush_spell_impact", "seqtypes"),
+            new GamevalEntry(2561, "HUMAN_DH_WEAPON_READY", "human_dh_weapon_ready", "seqtypes"),
             new GamevalEntry(2562, "HUMAN_DH_WEAPON_WALK", "human_dh_weapon_walk", "seqtypes"),
             new GamevalEntry(2563, "HUMAN_DH_WEAPON_RUN", "human_dh_weapon_run", "seqtypes"),
             new GamevalEntry(2564, "CANDLE_FLICKER", "candle_flicker", "seqtypes"),
@@ -520,8 +522,6 @@ final class AnimationIDEntries_5 {
             new GamevalEntry(3069, "AGILITY_PYRAMID_LOGFALL_R", "agility_pyramid_logfall_r", "seqtypes"),
             new GamevalEntry(3070, "AGILITY_PYRAMID_TILTING_FLOOR", "agility_pyramid_tilting_floor", "seqtypes"),
             new GamevalEntry(3071, "HUMAN_DWARF_RECIEVE", "human_dwarf_recieve", "seqtypes"),
-            new GamevalEntry(3072, "DWARF_HAND_OVER", "dwarf_hand_over", "seqtypes"),
-            new GamevalEntry(3073, "ENAKH_BONEGUARD_READY", "enakh_boneguard_ready", "seqtypes"),
         };
     }
 

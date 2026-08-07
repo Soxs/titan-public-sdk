@@ -516,12 +516,6 @@ final class ItemIDEntries_4 {
             new GamevalEntry(2557, "CERT_RING_OF_DUELING_6", "cert_ring_of_dueling_6", "objtypes"),
             new GamevalEntry(2558, "RING_OF_DUELING_5", "Ring of dueling(5)", "objtypes"),
             new GamevalEntry(2559, "CERT_RING_OF_DUELING_5", "cert_ring_of_dueling_5", "objtypes"),
-            new GamevalEntry(2560, "RING_OF_DUELING_4", "Ring of dueling(4)", "objtypes"),
-            new GamevalEntry(2561, "CERT_RING_OF_DUELING_4", "cert_ring_of_dueling_4", "objtypes"),
-            new GamevalEntry(2562, "RING_OF_DUELING_3", "Ring of dueling(3)", "objtypes"),
-            new GamevalEntry(2563, "CERT_RING_OF_DUELING_3", "cert_ring_of_dueling_3", "objtypes"),
-            new GamevalEntry(2564, "RING_OF_DUELING_2", "Ring of dueling(2)", "objtypes"),
-            new GamevalEntry(2565, "CERT_RING_OF_DUELING_2", "cert_ring_of_dueling_2", "objtypes"),
         };
     }
 

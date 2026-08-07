@@ -10,6 +10,7 @@ final class AnimationIDEntries_2 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1024, "OGRE_BELLOWS_USE", "ogre_bellows_use", "seqtypes"),
             new GamevalEntry(1025, "OGRE_LONGBOW", "ogre_longbow", "seqtypes"),
             new GamevalEntry(1026, "HUMAN_CHOMPYBIRD_OGREBELLOWS", "human_chompybird_ogrebellows", "seqtypes"),
             new GamevalEntry(1027, "ELEMENTAL_FIRE_READY", "elemental_fire_ready", "seqtypes"),
@@ -520,8 +521,6 @@ final class AnimationIDEntries_2 {
             new GamevalEntry(1533, "GARGOYLE_STATUE_OPEN", "gargoyle_statue_open", "seqtypes"),
             new GamevalEntry(1534, "ABYSSAL_WALK", "abyssal_walk", "seqtypes"),
             new GamevalEntry(1535, "ABYSSAL_TELEPORT", "abyssal_teleport", "seqtypes"),
-            new GamevalEntry(1536, "ABYSSAL_READY", "abyssal_ready", "seqtypes"),
-            new GamevalEntry(1537, "ABYSSAL_ATTACK", "abyssal_attack", "seqtypes"),
         };
     }
 

@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_18 {
+    int KALRAG = 9216;
+    int OTHAINIAN = 9217;
     int DOOMION = 9218;
     int HOLTHION = 9219;
     int IBANMONK = 9220;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_18 {
     int DARKM_PRISONER_01 = 9725;
     int DARKM_PRISONER_02 = 9726;
     int DARKM_JUVINATE_01 = 9727;
-    int DARKM_JUVINATE_02 = 9728;
-    int DARKM_JUVINATE_01_HELD = 9729;
 }

@@ -9,136 +9,139 @@ public final class ObjectIDEntries {
     private ObjectIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[62332];
+        GamevalEntry[][] parts = {
+            ObjectIDEntries_0.entries(),
+            ObjectIDEntries_1.entries(),
+            ObjectIDEntries_2.entries(),
+            ObjectIDEntries_3.entries(),
+            ObjectIDEntries_4.entries(),
+            ObjectIDEntries_5.entries(),
+            ObjectIDEntries_6.entries(),
+            ObjectIDEntries_7.entries(),
+            ObjectIDEntries_8.entries(),
+            ObjectIDEntries_9.entries(),
+            ObjectIDEntries_10.entries(),
+            ObjectIDEntries_11.entries(),
+            ObjectIDEntries_12.entries(),
+            ObjectIDEntries_13.entries(),
+            ObjectIDEntries_14.entries(),
+            ObjectIDEntries_15.entries(),
+            ObjectIDEntries_16.entries(),
+            ObjectIDEntries_17.entries(),
+            ObjectIDEntries_18.entries(),
+            ObjectIDEntries_19.entries(),
+            ObjectIDEntries_20.entries(),
+            ObjectIDEntries_21.entries(),
+            ObjectIDEntries_22.entries(),
+            ObjectIDEntries_23.entries(),
+            ObjectIDEntries_24.entries(),
+            ObjectIDEntries_25.entries(),
+            ObjectIDEntries_26.entries(),
+            ObjectIDEntries_27.entries(),
+            ObjectIDEntries_28.entries(),
+            ObjectIDEntries_29.entries(),
+            ObjectIDEntries_30.entries(),
+            ObjectIDEntries_31.entries(),
+            ObjectIDEntries_32.entries(),
+            ObjectIDEntries_33.entries(),
+            ObjectIDEntries_34.entries(),
+            ObjectIDEntries_35.entries(),
+            ObjectIDEntries_36.entries(),
+            ObjectIDEntries_37.entries(),
+            ObjectIDEntries_38.entries(),
+            ObjectIDEntries_39.entries(),
+            ObjectIDEntries_40.entries(),
+            ObjectIDEntries_41.entries(),
+            ObjectIDEntries_42.entries(),
+            ObjectIDEntries_43.entries(),
+            ObjectIDEntries_44.entries(),
+            ObjectIDEntries_45.entries(),
+            ObjectIDEntries_46.entries(),
+            ObjectIDEntries_47.entries(),
+            ObjectIDEntries_48.entries(),
+            ObjectIDEntries_49.entries(),
+            ObjectIDEntries_50.entries(),
+            ObjectIDEntries_51.entries(),
+            ObjectIDEntries_52.entries(),
+            ObjectIDEntries_53.entries(),
+            ObjectIDEntries_54.entries(),
+            ObjectIDEntries_55.entries(),
+            ObjectIDEntries_56.entries(),
+            ObjectIDEntries_57.entries(),
+            ObjectIDEntries_58.entries(),
+            ObjectIDEntries_59.entries(),
+            ObjectIDEntries_60.entries(),
+            ObjectIDEntries_61.entries(),
+            ObjectIDEntries_62.entries(),
+            ObjectIDEntries_63.entries(),
+            ObjectIDEntries_64.entries(),
+            ObjectIDEntries_65.entries(),
+            ObjectIDEntries_66.entries(),
+            ObjectIDEntries_67.entries(),
+            ObjectIDEntries_68.entries(),
+            ObjectIDEntries_69.entries(),
+            ObjectIDEntries_70.entries(),
+            ObjectIDEntries_71.entries(),
+            ObjectIDEntries_72.entries(),
+            ObjectIDEntries_73.entries(),
+            ObjectIDEntries_74.entries(),
+            ObjectIDEntries_75.entries(),
+            ObjectIDEntries_76.entries(),
+            ObjectIDEntries_77.entries(),
+            ObjectIDEntries_78.entries(),
+            ObjectIDEntries_79.entries(),
+            ObjectIDEntries_80.entries(),
+            ObjectIDEntries_81.entries(),
+            ObjectIDEntries_82.entries(),
+            ObjectIDEntries_83.entries(),
+            ObjectIDEntries_84.entries(),
+            ObjectIDEntries_85.entries(),
+            ObjectIDEntries_86.entries(),
+            ObjectIDEntries_87.entries(),
+            ObjectIDEntries_88.entries(),
+            ObjectIDEntries_89.entries(),
+            ObjectIDEntries_90.entries(),
+            ObjectIDEntries_91.entries(),
+            ObjectIDEntries_92.entries(),
+            ObjectIDEntries_93.entries(),
+            ObjectIDEntries_94.entries(),
+            ObjectIDEntries_95.entries(),
+            ObjectIDEntries_96.entries(),
+            ObjectIDEntries_97.entries(),
+            ObjectIDEntries_98.entries(),
+            ObjectIDEntries_99.entries(),
+            ObjectIDEntries_100.entries(),
+            ObjectIDEntries_101.entries(),
+            ObjectIDEntries_102.entries(),
+            ObjectIDEntries_103.entries(),
+            ObjectIDEntries_104.entries(),
+            ObjectIDEntries_105.entries(),
+            ObjectIDEntries_106.entries(),
+            ObjectIDEntries_107.entries(),
+            ObjectIDEntries_108.entries(),
+            ObjectIDEntries_109.entries(),
+            ObjectIDEntries_110.entries(),
+            ObjectIDEntries_111.entries(),
+            ObjectIDEntries_112.entries(),
+            ObjectIDEntries_113.entries(),
+            ObjectIDEntries_114.entries(),
+            ObjectIDEntries_115.entries(),
+            ObjectIDEntries_116.entries(),
+            ObjectIDEntries_117.entries(),
+            ObjectIDEntries_118.entries(),
+            ObjectIDEntries_119.entries(),
+            ObjectIDEntries_120.entries(),
+            ObjectIDEntries_121.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, ObjectIDEntries_0.entries());
-        offset = copy(out, offset, ObjectIDEntries_1.entries());
-        offset = copy(out, offset, ObjectIDEntries_2.entries());
-        offset = copy(out, offset, ObjectIDEntries_3.entries());
-        offset = copy(out, offset, ObjectIDEntries_4.entries());
-        offset = copy(out, offset, ObjectIDEntries_5.entries());
-        offset = copy(out, offset, ObjectIDEntries_6.entries());
-        offset = copy(out, offset, ObjectIDEntries_7.entries());
-        offset = copy(out, offset, ObjectIDEntries_8.entries());
-        offset = copy(out, offset, ObjectIDEntries_9.entries());
-        offset = copy(out, offset, ObjectIDEntries_10.entries());
-        offset = copy(out, offset, ObjectIDEntries_11.entries());
-        offset = copy(out, offset, ObjectIDEntries_12.entries());
-        offset = copy(out, offset, ObjectIDEntries_13.entries());
-        offset = copy(out, offset, ObjectIDEntries_14.entries());
-        offset = copy(out, offset, ObjectIDEntries_15.entries());
-        offset = copy(out, offset, ObjectIDEntries_16.entries());
-        offset = copy(out, offset, ObjectIDEntries_17.entries());
-        offset = copy(out, offset, ObjectIDEntries_18.entries());
-        offset = copy(out, offset, ObjectIDEntries_19.entries());
-        offset = copy(out, offset, ObjectIDEntries_20.entries());
-        offset = copy(out, offset, ObjectIDEntries_21.entries());
-        offset = copy(out, offset, ObjectIDEntries_22.entries());
-        offset = copy(out, offset, ObjectIDEntries_23.entries());
-        offset = copy(out, offset, ObjectIDEntries_24.entries());
-        offset = copy(out, offset, ObjectIDEntries_25.entries());
-        offset = copy(out, offset, ObjectIDEntries_26.entries());
-        offset = copy(out, offset, ObjectIDEntries_27.entries());
-        offset = copy(out, offset, ObjectIDEntries_28.entries());
-        offset = copy(out, offset, ObjectIDEntries_29.entries());
-        offset = copy(out, offset, ObjectIDEntries_30.entries());
-        offset = copy(out, offset, ObjectIDEntries_31.entries());
-        offset = copy(out, offset, ObjectIDEntries_32.entries());
-        offset = copy(out, offset, ObjectIDEntries_33.entries());
-        offset = copy(out, offset, ObjectIDEntries_34.entries());
-        offset = copy(out, offset, ObjectIDEntries_35.entries());
-        offset = copy(out, offset, ObjectIDEntries_36.entries());
-        offset = copy(out, offset, ObjectIDEntries_37.entries());
-        offset = copy(out, offset, ObjectIDEntries_38.entries());
-        offset = copy(out, offset, ObjectIDEntries_39.entries());
-        offset = copy(out, offset, ObjectIDEntries_40.entries());
-        offset = copy(out, offset, ObjectIDEntries_41.entries());
-        offset = copy(out, offset, ObjectIDEntries_42.entries());
-        offset = copy(out, offset, ObjectIDEntries_43.entries());
-        offset = copy(out, offset, ObjectIDEntries_44.entries());
-        offset = copy(out, offset, ObjectIDEntries_45.entries());
-        offset = copy(out, offset, ObjectIDEntries_46.entries());
-        offset = copy(out, offset, ObjectIDEntries_47.entries());
-        offset = copy(out, offset, ObjectIDEntries_48.entries());
-        offset = copy(out, offset, ObjectIDEntries_49.entries());
-        offset = copy(out, offset, ObjectIDEntries_50.entries());
-        offset = copy(out, offset, ObjectIDEntries_51.entries());
-        offset = copy(out, offset, ObjectIDEntries_52.entries());
-        offset = copy(out, offset, ObjectIDEntries_53.entries());
-        offset = copy(out, offset, ObjectIDEntries_54.entries());
-        offset = copy(out, offset, ObjectIDEntries_55.entries());
-        offset = copy(out, offset, ObjectIDEntries_56.entries());
-        offset = copy(out, offset, ObjectIDEntries_57.entries());
-        offset = copy(out, offset, ObjectIDEntries_58.entries());
-        offset = copy(out, offset, ObjectIDEntries_59.entries());
-        offset = copy(out, offset, ObjectIDEntries_60.entries());
-        offset = copy(out, offset, ObjectIDEntries_61.entries());
-        offset = copy(out, offset, ObjectIDEntries_62.entries());
-        offset = copy(out, offset, ObjectIDEntries_63.entries());
-        offset = copy(out, offset, ObjectIDEntries_64.entries());
-        offset = copy(out, offset, ObjectIDEntries_65.entries());
-        offset = copy(out, offset, ObjectIDEntries_66.entries());
-        offset = copy(out, offset, ObjectIDEntries_67.entries());
-        offset = copy(out, offset, ObjectIDEntries_68.entries());
-        offset = copy(out, offset, ObjectIDEntries_69.entries());
-        offset = copy(out, offset, ObjectIDEntries_70.entries());
-        offset = copy(out, offset, ObjectIDEntries_71.entries());
-        offset = copy(out, offset, ObjectIDEntries_72.entries());
-        offset = copy(out, offset, ObjectIDEntries_73.entries());
-        offset = copy(out, offset, ObjectIDEntries_74.entries());
-        offset = copy(out, offset, ObjectIDEntries_75.entries());
-        offset = copy(out, offset, ObjectIDEntries_76.entries());
-        offset = copy(out, offset, ObjectIDEntries_77.entries());
-        offset = copy(out, offset, ObjectIDEntries_78.entries());
-        offset = copy(out, offset, ObjectIDEntries_79.entries());
-        offset = copy(out, offset, ObjectIDEntries_80.entries());
-        offset = copy(out, offset, ObjectIDEntries_81.entries());
-        offset = copy(out, offset, ObjectIDEntries_82.entries());
-        offset = copy(out, offset, ObjectIDEntries_83.entries());
-        offset = copy(out, offset, ObjectIDEntries_84.entries());
-        offset = copy(out, offset, ObjectIDEntries_85.entries());
-        offset = copy(out, offset, ObjectIDEntries_86.entries());
-        offset = copy(out, offset, ObjectIDEntries_87.entries());
-        offset = copy(out, offset, ObjectIDEntries_88.entries());
-        offset = copy(out, offset, ObjectIDEntries_89.entries());
-        offset = copy(out, offset, ObjectIDEntries_90.entries());
-        offset = copy(out, offset, ObjectIDEntries_91.entries());
-        offset = copy(out, offset, ObjectIDEntries_92.entries());
-        offset = copy(out, offset, ObjectIDEntries_93.entries());
-        offset = copy(out, offset, ObjectIDEntries_94.entries());
-        offset = copy(out, offset, ObjectIDEntries_95.entries());
-        offset = copy(out, offset, ObjectIDEntries_96.entries());
-        offset = copy(out, offset, ObjectIDEntries_97.entries());
-        offset = copy(out, offset, ObjectIDEntries_98.entries());
-        offset = copy(out, offset, ObjectIDEntries_99.entries());
-        offset = copy(out, offset, ObjectIDEntries_100.entries());
-        offset = copy(out, offset, ObjectIDEntries_101.entries());
-        offset = copy(out, offset, ObjectIDEntries_102.entries());
-        offset = copy(out, offset, ObjectIDEntries_103.entries());
-        offset = copy(out, offset, ObjectIDEntries_104.entries());
-        offset = copy(out, offset, ObjectIDEntries_105.entries());
-        offset = copy(out, offset, ObjectIDEntries_106.entries());
-        offset = copy(out, offset, ObjectIDEntries_107.entries());
-        offset = copy(out, offset, ObjectIDEntries_108.entries());
-        offset = copy(out, offset, ObjectIDEntries_109.entries());
-        offset = copy(out, offset, ObjectIDEntries_110.entries());
-        offset = copy(out, offset, ObjectIDEntries_111.entries());
-        offset = copy(out, offset, ObjectIDEntries_112.entries());
-        offset = copy(out, offset, ObjectIDEntries_113.entries());
-        offset = copy(out, offset, ObjectIDEntries_114.entries());
-        offset = copy(out, offset, ObjectIDEntries_115.entries());
-        offset = copy(out, offset, ObjectIDEntries_116.entries());
-        offset = copy(out, offset, ObjectIDEntries_117.entries());
-        offset = copy(out, offset, ObjectIDEntries_118.entries());
-        offset = copy(out, offset, ObjectIDEntries_119.entries());
-        offset = copy(out, offset, ObjectIDEntries_120.entries());
-        offset = copy(out, offset, ObjectIDEntries_121.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {

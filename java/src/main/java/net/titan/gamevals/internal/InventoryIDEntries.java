@@ -9,17 +9,20 @@ public final class InventoryIDEntries {
     private InventoryIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[1028];
+        GamevalEntry[][] parts = {
+            InventoryIDEntries_0.entries(),
+            InventoryIDEntries_1.entries(),
+            InventoryIDEntries_2.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, InventoryIDEntries_0.entries());
-        offset = copy(out, offset, InventoryIDEntries_1.entries());
-        offset = copy(out, offset, InventoryIDEntries_2.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {

@@ -10,6 +10,8 @@ final class NpcIDEntries_28 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14336, "VMQ4_ATTALA_CS", "Attala", "npctypes"),
+            new GamevalEntry(14337, "VMQ4_ATTALA_TEUMO_HOUSE", "vmq4_attala_teumo_house", "npctypes"),
             new GamevalEntry(14338, "VMQ4_ATTALA_TEUMO_HOUSE_DOWNSTAIRS", "vmq4_attala_teumo_house_downstairs", "npctypes"),
             new GamevalEntry(14339, "VMQ4_ATTALA_VIS", "Attala", "npctypes"),
             new GamevalEntry(14340, "VMQ4_ATTALA_KEYSTONE_CHAMBER", "vmq4_attala_keystone_chamber", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_28 {
             new GamevalEntry(14845, "TORTUGAN_TORGAN", "Elder Torgan", "npctypes"),
             new GamevalEntry(14846, "TORTUGAN_GROVE_GUARDIAN", "Elder Katt", "npctypes"),
             new GamevalEntry(14847, "TORTUGAN_BANKER", "Banker", "npctypes"),
-            new GamevalEntry(14848, "TORTUGAN_LEFF", "Leff", "npctypes"),
-            new GamevalEntry(14849, "TORTUGAN_DALNA", "Dalna", "npctypes"),
         };
     }
 

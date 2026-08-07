@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_27 {
+    int DOTI_ADALA_BOSS = 13824;
+    int DOTI_CONSTANTINIUS = 13825;
     int DOTI_CONSTANTINIUS_PICKPOCKET = 13826;
     int DOTI_COZYAC = 13827;
     int DOTI_COZYAC_PICKPOCKET = 13828;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_27 {
     int VMQ4_CRYPT_ENNIUS_NOOPS = 14333;
     int VMQ4_ENNIUS_CIVILIAN_CS = 14334;
     int VMQ4_ENNIUS_CS = 14335;
-    int VMQ4_ATTALA_CS = 14336;
-    int VMQ4_ATTALA_TEUMO_HOUSE = 14337;
 }

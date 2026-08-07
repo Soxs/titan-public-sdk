@@ -10,6 +10,12 @@ final class ItemIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3072, "CERT_MACRO_CUBE_BLUESQUARE", "cert_macro_cube_bluesquare", "objtypes"),
+            new GamevalEntry(3073, "MACRO_CUBE_YELLOWSQUARE", "macro_cube_yellowsquare", "objtypes"),
+            new GamevalEntry(3074, "CERT_MACRO_CUBE_YELLOWSQUARE", "cert_macro_cube_yellowsquare", "objtypes"),
+            new GamevalEntry(3075, "MACRO_CUBE_REDCIRCLE", "macro_cube_redcircle", "objtypes"),
+            new GamevalEntry(3076, "CERT_MACRO_CUBE_REDCIRCLE", "cert_macro_cube_redcircle", "objtypes"),
+            new GamevalEntry(3077, "MACRO_CUBE_BLUECIRCLE", "macro_cube_bluecircle", "objtypes"),
             new GamevalEntry(3078, "CERT_MACRO_CUBE_BLUECIRCLE", "cert_macro_cube_bluecircle", "objtypes"),
             new GamevalEntry(3079, "MACRO_CUBE_YELLOWCIRCLE", "macro_cube_yellowcircle", "objtypes"),
             new GamevalEntry(3080, "CERT_MACRO_CUBE_YELLOWCIRCLE", "cert_macro_cube_yellowcircle", "objtypes"),
@@ -508,20 +514,6 @@ final class ItemIDEntries_6 {
             new GamevalEntry(3581, "TRAIL_CLUE_HARD_RIDDLE028_CASKET", "Casket (hard)", "objtypes"),
             new GamevalEntry(3582, "TRAIL_CLUE_MEDIUM_SEXTANT014", "Clue scroll (medium)", "objtypes"),
             new GamevalEntry(3583, "TRAIL_CLUE_MEDIUM_SEXTANT014_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3584, "TRAIL_CLUE_MEDIUM_SEXTANT015", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3585, "TRAIL_CLUE_MEDIUM_SEXTANT015_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3586, "TRAIL_CLUE_MEDIUM_SEXTANT016", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3587, "TRAIL_CLUE_MEDIUM_SEXTANT016_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3588, "TRAIL_CLUE_MEDIUM_SEXTANT017", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3589, "TRAIL_CLUE_MEDIUM_SEXTANT017_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3590, "TRAIL_CLUE_MEDIUM_SEXTANT018", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3591, "TRAIL_CLUE_MEDIUM_SEXTANT018_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3592, "TRAIL_CLUE_MEDIUM_SEXTANT019", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3593, "TRAIL_CLUE_MEDIUM_SEXTANT019_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3594, "TRAIL_CLUE_MEDIUM_SEXTANT020", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3595, "TRAIL_CLUE_MEDIUM_SEXTANT020_CASKET", "Casket (medium)", "objtypes"),
-            new GamevalEntry(3596, "TRAIL_CLUE_MEDIUM_MAP003", "Clue scroll (medium)", "objtypes"),
-            new GamevalEntry(3597, "TRAIL_CLUE_MEDIUM_MAP003_CASKET", "Casket (medium)", "objtypes"),
         };
     }
 

@@ -507,10 +507,4 @@ public interface ItemIDConstants_4 {
     int CERT_RING_OF_DUELING_6 = 2557;
     int RING_OF_DUELING_5 = 2558;
     int CERT_RING_OF_DUELING_5 = 2559;
-    int RING_OF_DUELING_4 = 2560;
-    int CERT_RING_OF_DUELING_4 = 2561;
-    int RING_OF_DUELING_3 = 2562;
-    int CERT_RING_OF_DUELING_3 = 2563;
-    int RING_OF_DUELING_2 = 2564;
-    int CERT_RING_OF_DUELING_2 = 2565;
 }

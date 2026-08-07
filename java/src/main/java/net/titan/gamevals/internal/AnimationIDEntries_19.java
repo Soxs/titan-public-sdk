@@ -10,6 +10,14 @@ final class AnimationIDEntries_19 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9728, "FX_OBELISK_WARDENS02_OPEN", "fx_obelisk_wardens02_open", "seqtypes"),
+            new GamevalEntry(9729, "FX_OBELISK_WARDENS02_CLOSE", "fx_obelisk_wardens02_close", "seqtypes"),
+            new GamevalEntry(9730, "FX_OBELISK_WARDENS02_WAVE", "fx_obelisk_wardens02_wave", "seqtypes"),
+            new GamevalEntry(9731, "FX_OBELISK_WARDENS02_CAST", "fx_obelisk_wardens02_cast", "seqtypes"),
+            new GamevalEntry(9732, "FX_OBELISK_WARDENS02_BEAM", "fx_obelisk_wardens02_beam", "seqtypes"),
+            new GamevalEntry(9733, "FX_OBELISK_WARDENS02_SWEEP", "fx_obelisk_wardens02_sweep", "seqtypes"),
+            new GamevalEntry(9734, "FX_OBELISK_WARDENS02_DEATH", "fx_obelisk_wardens02_death", "seqtypes"),
+            new GamevalEntry(9735, "FX_WARDENS_ENERGY_DEATH01", "fx_wardens_energy_death01", "seqtypes"),
             new GamevalEntry(9736, "FX_WARDENS_ENERGY_GROUNDED01", "fx_wardens_energy_grounded01", "seqtypes"),
             new GamevalEntry(9737, "NPC_MANDRILL_WALK01", "npc_mandrill_walk01", "seqtypes"),
             new GamevalEntry(9738, "NPC_MANDRILL_WALK01_BACKWARDS", "npc_mandrill_walk01_backwards", "seqtypes"),
@@ -514,14 +522,6 @@ final class AnimationIDEntries_19 {
             new GamevalEntry(10237, "NPC_WHISPERER_01_ATTACK_RANGED_03", "npc_whisperer_01_attack_ranged_03", "seqtypes"),
             new GamevalEntry(10238, "NPC_WHISPERER_01_ATTACK_RANGED_04", "npc_whisperer_01_attack_ranged_04", "seqtypes"),
             new GamevalEntry(10239, "NPC_WHISPERER_01_ATTACK_RANGED_05", "npc_whisperer_01_attack_ranged_05", "seqtypes"),
-            new GamevalEntry(10240, "NPC_WHISPERER_01_ATTACK_RANGED_06", "npc_whisperer_01_attack_ranged_06", "seqtypes"),
-            new GamevalEntry(10241, "NPC_WHISPERER_01_ATTACK_MAGIC_01", "npc_whisperer_01_attack_magic_01", "seqtypes"),
-            new GamevalEntry(10242, "NPC_WHISPERER_01_ATTACK_MAGIC_02", "npc_whisperer_01_attack_magic_02", "seqtypes"),
-            new GamevalEntry(10243, "NPC_WHISPERER_01_ATTACK_MAGIC_03", "npc_whisperer_01_attack_magic_03", "seqtypes"),
-            new GamevalEntry(10244, "NPC_WHISPERER_01_ATTACK_MAGIC_04", "npc_whisperer_01_attack_magic_04", "seqtypes"),
-            new GamevalEntry(10245, "NPC_WHISPERER_01_ATTACK_MAGIC_05", "npc_whisperer_01_attack_magic_05", "seqtypes"),
-            new GamevalEntry(10246, "NPC_WHISPERER_01_ATTACK_MAGIC_06", "npc_whisperer_01_attack_magic_06", "seqtypes"),
-            new GamevalEntry(10247, "NPC_WHISPERER_01_TELEPORT_01", "npc_whisperer_01_teleport_01", "seqtypes"),
         };
     }
 

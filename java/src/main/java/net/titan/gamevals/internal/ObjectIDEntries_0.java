@@ -515,13 +515,6 @@ final class ObjectIDEntries_0 {
             new GamevalEntry(509, "FAI_VARROCK_WALLS_SHANTY_JOIN_LVL2", "fai_varrock_walls_shanty_join_lvl2", "loctypes"),
             new GamevalEntry(510, "FAI_VARROCK_WALLS_SHANTY_JOIN_LVL2_MIRROR", "fai_varrock_walls_shanty_join_lvl2_mirror", "loctypes"),
             new GamevalEntry(511, "FAI_VARROCK_SHANTY_WALL_STRONGER", "fai_varrock_shanty_wall_stronger", "loctypes"),
-            new GamevalEntry(512, "FAI_VARROCK_SHANTY_WALL_STRONGER_SHARELIGHT", "fai_varrock_shanty_wall_stronger_sharelight", "loctypes"),
-            new GamevalEntry(513, "FAI_VARROCK_CASTLE_SHANTY_JOIN_LOW_LEFT", "fai_varrock_castle_shanty_join_low_left", "loctypes"),
-            new GamevalEntry(514, "FAI_VARROCK_CASTLE_SHANTY_JOIN_TOP_RIGHT", "fai_varrock_castle_shanty_join_top_right", "loctypes"),
-            new GamevalEntry(515, "FAI_VARROCK_CASTLE_AND_SHANTY_2X2_FIX", "fai_varrock_castle_and_shanty_2x2_fix", "loctypes"),
-            new GamevalEntry(516, "FAI_VARROCK_SHANTY_AND_BATTLEMENT", "fai_varrock_shanty_and_battlement", "loctypes"),
-            new GamevalEntry(517, "FAI_VARROCK_SHANTY_JOINT", "fai_varrock_shanty_joint", "loctypes"),
-            new GamevalEntry(518, "FAI_VARROCK_SHANTY_JOINT_MIRROR", "fai_varrock_shanty_joint_mirror", "loctypes"),
         };
     }
 

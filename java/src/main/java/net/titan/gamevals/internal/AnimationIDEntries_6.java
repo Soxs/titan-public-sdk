@@ -10,6 +10,8 @@ final class AnimationIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3072, "DWARF_HAND_OVER", "dwarf_hand_over", "seqtypes"),
+            new GamevalEntry(3073, "ENAKH_BONEGUARD_READY", "enakh_boneguard_ready", "seqtypes"),
             new GamevalEntry(3074, "ENAKH_BONEGUARD_BLOCK", "enakh_boneguard_block", "seqtypes"),
             new GamevalEntry(3075, "ENAKH_BONEGUARD_ATTACK", "enakh_boneguard_attack", "seqtypes"),
             new GamevalEntry(3076, "ENAKH_BONEGUARD_DEATH", "enakh_boneguard_death", "seqtypes"),
@@ -520,8 +522,6 @@ final class AnimationIDEntries_6 {
             new GamevalEntry(3581, "CRYSTALBALL_POWER_FLOAT", "crystalball_power_float", "seqtypes"),
             new GamevalEntry(3582, "ELEMENTAL_ORB_READY", "elemental_orb_ready", "seqtypes"),
             new GamevalEntry(3583, "ELEMENTAL_ORB_OPENS", "elemental_orb_opens", "seqtypes"),
-            new GamevalEntry(3584, "ELEMENTAL_ORB_SPINS", "elemental_orb_spins", "seqtypes"),
-            new GamevalEntry(3585, "ELEMENTAL_ORB_CLOSES", "elemental_orb_closes", "seqtypes"),
         };
     }
 

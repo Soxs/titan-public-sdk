@@ -10,6 +10,13 @@ final class AnimationIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8192, "HUMAN_FISH_ONSPOT_PEARL_FLY", "human_fish_onspot_pearl_fly", "seqtypes"),
+            new GamevalEntry(8193, "HUMAN_FISH_ONSPOT_PEARL_BRUT", "human_fish_onspot_pearl_brut", "seqtypes"),
+            new GamevalEntry(8194, "HUMAN_DRAGON_KNIFE", "human_dragon_knife", "seqtypes"),
+            new GamevalEntry(8195, "HUMAN_DRAGON_KNIFE_P", "human_dragon_knife_p", "seqtypes"),
+            new GamevalEntry(8196, "STONEGLOW_LONG", "stoneglow_long", "seqtypes"),
+            new GamevalEntry(8197, "FARMING_POUR_WATER_BOTTOMLESSBUCKET", "farming_pour_water_bottomlessbucket", "seqtypes"),
+            new GamevalEntry(8198, "SHAYZIEN_LIZARD_BOSS_SIT", "shayzien_lizard_boss_sit", "seqtypes"),
             new GamevalEntry(8199, "SHAYZIEN_LIZARD_BOSS_PRAY", "shayzien_lizard_boss_pray", "seqtypes"),
             new GamevalEntry(8200, "SHAYZIEN_LIZARD_BOSS_CHANT", "shayzien_lizard_boss_chant", "seqtypes"),
             new GamevalEntry(8201, "ARCEUUS_ELDER_READY", "arceuus_elder_ready", "seqtypes"),
@@ -515,13 +522,6 @@ final class AnimationIDEntries_16 {
             new GamevalEntry(8701, "VYRELADY_READY", "vyrelady_ready", "seqtypes"),
             new GamevalEntry(8702, "VYRELORD_WALK", "vyrelord_walk", "seqtypes"),
             new GamevalEntry(8703, "VYRELORD_READY", "vyrelord_ready", "seqtypes"),
-            new GamevalEntry(8704, "VYRELORD_BARRAGE", "vyrelord_barrage", "seqtypes"),
-            new GamevalEntry(8705, "VYRELORD_CLAW", "vyrelord_claw", "seqtypes"),
-            new GamevalEntry(8706, "VYRELORD_FEEDING_TIME", "vyrelord_feeding_time", "seqtypes"),
-            new GamevalEntry(8707, "VYRELORD_FIXED_NECK_BITE", "vyrelord_fixed_neck_bite", "seqtypes"),
-            new GamevalEntry(8708, "VYRELORD_GROUND_DEFEND_FEMALE", "vyrelord_ground_defend_female", "seqtypes"),
-            new GamevalEntry(8709, "VYRELORD_GROUND_DEFEND_MALE", "vyrelord_ground_defend_male", "seqtypes"),
-            new GamevalEntry(8710, "VYRELORD_GROUNDED_DEATH", "vyrelord_grounded_death", "seqtypes"),
         };
     }
 

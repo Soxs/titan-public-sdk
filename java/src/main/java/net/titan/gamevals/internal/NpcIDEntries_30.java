@@ -10,6 +10,8 @@ final class NpcIDEntries_30 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(15360, "SAILING_SHIPYARD_WORKER_7", "Shipyard Worker", "npctypes"),
+            new GamevalEntry(15361, "SAILING_SHIPYARD_WORKER_8", "Shipyard Worker", "npctypes"),
             new GamevalEntry(15362, "SAILING_SHIPYARD_WORKER_9", "Shipyard Worker", "npctypes"),
             new GamevalEntry(15363, "SAILING_SHIPWRIGHT_PORT_SARIM", "Shipwright Sam", "npctypes"),
             new GamevalEntry(15364, "SAILING_SHIPWRIGHT_MUSA_POINT", "Shipwright Sally", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_30 {
             new GamevalEntry(15869, "MYQ6_VELIAF_CASTLE_ENTRY_HALL", "myq6_veliaf_castle_entry_hall", "npctypes"),
             new GamevalEntry(15870, "MYQ6_VELIAF_SANGVESTI", "myq6_veliaf_sangvesti", "npctypes"),
             new GamevalEntry(15871, "MYQ6_VELIAF_SUGADINTI_HIDEOUT", "myq6_veliaf_sugadinti_hideout", "npctypes"),
-            new GamevalEntry(15872, "MYQ6_VELIAF_BURGH_DE_ROTT", "myq6_veliaf_burgh_de_rott", "npctypes"),
-            new GamevalEntry(15873, "MYQ6_VELIAF_BURGH_DE_ROTT_INJURED", "myq6_veliaf_burgh_de_rott_injured", "npctypes"),
         };
     }
 

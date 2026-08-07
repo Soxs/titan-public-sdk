@@ -493,6 +493,7 @@ final class VarClientIDEntries_2 {
             new GamevalEntry(1504, "MUSIC_CLIENT_SYNC_TIMER_TIME_PER_INTERVAL", "music_client_sync_timer_time_per_interval", "varctypes"),
             new GamevalEntry(1505, "CASTLE_DRAKAN_WORLD_MAP_X", "castle_drakan_world_map_x", "varctypes"),
             new GamevalEntry(1506, "CASTLE_DRAKAN_WORLD_MAP_Y", "castle_drakan_world_map_y", "varctypes"),
+            new GamevalEntry(1507, "SETTINGS_RENDERER_OPTION", "settings_renderer_option", "varctypes"),
         };
     }
 

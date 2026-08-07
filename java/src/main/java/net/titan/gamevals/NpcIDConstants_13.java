@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_13 {
+    int POH_KRAKEN_PET = 6656;
+    int POH_ROCK = 6657;
     int POH_FISHBOWL_BLUEFISH = 6658;
     int POH_FISHBOWL_GREENFISH = 6659;
     int POH_FISHBOWL_SPINEFISH = 6660;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_13 {
     int MM_CARADO_GS = 7165;
     int MM_BUNKWICKET_AA = 7166;
     int MM_BUNKWICKET_GS = 7167;
-    int MM_WAYMOTTIN_AA = 7168;
-    int MM_WAYMOTTIN_GS = 7169;
 }

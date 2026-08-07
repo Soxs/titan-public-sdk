@@ -10,6 +10,11 @@ final class AnimationIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5632, "LOTR_FLOOR_SPIKE_ACTIVATE", "lotr_floor_spike_activate", "seqtypes"),
+            new GamevalEntry(5633, "SUROK_ZAFF_SPELL_CASTING", "surok_zaff_spell_casting", "seqtypes"),
+            new GamevalEntry(5634, "SUROK_ZAFF_SPELL_CASTING_SPOT", "surok_zaff_spell_casting_spot", "seqtypes"),
+            new GamevalEntry(5635, "SUROK_ZAFF_SPELL_CASTING_PROJ", "surok_zaff_spell_casting_proj", "seqtypes"),
+            new GamevalEntry(5636, "SUROK_ZAFF_SPELL_CASTING_IMPACT", "surok_zaff_spell_casting_impact", "seqtypes"),
             new GamevalEntry(5637, "LOTR_ENCHANT_AMULET_PLAYER_ANIM", "lotr_enchant_amulet_player_anim", "seqtypes"),
             new GamevalEntry(5638, "SUROK_SUROK_SPELL_CASTING_SPOT", "surok_surok_spell_casting_spot", "seqtypes"),
             new GamevalEntry(5639, "SUROK_SUROK_SPELL_CASTING_PROJ", "surok_surok_spell_casting_proj", "seqtypes"),
@@ -517,11 +522,6 @@ final class AnimationIDEntries_11 {
             new GamevalEntry(6141, "SURFACE_GOBLIN_UPDATE_EYEGLO_SCARED_RUN", "surface_goblin_update_eyeglo_scared_run", "seqtypes"),
             new GamevalEntry(6142, "SLICE_ARROW_HIT_SPOT", "slice_arrow_hit_spot", "seqtypes"),
             new GamevalEntry(6143, "SLICE_HAM_AGENT_ARROW_LAUNCH", "slice_ham_agent_arrow_launch", "seqtypes"),
-            new GamevalEntry(6144, "SLICE_HAM_AGENT_ARROW_LAUNCH_SPOT", "slice_ham_agent_arrow_launch_spot", "seqtypes"),
-            new GamevalEntry(6145, "SLICE_HAM_AGENT_ARROW_LAUNCH_PROJ", "slice_ham_agent_arrow_launch_proj", "seqtypes"),
-            new GamevalEntry(6146, "SLICE_PLAYER_THROWN_OUT_ANIM", "slice_player_thrown_out_anim", "seqtypes"),
-            new GamevalEntry(6147, "SLICE_PLAYER_MACE_SPECIAL_ATTACK", "slice_player_mace_special_attack", "seqtypes"),
-            new GamevalEntry(6148, "SLICE_PLAYER_MACE_SPECIAL_ATTACK_SPOT", "slice_player_mace_special_attack_spot", "seqtypes"),
         };
     }
 

@@ -10,6 +10,8 @@ final class NpcIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5120, "GRIM_RUPERT_VISIBLE", "Rupert the Beard", "npctypes"),
+            new GamevalEntry(5121, "GRIM_RUPERT_INVISIBLE", "Rupert the Beard", "npctypes"),
             new GamevalEntry(5122, "GRIM_RUPERT_PIPE", "Drain pipe", "npctypes"),
             new GamevalEntry(5123, "GRIM_RUPERT_VISIBLE_INTOWER", "Rupert the Beard", "npctypes"),
             new GamevalEntry(5124, "GRIM_RUPERT_INVISIBLE_INTOWER", "Rupert the Beard", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_10 {
             new GamevalEntry(5629, "TEMPLETREK_GIANTSNAIL_2", "Giant snail", "npctypes"),
             new GamevalEntry(5630, "TEMPLETREK_GIANTSNAIL_3", "Giant snail", "npctypes"),
             new GamevalEntry(5631, "TEMPLETREK_SHADE_1", "Riyl shadow", "npctypes"),
-            new GamevalEntry(5632, "TEMPLETREK_SHADE_2", "Asyn shadow", "npctypes"),
-            new GamevalEntry(5633, "TEMPLETREK_SHADE_3", "?c Attack", "npctypes"),
         };
     }
 

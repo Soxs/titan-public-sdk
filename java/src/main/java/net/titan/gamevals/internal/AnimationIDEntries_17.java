@@ -10,6 +10,13 @@ final class AnimationIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8704, "VYRELORD_BARRAGE", "vyrelord_barrage", "seqtypes"),
+            new GamevalEntry(8705, "VYRELORD_CLAW", "vyrelord_claw", "seqtypes"),
+            new GamevalEntry(8706, "VYRELORD_FEEDING_TIME", "vyrelord_feeding_time", "seqtypes"),
+            new GamevalEntry(8707, "VYRELORD_FIXED_NECK_BITE", "vyrelord_fixed_neck_bite", "seqtypes"),
+            new GamevalEntry(8708, "VYRELORD_GROUND_DEFEND_FEMALE", "vyrelord_ground_defend_female", "seqtypes"),
+            new GamevalEntry(8709, "VYRELORD_GROUND_DEFEND_MALE", "vyrelord_ground_defend_male", "seqtypes"),
+            new GamevalEntry(8710, "VYRELORD_GROUNDED_DEATH", "vyrelord_grounded_death", "seqtypes"),
             new GamevalEntry(8711, "VYRELORD_HEAD_VAMP_SPELL", "vyrelord_head_vamp_spell", "seqtypes"),
             new GamevalEntry(8712, "VYRELORD_HUMAN_TO_VAMPIRE_FADE", "vyrelord_human_to_vampire_fade", "seqtypes"),
             new GamevalEntry(8713, "VYRELORD_JUVENILE_JUVINATE_DUST_START", "vyrelord_juvenile_juvinate_dust_start", "seqtypes"),
@@ -515,13 +522,6 @@ final class AnimationIDEntries_17 {
             new GamevalEntry(9213, "LEAGUE03_HOME_TELEPORT_HUMAN_5", "league03_home_teleport_human_5", "seqtypes"),
             new GamevalEntry(9214, "LEAGUE03_HOME_TELEPORT_HUMAN_6", "league03_home_teleport_human_6", "seqtypes"),
             new GamevalEntry(9215, "LEAGUE03_HOME_TELEPORT_SPOTANIM_1", "league03_home_teleport_spotanim_1", "seqtypes"),
-            new GamevalEntry(9216, "LEAGUE03_HOME_TELEPORT_SPOTANIM_2", "league03_home_teleport_spotanim_2", "seqtypes"),
-            new GamevalEntry(9217, "LEAGUE03_HOME_TELEPORT_SPOTANIM_3", "league03_home_teleport_spotanim_3", "seqtypes"),
-            new GamevalEntry(9218, "LEAGUE03_HOME_TELEPORT_SPOTANIM_4", "league03_home_teleport_spotanim_4", "seqtypes"),
-            new GamevalEntry(9219, "LEAGUE03_HOME_TELEPORT_SPOTANIM_5", "league03_home_teleport_spotanim_5", "seqtypes"),
-            new GamevalEntry(9220, "LEAGUE03_HOME_TELEPORT_SPOTANIM_6", "league03_home_teleport_spotanim_6", "seqtypes"),
-            new GamevalEntry(9221, "LEAGUES03_CUTSCENE01_FADEIN01", "leagues03_cutscene01_fadein01", "seqtypes"),
-            new GamevalEntry(9222, "LEAGUES03_CUTSCENE01_FADEOUT01", "leagues03_cutscene01_fadeout01", "seqtypes"),
         };
     }
 

@@ -10,6 +10,18 @@ final class AnimationIDEntries_27 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13824, "HUMAN_IBANS_ORN_WALK_B", "human_ibans_orn_walk_b", "seqtypes"),
+            new GamevalEntry(13825, "HUMAN_IBANS_ORN_RUN_F", "human_ibans_orn_run_f", "seqtypes"),
+            new GamevalEntry(13826, "HUMAN_IBANS_ORN_READY", "human_ibans_orn_ready", "seqtypes"),
+            new GamevalEntry(13827, "HUMAN_IBANS_ORN_MELEE", "human_ibans_orn_melee", "seqtypes"),
+            new GamevalEntry(13828, "HUMAN_IBANS_ORN_SEA_CAST", "human_ibans_orn_sea_cast", "seqtypes"),
+            new GamevalEntry(13829, "HUMAN_IBANS_ORN_SWAMP_CAST", "human_ibans_orn_swamp_cast", "seqtypes"),
+            new GamevalEntry(13830, "HUMAN_IBANS_ORN_CAST", "human_ibans_orn_cast", "seqtypes"),
+            new GamevalEntry(13831, "DEMON_BUTLER_LEAGUES_IDLE", "demon_butler_leagues_idle", "seqtypes"),
+            new GamevalEntry(13832, "DEMON_BUTLER_LEAGUES_WALK", "demon_butler_leagues_walk", "seqtypes"),
+            new GamevalEntry(13833, "LEAGUES_6_THRALL_IMP_MAGIC_SPAWN", "leagues_6_thrall_imp_magic_spawn", "seqtypes"),
+            new GamevalEntry(13834, "LEAGUES_6_THRALL_IMP_MAGIC_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_magic_spawn_vfx_spotanim", "seqtypes"),
+            new GamevalEntry(13835, "LEAGUES_6_THRALL_IMP_RANGED_SPAWN", "leagues_6_thrall_imp_ranged_spawn", "seqtypes"),
             new GamevalEntry(13836, "LEAGUES_6_THRALL_IMP_RANGED_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_ranged_spawn_vfx_spotanim", "seqtypes"),
             new GamevalEntry(13837, "LEAGUES_6_THRALL_IMP_MELEE_SPAWN", "leagues_6_thrall_imp_melee_spawn", "seqtypes"),
             new GamevalEntry(13838, "LEAGUES_6_THRALL_IMP_MELEE_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_melee_spawn_vfx_spotanim", "seqtypes"),
@@ -510,18 +522,6 @@ final class AnimationIDEntries_27 {
             new GamevalEntry(14333, "LOWERNIEL_DRAKAN_SWIPE_HIT_TELEGRAPH01", "lowerniel_drakan_swipe_hit_telegraph01", "seqtypes"),
             new GamevalEntry(14334, "LOWERNIEL_DRAKAN_SWIPE_HIT_TELEGRAPH_LAME_WING01", "lowerniel_drakan_swipe_hit_telegraph_lame_wing01", "seqtypes"),
             new GamevalEntry(14335, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE01", "lowerniel_drakan_swipe_hit_swipe01", "seqtypes"),
-            new GamevalEntry(14336, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE_LAME_WING01", "lowerniel_drakan_swipe_hit_swipe_lame_wing01", "seqtypes"),
-            new GamevalEntry(14337, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE_AFTERIMAGE01", "lowerniel_drakan_swipe_hit_swipe_afterimage01", "seqtypes"),
-            new GamevalEntry(14338, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE_AFTERIMAGE_LAME_WING01", "lowerniel_drakan_swipe_hit_swipe_afterimage_lame_wing01", "seqtypes"),
-            new GamevalEntry(14339, "NPC_LOWERNIEL_DRAKAN_DEATH01", "npc_lowerniel_drakan_death01", "seqtypes"),
-            new GamevalEntry(14340, "NPC_LOWERNIEL_DRAKAN_DEATH_FINAL_FRAME01", "npc_lowerniel_drakan_death_final_frame01", "seqtypes"),
-            new GamevalEntry(14341, "CUTSCENE_LOWERNIEL_DRAKAN_IDLE_RECREATION01", "cutscene_lowerniel_drakan_idle_recreation01", "seqtypes"),
-            new GamevalEntry(14342, "CUTSCENE_LOWERNIEL_DRAKAN_IDLE_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_idle_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14343, "CUTSCENE_LOWERNIEL_DRAKAN_WALK_RECREATION01", "cutscene_lowerniel_drakan_walk_recreation01", "seqtypes"),
-            new GamevalEntry(14344, "CUTSCENE_LOWERNIEL_DRAKAN_WALK_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_walk_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14345, "CUTSCENE_LOWERNIEL_DRAKAN_DRAMATIC_WALK_RECREATION01", "cutscene_lowerniel_drakan_dramatic_walk_recreation01", "seqtypes"),
-            new GamevalEntry(14346, "CUTSCENE_LOWERNIEL_DRAKAN_DRAMATIC_WALK_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_dramatic_walk_recreation_lame_wing01", "seqtypes"),
-            new GamevalEntry(14347, "CUTSCENE_LOWERNIEL_DRAKAN_OBLITERATE_RECREATION01", "cutscene_lowerniel_drakan_obliterate_recreation01", "seqtypes"),
         };
     }
 

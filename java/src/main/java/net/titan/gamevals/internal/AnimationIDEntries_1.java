@@ -521,7 +521,6 @@ final class AnimationIDEntries_1 {
             new GamevalEntry(1021, "CHOMPY_TOAD_WALK", "chompy_toad_walk", "seqtypes"),
             new GamevalEntry(1022, "CHOMPY_TOAD_DEATH", "chompy_toad_death", "seqtypes"),
             new GamevalEntry(1023, "CHOMPY_TOAD_EXPLODE", "chompy_toad_explode", "seqtypes"),
-            new GamevalEntry(1024, "OGRE_BELLOWS_USE", "ogre_bellows_use", "seqtypes"),
         };
     }
 

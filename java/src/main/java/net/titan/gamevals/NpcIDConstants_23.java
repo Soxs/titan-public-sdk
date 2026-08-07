@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_23 {
+    int TOA_WARDENS_KEPHRI = 11776;
+    int TOA_WARDENS_AKKHA = 11777;
     int TOA_BABA = 11778;
     int TOA_BABA_COFFIN = 11779;
     int TOA_BABA_DIGGING = 11780;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_23 {
     int DT2_STRANGLED_T2_1_CUTSCENE = 12285;
     int DT2_STRANGLED_T2_2_CUTSCENE = 12286;
     int DT2_STRANGLED_T2_3_CUTSCENE = 12287;
-    int DT2_STRANGLED_BEAR = 12288;
-    int DT2_STRANGLED_BOAR = 12289;
 }

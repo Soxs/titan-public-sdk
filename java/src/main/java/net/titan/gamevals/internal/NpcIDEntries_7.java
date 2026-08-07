@@ -10,6 +10,8 @@ final class NpcIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3584, "ENAKH_CUTSCENE_SKELETON", "Skeleton", "npctypes"),
+            new GamevalEntry(3585, "TOL_NPC_EFERGY01", "Effigy", "npctypes"),
             new GamevalEntry(3586, "TOL_NPC_EFERGY01_STILL", "Effigy", "npctypes"),
             new GamevalEntry(3587, "TOL_NPC_BARRY01", "Bonafido", "npctypes"),
             new GamevalEntry(3588, "TOL_HOMONCULUS_NOCAGE", "Homunculus", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_7 {
             new GamevalEntry(4093, "DEATH_HERMIT", "Saba", "npctypes"),
             new GamevalEntry(4094, "DEATH_SHERPA", "Tenzing", "npctypes"),
             new GamevalEntry(4095, "DEATH_COOK", "Eadburg", "npctypes"),
-            new GamevalEntry(4096, "DEATH_ARCHER1", "( 3 4 5 6 (a", "npctypes"),
-            new GamevalEntry(4097, "DEATH_ARCHER2", "( 3 4 5 6 (a", "npctypes"),
         };
     }
 

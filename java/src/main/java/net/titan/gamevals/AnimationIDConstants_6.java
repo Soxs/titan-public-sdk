@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_6 {
+    int DWARF_HAND_OVER = 3072;
+    int ENAKH_BONEGUARD_READY = 3073;
     int ENAKH_BONEGUARD_BLOCK = 3074;
     int ENAKH_BONEGUARD_ATTACK = 3075;
     int ENAKH_BONEGUARD_DEATH = 3076;
@@ -511,6 +513,4 @@ public interface AnimationIDConstants_6 {
     int CRYSTALBALL_POWER_FLOAT = 3581;
     int ELEMENTAL_ORB_READY = 3582;
     int ELEMENTAL_ORB_OPENS = 3583;
-    int ELEMENTAL_ORB_SPINS = 3584;
-    int ELEMENTAL_ORB_CLOSES = 3585;
 }

@@ -512,5 +512,4 @@ public interface AnimationIDConstants_1 {
     int CHOMPY_TOAD_WALK = 1021;
     int CHOMPY_TOAD_DEATH = 1022;
     int CHOMPY_TOAD_EXPLODE = 1023;
-    int OGRE_BELLOWS_USE = 1024;
 }

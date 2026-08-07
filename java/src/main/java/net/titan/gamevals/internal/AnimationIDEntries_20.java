@@ -10,6 +10,14 @@ final class AnimationIDEntries_20 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10240, "NPC_WHISPERER_01_ATTACK_RANGED_06", "npc_whisperer_01_attack_ranged_06", "seqtypes"),
+            new GamevalEntry(10241, "NPC_WHISPERER_01_ATTACK_MAGIC_01", "npc_whisperer_01_attack_magic_01", "seqtypes"),
+            new GamevalEntry(10242, "NPC_WHISPERER_01_ATTACK_MAGIC_02", "npc_whisperer_01_attack_magic_02", "seqtypes"),
+            new GamevalEntry(10243, "NPC_WHISPERER_01_ATTACK_MAGIC_03", "npc_whisperer_01_attack_magic_03", "seqtypes"),
+            new GamevalEntry(10244, "NPC_WHISPERER_01_ATTACK_MAGIC_04", "npc_whisperer_01_attack_magic_04", "seqtypes"),
+            new GamevalEntry(10245, "NPC_WHISPERER_01_ATTACK_MAGIC_05", "npc_whisperer_01_attack_magic_05", "seqtypes"),
+            new GamevalEntry(10246, "NPC_WHISPERER_01_ATTACK_MAGIC_06", "npc_whisperer_01_attack_magic_06", "seqtypes"),
+            new GamevalEntry(10247, "NPC_WHISPERER_01_TELEPORT_01", "npc_whisperer_01_teleport_01", "seqtypes"),
             new GamevalEntry(10248, "NPC_WHISPERER_01_TELEPORT_02", "npc_whisperer_01_teleport_02", "seqtypes"),
             new GamevalEntry(10249, "NPC_WHISPERER_01_TELEPORT_02_PET", "npc_whisperer_01_teleport_02_pet", "seqtypes"),
             new GamevalEntry(10250, "NPC_WHISPERER_01_ATTACK_SCREECH_01_START", "npc_whisperer_01_attack_screech_01_start", "seqtypes"),
@@ -514,14 +522,6 @@ final class AnimationIDEntries_20 {
             new GamevalEntry(10749, "COA_PLAYER_GRAPPLE_SPOT", "coa_player_grapple_spot", "seqtypes"),
             new GamevalEntry(10750, "COA_ELECTRICITY_PROJ", "coa_electricity_proj", "seqtypes"),
             new GamevalEntry(10751, "COA_BLADES", "coa_blades", "seqtypes"),
-            new GamevalEntry(10752, "COA_SLIDING_DOORS", "coa_sliding_doors", "seqtypes"),
-            new GamevalEntry(10753, "COA_SLIDING_DOORS_OPENED", "coa_sliding_doors_opened", "seqtypes"),
-            new GamevalEntry(10754, "COA_SLIDING_DOORS_RETURN", "coa_sliding_doors_return", "seqtypes"),
-            new GamevalEntry(10755, "COA_BRAZIER_FIRE", "coa_brazier_fire", "seqtypes"),
-            new GamevalEntry(10756, "COA_FLOOR_TILE_RAISE", "coa_floor_tile_raise", "seqtypes"),
-            new GamevalEntry(10757, "COA_AMASCUT_REFORM", "coa_amascut_reform", "seqtypes"),
-            new GamevalEntry(10758, "COA_HET_REFORM", "coa_het_reform", "seqtypes"),
-            new GamevalEntry(10759, "COA_APMEKEN_REFORM", "coa_apmeken_reform", "seqtypes"),
         };
     }
 

@@ -10,6 +10,8 @@ final class AnimationIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2048, "TOG_PLAYER_FLOAT_ACROSS", "tog_player_float_across", "seqtypes"),
+            new GamevalEntry(2049, "TOG_CLIMB_SLOPE_UP", "tog_climb_slope_up", "seqtypes"),
             new GamevalEntry(2050, "TOG_CLIMB_SLOPE_DOWN", "tog_climb_slope_down", "seqtypes"),
             new GamevalEntry(2051, "LIGHT_CREATURE_READY", "light_creature_ready", "seqtypes"),
             new GamevalEntry(2052, "LIGHT_CREATURE_GROW", "light_creature_grow", "seqtypes"),
@@ -520,8 +522,6 @@ final class AnimationIDEntries_4 {
             new GamevalEntry(2557, "WOM_WATCHMAN_DEATH", "wom_watchman_death", "seqtypes"),
             new GamevalEntry(2558, "WALL_CRUSH_SPELL_CASTING", "wall_crush_spell_casting", "seqtypes"),
             new GamevalEntry(2559, "WALL_CRUSH_SPELL_TRAVEL", "wall_crush_spell_travel", "seqtypes"),
-            new GamevalEntry(2560, "WALL_CRUSH_SPELL_IMPACT", "wall_crush_spell_impact", "seqtypes"),
-            new GamevalEntry(2561, "HUMAN_DH_WEAPON_READY", "human_dh_weapon_ready", "seqtypes"),
         };
     }
 

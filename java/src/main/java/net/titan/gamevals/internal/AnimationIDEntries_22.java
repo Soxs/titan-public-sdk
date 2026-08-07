@@ -10,6 +10,17 @@ final class AnimationIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11264, "WGS_HUMAN_ELECTROCUTED", "wgs_human_electrocuted", "seqtypes"),
+            new GamevalEntry(11265, "WGS_PLAYER_PULLS_BOOK_OUT", "wgs_player_pulls_book_out", "seqtypes"),
+            new GamevalEntry(11266, "WGS_PLAYER_PUSHES_BOOK_BACK", "wgs_player_pushes_book_back", "seqtypes"),
+            new GamevalEntry(11267, "WGS_PLAYER_COUGHS", "wgs_player_coughs", "seqtypes"),
+            new GamevalEntry(11268, "WGS_PLAYER_COUGHS_LOOP", "wgs_player_coughs_loop", "seqtypes"),
+            new GamevalEntry(11269, "WGS_PLAYER_OPENS_BEDCHEST", "wgs_player_opens_bedchest", "seqtypes"),
+            new GamevalEntry(11270, "WGS_PLAYER_REVEALING_BEDCHEST", "wgs_player_revealing_bedchest", "seqtypes"),
+            new GamevalEntry(11271, "WGS_PLAYER_WALK_THROUGH_PAINTING", "wgs_player_walk_through_painting", "seqtypes"),
+            new GamevalEntry(11272, "WGS_PLAYER_GOING_UNCONSCIOUS", "wgs_player_going_unconscious", "seqtypes"),
+            new GamevalEntry(11273, "WGS_PLAYER_UNCONSCIOUS", "wgs_player_unconscious", "seqtypes"),
+            new GamevalEntry(11274, "WGS_PLAYER_REGAINING_CONSCIOUSNESS", "wgs_player_regaining_consciousness", "seqtypes"),
             new GamevalEntry(11275, "HUMAN_SPECIAL02_VOIDWAKER", "human_special02_voidwaker", "seqtypes"),
             new GamevalEntry(11276, "WGS_HIT_BY_DARTS", "wgs_hit_by_darts", "seqtypes"),
             new GamevalEntry(11277, "DAGGERHELD_PUNCTURE", "daggerheld_puncture", "seqtypes"),
@@ -511,17 +522,6 @@ final class AnimationIDEntries_22 {
             new GamevalEntry(11773, "HW24_CROW_LAUNCH", "hw24_crow_launch", "seqtypes"),
             new GamevalEntry(11774, "HW24_CAT_SPAWN", "hw24_cat_spawn", "seqtypes"),
             new GamevalEntry(11775, "HW24_CAT_DESPAWN", "hw24_cat_despawn", "seqtypes"),
-            new GamevalEntry(11776, "LUC2_UNDEAD_ACCURACY_DEBUFF", "luc2_undead_accuracy_debuff", "seqtypes"),
-            new GamevalEntry(11777, "MAHJARRAT_ZEMOUREGAL_ELIAS_BIND_01", "mahjarrat_zemouregal_elias_bind_01", "seqtypes"),
-            new GamevalEntry(11778, "MAHJARRAT_ZEMOUREGAL_ELIAS_BIND_IMPACTANIM_01", "mahjarrat_zemouregal_elias_bind_impactanim_01", "seqtypes"),
-            new GamevalEntry(11779, "MAHJARRAT_ZEMOUREGAL_ELIAS_BIND_IMPACTANIM_02", "mahjarrat_zemouregal_elias_bind_impactanim_02", "seqtypes"),
-            new GamevalEntry(11780, "MOM2_SCARAB_READY", "mom2_scarab_ready", "seqtypes"),
-            new GamevalEntry(11781, "MOM2_SCARAB_ATTACK", "mom2_scarab_attack", "seqtypes"),
-            new GamevalEntry(11782, "MOM2_SCARAB_DEFEND", "mom2_scarab_defend", "seqtypes"),
-            new GamevalEntry(11783, "MOM2_SCARAB_DEATH", "mom2_scarab_death", "seqtypes"),
-            new GamevalEntry(11784, "MOM2_SCARAB_WALK", "mom2_scarab_walk", "seqtypes"),
-            new GamevalEntry(11785, "COA_ARRAV_THROWAXE", "coa_arrav_throwaxe", "seqtypes"),
-            new GamevalEntry(11786, "COA_ARRAV_CATCHAXE", "coa_arrav_catchaxe", "seqtypes"),
         };
     }
 

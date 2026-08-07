@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_11 {
+    int TEMPLETREK_SHADE_2 = 5632;
+    int TEMPLETREK_SHADE_3 = 5633;
     int TEMPLETREK_VAMPIRE_1 = 5634;
     int TEMPLETREK_VAMPIRE_2 = 5635;
     int TEMPLETREK_VAMPIRE_3 = 5636;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_11 {
     int FEUD_VILLAGER_MULTI_3 = 6141;
     int ERNEST_MULTIERNEST = 6142;
     int SHADESHADOW_LEVEL6 = 6143;
-    int ENAKH_BONEGUARD_MULTINPC = 6144;
-    int ENAKH_DUMMY_FOUNTAIN_MULTINPC = 6145;
 }

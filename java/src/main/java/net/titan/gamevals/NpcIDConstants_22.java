@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_22 {
+    int LOTG_ZANIK_YUBIUSK = 11264;
+    int LOTG_OLDAK_CUTSCENE = 11265;
     int LOTG_OLDAK_YUBIUSK = 11266;
     int LOTG_GOBLIN_HIGH_PRIEST = 11267;
     int LOTG_GOBLIN_SKELETON = 11268;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_22 {
     int WARDENS_P3_ORB_RED = 11773;
     int TOA_WARDENS_ZEBAK = 11774;
     int TOA_WARDENS_BABA = 11775;
-    int TOA_WARDENS_KEPHRI = 11776;
-    int TOA_WARDENS_AKKHA = 11777;
 }

@@ -10,6 +10,17 @@ final class AnimationIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12288, "NPC_DJINN_EARTH01_IDLE02", "npc_djinn_earth01_idle02", "seqtypes"),
+            new GamevalEntry(12289, "NPC_DJINN_EARTH01_WALK01", "npc_djinn_earth01_walk01", "seqtypes"),
+            new GamevalEntry(12290, "NPC_DJINN_EARTH01_WALK02", "npc_djinn_earth01_walk02", "seqtypes"),
+            new GamevalEntry(12291, "NPC_DJINN_EARTH01_ATTACK01", "npc_djinn_earth01_attack01", "seqtypes"),
+            new GamevalEntry(12292, "NPC_DJINN_EARTH01_ATTACK02", "npc_djinn_earth01_attack02", "seqtypes"),
+            new GamevalEntry(12293, "NPC_DJINN_EARTH01_REINFORCE01", "npc_djinn_earth01_reinforce01", "seqtypes"),
+            new GamevalEntry(12294, "NPC_DJINN_EARTH01_BREAK01", "npc_djinn_earth01_break01", "seqtypes"),
+            new GamevalEntry(12295, "NPC_DJINN_EARTH01_DEATH01", "npc_djinn_earth01_death01", "seqtypes"),
+            new GamevalEntry(12296, "STATUE_ICOSAHEDRON01_DESPAWN", "statue_icosahedron01_despawn", "seqtypes"),
+            new GamevalEntry(12297, "VMQ4_ARKAN_BLADE_SPECIAL", "vmq4_arkan_blade_special", "seqtypes"),
+            new GamevalEntry(12298, "VMQ4_ARKAN_BLADE_SPECIAL_SPOTANIM", "vmq4_arkan_blade_special_spotanim", "seqtypes"),
             new GamevalEntry(12299, "VMQ4_ARKAN_BLADE_SPECIAL_SPOTANIM_F", "vmq4_arkan_blade_special_spotanim_f", "seqtypes"),
             new GamevalEntry(12300, "VMQ4_SLAP_ANIM", "vmq4_slap_anim", "seqtypes"),
             new GamevalEntry(12301, "VMQ4_CHAMBER_GUARD_CHARGE", "vmq4_chamber_guard_charge", "seqtypes"),
@@ -510,18 +521,6 @@ final class AnimationIDEntries_24 {
             new GamevalEntry(12797, "LORE_LAVA_TYTN_DEFEND", "lore_lava_tytn_defend", "seqtypes"),
             new GamevalEntry(12798, "LORE_LAVA_TYTN_READY_TIMER", "lore_lava_tytn_ready_timer", "seqtypes"),
             new GamevalEntry(12799, "LORE_LAVA_TYTN_OBSIDIAN_THUNDER", "lore_lava_tytn_obsidian_thunder", "seqtypes"),
-            new GamevalEntry(12800, "LORE_LAVA_TYTN_SUMMON", "lore_lava_tytn_summon", "seqtypes"),
-            new GamevalEntry(12801, "LORE_LOCUST_WALK", "lore_locust_walk", "seqtypes"),
-            new GamevalEntry(12802, "LORE_LOCUST_READY", "lore_locust_ready", "seqtypes"),
-            new GamevalEntry(12803, "LORE_LOCUST_READY_TIMER", "lore_locust_ready_timer", "seqtypes"),
-            new GamevalEntry(12804, "LORE_LOCUST_ATTACK", "lore_locust_attack", "seqtypes"),
-            new GamevalEntry(12805, "LORE_LOCUST_DEFEND", "lore_locust_defend", "seqtypes"),
-            new GamevalEntry(12806, "LORE_LOCUST_DEATH", "lore_locust_death", "seqtypes"),
-            new GamevalEntry(12807, "LORE_LOCUST_SUMMON", "lore_locust_summon", "seqtypes"),
-            new GamevalEntry(12808, "LORE_LOCUST_SPECIAL", "lore_locust_special", "seqtypes"),
-            new GamevalEntry(12809, "LORE_LOCUST_JUMP_AWAY", "lore_locust_jump_away", "seqtypes"),
-            new GamevalEntry(12810, "LORE_LOCUST_JUMP_TO", "lore_locust_jump_to", "seqtypes"),
-            new GamevalEntry(12811, "LORE_LOCUST_FLYING", "lore_locust_flying", "seqtypes"),
         };
     }
 

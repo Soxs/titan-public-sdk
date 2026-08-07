@@ -10,6 +10,20 @@ final class ItemIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4096, "CERT_MYSTIC_GLOVES", "cert_mystic_gloves", "objtypes"),
+            new GamevalEntry(4097, "MYSTIC_BOOTS", "Mystic boots", "objtypes"),
+            new GamevalEntry(4098, "CERT_MYSTIC_BOOTS", "cert_mystic_boots", "objtypes"),
+            new GamevalEntry(4099, "MYSTIC_HAT_DARK", "Mystic hat (dark)", "objtypes"),
+            new GamevalEntry(4100, "CERT_MYSTIC_HAT_DARK", "cert_mystic_hat_dark", "objtypes"),
+            new GamevalEntry(4101, "MYSTIC_ROBE_TOP_DARK", "Mystic robe top (dark)", "objtypes"),
+            new GamevalEntry(4102, "CERT_MYSTIC_ROBE_TOP_DARK", "cert_mystic_robe_top_dark", "objtypes"),
+            new GamevalEntry(4103, "MYSTIC_ROBE_BOTTOM_DARK", "Mystic robe bottom (dark)", "objtypes"),
+            new GamevalEntry(4104, "CERT_MYSTIC_ROBE_BOTTOM_DARK", "cert_mystic_robe_bottom_dark", "objtypes"),
+            new GamevalEntry(4105, "MYSTIC_GLOVES_DARK", "Mystic gloves (dark)", "objtypes"),
+            new GamevalEntry(4106, "CERT_MYSTIC_GLOVES_DARK", "cert_mystic_gloves_dark", "objtypes"),
+            new GamevalEntry(4107, "MYSTIC_BOOTS_DARK", "Mystic boots (dark)", "objtypes"),
+            new GamevalEntry(4108, "CERT_MYSTIC_BOOTS_DARK", "cert_mystic_boots_dark", "objtypes"),
+            new GamevalEntry(4109, "MYSTIC_HAT_LIGHT", "Mystic hat (light)", "objtypes"),
             new GamevalEntry(4110, "CERT_MYSTIC_HAT_LIGHT", "cert_mystic_hat_light", "objtypes"),
             new GamevalEntry(4111, "MYSTIC_ROBE_TOP_LIGHT", "Mystic robe top (light)", "objtypes"),
             new GamevalEntry(4112, "CERT_MYSTIC_ROBE_TOP_LIGHT", "cert_mystic_robe_top_light", "objtypes"),
@@ -508,20 +522,6 @@ final class ItemIDEntries_8 {
             new GamevalEntry(4605, "SNAKE_FLUTE", "Snake charm", "objtypes"),
             new GamevalEntry(4606, "BASKET_FOR_SNAKE", "Snake basket", "objtypes"),
             new GamevalEntry(4607, "BASKET_WITH_SNAKE", "Snake basket full", "objtypes"),
-            new GamevalEntry(4608, "SUPER_KEBAB", "Super kebab", "objtypes"),
-            new GamevalEntry(4609, "CERT_SUPER_KEBAB", "cert_super_kebab", "objtypes"),
-            new GamevalEntry(4610, "SUPERHOT_KEBAB_SAUCE", "Red hot sauce", "objtypes"),
-            new GamevalEntry(4611, "FEUD_DESERT_DISGUISE", "Desert disguise", "objtypes"),
-            new GamevalEntry(4612, "CERT_BLACKJACK_WILLOW", "cert_blackjack_willow", "objtypes"),
-            new GamevalEntry(4613, "SPINNING_PLATE", "Spinning plate", "objtypes"),
-            new GamevalEntry(4614, "SPINNING_PLATE_BROKEN", "Broken plate", "objtypes"),
-            new GamevalEntry(4615, "GOLEM_LETTER", "Letter", "objtypes"),
-            new GamevalEntry(4616, "GOLEM_NOTES", "Varmen's notes", "objtypes"),
-            new GamevalEntry(4617, "GOLEM_STATUETTEKEY", "Display cabinet key", "objtypes"),
-            new GamevalEntry(4618, "GOLEM_STATUETTE", "Statuette", "objtypes"),
-            new GamevalEntry(4619, "GOLEM_GOLEMKEY", "Strange implement", "objtypes"),
-            new GamevalEntry(4620, "GOLEM_MUSHROOM", "Black mushroom", "objtypes"),
-            new GamevalEntry(4621, "GOLEM_PHOENIXFEATHER", "Phoenix feather", "objtypes"),
         };
     }
 

@@ -10,6 +10,13 @@ final class AnimationIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7680, "FOSSIL_SPOT_LAVABEAST_BOMB", "fossil_spot_lavabeast_bomb", "seqtypes"),
+            new GamevalEntry(7681, "FOSSIL_LAVA_HEAT", "fossil_lava_heat", "seqtypes"),
+            new GamevalEntry(7682, "FOSSIL_NPC_HOOPSNAKE_IDLE", "fossil_npc_hoopsnake_idle", "seqtypes"),
+            new GamevalEntry(7683, "FOSSIL_NPC_HOOPSNAKE_WALK", "fossil_npc_hoopsnake_walk", "seqtypes"),
+            new GamevalEntry(7684, "FOSSIL_PROJECTILE_HOOPSNAKE", "fossil_projectile_hoopsnake", "seqtypes"),
+            new GamevalEntry(7685, "FOSSIL_NPC_HOOPSNAKE_ATTACK", "fossil_npc_hoopsnake_attack", "seqtypes"),
+            new GamevalEntry(7686, "FOSSIL_NPC_HOOPSNAKE_DEFEND", "fossil_npc_hoopsnake_defend", "seqtypes"),
             new GamevalEntry(7687, "FOSSIL_NPC_HERBIBOAR_APPEAR", "fossil_npc_herbiboar_appear", "seqtypes"),
             new GamevalEntry(7688, "FOSSIL_NPC_HERBIBOAR_STUNNED", "fossil_npc_herbiboar_stunned", "seqtypes"),
             new GamevalEntry(7689, "FOSSIL_NPC_HERBIBOAR_WAKE", "fossil_npc_herbiboar_wake", "seqtypes"),
@@ -515,13 +522,6 @@ final class AnimationIDEntries_15 {
             new GamevalEntry(8189, "HUMAN_FISHING_CASTING_PEARL_FLY", "human_fishing_casting_pearl_fly", "seqtypes"),
             new GamevalEntry(8190, "HUMAN_FISHING_CASTING_PEARL_BRUT", "human_fishing_casting_pearl_brut", "seqtypes"),
             new GamevalEntry(8191, "HUMAN_FISH_ONSPOT_PEARL", "human_fish_onspot_pearl", "seqtypes"),
-            new GamevalEntry(8192, "HUMAN_FISH_ONSPOT_PEARL_FLY", "human_fish_onspot_pearl_fly", "seqtypes"),
-            new GamevalEntry(8193, "HUMAN_FISH_ONSPOT_PEARL_BRUT", "human_fish_onspot_pearl_brut", "seqtypes"),
-            new GamevalEntry(8194, "HUMAN_DRAGON_KNIFE", "human_dragon_knife", "seqtypes"),
-            new GamevalEntry(8195, "HUMAN_DRAGON_KNIFE_P", "human_dragon_knife_p", "seqtypes"),
-            new GamevalEntry(8196, "STONEGLOW_LONG", "stoneglow_long", "seqtypes"),
-            new GamevalEntry(8197, "FARMING_POUR_WATER_BOTTOMLESSBUCKET", "farming_pour_water_bottomlessbucket", "seqtypes"),
-            new GamevalEntry(8198, "SHAYZIEN_LIZARD_BOSS_SIT", "shayzien_lizard_boss_sit", "seqtypes"),
         };
     }
 

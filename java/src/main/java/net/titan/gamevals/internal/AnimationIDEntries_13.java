@@ -10,6 +10,11 @@ final class AnimationIDEntries_13 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6656, "DRAGON_SLAYER_QIP_ORACLE_FLAPPING_FLAG", "dragon_slayer_qip_oracle_flapping_flag", "seqtypes"),
+            new GamevalEntry(6657, "PETROCK_HUMAN_READY", "petrock_human_ready", "seqtypes"),
+            new GamevalEntry(6658, "PETROCK_HUMAN_WALK", "petrock_human_walk", "seqtypes"),
+            new GamevalEntry(6659, "PETROCK_HUMAN_WALK_B", "petrock_human_walk_b", "seqtypes"),
+            new GamevalEntry(6660, "PETROCK_HUMAN_RUNNING", "petrock_human_running", "seqtypes"),
             new GamevalEntry(6661, "PETROCK_HUMAN_TURNONSPOT", "petrock_human_turnonspot", "seqtypes"),
             new GamevalEntry(6662, "PETROCK_HUMAN_WALK_L", "petrock_human_walk_l", "seqtypes"),
             new GamevalEntry(6663, "PETROCK_HUMAN_WALK_R", "petrock_human_walk_r", "seqtypes"),
@@ -515,13 +520,6 @@ final class AnimationIDEntries_13 {
             new GamevalEntry(7165, "TELEPORT_REVERSE", "teleport_reverse", "seqtypes"),
             new GamevalEntry(7166, "GODWARS_ARMADYL_PET_READY", "godwars_armadyl_pet_ready", "seqtypes"),
             new GamevalEntry(7167, "GODWARS_ARMADYL_PET_WALK", "godwars_armadyl_pet_walk", "seqtypes"),
-            new GamevalEntry(7168, "ZEAH_CHATHEAD_TALK", "zeah_chathead_talk", "seqtypes"),
-            new GamevalEntry(7169, "ZEAH_CHATHEAD_LAUGH", "zeah_chathead_laugh", "seqtypes"),
-            new GamevalEntry(7170, "ZEAH_CHATHEAD_SHAKE_HEAD", "zeah_chathead_shake_head", "seqtypes"),
-            new GamevalEntry(7171, "HUNTING_IMPLING_CATCH", "hunting_impling_catch", "seqtypes"),
-            new GamevalEntry(7172, "XBOWS_FLETCHING_BLANK", "xbows_fletching_blank", "seqtypes"),
-            new GamevalEntry(7173, "GIANT_BASIC_SPELL", "giant_basic_spell", "seqtypes"),
-            new GamevalEntry(7174, "WINT_LIGHT_BRAZIER_BRUMA", "wint_light_brazier_bruma", "seqtypes"),
         };
     }
 

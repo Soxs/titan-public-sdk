@@ -10,6 +10,17 @@ final class ObjectIDEntries_5 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2560, "FAI_VARROCK_WINDMILL_WINDOW_LARGE", "fai_varrock_windmill_window_large", "loctypes"),
+            new GamevalEntry(2561, "FAI_VARROCK_WINDMILL_WINDOW_LARGE_MIRROR", "fai_varrock_windmill_window_large_mirror", "loctypes"),
+            new GamevalEntry(2562, "FAI_VARROCK_WINDMILL_TERM", "fai_varrock_windmill_term", "loctypes"),
+            new GamevalEntry(2563, "FAI_VARROCK_WINDMILL_TERM_MIRROR", "fai_varrock_windmill_term_mirror", "loctypes"),
+            new GamevalEntry(2564, "FAI_VARROCK_WINDMILL_BALCONY", "fai_varrock_windmill_balcony", "loctypes"),
+            new GamevalEntry(2565, "FAI_VARROCK_WINDMILL_BALCONY_WALL", "fai_varrock_windmill_balcony_wall", "loctypes"),
+            new GamevalEntry(2566, "FAI_VARROCK_WINDMILL_BALCONY_WALL_MIRROR", "fai_varrock_windmill_balcony_wall_mirror", "loctypes"),
+            new GamevalEntry(2567, "FAI_VARROCK_WINDMILL_COLUMN", "fai_varrock_windmill_column", "loctypes"),
+            new GamevalEntry(2568, "FAI_VARROCK_WINDMILL_BEAM", "fai_varrock_windmill_beam", "loctypes"),
+            new GamevalEntry(2569, "FAI_VARROCK_WINDMILL_MILLSAIL", "Sails", "loctypes"),
+            new GamevalEntry(2570, "FAI_VARROCK_WINDMILL_BEAM_SUPPORT", "Mill", "loctypes"),
             new GamevalEntry(2571, "FAI_VARROCK_WINDMILL_ENGINE_CENTER", "Mill", "loctypes"),
             new GamevalEntry(2572, "FAI_VARROCK_WINDMILL_MILLSTONE", "Mill", "loctypes"),
             new GamevalEntry(2573, "FAI_VARROCK_WINDMILL_BASE_EMPTY", "Mill", "loctypes"),
@@ -511,17 +522,6 @@ final class ObjectIDEntries_5 {
             new GamevalEntry(3069, "ARENA_COLUMN_L_COLLAPSE3", "arena_column_l_collapse3", "loctypes"),
             new GamevalEntry(3070, "ARENA_COLUMN_R_COLLAPSE3", "arena_column_r_collapse3", "loctypes"),
             new GamevalEntry(3071, "ARENA_COLUMN_D_RUIN1", "arena_column_d_ruin1", "loctypes"),
-            new GamevalEntry(3072, "ARENA_COLUMN_D_RUIN2", "arena_column_d_ruin2", "loctypes"),
-            new GamevalEntry(3073, "ARENA_COLUMN_D_RUIN3", "arena_column_d_ruin3", "loctypes"),
-            new GamevalEntry(3074, "ARENA_COLUMN_D_RUIN4", "arena_column_d_ruin4", "loctypes"),
-            new GamevalEntry(3075, "DUEL_ARENA_COLUMN_E", "duel_arena_column_e", "loctypes"),
-            new GamevalEntry(3076, "DUEL_ARENA_COLUMN_A_MIRROR", "duel_arena_column_a_mirror", "loctypes"),
-            new GamevalEntry(3077, "DUEL_ARENA_TOP", "duel_arena_top", "loctypes"),
-            new GamevalEntry(3078, "DUEL_ARENA_TOPWITHFLAG", "duel_arena_topwithflag", "loctypes"),
-            new GamevalEntry(3079, "DUEL_ARENA_TOP_AGED", "duel_arena_top_aged", "loctypes"),
-            new GamevalEntry(3080, "DUEL_ARENA_TOP_AGED_2", "duel_arena_top_aged_2", "loctypes"),
-            new GamevalEntry(3081, "DUEL_ARENA_TOP_AGED_2_MIRROR", "duel_arena_top_aged_2_mirror", "loctypes"),
-            new GamevalEntry(3082, "DUEL_ARENA_TOP_AGED_3", "duel_arena_top_aged_3", "loctypes"),
         };
     }
 

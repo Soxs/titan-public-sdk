@@ -10,6 +10,8 @@ final class NpcIDEntries_15 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7680, "TZHAAR_ELDER1", "TzHaar-Mej-Dir", "npctypes"),
+            new GamevalEntry(7681, "TZHAAR_ELDER2", "TzHaar-Mej-Bal", "npctypes"),
             new GamevalEntry(7682, "TZHAAR_HUR_CITY1", "TzHaar-Hur", "npctypes"),
             new GamevalEntry(7683, "TZHAAR_HUR_CITY2", "TzHaar-Hur", "npctypes"),
             new GamevalEntry(7684, "TZHAAR_HUR_CITY3", "TzHaar-Hur", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_15 {
             new GamevalEntry(8189, "SHAYZIENQUEST_GRAVEDIGGER", "Grave digger", "npctypes"),
             new GamevalEntry(8190, "RAIDS_TEMPLE_GNOSI", "raids_temple_gnosi", "npctypes"),
             new GamevalEntry(8191, "RAIDS_TEMPLE_DUFFY", "raids_temple_duffy", "npctypes"),
-            new GamevalEntry(8192, "RAIDS_TEMPLE_HISTORIAN", "raids_temple_historian", "npctypes"),
-            new GamevalEntry(8193, "BOND_JAMES_VISIBLE", "James", "npctypes"),
         };
     }
 

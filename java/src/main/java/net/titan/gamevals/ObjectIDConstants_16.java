@@ -1,6 +1,29 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_16 {
+    int BARLEY_SEED = 8192;
+    int BARLEY_1 = 8193;
+    int BARLEY_2 = 8194;
+    int BARLEY_3 = 8195;
+    int BARLEY_FULLYGROWN = 8196;
+    int BARLEY_SEED_WATERED = 8197;
+    int BARLEY_1_WATERED = 8198;
+    int BARLEY_2_WATERED = 8199;
+    int BARLEY_3_WATERED = 8200;
+    int BARLEY_1_DISEASED = 8201;
+    int BARLEY_2_DISEASED = 8202;
+    int BARLEY_3_DISEASED = 8203;
+    int BARLEY_1_DEAD = 8204;
+    int BARLEY_2_DEAD = 8205;
+    int BARLEY_3_DEAD = 8206;
+    int HOP_PATCH_WEEDED = 8207;
+    int HOP_PATCH_WEEDS_1 = 8208;
+    int HOP_PATCH_WEEDS_2 = 8209;
+    int HOP_PATCH_WEEDS_3 = 8210;
+    int KRANDORIAN_HOPS_SEED = 8211;
+    int KRANDORIAN_HOPS_1 = 8212;
+    int KRANDORIAN_HOPS_2 = 8213;
+    int KRANDORIAN_HOPS_3 = 8214;
     int KRANDORIAN_HOPS_4 = 8215;
     int KRANDORIAN_HOPS_5 = 8216;
     int KRANDORIAN_HOPS_6 = 8217;
@@ -490,27 +513,4 @@ public interface ObjectIDConstants_16 {
     int FARM_TABLE_MEAT = 8701;
     int FARM_WATER_BARREL1 = 8702;
     int FARM_WATER_BARREL2 = 8703;
-    int FARM_BARN_WALL = 8704;
-    int FARM_BARN_ROOF1 = 8705;
-    int FARM_BARN_ROOF2 = 8706;
-    int FARM_BARN_ROOF = 8707;
-    int FARM_BARN_ROOF_EDGE = 8708;
-    int FARM_BARN_ROOF_EDGE_2 = 8709;
-    int FARM_BARN_ROOF_EDGE_2_MIRROR = 8710;
-    int FARM_BARN_ROOF_EDGE_MIRROR = 8711;
-    int FARM_FIREPLACE = 8712;
-    int HAY_BALE = 8713;
-    int HAY_BALE_STACK = 8714;
-    int HAY_BALE_THIN = 8715;
-    int HAY_BALE_STACK_THIN = 8716;
-    int LOOM = 8717;
-    int TOB_DUNGEON_CAMERA_WALL = 8718;
-    int FARMING_PATCH_ICON = 8719;
-    int POLLBOOTH_BLUE = 8720;
-    int FARM_SHOP_ICON = 8721;
-    int LOOM_ICON = 8722;
-    int BREWING_ICON = 8723;
-    int AHOY_SHORT_GRASS_2_WALL_CORNER = 8724;
-    int HOS_FORT_FALLOFF_5 = 8725;
-    int HOS_FORT_FALLOFF_6 = 8726;
 }

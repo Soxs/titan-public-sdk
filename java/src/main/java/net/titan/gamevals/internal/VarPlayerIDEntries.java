@@ -9,20 +9,29 @@ public final class VarPlayerIDEntries {
     private VarPlayerIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[2931];
+        GamevalEntry[][] parts = {
+            VarPlayerIDEntries_0.entries(),
+            VarPlayerIDEntries_1.entries(),
+            VarPlayerIDEntries_2.entries(),
+            VarPlayerIDEntries_3.entries(),
+            VarPlayerIDEntries_4.entries(),
+            VarPlayerIDEntries_5.entries(),
+            VarPlayerIDEntries_6.entries(),
+            VarPlayerIDEntries_7.entries(),
+            VarPlayerIDEntries_8.entries(),
+            VarPlayerIDEntries_9.entries(),
+            VarPlayerIDEntries_10.entries(),
+            VarPlayerIDEntries_11.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, VarPlayerIDEntries_0.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_1.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_2.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_3.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_4.entries());
-        offset = copy(out, offset, VarPlayerIDEntries_5.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {
@@ -38,6 +47,18 @@ public final class VarPlayerIDEntries {
         hit = VarPlayerIDEntries_4.byId(id);
         if (hit.isPresent()) return hit;
         hit = VarPlayerIDEntries_5.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_6.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_7.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_8.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_9.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_10.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_11.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

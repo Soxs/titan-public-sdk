@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_5 {
+    int WALL_CRUSH_SPELL_IMPACT = 2560;
+    int HUMAN_DH_WEAPON_READY = 2561;
     int HUMAN_DH_WEAPON_WALK = 2562;
     int HUMAN_DH_WEAPON_RUN = 2563;
     int CANDLE_FLICKER = 2564;
@@ -511,6 +513,4 @@ public interface AnimationIDConstants_5 {
     int AGILITY_PYRAMID_LOGFALL_R = 3069;
     int AGILITY_PYRAMID_TILTING_FLOOR = 3070;
     int HUMAN_DWARF_RECIEVE = 3071;
-    int DWARF_HAND_OVER = 3072;
-    int ENAKH_BONEGUARD_READY = 3073;
 }

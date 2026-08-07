@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_4 {
+    int TOG_PLAYER_FLOAT_ACROSS = 2048;
+    int TOG_CLIMB_SLOPE_UP = 2049;
     int TOG_CLIMB_SLOPE_DOWN = 2050;
     int LIGHT_CREATURE_READY = 2051;
     int LIGHT_CREATURE_GROW = 2052;
@@ -511,6 +513,4 @@ public interface AnimationIDConstants_4 {
     int WOM_WATCHMAN_DEATH = 2557;
     int WALL_CRUSH_SPELL_CASTING = 2558;
     int WALL_CRUSH_SPELL_TRAVEL = 2559;
-    int WALL_CRUSH_SPELL_IMPACT = 2560;
-    int HUMAN_DH_WEAPON_READY = 2561;
 }

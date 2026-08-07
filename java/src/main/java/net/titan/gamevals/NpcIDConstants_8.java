@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_8 {
+    int DEATH_ARCHER1 = 4096;
+    int DEATH_ARCHER2 = 4097;
     int DEATH_ARCHER_TRAPPED = 4098;
     int DEATH_GUARD1 = 4099;
     int DEATH_GUARD2 = 4100;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_8 {
     int VC_DWARF_RICH2 = 4605;
     int VC_DWARF_POOR1 = 4606;
     int VC_DWARF_POOR2 = 4607;
-    int VC_DWARF_POOR3 = 4608;
-    int VC_DWARF_POOR4 = 4609;
 }

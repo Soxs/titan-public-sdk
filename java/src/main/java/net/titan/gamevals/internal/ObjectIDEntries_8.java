@@ -10,6 +10,19 @@ final class ObjectIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4096, "TEMPLE_PYRE_WILLOW", "Willow Pyre", "loctypes"),
+            new GamevalEntry(4097, "TEMPLE_PYRE_MAPLE", "Maple Pyre", "loctypes"),
+            new GamevalEntry(4098, "TEMPLE_PYRE_YEW", "Yew Pyre", "loctypes"),
+            new GamevalEntry(4099, "TEMPLE_PYRE_MAGIC", "Magic Pyre", "loctypes"),
+            new GamevalEntry(4100, "TEMPLE_PYRE_BONES_LOGS", "Basic Pyre", "loctypes"),
+            new GamevalEntry(4101, "TEMPLE_PYRE_BONES_OAK", "Oak Pyre", "loctypes"),
+            new GamevalEntry(4102, "TEMPLE_PYRE_BONES_WILLOW", "Willow Pyre", "loctypes"),
+            new GamevalEntry(4103, "TEMPLE_PYRE_BONES_MAPLE", "Maple Pyre", "loctypes"),
+            new GamevalEntry(4104, "TEMPLE_PYRE_BONES_YEW", "Yew Pyre", "loctypes"),
+            new GamevalEntry(4105, "TEMPLE_PYRE_BONES_MAGIC", "Magic Pyre", "loctypes"),
+            new GamevalEntry(4106, "SHADELAIR_BRONZEDOOR", "Solid bronze door", "loctypes"),
+            new GamevalEntry(4107, "SHADELAIR_STEELDOOR", "Solid steel door", "loctypes"),
+            new GamevalEntry(4108, "SHADELAIR_BLACKDOOR", "Solid black door", "loctypes"),
             new GamevalEntry(4109, "SHADELAIR_SILVERDOOR", "Solid silver door", "loctypes"),
             new GamevalEntry(4110, "SHADELAIR_DOORINAC", "shadelair_doorinac", "loctypes"),
             new GamevalEntry(4111, "SHADECHEST_BRONZE_BLOODRED", "Bronze Chest", "loctypes"),
@@ -509,19 +522,6 @@ final class ObjectIDEntries_8 {
             new GamevalEntry(4605, "HORROR_ROCKSLIDE3", "horror_rockslide3", "loctypes"),
             new GamevalEntry(4606, "HORROR_ROCKSLIDE4", "horror_rockslide4", "loctypes"),
             new GamevalEntry(4607, "HORROR_ROCKSLIDE5", "horror_rockslide5", "loctypes"),
-            new GamevalEntry(4608, "HORROR_ROCKSLIDE6", "horror_rockslide6", "loctypes"),
-            new GamevalEntry(4609, "HORROR_CAVE_DETAIL1R", "horror_cave_detail1r", "loctypes"),
-            new GamevalEntry(4610, "HORROR_SHELL1", "Shell", "loctypes"),
-            new GamevalEntry(4611, "HORROR_SHELL2", "Shell", "loctypes"),
-            new GamevalEntry(4612, "HORROR_SHELL1BIG", "Shell", "loctypes"),
-            new GamevalEntry(4613, "HORROR_SHELL2BIG", "Shell", "loctypes"),
-            new GamevalEntry(4614, "HORROR_RUBBLE_1", "Bowl", "loctypes"),
-            new GamevalEntry(4615, "HORROR_BROKEN_BRIDGE_LEFT_SPOT", "Broken bridge", "loctypes"),
-            new GamevalEntry(4616, "HORROR_BROKEN_BRIDGE_RIGHT_SPOT", "Broken bridge", "loctypes"),
-            new GamevalEntry(4617, "HORROR_BOOKCASE", "Bookcase", "loctypes"),
-            new GamevalEntry(4618, "BOARDGAMES_FIREPLACE_SMALL", "Fireplace", "loctypes"),
-            new GamevalEntry(4619, "LANTERN_GLOWS", "lantern_glows", "loctypes"),
-            new GamevalEntry(4620, "BOARD_GAME_STAIRS_TOP", "Climb-down", "loctypes"),
         };
     }
 

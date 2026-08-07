@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_16 {
+    int RAIDS_TEMPLE_HISTORIAN = 8192;
+    int BOND_JAMES_VISIBLE = 8193;
     int GB_GROWTHLING = 8194;
     int GB_MOSSGIANT = 8195;
     int POH_DOGADILE_PET = 8196;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_16 {
     int MEDIUM_FROG_NODROPS = 8701;
     int LITTLE_FROG_NODROPS = 8702;
     int HOSDUN_SPIDER = 8703;
-    int HOSDUN_AIMERI_INJURED = 8704;
-    int HOSDUN_AIMERI_HEALED = 8705;
 }

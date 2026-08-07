@@ -9,47 +9,51 @@ public final class DbRowIDEntries {
     private DbRowIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[16788];
+        GamevalEntry[][] parts = {
+            DbRowIDEntries_0.entries(),
+            DbRowIDEntries_1.entries(),
+            DbRowIDEntries_2.entries(),
+            DbRowIDEntries_3.entries(),
+            DbRowIDEntries_4.entries(),
+            DbRowIDEntries_5.entries(),
+            DbRowIDEntries_6.entries(),
+            DbRowIDEntries_7.entries(),
+            DbRowIDEntries_8.entries(),
+            DbRowIDEntries_9.entries(),
+            DbRowIDEntries_10.entries(),
+            DbRowIDEntries_11.entries(),
+            DbRowIDEntries_12.entries(),
+            DbRowIDEntries_13.entries(),
+            DbRowIDEntries_14.entries(),
+            DbRowIDEntries_15.entries(),
+            DbRowIDEntries_16.entries(),
+            DbRowIDEntries_17.entries(),
+            DbRowIDEntries_18.entries(),
+            DbRowIDEntries_19.entries(),
+            DbRowIDEntries_20.entries(),
+            DbRowIDEntries_21.entries(),
+            DbRowIDEntries_22.entries(),
+            DbRowIDEntries_23.entries(),
+            DbRowIDEntries_24.entries(),
+            DbRowIDEntries_25.entries(),
+            DbRowIDEntries_26.entries(),
+            DbRowIDEntries_27.entries(),
+            DbRowIDEntries_28.entries(),
+            DbRowIDEntries_29.entries(),
+            DbRowIDEntries_30.entries(),
+            DbRowIDEntries_31.entries(),
+            DbRowIDEntries_32.entries(),
+            DbRowIDEntries_33.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, DbRowIDEntries_0.entries());
-        offset = copy(out, offset, DbRowIDEntries_1.entries());
-        offset = copy(out, offset, DbRowIDEntries_2.entries());
-        offset = copy(out, offset, DbRowIDEntries_3.entries());
-        offset = copy(out, offset, DbRowIDEntries_4.entries());
-        offset = copy(out, offset, DbRowIDEntries_5.entries());
-        offset = copy(out, offset, DbRowIDEntries_6.entries());
-        offset = copy(out, offset, DbRowIDEntries_7.entries());
-        offset = copy(out, offset, DbRowIDEntries_8.entries());
-        offset = copy(out, offset, DbRowIDEntries_9.entries());
-        offset = copy(out, offset, DbRowIDEntries_10.entries());
-        offset = copy(out, offset, DbRowIDEntries_11.entries());
-        offset = copy(out, offset, DbRowIDEntries_12.entries());
-        offset = copy(out, offset, DbRowIDEntries_13.entries());
-        offset = copy(out, offset, DbRowIDEntries_14.entries());
-        offset = copy(out, offset, DbRowIDEntries_15.entries());
-        offset = copy(out, offset, DbRowIDEntries_16.entries());
-        offset = copy(out, offset, DbRowIDEntries_17.entries());
-        offset = copy(out, offset, DbRowIDEntries_18.entries());
-        offset = copy(out, offset, DbRowIDEntries_19.entries());
-        offset = copy(out, offset, DbRowIDEntries_20.entries());
-        offset = copy(out, offset, DbRowIDEntries_21.entries());
-        offset = copy(out, offset, DbRowIDEntries_22.entries());
-        offset = copy(out, offset, DbRowIDEntries_23.entries());
-        offset = copy(out, offset, DbRowIDEntries_24.entries());
-        offset = copy(out, offset, DbRowIDEntries_25.entries());
-        offset = copy(out, offset, DbRowIDEntries_26.entries());
-        offset = copy(out, offset, DbRowIDEntries_27.entries());
-        offset = copy(out, offset, DbRowIDEntries_28.entries());
-        offset = copy(out, offset, DbRowIDEntries_29.entries());
-        offset = copy(out, offset, DbRowIDEntries_30.entries());
-        offset = copy(out, offset, DbRowIDEntries_31.entries());
-        offset = copy(out, offset, DbRowIDEntries_32.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {
@@ -119,6 +123,8 @@ public final class DbRowIDEntries {
         hit = DbRowIDEntries_31.byId(id);
         if (hit.isPresent()) return hit;
         hit = DbRowIDEntries_32.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = DbRowIDEntries_33.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

@@ -10,6 +10,13 @@ final class AnimationIDEntries_14 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(7168, "ZEAH_CHATHEAD_TALK", "zeah_chathead_talk", "seqtypes"),
+            new GamevalEntry(7169, "ZEAH_CHATHEAD_LAUGH", "zeah_chathead_laugh", "seqtypes"),
+            new GamevalEntry(7170, "ZEAH_CHATHEAD_SHAKE_HEAD", "zeah_chathead_shake_head", "seqtypes"),
+            new GamevalEntry(7171, "HUNTING_IMPLING_CATCH", "hunting_impling_catch", "seqtypes"),
+            new GamevalEntry(7172, "XBOWS_FLETCHING_BLANK", "xbows_fletching_blank", "seqtypes"),
+            new GamevalEntry(7173, "GIANT_BASIC_SPELL", "giant_basic_spell", "seqtypes"),
+            new GamevalEntry(7174, "WINT_LIGHT_BRAZIER_BRUMA", "wint_light_brazier_bruma", "seqtypes"),
             new GamevalEntry(7175, "CHATHYPNOBUNNY4_2006", "chathypnobunny4_2006", "seqtypes"),
             new GamevalEntry(7176, "GIANT_BASIC_SPELL_LOOP", "giant_basic_spell_loop", "seqtypes"),
             new GamevalEntry(7177, "LORE_BEAVER_READY", "lore_beaver_ready", "seqtypes"),
@@ -515,13 +522,6 @@ final class AnimationIDEntries_14 {
             new GamevalEntry(7677, "FOSSIL_NPC_LAVABEAST_IDLE", "fossil_npc_lavabeast_idle", "seqtypes"),
             new GamevalEntry(7678, "FOSSIL_NPC_LAVABEAST_ATTACK", "fossil_npc_lavabeast_attack", "seqtypes"),
             new GamevalEntry(7679, "FOSSIL_NPC_LAVABEAST_DEFEND", "fossil_npc_lavabeast_defend", "seqtypes"),
-            new GamevalEntry(7680, "FOSSIL_SPOT_LAVABEAST_BOMB", "fossil_spot_lavabeast_bomb", "seqtypes"),
-            new GamevalEntry(7681, "FOSSIL_LAVA_HEAT", "fossil_lava_heat", "seqtypes"),
-            new GamevalEntry(7682, "FOSSIL_NPC_HOOPSNAKE_IDLE", "fossil_npc_hoopsnake_idle", "seqtypes"),
-            new GamevalEntry(7683, "FOSSIL_NPC_HOOPSNAKE_WALK", "fossil_npc_hoopsnake_walk", "seqtypes"),
-            new GamevalEntry(7684, "FOSSIL_PROJECTILE_HOOPSNAKE", "fossil_projectile_hoopsnake", "seqtypes"),
-            new GamevalEntry(7685, "FOSSIL_NPC_HOOPSNAKE_ATTACK", "fossil_npc_hoopsnake_attack", "seqtypes"),
-            new GamevalEntry(7686, "FOSSIL_NPC_HOOPSNAKE_DEFEND", "fossil_npc_hoopsnake_defend", "seqtypes"),
         };
     }
 

@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_12 {
+    int ENAKH_BONEGUARD_MULTINPC = 6144;
+    int ENAKH_DUMMY_FOUNTAIN_MULTINPC = 6145;
     int ENAKH_DUMMY_FURNACE_MULTINPC = 6146;
     int ENAKH_ENAKHRA_MULTINPC = 6147;
     int ENAKH_AKTHANAKOS_MULTINPC = 6148;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_12 {
     int POH_KQ_PET_FLYING = 6653;
     int POH_KQ_PET_WALKING = 6654;
     int POH_SMOKE_PET = 6655;
-    int POH_KRAKEN_PET = 6656;
-    int POH_ROCK = 6657;
 }

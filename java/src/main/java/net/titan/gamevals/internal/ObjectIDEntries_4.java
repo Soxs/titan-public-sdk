@@ -10,6 +10,17 @@ final class ObjectIDEntries_4 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2048, "ARDOUGNEWALLDOOR_LEFT", ": Door", "loctypes"),
+            new GamevalEntry(2049, "ARDOUGNEWALLDOOR_RIGHT", ": Door", "loctypes"),
+            new GamevalEntry(2050, "GUIDORGATELCLOSED", "Gate", "loctypes"),
+            new GamevalEntry(2051, "GUIDORGATERCLOSED", "Gate", "loctypes"),
+            new GamevalEntry(2052, "GUIDORGATELOPEN", "guidorgatelopen", "loctypes"),
+            new GamevalEntry(2053, "GUIDORGATEROPEN", "guidorgateropen", "loctypes"),
+            new GamevalEntry(2054, "ELENADOOR2", "Door", "loctypes"),
+            new GamevalEntry(2055, "ELENADOOR2OPEN", "elenadoor2open", "loctypes"),
+            new GamevalEntry(2056, "JERICOSCUPBOARDSHUT", "Cupboard", "loctypes"),
+            new GamevalEntry(2057, "JERICOSCUPBOARDOPEN", "Cupboard", "loctypes"),
+            new GamevalEntry(2058, "MOURNERQUATERS_GATEL", "Gate", "loctypes"),
             new GamevalEntry(2059, "MOURNERQUATERS_GATELOPEN", "mournerquaters_gatelopen", "loctypes"),
             new GamevalEntry(2060, "MOURNERQUATERS_GATER", "Gate", "loctypes"),
             new GamevalEntry(2061, "MOURNERQUATERS_GATEROPEN", "mournerquaters_gateropen", "loctypes"),
@@ -511,17 +522,6 @@ final class ObjectIDEntries_4 {
             new GamevalEntry(2557, "FAI_VARROCK_WINDMILL_WALL_TYPE2_MIRROR_5", "fai_varrock_windmill_wall_type2_mirror_5", "loctypes"),
             new GamevalEntry(2558, "FAI_VARROCK_WINDMILL_WINDOW", "fai_varrock_windmill_window", "loctypes"),
             new GamevalEntry(2559, "SWANSONG_PICKAXE", "Bronze pickaxe", "loctypes"),
-            new GamevalEntry(2560, "FAI_VARROCK_WINDMILL_WINDOW_LARGE", "fai_varrock_windmill_window_large", "loctypes"),
-            new GamevalEntry(2561, "FAI_VARROCK_WINDMILL_WINDOW_LARGE_MIRROR", "fai_varrock_windmill_window_large_mirror", "loctypes"),
-            new GamevalEntry(2562, "FAI_VARROCK_WINDMILL_TERM", "fai_varrock_windmill_term", "loctypes"),
-            new GamevalEntry(2563, "FAI_VARROCK_WINDMILL_TERM_MIRROR", "fai_varrock_windmill_term_mirror", "loctypes"),
-            new GamevalEntry(2564, "FAI_VARROCK_WINDMILL_BALCONY", "fai_varrock_windmill_balcony", "loctypes"),
-            new GamevalEntry(2565, "FAI_VARROCK_WINDMILL_BALCONY_WALL", "fai_varrock_windmill_balcony_wall", "loctypes"),
-            new GamevalEntry(2566, "FAI_VARROCK_WINDMILL_BALCONY_WALL_MIRROR", "fai_varrock_windmill_balcony_wall_mirror", "loctypes"),
-            new GamevalEntry(2567, "FAI_VARROCK_WINDMILL_COLUMN", "fai_varrock_windmill_column", "loctypes"),
-            new GamevalEntry(2568, "FAI_VARROCK_WINDMILL_BEAM", "fai_varrock_windmill_beam", "loctypes"),
-            new GamevalEntry(2569, "FAI_VARROCK_WINDMILL_MILLSAIL", "Sails", "loctypes"),
-            new GamevalEntry(2570, "FAI_VARROCK_WINDMILL_BEAM_SUPPORT", "Mill", "loctypes"),
         };
     }
 

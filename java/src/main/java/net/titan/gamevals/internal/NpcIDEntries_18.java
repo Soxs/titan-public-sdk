@@ -10,6 +10,8 @@ final class NpcIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9216, "KALRAG", "kalrag", "npctypes"),
+            new GamevalEntry(9217, "OTHAINIAN", "othainian", "npctypes"),
             new GamevalEntry(9218, "DOOMION", "doomion", "npctypes"),
             new GamevalEntry(9219, "HOLTHION", "holthion", "npctypes"),
             new GamevalEntry(9220, "IBANMONK", "ibanmonk", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_18 {
             new GamevalEntry(9725, "DARKM_PRISONER_01", "darkm_prisoner_01", "npctypes"),
             new GamevalEntry(9726, "DARKM_PRISONER_02", "darkm_prisoner_02", "npctypes"),
             new GamevalEntry(9727, "DARKM_JUVINATE_01", "+ Vampyre Juvinate", "npctypes"),
-            new GamevalEntry(9728, "DARKM_JUVINATE_02", "+ Vampyre Juvinate", "npctypes"),
-            new GamevalEntry(9729, "DARKM_JUVINATE_01_HELD", "+ Vampyre Juvinate", "npctypes"),
         };
     }
 

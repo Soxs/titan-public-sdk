@@ -9,80 +9,84 @@ public final class ItemIDEntries {
     private ItemIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[33489];
+        GamevalEntry[][] parts = {
+            ItemIDEntries_0.entries(),
+            ItemIDEntries_1.entries(),
+            ItemIDEntries_2.entries(),
+            ItemIDEntries_3.entries(),
+            ItemIDEntries_4.entries(),
+            ItemIDEntries_5.entries(),
+            ItemIDEntries_6.entries(),
+            ItemIDEntries_7.entries(),
+            ItemIDEntries_8.entries(),
+            ItemIDEntries_9.entries(),
+            ItemIDEntries_10.entries(),
+            ItemIDEntries_11.entries(),
+            ItemIDEntries_12.entries(),
+            ItemIDEntries_13.entries(),
+            ItemIDEntries_14.entries(),
+            ItemIDEntries_15.entries(),
+            ItemIDEntries_16.entries(),
+            ItemIDEntries_17.entries(),
+            ItemIDEntries_18.entries(),
+            ItemIDEntries_19.entries(),
+            ItemIDEntries_20.entries(),
+            ItemIDEntries_21.entries(),
+            ItemIDEntries_22.entries(),
+            ItemIDEntries_23.entries(),
+            ItemIDEntries_24.entries(),
+            ItemIDEntries_25.entries(),
+            ItemIDEntries_26.entries(),
+            ItemIDEntries_27.entries(),
+            ItemIDEntries_28.entries(),
+            ItemIDEntries_29.entries(),
+            ItemIDEntries_30.entries(),
+            ItemIDEntries_31.entries(),
+            ItemIDEntries_32.entries(),
+            ItemIDEntries_33.entries(),
+            ItemIDEntries_34.entries(),
+            ItemIDEntries_35.entries(),
+            ItemIDEntries_36.entries(),
+            ItemIDEntries_37.entries(),
+            ItemIDEntries_38.entries(),
+            ItemIDEntries_39.entries(),
+            ItemIDEntries_40.entries(),
+            ItemIDEntries_41.entries(),
+            ItemIDEntries_42.entries(),
+            ItemIDEntries_43.entries(),
+            ItemIDEntries_44.entries(),
+            ItemIDEntries_45.entries(),
+            ItemIDEntries_46.entries(),
+            ItemIDEntries_47.entries(),
+            ItemIDEntries_48.entries(),
+            ItemIDEntries_49.entries(),
+            ItemIDEntries_50.entries(),
+            ItemIDEntries_51.entries(),
+            ItemIDEntries_52.entries(),
+            ItemIDEntries_53.entries(),
+            ItemIDEntries_54.entries(),
+            ItemIDEntries_55.entries(),
+            ItemIDEntries_56.entries(),
+            ItemIDEntries_57.entries(),
+            ItemIDEntries_58.entries(),
+            ItemIDEntries_59.entries(),
+            ItemIDEntries_60.entries(),
+            ItemIDEntries_61.entries(),
+            ItemIDEntries_62.entries(),
+            ItemIDEntries_63.entries(),
+            ItemIDEntries_64.entries(),
+            ItemIDEntries_65.entries(),
+            ItemIDEntries_66.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, ItemIDEntries_0.entries());
-        offset = copy(out, offset, ItemIDEntries_1.entries());
-        offset = copy(out, offset, ItemIDEntries_2.entries());
-        offset = copy(out, offset, ItemIDEntries_3.entries());
-        offset = copy(out, offset, ItemIDEntries_4.entries());
-        offset = copy(out, offset, ItemIDEntries_5.entries());
-        offset = copy(out, offset, ItemIDEntries_6.entries());
-        offset = copy(out, offset, ItemIDEntries_7.entries());
-        offset = copy(out, offset, ItemIDEntries_8.entries());
-        offset = copy(out, offset, ItemIDEntries_9.entries());
-        offset = copy(out, offset, ItemIDEntries_10.entries());
-        offset = copy(out, offset, ItemIDEntries_11.entries());
-        offset = copy(out, offset, ItemIDEntries_12.entries());
-        offset = copy(out, offset, ItemIDEntries_13.entries());
-        offset = copy(out, offset, ItemIDEntries_14.entries());
-        offset = copy(out, offset, ItemIDEntries_15.entries());
-        offset = copy(out, offset, ItemIDEntries_16.entries());
-        offset = copy(out, offset, ItemIDEntries_17.entries());
-        offset = copy(out, offset, ItemIDEntries_18.entries());
-        offset = copy(out, offset, ItemIDEntries_19.entries());
-        offset = copy(out, offset, ItemIDEntries_20.entries());
-        offset = copy(out, offset, ItemIDEntries_21.entries());
-        offset = copy(out, offset, ItemIDEntries_22.entries());
-        offset = copy(out, offset, ItemIDEntries_23.entries());
-        offset = copy(out, offset, ItemIDEntries_24.entries());
-        offset = copy(out, offset, ItemIDEntries_25.entries());
-        offset = copy(out, offset, ItemIDEntries_26.entries());
-        offset = copy(out, offset, ItemIDEntries_27.entries());
-        offset = copy(out, offset, ItemIDEntries_28.entries());
-        offset = copy(out, offset, ItemIDEntries_29.entries());
-        offset = copy(out, offset, ItemIDEntries_30.entries());
-        offset = copy(out, offset, ItemIDEntries_31.entries());
-        offset = copy(out, offset, ItemIDEntries_32.entries());
-        offset = copy(out, offset, ItemIDEntries_33.entries());
-        offset = copy(out, offset, ItemIDEntries_34.entries());
-        offset = copy(out, offset, ItemIDEntries_35.entries());
-        offset = copy(out, offset, ItemIDEntries_36.entries());
-        offset = copy(out, offset, ItemIDEntries_37.entries());
-        offset = copy(out, offset, ItemIDEntries_38.entries());
-        offset = copy(out, offset, ItemIDEntries_39.entries());
-        offset = copy(out, offset, ItemIDEntries_40.entries());
-        offset = copy(out, offset, ItemIDEntries_41.entries());
-        offset = copy(out, offset, ItemIDEntries_42.entries());
-        offset = copy(out, offset, ItemIDEntries_43.entries());
-        offset = copy(out, offset, ItemIDEntries_44.entries());
-        offset = copy(out, offset, ItemIDEntries_45.entries());
-        offset = copy(out, offset, ItemIDEntries_46.entries());
-        offset = copy(out, offset, ItemIDEntries_47.entries());
-        offset = copy(out, offset, ItemIDEntries_48.entries());
-        offset = copy(out, offset, ItemIDEntries_49.entries());
-        offset = copy(out, offset, ItemIDEntries_50.entries());
-        offset = copy(out, offset, ItemIDEntries_51.entries());
-        offset = copy(out, offset, ItemIDEntries_52.entries());
-        offset = copy(out, offset, ItemIDEntries_53.entries());
-        offset = copy(out, offset, ItemIDEntries_54.entries());
-        offset = copy(out, offset, ItemIDEntries_55.entries());
-        offset = copy(out, offset, ItemIDEntries_56.entries());
-        offset = copy(out, offset, ItemIDEntries_57.entries());
-        offset = copy(out, offset, ItemIDEntries_58.entries());
-        offset = copy(out, offset, ItemIDEntries_59.entries());
-        offset = copy(out, offset, ItemIDEntries_60.entries());
-        offset = copy(out, offset, ItemIDEntries_61.entries());
-        offset = copy(out, offset, ItemIDEntries_62.entries());
-        offset = copy(out, offset, ItemIDEntries_63.entries());
-        offset = copy(out, offset, ItemIDEntries_64.entries());
-        offset = copy(out, offset, ItemIDEntries_65.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {
@@ -218,6 +222,8 @@ public final class ItemIDEntries {
         hit = ItemIDEntries_64.byId(id);
         if (hit.isPresent()) return hit;
         hit = ItemIDEntries_65.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = ItemIDEntries_66.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

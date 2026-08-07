@@ -10,6 +10,8 @@ final class AnimationIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4096, "CHAIR_EAT_DININGCHAIRS_4", "chair_eat_diningchairs_4", "seqtypes"),
+            new GamevalEntry(4097, "CHAIR_SIT_READY_DININGCHAIRS_5", "chair_sit_ready_diningchairs_5", "seqtypes"),
             new GamevalEntry(4098, "CHAIR_EAT_DININGCHAIRS_5", "chair_eat_diningchairs_5", "seqtypes"),
             new GamevalEntry(4099, "CHAIR_SIT_READY_DININGCHAIRS_6", "chair_sit_ready_diningchairs_6", "seqtypes"),
             new GamevalEntry(4100, "CHAIR_EAT_DININGCHAIRS_6", "chair_eat_diningchairs_6", "seqtypes"),
@@ -517,11 +519,6 @@ final class AnimationIDEntries_8 {
             new GamevalEntry(4605, "QIP_DS_RECIEVING_SILVERLIGHT_SPOTANIM", "qip_ds_recieving_silverlight_spotanim", "seqtypes"),
             new GamevalEntry(4606, "QIP_DS_PRESENTING_SILVERLIGHT_START", "qip_ds_presenting_silverlight_start", "seqtypes"),
             new GamevalEntry(4607, "QIP_DS_PRESENTING_SWORD_MIDDLE", "qip_ds_presenting_sword_middle", "seqtypes"),
-            new GamevalEntry(4608, "QIP_DS_PRESENTING_SWORD_END", "qip_ds_presenting_sword_end", "seqtypes"),
-            new GamevalEntry(4609, "QIP_DS_CRYSTALBALL_LEAVE", "qip_ds_crystalball_leave", "seqtypes"),
-            new GamevalEntry(4610, "QIP_DS_CRYSTALBALL_RETURN", "qip_ds_crystalball_return", "seqtypes"),
-            new GamevalEntry(4611, "QIP_DS_ATTAINING_CRYSTALBALL_SPOTANIM", "qip_ds_attaining_crystalball_spotanim", "seqtypes"),
-            new GamevalEntry(4612, "QIP_DS_RETURNING_CRYSTALBALL_SPOTANIM", "qip_ds_returning_crystalball_spotanim", "seqtypes"),
         };
     }
 

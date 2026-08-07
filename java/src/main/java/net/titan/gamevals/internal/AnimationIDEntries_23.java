@@ -10,6 +10,17 @@ final class AnimationIDEntries_23 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11776, "LUC2_UNDEAD_ACCURACY_DEBUFF", "luc2_undead_accuracy_debuff", "seqtypes"),
+            new GamevalEntry(11777, "MAHJARRAT_ZEMOUREGAL_ELIAS_BIND_01", "mahjarrat_zemouregal_elias_bind_01", "seqtypes"),
+            new GamevalEntry(11778, "MAHJARRAT_ZEMOUREGAL_ELIAS_BIND_IMPACTANIM_01", "mahjarrat_zemouregal_elias_bind_impactanim_01", "seqtypes"),
+            new GamevalEntry(11779, "MAHJARRAT_ZEMOUREGAL_ELIAS_BIND_IMPACTANIM_02", "mahjarrat_zemouregal_elias_bind_impactanim_02", "seqtypes"),
+            new GamevalEntry(11780, "MOM2_SCARAB_READY", "mom2_scarab_ready", "seqtypes"),
+            new GamevalEntry(11781, "MOM2_SCARAB_ATTACK", "mom2_scarab_attack", "seqtypes"),
+            new GamevalEntry(11782, "MOM2_SCARAB_DEFEND", "mom2_scarab_defend", "seqtypes"),
+            new GamevalEntry(11783, "MOM2_SCARAB_DEATH", "mom2_scarab_death", "seqtypes"),
+            new GamevalEntry(11784, "MOM2_SCARAB_WALK", "mom2_scarab_walk", "seqtypes"),
+            new GamevalEntry(11785, "COA_ARRAV_THROWAXE", "coa_arrav_throwaxe", "seqtypes"),
+            new GamevalEntry(11786, "COA_ARRAV_CATCHAXE", "coa_arrav_catchaxe", "seqtypes"),
             new GamevalEntry(11787, "COA_ARRAV_CATCHAXE_BACK", "coa_arrav_catchaxe_back", "seqtypes"),
             new GamevalEntry(11788, "COA_TUMEKEN_FIRE", "coa_tumeken_fire", "seqtypes"),
             new GamevalEntry(11789, "COA_GRAPPLE_START", "coa_grapple_start", "seqtypes"),
@@ -511,17 +522,6 @@ final class AnimationIDEntries_23 {
             new GamevalEntry(12285, "ENTRANCE_TONALI01_OPEN", "entrance_tonali01_open", "seqtypes"),
             new GamevalEntry(12286, "ENTRANCE_TONALI01_CLOSED", "entrance_tonali01_closed", "seqtypes"),
             new GamevalEntry(12287, "NPC_DJINN_EARTH01_IDLE01", "npc_djinn_earth01_idle01", "seqtypes"),
-            new GamevalEntry(12288, "NPC_DJINN_EARTH01_IDLE02", "npc_djinn_earth01_idle02", "seqtypes"),
-            new GamevalEntry(12289, "NPC_DJINN_EARTH01_WALK01", "npc_djinn_earth01_walk01", "seqtypes"),
-            new GamevalEntry(12290, "NPC_DJINN_EARTH01_WALK02", "npc_djinn_earth01_walk02", "seqtypes"),
-            new GamevalEntry(12291, "NPC_DJINN_EARTH01_ATTACK01", "npc_djinn_earth01_attack01", "seqtypes"),
-            new GamevalEntry(12292, "NPC_DJINN_EARTH01_ATTACK02", "npc_djinn_earth01_attack02", "seqtypes"),
-            new GamevalEntry(12293, "NPC_DJINN_EARTH01_REINFORCE01", "npc_djinn_earth01_reinforce01", "seqtypes"),
-            new GamevalEntry(12294, "NPC_DJINN_EARTH01_BREAK01", "npc_djinn_earth01_break01", "seqtypes"),
-            new GamevalEntry(12295, "NPC_DJINN_EARTH01_DEATH01", "npc_djinn_earth01_death01", "seqtypes"),
-            new GamevalEntry(12296, "STATUE_ICOSAHEDRON01_DESPAWN", "statue_icosahedron01_despawn", "seqtypes"),
-            new GamevalEntry(12297, "VMQ4_ARKAN_BLADE_SPECIAL", "vmq4_arkan_blade_special", "seqtypes"),
-            new GamevalEntry(12298, "VMQ4_ARKAN_BLADE_SPECIAL_SPOTANIM", "vmq4_arkan_blade_special_spotanim", "seqtypes"),
         };
     }
 

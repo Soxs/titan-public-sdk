@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_6 {
+    int FAI_BARBARIAN_FEMALE_4 = 3072;
+    int FAI_BARBARIAN_GOBLIN_ARMED_1 = 3073;
     int FAI_BARBARIAN_GOBLIN_ARMED_2 = 3074;
     int FAI_BARBARIAN_GOBLIN_ARMED_3 = 3075;
     int FAI_BARBARIAN_GOBLIN_ARMED_4 = 3076;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_6 {
     int ENAKH_CUTSCENE_ENAKHRA = 3581;
     int ENAKH_CUTSCENE_AKTHANAKOS = 3582;
     int ENAKH_CUTSCENE_KNIGHT = 3583;
-    int ENAKH_CUTSCENE_SKELETON = 3584;
-    int TOL_NPC_EFERGY01 = 3585;
 }

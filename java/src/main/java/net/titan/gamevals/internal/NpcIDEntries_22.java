@@ -10,6 +10,8 @@ final class NpcIDEntries_22 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(11264, "LOTG_ZANIK_YUBIUSK", "Zanik", "npctypes"),
+            new GamevalEntry(11265, "LOTG_OLDAK_CUTSCENE", "Oldak", "npctypes"),
             new GamevalEntry(11266, "LOTG_OLDAK_YUBIUSK", "Oldak", "npctypes"),
             new GamevalEntry(11267, "LOTG_GOBLIN_HIGH_PRIEST", "High Priest Bighead", "npctypes"),
             new GamevalEntry(11268, "LOTG_GOBLIN_SKELETON", "Skoblin", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_22 {
             new GamevalEntry(11773, "WARDENS_P3_ORB_RED", "wardens_p3_orb_red", "npctypes"),
             new GamevalEntry(11774, "TOA_WARDENS_ZEBAK", "Zebak's Phantom", "npctypes"),
             new GamevalEntry(11775, "TOA_WARDENS_BABA", "Ba-Ba's Phantom", "npctypes"),
-            new GamevalEntry(11776, "TOA_WARDENS_KEPHRI", "Kephri's Phantom", "npctypes"),
-            new GamevalEntry(11777, "TOA_WARDENS_AKKHA", "Akkha's Phantom", "npctypes"),
         };
     }
 

@@ -10,6 +10,8 @@ final class NpcIDEntries_24 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(12288, "DT2_STRANGLED_BEAR", "Strangled Bear", "npctypes"),
+            new GamevalEntry(12289, "DT2_STRANGLED_BOAR", "Strangled Boar", "npctypes"),
             new GamevalEntry(12290, "DT2_STRANGLED_LYNX", "Strangled Lynx", "npctypes"),
             new GamevalEntry(12291, "DT2_ASGARNIA_SMITH_VIS", "Asgarnia Smith", "npctypes"),
             new GamevalEntry(12292, "DT2_ASGARNIA_SMITH_CUTSCENE", "Asgarnia Smith", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_24 {
             new GamevalEntry(12797, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN1_SUNSETCOAST", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12798, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN1_TEMPESTUS", "Trader Crewmember", "npctypes"),
             new GamevalEntry(12799, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN2_FORTIS", "Trader Crewmember", "npctypes"),
-            new GamevalEntry(12800, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN2_ALDARIN", "Trader Crewmember", "npctypes"),
-            new GamevalEntry(12801, "SAILING_TRANSPORT_TRADER_STAN_CREW_WOMAN2_SUNSETCOAST", "Trader Crewmember", "npctypes"),
         };
     }
 

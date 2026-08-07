@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_29 {
+    int TORTUGAN_LEFF = 14848;
+    int TORTUGAN_DALNA = 14849;
     int TORTUGAN_FINN = 14850;
     int TORTUGAN_AMMA = 14851;
     int GREAT_CONCH_HERMIT_CRAB = 14852;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_29 {
     int SAILING_SHIPYARD_WORKER_4 = 15357;
     int SAILING_SHIPYARD_WORKER_5 = 15358;
     int SAILING_SHIPYARD_WORKER_6 = 15359;
-    int SAILING_SHIPYARD_WORKER_7 = 15360;
-    int SAILING_SHIPYARD_WORKER_8 = 15361;
 }

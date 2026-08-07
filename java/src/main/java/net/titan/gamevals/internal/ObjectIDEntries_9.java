@@ -10,6 +10,19 @@ final class ObjectIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4608, "HORROR_ROCKSLIDE6", "horror_rockslide6", "loctypes"),
+            new GamevalEntry(4609, "HORROR_CAVE_DETAIL1R", "horror_cave_detail1r", "loctypes"),
+            new GamevalEntry(4610, "HORROR_SHELL1", "Shell", "loctypes"),
+            new GamevalEntry(4611, "HORROR_SHELL2", "Shell", "loctypes"),
+            new GamevalEntry(4612, "HORROR_SHELL1BIG", "Shell", "loctypes"),
+            new GamevalEntry(4613, "HORROR_SHELL2BIG", "Shell", "loctypes"),
+            new GamevalEntry(4614, "HORROR_RUBBLE_1", "Bowl", "loctypes"),
+            new GamevalEntry(4615, "HORROR_BROKEN_BRIDGE_LEFT_SPOT", "Broken bridge", "loctypes"),
+            new GamevalEntry(4616, "HORROR_BROKEN_BRIDGE_RIGHT_SPOT", "Broken bridge", "loctypes"),
+            new GamevalEntry(4617, "HORROR_BOOKCASE", "Bookcase", "loctypes"),
+            new GamevalEntry(4618, "BOARDGAMES_FIREPLACE_SMALL", "Fireplace", "loctypes"),
+            new GamevalEntry(4619, "LANTERN_GLOWS", "lantern_glows", "loctypes"),
+            new GamevalEntry(4620, "BOARD_GAME_STAIRS_TOP", "Climb-down", "loctypes"),
             new GamevalEntry(4621, "BOARD_GAME_STAIRS_TOP2", "Climb-down", "loctypes"),
             new GamevalEntry(4622, "BOARD_GAME_STAIRS_BASE", "Climb-up", "loctypes"),
             new GamevalEntry(4623, "BOARD_GAME_STAIRS_BASE2", "Climb-up", "loctypes"),
@@ -505,23 +518,6 @@ final class ObjectIDEntries_9 {
             new GamevalEntry(5117, "SLAYER_GARGOYLE_STATUE_OPEN", "Statue", "loctypes"),
             new GamevalEntry(5118, "SLAYER_MASTER_ICON", "slayer_master_icon", "loctypes"),
             new GamevalEntry(5119, "HAIRDRESSER_ICON", "hairdresser_icon", "loctypes"),
-            new GamevalEntry(5120, "MAKEOVERMAGE_ICON", "makeovermage_icon", "loctypes"),
-            new GamevalEntry(5121, "POH_SMALL_TREE6_5", "Yew tree", "loctypes"),
-            new GamevalEntry(5122, "FAI_VARROCK_BARREL", "Barrel", "loctypes"),
-            new GamevalEntry(5123, "FAI_VARROCK_BARREL_STACKED", "Barrel", "loctypes"),
-            new GamevalEntry(5124, "FAI_VARROCK_BARREL_TAP", "fai_varrock_barrel_tap", "loctypes"),
-            new GamevalEntry(5125, "FAI_VARROCK_SMALL_FOUNTAIN", "Fountain", "loctypes"),
-            new GamevalEntry(5126, "POH_SMALL_TREE5_5", "Maple tree", "loctypes"),
-            new GamevalEntry(5127, "POH_SMALL_TREE7_5", "Magic tree", "loctypes"),
-            new GamevalEntry(5128, "POH_PLANTBIG1A", "Fern", "loctypes"),
-            new GamevalEntry(5129, "POH_PLANTBIG1B", "Bush", "loctypes"),
-            new GamevalEntry(5130, "POH_PLANTBIG1C", "Tall Plant", "loctypes"),
-            new GamevalEntry(5131, "POH_PLANTBIG2A", "Short Plant", "loctypes"),
-            new GamevalEntry(5132, "POH_PLANTBIG2B", "Large-leaf Plant", "loctypes"),
-            new GamevalEntry(5133, "POH_PLANTBIG2C", "Huge plant", "loctypes"),
-            new GamevalEntry(5134, "POH_PLANTBSMALL1A", "Plant", "loctypes"),
-            new GamevalEntry(5135, "POH_PLANTBSMALL1B", "Small fern", "loctypes"),
-            new GamevalEntry(5136, "POH_PLANTBSMALL1C", "Fern", "loctypes"),
         };
     }
 

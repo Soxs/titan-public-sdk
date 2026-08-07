@@ -10,6 +10,8 @@ final class NpcIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3072, "FAI_BARBARIAN_FEMALE_4", "Barbarian", "npctypes"),
+            new GamevalEntry(3073, "FAI_BARBARIAN_GOBLIN_ARMED_1", "Goblin", "npctypes"),
             new GamevalEntry(3074, "FAI_BARBARIAN_GOBLIN_ARMED_2", "Goblin", "npctypes"),
             new GamevalEntry(3075, "FAI_BARBARIAN_GOBLIN_ARMED_3", "Goblin", "npctypes"),
             new GamevalEntry(3076, "FAI_BARBARIAN_GOBLIN_ARMED_4", "Goblin", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_6 {
             new GamevalEntry(3581, "ENAKH_CUTSCENE_ENAKHRA", "Enakhra", "npctypes"),
             new GamevalEntry(3582, "ENAKH_CUTSCENE_AKTHANAKOS", "Akthanakos", "npctypes"),
             new GamevalEntry(3583, "ENAKH_CUTSCENE_KNIGHT", "Knight", "npctypes"),
-            new GamevalEntry(3584, "ENAKH_CUTSCENE_SKELETON", "Skeleton", "npctypes"),
-            new GamevalEntry(3585, "TOL_NPC_EFERGY01", "Effigy", "npctypes"),
         };
     }
 

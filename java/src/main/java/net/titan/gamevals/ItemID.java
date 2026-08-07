@@ -70,7 +70,8 @@ public final class ItemID
                    ItemIDConstants_62,
                    ItemIDConstants_63,
                    ItemIDConstants_64,
-                   ItemIDConstants_65 {
+                   ItemIDConstants_65,
+                   ItemIDConstants_66 {
     private ItemID() {}
 
     public static final String SOURCE_CATALOG = "objtypes";

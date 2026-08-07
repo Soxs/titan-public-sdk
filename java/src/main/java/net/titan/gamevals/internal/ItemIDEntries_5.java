@@ -10,6 +10,12 @@ final class ItemIDEntries_5 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(2560, "RING_OF_DUELING_4", "Ring of dueling(4)", "objtypes"),
+            new GamevalEntry(2561, "CERT_RING_OF_DUELING_4", "cert_ring_of_dueling_4", "objtypes"),
+            new GamevalEntry(2562, "RING_OF_DUELING_3", "Ring of dueling(3)", "objtypes"),
+            new GamevalEntry(2563, "CERT_RING_OF_DUELING_3", "cert_ring_of_dueling_3", "objtypes"),
+            new GamevalEntry(2564, "RING_OF_DUELING_2", "Ring of dueling(2)", "objtypes"),
+            new GamevalEntry(2565, "CERT_RING_OF_DUELING_2", "cert_ring_of_dueling_2", "objtypes"),
             new GamevalEntry(2566, "RING_OF_DUELING_1", "Ring of dueling(1)", "objtypes"),
             new GamevalEntry(2567, "CERT_RING_OF_DUELING_1", "cert_ring_of_dueling_1", "objtypes"),
             new GamevalEntry(2568, "RING_OF_FORGING", "Ring of forging", "objtypes"),
@@ -516,12 +522,6 @@ final class ItemIDEntries_5 {
             new GamevalEntry(3069, "MACRO_CUBE_REDSQUARE", "macro_cube_redsquare", "objtypes"),
             new GamevalEntry(3070, "CERT_MACRO_CUBE_REDSQUARE", "cert_macro_cube_redsquare", "objtypes"),
             new GamevalEntry(3071, "MACRO_CUBE_BLUESQUARE", "macro_cube_bluesquare", "objtypes"),
-            new GamevalEntry(3072, "CERT_MACRO_CUBE_BLUESQUARE", "cert_macro_cube_bluesquare", "objtypes"),
-            new GamevalEntry(3073, "MACRO_CUBE_YELLOWSQUARE", "macro_cube_yellowsquare", "objtypes"),
-            new GamevalEntry(3074, "CERT_MACRO_CUBE_YELLOWSQUARE", "cert_macro_cube_yellowsquare", "objtypes"),
-            new GamevalEntry(3075, "MACRO_CUBE_REDCIRCLE", "macro_cube_redcircle", "objtypes"),
-            new GamevalEntry(3076, "CERT_MACRO_CUBE_REDCIRCLE", "cert_macro_cube_redcircle", "objtypes"),
-            new GamevalEntry(3077, "MACRO_CUBE_BLUECIRCLE", "macro_cube_bluecircle", "objtypes"),
         };
     }
 

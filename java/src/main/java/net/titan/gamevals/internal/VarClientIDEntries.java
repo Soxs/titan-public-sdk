@@ -9,17 +9,20 @@ public final class VarClientIDEntries {
     private VarClientIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[1507];
+        GamevalEntry[][] parts = {
+            VarClientIDEntries_0.entries(),
+            VarClientIDEntries_1.entries(),
+            VarClientIDEntries_2.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, VarClientIDEntries_0.entries());
-        offset = copy(out, offset, VarClientIDEntries_1.entries());
-        offset = copy(out, offset, VarClientIDEntries_2.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {

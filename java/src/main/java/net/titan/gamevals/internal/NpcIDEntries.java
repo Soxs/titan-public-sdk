@@ -9,46 +9,49 @@ public final class NpcIDEntries {
     private NpcIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[16336];
+        GamevalEntry[][] parts = {
+            NpcIDEntries_0.entries(),
+            NpcIDEntries_1.entries(),
+            NpcIDEntries_2.entries(),
+            NpcIDEntries_3.entries(),
+            NpcIDEntries_4.entries(),
+            NpcIDEntries_5.entries(),
+            NpcIDEntries_6.entries(),
+            NpcIDEntries_7.entries(),
+            NpcIDEntries_8.entries(),
+            NpcIDEntries_9.entries(),
+            NpcIDEntries_10.entries(),
+            NpcIDEntries_11.entries(),
+            NpcIDEntries_12.entries(),
+            NpcIDEntries_13.entries(),
+            NpcIDEntries_14.entries(),
+            NpcIDEntries_15.entries(),
+            NpcIDEntries_16.entries(),
+            NpcIDEntries_17.entries(),
+            NpcIDEntries_18.entries(),
+            NpcIDEntries_19.entries(),
+            NpcIDEntries_20.entries(),
+            NpcIDEntries_21.entries(),
+            NpcIDEntries_22.entries(),
+            NpcIDEntries_23.entries(),
+            NpcIDEntries_24.entries(),
+            NpcIDEntries_25.entries(),
+            NpcIDEntries_26.entries(),
+            NpcIDEntries_27.entries(),
+            NpcIDEntries_28.entries(),
+            NpcIDEntries_29.entries(),
+            NpcIDEntries_30.entries(),
+            NpcIDEntries_31.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, NpcIDEntries_0.entries());
-        offset = copy(out, offset, NpcIDEntries_1.entries());
-        offset = copy(out, offset, NpcIDEntries_2.entries());
-        offset = copy(out, offset, NpcIDEntries_3.entries());
-        offset = copy(out, offset, NpcIDEntries_4.entries());
-        offset = copy(out, offset, NpcIDEntries_5.entries());
-        offset = copy(out, offset, NpcIDEntries_6.entries());
-        offset = copy(out, offset, NpcIDEntries_7.entries());
-        offset = copy(out, offset, NpcIDEntries_8.entries());
-        offset = copy(out, offset, NpcIDEntries_9.entries());
-        offset = copy(out, offset, NpcIDEntries_10.entries());
-        offset = copy(out, offset, NpcIDEntries_11.entries());
-        offset = copy(out, offset, NpcIDEntries_12.entries());
-        offset = copy(out, offset, NpcIDEntries_13.entries());
-        offset = copy(out, offset, NpcIDEntries_14.entries());
-        offset = copy(out, offset, NpcIDEntries_15.entries());
-        offset = copy(out, offset, NpcIDEntries_16.entries());
-        offset = copy(out, offset, NpcIDEntries_17.entries());
-        offset = copy(out, offset, NpcIDEntries_18.entries());
-        offset = copy(out, offset, NpcIDEntries_19.entries());
-        offset = copy(out, offset, NpcIDEntries_20.entries());
-        offset = copy(out, offset, NpcIDEntries_21.entries());
-        offset = copy(out, offset, NpcIDEntries_22.entries());
-        offset = copy(out, offset, NpcIDEntries_23.entries());
-        offset = copy(out, offset, NpcIDEntries_24.entries());
-        offset = copy(out, offset, NpcIDEntries_25.entries());
-        offset = copy(out, offset, NpcIDEntries_26.entries());
-        offset = copy(out, offset, NpcIDEntries_27.entries());
-        offset = copy(out, offset, NpcIDEntries_28.entries());
-        offset = copy(out, offset, NpcIDEntries_29.entries());
-        offset = copy(out, offset, NpcIDEntries_30.entries());
-        offset = copy(out, offset, NpcIDEntries_31.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {

@@ -10,6 +10,20 @@ final class ItemIDEntries_9 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4608, "SUPER_KEBAB", "Super kebab", "objtypes"),
+            new GamevalEntry(4609, "CERT_SUPER_KEBAB", "cert_super_kebab", "objtypes"),
+            new GamevalEntry(4610, "SUPERHOT_KEBAB_SAUCE", "Red hot sauce", "objtypes"),
+            new GamevalEntry(4611, "FEUD_DESERT_DISGUISE", "Desert disguise", "objtypes"),
+            new GamevalEntry(4612, "CERT_BLACKJACK_WILLOW", "cert_blackjack_willow", "objtypes"),
+            new GamevalEntry(4613, "SPINNING_PLATE", "Spinning plate", "objtypes"),
+            new GamevalEntry(4614, "SPINNING_PLATE_BROKEN", "Broken plate", "objtypes"),
+            new GamevalEntry(4615, "GOLEM_LETTER", "Letter", "objtypes"),
+            new GamevalEntry(4616, "GOLEM_NOTES", "Varmen's notes", "objtypes"),
+            new GamevalEntry(4617, "GOLEM_STATUETTEKEY", "Display cabinet key", "objtypes"),
+            new GamevalEntry(4618, "GOLEM_STATUETTE", "Statuette", "objtypes"),
+            new GamevalEntry(4619, "GOLEM_GOLEMKEY", "Strange implement", "objtypes"),
+            new GamevalEntry(4620, "GOLEM_MUSHROOM", "Black mushroom", "objtypes"),
+            new GamevalEntry(4621, "GOLEM_PHOENIXFEATHER", "Phoenix feather", "objtypes"),
             new GamevalEntry(4622, "GOLEM_INK", "Black dye", "objtypes"),
             new GamevalEntry(4623, "GOLEM_PEN", "Phoenix quill pen", "objtypes"),
             new GamevalEntry(4624, "GOLEM_PROGRAM", "Golem program", "objtypes"),
@@ -508,20 +522,6 @@ final class ItemIDEntries_9 {
             new GamevalEntry(5117, "WILLOW_SEEDS_4", "willow_seeds_4", "objtypes"),
             new GamevalEntry(5118, "WILLOW_SEEDS_5", "willow_seeds_5", "objtypes"),
             new GamevalEntry(5119, "MAPLE_SEEDS_2", "maple_seeds_2", "objtypes"),
-            new GamevalEntry(5120, "MAPLE_SEEDS_3", "maple_seeds_3", "objtypes"),
-            new GamevalEntry(5121, "MAPLE_SEEDS_4", "maple_seeds_4", "objtypes"),
-            new GamevalEntry(5122, "MAPLE_SEEDS_5", "maple_seeds_5", "objtypes"),
-            new GamevalEntry(5123, "MAGIC_SEED_2", "magic_seed_2", "objtypes"),
-            new GamevalEntry(5124, "MAGIC_SEED_3", "magic_seed_3", "objtypes"),
-            new GamevalEntry(5125, "MAGIC_SEED_4", "magic_seed_4", "objtypes"),
-            new GamevalEntry(5126, "MAGIC_SEED_5", "magic_seed_5", "objtypes"),
-            new GamevalEntry(5127, "SPIRIT_SEED_2", "spirit_seed_2", "objtypes"),
-            new GamevalEntry(5128, "SPIRIT_SEED_3", "spirit_seed_3", "objtypes"),
-            new GamevalEntry(5129, "SPIRIT_SEED_4", "spirit_seed_4", "objtypes"),
-            new GamevalEntry(5130, "SPIRIT_SEED_5", "spirit_seed_5", "objtypes"),
-            new GamevalEntry(5131, "MARIGOLD_SEED_2", "marigold_seed_2", "objtypes"),
-            new GamevalEntry(5132, "MARIGOLD_SEED_3", "marigold_seed_3", "objtypes"),
-            new GamevalEntry(5133, "MARIGOLD_SEED_4", "marigold_seed_4", "objtypes"),
         };
     }
 

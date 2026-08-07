@@ -9,40 +9,57 @@ public final class VarbitIDEntries {
     private VarbitIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[13225];
+        GamevalEntry[][] parts = {
+            VarbitIDEntries_0.entries(),
+            VarbitIDEntries_1.entries(),
+            VarbitIDEntries_2.entries(),
+            VarbitIDEntries_3.entries(),
+            VarbitIDEntries_4.entries(),
+            VarbitIDEntries_5.entries(),
+            VarbitIDEntries_6.entries(),
+            VarbitIDEntries_7.entries(),
+            VarbitIDEntries_8.entries(),
+            VarbitIDEntries_9.entries(),
+            VarbitIDEntries_10.entries(),
+            VarbitIDEntries_11.entries(),
+            VarbitIDEntries_12.entries(),
+            VarbitIDEntries_13.entries(),
+            VarbitIDEntries_14.entries(),
+            VarbitIDEntries_15.entries(),
+            VarbitIDEntries_16.entries(),
+            VarbitIDEntries_17.entries(),
+            VarbitIDEntries_18.entries(),
+            VarbitIDEntries_19.entries(),
+            VarbitIDEntries_20.entries(),
+            VarbitIDEntries_21.entries(),
+            VarbitIDEntries_22.entries(),
+            VarbitIDEntries_23.entries(),
+            VarbitIDEntries_24.entries(),
+            VarbitIDEntries_25.entries(),
+            VarbitIDEntries_26.entries(),
+            VarbitIDEntries_27.entries(),
+            VarbitIDEntries_28.entries(),
+            VarbitIDEntries_29.entries(),
+            VarbitIDEntries_30.entries(),
+            VarbitIDEntries_31.entries(),
+            VarbitIDEntries_32.entries(),
+            VarbitIDEntries_33.entries(),
+            VarbitIDEntries_34.entries(),
+            VarbitIDEntries_35.entries(),
+            VarbitIDEntries_36.entries(),
+            VarbitIDEntries_37.entries(),
+            VarbitIDEntries_38.entries(),
+            VarbitIDEntries_39.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, VarbitIDEntries_0.entries());
-        offset = copy(out, offset, VarbitIDEntries_1.entries());
-        offset = copy(out, offset, VarbitIDEntries_2.entries());
-        offset = copy(out, offset, VarbitIDEntries_3.entries());
-        offset = copy(out, offset, VarbitIDEntries_4.entries());
-        offset = copy(out, offset, VarbitIDEntries_5.entries());
-        offset = copy(out, offset, VarbitIDEntries_6.entries());
-        offset = copy(out, offset, VarbitIDEntries_7.entries());
-        offset = copy(out, offset, VarbitIDEntries_8.entries());
-        offset = copy(out, offset, VarbitIDEntries_9.entries());
-        offset = copy(out, offset, VarbitIDEntries_10.entries());
-        offset = copy(out, offset, VarbitIDEntries_11.entries());
-        offset = copy(out, offset, VarbitIDEntries_12.entries());
-        offset = copy(out, offset, VarbitIDEntries_13.entries());
-        offset = copy(out, offset, VarbitIDEntries_14.entries());
-        offset = copy(out, offset, VarbitIDEntries_15.entries());
-        offset = copy(out, offset, VarbitIDEntries_16.entries());
-        offset = copy(out, offset, VarbitIDEntries_17.entries());
-        offset = copy(out, offset, VarbitIDEntries_18.entries());
-        offset = copy(out, offset, VarbitIDEntries_19.entries());
-        offset = copy(out, offset, VarbitIDEntries_20.entries());
-        offset = copy(out, offset, VarbitIDEntries_21.entries());
-        offset = copy(out, offset, VarbitIDEntries_22.entries());
-        offset = copy(out, offset, VarbitIDEntries_23.entries());
-        offset = copy(out, offset, VarbitIDEntries_24.entries());
-        offset = copy(out, offset, VarbitIDEntries_25.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {
@@ -98,6 +115,34 @@ public final class VarbitIDEntries {
         hit = VarbitIDEntries_24.byId(id);
         if (hit.isPresent()) return hit;
         hit = VarbitIDEntries_25.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_26.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_27.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_28.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_29.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_30.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_31.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_32.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_33.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_34.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_35.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_36.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_37.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_38.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarbitIDEntries_39.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

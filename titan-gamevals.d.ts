@@ -33511,6 +33511,8 @@ declare namespace titan {
             readonly DULL_SUNSTONE_CORE: 34056;
             readonly FFG_FINAL_NOTE: 34057;
             readonly SAILING_SKILLGUIDE_PORTS_WYRMSCRAIG: 34058;
+            readonly DEADMAN_QUEST_LAMP_TIER_11: 34059;
+            readonly CERT_BH_EMBLEM_5: 34060;
             byId(id: number): GamevalEntry | null;
         };
         readonly NpcID: {
@@ -49850,6 +49852,12 @@ declare namespace titan {
             readonly _0_40_34_MEMBERFISH: 16335;
             readonly _0_40_34_RAREFISH: 16336;
             readonly _0_40_134_LAVAFISH: 16337;
+            readonly FISHING_BOAT_SALTFISH: 16338;
+            readonly FISHING_BOAT_MEMBERFISH: 16339;
+            readonly FISHING_BOAT_RAREFISH: 16340;
+            readonly FISHING_BOAT_KARAMBWANFISH: 16341;
+            readonly FISHING_BOAT_PISCARILIUSFISH: 16342;
+            readonly FISHING_BOAT_MONKFISH: 16343;
             byId(id: number): GamevalEntry | null;
         };
         readonly ObjectID: {
@@ -112185,6 +112193,7 @@ declare namespace titan {
             readonly SAILING_GANGPLANK_WYRMSCRAIG: 62397;
             readonly SAILING_GANGPLANK_WYRMSCRAIG_CAVE: 62398;
             readonly HAVEN_TOWER_BASEMENT_WALL_STONE_CREVICE: 62399;
+            readonly DEADMAN_POH_GAP_WHERE_WINDOW_IS_NOT: 62400;
             byId(id: number): GamevalEntry | null;
         };
         readonly VarbitID: {
@@ -118129,6 +118138,7 @@ declare namespace titan {
             readonly LEAGUE_TYPE: 10032;
             readonly LEAGUE_TASK_FILTER_TIER: 10033;
             readonly LEAGUE_TASK_FILTER_COMPLETED: 10034;
+            readonly MOUSEOVER_TEXT_DISABLED: 10035;
             readonly LEAGUE_MAIN_PROFILE_INTRO: 10036;
             readonly LEAGUE_TUTORIAL_COMPLETED: 10037;
             readonly LEAGUE_GRUBBY_CHEST_COUNTER: 10038;
@@ -119269,6 +119279,7 @@ declare namespace titan {
             readonly TALENT_EXTRA_RETRO_EQUIP_ECHO_WEP: 11618;
             readonly TALENT_EXTRA_RETRO_EQUIP_MOONS_ITEM: 11619;
             readonly ENDLESS_HARVEST_LAST_OP: 11620;
+            readonly SETTINGS_RT7_WARNING_SHOWN: 11621;
             readonly TALENT_FREE_RESET_2: 11622;
             readonly GRIMSTONE_UNCERTER_STATUS: 11623;
             readonly SETTINGS_SAILING_WIND_ON_ORB_DISABLED: 11624;
@@ -119784,7 +119795,6 @@ declare namespace titan {
             readonly STAT_BOOSTS_HUD_TOOLTIPS_HIDDEN: 12374;
             readonly STAT_BOOSTS_HUD_NUM_DISPLAYS: 12375;
             readonly STAT_BOOSTS_HUD_DISPLAY_RELATIVE: 12376;
-            readonly MOUSEOVER_TEXT_ENABLED: 12377;
             readonly OPTION_HIDE_ROOFTOPS: 12378;
             readonly AGILITY_HELPER_DISABLED: 12379;
             readonly AGILITY_HELPER_HIGHLIGHT_OBSTACLES_ENABLED: 12380;
@@ -122556,6 +122566,7 @@ declare namespace titan {
             readonly SLAYER_CHOOSE_TASK_2: 15801;
             readonly SLAYER_CHOOSE_TASK_3: 15802;
             readonly SLAYER_CHOOSE_TASK_1_BOSS_ID: 15803;
+            readonly DEADMAN_QUEST_LAMP_TIER_11: 15804;
             readonly XMAS24_MATCH_AMIK: 15892;
             readonly XMAS24_MATCH_HAIRDRESSER: 15902;
             readonly XMAS24_MATCH_SARAH: 15903;
@@ -122720,7 +122731,6 @@ declare namespace titan {
             readonly COLLECTION_CLUES_SCROLL_CASES_COMPLETED: 16609;
             readonly GIANT_BONE_BURY_WARNING_DISABLE: 16616;
             readonly SETTINGS_HD_NEW_RENDERER_TOGGLE: 16617;
-            readonly SETTINGS_HD_WARNING_SHOWN: 16618;
             readonly SETTINGS_SD_BETA_ENABLED: 16619;
             readonly SAILING_WARNING_TELEPORTOFFBOAT: 16620;
             readonly SETTINGS_WORLD_MAP_HOTKEY_DISABLED: 16621;
@@ -130888,6 +130898,7 @@ declare namespace titan {
             readonly MUSIC_CLIENT_SYNC_TIMER_TIME_PER_INTERVAL: 1504;
             readonly CASTLE_DRAKAN_WORLD_MAP_X: 1505;
             readonly CASTLE_DRAKAN_WORLD_MAP_Y: 1506;
+            readonly SETTINGS_RENDERER_OPTION: 1507;
             byId(id: number): GamevalEntry | null;
         };
         readonly DBTableID: {
@@ -149681,6 +149692,7 @@ declare namespace titan {
             readonly SLAYER_MODIFIER_SUPERIOR_CHANCE: 7206;
             readonly SLAYER_MODIFIER_XP_BOOST: 7207;
             readonly HISCORES_BOSSES_MAD_ANGEL: 7208;
+            readonly HISCORES_BOSSES_MAGGOT_KING: 7209;
             readonly SAILING_BT_TEMPOR_TANTRUM: 7243;
             readonly SAILING_BT_JUBBLY_JIVE: 7244;
             readonly SAILING_BT_GWENITH_GLIDE: 7245;
@@ -204162,47 +204174,51 @@ declare namespace titan {
             readonly OmnishopMain: {
                 readonly INFINITY_: 53673984;
                 readonly UNIVERSE: 53673985;
-                readonly DROPDOWN_CONTAINER: 53673986;
-                readonly FRAME: 53673987;
-                readonly CONTENT: 53673988;
-                readonly R_COL: 53673989;
-                readonly CONTROL_LAYER: 53673990;
-                readonly VIEW_TOGGLE_LAYER: 53673991;
-                readonly HELP_BUTTON_LAYER: 53673992;
-                readonly FILTER_LAYER: 53673993;
-                readonly POINTS_LAYER_1: 53673994;
-                readonly LIST_LAYER: 53673995;
-                readonly COM_12: 53673996;
-                readonly COM_13: 53673997;
-                readonly R_COL_BACK: 53673998;
-                readonly R_COL_CONTENT: 53673999;
-                readonly R_COL_BORDER: 53674000;
-                readonly INFO_LAYER: 53674001;
-                readonly POINTS_LAYER: 53674002;
-                readonly BUTTONS_INFO: 53674003;
-                readonly BUTTON_INFO_HOLDER: 53674004;
-                readonly NOTE_BUTTON_LAYER: 53674005;
-                readonly BUTTON_1: 53674006;
-                readonly BUTTON_2: 53674007;
-                readonly BUTTON_3: 53674008;
-                readonly BUTTON_4: 53674009;
-                readonly COM_26: 53674010;
-                readonly POINTS_BORDER: 53674011;
-                readonly POINTS_TITLE: 53674012;
-                readonly POINTS_VALUE: 53674013;
-                readonly INFO_BORDER: 53674014;
-                readonly INFO: 53674015;
-                readonly INFO_SCROLLER: 53674016;
-                readonly LIST_BORDER: 53674017;
-                readonly LIST: 53674018;
-                readonly LIST_SCROLLER: 53674019;
-                readonly DROPDOWN: 53674020;
-                readonly DROPDOWN_CONTENT: 53674021;
-                readonly DROPDOWN_SCROLLER: 53674022;
-                readonly COM_39: 53674023;
-                readonly POINTS_BORDER_1: 53674024;
-                readonly POINTS_TITLE_1: 53674025;
-                readonly POINTS_VALUE_1: 53674026;
+                readonly TRIGGERS: 53673986;
+                readonly TRIGGER_EXAMINE: 53673987;
+                readonly TRIGGER_BUY: 53673988;
+                readonly TRIGGER_REQUEST_INFO: 53673989;
+                readonly DROPDOWN_CONTAINER: 53673990;
+                readonly FRAME: 53673991;
+                readonly CONTENT: 53673992;
+                readonly R_COL: 53673993;
+                readonly CONTROL_LAYER: 53673994;
+                readonly VIEW_TOGGLE_LAYER: 53673995;
+                readonly HELP_BUTTON_LAYER: 53673996;
+                readonly FILTER_LAYER: 53673997;
+                readonly POINTS_LAYER_1: 53673998;
+                readonly LIST_LAYER: 53673999;
+                readonly COM_16: 53674000;
+                readonly COM_17: 53674001;
+                readonly R_COL_BACK: 53674002;
+                readonly R_COL_CONTENT: 53674003;
+                readonly R_COL_BORDER: 53674004;
+                readonly INFO_LAYER: 53674005;
+                readonly POINTS_LAYER: 53674006;
+                readonly BUTTONS_INFO: 53674007;
+                readonly BUTTON_INFO_HOLDER: 53674008;
+                readonly NOTE_BUTTON_LAYER: 53674009;
+                readonly BUTTON_1: 53674010;
+                readonly BUTTON_2: 53674011;
+                readonly BUTTON_3: 53674012;
+                readonly BUTTON_4: 53674013;
+                readonly COM_30: 53674014;
+                readonly POINTS_BORDER: 53674015;
+                readonly POINTS_TITLE: 53674016;
+                readonly POINTS_VALUE: 53674017;
+                readonly INFO_BORDER: 53674018;
+                readonly INFO: 53674019;
+                readonly INFO_SCROLLER: 53674020;
+                readonly LIST_BORDER: 53674021;
+                readonly LIST: 53674022;
+                readonly LIST_SCROLLER: 53674023;
+                readonly DROPDOWN: 53674024;
+                readonly DROPDOWN_CONTENT: 53674025;
+                readonly DROPDOWN_SCROLLER: 53674026;
+                readonly COM_43: 53674027;
+                readonly POINTS_BORDER_1: 53674028;
+                readonly POINTS_TITLE_1: 53674029;
+                readonly POINTS_VALUE_1: 53674030;
             };
             readonly WorldswitcherFilter: {
                 readonly UNIVERSE: 53739520;

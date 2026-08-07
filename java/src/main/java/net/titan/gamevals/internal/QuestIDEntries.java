@@ -9,15 +9,18 @@ public final class QuestIDEntries {
     private QuestIDEntries() {}
 
     public static QuestEntry[] entries() {
-        QuestEntry[] out = new QuestEntry[214];
+        QuestEntry[][] parts = {
+            QuestIDEntries_0.entries(),
+        };
+        int size = 0;
+        for (QuestEntry[] part : parts) size += part.length;
+        QuestEntry[] out = new QuestEntry[size];
         int offset = 0;
-        offset = copy(out, offset, QuestIDEntries_0.entries());
+        for (QuestEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(QuestEntry[] out, int offset, QuestEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<QuestEntry> byQuestId(int questId) {

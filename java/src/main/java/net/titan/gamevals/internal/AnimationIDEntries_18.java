@@ -10,6 +10,13 @@ final class AnimationIDEntries_18 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(9216, "LEAGUE03_HOME_TELEPORT_SPOTANIM_2", "league03_home_teleport_spotanim_2", "seqtypes"),
+            new GamevalEntry(9217, "LEAGUE03_HOME_TELEPORT_SPOTANIM_3", "league03_home_teleport_spotanim_3", "seqtypes"),
+            new GamevalEntry(9218, "LEAGUE03_HOME_TELEPORT_SPOTANIM_4", "league03_home_teleport_spotanim_4", "seqtypes"),
+            new GamevalEntry(9219, "LEAGUE03_HOME_TELEPORT_SPOTANIM_5", "league03_home_teleport_spotanim_5", "seqtypes"),
+            new GamevalEntry(9220, "LEAGUE03_HOME_TELEPORT_SPOTANIM_6", "league03_home_teleport_spotanim_6", "seqtypes"),
+            new GamevalEntry(9221, "LEAGUES03_CUTSCENE01_FADEIN01", "leagues03_cutscene01_fadein01", "seqtypes"),
+            new GamevalEntry(9222, "LEAGUES03_CUTSCENE01_FADEOUT01", "leagues03_cutscene01_fadeout01", "seqtypes"),
             new GamevalEntry(9223, "KRONIS_CHAINS_IDLE", "kronis_chains_idle", "seqtypes"),
             new GamevalEntry(9224, "KRONIS_CHAINS_IDLE_TYPEQ", "kronis_chains_idle_typeq", "seqtypes"),
             new GamevalEntry(9225, "KRONIS_CHAINS_UNLOCK", "kronis_chains_unlock", "seqtypes"),
@@ -514,14 +521,6 @@ final class AnimationIDEntries_18 {
             new GamevalEntry(9725, "FX_OBELISK_WARDENS01_CHARGE_PART2", "fx_obelisk_wardens01_charge_part2", "seqtypes"),
             new GamevalEntry(9726, "FX_OBELISK_WARDENS01_CHARGE_PART3", "fx_obelisk_wardens01_charge_part3", "seqtypes"),
             new GamevalEntry(9727, "FX_OBELISK_WARDENS02_BOMB", "fx_obelisk_wardens02_bomb", "seqtypes"),
-            new GamevalEntry(9728, "FX_OBELISK_WARDENS02_OPEN", "fx_obelisk_wardens02_open", "seqtypes"),
-            new GamevalEntry(9729, "FX_OBELISK_WARDENS02_CLOSE", "fx_obelisk_wardens02_close", "seqtypes"),
-            new GamevalEntry(9730, "FX_OBELISK_WARDENS02_WAVE", "fx_obelisk_wardens02_wave", "seqtypes"),
-            new GamevalEntry(9731, "FX_OBELISK_WARDENS02_CAST", "fx_obelisk_wardens02_cast", "seqtypes"),
-            new GamevalEntry(9732, "FX_OBELISK_WARDENS02_BEAM", "fx_obelisk_wardens02_beam", "seqtypes"),
-            new GamevalEntry(9733, "FX_OBELISK_WARDENS02_SWEEP", "fx_obelisk_wardens02_sweep", "seqtypes"),
-            new GamevalEntry(9734, "FX_OBELISK_WARDENS02_DEATH", "fx_obelisk_wardens02_death", "seqtypes"),
-            new GamevalEntry(9735, "FX_WARDENS_ENERGY_DEATH01", "fx_wardens_energy_death01", "seqtypes"),
         };
     }
 

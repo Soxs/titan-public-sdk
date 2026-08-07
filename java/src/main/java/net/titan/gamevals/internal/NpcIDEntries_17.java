@@ -10,6 +10,8 @@ final class NpcIDEntries_17 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8704, "HOSDUN_AIMERI_INJURED", "Brother Aimeri", "npctypes"),
+            new GamevalEntry(8705, "HOSDUN_AIMERI_HEALED", "/ / Brother Aimeri", "npctypes"),
             new GamevalEntry(8706, "HOSDUN_OLBERTUS_CORRUPTED", "Olbertus", "npctypes"),
             new GamevalEntry(8707, "HOSDUN_OLBERTUS_RESTORED", "Olbertus", "npctypes"),
             new GamevalEntry(8708, "HOSDUN_OLBERTUS_CUTSCENE", "Olbertus", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_17 {
             new GamevalEntry(9213, "SOULMAN", "soulman", "npctypes"),
             new GamevalEntry(9214, "CAVEWITCH", "cavewitch", "npctypes"),
             new GamevalEntry(9215, "CAVEWITCHCAT", "cavewitchcat", "npctypes"),
-            new GamevalEntry(9216, "KALRAG", "kalrag", "npctypes"),
-            new GamevalEntry(9217, "OTHAINIAN", "othainian", "npctypes"),
         };
     }
 

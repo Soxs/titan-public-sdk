@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_19 {
+    int DARKM_JUVINATE_02 = 9728;
+    int DARKM_JUVINATE_01_HELD = 9729;
     int DARKM_JUVINATE_02_HELD = 9730;
     int DARKM_JUVENILE_01 = 9731;
     int DARKM_JUVENILE_02 = 9732;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_19 {
     int GRAVESTONE_ANGEL_125 = 10237;
     int GRAVESTONE_ANGEL_126 = 10238;
     int GRAVESTONE_ANGEL_127 = 10239;
-    int GRAVESTONE_ANGEL_128 = 10240;
-    int GRAVESTONE_ANGEL_129 = 10241;
 }

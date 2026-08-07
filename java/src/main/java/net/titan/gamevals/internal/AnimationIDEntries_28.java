@@ -10,6 +10,18 @@ final class AnimationIDEntries_28 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(14336, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE_LAME_WING01", "lowerniel_drakan_swipe_hit_swipe_lame_wing01", "seqtypes"),
+            new GamevalEntry(14337, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE_AFTERIMAGE01", "lowerniel_drakan_swipe_hit_swipe_afterimage01", "seqtypes"),
+            new GamevalEntry(14338, "LOWERNIEL_DRAKAN_SWIPE_HIT_SWIPE_AFTERIMAGE_LAME_WING01", "lowerniel_drakan_swipe_hit_swipe_afterimage_lame_wing01", "seqtypes"),
+            new GamevalEntry(14339, "NPC_LOWERNIEL_DRAKAN_DEATH01", "npc_lowerniel_drakan_death01", "seqtypes"),
+            new GamevalEntry(14340, "NPC_LOWERNIEL_DRAKAN_DEATH_FINAL_FRAME01", "npc_lowerniel_drakan_death_final_frame01", "seqtypes"),
+            new GamevalEntry(14341, "CUTSCENE_LOWERNIEL_DRAKAN_IDLE_RECREATION01", "cutscene_lowerniel_drakan_idle_recreation01", "seqtypes"),
+            new GamevalEntry(14342, "CUTSCENE_LOWERNIEL_DRAKAN_IDLE_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_idle_recreation_lame_wing01", "seqtypes"),
+            new GamevalEntry(14343, "CUTSCENE_LOWERNIEL_DRAKAN_WALK_RECREATION01", "cutscene_lowerniel_drakan_walk_recreation01", "seqtypes"),
+            new GamevalEntry(14344, "CUTSCENE_LOWERNIEL_DRAKAN_WALK_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_walk_recreation_lame_wing01", "seqtypes"),
+            new GamevalEntry(14345, "CUTSCENE_LOWERNIEL_DRAKAN_DRAMATIC_WALK_RECREATION01", "cutscene_lowerniel_drakan_dramatic_walk_recreation01", "seqtypes"),
+            new GamevalEntry(14346, "CUTSCENE_LOWERNIEL_DRAKAN_DRAMATIC_WALK_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_dramatic_walk_recreation_lame_wing01", "seqtypes"),
+            new GamevalEntry(14347, "CUTSCENE_LOWERNIEL_DRAKAN_OBLITERATE_RECREATION01", "cutscene_lowerniel_drakan_obliterate_recreation01", "seqtypes"),
             new GamevalEntry(14348, "CUTSCENE_LOWERNIEL_DRAKAN_OBLITERATE_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_obliterate_recreation_lame_wing01", "seqtypes"),
             new GamevalEntry(14349, "CUTSCENE_LOWERNIEL_DRAKAN_INCINERATE_RECREATION01", "cutscene_lowerniel_drakan_incinerate_recreation01", "seqtypes"),
             new GamevalEntry(14350, "CUTSCENE_LOWERNIEL_DRAKAN_INCINERATE_RECREATION_LAME_WING01", "cutscene_lowerniel_drakan_incinerate_recreation_lame_wing01", "seqtypes"),

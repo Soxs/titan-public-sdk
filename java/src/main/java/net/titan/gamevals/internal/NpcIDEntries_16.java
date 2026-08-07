@@ -10,6 +10,8 @@ final class NpcIDEntries_16 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(8192, "RAIDS_TEMPLE_HISTORIAN", "raids_temple_historian", "npctypes"),
+            new GamevalEntry(8193, "BOND_JAMES_VISIBLE", "James", "npctypes"),
             new GamevalEntry(8194, "GB_GROWTHLING", "Growthling", "npctypes"),
             new GamevalEntry(8195, "GB_MOSSGIANT", "Bryophyta", "npctypes"),
             new GamevalEntry(8196, "POH_DOGADILE_PET", "Puppadile", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_16 {
             new GamevalEntry(8701, "MEDIUM_FROG_NODROPS", "Big frog", "npctypes"),
             new GamevalEntry(8702, "LITTLE_FROG_NODROPS", "Frog", "npctypes"),
             new GamevalEntry(8703, "HOSDUN_SPIDER", "Temple Spider", "npctypes"),
-            new GamevalEntry(8704, "HOSDUN_AIMERI_INJURED", "Brother Aimeri", "npctypes"),
-            new GamevalEntry(8705, "HOSDUN_AIMERI_HEALED", "/ / Brother Aimeri", "npctypes"),
         };
     }
 

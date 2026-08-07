@@ -1,6 +1,20 @@
 package net.titan.gamevals;
 
 public interface ItemIDConstants_9 {
+    int SUPER_KEBAB = 4608;
+    int CERT_SUPER_KEBAB = 4609;
+    int SUPERHOT_KEBAB_SAUCE = 4610;
+    int FEUD_DESERT_DISGUISE = 4611;
+    int CERT_BLACKJACK_WILLOW = 4612;
+    int SPINNING_PLATE = 4613;
+    int SPINNING_PLATE_BROKEN = 4614;
+    int GOLEM_LETTER = 4615;
+    int GOLEM_NOTES = 4616;
+    int GOLEM_STATUETTEKEY = 4617;
+    int GOLEM_STATUETTE = 4618;
+    int GOLEM_GOLEMKEY = 4619;
+    int GOLEM_MUSHROOM = 4620;
+    int GOLEM_PHOENIXFEATHER = 4621;
     int GOLEM_INK = 4622;
     int GOLEM_PEN = 4623;
     int GOLEM_PROGRAM = 4624;
@@ -499,18 +513,4 @@ public interface ItemIDConstants_9 {
     int WILLOW_SEEDS_4 = 5117;
     int WILLOW_SEEDS_5 = 5118;
     int MAPLE_SEEDS_2 = 5119;
-    int MAPLE_SEEDS_3 = 5120;
-    int MAPLE_SEEDS_4 = 5121;
-    int MAPLE_SEEDS_5 = 5122;
-    int MAGIC_SEED_2 = 5123;
-    int MAGIC_SEED_3 = 5124;
-    int MAGIC_SEED_4 = 5125;
-    int MAGIC_SEED_5 = 5126;
-    int SPIRIT_SEED_2 = 5127;
-    int SPIRIT_SEED_3 = 5128;
-    int SPIRIT_SEED_4 = 5129;
-    int SPIRIT_SEED_5 = 5130;
-    int MARIGOLD_SEED_2 = 5131;
-    int MARIGOLD_SEED_3 = 5132;
-    int MARIGOLD_SEED_4 = 5133;
 }

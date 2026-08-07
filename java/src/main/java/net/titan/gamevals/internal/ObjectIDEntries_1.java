@@ -10,6 +10,13 @@ final class ObjectIDEntries_1 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(512, "FAI_VARROCK_SHANTY_WALL_STRONGER_SHARELIGHT", "fai_varrock_shanty_wall_stronger_sharelight", "loctypes"),
+            new GamevalEntry(513, "FAI_VARROCK_CASTLE_SHANTY_JOIN_LOW_LEFT", "fai_varrock_castle_shanty_join_low_left", "loctypes"),
+            new GamevalEntry(514, "FAI_VARROCK_CASTLE_SHANTY_JOIN_TOP_RIGHT", "fai_varrock_castle_shanty_join_top_right", "loctypes"),
+            new GamevalEntry(515, "FAI_VARROCK_CASTLE_AND_SHANTY_2X2_FIX", "fai_varrock_castle_and_shanty_2x2_fix", "loctypes"),
+            new GamevalEntry(516, "FAI_VARROCK_SHANTY_AND_BATTLEMENT", "fai_varrock_shanty_and_battlement", "loctypes"),
+            new GamevalEntry(517, "FAI_VARROCK_SHANTY_JOINT", "fai_varrock_shanty_joint", "loctypes"),
+            new GamevalEntry(518, "FAI_VARROCK_SHANTY_JOINT_MIRROR", "fai_varrock_shanty_joint_mirror", "loctypes"),
             new GamevalEntry(519, "FAI_VARROCK_SHANTY_JOINT_LV2", "fai_varrock_shanty_joint_lv2", "loctypes"),
             new GamevalEntry(520, "FAI_VARROCK_SHANTY_JOINT_MIRROR_LV2", "fai_varrock_shanty_joint_mirror_lv2", "loctypes"),
             new GamevalEntry(521, "FAI_VARROCK_FLOORBOARD", "fai_varrock_floorboard", "loctypes"),
@@ -514,14 +521,6 @@ final class ObjectIDEntries_1 {
             new GamevalEntry(1021, "WITCHSHELF3", "Shelf", "loctypes"),
             new GamevalEntry(1022, "COOKINGSHELF", "cookingshelf", "loctypes"),
             new GamevalEntry(1023, "COOKINGSHELFEMPTY", "cookingshelfempty", "loctypes"),
-            new GamevalEntry(1024, "SHELVES1", "Shelves", "loctypes"),
-            new GamevalEntry(1025, "CLOTHESEQUIP_SHELVES", "Clothing shelves", "loctypes"),
-            new GamevalEntry(1026, "COOKINGSHELFEMPTY_DARK", "cookingshelfempty_dark", "loctypes"),
-            new GamevalEntry(1027, "TANNINGLINE", "Tanning line", "loctypes"),
-            new GamevalEntry(1028, "TANNINGVAT", "Vat", "loctypes"),
-            new GamevalEntry(1029, "TANNINGVAT2", "Vat", "loctypes"),
-            new GamevalEntry(1030, "TANNINGMANGEL_A", "Mangle", "loctypes"),
-            new GamevalEntry(1031, "TANNINGMANGEL_B", "Mangle", "loctypes"),
         };
     }
 

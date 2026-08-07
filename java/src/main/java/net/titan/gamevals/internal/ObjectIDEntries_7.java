@@ -10,6 +10,19 @@ final class ObjectIDEntries_7 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3584, "AGILITYARENA_HANDHOLDS_MIDDLE", "Hand holds", "loctypes"),
+            new GamevalEntry(3585, "AGILITYARENA_PRESSUREPAD", "Pressure pad", "loctypes"),
+            new GamevalEntry(3586, "AGILITY_WALL", "agility_wall", "loctypes"),
+            new GamevalEntry(3587, "AGILITY_ARCH", "agility_arch", "loctypes"),
+            new GamevalEntry(3588, "AGILITY_ARCH_LEFT", "agility_arch_left", "loctypes"),
+            new GamevalEntry(3589, "AGILITY_GLOW", "agility_glow", "loctypes"),
+            new GamevalEntry(3590, "AGILITY_GLOW_DUG", "agility_glow_dug", "loctypes"),
+            new GamevalEntry(3591, "AGILITY_GLOW_DUG2", "agility_glow_dug2", "loctypes"),
+            new GamevalEntry(3592, "AGILITY_GLOW_DUG3", "agility_glow_dug3", "loctypes"),
+            new GamevalEntry(3593, "AGILITY_GLOW_DUG4", "agility_glow_dug4", "loctypes"),
+            new GamevalEntry(3594, "AGILITY_GLOW_CORNER", "agility_glow_corner", "loctypes"),
+            new GamevalEntry(3595, "AGILITY_CRUMBLYWALL1", "agility_crumblywall1", "loctypes"),
+            new GamevalEntry(3596, "AGILITY_CRUMBLYWALL1R", "agility_crumblywall1r", "loctypes"),
             new GamevalEntry(3597, "AGILITY_CRUMBLYWALL2", "agility_crumblywall2", "loctypes"),
             new GamevalEntry(3598, "AGILITY_BRIDGE", "agility_bridge", "loctypes"),
             new GamevalEntry(3599, "AGILITY_BRIDGE2", "agility_bridge2", "loctypes"),
@@ -509,19 +522,6 @@ final class ObjectIDEntries_7 {
             new GamevalEntry(4093, "TEMPLE_PYRE", "Funeral Pyre", "loctypes"),
             new GamevalEntry(4094, "TEMPLE_PYRE_LOGS", "Basic Pyre", "loctypes"),
             new GamevalEntry(4095, "TEMPLE_PYRE_OAK", "Oak Pyre", "loctypes"),
-            new GamevalEntry(4096, "TEMPLE_PYRE_WILLOW", "Willow Pyre", "loctypes"),
-            new GamevalEntry(4097, "TEMPLE_PYRE_MAPLE", "Maple Pyre", "loctypes"),
-            new GamevalEntry(4098, "TEMPLE_PYRE_YEW", "Yew Pyre", "loctypes"),
-            new GamevalEntry(4099, "TEMPLE_PYRE_MAGIC", "Magic Pyre", "loctypes"),
-            new GamevalEntry(4100, "TEMPLE_PYRE_BONES_LOGS", "Basic Pyre", "loctypes"),
-            new GamevalEntry(4101, "TEMPLE_PYRE_BONES_OAK", "Oak Pyre", "loctypes"),
-            new GamevalEntry(4102, "TEMPLE_PYRE_BONES_WILLOW", "Willow Pyre", "loctypes"),
-            new GamevalEntry(4103, "TEMPLE_PYRE_BONES_MAPLE", "Maple Pyre", "loctypes"),
-            new GamevalEntry(4104, "TEMPLE_PYRE_BONES_YEW", "Yew Pyre", "loctypes"),
-            new GamevalEntry(4105, "TEMPLE_PYRE_BONES_MAGIC", "Magic Pyre", "loctypes"),
-            new GamevalEntry(4106, "SHADELAIR_BRONZEDOOR", "Solid bronze door", "loctypes"),
-            new GamevalEntry(4107, "SHADELAIR_STEELDOOR", "Solid steel door", "loctypes"),
-            new GamevalEntry(4108, "SHADELAIR_BLACKDOOR", "Solid black door", "loctypes"),
         };
     }
 

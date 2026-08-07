@@ -10,6 +10,11 @@ final class AnimationIDEntries_10 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5120, "ZEP_BALLOON_JOURNEY_VARROCK_CRAFTING", "zep_balloon_journey_varrock_crafting", "seqtypes"),
+            new GamevalEntry(5121, "ZEP_BALLOON_JOURNEY_CRAFTING_VARROCK", "zep_balloon_journey_crafting_varrock", "seqtypes"),
+            new GamevalEntry(5122, "ZEP_BALLOON_JOURNEY_VARROCK_TAVERLEY", "zep_balloon_journey_varrock_taverley", "seqtypes"),
+            new GamevalEntry(5123, "ZEP_BALLOON_JOURNEY_TAVERLEY_VARROCK", "zep_balloon_journey_taverley_varrock", "seqtypes"),
+            new GamevalEntry(5124, "ZEP_BALLOON_JOURNEY_TAVERLEY_CRAFTING", "zep_balloon_journey_taverley_crafting", "seqtypes"),
             new GamevalEntry(5125, "ZEP_BALLOON_JOURNEY_CRAFTING_TAVERLEY", "zep_balloon_journey_crafting_taverley", "seqtypes"),
             new GamevalEntry(5126, "ZEP_BALLOON_JOURNEY_TAVERLEY_CASTLEWARS", "zep_balloon_journey_taverley_castlewars", "seqtypes"),
             new GamevalEntry(5127, "ZEP_BALLOON_JOURNEY_CASTLEWARS_TAVERLEY", "zep_balloon_journey_castlewars_taverley", "seqtypes"),
@@ -517,11 +522,6 @@ final class AnimationIDEntries_10 {
             new GamevalEntry(5629, "LOTR_TERROR_DOG_BURST_GREEN", "lotr_terror_dog_burst_green", "seqtypes"),
             new GamevalEntry(5630, "LOTR_TERROR_DOG_BURST_SPOT", "lotr_terror_dog_burst_spot", "seqtypes"),
             new GamevalEntry(5631, "LOTR_WALL_PUSH", "lotr_wall_push", "seqtypes"),
-            new GamevalEntry(5632, "LOTR_FLOOR_SPIKE_ACTIVATE", "lotr_floor_spike_activate", "seqtypes"),
-            new GamevalEntry(5633, "SUROK_ZAFF_SPELL_CASTING", "surok_zaff_spell_casting", "seqtypes"),
-            new GamevalEntry(5634, "SUROK_ZAFF_SPELL_CASTING_SPOT", "surok_zaff_spell_casting_spot", "seqtypes"),
-            new GamevalEntry(5635, "SUROK_ZAFF_SPELL_CASTING_PROJ", "surok_zaff_spell_casting_proj", "seqtypes"),
-            new GamevalEntry(5636, "SUROK_ZAFF_SPELL_CASTING_IMPACT", "surok_zaff_spell_casting_impact", "seqtypes"),
         };
     }
 

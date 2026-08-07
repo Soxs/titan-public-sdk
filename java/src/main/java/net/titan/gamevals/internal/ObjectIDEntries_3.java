@@ -10,6 +10,15 @@ final class ObjectIDEntries_3 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1536, "POORDOOROPEN", "Door", "loctypes"),
+            new GamevalEntry(1537, "POORDOOR_CROSS", "poordoor_cross", "loctypes"),
+            new GamevalEntry(1538, "POORDOOR_CROSSOPEN", "poordoor_crossopen", "loctypes"),
+            new GamevalEntry(1539, "INACTIVEPOORDOOR", "inactivepoordoor", "loctypes"),
+            new GamevalEntry(1540, "POSHDOOR", "Door", "loctypes"),
+            new GamevalEntry(1541, "POSHDOOROPEN", "Door", "loctypes"),
+            new GamevalEntry(1542, "INACTIVEPOSHDOOR", "inactiveposhdoor", "loctypes"),
+            new GamevalEntry(1543, "ELFDOOR", "Door", "loctypes"),
+            new GamevalEntry(1544, "ELFDOOROPEN", "Door", "loctypes"),
             new GamevalEntry(1545, "INACTIVEELFDOOR", "inactiveelfdoor", "loctypes"),
             new GamevalEntry(1546, "PRISONDOOR", "Door", "loctypes"),
             new GamevalEntry(1547, "PRISONDOOROPEN", "Door", "loctypes"),
@@ -511,17 +520,6 @@ final class ObjectIDEntries_3 {
             new GamevalEntry(2045, "KANDARIN_RUGCORNER", "kandarin_rugcorner", "loctypes"),
             new GamevalEntry(2046, "KANDARIN_RUGSIDE", "kandarin_rugside", "loctypes"),
             new GamevalEntry(2047, "KANDARIN_RUGMIDDLE", "kandarin_rugmiddle", "loctypes"),
-            new GamevalEntry(2048, "ARDOUGNEWALLDOOR_LEFT", ": Door", "loctypes"),
-            new GamevalEntry(2049, "ARDOUGNEWALLDOOR_RIGHT", ": Door", "loctypes"),
-            new GamevalEntry(2050, "GUIDORGATELCLOSED", "Gate", "loctypes"),
-            new GamevalEntry(2051, "GUIDORGATERCLOSED", "Gate", "loctypes"),
-            new GamevalEntry(2052, "GUIDORGATELOPEN", "guidorgatelopen", "loctypes"),
-            new GamevalEntry(2053, "GUIDORGATEROPEN", "guidorgateropen", "loctypes"),
-            new GamevalEntry(2054, "ELENADOOR2", "Door", "loctypes"),
-            new GamevalEntry(2055, "ELENADOOR2OPEN", "elenadoor2open", "loctypes"),
-            new GamevalEntry(2056, "JERICOSCUPBOARDSHUT", "Cupboard", "loctypes"),
-            new GamevalEntry(2057, "JERICOSCUPBOARDOPEN", "Cupboard", "loctypes"),
-            new GamevalEntry(2058, "MOURNERQUATERS_GATEL", "Gate", "loctypes"),
         };
     }
 

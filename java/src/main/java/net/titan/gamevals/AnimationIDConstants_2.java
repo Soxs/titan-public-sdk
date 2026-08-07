@@ -1,6 +1,7 @@
 package net.titan.gamevals;
 
 public interface AnimationIDConstants_2 {
+    int OGRE_BELLOWS_USE = 1024;
     int OGRE_LONGBOW = 1025;
     int HUMAN_CHOMPYBIRD_OGREBELLOWS = 1026;
     int ELEMENTAL_FIRE_READY = 1027;
@@ -511,6 +512,4 @@ public interface AnimationIDConstants_2 {
     int GARGOYLE_STATUE_OPEN = 1533;
     int ABYSSAL_WALK = 1534;
     int ABYSSAL_TELEPORT = 1535;
-    int ABYSSAL_READY = 1536;
-    int ABYSSAL_ATTACK = 1537;
 }

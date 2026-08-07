@@ -30,7 +30,21 @@ public final class VarbitID
                    VarbitIDConstants_22,
                    VarbitIDConstants_23,
                    VarbitIDConstants_24,
-                   VarbitIDConstants_25 {
+                   VarbitIDConstants_25,
+                   VarbitIDConstants_26,
+                   VarbitIDConstants_27,
+                   VarbitIDConstants_28,
+                   VarbitIDConstants_29,
+                   VarbitIDConstants_30,
+                   VarbitIDConstants_31,
+                   VarbitIDConstants_32,
+                   VarbitIDConstants_33,
+                   VarbitIDConstants_34,
+                   VarbitIDConstants_35,
+                   VarbitIDConstants_36,
+                   VarbitIDConstants_37,
+                   VarbitIDConstants_38,
+                   VarbitIDConstants_39 {
     private VarbitID() {}
 
     public static final String SOURCE_CATALOG = "varbittypes";

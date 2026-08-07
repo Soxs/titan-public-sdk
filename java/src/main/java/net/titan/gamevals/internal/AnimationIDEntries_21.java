@@ -10,6 +10,14 @@ final class AnimationIDEntries_21 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(10752, "COA_SLIDING_DOORS", "coa_sliding_doors", "seqtypes"),
+            new GamevalEntry(10753, "COA_SLIDING_DOORS_OPENED", "coa_sliding_doors_opened", "seqtypes"),
+            new GamevalEntry(10754, "COA_SLIDING_DOORS_RETURN", "coa_sliding_doors_return", "seqtypes"),
+            new GamevalEntry(10755, "COA_BRAZIER_FIRE", "coa_brazier_fire", "seqtypes"),
+            new GamevalEntry(10756, "COA_FLOOR_TILE_RAISE", "coa_floor_tile_raise", "seqtypes"),
+            new GamevalEntry(10757, "COA_AMASCUT_REFORM", "coa_amascut_reform", "seqtypes"),
+            new GamevalEntry(10758, "COA_HET_REFORM", "coa_het_reform", "seqtypes"),
+            new GamevalEntry(10759, "COA_APMEKEN_REFORM", "coa_apmeken_reform", "seqtypes"),
             new GamevalEntry(10760, "COA_ICTHLARIN_REFORM", "coa_icthlarin_reform", "seqtypes"),
             new GamevalEntry(10761, "COA_SCABARAS_REFORM", "coa_scabaras_reform", "seqtypes"),
             new GamevalEntry(10762, "COA_CRONDIS_REFORM", "coa_crondis_reform", "seqtypes"),
@@ -511,17 +519,6 @@ final class AnimationIDEntries_21 {
             new GamevalEntry(11261, "BOUNTYHUNTER_CAVE_EXIT", "bountyhunter_cave_exit", "seqtypes"),
             new GamevalEntry(11262, "WGS_PICK_LOCK", "wgs_pick_lock", "seqtypes"),
             new GamevalEntry(11263, "WGS_PLAYER_INSPECT", "wgs_player_inspect", "seqtypes"),
-            new GamevalEntry(11264, "WGS_HUMAN_ELECTROCUTED", "wgs_human_electrocuted", "seqtypes"),
-            new GamevalEntry(11265, "WGS_PLAYER_PULLS_BOOK_OUT", "wgs_player_pulls_book_out", "seqtypes"),
-            new GamevalEntry(11266, "WGS_PLAYER_PUSHES_BOOK_BACK", "wgs_player_pushes_book_back", "seqtypes"),
-            new GamevalEntry(11267, "WGS_PLAYER_COUGHS", "wgs_player_coughs", "seqtypes"),
-            new GamevalEntry(11268, "WGS_PLAYER_COUGHS_LOOP", "wgs_player_coughs_loop", "seqtypes"),
-            new GamevalEntry(11269, "WGS_PLAYER_OPENS_BEDCHEST", "wgs_player_opens_bedchest", "seqtypes"),
-            new GamevalEntry(11270, "WGS_PLAYER_REVEALING_BEDCHEST", "wgs_player_revealing_bedchest", "seqtypes"),
-            new GamevalEntry(11271, "WGS_PLAYER_WALK_THROUGH_PAINTING", "wgs_player_walk_through_painting", "seqtypes"),
-            new GamevalEntry(11272, "WGS_PLAYER_GOING_UNCONSCIOUS", "wgs_player_going_unconscious", "seqtypes"),
-            new GamevalEntry(11273, "WGS_PLAYER_UNCONSCIOUS", "wgs_player_unconscious", "seqtypes"),
-            new GamevalEntry(11274, "WGS_PLAYER_REGAINING_CONSCIOUSNESS", "wgs_player_regaining_consciousness", "seqtypes"),
         };
     }
 

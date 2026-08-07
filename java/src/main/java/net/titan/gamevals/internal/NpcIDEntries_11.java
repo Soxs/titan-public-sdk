@@ -10,6 +10,8 @@ final class NpcIDEntries_11 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(5632, "TEMPLETREK_SHADE_2", "Asyn shadow", "npctypes"),
+            new GamevalEntry(5633, "TEMPLETREK_SHADE_3", "?c Attack", "npctypes"),
             new GamevalEntry(5634, "TEMPLETREK_VAMPIRE_1", "Vampyre Juvinate", "npctypes"),
             new GamevalEntry(5635, "TEMPLETREK_VAMPIRE_2", "Vampyre Juvinate", "npctypes"),
             new GamevalEntry(5636, "TEMPLETREK_VAMPIRE_3", "Vampyre Juvinate", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_11 {
             new GamevalEntry(6141, "FEUD_VILLAGER_MULTI_3", "feud_villager_multi_3", "npctypes"),
             new GamevalEntry(6142, "ERNEST_MULTIERNEST", "ernest_multiernest", "npctypes"),
             new GamevalEntry(6143, "SHADESHADOW_LEVEL6", "Urium Shadow", "npctypes"),
-            new GamevalEntry(6144, "ENAKH_BONEGUARD_MULTINPC", "enakh_boneguard_multinpc", "npctypes"),
-            new GamevalEntry(6145, "ENAKH_DUMMY_FOUNTAIN_MULTINPC", "enakh_dummy_fountain_multinpc", "npctypes"),
         };
     }
 

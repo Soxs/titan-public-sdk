@@ -9,43 +9,46 @@ public final class AnimationIDEntries {
     private AnimationIDEntries() {}
 
     public static GamevalEntry[] entries() {
-        GamevalEntry[] out = new GamevalEntry[14463];
+        GamevalEntry[][] parts = {
+            AnimationIDEntries_0.entries(),
+            AnimationIDEntries_1.entries(),
+            AnimationIDEntries_2.entries(),
+            AnimationIDEntries_3.entries(),
+            AnimationIDEntries_4.entries(),
+            AnimationIDEntries_5.entries(),
+            AnimationIDEntries_6.entries(),
+            AnimationIDEntries_7.entries(),
+            AnimationIDEntries_8.entries(),
+            AnimationIDEntries_9.entries(),
+            AnimationIDEntries_10.entries(),
+            AnimationIDEntries_11.entries(),
+            AnimationIDEntries_12.entries(),
+            AnimationIDEntries_13.entries(),
+            AnimationIDEntries_14.entries(),
+            AnimationIDEntries_15.entries(),
+            AnimationIDEntries_16.entries(),
+            AnimationIDEntries_17.entries(),
+            AnimationIDEntries_18.entries(),
+            AnimationIDEntries_19.entries(),
+            AnimationIDEntries_20.entries(),
+            AnimationIDEntries_21.entries(),
+            AnimationIDEntries_22.entries(),
+            AnimationIDEntries_23.entries(),
+            AnimationIDEntries_24.entries(),
+            AnimationIDEntries_25.entries(),
+            AnimationIDEntries_26.entries(),
+            AnimationIDEntries_27.entries(),
+            AnimationIDEntries_28.entries(),
+        };
+        int size = 0;
+        for (GamevalEntry[] part : parts) size += part.length;
+        GamevalEntry[] out = new GamevalEntry[size];
         int offset = 0;
-        offset = copy(out, offset, AnimationIDEntries_0.entries());
-        offset = copy(out, offset, AnimationIDEntries_1.entries());
-        offset = copy(out, offset, AnimationIDEntries_2.entries());
-        offset = copy(out, offset, AnimationIDEntries_3.entries());
-        offset = copy(out, offset, AnimationIDEntries_4.entries());
-        offset = copy(out, offset, AnimationIDEntries_5.entries());
-        offset = copy(out, offset, AnimationIDEntries_6.entries());
-        offset = copy(out, offset, AnimationIDEntries_7.entries());
-        offset = copy(out, offset, AnimationIDEntries_8.entries());
-        offset = copy(out, offset, AnimationIDEntries_9.entries());
-        offset = copy(out, offset, AnimationIDEntries_10.entries());
-        offset = copy(out, offset, AnimationIDEntries_11.entries());
-        offset = copy(out, offset, AnimationIDEntries_12.entries());
-        offset = copy(out, offset, AnimationIDEntries_13.entries());
-        offset = copy(out, offset, AnimationIDEntries_14.entries());
-        offset = copy(out, offset, AnimationIDEntries_15.entries());
-        offset = copy(out, offset, AnimationIDEntries_16.entries());
-        offset = copy(out, offset, AnimationIDEntries_17.entries());
-        offset = copy(out, offset, AnimationIDEntries_18.entries());
-        offset = copy(out, offset, AnimationIDEntries_19.entries());
-        offset = copy(out, offset, AnimationIDEntries_20.entries());
-        offset = copy(out, offset, AnimationIDEntries_21.entries());
-        offset = copy(out, offset, AnimationIDEntries_22.entries());
-        offset = copy(out, offset, AnimationIDEntries_23.entries());
-        offset = copy(out, offset, AnimationIDEntries_24.entries());
-        offset = copy(out, offset, AnimationIDEntries_25.entries());
-        offset = copy(out, offset, AnimationIDEntries_26.entries());
-        offset = copy(out, offset, AnimationIDEntries_27.entries());
-        offset = copy(out, offset, AnimationIDEntries_28.entries());
+        for (GamevalEntry[] part : parts) {
+            System.arraycopy(part, 0, out, offset, part.length);
+            offset += part.length;
+        }
         return out;
-    }
-
-    private static int copy(GamevalEntry[] out, int offset, GamevalEntry[] part) {
-        System.arraycopy(part, 0, out, offset, part.length);
-        return offset + part.length;
     }
 
     public static Optional<GamevalEntry> byId(int id) {

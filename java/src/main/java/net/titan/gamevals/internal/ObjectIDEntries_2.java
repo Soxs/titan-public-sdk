@@ -10,6 +10,14 @@ final class ObjectIDEntries_2 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(1024, "SHELVES1", "Shelves", "loctypes"),
+            new GamevalEntry(1025, "CLOTHESEQUIP_SHELVES", "Clothing shelves", "loctypes"),
+            new GamevalEntry(1026, "COOKINGSHELFEMPTY_DARK", "cookingshelfempty_dark", "loctypes"),
+            new GamevalEntry(1027, "TANNINGLINE", "Tanning line", "loctypes"),
+            new GamevalEntry(1028, "TANNINGVAT", "Vat", "loctypes"),
+            new GamevalEntry(1029, "TANNINGVAT2", "Vat", "loctypes"),
+            new GamevalEntry(1030, "TANNINGMANGEL_A", "Mangle", "loctypes"),
+            new GamevalEntry(1031, "TANNINGMANGEL_B", "Mangle", "loctypes"),
             new GamevalEntry(1032, "DANGERSIGN", "Danger sign", "loctypes"),
             new GamevalEntry(1033, "SIGNPOST", "Signpost", "loctypes"),
             new GamevalEntry(1034, "SIGNPOST2", "Signpost", "loctypes"),
@@ -513,15 +521,6 @@ final class ObjectIDEntries_2 {
             new GamevalEntry(1533, "DESERTDOORCLOSED", "Curtain", "loctypes"),
             new GamevalEntry(1534, "DESERTDOOROPEN", "Curtain", "loctypes"),
             new GamevalEntry(1535, "POORDOOR", "Door", "loctypes"),
-            new GamevalEntry(1536, "POORDOOROPEN", "Door", "loctypes"),
-            new GamevalEntry(1537, "POORDOOR_CROSS", "poordoor_cross", "loctypes"),
-            new GamevalEntry(1538, "POORDOOR_CROSSOPEN", "poordoor_crossopen", "loctypes"),
-            new GamevalEntry(1539, "INACTIVEPOORDOOR", "inactivepoordoor", "loctypes"),
-            new GamevalEntry(1540, "POSHDOOR", "Door", "loctypes"),
-            new GamevalEntry(1541, "POSHDOOROPEN", "Door", "loctypes"),
-            new GamevalEntry(1542, "INACTIVEPOSHDOOR", "inactiveposhdoor", "loctypes"),
-            new GamevalEntry(1543, "ELFDOOR", "Door", "loctypes"),
-            new GamevalEntry(1544, "ELFDOOROPEN", "Door", "loctypes"),
         };
     }
 

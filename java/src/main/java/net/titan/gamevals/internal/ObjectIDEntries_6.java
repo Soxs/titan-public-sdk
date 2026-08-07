@@ -10,6 +10,17 @@ final class ObjectIDEntries_6 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(3072, "ARENA_COLUMN_D_RUIN2", "arena_column_d_ruin2", "loctypes"),
+            new GamevalEntry(3073, "ARENA_COLUMN_D_RUIN3", "arena_column_d_ruin3", "loctypes"),
+            new GamevalEntry(3074, "ARENA_COLUMN_D_RUIN4", "arena_column_d_ruin4", "loctypes"),
+            new GamevalEntry(3075, "DUEL_ARENA_COLUMN_E", "duel_arena_column_e", "loctypes"),
+            new GamevalEntry(3076, "DUEL_ARENA_COLUMN_A_MIRROR", "duel_arena_column_a_mirror", "loctypes"),
+            new GamevalEntry(3077, "DUEL_ARENA_TOP", "duel_arena_top", "loctypes"),
+            new GamevalEntry(3078, "DUEL_ARENA_TOPWITHFLAG", "duel_arena_topwithflag", "loctypes"),
+            new GamevalEntry(3079, "DUEL_ARENA_TOP_AGED", "duel_arena_top_aged", "loctypes"),
+            new GamevalEntry(3080, "DUEL_ARENA_TOP_AGED_2", "duel_arena_top_aged_2", "loctypes"),
+            new GamevalEntry(3081, "DUEL_ARENA_TOP_AGED_2_MIRROR", "duel_arena_top_aged_2_mirror", "loctypes"),
+            new GamevalEntry(3082, "DUEL_ARENA_TOP_AGED_3", "duel_arena_top_aged_3", "loctypes"),
             new GamevalEntry(3083, "DUEL_ARENA_TOP_AGED_4", "duel_arena_top_aged_4", "loctypes"),
             new GamevalEntry(3084, "DUEL_ARENA_TOPNOLEAN", "duel_arena_topnolean", "loctypes"),
             new GamevalEntry(3085, "DUEL_ARENA_TOPNOLEAN_AGED", "duel_arena_topnolean_aged", "loctypes"),
@@ -509,19 +520,6 @@ final class ObjectIDEntries_6 {
             new GamevalEntry(3581, "AGILITYARENA_POISONDARTS", "Ticket Dispenser", "loctypes"),
             new GamevalEntry(3582, "AGILITYARENA_FLOORSPIKES", "Floor spikes", "loctypes"),
             new GamevalEntry(3583, "AGILITYARENA_HANDHOLDS", "Hand holds", "loctypes"),
-            new GamevalEntry(3584, "AGILITYARENA_HANDHOLDS_MIDDLE", "Hand holds", "loctypes"),
-            new GamevalEntry(3585, "AGILITYARENA_PRESSUREPAD", "Pressure pad", "loctypes"),
-            new GamevalEntry(3586, "AGILITY_WALL", "agility_wall", "loctypes"),
-            new GamevalEntry(3587, "AGILITY_ARCH", "agility_arch", "loctypes"),
-            new GamevalEntry(3588, "AGILITY_ARCH_LEFT", "agility_arch_left", "loctypes"),
-            new GamevalEntry(3589, "AGILITY_GLOW", "agility_glow", "loctypes"),
-            new GamevalEntry(3590, "AGILITY_GLOW_DUG", "agility_glow_dug", "loctypes"),
-            new GamevalEntry(3591, "AGILITY_GLOW_DUG2", "agility_glow_dug2", "loctypes"),
-            new GamevalEntry(3592, "AGILITY_GLOW_DUG3", "agility_glow_dug3", "loctypes"),
-            new GamevalEntry(3593, "AGILITY_GLOW_DUG4", "agility_glow_dug4", "loctypes"),
-            new GamevalEntry(3594, "AGILITY_GLOW_CORNER", "agility_glow_corner", "loctypes"),
-            new GamevalEntry(3595, "AGILITY_CRUMBLYWALL1", "agility_crumblywall1", "loctypes"),
-            new GamevalEntry(3596, "AGILITY_CRUMBLYWALL1R", "agility_crumblywall1r", "loctypes"),
         };
     }
 

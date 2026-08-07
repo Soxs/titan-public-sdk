@@ -1,6 +1,14 @@
 package net.titan.gamevals;
 
 public interface ObjectIDConstants_2 {
+    int SHELVES1 = 1024;
+    int CLOTHESEQUIP_SHELVES = 1025;
+    int COOKINGSHELFEMPTY_DARK = 1026;
+    int TANNINGLINE = 1027;
+    int TANNINGVAT = 1028;
+    int TANNINGVAT2 = 1029;
+    int TANNINGMANGEL_A = 1030;
+    int TANNINGMANGEL_B = 1031;
     int DANGERSIGN = 1032;
     int SIGNPOST = 1033;
     int SIGNPOST2 = 1034;
@@ -504,13 +512,4 @@ public interface ObjectIDConstants_2 {
     int DESERTDOORCLOSED = 1533;
     int DESERTDOOROPEN = 1534;
     int POORDOOR = 1535;
-    int POORDOOROPEN = 1536;
-    int POORDOOR_CROSS = 1537;
-    int POORDOOR_CROSSOPEN = 1538;
-    int INACTIVEPOORDOOR = 1539;
-    int POSHDOOR = 1540;
-    int POSHDOOROPEN = 1541;
-    int INACTIVEPOSHDOOR = 1542;
-    int ELFDOOR = 1543;
-    int ELFDOOROPEN = 1544;
 }

@@ -10,6 +10,8 @@ final class NpcIDEntries_8 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(4096, "DEATH_ARCHER1", "( 3 4 5 6 (a", "npctypes"),
+            new GamevalEntry(4097, "DEATH_ARCHER2", "( 3 4 5 6 (a", "npctypes"),
             new GamevalEntry(4098, "DEATH_ARCHER_TRAPPED", "( 3 4 5 6 (a", "npctypes"),
             new GamevalEntry(4099, "DEATH_GUARD1", "/ 3 4 5 6 (a", "npctypes"),
             new GamevalEntry(4100, "DEATH_GUARD2", "/ 3 4 5 6 (a", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_8 {
             new GamevalEntry(4605, "VC_DWARF_RICH2", "Vaeringk", "npctypes"),
             new GamevalEntry(4606, "VC_DWARF_POOR1", "Oxi", "npctypes"),
             new GamevalEntry(4607, "VC_DWARF_POOR2", "Fior", "npctypes"),
-            new GamevalEntry(4608, "VC_DWARF_POOR3", "Sagira", "npctypes"),
-            new GamevalEntry(4609, "VC_DWARF_POOR4", "Anleif", "npctypes"),
         };
     }
 

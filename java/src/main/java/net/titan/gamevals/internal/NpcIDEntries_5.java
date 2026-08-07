@@ -520,8 +520,6 @@ final class NpcIDEntries_5 {
             new GamevalEntry(3069, "FAI_BARBARIAN_FEMALE_1", "Barbarian", "npctypes"),
             new GamevalEntry(3070, "FAI_BARBARIAN_FEMALE_2", "Barbarian", "npctypes"),
             new GamevalEntry(3071, "FAI_BARBARIAN_FEMALE_3", "Barbarian", "npctypes"),
-            new GamevalEntry(3072, "FAI_BARBARIAN_FEMALE_4", "Barbarian", "npctypes"),
-            new GamevalEntry(3073, "FAI_BARBARIAN_GOBLIN_ARMED_1", "Goblin", "npctypes"),
         };
     }
 

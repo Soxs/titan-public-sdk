@@ -1,6 +1,8 @@
 package net.titan.gamevals;
 
 public interface NpcIDConstants_7 {
+    int ENAKH_CUTSCENE_SKELETON = 3584;
+    int TOL_NPC_EFERGY01 = 3585;
     int TOL_NPC_EFERGY01_STILL = 3586;
     int TOL_NPC_BARRY01 = 3587;
     int TOL_HOMONCULUS_NOCAGE = 3588;
@@ -511,6 +513,4 @@ public interface NpcIDConstants_7 {
     int DEATH_HERMIT = 4093;
     int DEATH_SHERPA = 4094;
     int DEATH_COOK = 4095;
-    int DEATH_ARCHER1 = 4096;
-    int DEATH_ARCHER2 = 4097;
 }

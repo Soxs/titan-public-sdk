@@ -37,7 +37,8 @@ public final class DbRowID
                    DbRowIDConstants_29,
                    DbRowIDConstants_30,
                    DbRowIDConstants_31,
-                   DbRowIDConstants_32 {
+                   DbRowIDConstants_32,
+                   DbRowIDConstants_33 {
     private DbRowID() {}
 
     public static final String SOURCE_CATALOG = "rowtypes";

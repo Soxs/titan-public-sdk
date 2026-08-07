@@ -10,6 +10,18 @@ final class AnimationIDEntries_26 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(13312, "SAILING_FACILITIES_ANCHOR01_SMALL01_PULL01", "sailing_facilities_anchor01_small01_pull01", "seqtypes"),
+            new GamevalEntry(13313, "SAILING_FACILITIES_ANCHOR01_SMALL01_ACTIVE01", "sailing_facilities_anchor01_small01_active01", "seqtypes"),
+            new GamevalEntry(13314, "SAILING_FACILITIES_ANCHOR01_SMALL01_INACTIVE01", "sailing_facilities_anchor01_small01_inactive01", "seqtypes"),
+            new GamevalEntry(13315, "SAILING_FACILITIES_ANCHOR01_LARGE01_DROP01", "sailing_facilities_anchor01_large01_drop01", "seqtypes"),
+            new GamevalEntry(13316, "SAILING_FACILITIES_ANCHOR01_LARGE01_PULL01", "sailing_facilities_anchor01_large01_pull01", "seqtypes"),
+            new GamevalEntry(13317, "HUMAN_SAILING_ANCHOR01_LARGE01_PULL01", "human_sailing_anchor01_large01_pull01", "seqtypes"),
+            new GamevalEntry(13318, "HUMAN_SAILING_ANCHOR01_SMALL01_PULL01", "human_sailing_anchor01_small01_pull01", "seqtypes"),
+            new GamevalEntry(13319, "SAILING_FACILITIES_ANCHOR01_LARGE01_ACTIVE01", "sailing_facilities_anchor01_large01_active01", "seqtypes"),
+            new GamevalEntry(13320, "SAILING_FACILITIES_ANCHOR01_LARGE01_INACTIVE01", "sailing_facilities_anchor01_large01_inactive01", "seqtypes"),
+            new GamevalEntry(13321, "SAILING_CANNON01_SMALL01_IDLE01", "sailing_cannon01_small01_idle01", "seqtypes"),
+            new GamevalEntry(13322, "SAILING_CANNON01_SMALL01_IDLE02", "sailing_cannon01_small01_idle02", "seqtypes"),
+            new GamevalEntry(13323, "SAILING_CANNON01_SMALL01_ATTACK01", "sailing_cannon01_small01_attack01", "seqtypes"),
             new GamevalEntry(13324, "SAILING_CANNON01_SMALL01_IDLE03", "sailing_cannon01_small01_idle03", "seqtypes"),
             new GamevalEntry(13325, "HUMAN_SAILING_CANNON01_SMALL01_ENGAGE01", "human_sailing_cannon01_small01_engage01", "seqtypes"),
             new GamevalEntry(13326, "HUMAN_SAILING_CANNON01_SMALL01_ATTACK01", "human_sailing_cannon01_small01_attack01", "seqtypes"),
@@ -510,18 +522,6 @@ final class AnimationIDEntries_26 {
             new GamevalEntry(13821, "HUMAN_IBANS_ORN_WALK_F", "human_ibans_orn_walk_f", "seqtypes"),
             new GamevalEntry(13822, "HUMAN_IBANS_ORN_WALK_L", "human_ibans_orn_walk_l", "seqtypes"),
             new GamevalEntry(13823, "HUMAN_IBANS_ORN_WALK_R", "human_ibans_orn_walk_r", "seqtypes"),
-            new GamevalEntry(13824, "HUMAN_IBANS_ORN_WALK_B", "human_ibans_orn_walk_b", "seqtypes"),
-            new GamevalEntry(13825, "HUMAN_IBANS_ORN_RUN_F", "human_ibans_orn_run_f", "seqtypes"),
-            new GamevalEntry(13826, "HUMAN_IBANS_ORN_READY", "human_ibans_orn_ready", "seqtypes"),
-            new GamevalEntry(13827, "HUMAN_IBANS_ORN_MELEE", "human_ibans_orn_melee", "seqtypes"),
-            new GamevalEntry(13828, "HUMAN_IBANS_ORN_SEA_CAST", "human_ibans_orn_sea_cast", "seqtypes"),
-            new GamevalEntry(13829, "HUMAN_IBANS_ORN_SWAMP_CAST", "human_ibans_orn_swamp_cast", "seqtypes"),
-            new GamevalEntry(13830, "HUMAN_IBANS_ORN_CAST", "human_ibans_orn_cast", "seqtypes"),
-            new GamevalEntry(13831, "DEMON_BUTLER_LEAGUES_IDLE", "demon_butler_leagues_idle", "seqtypes"),
-            new GamevalEntry(13832, "DEMON_BUTLER_LEAGUES_WALK", "demon_butler_leagues_walk", "seqtypes"),
-            new GamevalEntry(13833, "LEAGUES_6_THRALL_IMP_MAGIC_SPAWN", "leagues_6_thrall_imp_magic_spawn", "seqtypes"),
-            new GamevalEntry(13834, "LEAGUES_6_THRALL_IMP_MAGIC_SPAWN_VFX_SPOTANIM", "leagues_6_thrall_imp_magic_spawn_vfx_spotanim", "seqtypes"),
-            new GamevalEntry(13835, "LEAGUES_6_THRALL_IMP_RANGED_SPAWN", "leagues_6_thrall_imp_ranged_spawn", "seqtypes"),
         };
     }
 

@@ -10,6 +10,8 @@ final class NpcIDEntries_12 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
+            new GamevalEntry(6144, "ENAKH_BONEGUARD_MULTINPC", "enakh_boneguard_multinpc", "npctypes"),
+            new GamevalEntry(6145, "ENAKH_DUMMY_FOUNTAIN_MULTINPC", "enakh_dummy_fountain_multinpc", "npctypes"),
             new GamevalEntry(6146, "ENAKH_DUMMY_FURNACE_MULTINPC", "enakh_dummy_furnace_multinpc", "npctypes"),
             new GamevalEntry(6147, "ENAKH_ENAKHRA_MULTINPC", "enakh_enakhra_multinpc", "npctypes"),
             new GamevalEntry(6148, "ENAKH_AKTHANAKOS_MULTINPC", "enakh_akthanakos_multinpc", "npctypes"),
@@ -520,8 +522,6 @@ final class NpcIDEntries_12 {
             new GamevalEntry(6653, "POH_KQ_PET_FLYING", "Kalphite Princess", "npctypes"),
             new GamevalEntry(6654, "POH_KQ_PET_WALKING", "Kalphite Princess", "npctypes"),
             new GamevalEntry(6655, "POH_SMOKE_PET", "Smoke Devil", "npctypes"),
-            new GamevalEntry(6656, "POH_KRAKEN_PET", "Kraken", "npctypes"),
-            new GamevalEntry(6657, "POH_ROCK", "Pet rock", "npctypes"),
         };
     }
 
