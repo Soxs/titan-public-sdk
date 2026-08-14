@@ -270,7 +270,7 @@ final class ItemIDEntries_7 {
             new GamevalEntry(3841, "UNFINISHED_ZAMORAKBOOK", "Damaged book", "objtypes"),
             new GamevalEntry(3842, "ZAMORAKBOOK_COMPLETE", "Unholy book", "objtypes"),
             new GamevalEntry(3843, "UNFINISHED_GUTHIXBOOK", "Damaged book", "objtypes"),
-            new GamevalEntry(3844, "GUTHIXBOOK_COMPLETE", "Book of balance", "objtypes"),
+            new GamevalEntry(3844, "GUTHIXBOOK_COMPLETE", "Book of Balance", "objtypes"),
             new GamevalEntry(3845, "HORROR_DIARY1", "Journal", "objtypes"),
             new GamevalEntry(3846, "HORROR_DIARY2", "Diary", "objtypes"),
             new GamevalEntry(3847, "HORROR_DIARY3", "3 Manual", "objtypes"),

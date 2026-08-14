@@ -453,7 +453,7 @@ final class ItemIDEntries_58 {
             new GamevalEntry(30148, "PLACEHOLDER_1DOSEGOADING", "placeholder_1dosegoading", "objtypes"),
             new GamevalEntry(30149, "NZONE_TELETAB_ALDARIN", "Aldarin teleport", "objtypes"),
             new GamevalEntry(30150, "PLACEHOLDER_NZONE_TELETAB_ALDARIN", "placeholder_nzone_teletab_aldarin", "objtypes"),
-            new GamevalEntry(30151, "SKILLPETAGILITY_BONE", "Bone squirrel", "objtypes"),
+            new GamevalEntry(30151, "SKILLPETAGILITY_BONE", "Bone Squirrel", "objtypes"),
             new GamevalEntry(30152, "HUEYPET", "Huberte", "objtypes"),
             new GamevalEntry(30153, "PLACEHOLDER_HUEYPET", "placeholder_hueypet", "objtypes"),
             new GamevalEntry(30154, "AMOXLIATLPET", "Moxi", "objtypes"),

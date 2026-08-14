@@ -12,8 +12,8 @@ final class ItemIDEntries_54 {
         return new GamevalEntry[] {
             new GamevalEntry(27648, "VENENATIS_PET_LEGACY", "Venenatis spiderling", "objtypes"),
             new GamevalEntry(27649, "CALLISTO_PET_LEGACY", "Callisto cub", "objtypes"),
-            new GamevalEntry(27650, "VETION_PET_LEGACY", "Vet'ion jr.", "objtypes"),
-            new GamevalEntry(27651, "VETION_PET2_LEGACY", "Vet'ion jr.", "objtypes"),
+            new GamevalEntry(27650, "VETION_PET_LEGACY", "Vet'ion Jr.", "objtypes"),
+            new GamevalEntry(27651, "VETION_PET2_LEGACY", "Vet'ion Jr.", "objtypes"),
             new GamevalEntry(27652, "WILD_CAVE_WEBWEAVER_UNCHARGED", "Webweaver bow (u)", "objtypes"),
             new GamevalEntry(27653, "CERT_WILD_CAVE_WEBWEAVER_UNCHARGED", "cert_wild_cave_webweaver_uncharged", "objtypes"),
             new GamevalEntry(27654, "PLACEHOLDER_WILD_CAVE_WEBWEAVER_UNCHARGED", "placeholder_wild_cave_webweaver_uncharged", "objtypes"),

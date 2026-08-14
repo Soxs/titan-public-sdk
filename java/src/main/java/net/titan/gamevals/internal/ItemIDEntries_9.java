@@ -231,7 +231,7 @@ final class ItemIDEntries_9 {
             new GamevalEntry(4826, "CERT_UNSTRUNG_ZOGRE_BOW", "cert_unstrung_zogre_bow", "objtypes"),
             new GamevalEntry(4827, "ZOGRE_BOW", "Comp ogre bow", "objtypes"),
             new GamevalEntry(4828, "CERT_ZOGRE_BOW", "cert_zogre_bow", "objtypes"),
-            new GamevalEntry(4829, "ZOGRE_HAMBOOK", "Book of 'h.a.m'", "objtypes"),
+            new GamevalEntry(4829, "ZOGRE_HAMBOOK", "Book of 'H.A.M'", "objtypes"),
             new GamevalEntry(4830, "ZOGRE_ANCESTRAL_BONES_FAYG", "Fayrg bones", "objtypes"),
             new GamevalEntry(4831, "CERT_ZOGRE_ANCESTRAL_BONES_FAYG", "cert_zogre_ancestral_bones_fayg", "objtypes"),
             new GamevalEntry(4832, "ZOGRE_ANCESTRAL_BONES_RAURG", "Raurg bones", "objtypes"),

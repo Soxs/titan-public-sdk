@@ -258,7 +258,7 @@ final class ItemIDEntries_66 {
             new GamevalEntry(34037, "PLACEHOLDER_MAD_ANGEL_SWORD", "placeholder_mad_angel_sword", "objtypes"),
             new GamevalEntry(34038, "TELEPORTSCROLL_ARDEAGLAIS_DUMMY", "teleportscroll_ardeaglais_dummy", "objtypes"),
             new GamevalEntry(34039, "TELEPORTSCROLL_ARDEAGLAIS_SELECTED_DUMMY", "teleportscroll_ardeaglais_selected_dummy", "objtypes"),
-            new GamevalEntry(34040, "GOATPITPET", "Mr mcgroot", "objtypes"),
+            new GamevalEntry(34040, "GOATPITPET", "Mr McGroot", "objtypes"),
             new GamevalEntry(34041, "PLACEHOLDER_GOATPITPET", "placeholder_goatpitpet", "objtypes"),
             new GamevalEntry(34042, "MADANGELPET", "Aggy", "objtypes"),
             new GamevalEntry(34043, "PLACEHOLDER_MADANGELPET", "placeholder_madangelpet", "objtypes"),
@@ -279,6 +279,10 @@ final class ItemIDEntries_66 {
             new GamevalEntry(34058, "SAILING_SKILLGUIDE_PORTS_WYRMSCRAIG", "Wyrmscraig", "objtypes"),
             new GamevalEntry(34059, "DEADMAN_QUEST_LAMP_TIER_11", "Fairy tale quest lamp", "objtypes"),
             new GamevalEntry(34060, "CERT_BH_EMBLEM_5", "cert_bh_emblem_5", "objtypes"),
+            new GamevalEntry(34061, "VAMPYRE_SNAIL_SHELL", "Vampyre snail shell", "objtypes"),
+            new GamevalEntry(34062, "PLACEHOLDER_VAMPYRE_SNAIL_SHELL", "placeholder_vampyre_snail_shell", "objtypes"),
+            new GamevalEntry(34063, "SNELM_VAMPYRE", "Vampyre snelm", "objtypes"),
+            new GamevalEntry(34064, "PLACEHOLDER_SNELM_VAMPYRE", "placeholder_snelm_vampyre", "objtypes"),
         };
     }
 

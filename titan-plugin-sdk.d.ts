@@ -3079,10 +3079,10 @@ interface PanelElement {
 
     namespace state {
         /**
-         * Read a snapshot of the requested container. Returns null when
-         * the container id is unmapped on the current client rev OR the
-         * underlying widget isn't populated (bank closed, equipment
-         * screen not opened, etc.). Added in SDK 26.
+         * Read a snapshot of the requested container. Returns null when the
+         * native cache has no matching entry or its analyzer-provided layout
+         * fails validation. Added in SDK 26; export capacity raised to 2,048
+         * occupied entries in SDK 111.
          */
         function itemContainer(id: number): ItemContainerSnapshot | null;
 

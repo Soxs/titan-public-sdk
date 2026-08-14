@@ -298,7 +298,7 @@ final class ItemIDEntries_56 {
             new GamevalEntry(28957, "DIZANAS_QUIVER_INFINITE_TROUVER", "Blessed dizana's quiver (l)", "objtypes"),
             new GamevalEntry(28958, "COLOSSEUM_PASSIONATE_SUPPORTER_NOTE", "Scrawled poem", "objtypes"),
             new GamevalEntry(28959, "PLACEHOLDER_COLOSSEUM_PASSIONATE_SUPPORTER_NOTE", "placeholder_colosseum_passionate_supporter_note", "objtypes"),
-            new GamevalEntry(28960, "SOLHEREDITPET", "Smol heredit", "objtypes"),
+            new GamevalEntry(28960, "SOLHEREDITPET", "Smol Heredit", "objtypes"),
             new GamevalEntry(28961, "PLACEHOLDER_SOLHEREDITPET", "placeholder_solhereditpet", "objtypes"),
             new GamevalEntry(28962, "QUETZALPET", "Quetzin", "objtypes"),
             new GamevalEntry(28963, "PLACEHOLDER_QUETZALPET", "placeholder_quetzalpet", "objtypes"),

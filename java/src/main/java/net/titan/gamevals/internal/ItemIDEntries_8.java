@@ -162,7 +162,7 @@ final class ItemIDEntries_8 {
             new GamevalEntry(4245, "CHINACUP_OF_NETTLETEA", "Cup of tea", "objtypes"),
             new GamevalEntry(4246, "CHINACUP_OF_NETTLETEA_MILKY", "Cup of tea", "objtypes"),
             new GamevalEntry(4247, "AHOY_ROBES_OF_NECROVARUS", "Mystical robes", "objtypes"),
-            new GamevalEntry(4248, "AHOY_BOOK_OF_HARICANTO", "Book of haricanto", "objtypes"),
+            new GamevalEntry(4248, "AHOY_BOOK_OF_HARICANTO", "Book of Haricanto", "objtypes"),
             new GamevalEntry(4249, "AHOY_TRANSLATION_MANUAL", "Translation manual", "objtypes"),
             new GamevalEntry(4250, "AMULET_OF_GHOSTSPEAK_ENCHANTED", "Ghostspeak amulet", "objtypes"),
             new GamevalEntry(4251, "ECTOPHIAL", "Ectophial", "objtypes"),

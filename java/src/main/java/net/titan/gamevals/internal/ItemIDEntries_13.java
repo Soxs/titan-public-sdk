@@ -480,7 +480,7 @@ final class ItemIDEntries_13 {
             new GamevalEntry(7141, "FEVER_CUTLASS_BRASSHAND_HARRY", "Harry's cutlass", "objtypes"),
             new GamevalEntry(7142, "FEVER_RAPIER_MALLARD", "Rapier", "objtypes"),
             new GamevalEntry(7143, "FEVER_PLUNDER", "Plunder", "objtypes"),
-            new GamevalEntry(7144, "FEVER_PIRACY_BOOK", "Book o' piracy", "objtypes"),
+            new GamevalEntry(7144, "FEVER_PIRACY_BOOK", "Book o' Piracy", "objtypes"),
             new GamevalEntry(7145, "FEVER_CANNON", "Cannon barrel", "objtypes"),
             new GamevalEntry(7146, "FEVER_BROKEN_CANNON", "Broken cannon", "objtypes"),
             new GamevalEntry(7147, "FEVER_CANNON_BALLS", "Cannon balls", "objtypes"),

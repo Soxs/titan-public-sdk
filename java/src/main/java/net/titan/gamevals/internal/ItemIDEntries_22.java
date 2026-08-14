@@ -358,7 +358,7 @@ final class ItemIDEntries_22 {
             new GamevalEntry(11637, "PATTERN_JESTER_HAT_DUMMY", "pattern_jester_hat_dummy", "objtypes"),
             new GamevalEntry(11638, "PATTERN_ANTIDRAGONBREATHSHIELD_CLEAN_DUMMY", "pattern_antidragonbreathshield_clean_dummy", "objtypes"),
             new GamevalEntry(11639, "PATTERN_HUNDRED_KNIFE_DUMMY", "pattern_hundred_knife_dummy", "objtypes"),
-            new GamevalEntry(11640, "PATTERN_REWARD", "Book of knowledge", "objtypes"),
+            new GamevalEntry(11640, "PATTERN_REWARD", "Book of Knowledge", "objtypes"),
             new GamevalEntry(11641, "PATTERN_COCKTAIL_SHAKER_DUMMY", "pattern_cocktail_shaker_dummy", "objtypes"),
             new GamevalEntry(11642, "PATTERN_RUNE_PLATEBODY_DUMMY", "pattern_rune_platebody_dummy", "objtypes"),
             new GamevalEntry(11643, "PATTERN_MIND_TALISMAN_DUMMY", "pattern_mind_talisman_dummy", "objtypes"),

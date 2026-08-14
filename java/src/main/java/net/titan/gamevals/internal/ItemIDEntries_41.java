@@ -309,7 +309,7 @@ final class ItemIDEntries_41 {
             new GamevalEntry(21288, "PLACEHOLDER_INFERNAL_CAPE_BROKEN", "placeholder_infernal_cape_broken", "objtypes"),
             new GamevalEntry(21289, "SKILLCAPE_MAX_INFERNALCAPE_BROKEN", "Infernal max cape (broken)", "objtypes"),
             new GamevalEntry(21290, "PLACEHOLDER_SKILLCAPE_MAX_INFERNALCAPE_BROKEN", "placeholder_skillcape_max_infernalcape_broken", "objtypes"),
-            new GamevalEntry(21291, "INFERNOPET", "Jal-nib-rek", "objtypes"),
+            new GamevalEntry(21291, "INFERNOPET", "Jal-Nib-Rek", "objtypes"),
             new GamevalEntry(21292, "PLACEHOLDER_INFERNOPET", "placeholder_infernopet", "objtypes"),
             new GamevalEntry(21293, "INFERNAL_EEL", "Infernal eel", "objtypes"),
             new GamevalEntry(21294, "PLACEHOLDER_INFERNAL_EEL", "placeholder_infernal_eel", "objtypes"),

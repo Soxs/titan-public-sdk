@@ -8292,6 +8292,7 @@ public final class DBTableID
             public static final int ACTION_POH_SKILLCAPE_DEPOSIT = 6860;
             public static final int ACTION_DRINK_STEAMFORGE_BREW_INSIDE_SYO_INN = 6861;
             public static final int ACTION_EAT_CABBAGE_INFRONT_OF_BRASSICAN_MAGE = 6862;
+            public static final int LEAGUE_TASK_REACH_TOTAL_LEVEL_2376 = 7210;
             public static final int LEAGUE_TASK_ALL_EASY_COMBAT_ACHIEVEMENTS = 13323;
             public static final int LEAGUE_TASK_ALL_MEDIUM_COMBAT_ACHIEVEMENTS = 13324;
             public static final int LEAGUE_TASK_SCURRIUS_COMBAT_ACHIEVEMENTS = 13325;

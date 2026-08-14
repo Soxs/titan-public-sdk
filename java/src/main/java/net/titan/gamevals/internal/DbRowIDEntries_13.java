@@ -496,7 +496,6 @@ final class DbRowIDEntries_13 {
             new GamevalEntry(7139, "SKILL_FEATURE_CRAFTING_OTHER_SUNSTONE_GOLEM", "skill_feature_crafting_other_sunstone_golem", "rowtypes"),
             new GamevalEntry(7140, "SKILL_FEATURE_HUNTER_GOAT_PIT", "skill_feature_hunter_goat_pit", "rowtypes"),
             new GamevalEntry(7141, "SKILL_FEATURE_MINING_SUNSTONE", "skill_feature_mining_sunstone", "rowtypes"),
-            new GamevalEntry(7142, "SKILL_FEATURE_RUNECRAFT_SUNSTONE_GOLEMS", "skill_feature_runecraft_sunstone_golems", "rowtypes"),
             new GamevalEntry(7143, "SKILL_FEATURE_SAILING_PORTS_WYRMSCRAIG", "skill_feature_sailing_ports_wyrmscraig", "rowtypes"),
             new GamevalEntry(7144, "SKILL_FEATURE_SLAYER_MASTER_WYRMSCRAIG", "skill_feature_slayer_master_wyrmscraig", "rowtypes"),
             new GamevalEntry(7145, "AMENITY_BANKCHEST_WYRMSCRAIG", "amenity_bankchest_wyrmscraig", "rowtypes"),

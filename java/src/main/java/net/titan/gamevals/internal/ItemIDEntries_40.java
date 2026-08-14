@@ -189,7 +189,7 @@ final class ItemIDEntries_40 {
             new GamevalEntry(20656, "PLACEHOLDER_ZENYTE_RING_ENCHANTED_RECOIL", "placeholder_zenyte_ring_enchanted_recoil", "objtypes"),
             new GamevalEntry(20657, "NZONE_ZENYTE_RING_ENCHANTED_RECOIL", "Ring of suffering (ri)", "objtypes"),
             new GamevalEntry(20658, "PLACEHOLDER_NZONE_ZENYTE_RING_ENCHANTED_RECOIL", "placeholder_nzone_zenyte_ring_enchanted_recoil", "objtypes"),
-            new GamevalEntry(20659, "SKILLPETAGILITY", "Giant squirrel", "objtypes"),
+            new GamevalEntry(20659, "SKILLPETAGILITY", "Giant Squirrel", "objtypes"),
             new GamevalEntry(20660, "PLACEHOLDER_SKILLPETAGILITY", "placeholder_skillpetagility", "objtypes"),
             new GamevalEntry(20661, "SKILLPETFARMING", "Tangleroot", "objtypes"),
             new GamevalEntry(20662, "PLACEHOLDER_SKILLPETFARMING", "placeholder_skillpetfarming", "objtypes"),

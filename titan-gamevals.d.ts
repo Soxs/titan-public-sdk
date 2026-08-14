@@ -33513,6 +33513,10 @@ declare namespace titan {
             readonly SAILING_SKILLGUIDE_PORTS_WYRMSCRAIG: 34058;
             readonly DEADMAN_QUEST_LAMP_TIER_11: 34059;
             readonly CERT_BH_EMBLEM_5: 34060;
+            readonly VAMPYRE_SNAIL_SHELL: 34061;
+            readonly PLACEHOLDER_VAMPYRE_SNAIL_SHELL: 34062;
+            readonly SNELM_VAMPYRE: 34063;
+            readonly PLACEHOLDER_SNELM_VAMPYRE: 34064;
             byId(id: number): GamevalEntry | null;
         };
         readonly NpcID: {
@@ -49858,6 +49862,7 @@ declare namespace titan {
             readonly FISHING_BOAT_KARAMBWANFISH: 16341;
             readonly FISHING_BOAT_PISCARILIUSFISH: 16342;
             readonly FISHING_BOAT_MONKFISH: 16343;
+            readonly VAMPYRE_SNAIL: 16344;
             byId(id: number): GamevalEntry | null;
         };
         readonly ObjectID: {
@@ -112194,6 +112199,31 @@ declare namespace titan {
             readonly SAILING_GANGPLANK_WYRMSCRAIG_CAVE: 62398;
             readonly HAVEN_TOWER_BASEMENT_WALL_STONE_CREVICE: 62399;
             readonly DEADMAN_POH_GAP_WHERE_WINDOW_IS_NOT: 62400;
+            readonly SOPHANEM_AGILITY_STONE_RIVER: 62401;
+            readonly SOPHANEM_AGILITY_STONE_RIVER_NOOP: 62402;
+            readonly GH_CLIMBING_ROCKS_TOP: 62403;
+            readonly GH_CLIMBING_ROCKS_BOTTOM: 62404;
+            readonly GH_CLIMBING_ROCKS_INACTIVE: 62405;
+            readonly DARKWOOD_TREE_VAMPYRE_SNAIL_DOORWAY: 62406;
+            readonly SNAIL_BUSH: 62407;
+            readonly VIKING_PIER_STYLE_STILE: 62408;
+            readonly VARROCK_DUNGEON_PIPE_2_SC: 62409;
+            readonly MOS_LE_HARMLESS_STEP_1: 62410;
+            readonly MOS_LE_HARMLESS_STEP_2: 62411;
+            readonly CHAMPIONS_GUILD_STEPSTONE: 62412;
+            readonly CHAMPIONS_GUILD_STEPSTONE_NOOP: 62413;
+            readonly POLLNIVNEACH_SCRAMBLE_UP: 62414;
+            readonly POLLNIVNEACH_SCRAMBLE_DOWN: 62415;
+            readonly POLLNIVNEACH_SCRAMBLE_ACROSS: 62416;
+            readonly YANILLE_WALLCLIMB: 62417;
+            readonly FALADOR_WALLCLIMB: 62418;
+            readonly FALADOR_WALLCLIMB2: 62419;
+            readonly KARAMJA_VOLCANO_SWIM: 62420;
+            readonly CATHERBY_ISLAND_SWIM: 62421;
+            readonly DRAYNOR_MANOR_FENCE_BROKEN: 62422;
+            readonly HILLTOP_SHORTCUT_BOTTOM: 62423;
+            readonly HILLTOP_SHORTCUT_TOP: 62424;
+            readonly HILLTOP_SHORTCUT_MIDDLE: 62425;
             byId(id: number): GamevalEntry | null;
         };
         readonly VarbitID: {
@@ -138801,6 +138831,7 @@ declare namespace titan {
                     readonly ACTION_POH_SKILLCAPE_DEPOSIT: 6860;
                     readonly ACTION_DRINK_STEAMFORGE_BREW_INSIDE_SYO_INN: 6861;
                     readonly ACTION_EAT_CABBAGE_INFRONT_OF_BRASSICAN_MAGE: 6862;
+                    readonly LEAGUE_TASK_REACH_TOTAL_LEVEL_2376: 7210;
                     readonly LEAGUE_TASK_ALL_EASY_COMBAT_ACHIEVEMENTS: 13323;
                     readonly LEAGUE_TASK_ALL_MEDIUM_COMBAT_ACHIEVEMENTS: 13324;
                     readonly LEAGUE_TASK_SCURRIUS_COMBAT_ACHIEVEMENTS: 13325;
@@ -149625,7 +149656,6 @@ declare namespace titan {
             readonly SKILL_FEATURE_CRAFTING_OTHER_SUNSTONE_GOLEM: 7139;
             readonly SKILL_FEATURE_HUNTER_GOAT_PIT: 7140;
             readonly SKILL_FEATURE_MINING_SUNSTONE: 7141;
-            readonly SKILL_FEATURE_RUNECRAFT_SUNSTONE_GOLEMS: 7142;
             readonly SKILL_FEATURE_SAILING_PORTS_WYRMSCRAIG: 7143;
             readonly SKILL_FEATURE_SLAYER_MASTER_WYRMSCRAIG: 7144;
             readonly AMENITY_BANKCHEST_WYRMSCRAIG: 7145;
@@ -149693,6 +149723,22 @@ declare namespace titan {
             readonly SLAYER_MODIFIER_XP_BOOST: 7207;
             readonly HISCORES_BOSSES_MAD_ANGEL: 7208;
             readonly HISCORES_BOSSES_MAGGOT_KING: 7209;
+            readonly LEAGUE_TASK_REACH_TOTAL_LEVEL_2376: 7210;
+            readonly SKILL_FEATURE_AGILITY_PIPEWITHINEDGEVILLEDUNGEON: 7211;
+            readonly SKILL_FEATURE_AGILITY_DRAYNOR_MANOR_FENCE: 7212;
+            readonly SKILL_FEATURE_AGILITY_GIANTS_PLATEAU: 7213;
+            readonly SKILL_FEATURE_AGILITY_MOS_LEHARMLESS_STEPPING_STONES: 7214;
+            readonly SKILL_FEATURE_AGILITY_NORTH_SOPHANEM_STEPPING_STONES: 7215;
+            readonly SKILL_FEATURE_AGILITY_ARCEUUS_LIBRARY_RAILING: 7216;
+            readonly SKILL_FEATURE_AGILITY_ARCEUUS_LIBRARY_RAILING2: 7217;
+            readonly SKILL_FEATURE_AGILITY_CHAMPIONS_GUILD_STEPPING_STONES: 7218;
+            readonly SKILL_FEATURE_AGILITY_CLIMBCATHERBYCLIFF: 7219;
+            readonly SKILL_FEATURE_AGILITY_ESCAPEFROMTHEWATEROBELISKISLAND_OVERLEVELLED: 7220;
+            readonly SKILL_FEATURE_AGILITY_KARAMJACROSSINGSOUTHOFVOLCANO_OVERLEVELLED: 7221;
+            readonly SKILL_FEATURE_AGILITY_POLLNIVNEACH_SCRAMBLE: 7222;
+            readonly SKILL_FEATURE_AGILITY_YANILLEWALLCLIMB_OVERLEVELLED: 7223;
+            readonly SKILL_FEATURE_AGILITY_FALADORWALLCLIMB_OVERLEVELLED: 7224;
+            readonly SKILL_FEATURE_AGILITY_JUMPACROSSTHERIVERLUMTOALKHARID: 7225;
             readonly SAILING_BT_TEMPOR_TANTRUM: 7243;
             readonly SAILING_BT_JUBBLY_JIVE: 7244;
             readonly SAILING_BT_GWENITH_GLIDE: 7245;
@@ -174072,6 +174118,28 @@ declare namespace titan {
             readonly HUMAN_HALLOWFELL_DEFEND: 14472;
             readonly TOL_PLAYER_RUMMAGE01_WALKMERGE: 14473;
             readonly GOAT_HUNTING_LAY_SPIKES: 14474;
+            readonly SNAIL_ATTACK_MERGE: 14475;
+            readonly HUMAN_CATCH_AND_HANG: 14476;
+            readonly HUMAN_HANG_LET_GO: 14477;
+            readonly HUMAN_DROP_ONE_FLOOR: 14478;
+            readonly HUMAN_TRIPLE_JUMP_MIDDLE: 14479;
+            readonly FORESTRY_CAMPFIRE_BURNING_GENERIC_NOLOOP: 14480;
+            readonly FORESTRY_CAMPFIRE_BURNING_ACHEY_TREE_LOGS_NOLOOP: 14481;
+            readonly FORESTRY_CAMPFIRE_BURNING_ARCTIC_PINE_LOG_NOLOOP: 14482;
+            readonly FORESTRY_CAMPFIRE_BURNING_BLISTERWOOD_LOGS_NOLOOP: 14483;
+            readonly FORESTRY_CAMPFIRE_BURNING_LOGS_NOLOOP: 14484;
+            readonly FORESTRY_CAMPFIRE_BURNING_MAGIC_LOGS_NOLOOP: 14485;
+            readonly FORESTRY_CAMPFIRE_BURNING_MAHOGANY_LOGS_NOLOOP: 14486;
+            readonly FORESTRY_CAMPFIRE_BURNING_MAPLE_LOGS_NOLOOP: 14487;
+            readonly FORESTRY_CAMPFIRE_BURNING_OAK_LOGS_NOLOOP: 14488;
+            readonly FORESTRY_CAMPFIRE_BURNING_REDWOOD_LOGS_NOLOOP: 14489;
+            readonly FORESTRY_CAMPFIRE_BURNING_TEAK_LOGS_NOLOOP: 14490;
+            readonly FORESTRY_CAMPFIRE_BURNING_WILLOW_LOGS_NOLOOP: 14491;
+            readonly FORESTRY_CAMPFIRE_BURNING_YEW_LOGS_NOLOOP: 14492;
+            readonly FORESTRY_CAMPFIRE_BURNING_JATOBA_LOGS_NOLOOP: 14493;
+            readonly FORESTRY_CAMPFIRE_BURNING_CAMPHOR_LOGS_NOLOOP: 14494;
+            readonly FORESTRY_CAMPFIRE_BURNING_IRONWOOD_LOGS_NOLOOP: 14495;
+            readonly FORESTRY_CAMPFIRE_BURNING_ROSEWOOD_LOGS_NOLOOP: 14496;
             byId(id: number): GamevalEntry | null;
         };
         readonly SpotanimID: {

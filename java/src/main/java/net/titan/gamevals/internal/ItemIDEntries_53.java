@@ -61,7 +61,7 @@ final class ItemIDEntries_53 {
             new GamevalEntry(27184, "BR_ANCIENT_GODSWORD", "Ancient godsword", "objtypes"),
             new GamevalEntry(27185, "BR_RUNE_PARRYINGDAGGER", "Rune defender", "objtypes"),
             new GamevalEntry(27186, "BR_ZARYTE_XBOW", "Zaryte crossbow", "objtypes"),
-            new GamevalEntry(27187, "BR_BOW_OF_FAERDHINEN", "Bow of faerdhinen (c)", "objtypes"),
+            new GamevalEntry(27187, "BR_BOW_OF_FAERDHINEN", "Bow of Faerdhinen (c)", "objtypes"),
             new GamevalEntry(27188, "BR_LIGHT_BALLISTA", "Light ballista", "objtypes"),
             new GamevalEntry(27189, "BR_BARROWS_VERAC_WEAPON", "Verac's flail", "objtypes"),
             new GamevalEntry(27190, "BR_BARROWS_VERAC_BODY", "Verac's brassard", "objtypes"),

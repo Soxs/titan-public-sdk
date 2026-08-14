@@ -65,7 +65,7 @@ final class ItemIDEntries_38 {
             new GamevalEntry(19512, "PLACEHOLDER_MM2_GLOUGHS_NOTE", "placeholder_mm2_gloughs_note", "objtypes"),
             new GamevalEntry(19513, "MM2_TRANSLATED_NOTE", "Translated note", "objtypes"),
             new GamevalEntry(19514, "PLACEHOLDER_MM2_TRANSLATED_NOTE", "placeholder_mm2_translated_note", "objtypes"),
-            new GamevalEntry(19515, "MM2_SPY_BOOK", "Book of spyology", "objtypes"),
+            new GamevalEntry(19515, "MM2_SPY_BOOK", "Book of Spyology", "objtypes"),
             new GamevalEntry(19516, "PLACEHOLDER_MM2_SPY_BOOK", "placeholder_mm2_spy_book", "objtypes"),
             new GamevalEntry(19517, "MM2_BRUSH", "Brush", "objtypes"),
             new GamevalEntry(19518, "PLACEHOLDER_MM2_BRUSH", "placeholder_mm2_brush", "objtypes"),
