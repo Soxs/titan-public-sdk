@@ -182,7 +182,7 @@ final class ItemIDEntries_59 {
             new GamevalEntry(30377, "PLACEHOLDER_AMULET_OF_KINGS", "placeholder_amulet_of_kings", "objtypes"),
             new GamevalEntry(30378, "RING_OF_KINGS", "Emperor ring", "objtypes"),
             new GamevalEntry(30379, "PLACEHOLDER_RING_OF_KINGS", "placeholder_ring_of_kings", "objtypes"),
-            new GamevalEntry(30380, "DAMNED_GLOVES", "Gloves of the damned", "objtypes"),
+            new GamevalEntry(30380, "DAMNED_GLOVES", "Gloves of the Damned", "objtypes"),
             new GamevalEntry(30381, "PLACEHOLDER_DAMNED_GLOVES", "placeholder_damned_gloves", "objtypes"),
             new GamevalEntry(30382, "THOUSAND_BONE_DOOR", "Thousand-dragon ward", "objtypes"),
             new GamevalEntry(30383, "PLACEHOLDER_THOUSAND_BONE_DOOR", "placeholder_thousand_bone_door", "objtypes"),

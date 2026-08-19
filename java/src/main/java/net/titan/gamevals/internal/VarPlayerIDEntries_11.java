@@ -42,10 +42,12 @@ final class VarPlayerIDEntries_11 {
             new GamevalEntry(5712, "TOTAL_MAD_ANGEL_KILLS", "total_mad_angel_kills", "varptypes"),
             new GamevalEntry(5715, "FFG_PRIMARY", "ffg_primary", "varptypes"),
             new GamevalEntry(5719, "SLAYER_MODIFIERS", "slayer_modifiers", "varptypes"),
+            new GamevalEntry(5720, "SLAYER_MORTIMER_TASKS_COMPLETED", "slayer_mortimer_tasks_completed", "varptypes"),
             new GamevalEntry(5721, "SLAYER_REWARDS_BLOCKED_14", "slayer_rewards_blocked_14", "varptypes"),
             new GamevalEntry(5722, "SLAYER_MISC_PERM", "slayer_misc_perm", "varptypes"),
             new GamevalEntry(5723, "SLAYER_MISC_PERM_2", "slayer_misc_perm_2", "varptypes"),
             new GamevalEntry(5724, "SLAYER_MISC_PERM_3", "slayer_misc_perm_3", "varptypes"),
+            new GamevalEntry(5725, "SKILLPET_RUNECRAFTING_TRACKING", "skillpet_runecrafting_tracking", "varptypes"),
         };
     }
 

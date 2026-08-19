@@ -484,6 +484,11 @@ final class ObjectIDEntries_121 {
             new GamevalEntry(62423, "HILLTOP_SHORTCUT_BOTTOM", "Rocks", "loctypes"),
             new GamevalEntry(62424, "HILLTOP_SHORTCUT_TOP", "Rocks", "loctypes"),
             new GamevalEntry(62425, "HILLTOP_SHORTCUT_MIDDLE", "hilltop_shortcut_middle", "loctypes"),
+            new GamevalEntry(62426, "WYRMSCRAIG_CATHEDRAL_SPIRALSTAIRSTOP_PROXY", "wyrmscraig_cathedral_spiralstairstop_proxy", "loctypes"),
+            new GamevalEntry(62427, "BOULDER1_INACTIVE", "boulder1_inactive", "loctypes"),
+            new GamevalEntry(62428, "BOULDER2_INACTIVE", "boulder2_inactive", "loctypes"),
+            new GamevalEntry(62429, "BOULDER3_INACTIVE", "boulder3_inactive", "loctypes"),
+            new GamevalEntry(62430, "BOULDER4_INACTIVE", "boulder4_inactive", "loctypes"),
         };
     }
 

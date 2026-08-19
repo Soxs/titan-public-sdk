@@ -331,7 +331,7 @@ final class ItemIDEntries_12 {
             new GamevalEntry(6462, "GARDEN_WHITE_TREE_PLANTPOT_SHOOT", "White tree shoot", "objtypes"),
             new GamevalEntry(6463, "GARDEN_WHITE_TREE_PLANTPOT_SHOOT_WATERED", "White tree shoot (w)", "objtypes"),
             new GamevalEntry(6464, "GARDEN_WHITE_TREE_PLANTPOT_SAPLING", "White tree sapling", "objtypes"),
-            new GamevalEntry(6465, "RING_OF_CHAROS_UNLOCKED", "? N(+ F Ring of charos(a)", "objtypes"),
+            new GamevalEntry(6465, "RING_OF_CHAROS_UNLOCKED", "? N(+ F Ring of Charos(a)", "objtypes"),
             new GamevalEntry(6466, "RUNE_SHARDS", "Rune shards", "objtypes"),
             new GamevalEntry(6467, "RUNE_DUST", "Rune dust", "objtypes"),
             new GamevalEntry(6468, "PLANT_CURE_STRONG", "Plant cure", "objtypes"),

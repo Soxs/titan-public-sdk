@@ -248,14 +248,14 @@ final class ItemIDEntries_66 {
             new GamevalEntry(34027, "HALLOWFELL", "A Hallowfell", "objtypes"),
             new GamevalEntry(34028, "CERT_HALLOWFELL", "cert_hallowfell", "objtypes"),
             new GamevalEntry(34029, "PLACEHOLDER_HALLOWFELL", "placeholder_hallowfell", "objtypes"),
-            new GamevalEntry(34030, "JAR_OF_LIGHT", "Jar of light", "objtypes"),
+            new GamevalEntry(34030, "JAR_OF_LIGHT", "Jar of Light", "objtypes"),
             new GamevalEntry(34031, "PLACEHOLDER_JAR_OF_LIGHT", "placeholder_jar_of_light", "objtypes"),
             new GamevalEntry(34032, "SUNSTONE_CRYSTAL", "Sunstone crystal", "objtypes"),
             new GamevalEntry(34033, "TELEPORTSCROLL_ARDEAGLAIS", "Ardeaglais teleport", "objtypes"),
             new GamevalEntry(34034, "PLACEHOLDER_TELEPORTSCROLL_ARDEAGLAIS", "placeholder_teleportscroll_ardeaglais", "objtypes"),
-            new GamevalEntry(34035, "MAD_ANGEL_SWORD", "A Placeholder", "objtypes"),
-            new GamevalEntry(34036, "CERT_MAD_ANGEL_SWORD", "cert_mad_angel_sword", "objtypes"),
-            new GamevalEntry(34037, "PLACEHOLDER_MAD_ANGEL_SWORD", "placeholder_mad_angel_sword", "objtypes"),
+            new GamevalEntry(34035, "MAD_ANGEL_SWORD", "Null", "objtypes"),
+            new GamevalEntry(34036, "CERT_MAD_ANGEL_SWORD", "Null", "objtypes"),
+            new GamevalEntry(34037, "PLACEHOLDER_MAD_ANGEL_SWORD", "Null", "objtypes"),
             new GamevalEntry(34038, "TELEPORTSCROLL_ARDEAGLAIS_DUMMY", "teleportscroll_ardeaglais_dummy", "objtypes"),
             new GamevalEntry(34039, "TELEPORTSCROLL_ARDEAGLAIS_SELECTED_DUMMY", "teleportscroll_ardeaglais_selected_dummy", "objtypes"),
             new GamevalEntry(34040, "GOATPITPET", "Mr McGroot", "objtypes"),
@@ -283,6 +283,9 @@ final class ItemIDEntries_66 {
             new GamevalEntry(34062, "PLACEHOLDER_VAMPYRE_SNAIL_SHELL", "placeholder_vampyre_snail_shell", "objtypes"),
             new GamevalEntry(34063, "SNELM_VAMPYRE", "Vampyre snelm", "objtypes"),
             new GamevalEntry(34064, "PLACEHOLDER_SNELM_VAMPYRE", "placeholder_snelm_vampyre", "objtypes"),
+            new GamevalEntry(34065, "SHARK_LURE_PACK", "Shark lure pack", "objtypes"),
+            new GamevalEntry(34066, "CERT_SHARK_LURE_PACK", "cert_shark_lure_pack", "objtypes"),
+            new GamevalEntry(34067, "PLACEHOLDER_SHARK_LURE_PACK", "placeholder_shark_lure_pack", "objtypes"),
         };
     }
 

@@ -358,7 +358,6 @@ final class AnimationIDEntries_27 {
             new GamevalEntry(14169, "PORTAL_VAMPYRIUM01_DESPAWN01", "portal_vampyrium01_despawn01", "seqtypes"),
             new GamevalEntry(14170, "PORTAL_VAMPYRIUM01_IDLE01", "portal_vampyrium01_idle01", "seqtypes"),
             new GamevalEntry(14171, "PORTAL_VAMPYRIUM01_SPAWN_TO_IDLE01", "portal_vampyrium01_spawn_to_idle01", "seqtypes"),
-            new GamevalEntry(14172, "PORTAL_VAMPYRIUM01_FULL_SEQUENCE", "portal_vampyrium01_full_sequence", "seqtypes"),
             new GamevalEntry(14173, "PORTAL_VAMPYRIUM01_SPAWN02", "portal_vampyrium01_spawn02", "seqtypes"),
             new GamevalEntry(14174, "PORTAL_VAMPYRIUM01_SPAWN02_FAST", "portal_vampyrium01_spawn02_fast", "seqtypes"),
             new GamevalEntry(14175, "PORTAL_VAMPYRIUM01_DESPAWN02", "portal_vampyrium01_despawn02", "seqtypes"),

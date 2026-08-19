@@ -483,6 +483,8 @@ final class NpcIDEntries_31 {
             new GamevalEntry(16342, "FISHING_BOAT_PISCARILIUSFISH", "Fishing spot", "npctypes"),
             new GamevalEntry(16343, "FISHING_BOAT_MONKFISH", "Fishing spot", "npctypes"),
             new GamevalEntry(16344, "VAMPYRE_SNAIL", "Vampyre Snail", "npctypes"),
+            new GamevalEntry(16345, "TEST_COMBAT_DUMMY_2", "Combat Test", "npctypes"),
+            new GamevalEntry(16346, "FISHING_SPOT_AERIAL_LARGE", "Frenzied fishing spot", "npctypes"),
         };
     }
 

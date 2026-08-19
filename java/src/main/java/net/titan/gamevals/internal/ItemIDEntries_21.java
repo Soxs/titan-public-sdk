@@ -86,7 +86,7 @@ final class ItemIDEntries_21 {
             new GamevalEntry(10825, "CERT_YAK_HIDE_ARMOUR_GREAVES", "cert_yak_hide_armour_greaves", "objtypes"),
             new GamevalEntry(10826, "FREMMENIK_ROUND_SHIELD", "Neitiznot shield", "objtypes"),
             new GamevalEntry(10827, "CERT_FREMMENIK_ROUND_SHIELD", "cert_fremmenik_round_shield", "objtypes"),
-            new GamevalEntry(10828, "FRIS_KINGLY_HELM", "K ? A Helm of neitiznot", "objtypes"),
+            new GamevalEntry(10828, "FRIS_KINGLY_HELM", "K ? A Helm of Neitiznot", "objtypes"),
             new GamevalEntry(10829, "FRISD_TRADE", "Documents", "objtypes"),
             new GamevalEntry(10830, "FRISD_RECIEPT", "Royal decree", "objtypes"),
             new GamevalEntry(10831, "FRISD_TAXBAG_EMPTY", "Empty tax bag", "objtypes"),

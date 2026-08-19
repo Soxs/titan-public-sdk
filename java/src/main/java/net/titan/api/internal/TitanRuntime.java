@@ -25,6 +25,8 @@ public final class TitanRuntime {
     private static volatile SchedulerBackend schedulerBackend;
     private static volatile BreakHandlerBackend breakHandlerBackend;
     private static volatile LiveStateBackend liveStateBackend;
+    private static volatile WebWalkerBackend webWalkerBackend;
+    private static volatile WorldMapBackend worldMapBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -88,6 +90,44 @@ public final class TitanRuntime {
     public static void clearLiveStateBackend(LiveStateBackend backend) {
         if (liveStateBackend == backend) {
             liveStateBackend = null;
+        }
+    }
+
+    public static WebWalkerBackend getWebWalkerBackend() {
+        WebWalkerBackend value = webWalkerBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java web walker backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setWebWalkerBackend(WebWalkerBackend backend) {
+        webWalkerBackend = backend;
+    }
+
+    public static void clearWebWalkerBackend(WebWalkerBackend backend) {
+        if (webWalkerBackend == backend) {
+            webWalkerBackend = null;
+        }
+    }
+
+    public static WorldMapBackend getWorldMapBackend() {
+        WorldMapBackend value = worldMapBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java world-map backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setWorldMapBackend(WorldMapBackend backend) {
+        worldMapBackend = backend;
+    }
+
+    public static void clearWorldMapBackend(WorldMapBackend backend) {
+        if (worldMapBackend == backend) {
+            worldMapBackend = null;
         }
     }
 

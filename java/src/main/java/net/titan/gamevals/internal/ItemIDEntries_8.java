@@ -116,7 +116,7 @@ final class ItemIDEntries_8 {
             new GamevalEntry(4199, "FENK_BRAIN", "Pickled brain", "objtypes"),
             new GamevalEntry(4200, "FENK_LIGHTNING_MOULD", "Conductor mould", "objtypes"),
             new GamevalEntry(4201, "FENK_CONDUCTOR", "Conductor", "objtypes"),
-            new GamevalEntry(4202, "RING_OF_CHAROS", "Ring of charos", "objtypes"),
+            new GamevalEntry(4202, "RING_OF_CHAROS", "Ring of Charos", "objtypes"),
             new GamevalEntry(4203, "FENK_JOURNAL", "Journal", "objtypes"),
             new GamevalEntry(4204, "FENK_LETTER", "Letter", "objtypes"),
             new GamevalEntry(4205, "ROVING_OLD_CONSECRATION_SEED", "Consecration seed", "objtypes"),

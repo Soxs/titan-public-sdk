@@ -96,7 +96,7 @@ final class ItemIDEntries_0 {
             new GamevalEntry(83, "IKOV_LEVER", "Lever", "objtypes"),
             new GamevalEntry(84, "IKOV_STAFFOFARMARDYL", "Staff of Armadyl", "objtypes"),
             new GamevalEntry(85, "IKOV_SHINYKEY", "Shiny key", "objtypes"),
-            new GamevalEntry(86, "IKOV_PENDANTOFLUCIEN", "Pendant of lucien", "objtypes"),
+            new GamevalEntry(86, "IKOV_PENDANTOFLUCIEN", "Pendant of Lucien", "objtypes"),
             new GamevalEntry(87, "IKOV_PENDANTOFARMARDYL", "Armadyl pendant", "objtypes"),
             new GamevalEntry(88, "IKOV_BOOTSOFLIGHTNESS", "Boots of lightness", "objtypes"),
             new GamevalEntry(89, "IKOV_BOOTSOFLIGHTNESSWORN", "Boots of lightness", "objtypes"),

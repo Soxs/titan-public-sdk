@@ -290,7 +290,7 @@ final class ItemIDEntries_11 {
             new GamevalEntry(6037, "CERT_PLANT_CURE", "cert_plant_cure", "objtypes"),
             new GamevalEntry(6038, "MAGIC_STRING", "Magic string", "objtypes"),
             new GamevalEntry(6039, "CERT_MAGIC_STRING", "cert_magic_string", "objtypes"),
-            new GamevalEntry(6040, "NATURE_AMULET", "Amulet of nature", "objtypes"),
+            new GamevalEntry(6040, "NATURE_AMULET", "Amulet of Nature", "objtypes"),
             new GamevalEntry(6041, "MAGIC_STRUNG_EMERALD_AMULET", "Pre-nature amulet", "objtypes"),
             new GamevalEntry(6042, "CERT_MAGIC_STRUNG_EMERALD_AMULET", "cert_magic_strung_emerald_amulet", "objtypes"),
             new GamevalEntry(6043, "OAK_ROOTS", "Oak roots", "objtypes"),

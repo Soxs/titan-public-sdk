@@ -9,9 +9,9 @@ public final class CollisionFlag {
     public static final int WALL_NORTH = 0x00000020;
     public static final int WALL_NE_CORNER = 0x00000040;
     public static final int WALL_EAST = 0x00000080;
-    public static final int BLOCK_FLOOR = 0x00000100;
+    public static final int BLOCK_OBJECT = 0x00000100;
     public static final int BLOCK_FLOOR_DECORATION = 0x00040000;
-    public static final int BLOCK_OBJECT = 0x00200000;
+    public static final int BLOCK_FLOOR = 0x00200000;
     public static final int BLOCK_FULL = 0x01000000;
 
     public static final int BLOCK_MOVE = BLOCK_FULL | BLOCK_OBJECT

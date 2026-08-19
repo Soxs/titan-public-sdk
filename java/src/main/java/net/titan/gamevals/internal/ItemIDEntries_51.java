@@ -462,7 +462,7 @@ final class ItemIDEntries_51 {
             new GamevalEntry(26574, "LOTG_KEY_WHITE", "Saragorgak key", "objtypes"),
             new GamevalEntry(26575, "LOTG_KEY_PURPLE", "Horogothgar key", "objtypes"),
             new GamevalEntry(26576, "LOTG_KEY_YELLOW", "Yurkolgokh key", "objtypes"),
-            new GamevalEntry(26577, "LOTG_TELEPORT_ARTIFACT", "Plain of mud sphere", "objtypes"),
+            new GamevalEntry(26577, "LOTG_TELEPORT_ARTIFACT", "Plain of Mud sphere", "objtypes"),
             new GamevalEntry(26578, "PLACEHOLDER_LOTG_TELEPORT_ARTIFACT", "placeholder_lotg_teleport_artifact", "objtypes"),
             new GamevalEntry(26579, "LOTG_WHITEFISH", "Whitefish", "objtypes"),
             new GamevalEntry(26580, "PLACEHOLDER_LOTG_WHITEFISH", "placeholder_lotg_whitefish", "objtypes"),

@@ -261,7 +261,7 @@ final class ItemIDEntries_41 {
             new GamevalEntry(21240, "EASTER17_BANANA", "Wester banana", "objtypes"),
             new GamevalEntry(21241, "EASTER17_PAPAYA", "Wester papaya", "objtypes"),
             new GamevalEntry(21242, "EASTER17_LEMON", "Wester lemon", "objtypes"),
-            new GamevalEntry(21243, "EASTER17_SAND", "Bucket of wester sand", "objtypes"),
+            new GamevalEntry(21243, "EASTER17_SAND", "Bucket of Wester sand", "objtypes"),
             new GamevalEntry(21244, "EASTER17_SPICES", "Wester spices", "objtypes"),
             new GamevalEntry(21245, "EASTER17_BEEF", "Beef fillet", "objtypes"),
             new GamevalEntry(21246, "EASTER17_SALT", "Sea salt", "objtypes"),

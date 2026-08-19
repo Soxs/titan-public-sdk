@@ -86,6 +86,7 @@ final class VarbitIDEntries_24 {
             new GamevalEntry(12374, "STAT_BOOSTS_HUD_TOOLTIPS_HIDDEN", "stat_boosts_hud_tooltips_hidden", "varbittypes"),
             new GamevalEntry(12375, "STAT_BOOSTS_HUD_NUM_DISPLAYS", "stat_boosts_hud_num_displays", "varbittypes"),
             new GamevalEntry(12376, "STAT_BOOSTS_HUD_DISPLAY_RELATIVE", "stat_boosts_hud_display_relative", "varbittypes"),
+            new GamevalEntry(12377, "AERIAL_FISHING_WHOLE_FISH_TOGGLE", "aerial_fishing_whole_fish_toggle", "varbittypes"),
             new GamevalEntry(12378, "OPTION_HIDE_ROOFTOPS", "option_hide_rooftops", "varbittypes"),
             new GamevalEntry(12379, "AGILITY_HELPER_DISABLED", "agility_helper_disabled", "varbittypes"),
             new GamevalEntry(12380, "AGILITY_HELPER_HIGHLIGHT_OBSTACLES_ENABLED", "agility_helper_highlight_obstacles_enabled", "varbittypes"),

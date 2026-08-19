@@ -458,7 +458,7 @@ final class ItemIDEntries_22 {
             new GamevalEntry(11737, "NZONE1DOSEABSORPTIONPOTION", "Absorption (1)", "objtypes"),
             new GamevalEntry(11738, "NZONE_HERBBOX", "Herb box", "objtypes"),
             new GamevalEntry(11739, "NZONE_HERBBOX_OPENED", "Open herb box", "objtypes"),
-            new GamevalEntry(11740, "NZONE_REDIRECTION", "Scroll of redirection", "objtypes"),
+            new GamevalEntry(11740, "NZONE_REDIRECTION", "Scroll of Redirection", "objtypes"),
             new GamevalEntry(11741, "NZONE_TELETAB_RIMMINGTON", "Rimmington teleport", "objtypes"),
             new GamevalEntry(11742, "NZONE_TELETAB_TAVERLEY", "Taverley teleport", "objtypes"),
             new GamevalEntry(11743, "NZONE_TELETAB_POLLNIVNEACH", "Pollnivneach teleport", "objtypes"),

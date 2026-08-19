@@ -163,7 +163,7 @@ final class ItemIDEntries_64 {
             new GamevalEntry(32918, "SALVAGE_SPOT_ICON_DUMMY", "Lq", "objtypes"),
             new GamevalEntry(32919, "SALVAGE_TABLE_ICON_DUMMY", "Lq", "objtypes"),
             new GamevalEntry(32920, "TRAWLING_ICON_DUMMY", "Lq", "objtypes"),
-            new GamevalEntry(32921, "JAR_OF_FEATHERS", "Jar of feathers", "objtypes"),
+            new GamevalEntry(32921, "JAR_OF_FEATHERS", "Jar of Feathers", "objtypes"),
             new GamevalEntry(32922, "PLACEHOLDER_JAR_OF_FEATHERS", "placeholder_jar_of_feathers", "objtypes"),
             new GamevalEntry(32923, "ANY_NAILS", "Steel nails", "objtypes"),
             new GamevalEntry(32924, "CARGO_CRATE_ARROWTIPS_RELLEKKA", "Crate of arrowtips", "objtypes"),
