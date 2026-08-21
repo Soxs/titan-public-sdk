@@ -45,6 +45,45 @@ public final class WorldPoint {
     public int regionX() { return x & 63; }
     public int regionY() { return y & 63; }
 
+    /// True when this world tile lies inside the given loaded-scene window.
+    /// Pure overload for callers that already hold the scene base and size.
+    /// SDK 117+.
+    public boolean isInScene(int sceneBaseX, int sceneBaseY,
+                             int sceneSizeX, int sceneSizeY) {
+        final int sceneX = x - sceneBaseX;
+        final int sceneY = y - sceneBaseY;
+        return sceneX >= 0 && sceneX < sceneSizeX
+            && sceneY >= 0 && sceneY < sceneSizeY;
+    }
+
+    /// True when this world tile is inside the scene the client currently
+    /// has loaded, i.e. when its objects, collision and clickable tiles can
+    /// be read at all. A tile outside it can be walked TOWARD but never
+    /// interacted with, so this is the standard guard before clicking a
+    /// tile, resolving an object, or reading collision. Tested against the
+    /// current WorldView's scene; false when the client is unavailable.
+    /// SDK 117+.
+    public boolean isInScene() {
+        try {
+            final Client client = Titan.client();
+            // Nothing is cached: the scene window is re-read on every call,
+            // so a point held across a region change answers against
+            // wherever the client is NOW. A point tagged TOP_LEVEL keeps
+            // being measured against the top-level scene even while an
+            // instanced WorldView is loaded.
+            if (worldViewId == WorldView.TOP_LEVEL
+                && client.currentWorldViewId() != WorldView.TOP_LEVEL) {
+                return isInScene(client.topLevelBaseX(), client.topLevelBaseY(),
+                                 client.topLevelSceneSizeX(),
+                                 client.topLevelSceneSizeY());
+            }
+            return isInScene(client.baseX(), client.baseY(),
+                             client.sceneSizeX(), client.sceneSizeY());
+        } catch (RuntimeException ignored) {
+            return false;
+        }
+    }
+
     public WorldArea worldArea() {
         return new WorldArea(x, y, 1, 1, z, worldViewId);
     }

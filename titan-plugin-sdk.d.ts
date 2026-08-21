@@ -70,6 +70,20 @@ interface WorldPoint {
     z: number;
     /** Owning WorldView id. `0` is top-level, `-1` is current sentinel. SDK 85+. */
     worldViewId?: number;
+    /**
+     * True when this world tile is inside the scene the client currently has
+     * loaded — i.e. when its objects, collision and clickable tiles can be
+     * read at all. A tile outside it can be walked TOWARD but never
+     * interacted with, so this is the guard to use before clicking a tile,
+     * resolving an object, or reading collision.
+     *
+     * Present on every WorldPoint the SDK returns (it is a getter on their
+     * shared prototype, so it never appears in `Object.keys` or
+     * `JSON.stringify`). Plain object literals you build yourself carry no
+     * derived properties — call `titan.worldPoint.isInScene(point)` for
+     * those, which also takes an explicit scene base/size. SDK 117+.
+     */
+    readonly isInScene?: boolean;
 }
 /**
  * Sub-tile precision scene-local coordinate. Mirrors `titan::LocalPoint`
@@ -2026,6 +2040,17 @@ interface PanelElement {
         function toLocalInstance(point: WorldPoint): WorldPoint | null;
         /** Literal-safe RuneLite-style orthogonal melee adjacency check for two world/locatable targets. SDK 86+. */
         function isInMeleeDistance(a: SpatialTarget, b: SpatialTarget): boolean;
+        /**
+         * True when the world tile is inside the scene the client currently
+         * has loaded — i.e. when its objects, collision and clickable tiles
+         * can be read at all. A tile outside it can be walked TOWARD but
+         * never interacted with, so this is the guard to use before clicking
+         * a tile, resolving an object, or reading collision. Tested against
+         * the current WorldView's scene. Pass an explicit base/size to test
+         * against a snapshot you already hold. SDK 117+.
+         */
+        function isInScene(point: WorldPoint, baseX?: number, baseY?: number,
+                           sceneSizeX?: number, sceneSizeY?: number): boolean;
     }
 
     /** Read-only asynchronous cost-based web-path generation. SDK 112+. */
