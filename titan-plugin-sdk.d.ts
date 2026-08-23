@@ -1706,6 +1706,13 @@ class Plugin {
     onEnable?(): void;
     onDisable?(): void;
     onClientTick?(): void;
+    /**
+     * Fired once per outer client MAIN_LOOP iteration, including title/login
+     * screens. Static definition-cache reads are always available. Check
+     * `titan.state.login.isWorldReady` before live client, entity, widget,
+     * scene, or projection queries. SDK 118+.
+     */
+    onMainLoop?(): void;
     onGameTick?(tick: number): void;
     onSettingChanged?(key: string): void;
 

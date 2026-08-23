@@ -35,6 +35,32 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Main Loop Event (0.1.43+)
+
+`MainLoop` fires from the client's outer loop in every state, including the
+title/login screens. Static cache definitions are always available. Gate live
+client, entity, widget, scene, and projection queries on world readiness:
+
+```java
+import com.google.inject.Inject;
+import net.titan.api.Client;
+import net.titan.api.eventbus.Subscribe;
+import net.titan.api.events.MainLoop;
+import net.titan.api.utils.Cache;
+import net.titan.api.utils.Login;
+
+public final class MyPlugin {
+    @Inject private Client client;
+
+    @Subscribe
+    public void onMainLoop(MainLoop event) {
+        Cache.item(4151); // safe in every state
+        if (!Login.isWorldReady()) return;
+        client.localPlayer().ifPresent(player -> use(player));
+    }
+}
+```
+
 ## Hot Reload For Plugin Authors
 
 The `net.titan.dev` Gradle plugin (published into the same Maven repo as the
