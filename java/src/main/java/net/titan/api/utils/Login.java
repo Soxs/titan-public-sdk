@@ -72,4 +72,12 @@ public final class Login {
     public static boolean resetCharacter() {
         return Titan.client().resetLoginCharacter();
     }
+
+    public static boolean stageCredentials(String profileName) {
+        return Titan.client().stageLoginCredentials(profileName);
+    }
+
+    public static boolean submitCredentials() {
+        return Titan.client().submitLoginCredentials();
+    }
 }

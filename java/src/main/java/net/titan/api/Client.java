@@ -330,6 +330,8 @@ public interface Client {
     boolean setLoginGameSessionCredentials(String sessionId, String characterId);
     boolean setLoginCharacter(String displayName, String characterId, String sessionId);
     boolean resetLoginCharacter();
+    boolean stageLoginCredentials(String profileName);
+    boolean submitLoginCredentials();
 
     boolean addChatMessage(int type, String name, String message, String sender);
     boolean sendKeyboardString(String text);

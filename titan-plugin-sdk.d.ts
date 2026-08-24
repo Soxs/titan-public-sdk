@@ -3083,6 +3083,10 @@ interface PanelElement {
             setCharacter(displayName: string, characterId: string, sessionId: string): void;
             /** Clear every Jagex token and flip back to the standard login screen. */
             resetCharacter(): void;
+            /** Resolve an exact Account Profiles label and queue its credentials. */
+            stageCredentials(profileName: string): boolean;
+            /** Hold Enter through one login-screen MainLoop update, then release it. */
+            submitCredentials(): boolean;
         };
 
         /** Walking facade. */
@@ -3130,6 +3134,9 @@ interface PanelElement {
             };
         };
     }
+
+    /** Account/login facade; alias of `titan.state.login`. */
+    const login: typeof state.login;
 
     // Plugin manager.
     const plugins: {
