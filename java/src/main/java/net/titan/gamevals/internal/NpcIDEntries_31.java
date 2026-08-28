@@ -485,6 +485,7 @@ final class NpcIDEntries_31 {
             new GamevalEntry(16344, "VAMPYRE_SNAIL", "Vampyre Snail", "npctypes"),
             new GamevalEntry(16345, "TEST_COMBAT_DUMMY_2", "Combat Test", "npctypes"),
             new GamevalEntry(16346, "FISHING_SPOT_AERIAL_LARGE", "Frenzied fishing spot", "npctypes"),
+            new GamevalEntry(16347, "LOWERNIEL_DRAKAN_ANIMATION_TEST", "Lowerniel Drakan", "npctypes"),
         };
     }
 

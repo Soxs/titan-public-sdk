@@ -215,24 +215,60 @@ public final class TitanRuntime {
         return pkg != null && pkg.getName().startsWith("net.titan.api");
     }
 
-    private static boolean isDetachedSnapshot(Object value) {
-        if (value == null) return false;
+    // The "liveHandle" Field per class, resolved once. This ran uncached on
+    // every SDK accessor (via currentLive/liveExists/liveIdentity). ClassValue
+    // is keyed on the Class and collected with it, so plugin hot-reload does not
+    // leak classes (unlike a ConcurrentMap<Class,..> would). A sentinel marks
+    // classes that have no such field.
+    private static final Field NO_LIVE_HANDLE;
+
+    static {
+        Field placeholder = null;
         try {
-            Field field = value.getClass().getDeclaredField("liveHandle");
-            field.setAccessible(true);
+            placeholder = LiveHandleHolder.class.getDeclaredField("placeholder");
+        } catch (NoSuchFieldException ignored) {
+        }
+        NO_LIVE_HANDLE = placeholder;
+    }
+
+    private static final class LiveHandleHolder {
+        @SuppressWarnings("unused") private boolean placeholder;
+    }
+
+    private static final ClassValue<Field> LIVE_HANDLE_FIELD = new ClassValue<Field>() {
+        @Override protected Field computeValue(Class<?> type) {
+            try {
+                Field f = type.getDeclaredField("liveHandle");
+                f.setAccessible(true);
+                return f;
+            } catch (NoSuchFieldException | RuntimeException ex) {
+                return NO_LIVE_HANDLE;
+            }
+        }
+    };
+
+    private static Field liveHandleField(Object value) {
+        if (value == null) return null;
+        Field f = LIVE_HANDLE_FIELD.get(value.getClass());
+        return f == NO_LIVE_HANDLE ? null : f;
+    }
+
+    private static boolean isDetachedSnapshot(Object value) {
+        Field field = liveHandleField(value);
+        if (field == null) return false;
+        try {
             return !field.getBoolean(value);
-        } catch (NoSuchFieldException | IllegalAccessException | RuntimeException ignored) {
+        } catch (IllegalAccessException | RuntimeException ignored) {
             return false;
         }
     }
 
     private static void markDetachedSnapshot(Object value) {
-        if (value == null) return;
+        Field field = liveHandleField(value);
+        if (field == null) return;
         try {
-            Field field = value.getClass().getDeclaredField("liveHandle");
-            field.setAccessible(true);
             field.setBoolean(value, false);
-        } catch (NoSuchFieldException | IllegalAccessException | RuntimeException ignored) {
+        } catch (IllegalAccessException | RuntimeException ignored) {
         }
     }
 

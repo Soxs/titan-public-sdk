@@ -20,6 +20,8 @@ public interface OverlayBackend {
     void tileObjectClickbox(long locPtr, long typecode, int outline, int fill);
     void entityHull(long entityPtr, long typecode, int outline, int fill);
     void tileObjectHull(long locPtr, long typecode, int outline, int fill);
+    void entityOutline(long entityPtr, long typecode, int outline, int fill, int mode);
+    void tileObjectOutline(long locPtr, long typecode, int outline, int fill, int mode);
     void textAtWorld(int worldX, int worldY, int worldZ,
                      String text, int color, boolean centered);
     void textAtWorldInWorldView(int worldViewId, int preciseX, int worldY,

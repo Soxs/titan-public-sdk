@@ -258,6 +258,12 @@ public interface Client {
     }
     List<Widget> widgetChildren(int parentPackedId);
     List<Widget> widgetChildrenAtPath(WidgetAddress address);
+    /**
+     * This default composes from {@link #widgetChildrenAtPath(WidgetAddress)},
+     * which carries no truncation information, so it always reports
+     * {@code truncated == false}. The runtime {@code HostBridge} override
+     * reports the host's real truncation flag.
+     */
     default WidgetQuerySnapshot widgetChildrenQueryAtPath(WidgetAddress address) {
         return new WidgetQuerySnapshot(widgetChildrenAtPath(address), false);
     }

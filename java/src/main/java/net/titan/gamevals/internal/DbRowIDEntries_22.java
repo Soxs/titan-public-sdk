@@ -341,6 +341,7 @@ final class DbRowIDEntries_22 {
             new GamevalEntry(11592, "SKILL_FEATURE_HERBLORE_MM_POTION_LLM_UNFINISHED", "skill_feature_herblore_mm_potion_llm_unfinished", "rowtypes"),
             new GamevalEntry(11593, "SKILL_FEATURE_HERBLORE_MM_POTION_LLA_UNFINISHED", "skill_feature_herblore_mm_potion_lla_unfinished", "rowtypes"),
             new GamevalEntry(11594, "SKILL_FEATURE_HERBLORE_MM_POTION_MAL_UNFINISHED", "skill_feature_herblore_mm_potion_mal_unfinished", "rowtypes"),
+            new GamevalEntry(11595, "SKILL_FEATURE_FISHING_GIANTKRILLSHOAL", "skill_feature_fishing_giantkrillshoal", "rowtypes"),
             new GamevalEntry(11596, "SKILL_FEATURE_HERBLORE_SKILLCAPE", "skill_feature_herblore_skillcape", "rowtypes"),
             new GamevalEntry(11597, "SKILL_GUIDE_SUBSECTION_HITPOINTS_OVERVIEW", "skill_guide_subsection_hitpoints_overview", "rowtypes"),
             new GamevalEntry(11598, "SKILL_GUIDE_SUBSECTION_HITPOINTS_HEALING", "skill_guide_subsection_hitpoints_healing", "rowtypes"),

@@ -476,4 +476,5 @@ public interface NpcIDConstants_31 {
     int VAMPYRE_SNAIL = 16344;
     int TEST_COMBAT_DUMMY_2 = 16345;
     int FISHING_SPOT_AERIAL_LARGE = 16346;
+    int LOWERNIEL_DRAKAN_ANIMATION_TEST = 16347;
 }

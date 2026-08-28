@@ -11730,24 +11730,25 @@ public final class DBTableID
         public static final int COL_CANCELLABLE = 7;
         public static final int COL_XP_REWARD = 8;
         public static final int COL_GIVE_COIN_REWARD = 9;
-        public static final int COL_FACILITIES_REQUIRED = 10;
-        public static final int COL_FACILITITES_RECOMMENDED = 11;
-        public static final int COL_BOAT_COMBAT_REQUIRED = 12;
-        public static final int COL_REGULAR_COMBAT_REQUIRED = 13;
-        public static final int COL_COMBAT_RECOMMENDED = 14;
-        public static final int COL_DELIVERY_OBJECT = 15;
-        public static final int COL_CARGO = 16;
-        public static final int COL_PORT_CHECKPOINT = 17;
-        public static final int COL_BOUNTY_TARGET_ALIVE = 18;
-        public static final int COL_BOUNTY_TARGET_DEAD = 19;
-        public static final int COL_BOUNTY_OBJECT = 20;
-        public static final int COL_BOUNTY_OBJECT_AMOUNT = 21;
-        public static final int COL_BOUNTY_OBJECT_RARITY = 22;
-        public static final int COL_TASK_BOARD_GRAPHIC = 23;
-        public static final int COL_FLAVOUR_TEXT = 24;
-        public static final int COL_RELATED_TASKS = 25;
-        public static final int COL_GUIDE_TASK = 26;
-        public static final int COL_SIDE_EFFECT_ID = 27;
+        public static final int COL_COURIER_REWARD_SOURCE = 10;
+        public static final int COL_FACILITIES_REQUIRED = 11;
+        public static final int COL_FACILITITES_RECOMMENDED = 12;
+        public static final int COL_BOAT_COMBAT_REQUIRED = 13;
+        public static final int COL_REGULAR_COMBAT_REQUIRED = 14;
+        public static final int COL_COMBAT_RECOMMENDED = 15;
+        public static final int COL_DELIVERY_OBJECT = 16;
+        public static final int COL_CARGO = 17;
+        public static final int COL_PORT_CHECKPOINT = 18;
+        public static final int COL_BOUNTY_TARGET_ALIVE = 19;
+        public static final int COL_BOUNTY_TARGET_DEAD = 20;
+        public static final int COL_BOUNTY_OBJECT = 21;
+        public static final int COL_BOUNTY_OBJECT_AMOUNT = 22;
+        public static final int COL_BOUNTY_OBJECT_RARITY = 23;
+        public static final int COL_TASK_BOARD_GRAPHIC = 24;
+        public static final int COL_FLAVOUR_TEXT = 25;
+        public static final int COL_RELATED_TASKS = 26;
+        public static final int COL_GUIDE_TASK = 27;
+        public static final int COL_SIDE_EFFECT_ID = 28;
     }
 
     public static final class TaskBoardLayout {

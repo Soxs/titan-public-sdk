@@ -592,6 +592,12 @@ class JavaApiParityTest {
         public void tileObjectHull(long locPtr, long typecode, int outline, int fill) {}
 
         @Override
+        public void entityOutline(long entityPtr, long typecode, int outline, int fill, int mode) {}
+
+        @Override
+        public void tileObjectOutline(long locPtr, long typecode, int outline, int fill, int mode) {}
+
+        @Override
         public void textAtWorld(int worldX, int worldY, int worldZ,
                                 String text, int color, boolean centered) {}
 

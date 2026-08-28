@@ -47,6 +47,7 @@ final class DbRowIDEntries_23 {
             new GamevalEntry(11810, "SKILL_FEATURE_HUNTER_BIRDHOUSE_YEW", "skill_feature_hunter_birdhouse_yew", "rowtypes"),
             new GamevalEntry(11811, "SKILL_FEATURE_HUNTER_BIRDHOUSE_MAGIC", "skill_feature_hunter_birdhouse_magic", "rowtypes"),
             new GamevalEntry(11812, "SKILL_FEATURE_HUNTER_BIRDHOUSE_REDWOOD", "skill_feature_hunter_birdhouse_redwood", "rowtypes"),
+            new GamevalEntry(11813, "SKILL_FEATURE_FISHING_HADDOCKSHOAL", "skill_feature_fishing_haddockshoal", "rowtypes"),
             new GamevalEntry(11814, "SKILL_FEATURE_HUNTER_OJIBWAY_BIRD_SNARE", "skill_feature_hunter_ojibway_bird_snare", "rowtypes"),
             new GamevalEntry(11815, "SKILL_FEATURE_HUNTER_NOOSE_WAND", "skill_feature_hunter_noose_wand", "rowtypes"),
             new GamevalEntry(11816, "SKILL_FEATURE_HUNTER_BUTTERFLY_NET", "skill_feature_hunter_butterfly_net", "rowtypes"),

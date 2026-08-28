@@ -204,6 +204,80 @@ public final class OverlayDraw {
         TitanRuntime.getOverlayBackend().tileObjectHull(locPtr, typecode, outline, fill);
     }
 
+    /**
+     * Draw the TRUE model silhouette: the 2D convex hull of the entity's
+     * actual projected model vertices, rotated and placed exactly where the
+     * engine renders it. Tighter than {@link #entityHull} (which hulls the 8
+     * AABB corners) -- irregular / tall-thin models get a real outline. No-op
+     * on hosts older than SDK 122 or when the model handle isn't bound this
+     * frame (host model-AABB hook inactive / revision without Model geometry).
+     */
+    public void entityOutline(NPC npc, int outline) {
+        entityOutline(npc, outline, 0, OutlineMode.CONVEX);
+    }
+
+    public void entityOutline(NPC npc, int outline, int fill) {
+        entityOutline(npc, outline, fill, OutlineMode.CONVEX);
+    }
+
+    public void entityOutline(NPC npc, int outline, int fill, OutlineMode mode) {
+        if (npc == null) return;
+        long typecode = buildActorTypecode(
+            1, npc.hashIndex(), npc.preciseX() >> 7, npc.preciseY() >> 7, npc.plane());
+        entityOutline(npc.entityPtr(), typecode, outline, fill, mode);
+    }
+
+    public void entityOutline(Player player, int outline) {
+        entityOutline(player, outline, 0, OutlineMode.CONVEX);
+    }
+
+    public void entityOutline(Player player, int outline, int fill) {
+        entityOutline(player, outline, fill, OutlineMode.CONVEX);
+    }
+
+    public void entityOutline(Player player, int outline, int fill, OutlineMode mode) {
+        if (player == null) return;
+        long typecode = buildActorTypecode(
+            0, player.hashIndex(), player.preciseX() >> 7, player.preciseY() >> 7, player.plane());
+        entityOutline(player.entityPtr(), typecode, outline, fill, mode);
+    }
+
+    public void entityOutline(long entityPtr, long typecode, int outline, int fill) {
+        entityOutline(entityPtr, typecode, outline, fill, OutlineMode.CONVEX);
+    }
+
+    public void entityOutline(long entityPtr, long typecode, int outline, int fill,
+                              OutlineMode mode) {
+        TitanRuntime.getOverlayBackend().entityOutline(
+            entityPtr, typecode, outline, fill,
+            (mode == null ? OutlineMode.CONVEX : mode).value());
+    }
+
+    public void tileObjectOutline(TileObject object, int outline) {
+        tileObjectOutline(object, outline, 0, OutlineMode.CONVEX);
+    }
+
+    public void tileObjectOutline(TileObject object, int outline, int fill) {
+        tileObjectOutline(object, outline, fill, OutlineMode.CONVEX);
+    }
+
+    public void tileObjectOutline(TileObject object, int outline, int fill, OutlineMode mode) {
+        if (object == null) return;
+        long typecode = object.packedId();
+        tileObjectOutline(object.entityPtr(), typecode, outline, fill, mode);
+    }
+
+    public void tileObjectOutline(long locPtr, long typecode, int outline, int fill) {
+        tileObjectOutline(locPtr, typecode, outline, fill, OutlineMode.CONVEX);
+    }
+
+    public void tileObjectOutline(long locPtr, long typecode, int outline, int fill,
+                                  OutlineMode mode) {
+        TitanRuntime.getOverlayBackend().tileObjectOutline(
+            locPtr, typecode, outline, fill,
+            (mode == null ? OutlineMode.CONVEX : mode).value());
+    }
+
     public void textAtWorld(int worldX, int worldY, int worldZ,
                             String text, int color) {
         textAtWorld(worldX, worldY, worldZ, text, color, true);

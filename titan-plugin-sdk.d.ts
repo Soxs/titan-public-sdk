@@ -1182,7 +1182,11 @@ interface IntSettingInit extends SettingMetaBase {
     type(id: number): this;
     contentType(id: number): this;
     itemId(id: number): this;
-    /** Replace matches with their non-null direct dynamic children. */
+    /**
+     * Replace matches with their non-null direct dynamic children.
+     * Each parent contributes up to 2048 children (SDK 124); clipping a
+     * larger parent sets `truncated`.
+     */
     children(): this;
     /** True when the host clipped a bounded live traversal. */
     readonly truncated: boolean;
@@ -2982,6 +2986,9 @@ interface PanelElement {
              * remembers its parent and slot for `child.setText(...)` and
              * `child.interact(opcode, identifier)`.
              *
+             * Sized to the parent's true child count (SDK 124; previously
+             * clipped at 128), bounded at 2048 entries per call.
+             *
              * Returns an empty array when the parent is missing, has no
              * dynamic children, or the host is pre-SDK-38.
              */
@@ -3182,8 +3189,10 @@ interface PanelElement {
         entityClickbox(entity: Npc | Player, outline: number, fill?: number): void;
         /**
          * Raw entry for plugins that already hold the entity pointer and
-         * its typecode. Passing `typecode = 0` skips typecode-keyed lookup
-         * and falls back to the host's world-keyed fallback cache.
+         * its typecode. The typecode-keyed picking cache is the host's
+         * only picking evidence; passing `typecode = 0` skips it, leaving
+         * only GraphNode data and (for actors) the approximate
+         * synthesized footprint.
          */
         entityClickboxRaw(entityPtr: number | bigint, typecode: number | bigint,
                           outline: number, fill?: number): void;
@@ -3204,6 +3213,24 @@ interface PanelElement {
         tileObjectHull(obj: TileObject, outline: number, fill?: number): void;
         tileObjectHullRaw(locPtr: number | bigint, typecode: number | bigint,
                           outline: number, fill?: number): void;
+        /**
+         * Draw the TRUE model silhouette: the 2D convex hull of the entity's
+         * actual projected model vertices, rotated and placed exactly where
+         * the engine renders it. Tighter than entityHull (which hulls the 8
+         * AABB corners) -- irregular or tall-thin models get a real outline
+         * instead of a box. Silent no-op on hosts older than SDK 122 or when
+         * the model handle isn't bound this frame (host model-AABB hook
+         * inactive / revision without Model geometry).
+         */
+        /** @param mode outline polygon: 0 = convex hull (default), 1 = concave hull. */
+        entityOutline(entity: Npc | Player, outline: number, fill?: number,
+                      mode?: 0 | 1): void;
+        entityOutlineRaw(entityPtr: number | bigint, typecode: number | bigint,
+                         outline: number, fill?: number, mode?: 0 | 1): void;
+        tileObjectOutline(obj: TileObject, outline: number, fill?: number,
+                          mode?: 0 | 1): void;
+        tileObjectOutlineRaw(locPtr: number | bigint, typecode: number | bigint,
+                             outline: number, fill?: number, mode?: 0 | 1): void;
         textAtWorld(worldX: number, worldY: number, worldZ: number,
                     text: string, color: number, centered?: boolean): void;
         textAtWorldInWorldView(worldViewId: number,

@@ -69,6 +69,10 @@ final class DbRowIDEntries_33 {
             new GamevalEntry(16952, "TEMPOROSS_SHOP_DATA_FISH_BARREL", "tempoross_shop_data_fish_barrel", "rowtypes"),
             new GamevalEntry(16953, "TEMPOROSS_SHOP_DATA_TACKLE_BOX", "tempoross_shop_data_tackle_box", "rowtypes"),
             new GamevalEntry(16954, "OMNISHOP_CURRENCY_SPIRIT_FLAKES", "omnishop_currency_spirit_flakes", "rowtypes"),
+            new GamevalEntry(16955, "SKILL_FEATURE_FISHING_YELLOWFINSHOAL", "skill_feature_fishing_yellowfinshoal", "rowtypes"),
+            new GamevalEntry(16956, "SKILL_FEATURE_FISHING_HALIBUTSHOAL", "skill_feature_fishing_halibutshoal", "rowtypes"),
+            new GamevalEntry(16957, "SKILL_FEATURE_FISHING_BLUEFINSHOAL", "skill_feature_fishing_bluefinshoal", "rowtypes"),
+            new GamevalEntry(16958, "SKILL_FEATURE_FISHING_MARLINSHOAL", "skill_feature_fishing_marlinshoal", "rowtypes"),
         };
     }
 
