@@ -10,6 +10,12 @@ import java.util.List;
 
 public interface Client {
     int tick();
+    /**
+     * Current signed 32-bit native Client.GameCycle. This clock advances at
+     * the nominal 20 ms client logic cadence; 30 cycles make one 600 ms
+     * server tick. It is distinct from {@link #tick()}. Added in SDK 125.
+     */
+    int gameCycle();
     int plane();
     int localPlayerIndex();
     int playerCount();

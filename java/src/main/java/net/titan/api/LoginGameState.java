@@ -7,6 +7,7 @@ public enum LoginGameState {
     LOGIN_SCREEN(10),
     LOGIN_AUTHENTICATOR(11),
     LOGGING_IN(20),
+    LOADING(25),
     LOGGED_IN(30),
     HOPPING(45);
 

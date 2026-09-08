@@ -2131,6 +2131,12 @@ interface PanelElement {
     namespace state {
         const client: {
             readonly tick: number;
+            /**
+             * Current signed 32-bit native Client.GameCycle. It advances at
+             * the nominal 20 ms client logic cadence (50 Hz); 30 cycles make
+             * one 600 ms server tick. Distinct from `tick`. SDK 125+.
+             */
+            readonly gameCycle: number;
             readonly plane: number;
             readonly playerCount: number;
             /** Scene base X in absolute world tile coordinates. */
@@ -3051,6 +3057,7 @@ interface PanelElement {
         LoginScreen = 10,
         LoginAuthenticator = 11,
         LoggingIn = 20,
+        Loading = 25,
         LoggedIn = 30,
         HoppingWorld = 45,
     }
