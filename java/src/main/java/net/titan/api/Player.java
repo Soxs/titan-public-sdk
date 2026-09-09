@@ -7,6 +7,8 @@ import net.titan.api.internal.TitanRuntime;
 import net.titan.api.utils.Magic;
 
 public final class Player implements Actor {
+    private String overheadTextSnapshot;
+    private boolean overheadTextCaptured;
     private boolean liveHandle = true;
     private long entityPtr;
     private int hashIndex;
@@ -38,6 +40,11 @@ public final class Player implements Actor {
     private List<WorldPoint> pathQueue;
     private List<ActorSpotAnim> currentSpotAnims;
     private PlayerComposition composition;
+
+    @Override
+    public String getOverheadText() {
+        return overheadTextCaptured ? overheadTextSnapshot : Actor.super.getOverheadText();
+    }
 
     private Player live() { return TitanRuntime.currentLive(this); }
 

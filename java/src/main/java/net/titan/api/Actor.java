@@ -79,6 +79,11 @@ public interface Actor extends Locatable<Actor> {
         return Collections.emptyList();
     }
 
+    /** Complete text; null means unavailable/invalid, an empty string is valid. */
+    default String getOverheadText() { return TitanRuntime.actorOverheadText(this); }
+    /** Signed native cycles; null means unavailable/invalid. */
+    default Integer getOverheadTextCyclesRemaining() { return TitanRuntime.actorOverheadTextCycles(this); }
+
     default List<ActorSpotAnim> currentSpotAnims() {
         return Collections.emptyList();
     }

@@ -15,6 +15,8 @@ public interface Client {
      * the nominal 20 ms client logic cadence; 30 cycles make one 600 ms
      * server tick. It is distinct from {@link #tick()}. Added in SDK 125.
      */
+    /** SDK 127: bit 1 direct reads; bit 2 all five utterance sources installed. */
+    default int getOverheadTextCapabilities() { return 0; }
     int gameCycle();
     int plane();
     int localPlayerIndex();

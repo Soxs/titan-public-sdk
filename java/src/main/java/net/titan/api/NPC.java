@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Locale;
 
 public final class NPC implements Actor {
+    private String overheadTextSnapshot;
+    private boolean overheadTextCaptured;
     private boolean liveHandle = true;
     private long entityPtr;
     private long definitionPtr;
@@ -41,6 +43,11 @@ public final class NPC implements Actor {
     private List<String> actions;
     private List<WorldPoint> pathQueue;
     private List<ActorSpotAnim> currentSpotAnims;
+
+    @Override
+    public String getOverheadText() {
+        return overheadTextCaptured ? overheadTextSnapshot : Actor.super.getOverheadText();
+    }
 
     private NPC live() { return TitanRuntime.currentLive(this); }
 

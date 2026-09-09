@@ -137,6 +137,15 @@ public final class TitanRuntime {
         return backend == null || value == null || backend.exists(value);
     }
 
+    public static String actorOverheadText(Actor actor) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null || actor == null || isDetachedSnapshot(actor) ? null : backend.actorOverheadText(actor.entityPtr());
+    }
+    public static Integer actorOverheadTextCycles(Actor actor) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null || actor == null || isDetachedSnapshot(actor) ? null : backend.actorOverheadTextCycles(actor.entityPtr());
+    }
+
     public static <T> T currentLive(T value) {
         LiveStateBackend backend = liveStateBackend;
         if (isDetachedSnapshot(value)) return value;

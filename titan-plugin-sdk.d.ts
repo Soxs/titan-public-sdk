@@ -558,6 +558,9 @@ interface ActorBase extends InstanceConvertible {
     /** Valid actor path queue entries as world points in this actor's WorldView. Index 0 is the logical/server tile. SDK 59+. */
     readonly pathQueue: WorldPoint[];
     /** Active actor-attached spot animations. Empty when unavailable or none are active. SDK 76+. */
+    /** SDK 127: complete UTF-8 text; null is unavailable/invalid, empty is valid. */
+    getOverheadText(): string | null;
+    getOverheadTextCyclesRemaining(): number | null;
     readonly currentSpotAnims: ActorSpotAnim[];
 
     readonly isPlayer: boolean;
@@ -1397,6 +1400,17 @@ interface ActorSpotAnimEvent {
     readonly gameTick: number;
 }
 
+/** One accepted utterance, including repetitions and empty text; expiry excluded. */
+interface OverheadTextChangedEvent {
+    readonly actor: Actor;
+    readonly actorType: number;
+    readonly kind: "player" | "npc";
+    readonly indexOrId: number;
+    readonly actorName: string;
+    readonly overheadText: string;
+    readonly gameTick: number;
+}
+
 /** Delivered to `onAnimationChanged` when the native client accepts an actor
  * animation field change. Same-animation resets and rejected native requests
  * are filtered before dispatch. Added in SDK 78. */
@@ -1654,6 +1668,9 @@ interface BreakHandlerUtility {
  * helper methods (this.boolSetting, this.section, this.overlay, ...) and
  * override the lifecycle methods you care about.
  */
+/** SDK 127: bit 1 direct reads; bit 2 all five utterance sources installed. */
+function overheadTextCapabilities(): number;
+
 class Plugin {
     id: string;
     name: string;
@@ -1738,6 +1755,7 @@ class Plugin {
     /** Fired when an actor-attached spot animation is applied. Added in SDK 76. */
     onActorSpotAnim?(event: ActorSpotAnimEvent): void;
     /** Fired when an actor animation field actually changes. Added in SDK 78. */
+    onOverheadTextChanged?(event: OverheadTextChangedEvent): void;
     onAnimationChanged?(event: AnimationChangedEvent): void;
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick. Detection is tick-level diff. Added in SDK 26. */
