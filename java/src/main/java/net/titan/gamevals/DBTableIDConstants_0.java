@@ -132,6 +132,7 @@ public interface DBTableIDConstants_0 {
     int AMENITY = 129;
     int NPC_CONTACT = 130;
     int SLAYER_MODIFIERS = 131;
+    int PUPPY_COLOURS = 132;
     int FLETCHING_BLOWPIPE_CRAFTING = 142;
     int SAILING_BT_TRIAL_CORE = 143;
     int SAILING_BT_GWENITH_GLIDE_CRYSTAL_DATA = 144;

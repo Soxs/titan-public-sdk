@@ -782,10 +782,18 @@ interface Item {
      * runtime shape: inventory items produce the two-packet
      * `WIDGET_TARGET` -> `WIDGET_TARGET_ON_WIDGET` flow (the knife-on-logs
      * case), NPCs select the item then invoke an NPC menu entry,
-     * and `TileObject`s select the item then invoke a loc menu entry.
-     * Returns `true` when the first selection packet was accepted.
+     * `TileObject`s select the item then invoke a loc menu entry, and
+     * `GroundItem`s (SDK 129) queue the `WIDGET_TARGET` ->
+     * `ITEM_USE_ON_GROUND_ITEM` selected pair together through the same
+     * facade `utils.magic.castOn` uses; the host pins this item id and binds
+     * the unique matching stack (and its quantity) on the game thread.
+     * Ground-item targets are recognised first by shape (`id`, `tileX/Y`,
+     * `quantity`, `ownershipType`, no `hashIndex` / `packedId`) and require
+     * a live inventory `slot`.
+     * Returns `true` when the first selection packet was accepted (for
+     * ground items: when the pair was queued).
      */
-    useOn(target: Item | Npc | TileObject): boolean;
+    useOn(target: Item | Npc | Player | TileObject | GroundItem): boolean;
     /** Cast `spell` on this inventory item. */
     castOn(spell: MagicSpell): boolean;
 }
@@ -942,7 +950,9 @@ interface LocatableQuery<T> extends Query<T> {
     within(worldArea: titan.WorldArea): this;
     within(radius: number, origin: Tile | ActorBase | WorldPoint | LocalPoint): this;
     nearestTo(origin: Tile | ActorBase | WorldPoint | LocalPoint): T | null;
-    /** Nearest entity to the local player, or null. */
+    /** Nearest entity to the local player, or null. Uses the projected player
+     * center for top-level entities while aboard a child WorldView. Entities in
+     * other views, or without an available matching-plane center, are skipped. */
     nearest(): T | null;
     /** Keep only entities on the exact scene tile (or x, y pair). */
     onTile(tile: Tile): this;
@@ -2219,6 +2229,11 @@ interface PanelElement {
              * directly, but the player does not move toward the click target.
              */
             invokeMenuAction(action: MenuActionSpec): boolean;
+            /** SDK 128: queue source opcode 25 and its exact dependent target together.
+             * Both skipClick flags must agree. Omit expectedSourceItemId for a
+             * spell widget so the host binds its live item. True means queued. */
+            invokeSelectedMenuAction(source: MenuActionSpec, target: MenuActionSpec,
+                                     expectedSourceItemId?: number): boolean;
         };
 
         const camera: {
@@ -2982,8 +2997,7 @@ interface PanelElement {
          * selects one exact direct dynamic child beneath it. SDK v64+.
          *
          * @param opcode   MenuAction opcode (57 = CC_OP, 1007 = CC_OP_LOW,
-         *                 39..43 = WIDGET_FIRST..FIFTH_OPTION, 25 =
-         *                 WIDGET_TARGET, 2 = WIDGET_TARGET_ON_GAME_OBJECT,
+         *                 25 = WIDGET_TARGET, 2 = WIDGET_TARGET_ON_GAME_OBJECT,
          *                 8 = WIDGET_TARGET_ON_NPC, 15 = WIDGET_TARGET_ON_PLAYER,
          *                 58 = WIDGET_TARGET_ON_WIDGET).
          * @param identifier Menu-entry identifier -- the CC_OP sub-action
@@ -3019,13 +3033,12 @@ interface PanelElement {
             children(parentPackedId: number): WidgetState[];
             pack(group: number, child: number): number;
             /**
-             * Dispatch a widget-family DoAction (CC_OP,
-             * WIDGET_*_OPTION, WIDGET_TARGET, WIDGET_TARGET_ON_WIDGET,
+             * Dispatch a widget-family action (CC_OP, CC_OP_LOW,
+             * WIDGET_TARGET, WIDGET_TARGET_ON_WIDGET,
              * ...).
              *
              * @param opcode   MenuAction opcode (57 = CC_OP, 1007 = CC_OP_LOW,
-             *                 39..43 = WIDGET_FIRST..FIFTH_OPTION, 25 =
-             *                 WIDGET_TARGET, 2 = WIDGET_TARGET_ON_GAME_OBJECT,
+             *                 25 = WIDGET_TARGET, 2 = WIDGET_TARGET_ON_GAME_OBJECT,
              *                 8 = WIDGET_TARGET_ON_NPC, 15 = WIDGET_TARGET_ON_PLAYER,
              *                 58 = WIDGET_TARGET_ON_WIDGET).
              * @param identifier Menu-entry identifier -- the CC_OP
@@ -3125,6 +3138,7 @@ interface PanelElement {
         const walk: {
             toScene(sceneX: number, sceneY: number): boolean;
             toWorld(worldX: number, worldY: number, plane: number): boolean;
+            /** Tile uses scene-local x/y and plane; WorldPoint uses absolute x/y and z. */
             to(tile: Tile | WorldPoint): boolean;
         };
 

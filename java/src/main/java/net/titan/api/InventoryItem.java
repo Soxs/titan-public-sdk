@@ -50,10 +50,35 @@ public final class InventoryItem {
             slot(), id(), target.hashIndex());
     }
 
+    /** Select this inventory item and use it on the exact live player as one queued pair. */
+    public boolean useOn(Player target) {
+        if (target == null || slot() < 0 || id() < 0 || target.hashIndex() < 0) return false;
+        MenuActionRequest source = new MenuActionRequest(MenuAction.WIDGET_TARGET, 0, slot(),
+            net.titan.gamevals.InterfaceID.Inventory.ITEMS, -1, -1, -1, "Use", "", false, -1, 1, 1, -1, 0, 0);
+        MenuActionRequest selectedTarget = new MenuActionRequest(MenuAction.ITEM_USE_ON_PLAYER, target.hashIndex(), 0, 0,
+            target.worldViewId(), -1, -1, "Use", "", false, target.plane(), 1, 1, -1, target.entityPtr(), 0);
+        return Titan.client().invokeSelectedMenuAction(source, selectedTarget, id());
+    }
+
     public boolean useOn(TileObject target) {
         if (target == null) return false;
         return TitanRuntime.getInteractionBackend().useInventoryItemOnObject(
             slot(), id(), target.id(), target.tileX(), target.tileY());
+    }
+
+    /**
+     * SDK 129. Use this item on a ground item stack: {@code WIDGET_TARGET} on
+     * this inventory slot and {@code ITEM_USE_ON_GROUND_ITEM} at the stack's
+     * tile are queued together as one selected pair (the same path
+     * {@code Magic.castOn} uses for ground items). The host pins this item id
+     * and binds the unique matching stack on the game thread. Requires a live
+     * slot; returns {@code true} when the pair was queued.
+     */
+    public boolean useOn(GroundItem target) {
+        if (target == null) return false;
+        return TitanRuntime.getInteractionBackend().useInventoryItemOnGroundItem(
+            slot(), id(), target.id(), target.tileX(), target.tileY(),
+            target.plane(), target.worldViewId());
     }
 
     public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }

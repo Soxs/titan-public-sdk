@@ -100,7 +100,7 @@ class JavaApiParityTest {
     }
 
     @Test
-    void magicTargetedCastsSelectSpellThenDispatchTargetOnClientTick() throws Exception {
+    void magicTargetedCastsSubmitOneBoundSourceTargetPair() throws Exception {
         TestClientState state = new TestClientState();
         installClient(state);
         schedulerBackend = new RecordingSchedulerBackend();
@@ -288,35 +288,20 @@ class JavaApiParityTest {
         schedulerBackend.clientTickRan = false;
 
         assertTrue(castAction.getAsBoolean());
-        assertTrue(schedulerBackend.clientTickRan);
-        assertEquals(1, state.widgetInteractCalls);
-        assertEquals(MenuAction.WIDGET_TARGET, state.firstWidgetOpcode);
-        assertEquals(0, state.firstWidgetIdentifier);
-        assertEquals(-1, state.firstWidgetParam0);
-        assertEquals(InterfaceID.MagicSpellbook.WIND_STRIKE, state.firstWidgetParam1);
-
-        assertEquals(1, state.menuActionCalls);
-        assertEquals(opcode, state.lastMenuOpcode);
-        assertEquals(identifier, state.lastMenuIdentifier);
-        assertEquals(param0, state.lastMenuParam0);
-        assertEquals(param1, state.lastMenuParam1);
-        assertEquals(0L, state.lastMenuWorldViewId);
-        assertEquals(1, state.resolveClickCalls);
-        assertEquals(opcode, state.lastResolveOpcode);
-        assertEquals(identifier, state.lastResolveIdentifier);
-        assertEquals(param0, state.lastResolveParam0);
-        assertEquals(param1, state.lastResolveParam1);
-        assertEquals(WorldView.CURRENT, state.lastResolveWorldViewId);
-        assertEquals(targetPlane, state.lastResolveTargetPlane);
-        assertEquals(targetSizeX, state.lastResolveTargetSizeX);
-        assertEquals(targetSizeY, state.lastResolveTargetSizeY);
-        assertEquals(targetLayer, state.lastResolveTargetLayer);
-        assertEquals(targetEntityPtr, state.lastResolveTargetEntityPtr);
-        assertEquals(targetPackedId, state.lastResolveTargetPackedId);
-        assertEquals(321, state.lastMenuClickX);
-        assertEquals(654, state.lastMenuClickY);
-        assertEquals("Cast", state.lastMenuActionText);
-        assertEquals("", state.lastMenuTargetText);
+        assertMagicSource(state, InterfaceID.MagicSpellbook.WIND_STRIKE);
+        MenuActionRequest target = state.selectedTarget;
+        assertEquals(opcode, target.opcode());
+        assertEquals(identifier, target.identifier());
+        assertEquals(param0, target.param0());
+        assertEquals(param1, target.param1());
+        assertEquals(WorldView.CURRENT, target.worldViewId());
+        assertEquals(targetPlane, target.targetPlane());
+        assertEquals(targetSizeX, target.targetSizeX());
+        assertEquals(targetSizeY, target.targetSizeY());
+        assertEquals(targetLayer, target.targetLayer());
+        assertEquals(targetEntityPtr, target.targetEntityPtr());
+        assertEquals(targetPackedId, target.targetPackedId());
+        assertPairedClick(target);
     }
 
     private void assertMagicWidgetTarget(TestClientState state, BooleanSupplier castAction,
@@ -325,18 +310,46 @@ class JavaApiParityTest {
         schedulerBackend.clientTickRan = false;
 
         assertTrue(castAction.getAsBoolean());
-        assertTrue(schedulerBackend.clientTickRan);
-        assertEquals(2, state.widgetInteractCalls);
-        assertEquals(MenuAction.WIDGET_TARGET, state.firstWidgetOpcode);
-        assertEquals(0, state.firstWidgetIdentifier);
-        assertEquals(-1, state.firstWidgetParam0);
-        assertEquals(spellWidget, state.firstWidgetParam1);
-        assertEquals(MenuAction.WIDGET_TARGET_ON_WIDGET, state.lastWidgetOpcode);
-        assertEquals(0, state.lastWidgetIdentifier);
-        assertEquals(childIndex, state.lastWidgetParam0);
-        assertEquals(packedId, state.lastWidgetParam1);
+        assertMagicSource(state, spellWidget);
+        MenuActionRequest target = state.selectedTarget;
+        assertEquals(MenuAction.WIDGET_TARGET_ON_WIDGET, target.opcode());
+        assertEquals(0, target.identifier());
+        assertEquals(childIndex, target.param0());
+        assertEquals(packedId, target.param1());
+        assertPairedClick(target);
+    }
+
+    private void assertMagicSource(TestClientState state, int spellWidget) {
+        // The backend owns game-thread ordering and click resolution for the
+        // complete pair. No independent source action may escape the batch.
+        assertFalse(schedulerBackend.clientTickRan);
+        assertEquals(1, state.selectedActionCalls);
+        assertEquals(0, state.widgetInteractCalls);
         assertEquals(0, state.menuActionCalls);
         assertEquals(0, state.resolveClickCalls);
+        MenuActionRequest source = state.selectedSource;
+        assertNotNull(source);
+        assertNotNull(state.selectedTarget);
+        assertEquals(MenuAction.WIDGET_TARGET, source.opcode());
+        assertEquals(0, source.identifier());
+        assertEquals(-1, source.param0());
+        assertEquals(spellWidget, source.param1());
+        assertEquals(0, source.worldViewId());
+        assertEquals(-1, source.targetPlane());
+        assertEquals(1, source.targetSizeX());
+        assertEquals(1, source.targetSizeY());
+        assertEquals(-1, source.targetLayer());
+        assertEquals(0, source.targetEntityPtr());
+        assertEquals(0, source.targetPackedId());
+        assertPairedClick(source);
+    }
+
+    private static void assertPairedClick(MenuActionRequest request) {
+        assertEquals(-1, request.clickX());
+        assertEquals(-1, request.clickY());
+        assertFalse(request.skipClick());
+        assertEquals("Cast", request.actionText());
+        assertEquals("", request.targetText());
     }
 
     private static <T> T setField(T target, String fieldName, Object value) throws Exception {
@@ -374,6 +387,9 @@ class JavaApiParityTest {
         int lastWidgetParam0 = 0;
         int lastWidgetParam1 = 0;
         int menuActionCalls = 0;
+        int selectedActionCalls = 0;
+        MenuActionRequest selectedSource;
+        MenuActionRequest selectedTarget;
         long lastMenuOpcode = -1;
         int lastMenuIdentifier = 0;
         int lastMenuParam0 = 0;
@@ -443,6 +459,9 @@ class JavaApiParityTest {
             lastWidgetParam0 = 0;
             lastWidgetParam1 = 0;
             menuActionCalls = 0;
+            selectedActionCalls = 0;
+            selectedSource = null;
+            selectedTarget = null;
             lastMenuOpcode = -1;
             lastMenuIdentifier = 0;
             lastMenuParam0 = 0;
@@ -505,6 +524,13 @@ class JavaApiParityTest {
                 lastWidgetIdentifier = identifier;
                 lastWidgetParam0 = param0;
                 lastWidgetParam1 = param1;
+                return true;
+            }
+            if ("invokeSelectedMenuAction".equals(name)) {
+                selectedActionCalls++;
+                selectedSource = (MenuActionRequest) args[0];
+                selectedTarget = (MenuActionRequest) args[1];
+                assertTrue(args.length == 2 || args[2] == null);
                 return true;
             }
             if ("invokeMenuAction".equals(name)) {

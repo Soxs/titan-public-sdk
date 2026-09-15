@@ -494,6 +494,10 @@ final class VarClientIDEntries_2 {
             new GamevalEntry(1505, "CASTLE_DRAKAN_WORLD_MAP_X", "castle_drakan_world_map_x", "varctypes"),
             new GamevalEntry(1506, "CASTLE_DRAKAN_WORLD_MAP_Y", "castle_drakan_world_map_y", "varctypes"),
             new GamevalEntry(1507, "SETTINGS_RENDERER_OPTION", "settings_renderer_option", "varctypes"),
+            new GamevalEntry(1508, "DOG_SELECTION_CURRENT_SELECTION", "dog_selection_current_selection", "varctypes"),
+            new GamevalEntry(1509, "DOG_SELECTION_CURRENT_COLOUR", "dog_selection_current_colour", "varctypes"),
+            new GamevalEntry(1510, "DOG_SELECTION_SCROLL_POS", "dog_selection_scroll_pos", "varctypes"),
+            new GamevalEntry(1511, "DOG_SELECTION_ZOOM", "dog_selection_zoom", "varctypes"),
         };
     }
 

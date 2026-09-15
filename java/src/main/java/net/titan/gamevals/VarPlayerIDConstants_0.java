@@ -213,6 +213,7 @@ public interface VarPlayerIDConstants_0 {
     int MAIN_ICS_VAR = 445;
     int ICS_LITTLE_MULTI_EXTRA = 446;
     int FOLLOWER_NPC = 447;
+    int FOLLOWER_OBJ = 448;
     int TOG_MINIGAME = 449;
     int BARROWS = 452;
     int BARROWS_KILLS = 453;

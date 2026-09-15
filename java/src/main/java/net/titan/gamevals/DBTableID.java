@@ -283,6 +283,8 @@ public final class DBTableID
             public static final int QUEST_LEARNINGTHEROPES = 9643;
             public static final int QUEST_IDESOFMILK = 9645;
             public static final int QUEST_BLOODMOONRISES = 16414;
+            public static final int QUEST_RUFFSITUATION = 16971;
+            public static final int QUEST_CRABQUEST = 16972;
         }
     }
 
@@ -10764,6 +10766,22 @@ public final class DBTableID
         public static final int COL_DESCRIPTION = 2;
         public static final int COL_REQUIREMENT = 3;
         public static final int COL_SPRITE = 4;
+    }
+
+    public static final class PuppyColours {
+        private PuppyColours() {}
+
+        public static final int ID = 132;
+        public static final int COL_NAME = 0;
+        public static final int COL_PUPPY_SELECTION = 1;
+        public static final int COL_PUPPY_OBJECT = 2;
+        public static final int COL_COLOUR_NAMES = 3;
+        public static final int COL_COLOUR_OPTION = 4;
+        public static final int COL_DOG_MODEL = 5;
+        public static final int COL_LARGE = 6;
+        public static final int COL_FREE_UNLOCK = 7;
+        public static final int COL_UNLOCK_BIT = 8;
+        public static final int COL_LOCATION_HINT = 9;
     }
 
     public static final class FletchingBlowpipeCrafting {

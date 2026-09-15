@@ -228,7 +228,7 @@ public interface InterfaceIDConstants_0 {
     int MISC_SHIPJOURNEY = 224;
     int MM_MESSAGE = 225;
     int DEADMANPROTECT = 226;
-    int MOURNING_DEATHALTER_LIST = 227;
+    int DOG_SELECTION = 227;
     int DEADMAN_DELAY = 228;
     int MESSAGEBOX = 229;
     int DEADMAN_SAFEBOX = 230;

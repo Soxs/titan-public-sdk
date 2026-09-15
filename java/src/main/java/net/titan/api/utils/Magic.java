@@ -3,6 +3,7 @@ package net.titan.api.utils;
 import net.titan.api.GroundItem;
 import net.titan.api.InventoryItem;
 import net.titan.api.MenuAction;
+import net.titan.api.MenuActionRequest;
 import net.titan.api.NPC;
 import net.titan.api.Player;
 import net.titan.api.ScreenPoint;
@@ -705,7 +706,14 @@ public final class Magic {
     public static boolean castOn(Necromancy spell, TileObject target) { return castOn(info(spell), target); }
 
     private static boolean castOnTarget(SpellInfo spell, TargetAction action) {
-        return action != null && select(spell) && scheduleTargetAction(action);
+        if (!isValidSpell(spell) || action == null) return false;
+        MenuActionRequest source = new MenuActionRequest(MenuAction.WIDGET_TARGET, 0, -1, spell.widget(),
+            0, -1, -1, CAST_ACTION_TEXT, BLANK_TARGET_TEXT, false, -1, 1, 1, -1, 0, 0);
+        MenuActionRequest target = new MenuActionRequest(action.opcode, action.identifier, action.param0, action.param1,
+            action.worldViewId, -1, -1, CAST_ACTION_TEXT, BLANK_TARGET_TEXT, false,
+            action.targetPlane, action.targetSizeX, action.targetSizeY, action.targetLayer,
+            action.targetEntityPtr, action.targetPackedId);
+        return Titan.client().invokeSelectedMenuAction(source, target);
     }
 
     private static SpellInfo spellInfo(String name, int level, int widget,
@@ -771,37 +779,6 @@ public final class Magic {
             .targetLayer(target.layer())
             .targetEntityPtr(target.entityPtr())
             .targetPackedId(target.packedId());
-    }
-
-    private static boolean scheduleTargetAction(TargetAction action) {
-        try {
-            if (action.widgetInteract) {
-                Titan.runOnClientTick(() -> Titan.client().widgetInteract(
-                    action.opcode, action.identifier, action.param0, action.param1));
-            } else {
-                Titan.runOnClientTick(() -> {
-                    Optional<ScreenPoint> click = Mouse.resolveActionClickPoint(
-                        action.opcode, action.identifier, action.param0, action.param1,
-                        action.worldViewId, action.targetPlane,
-                        action.targetSizeX, action.targetSizeY,
-                        action.targetLayer, action.targetEntityPtr,
-                        action.targetPackedId);
-                    if (!click.isPresent()) return;
-                    ScreenPoint point = click.get();
-                    long dispatchWorldViewId = action.worldViewId < 0
-                        ? Titan.client().currentWorldViewId()
-                        : action.worldViewId;
-                    if (dispatchWorldViewId < 0) dispatchWorldViewId = 0;
-                    Titan.client().invokeMenuAction(
-                        action.opcode, action.identifier, action.param0, action.param1,
-                        dispatchWorldViewId, point.x(), point.y(),
-                        CAST_ACTION_TEXT, BLANK_TARGET_TEXT, false);
-                });
-            }
-            return true;
-        } catch (RuntimeException ex) {
-            return false;
-        }
     }
 
     private static SpellInfo empty() {

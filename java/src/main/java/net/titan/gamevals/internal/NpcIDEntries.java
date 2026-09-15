@@ -42,6 +42,7 @@ public final class NpcIDEntries {
             NpcIDEntries_29.entries(),
             NpcIDEntries_30.entries(),
             NpcIDEntries_31.entries(),
+            NpcIDEntries_32.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -119,6 +120,8 @@ public final class NpcIDEntries {
         hit = NpcIDEntries_30.byId(id);
         if (hit.isPresent()) return hit;
         hit = NpcIDEntries_31.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = NpcIDEntries_32.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

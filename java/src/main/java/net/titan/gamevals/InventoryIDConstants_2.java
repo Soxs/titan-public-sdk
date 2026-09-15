@@ -5,4 +5,5 @@ public interface InventoryIDConstants_2 {
     int PUB_BURGH_DE_ROTT = 1025;
     int WYRMSCRAIG_GENERAL_SHOP = 1026;
     int WYRMSCRAIG_CLOTHES_SHOP = 1027;
+    int LANSCAPE_GARY_GILBERT_FINALE_SHOP = 1028;
 }

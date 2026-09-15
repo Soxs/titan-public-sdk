@@ -458,4 +458,5 @@ public interface InterfaceIDConstants_1 {
     int CASTLE_DRAKAN_PLAQUE = 966;
     int CASTLE_DRAKAN_WORLD_MAP = 967;
     int MYQ6_INTEGRITY_BAR = 968;
+    int MOURNING_DEATHALTAR_LIST = 969;
 }

@@ -124,7 +124,31 @@ public abstract class LocatableQuery<T extends Locatable<?>, Q extends Locatable
     public Optional<T> nearest() {
         if (client == null) return Optional.empty();
         Optional<Player> local = client.localPlayer();
-        return local.isPresent() ? nearestTo(local.get()) : Optional.empty();
+        if (!local.isPresent()) return Optional.empty();
+        Tile current = local.get().tile();
+        Tile topLevel = null;
+        // Reuse the host's projected player center for top-level entities.
+        if (current.worldViewId() > WorldView.TOP_LEVEL
+                && client.currentWorldViewId() == current.worldViewId()
+                && client.topLevelLocalPlayerTileValid()) {
+            topLevel = new Tile(client.topLevelLocalPlayerTileX(), client.topLevelLocalPlayerTileY(),
+                client.topLevelLocalPlayerPlane(), WorldView.TOP_LEVEL);
+            if (client.currentWorldViewId() != current.worldViewId()
+                    || !client.topLevelLocalPlayerTileValid()
+                    || topLevel.plane() < 0 || topLevel.plane() > 3) topLevel = null;
+        }
+        T best = null;
+        int bestDistance = Integer.MAX_VALUE;
+        for (T item : items) {
+            Tile origin = current;
+            if (!WorldView.same(item.worldViewId(), current.worldViewId())) {
+                if (topLevel == null || item.worldViewId() != WorldView.TOP_LEVEL) continue;
+                origin = topLevel;
+            }
+            int distance = item.distanceTo(origin);
+            if (distance < bestDistance) { bestDistance = distance; best = item; }
+        }
+        return Optional.ofNullable(best);
     }
 
     public Q onTile(Tile tile) {

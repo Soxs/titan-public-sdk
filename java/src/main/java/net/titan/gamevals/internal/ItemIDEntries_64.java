@@ -169,6 +169,7 @@ final class ItemIDEntries_64 {
             new GamevalEntry(32924, "CARGO_CRATE_ARROWTIPS_RELLEKKA", "Crate of arrowtips", "objtypes"),
             new GamevalEntry(32925, "CARGO_CRATE_CLOTHES_VOID_KNIGHTS_OUTPOST", "Crate of clothes", "objtypes"),
             new GamevalEntry(32926, "XMAS25_SERVING_PLATTER", "Null", "objtypes"),
+            new GamevalEntry(32927, "PLACEHOLDER_XMAS25_SERVING_PLATTER", "Null", "objtypes"),
             new GamevalEntry(32928, "XMAS25_BIB", "Lovley jubbly bib", "objtypes"),
             new GamevalEntry(32929, "PLACEHOLDER_XMAS25_BIB", "placeholder_xmas25_bib", "objtypes"),
             new GamevalEntry(32930, "XMAS25_BEER_BELLY_SWEATER", "Beer belly sweater", "objtypes"),

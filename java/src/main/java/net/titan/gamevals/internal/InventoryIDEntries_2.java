@@ -14,6 +14,7 @@ final class InventoryIDEntries_2 {
             new GamevalEntry(1025, "PUB_BURGH_DE_ROTT", "pub_burgh_de_rott", "invtypes"),
             new GamevalEntry(1026, "WYRMSCRAIG_GENERAL_SHOP", "wyrmscraig_general_shop", "invtypes"),
             new GamevalEntry(1027, "WYRMSCRAIG_CLOTHES_SHOP", "wyrmscraig_clothes_shop", "invtypes"),
+            new GamevalEntry(1028, "LANSCAPE_GARY_GILBERT_FINALE_SHOP", "lanscape_gary_gilbert_finale_shop", "invtypes"),
         };
     }
 

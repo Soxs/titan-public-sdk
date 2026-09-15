@@ -126,7 +126,8 @@ public final class ObjectID
                    ObjectIDConstants_118,
                    ObjectIDConstants_119,
                    ObjectIDConstants_120,
-                   ObjectIDConstants_121 {
+                   ObjectIDConstants_121,
+                   ObjectIDConstants_122 {
     private ObjectID() {}
 
     public static final String SOURCE_CATALOG = "loctypes";

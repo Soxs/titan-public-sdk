@@ -191,6 +191,14 @@ public interface Client {
     boolean invokeMenuAction(long opcode, int identifier, int param0, int param1,
                              long worldViewId, int clickX, int clickY,
                              String actionText, String targetText, boolean skipClick);
+    /** SDK 128. Queue source opcode 25 and its dependent target together.
+     * Null expectedSourceItemId binds the source widget's live item on the game thread.
+     * Default false keeps older backend implementations safe. True means queued. */
+    default boolean invokeSelectedMenuAction(MenuActionRequest source, MenuActionRequest target,
+                                             Integer expectedSourceItemId) { return false; }
+    default boolean invokeSelectedMenuAction(MenuActionRequest source, MenuActionRequest target) {
+        return invokeSelectedMenuAction(source, target, null);
+    }
     boolean interactNpc(String action, int npcIdOrNeg1, String nameOrNull);
     @Deprecated
     default boolean interactNpcByIndex(String action, int hashIndex) {

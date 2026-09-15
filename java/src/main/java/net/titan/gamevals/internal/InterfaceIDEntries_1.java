@@ -467,6 +467,7 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(966, "CASTLE_DRAKAN_PLAQUE", "castle_drakan_plaque", "iftypes"),
             new GamevalEntry(967, "CASTLE_DRAKAN_WORLD_MAP", "castle_drakan_world_map", "iftypes"),
             new GamevalEntry(968, "MYQ6_INTEGRITY_BAR", "myq6_integrity_bar", "iftypes"),
+            new GamevalEntry(969, "MOURNING_DEATHALTAR_LIST", "mourning_deathaltar_list", "iftypes"),
         };
     }
 

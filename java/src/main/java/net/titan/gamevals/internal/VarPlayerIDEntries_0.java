@@ -222,6 +222,7 @@ final class VarPlayerIDEntries_0 {
             new GamevalEntry(445, "MAIN_ICS_VAR", "main_ics_var", "varptypes"),
             new GamevalEntry(446, "ICS_LITTLE_MULTI_EXTRA", "ics_little_multi_extra", "varptypes"),
             new GamevalEntry(447, "FOLLOWER_NPC", "follower_npc", "varptypes"),
+            new GamevalEntry(448, "FOLLOWER_OBJ", "follower_obj", "varptypes"),
             new GamevalEntry(449, "TOG_MINIGAME", "tog_minigame", "varptypes"),
             new GamevalEntry(452, "BARROWS", "barrows", "varptypes"),
             new GamevalEntry(453, "BARROWS_KILLS", "barrows_kills", "varptypes"),

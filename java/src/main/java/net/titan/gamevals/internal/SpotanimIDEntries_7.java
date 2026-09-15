@@ -444,6 +444,11 @@ final class SpotanimIDEntries_7 {
             new GamevalEntry(4015, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW_PROJECTILE", "vfx_mad_angel_attack_bomb_throw_projectile", "spottypes"),
             new GamevalEntry(4016, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW_IMPACT_01", "vfx_mad_angel_attack_bomb_throw_impact_01", "spottypes"),
             new GamevalEntry(4017, "VFX_MAD_ANGEL_ATTACK_BOMB_THROW_IMPACT_02", "vfx_mad_angel_attack_bomb_throw_impact_02", "spottypes"),
+            new GamevalEntry(4018, "SPOTANIM_AMULET_OF_WATER", "spotanim_amulet_of_water", "spottypes"),
+            new GamevalEntry(4019, "SPOTANIM_AMULET_OF_EARTH", "spotanim_amulet_of_earth", "spottypes"),
+            new GamevalEntry(4020, "SPOTANIM_AMULET_OF_FIRE", "spotanim_amulet_of_fire", "spottypes"),
+            new GamevalEntry(4021, "SPOTANIM_ELEMENTAL_AMULET", "spotanim_elemental_amulet", "spottypes"),
+            new GamevalEntry(4022, "CRAB_FLYINGPENGUIN", "crab_flyingpenguin", "spottypes"),
         };
     }
 

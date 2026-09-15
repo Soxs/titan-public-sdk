@@ -48,6 +48,15 @@ final class VarPlayerIDEntries_11 {
             new GamevalEntry(5723, "SLAYER_MISC_PERM_2", "slayer_misc_perm_2", "varptypes"),
             new GamevalEntry(5724, "SLAYER_MISC_PERM_3", "slayer_misc_perm_3", "varptypes"),
             new GamevalEntry(5725, "SKILLPET_RUNECRAFTING_TRACKING", "skillpet_runecrafting_tracking", "varptypes"),
+            new GamevalEntry(5730, "TELETAB_LAST_CRAFTED", "teletab_last_crafted", "varptypes"),
+            new GamevalEntry(5731, "TELETAB_LAST_CRAFTED_AMOUNT", "teletab_last_crafted_amount", "varptypes"),
+            new GamevalEntry(5732, "DOG_SELECTION_BREED", "dog_selection_breed", "varptypes"),
+            new GamevalEntry(5733, "DOG_SELECTION_COLOUR", "dog_selection_colour", "varptypes"),
+            new GamevalEntry(5734, "DOG_UNLOCKS", "dog_unlocks", "varptypes"),
+            new GamevalEntry(5739, "CRAB", "crab", "varptypes"),
+            new GamevalEntry(5740, "CRAB_SECONDARY", "crab_secondary", "varptypes"),
+            new GamevalEntry(5741, "CRAB_TEMP", "crab_temp", "varptypes"),
+            new GamevalEntry(5742, "DOGQUEST_MAIN", "dogquest_main", "varptypes"),
         };
     }
 

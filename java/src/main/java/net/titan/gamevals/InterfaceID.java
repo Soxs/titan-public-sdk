@@ -1004,25 +1004,17 @@ public final class InterfaceID
         public static final int FRAME = 2031617;
         public static final int CONTENTS = 2031618;
         public static final int GAMES = 2031619;
-        public static final int DRAUGHTS = 2031620;
-        public static final int DRAUGHTS_RADIO = 2031621;
-        public static final int COM_6 = 2031622;
+        public static final int COM_4 = 2031620;
+        public static final int COM_5 = 2031621;
+        public static final int DRAUGHTS = 2031622;
         public static final int DRAUGHTS_RANK = 2031623;
         public static final int RUNELINK = 2031624;
-        public static final int RUNELINK_RADIO = 2031625;
-        public static final int COM_10 = 2031626;
-        public static final int RUNELINK_RANK = 2031627;
-        public static final int RUNESQUARES = 2031628;
-        public static final int RUNESQUARES_RADIO = 2031629;
-        public static final int COM_14 = 2031630;
-        public static final int RUNESQUARES_RANK = 2031631;
-        public static final int RUNEVERSI = 2031632;
-        public static final int RUNEVERSI_RADIO = 2031633;
-        public static final int COM_18 = 2031634;
-        public static final int RUNEVERSI_RANK = 2031635;
-        public static final int COM_20 = 2031636;
-        public static final int COM_21 = 2031637;
-        public static final int SELECT = 2031638;
+        public static final int RUNELINK_RANK = 2031625;
+        public static final int RUNESQUARES = 2031626;
+        public static final int RUNESQUARES_RANK = 2031627;
+        public static final int RUNEVERSI = 2031628;
+        public static final int RUNEVERSI_RANK = 2031629;
+        public static final int SELECT = 2031630;
     }
 
     public static final class BoardgamesDraughts {
@@ -8261,17 +8253,34 @@ public final class InterfaceID
         public static final int ITEMLOSS_LIST = 14811148;
     }
 
-    public static final class MourningDeathalterList {
-        private MourningDeathalterList() {}
+    public static final class DogSelection {
+        private DogSelection() {}
 
-        public static final int UNIVERSE = 14876672;
-        public static final int MOURNING_DEATHALTER_LAYER2 = 14876673;
-        public static final int LIST_CONTAINER = 14876674;
-        public static final int LIST_TEXT = 14876675;
-        public static final int TITLE = 14876676;
-        public static final int SCROLLBAR = 14876677;
-        public static final int CLOSEBUTTON = 14876678;
-        public static final int COM_7 = 14876679;
+        public static final int INFINITY_ = 14876672;
+        public static final int UNIVERSE = 14876673;
+        public static final int BORDER = 14876674;
+        public static final int CONTENT = 14876675;
+        public static final int EXPANDABLE_CONTENT = 14876676;
+        public static final int SCROLL_BAR = 14876677;
+        public static final int THINBOX = 14876678;
+        public static final int ITEM_AREA = 14876679;
+        public static final int COM_8 = 14876680;
+        public static final int COM_9 = 14876681;
+        public static final int COM_10 = 14876682;
+        public static final int COM_11 = 14876683;
+        public static final int COM_12 = 14876684;
+        public static final int COM_13 = 14876685;
+        public static final int COM_14 = 14876686;
+        public static final int MODEL_VIEW = 14876687;
+        public static final int COM_16 = 14876688;
+        public static final int COM_17 = 14876689;
+        public static final int COM_18 = 14876690;
+        public static final int COM_19 = 14876691;
+        public static final int PAUSE_ICON = 14876692;
+        public static final int COLOURS = 14876693;
+        public static final int COM_22 = 14876694;
+        public static final int SELECT_CONTAINER = 14876695;
+        public static final int SELECT_AND_CLOSE = 14876696;
     }
 
     public static final class DeadmanDelay {
@@ -21939,37 +21948,39 @@ public final class InterfaceID
         public static final int UNIVERSE = 41353217;
         public static final int FRAME = 41353218;
         public static final int CONTENT = 41353219;
-        public static final int LEFT_PANEL = 41353220;
-        public static final int LEFT_SCROLL = 41353221;
-        public static final int LEFT_LIST = 41353222;
-        public static final int CATEGORY_BACKGROUNDS = 41353223;
-        public static final int CATEGORY_LIST = 41353224;
-        public static final int RIGHT_PANEL = 41353225;
-        public static final int RIGHT_SCROLL = 41353226;
-        public static final int LIST = 41353227;
-        public static final int CONTRACT_SEEDS = 41353228;
-        public static final int MAIN_VAULT = 41353229;
-        public static final int FAVES = 41353230;
-        public static final int CATEGORY_HEADERS = 41353231;
-        public static final int CATEGORY_LINES = 41353232;
-        public static final int OBJ_LIST = 41353233;
-        public static final int TEXT_LIST = 41353234;
-        public static final int BUTTONS = 41353235;
-        public static final int COM_20 = 41353236;
-        public static final int X1 = 41353237;
-        public static final int X5 = 41353238;
-        public static final int X10 = 41353239;
-        public static final int XX = 41353240;
-        public static final int XALL = 41353241;
-        public static final int SEARCH = 41353242;
-        public static final int DEPOSIT_ALL = 41353243;
-        public static final int DEPOSIT_ALL_GFX = 41353244;
-        public static final int TEXT_1 = 41353245;
-        public static final int TEXT_5 = 41353246;
-        public static final int TEXT_10 = 41353247;
-        public static final int TEXT_X = 41353248;
-        public static final int TEXT_ALL = 41353249;
-        public static final int SEARCH_GFX = 41353250;
+        public static final int POPUP = 41353220;
+        public static final int LEFT_PANEL = 41353221;
+        public static final int LEFT_SCROLL = 41353222;
+        public static final int LEFT_LIST = 41353223;
+        public static final int CATEGORY_BACKGROUNDS = 41353224;
+        public static final int CATEGORY_LIST = 41353225;
+        public static final int RIGHT_PANEL = 41353226;
+        public static final int RIGHT_SCROLL = 41353227;
+        public static final int LIST = 41353228;
+        public static final int CONTRACT_SEEDS = 41353229;
+        public static final int MAIN_VAULT = 41353230;
+        public static final int FAVES = 41353231;
+        public static final int CATEGORY_HEADERS = 41353232;
+        public static final int CATEGORY_LINES = 41353233;
+        public static final int OBJ_LIST = 41353234;
+        public static final int TEXT_LIST = 41353235;
+        public static final int BUTTONS = 41353236;
+        public static final int LOCK_MENU = 41353237;
+        public static final int COM_22 = 41353238;
+        public static final int X1 = 41353239;
+        public static final int X5 = 41353240;
+        public static final int X10 = 41353241;
+        public static final int XX = 41353242;
+        public static final int XALL = 41353243;
+        public static final int SEARCH = 41353244;
+        public static final int DEPOSIT_ALL = 41353245;
+        public static final int DEPOSIT_ALL_GFX = 41353246;
+        public static final int TEXT_1 = 41353247;
+        public static final int TEXT_5 = 41353248;
+        public static final int TEXT_10 = 41353249;
+        public static final int TEXT_X = 41353250;
+        public static final int TEXT_ALL = 41353251;
+        public static final int SEARCH_GFX = 41353252;
     }
 
     public static final class HallowedToolSide {
@@ -31280,6 +31291,18 @@ public final class InterfaceID
         public static final int TIMER_BORDER = 63438862;
         public static final int TIMER_BACKING = 63438863;
         public static final int TIMER_TEXT = 63438864;
+    }
+
+    public static final class MourningDeathaltarList {
+        private MourningDeathaltarList() {}
+
+        public static final int UNIVERSE = 63504384;
+        public static final int COM_1 = 63504385;
+        public static final int COM_2 = 63504386;
+        public static final int COM_3 = 63504387;
+        public static final int CONTAINER = 63504388;
+        public static final int TEXT = 63504389;
+        public static final int SCROLLBAR = 63504390;
     }
 
     public static GamevalEntry[] entries() { return InterfaceIDEntries.entries(); }

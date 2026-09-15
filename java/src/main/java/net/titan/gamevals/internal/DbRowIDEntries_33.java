@@ -73,6 +73,20 @@ final class DbRowIDEntries_33 {
             new GamevalEntry(16956, "SKILL_FEATURE_FISHING_HALIBUTSHOAL", "skill_feature_fishing_halibutshoal", "rowtypes"),
             new GamevalEntry(16957, "SKILL_FEATURE_FISHING_BLUEFINSHOAL", "skill_feature_fishing_bluefinshoal", "rowtypes"),
             new GamevalEntry(16958, "SKILL_FEATURE_FISHING_MARLINSHOAL", "skill_feature_fishing_marlinshoal", "rowtypes"),
+            new GamevalEntry(16959, "LABRADOR", "labrador", "rowtypes"),
+            new GamevalEntry(16960, "SPANIEL", "spaniel", "rowtypes"),
+            new GamevalEntry(16961, "PUG", "pug", "rowtypes"),
+            new GamevalEntry(16962, "COLLIE", "collie", "rowtypes"),
+            new GamevalEntry(16963, "CORGI", "corgi", "rowtypes"),
+            new GamevalEntry(16964, "GREYHOUND", "greyhound", "rowtypes"),
+            new GamevalEntry(16965, "CHIHUAHUA", "chihuahua", "rowtypes"),
+            new GamevalEntry(16966, "SAMOYED", "samoyed", "rowtypes"),
+            new GamevalEntry(16967, "SHEPARD", "shepard", "rowtypes"),
+            new GamevalEntry(16968, "SHIBA", "shiba", "rowtypes"),
+            new GamevalEntry(16969, "HUSKY", "husky", "rowtypes"),
+            new GamevalEntry(16970, "YORKIE", "yorkie", "rowtypes"),
+            new GamevalEntry(16971, "QUEST_RUFFSITUATION", "quest_ruffsituation", "rowtypes"),
+            new GamevalEntry(16972, "QUEST_CRABQUEST", "quest_crabquest", "rowtypes"),
         };
     }
 

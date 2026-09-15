@@ -22,6 +22,16 @@ public interface InteractionBackend {
     boolean useInventoryItemOnNpc(int srcSlot, int srcItemId, int npcHashIndex);
     boolean useInventoryItemOnObject(int srcSlot, int srcItemId,
                                      int objectId, int tileX, int tileY);
+    /** SDK 129. Queue {@code WIDGET_TARGET} on the source inventory slot together
+     * with {@code ITEM_USE_ON_GROUND_ITEM} at the stack's tile as one selected
+     * pair; the host pins {@code srcItemId} and binds the unique matching stack
+     * on the game thread. Default {@code false} keeps older backend
+     * implementations safe. {@code true} means queued, not acted upon. */
+    default boolean useInventoryItemOnGroundItem(int srcSlot, int srcItemId, int itemId,
+                                                 int tileX, int tileY, int plane,
+                                                 int worldViewId) {
+        return false;
+    }
 
     boolean widgetInteract(int opcode, int identifier, int param0, int param1);
     boolean widgetInteractAtPath(WidgetAddress address, int opcode,

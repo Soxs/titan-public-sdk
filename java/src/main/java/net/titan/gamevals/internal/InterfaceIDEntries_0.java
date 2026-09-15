@@ -237,7 +237,7 @@ final class InterfaceIDEntries_0 {
             new GamevalEntry(224, "MISC_SHIPJOURNEY", "misc_shipjourney", "iftypes"),
             new GamevalEntry(225, "MM_MESSAGE", "mm_message", "iftypes"),
             new GamevalEntry(226, "DEADMANPROTECT", "deadmanprotect", "iftypes"),
-            new GamevalEntry(227, "MOURNING_DEATHALTER_LIST", "mourning_deathalter_list", "iftypes"),
+            new GamevalEntry(227, "DOG_SELECTION", "dog_selection", "iftypes"),
             new GamevalEntry(228, "DEADMAN_DELAY", "deadman_delay", "iftypes"),
             new GamevalEntry(229, "MESSAGEBOX", "messagebox", "iftypes"),
             new GamevalEntry(230, "DEADMAN_SAFEBOX", "deadman_safebox", "iftypes"),

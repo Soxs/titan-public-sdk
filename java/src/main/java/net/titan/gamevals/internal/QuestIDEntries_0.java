@@ -224,6 +224,8 @@ final class QuestIDEntries_0 {
             new QuestEntry(9645, 212, "QUEST_IDESOFMILK", "The Ides of Milk", "Ides of Milk, The", "", "questtypes"),
             new QuestEntry(16414, 213, "QUEST_BLOODMOONRISES", "The Blood Moon Rises", "Blood Moon Rises, The", "", "questtypes"),
             new QuestEntry(7133, 214, "QUEST_FALLENFROMGRACE", "Fallen From Grace", "Fallen From Grace", "", "questtypes"),
+            new QuestEntry(16971, 215, "QUEST_RUFFSITUATION", "A Ruff Situation", "Ruff Situation, A", "", "questtypes"),
+            new QuestEntry(16972, 216, "QUEST_CRABQUEST", "Crab Quest", "Crab Quest", "", "questtypes"),
         };
     }
 
