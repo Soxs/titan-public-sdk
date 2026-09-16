@@ -409,7 +409,7 @@ final class ItemIDEntries_43 {
             new GamevalEntry(22412, "PLACEHOLDER_MYQ4_SERAFINA_BOOK", "placeholder_myq4_serafina_book", "objtypes"),
             new GamevalEntry(22413, "MYQ4_FLAYGIAN_NOTES", "Flaygian's notes", "objtypes"),
             new GamevalEntry(22414, "MYQ4_CHAIN", "Chain", "objtypes"),
-            new GamevalEntry(22415, "MYQ4_XP_TOME", "Tome of experience", "objtypes"),
+            new GamevalEntry(22415, "MYQ4_XP_TOME", "Tome of Experience", "objtypes"),
             new GamevalEntry(22416, "SLEPE_BOOK_SISTER1", "The Turncloak", "objtypes"),
             new GamevalEntry(22417, "PLACEHOLDER_SLEPE_BOOK_SISTER1", "placeholder_slepe_book_sister1", "objtypes"),
             new GamevalEntry(22418, "SLEPE_BOOK_SISTER2", "Explosive Discovery", "objtypes"),

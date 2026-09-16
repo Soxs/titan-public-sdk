@@ -46,6 +46,7 @@ final class VarbitIDEntries_31 {
             new GamevalEntry(15905, "XMAS24_MATCHES", "xmas24_matches", "varbittypes"),
             new GamevalEntry(15910, "DOGQ_STRANGER_INTRO", "dogq_stranger_intro", "varbittypes"),
             new GamevalEntry(15911, "DOGQ_TALIA_INTRO", "dogq_talia_intro", "varbittypes"),
+            new GamevalEntry(15912, "CRAB_1OFF_NET_CHECK", "crab_1off_net_check", "varbittypes"),
             new GamevalEntry(15915, "BANK_SIDE_SLOT_SHOWOP", "bank_side_slot_showop", "varbittypes"),
             new GamevalEntry(15958, "BANK_DEPOSITBOX_OPLOCU_ASKQUANTITY", "bank_depositbox_oplocu_askquantity", "varbittypes"),
             new GamevalEntry(15959, "POH_SPIRIT_TREE_UPROOTED", "poh_spirit_tree_uprooted", "varbittypes"),

@@ -211,7 +211,7 @@ final class ItemIDEntries_26 {
             new GamevalEntry(13510, "ARCEUUS_CORPSE_DRAGON_INITIAL", "Ensouled dragon head", "objtypes"),
             new GamevalEntry(13511, "ARCEUUS_CORPSE_DRAGON", "Ensouled dragon head", "objtypes"),
             new GamevalEntry(13512, "CERT_ARCEUUS_CORPSE_DRAGON", "cert_arceuus_corpse_dragon", "objtypes"),
-            new GamevalEntry(13513, "ARCEUUS_LIBRARY_REWARD", "Book of arcane knowledge", "objtypes"),
+            new GamevalEntry(13513, "ARCEUUS_LIBRARY_REWARD", "Book of Arcane Knowledge", "objtypes"),
             new GamevalEntry(13514, "ARCEUUS_LIBRARY_DARKMANUSCRIPT_1", "Dark manuscript", "objtypes"),
             new GamevalEntry(13515, "ARCEUUS_LIBRARY_DARKMANUSCRIPT_2", "Dark manuscript", "objtypes"),
             new GamevalEntry(13516, "ARCEUUS_LIBRARY_DARKMANUSCRIPT_3", "Dark manuscript", "objtypes"),

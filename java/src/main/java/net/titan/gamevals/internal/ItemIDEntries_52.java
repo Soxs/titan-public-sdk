@@ -92,7 +92,7 @@ final class ItemIDEntries_52 {
             new GamevalEntry(26703, "PVPA_SAIKAS_SHROUD_BROKEN", "Saika's shroud (broken)", "objtypes"),
             new GamevalEntry(26704, "BLIGHTED_SACK_WAVE", "Null", "objtypes"),
             new GamevalEntry(26705, "BLIGHTED_SACK_SURGE", "Blighted surge sack", "objtypes"),
-            new GamevalEntry(26706, "PVPA_IMBUING_SCROLL", "Scroll of imbuing", "objtypes"),
+            new GamevalEntry(26706, "PVPA_IMBUING_SCROLL", "Scroll of Imbuing", "objtypes"),
             new GamevalEntry(26707, "PVPA_DRAGON_CLAWS_KIT", "Dragon claws ornament kit", "objtypes"),
             new GamevalEntry(26708, "DRAGON_CLAWS_ORNAMENT", "Dragon claws (or)", "objtypes"),
             new GamevalEntry(26709, "PVPA_DRAGON_WARHAMMER_KIT", "Dragon warhammer ornament kit", "objtypes"),

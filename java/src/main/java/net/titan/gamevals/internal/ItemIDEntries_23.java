@@ -221,7 +221,7 @@ final class ItemIDEntries_23 {
             new GamevalEntry(11992, "LAVA_SCALE", "Lava scale", "objtypes"),
             new GamevalEntry(11993, "CERT_LAVA_SCALE", "cert_lava_scale", "objtypes"),
             new GamevalEntry(11994, "LAVA_SHARD", "Lava scale shard", "objtypes"),
-            new GamevalEntry(11995, "CHAOSELEPET", "Pet Chaos Elemental", "objtypes"),
+            new GamevalEntry(11995, "CHAOSELEPET", "Pet chaos elemental", "objtypes"),
             new GamevalEntry(11996, "TEAM_LEADER_HELPER", "Holiday tool", "objtypes"),
             new GamevalEntry(11997, "EASTER_HELPER", "ZReanimates a low levelled creature", "objtypes"),
             new GamevalEntry(11998, "SMOKE_BATTLESTAFF", "Smoke battlestaff", "objtypes"),

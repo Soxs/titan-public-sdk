@@ -113165,6 +113165,18 @@ declare namespace titan {
             readonly DOGQ_FENCE_WOODEN01_PLANK01_NONBLOCKING: 62507;
             readonly DOGQ_FENCE_WOODEN01_PLANK01_BROKEN01: 62508;
             readonly WOODENSUPPORT2: 62509;
+            readonly WALLKIT_WOODEN01_BAZAAR01: 62510;
+            readonly WALLKIT_WOODEN01_BAZAAR01_M: 62511;
+            readonly WALLKIT_WOODEN01_BAZAAR02: 62512;
+            readonly WALLKIT_WOODEN01_BAZAAR02_M: 62513;
+            readonly WALLKIT_WOODEN01_BAZAAR03: 62514;
+            readonly WALLKIT_WOODEN01_BAZAAR03_M: 62515;
+            readonly WALLKIT_WOODEN01_BAZAAR04: 62516;
+            readonly CIVITAS_STAIRS_1X3_BAZAAR: 62517;
+            readonly WALLKIT_COLOSSEUM10_WALLTOP03: 62518;
+            readonly TOA_KEPHRI_DUNG01_TILE: 62519;
+            readonly TOA_KEPHRI_DUNG02_TILE: 62520;
+            readonly TOA_KEPHRI_DUNG03_TILE: 62521;
             byId(id: number): GamevalEntry | null;
         };
         readonly VarbitID: {
@@ -123632,6 +123644,7 @@ declare namespace titan {
             readonly XMAS24_MATCHES: 15905;
             readonly DOGQ_STRANGER_INTRO: 15910;
             readonly DOGQ_TALIA_INTRO: 15911;
+            readonly CRAB_1OFF_NET_CHECK: 15912;
             readonly BANK_SIDE_SLOT_SHOWOP: 15915;
             readonly BANK_DEPOSITBOX_OPLOCU_ASKQUANTITY: 15958;
             readonly POH_SPIRIT_TREE_UPROOTED: 15959;
@@ -132278,7 +132291,7 @@ declare namespace titan {
                 readonly COL_CR_POINTS_XP_TYPE: 45;
                 readonly COL_CR_STARTER: 46;
                 readonly COL_FSW_WORLD_FIRST_ID: 47;
-                readonly COL_RELATED_CONTENT: 48;
+                readonly COL_RESTRICTED_CONTENT: 48;
                 readonly Row: {
                     readonly QUEST_ANIMALMAGNETISM: 0;
                     readonly QUEST_ANOTHERSLICEOFHAM: 1;
@@ -132573,7 +132586,7 @@ declare namespace titan {
                 readonly COL_REGION: 5;
                 readonly COL_REQUIREMENTS: 6;
                 readonly COL_ALLREGIONS: 7;
-                readonly COL_RELATED_CONTENT: 8;
+                readonly COL_RESTRICTED_CONTENT: 8;
                 readonly Row: {
                     readonly CLUEHELPER_ANAGRAM_BEGINNER_RANAEL: 1499;
                     readonly CLUEHELPER_ANAGRAM_BEGINNER_APOTHECARY: 1500;
@@ -132689,7 +132702,7 @@ declare namespace titan {
                 readonly COL_REQUIREMENTS: 3;
                 readonly COL_REGION: 4;
                 readonly COL_ALLREGIONS: 5;
-                readonly COL_RELATED_CONTENT: 6;
+                readonly COL_RESTRICTED_CONTENT: 6;
                 readonly Row: {
                     readonly CLUEHELPER_MAP_BEGINNER_0: 2223;
                     readonly CLUEHELPER_MAP_BEGINNER_1: 2224;
@@ -132744,7 +132757,7 @@ declare namespace titan {
                 readonly COL_REQUIREMENTS: 5;
                 readonly COL_REGION: 6;
                 readonly COL_ALLREGIONS: 7;
-                readonly COL_RELATED_CONTENT: 8;
+                readonly COL_RESTRICTED_CONTENT: 8;
                 readonly Row: {
                     readonly CLUEHELPER_CIPHER_XMTS_EASY_0: 2262;
                     readonly CLUEHELPER_CIPHER_MEDIUM_0: 2263;
@@ -132776,7 +132789,7 @@ declare namespace titan {
                 readonly COL_COMBAT_ENCOUNTER: 5;
                 readonly COL_REGION: 6;
                 readonly COL_ALLREGIONS: 7;
-                readonly COL_RELATED_CONTENT: 8;
+                readonly COL_RESTRICTED_CONTENT: 8;
                 readonly Row: {
                     readonly CLUEHELPER_COORDINATE_MEDIUM_0: 1923;
                     readonly CLUEHELPER_COORDINATE_MEDIUM_1: 1924;
@@ -132963,7 +132976,7 @@ declare namespace titan {
                 readonly COL_HIDEY_HOLE_COORD: 9;
                 readonly COL_REGION: 10;
                 readonly COL_ALLREGIONS: 11;
-                readonly COL_RELATED_CONTENT: 12;
+                readonly COL_RESTRICTED_CONTENT: 12;
                 readonly COL_LEAGUE_CLUE_TEXT: 13;
                 readonly COL_LEAGUE_TARGET: 14;
                 readonly Row: {
@@ -133273,7 +133286,7 @@ declare namespace titan {
                 readonly COL_REQUIREMENTS: 10;
                 readonly COL_REGION: 11;
                 readonly COL_ALLREGIONS: 12;
-                readonly COL_RELATED_CONTENT: 13;
+                readonly COL_RESTRICTED_CONTENT: 13;
                 readonly Row: {
                     readonly CLUEHELPER_EMOTE_BEGINNER_0: 2084;
                     readonly CLUEHELPER_EMOTE_BEGINNER_1: 2085;
@@ -133414,7 +133427,7 @@ declare namespace titan {
                 readonly COL_REQUIREMENTS: 6;
                 readonly COL_REGION: 7;
                 readonly COL_ALLREGIONS: 8;
-                readonly COL_RELATED_CONTENT: 9;
+                readonly COL_RESTRICTED_CONTENT: 9;
                 readonly Row: {
                     readonly CLUEHELPER_FAIRYRING_HARD_0: 1901;
                     readonly CLUEHELPER_FAIRYRING_HARD_1: 1902;
@@ -133438,7 +133451,7 @@ declare namespace titan {
                 readonly COL_REQUIREMENTS: 4;
                 readonly COL_REGION: 5;
                 readonly COL_ALLREGIONS: 6;
-                readonly COL_RELATED_CONTENT: 7;
+                readonly COL_RESTRICTED_CONTENT: 7;
                 readonly Row: {
                     readonly CLUEHELPER_FALOBARD_MASTER_0: 1722;
                     readonly CLUEHELPER_FALOBARD_MASTER_1: 1723;
@@ -133471,7 +133484,7 @@ declare namespace titan {
                 readonly COL_COMBAT_ENCOUNTER: 4;
                 readonly COL_REGION: 5;
                 readonly COL_ALLREGIONS: 6;
-                readonly COL_RELATED_CONTENT: 7;
+                readonly COL_RESTRICTED_CONTENT: 7;
                 readonly Row: {
                     readonly CLUEHELPER_HOTCOLD_BEGINNER_DRAYNOR_MANOR_MUSHROOMS: 685;
                     readonly CLUEHELPER_HOTCOLD_BEGINNER_DRAYNOR_WHEAT_FIELD: 686;
@@ -133627,7 +133640,7 @@ declare namespace titan {
                 readonly COL_REQUIREMENTS: 5;
                 readonly COL_REGION: 6;
                 readonly COL_ALLREGIONS: 7;
-                readonly COL_RELATED_CONTENT: 8;
+                readonly COL_RESTRICTED_CONTENT: 8;
                 readonly Row: {
                     readonly CLUEHELPER_MUSIC_EASY_0: 1876;
                     readonly CLUEHELPER_MUSIC_EASY_1: 1877;
@@ -133665,7 +133678,7 @@ declare namespace titan {
                 readonly COL_TARGET: 4;
                 readonly COL_REGION: 5;
                 readonly COL_ALLREGIONS: 6;
-                readonly COL_RELATED_CONTENT: 7;
+                readonly COL_RESTRICTED_CONTENT: 7;
                 readonly Row: {
                     readonly CLUEHELPER_SKILLCHALLENGE_BEGINNER_0: 1811;
                     readonly CLUEHELPER_SKILLCHALLENGE_BEGINNER_1: 1812;
@@ -135583,7 +135596,7 @@ declare namespace titan {
                 readonly COL_SECONDARY_TRACK: 11;
                 readonly COL_PARENT_TRACK: 12;
                 readonly COL_RELEASE_TYPE: 13;
-                readonly COL_RELATED_CONTENT: 14;
+                readonly COL_RESTRICTED_CONTENT: 14;
                 readonly Row: {
                     readonly MUSIC_RAT_BOSS: 2;
                     readonly MUSIC_7TH_REALM: 2511;
@@ -139094,7 +139107,7 @@ declare namespace titan {
                 readonly COL_EXTENSION_ADDITIVE: 16;
                 readonly COL_UNLOCK_WEIGHTING: 17;
                 readonly COL_BLOCK_UNLOCK: 18;
-                readonly COL_RELATED_CONTENT: 19;
+                readonly COL_RESTRICTED_CONTENT: 19;
                 readonly Row: {
                     readonly SLAYER_TASK_KREEARRA: 545;
                     readonly SLAYER_TASK_ZILYANA: 6155;
@@ -139647,7 +139660,7 @@ declare namespace titan {
                 readonly COL_MIN_STAT_REQUIREMENT_ALL: 5;
                 readonly COL_MIN_STAT_REQUIREMENT_ANY: 6;
                 readonly COL_QUESTS_REQUIRED_ALL: 7;
-                readonly COL_RELATED_CONTENT: 8;
+                readonly COL_RESTRICTED_CONTENT: 8;
                 readonly Row: {
                     readonly SLAYERAREA_CRYPTOFTONALI: 4099;
                     readonly SLAYERAREA_ZEAHCATACOMBS: 6341;
@@ -142222,7 +142235,7 @@ declare namespace titan {
             };
             readonly RestrictContentObj: {
                 readonly ID: 127;
-                readonly COL_RELATED_CONTENT: 0;
+                readonly COL_RESTRICTED_CONTENT: 0;
                 readonly COL_CATEGORY: 1;
                 readonly COL_OBJ: 2;
                 readonly Row: {
@@ -143216,7 +143229,7 @@ declare namespace titan {
                 readonly COL_CHARTERING_DESTINATION_Y_POS: 5;
                 readonly COL_CHARTERING_DESTINATION_INZONE: 6;
                 readonly COL_CHARTERING_SHOP_INV: 7;
-                readonly COL_RELATED_CONTENT: 8;
+                readonly COL_RESTRICTED_CONTENT: 8;
             };
             readonly CharteringCosts: {
                 readonly ID: 207;
@@ -175314,6 +175327,7 @@ declare namespace titan {
             readonly CRAB_SAND_CIRCLE_7: 14517;
             readonly CRAB_SAND_CIRCLE_8: 14518;
             readonly CRAB_SAND_CIRCLE_INITIAL: 14519;
+            readonly MAIDEN_PET_IDLE: 14520;
             byId(id: number): GamevalEntry | null;
         };
         readonly SpotanimID: {
@@ -200334,7 +200348,8 @@ declare namespace titan {
             };
             readonly SeedVaultDeposit: {
                 readonly UNIVERSE: 41287680;
-                readonly INV: 41287681;
+                readonly LOCKED_SLOT: 41287681;
+                readonly INV: 41287682;
             };
             readonly SeedVault: {
                 readonly INFINITY_: 41353216;

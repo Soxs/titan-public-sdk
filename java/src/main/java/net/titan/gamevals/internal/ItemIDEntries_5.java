@@ -31,7 +31,7 @@ final class ItemIDEntries_5 {
             new GamevalEntry(2578, "CERT_BOOTS_RANGER", "cert_boots_ranger", "objtypes"),
             new GamevalEntry(2579, "BOOTS_WIZARD", "Wizard boots", "objtypes"),
             new GamevalEntry(2580, "CERT_BOOTS_WIZARD", "cert_boots_wizard", "objtypes"),
-            new GamevalEntry(2581, "ROBINHOODHAT", "Robin hood hat", "objtypes"),
+            new GamevalEntry(2581, "ROBINHOODHAT", "Robin Hood hat", "objtypes"),
             new GamevalEntry(2582, "CERT_ROBINHOODHAT", "cert_robinhoodhat", "objtypes"),
             new GamevalEntry(2583, "BLACK_PLATEBODY_TRIM", "Black platebody (t)", "objtypes"),
             new GamevalEntry(2584, "CERT_BLACK_PLATEBODY_TRIM", "cert_black_platebody_trim", "objtypes"),

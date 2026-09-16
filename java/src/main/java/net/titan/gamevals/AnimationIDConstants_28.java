@@ -185,4 +185,5 @@ public interface AnimationIDConstants_28 {
     int CRAB_SAND_CIRCLE_7 = 14517;
     int CRAB_SAND_CIRCLE_8 = 14518;
     int CRAB_SAND_CIRCLE_INITIAL = 14519;
+    int MAIDEN_PET_IDLE = 14520;
 }

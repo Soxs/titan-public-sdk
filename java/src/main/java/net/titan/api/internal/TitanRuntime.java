@@ -27,6 +27,7 @@ public final class TitanRuntime {
     private static volatile LiveStateBackend liveStateBackend;
     private static volatile WebWalkerBackend webWalkerBackend;
     private static volatile WorldMapBackend worldMapBackend;
+    private static volatile ScreenshotBackend screenshotBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -128,6 +129,25 @@ public final class TitanRuntime {
     public static void clearWorldMapBackend(WorldMapBackend backend) {
         if (worldMapBackend == backend) {
             worldMapBackend = null;
+        }
+    }
+
+    public static ScreenshotBackend getScreenshotBackend() {
+        ScreenshotBackend value = screenshotBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java screenshot backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setScreenshotBackend(ScreenshotBackend backend) {
+        screenshotBackend = backend;
+    }
+
+    public static void clearScreenshotBackend(ScreenshotBackend backend) {
+        if (screenshotBackend == backend) {
+            screenshotBackend = null;
         }
     }
 

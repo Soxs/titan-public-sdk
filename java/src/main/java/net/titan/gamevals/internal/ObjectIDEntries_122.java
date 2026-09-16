@@ -56,6 +56,18 @@ final class ObjectIDEntries_122 {
             new GamevalEntry(62507, "DOGQ_FENCE_WOODEN01_PLANK01_NONBLOCKING", "dogq_fence_wooden01_plank01_nonblocking", "loctypes"),
             new GamevalEntry(62508, "DOGQ_FENCE_WOODEN01_PLANK01_BROKEN01", "dogq_fence_wooden01_plank01_broken01", "loctypes"),
             new GamevalEntry(62509, "WOODENSUPPORT2", "woodensupport2", "loctypes"),
+            new GamevalEntry(62510, "WALLKIT_WOODEN01_BAZAAR01", "wallkit_wooden01_bazaar01", "loctypes"),
+            new GamevalEntry(62511, "WALLKIT_WOODEN01_BAZAAR01_M", "wallkit_wooden01_bazaar01_m", "loctypes"),
+            new GamevalEntry(62512, "WALLKIT_WOODEN01_BAZAAR02", "wallkit_wooden01_bazaar02", "loctypes"),
+            new GamevalEntry(62513, "WALLKIT_WOODEN01_BAZAAR02_M", "wallkit_wooden01_bazaar02_m", "loctypes"),
+            new GamevalEntry(62514, "WALLKIT_WOODEN01_BAZAAR03", "wallkit_wooden01_bazaar03", "loctypes"),
+            new GamevalEntry(62515, "WALLKIT_WOODEN01_BAZAAR03_M", "wallkit_wooden01_bazaar03_m", "loctypes"),
+            new GamevalEntry(62516, "WALLKIT_WOODEN01_BAZAAR04", "wallkit_wooden01_bazaar04", "loctypes"),
+            new GamevalEntry(62517, "CIVITAS_STAIRS_1X3_BAZAAR", "Staircase", "loctypes"),
+            new GamevalEntry(62518, "WALLKIT_COLOSSEUM10_WALLTOP03", "wallkit_colosseum10_walltop03", "loctypes"),
+            new GamevalEntry(62519, "TOA_KEPHRI_DUNG01_TILE", "toa_kephri_dung01_tile", "loctypes"),
+            new GamevalEntry(62520, "TOA_KEPHRI_DUNG02_TILE", "toa_kephri_dung02_tile", "loctypes"),
+            new GamevalEntry(62521, "TOA_KEPHRI_DUNG03_TILE", "toa_kephri_dung03_tile", "loctypes"),
         };
     }
 

@@ -114,7 +114,7 @@ final class ItemIDEntries_25 {
             new GamevalEntry(12901, "CERT_TOXIC_TOTS_UNCHARGED", "cert_toxic_tots_uncharged", "objtypes"),
             new GamevalEntry(12902, "TOXIC_SOTD", "Toxic staff (uncharged)", "objtypes"),
             new GamevalEntry(12903, "CERT_TOXIC_SOTD", "cert_toxic_sotd", "objtypes"),
-            new GamevalEntry(12904, "TOXIC_SOTD_CHARGED", "Toxic staff of the dead", "objtypes"),
+            new GamevalEntry(12904, "TOXIC_SOTD_CHARGED", "Toxic Staff of the Dead", "objtypes"),
             new GamevalEntry(12905, "ANTIVENOM4", "Anti-venom(4)", "objtypes"),
             new GamevalEntry(12906, "CERT_ANTIVENOM4", "cert_antivenom4", "objtypes"),
             new GamevalEntry(12907, "ANTIVENOM3", "Anti-venom(3)", "objtypes"),

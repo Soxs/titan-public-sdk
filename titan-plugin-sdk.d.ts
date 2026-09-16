@@ -316,6 +316,50 @@ interface WebPathStep {
     readonly name: string;
 }
 
+/** Lifecycle state of an asynchronous screenshot request. SDK 131+. */
+enum ScreenshotPhase {
+    None = 0,
+    /** Waiting for the next presented frame, or encoding it. */
+    Pending = 1,
+    /** PNG bytes are available through ScreenshotFacade.copyPng. */
+    Ready = 2,
+    Failed = 3,
+}
+
+interface ScreenshotStatus {
+    /** Opaque uint64 id; always a bigint to avoid precision loss. */
+    readonly requestId: bigint;
+    readonly phase: ScreenshotPhase;
+    /** Captured frame size in pixels; zero until Ready. */
+    readonly width: number;
+    readonly height: number;
+    /** Encoded PNG size in bytes; zero until Ready. */
+    readonly pngBytes: number;
+    /** Failure reason, or empty. */
+    readonly message: string;
+    readonly finished: boolean;
+}
+
+/**
+ * Asynchronous full-frame game screenshots: the same image the controller's
+ * `/tabs` command returns (the presented backbuffer after the AboveWidgets
+ * overlay pass), PNG-encoded. Capture happens on the next presented frame
+ * and encoding on a worker thread, so submit() returns a handle to poll for
+ * ScreenshotPhase.Ready. At most 4 handles may be outstanding; release each
+ * one. A request that never sees a presented frame fails on its own after a
+ * few seconds. Callable from any plugin callback. SDK 131+.
+ */
+interface ScreenshotFacade {
+    /** Queue one capture, or return null when the host cannot accept another. */
+    submit(): bigint | null;
+    /** Poll a retained request, or return null for an unknown/released handle. */
+    poll(handle: bigint): ScreenshotStatus | null;
+    /** PNG bytes of a Ready request, or null for anything else. */
+    copyPng(handle: bigint): Uint8Array | null;
+    /** Release retained state; the handle must not be used after this succeeds. */
+    release(handle: bigint): boolean;
+}
+
 interface WebWalkerFacade {
     /** Queue a route job, or return null when the request cannot be accepted. */
     submit(request: WebPathRequest): bigint | null;
@@ -2097,6 +2141,9 @@ interface PanelElement {
 
     /** Host-driven web-walk executor over generated routes. SDK 114+. */
     const webWalk: WebWalkFacade;
+
+    /** Asynchronous full-frame game screenshots, as PNG bytes. SDK 131+. */
+    const screenshot: ScreenshotFacade;
 
     // --- Geometry helpers (SDK 39) ---
     // Mirror the inline methods on `titan::WorldPos` in C++. Operate

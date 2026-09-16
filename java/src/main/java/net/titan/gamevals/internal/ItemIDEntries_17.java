@@ -385,7 +385,7 @@ final class ItemIDEntries_17 {
             new GamevalEntry(9080, "SUQKA_HIDE_UNTANNED", "Suqah hide", "objtypes"),
             new GamevalEntry(9081, "SUQKA_HIDE", "( (+( (/( ('( ( ( Suqah leather", "objtypes"),
             new GamevalEntry(9082, "LUNAR_GROUNDTOOTH", "Ground tooth", "objtypes"),
-            new GamevalEntry(9083, "LUNAR_SEAL_OF_PASSAGE", "Seal of passage", "objtypes"),
+            new GamevalEntry(9083, "LUNAR_SEAL_OF_PASSAGE", "Seal of Passage", "objtypes"),
             new GamevalEntry(9084, "LUNAR_MOONCLAN_LIMINAL_STAFF", "Lunar staff", "objtypes"),
             new GamevalEntry(9085, "LUNAR_MOONCLAN_LIMINAL_VIAL_EMPTY", "Empty vial", "objtypes"),
             new GamevalEntry(9086, "LUNAR_MOONCLAN_LIMINAL_VIAL_WATER", "Vial of water", "objtypes"),

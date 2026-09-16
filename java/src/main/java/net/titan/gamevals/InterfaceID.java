@@ -21938,7 +21938,8 @@ public final class InterfaceID
         private SeedVaultDeposit() {}
 
         public static final int UNIVERSE = 41287680;
-        public static final int INV = 41287681;
+        public static final int LOCKED_SLOT = 41287681;
+        public static final int INV = 41287682;
     }
 
     public static final class SeedVault {

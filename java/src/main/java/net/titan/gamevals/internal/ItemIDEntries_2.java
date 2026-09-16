@@ -38,7 +38,7 @@ final class ItemIDEntries_2 {
             new GamevalEntry(1049, "CERT_WHITE_PARTYHAT", "cert_white_partyhat", "objtypes"),
             new GamevalEntry(1050, "SANTA_HAT", "Santa hat", "objtypes"),
             new GamevalEntry(1051, "CERT_SANTA_HAT", "cert_santa_hat", "objtypes"),
-            new GamevalEntry(1052, "CAPE_OF_LEGENDS", "Cape of legends", "objtypes"),
+            new GamevalEntry(1052, "CAPE_OF_LEGENDS", "Cape of Legends", "objtypes"),
             new GamevalEntry(1053, "HALLOWEENMASK_GREEN", "Green halloween mask", "objtypes"),
             new GamevalEntry(1054, "CERT_HALLOWEENMASK_GREEN", "cert_halloweenmask_green", "objtypes"),
             new GamevalEntry(1055, "HALLOWEENMASK_BLUE", "Blue halloween mask", "objtypes"),

@@ -107,7 +107,7 @@ final class ItemIDEntries_67 {
             new GamevalEntry(34398, "LANSCAPE_2026_CURRENCY_250", "?? ? ?", "objtypes"),
             new GamevalEntry(34399, "LANSCAPE_2026_CURRENCY_1000", "lanscape_2026_currency_1000", "objtypes"),
             new GamevalEntry(34400, "LANSCAPE_2026_CURRENCY_10000", "lanscape_2026_currency_10000", "objtypes"),
-            new GamevalEntry(34401, "NECKLACE_OF_FANGS", "Necklace of fangs", "objtypes"),
+            new GamevalEntry(34401, "NECKLACE_OF_FANGS", "Necklace of Fangs", "objtypes"),
             new GamevalEntry(34402, "CERT_NECKLACE_OF_FANGS", "cert_necklace_of_fangs", "objtypes"),
             new GamevalEntry(34403, "PLACEHOLDER_NECKLACE_OF_FANGS", "placeholder_necklace_of_fangs", "objtypes"),
             new GamevalEntry(34404, "AIR_DIAMOND", "Air diamond", "objtypes"),

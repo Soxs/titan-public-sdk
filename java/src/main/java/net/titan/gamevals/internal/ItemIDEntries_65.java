@@ -435,7 +435,7 @@ final class ItemIDEntries_65 {
             new GamevalEntry(33702, "MYQ6_IRIANDUL_JOURNAL", "From Misthalin to Morytania", "objtypes"),
             new GamevalEntry(33703, "MYQ6_SARL_JOURNAL", "Sarl's journal", "objtypes"),
             new GamevalEntry(33704, "MYQ6_DERYGULL_JOURNAL", "Scruffy notebook", "objtypes"),
-            new GamevalEntry(33705, "MYQ6_ERYSAIL_JOURNAL", "Pious proceedings", "objtypes"),
+            new GamevalEntry(33705, "MYQ6_ERYSAIL_JOURNAL", "Pious Proceedings", "objtypes"),
             new GamevalEntry(33706, "MYQ6_FRIAR_JOURNAL", "The Life of Friar", "objtypes"),
             new GamevalEntry(33707, "MYQ6_ESSIANDAR_JOURNAL", "Essiandar's notes", "objtypes"),
             new GamevalEntry(33708, "MYQ6_IVANDIS_WRITINGS", "Ivandis' writings", "objtypes"),

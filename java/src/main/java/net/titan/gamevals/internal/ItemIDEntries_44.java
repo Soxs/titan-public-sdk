@@ -70,7 +70,7 @@ final class ItemIDEntries_44 {
             new GamevalEntry(22585, "BOND_TUTOR_ICON_DUMMY", "bond_tutor_icon_dummy", "objtypes"),
             new GamevalEntry(22586, "LOOTING_BAG_OPEN", "Looting bag", "objtypes"),
             new GamevalEntry(22587, "PLACEHOLDER_LOOTING_BAG_OPEN", "placeholder_looting_bag_open", "objtypes"),
-            new GamevalEntry(22588, "MY2ARM_COFFIN", "Old man's coffin", "objtypes"),
+            new GamevalEntry(22588, "MY2ARM_COFFIN", "Old Man's coffin", "objtypes"),
             new GamevalEntry(22589, "MY2ARM_POTION", "Reduced cadava potion", "objtypes"),
             new GamevalEntry(22590, "MY2ARM_GOATPOO", "Goat dung", "objtypes"),
             new GamevalEntry(22591, "MY2ARM_BOOK", "? (o(w Weiss fire notes", "objtypes"),

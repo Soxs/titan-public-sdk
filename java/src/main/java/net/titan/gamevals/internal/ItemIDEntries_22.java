@@ -245,7 +245,7 @@ final class ItemIDEntries_22 {
             new GamevalEntry(11524, "CERT_BRUTAL_1DOSEPOTIONOFZAMORAK", "cert_brutal_1dosepotionofzamorak", "objtypes"),
             new GamevalEntry(11525, "HUNTING_WIMPY_FEATHER", "Feather", "objtypes"),
             new GamevalEntry(11526, "PATTERN_LIME_DUMMY", "pattern_lime_dummy", "objtypes"),
-            new GamevalEntry(11527, "PATTERN_PINEAPPLE_CHUNKS_DUMMY", "Mausoleum bridge repair", "objtypes"),
+            new GamevalEntry(11527, "PATTERN_PINEAPPLE_CHUNKS_DUMMY", "Mausoleum bridge reinforcement", "objtypes"),
             new GamevalEntry(11528, "PATTERN_BLACK_BATTLEAXE_DUMMY", "pattern_black_battleaxe_dummy", "objtypes"),
             new GamevalEntry(11529, "PATTERN_CHOCOLATE_CAKE_DUMMY", "pattern_chocolate_cake_dummy", "objtypes"),
             new GamevalEntry(11530, "PATTERN_SPADE_DUMMY", "pattern_spade_dummy", "objtypes"),

@@ -194,6 +194,7 @@ final class AnimationIDEntries_28 {
             new GamevalEntry(14517, "CRAB_SAND_CIRCLE_7", "crab_sand_circle_7", "seqtypes"),
             new GamevalEntry(14518, "CRAB_SAND_CIRCLE_8", "crab_sand_circle_8", "seqtypes"),
             new GamevalEntry(14519, "CRAB_SAND_CIRCLE_INITIAL", "crab_sand_circle_initial", "seqtypes"),
+            new GamevalEntry(14520, "MAIDEN_PET_IDLE", "maiden_pet_idle", "seqtypes"),
         };
     }
 

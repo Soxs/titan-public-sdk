@@ -168,7 +168,7 @@ final class ItemIDEntries_6 {
             new GamevalEntry(3227, "CERT_RAW_RABBIT", "cert_raw_rabbit", "objtypes"),
             new GamevalEntry(3228, "COOKED_RABBIT", "Cooked rabbit", "objtypes"),
             new GamevalEntry(3229, "CERT_COOKED_RABBIT", "cert_cooked_rabbit", "objtypes"),
-            new GamevalEntry(3230, "REGICIDE_ALCHEMY", "Big book of bangs", "objtypes"),
+            new GamevalEntry(3230, "REGICIDE_ALCHEMY", "Big Book of Bangs", "objtypes"),
             new GamevalEntry(3231, "REGICIDE_ALCHEMY_SYMBOL1", "Symbol", "objtypes"),
             new GamevalEntry(3232, "CERT_REGICIDE_ALCHEMY_SYMBOL1", "cert_regicide_alchemy_symbol1", "objtypes"),
             new GamevalEntry(3233, "REGICIDE_ALCHEMY_SYMBOL2", "Symbol", "objtypes"),

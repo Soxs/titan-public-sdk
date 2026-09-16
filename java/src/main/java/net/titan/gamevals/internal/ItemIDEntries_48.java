@@ -124,7 +124,7 @@ final class ItemIDEntries_48 {
             new GamevalEntry(24687, "PLACEHOLDER_IG_MUD_PAGE", "placeholder_ig_mud_page", "objtypes"),
             new GamevalEntry(24688, "IG_MUD_ARMOUR", "Ancient armour", "objtypes"),
             new GamevalEntry(24689, "PLACEHOLDER_IG_MUD_ARMOUR", "placeholder_ig_mud_armour", "objtypes"),
-            new GamevalEntry(24690, "MYQ5_XP_TOME", "Tome of experience", "objtypes"),
+            new GamevalEntry(24690, "MYQ5_XP_TOME", "Tome of Experience", "objtypes"),
             new GamevalEntry(24691, "BLISTERWOOD_LOGS", "Blisterwood logs", "objtypes"),
             new GamevalEntry(24692, "PLACEHOLDER_BLISTERWOOD_LOGS", "placeholder_blisterwood_logs", "objtypes"),
             new GamevalEntry(24693, "SILVER_SICKLE_RUBY", "Ruby sickle (b)", "objtypes"),

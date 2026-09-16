@@ -469,7 +469,7 @@ final class ItemIDEntries_47 {
             new GamevalEntry(24520, "BR_CAPE_1000", "Victor's cape (1000)", "objtypes"),
             new GamevalEntry(24521, "PLACEHOLDER_BR_CAPE_1000", "placeholder_br_cape_1000", "objtypes"),
             new GamevalEntry(24522, "OSB7_CAT_EARS", "Null", "objtypes"),
-            new GamevalEntry(24523, "OSB7_CAT_HAIR", "Death's coffer", "objtypes"),
+            new GamevalEntry(24523, "OSB7_CAT_HAIR", "Death's Coffer", "objtypes"),
             new GamevalEntry(24524, "OSB7_COMB", "Gravestone", "objtypes"),
             new GamevalEntry(24525, "OSB7_REWARD_CAT_EARS", "Cat ears", "objtypes"),
             new GamevalEntry(24526, "PLACEHOLDER_OSB7_REWARD_CAT_EARS", "placeholder_osb7_reward_cat_ears", "objtypes"),

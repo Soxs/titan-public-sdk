@@ -7,6 +7,7 @@ public final class Titan {
     private static final WebWalker WEB_WALKER = new WebWalker();
     private static final WebWalk WEB_WALK = new WebWalk();
     private static final WorldMap WORLD_MAP = new WorldMap();
+    private static final Screenshot SCREENSHOT = new Screenshot();
 
     private Titan() {}
 
@@ -43,6 +44,11 @@ public final class Titan {
     /** Read-only state and projection helpers for the in-game world map (SDK 113). */
     public static WorldMap worldMap() {
         return WORLD_MAP;
+    }
+
+    /** Asynchronous full-frame game screenshots as PNG (SDK 131). */
+    public static Screenshot screenshot() {
+        return SCREENSHOT;
     }
 
     public static void runOnClientTick(Runnable callback) {

@@ -64,7 +64,7 @@ public final class DBTableID
         public static final int COL_CR_POINTS_XP_TYPE = 45;
         public static final int COL_CR_STARTER = 46;
         public static final int COL_FSW_WORLD_FIRST_ID = 47;
-        public static final int COL_RELATED_CONTENT = 48;
+        public static final int COL_RESTRICTED_CONTENT = 48;
 
         public static final class Row {
             private Row() {}
@@ -383,7 +383,7 @@ public final class DBTableID
         public static final int COL_REGION = 5;
         public static final int COL_REQUIREMENTS = 6;
         public static final int COL_ALLREGIONS = 7;
-        public static final int COL_RELATED_CONTENT = 8;
+        public static final int COL_RESTRICTED_CONTENT = 8;
 
         public static final class Row {
             private Row() {}
@@ -505,7 +505,7 @@ public final class DBTableID
         public static final int COL_REQUIREMENTS = 3;
         public static final int COL_REGION = 4;
         public static final int COL_ALLREGIONS = 5;
-        public static final int COL_RELATED_CONTENT = 6;
+        public static final int COL_RESTRICTED_CONTENT = 6;
 
         public static final class Row {
             private Row() {}
@@ -566,7 +566,7 @@ public final class DBTableID
         public static final int COL_REQUIREMENTS = 5;
         public static final int COL_REGION = 6;
         public static final int COL_ALLREGIONS = 7;
-        public static final int COL_RELATED_CONTENT = 8;
+        public static final int COL_RESTRICTED_CONTENT = 8;
 
         public static final class Row {
             private Row() {}
@@ -604,7 +604,7 @@ public final class DBTableID
         public static final int COL_COMBAT_ENCOUNTER = 5;
         public static final int COL_REGION = 6;
         public static final int COL_ALLREGIONS = 7;
-        public static final int COL_RELATED_CONTENT = 8;
+        public static final int COL_RESTRICTED_CONTENT = 8;
 
         public static final class Row {
             private Row() {}
@@ -797,7 +797,7 @@ public final class DBTableID
         public static final int COL_HIDEY_HOLE_COORD = 9;
         public static final int COL_REGION = 10;
         public static final int COL_ALLREGIONS = 11;
-        public static final int COL_RELATED_CONTENT = 12;
+        public static final int COL_RESTRICTED_CONTENT = 12;
         public static final int COL_LEAGUE_CLUE_TEXT = 13;
         public static final int COL_LEAGUE_TARGET = 14;
 
@@ -1113,7 +1113,7 @@ public final class DBTableID
         public static final int COL_REQUIREMENTS = 10;
         public static final int COL_REGION = 11;
         public static final int COL_ALLREGIONS = 12;
-        public static final int COL_RELATED_CONTENT = 13;
+        public static final int COL_RESTRICTED_CONTENT = 13;
 
         public static final class Row {
             private Row() {}
@@ -1260,7 +1260,7 @@ public final class DBTableID
         public static final int COL_REQUIREMENTS = 6;
         public static final int COL_REGION = 7;
         public static final int COL_ALLREGIONS = 8;
-        public static final int COL_RELATED_CONTENT = 9;
+        public static final int COL_RESTRICTED_CONTENT = 9;
 
         public static final class Row {
             private Row() {}
@@ -1290,7 +1290,7 @@ public final class DBTableID
         public static final int COL_REQUIREMENTS = 4;
         public static final int COL_REGION = 5;
         public static final int COL_ALLREGIONS = 6;
-        public static final int COL_RELATED_CONTENT = 7;
+        public static final int COL_RESTRICTED_CONTENT = 7;
 
         public static final class Row {
             private Row() {}
@@ -1329,7 +1329,7 @@ public final class DBTableID
         public static final int COL_COMBAT_ENCOUNTER = 4;
         public static final int COL_REGION = 5;
         public static final int COL_ALLREGIONS = 6;
-        public static final int COL_RELATED_CONTENT = 7;
+        public static final int COL_RESTRICTED_CONTENT = 7;
 
         public static final class Row {
             private Row() {}
@@ -1491,7 +1491,7 @@ public final class DBTableID
         public static final int COL_REQUIREMENTS = 5;
         public static final int COL_REGION = 6;
         public static final int COL_ALLREGIONS = 7;
-        public static final int COL_RELATED_CONTENT = 8;
+        public static final int COL_RESTRICTED_CONTENT = 8;
 
         public static final class Row {
             private Row() {}
@@ -1535,7 +1535,7 @@ public final class DBTableID
         public static final int COL_TARGET = 4;
         public static final int COL_REGION = 5;
         public static final int COL_ALLREGIONS = 6;
-        public static final int COL_RELATED_CONTENT = 7;
+        public static final int COL_RESTRICTED_CONTENT = 7;
 
         public static final class Row {
             private Row() {}
@@ -3597,7 +3597,7 @@ public final class DBTableID
         public static final int COL_SECONDARY_TRACK = 11;
         public static final int COL_PARENT_TRACK = 12;
         public static final int COL_RELEASE_TYPE = 13;
-        public static final int COL_RELATED_CONTENT = 14;
+        public static final int COL_RESTRICTED_CONTENT = 14;
 
         public static final class Row {
             private Row() {}
@@ -7474,7 +7474,7 @@ public final class DBTableID
         public static final int COL_EXTENSION_ADDITIVE = 16;
         public static final int COL_UNLOCK_WEIGHTING = 17;
         public static final int COL_BLOCK_UNLOCK = 18;
-        public static final int COL_RELATED_CONTENT = 19;
+        public static final int COL_RESTRICTED_CONTENT = 19;
 
         public static final class Row {
             private Row() {}
@@ -8039,7 +8039,7 @@ public final class DBTableID
         public static final int COL_MIN_STAT_REQUIREMENT_ALL = 5;
         public static final int COL_MIN_STAT_REQUIREMENT_ANY = 6;
         public static final int COL_QUESTS_REQUIRED_ALL = 7;
-        public static final int COL_RELATED_CONTENT = 8;
+        public static final int COL_RESTRICTED_CONTENT = 8;
 
         public static final class Row {
             private Row() {}
@@ -10680,7 +10680,7 @@ public final class DBTableID
         private RestrictContentObj() {}
 
         public static final int ID = 127;
-        public static final int COL_RELATED_CONTENT = 0;
+        public static final int COL_RESTRICTED_CONTENT = 0;
         public static final int COL_CATEGORY = 1;
         public static final int COL_OBJ = 2;
 
@@ -11893,7 +11893,7 @@ public final class DBTableID
         public static final int COL_CHARTERING_DESTINATION_Y_POS = 5;
         public static final int COL_CHARTERING_DESTINATION_INZONE = 6;
         public static final int COL_CHARTERING_SHOP_INV = 7;
-        public static final int COL_RELATED_CONTENT = 8;
+        public static final int COL_RESTRICTED_CONTENT = 8;
     }
 
     public static final class CharteringCosts {
