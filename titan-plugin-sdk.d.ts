@@ -2826,7 +2826,17 @@ interface PanelElement {
             lastHomeTeleportUsage(): Date;
             readonly isHomeTeleportOnCooldown: boolean;
             canCast(spell: MagicSpell): boolean;
+            /**
+             * Select the spell as a targeting source (WIDGET_TARGET), leaving
+             * the client awaiting a target. On its own this casts nothing.
+             */
             select(spell: MagicSpell): boolean;
+            /**
+             * Perform the spell's own Cast option: CC_OP against the catalog's
+             * menu entry. This is what a non-targeted spell such as a teleport
+             * needs. Use `castOn` for targeted spells and `select` for the
+             * "cast on ..." selection.
+             */
             cast(spell: MagicSpell): boolean;
             cast(spell: MagicSpell, actionIndex: number): boolean;
             cast(spell: MagicSpell, actionIndex: number, opcode: number): boolean;

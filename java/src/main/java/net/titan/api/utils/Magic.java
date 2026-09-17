@@ -609,8 +609,10 @@ public final class Magic {
     public static boolean canCast(Lunar spell) { return canCast(info(spell)); }
     public static boolean canCast(Necromancy spell) { return canCast(info(spell)); }
 
+    /** Select the spell as a targeting source; on its own this casts nothing. */
     public static boolean select(SpellInfo spell) {
-        return cast(spell);
+        return isValidSpell(spell) &&
+            Titan.client().widgetInteract(MenuAction.WIDGET_TARGET, 0, -1, spell.widget());
     }
 
     public static boolean select(Standard spell) { return select(info(spell)); }
@@ -618,9 +620,9 @@ public final class Magic {
     public static boolean select(Lunar spell) { return select(info(spell)); }
     public static boolean select(Necromancy spell) { return select(info(spell)); }
 
+    /** Perform the spell's own Cast option (CC_OP against its catalog entry). */
     public static boolean cast(SpellInfo spell) {
-        return isValidSpell(spell) &&
-            Titan.client().widgetInteract(MenuAction.WIDGET_TARGET, 0, -1, spell.widget());
+        return cast(spell, spell == null ? -1 : spell.menuEntryId());
     }
 
     public static boolean cast(SpellInfo spell, int actionIndex) {
