@@ -3001,6 +3001,33 @@ interface PanelElement {
             /** Check if a bank is nearby. */
             isNearBank(distance?: number): boolean;
         };
+
+        /**
+         * Bank deposit box state and action helpers. Mirrors
+         * `titan::utils::DepositBox::*` from
+         * [shared/titan/utils/deposit_box.h](shared/titan/utils/deposit_box.h).
+         * Every action is the interface's own component operation (CC_OP);
+         * the close X is a component operation on a dynamic child of the
+         * frame, so use `close()` rather than a raw `WIDGET_CLOSE` request.
+         * Added in SDK 133.
+         */
+        const depositBox: {
+            /** True while the deposit box interface is open. */
+            readonly isOpen: boolean;
+            /** True when the deposit quantity mode is "All". */
+            readonly isDepositAllSelected: boolean;
+
+            /** Close the deposit box through its frame's close X. */
+            close(): boolean;
+            /** Deposit the whole inventory. */
+            depositInventory(): boolean;
+            /** Deposit all worn equipment. */
+            depositWorn(): boolean;
+            /** Deposit the looting bag's contents. */
+            depositLootingBag(): boolean;
+            /** Select the "All" deposit quantity; true immediately when already selected. */
+            selectDepositAll(): boolean;
+        };
     }
 
     // Widgets.
