@@ -3604,9 +3604,10 @@ interface PanelElement {
         /**
          * Resolve the RUNTIME ItemDef for the given id. Game-thread calls may
          * invoke the native resolver on a live-table miss. Off-thread calls
-         * emit a rate-limited warning, check the live table without invoking
-         * native code, then fall back to raw cache metadata when absent (check
-         * `runtimeResolved`). Returns null when neither source contains the id.
+         * check the live table without invoking native code (a rate-limited
+         * warning fires only when that table misses), then fall back to raw
+         * cache metadata when absent (check `runtimeResolved`). Returns null
+         * when neither source contains the id.
          * Added in SDK 26.
          */
         function itemDef(id: number): ItemComposition | null;

@@ -21,9 +21,9 @@ public final class DepositBox {
     private DepositBox() {}
 
     /** Dynamic child slot of {@code BankDepositbox.FRAME} carrying the close X. */
-    public static final int CLOSE_CHILD_SLOT = 11;
+    private static final int CLOSE_CHILD_SLOT = 11;
     /** {@link Varbits#BANK_QUANTITY_TYPE} value for the "All" deposit quantity. */
-    public static final int QUANTITY_ALL = 4;
+    private static final int QUANTITY_ALL = 4;
 
     private static Client client() {
         return Titan.client();
