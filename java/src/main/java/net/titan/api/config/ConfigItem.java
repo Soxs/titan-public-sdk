@@ -27,4 +27,21 @@ public @interface ConfigItem {
     /// When true, a {@code String}-returning item is stored as a DPAPI-protected
     /// string and rendered as a masked text field.
     boolean secret() default false;
+
+    /// Column labels for a checkbox-matrix item, left to right. Declaring
+    /// {@code columns()} and {@link #rows()} selects the checkbox-grid control;
+    /// the method must then return {@code boolean[][]} and, unlike every other
+    /// config item, it is ABSTRACT rather than {@code default} -- the grid's
+    /// cells and initial state come from {@link MatrixRow}, so there is no
+    /// method body to read a default from. Authors read a cell as
+    /// {@code config.item()[row][column]}.
+    ///
+    /// The value travels as a cell bitmask, {@code bit = row *
+    /// columns().length + column}. At most 31 cells, so bit 31 is never used
+    /// and the mask is always a positive {@code int}.
+    String[] columns() default {};
+
+    /// Rows for a checkbox-matrix item, top to bottom. Each row names the
+    /// columns it has; see {@link MatrixRow}.
+    MatrixRow[] rows() default {};
 }

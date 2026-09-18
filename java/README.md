@@ -141,6 +141,33 @@ editing the API itself.
 - `net.titan.api.overlay`: in-game overlay draw and panel helpers, including
   WorldView-aware projection/draw methods.
 
+## Checkbox Matrix Config Items (0.1.59+)
+
+A `boolean[][]`-returning `@ConfigItem` with `columns()` and `rows()` renders as
+a checkbox grid instead of a run of separate booleans. Each `@MatrixRow` names
+the columns it has, so a column a row omits renders as a blank gap and can never
+be checked; `checked` seeds the initial state.
+
+```java
+@ConfigItem(keyName = "obstacles", name = "Obstacles", description = "...",
+    columns = {"Bridge", "Grapple", "Brazier", "Portal"},
+    rows = {
+        @MatrixRow(label = "Floor 1", cells = {"Bridge", "Grapple"}),
+        @MatrixRow(label = "Floor 2", cells = {"Grapple", "Brazier"}),
+        @MatrixRow(label = "Floor 3", cells = {"Bridge", "Portal"},
+                   checked = {"Portal"}),
+    })
+boolean[][] obstacles();
+```
+
+Unlike every other config item the method is **abstract**: its cells and their
+initial state come from the annotation, so there is no body to read a default
+from. Every name in `cells` / `checked` is resolved against `columns` at scan
+time, so a misspelling fails the load rather than moving a checkbox one cell
+over. The value is a cell bitmask (`bit = row * columns().length + column`),
+capped at 31 cells. `config.obstacles()` returns a fresh row-major snapshot on
+every call -- hoist it out of per-tick loops.
+
 ## Item Sub-operations (0.1.32+)
 
 `ItemDefinition.subOps()` exposes raw cache opcode-43 submenu labels as a

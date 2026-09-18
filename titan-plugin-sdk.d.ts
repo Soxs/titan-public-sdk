@@ -1286,6 +1286,39 @@ interface ButtonSettingInit extends SettingMetaBase {
     onClick: () => void;
 }
 
+/**
+ * One row of a checkbox matrix. A row names the column labels it actually has,
+ * so the grid's shape is declared in the same vocabulary the UI renders rather
+ * than by position. Columns a row does not name do not exist on it: they render
+ * as a blank gap and can never be checked. SDK 135+.
+ */
+interface MatrixRowInit {
+    /** Row label, rendered down the left-hand side. */
+    label: string;
+    /** Column labels present on this row. Omit for every column. */
+    cells?: string[];
+    /** Subset of `cells` that starts checked. Omit for none. */
+    checked?: string[];
+}
+
+/**
+ * A grid of checkboxes: one row per entry in `rows`, one column per entry in
+ * `columns`. Collapses a run of repetitive per-row booleans into one control,
+ * and into one of the 40 settings a plugin may declare instead of N. SDK 135+.
+ *
+ * The value is a cell bitmask, `bit = row * columns.length + column`, capped at
+ * 31 cells so bit 31 is never set and the mask stays a positive 32-bit int on
+ * every runtime.
+ */
+interface MatrixSettingInit extends SettingMetaBase {
+    key: string;
+    name: string;
+    /** Column labels, left to right. */
+    columns: string[];
+    /** Rows, top to bottom. */
+    rows: MatrixRowInit[];
+}
+
 interface Setting<T> {
     readonly key: string;
     readonly name: string;
@@ -1295,6 +1328,33 @@ interface Setting<T> {
     readonly position: number;
     /** Restore the value to defaultValue. */
     reset(): void;
+}
+
+/**
+ * A checkbox grid setting. `value` is the raw cell bitmask, so `setting | 0` and
+ * `Number(setting)` give the mask and `if (setting)` is truthy when any cell is
+ * checked. Prefer `get` / `set` / `toggle` over hand-rolled bit math: they
+ * bounds-check, refuse unavailable cells, and do not hard-code the column count
+ * at every call site. SDK 135+.
+ */
+interface MatrixSetting extends Setting<number> {
+    readonly rowCount: number;
+    readonly columnCount: number;
+    /** Cells that exist, as a bitmask. A clear bit is a blank gap. */
+    readonly availability: number;
+    isAvailable(row: number, column: number): boolean;
+    /** False for an out-of-range or unavailable cell. */
+    get(row: number, column: number): boolean;
+    /** No-op on an out-of-range or unavailable cell. */
+    set(row: number, column: number, on: boolean): void;
+    /** Flips the cell and returns its new state; false when it cannot flip. */
+    toggle(row: number, column: number): boolean;
+    /** Fresh row-major snapshot, `rowCount` x `columnCount`. */
+    toGrid(): boolean[][];
+    /** Replace every cell; short rows and unavailable cells read as false. */
+    setGrid(grid: boolean[][]): void;
+    /** Numeric coercion yields the cell bitmask. */
+    valueOf(): number;
 }
 
 // ---------------------------------------------------------------------------
@@ -1762,6 +1822,14 @@ class Plugin {
      * Setting<void> that auto-registers.
      */
     buttonSetting(init: ButtonSettingInit): Setting<void>;
+    /**
+     * Checkbox grid — row labels down the left, column labels across the top, a
+     * checkbox per cell. Each row names the columns it has, so a column a row
+     * omits renders as a blank gap and can never be checked. Returns a
+     * MatrixSetting that auto-registers; `value` is the cell bitmask
+     * (`bit = row * columns.length + column`). SDK 135+.
+     */
+    matrixSetting(init: MatrixSettingInit): MatrixSetting;
 
     // Section helper — auto-registers.
     section(key: string, name: string, opts?: SectionOptions): Section;

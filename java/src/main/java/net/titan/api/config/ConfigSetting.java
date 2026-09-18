@@ -14,7 +14,10 @@ public interface ConfigSetting {
         PROTECTED_STRING,
         /// Value-less action button. Clicking it runs the plugin's attached
         /// runnable ({@link ButtonSetting}) instead of storing a value.
-        BUTTON
+        BUTTON,
+        /// Checkbox grid ({@link MatrixSetting}). The value is a cell bitmask,
+        /// {@code bit = row * columnCount + column}.
+        MATRIX
     }
 
     String key();
