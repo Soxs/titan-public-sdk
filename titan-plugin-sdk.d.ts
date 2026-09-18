@@ -2953,7 +2953,11 @@ interface PanelElement {
             readonly isOpen: boolean;
             /** True when the GE inventory overlay is open. */
             readonly isGeOpen: boolean;
-            /** True when a search/amount dialog is open (Withdraw-X). */
+            /**
+             * True while the chatbox modal input line is visible -- the
+             * Withdraw-X "Enter amount:" prompt or the bank search's
+             * "Enter name:" prompt.
+             */
             readonly isSearchOpen: boolean;
             /** True when bank is in noted withdrawal mode. */
             readonly isNotedMode: boolean;

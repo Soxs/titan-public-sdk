@@ -43,9 +43,14 @@ public final class Bank {
         return widgetVisible(InterfaceID.GeOffersSide.ITEMS);
     }
 
+    /// True while the chatbox modal input line is up -- the Withdraw-X
+    /// "Enter amount:" prompt or the bank search's "Enter name:" prompt.
+    ///
+    /// Structural, not textual: a text scan matches hidden widgets that still
+    /// hold the previous prompt's text, so it latches true once the first
+    /// prompt has closed.
     public static boolean isSearchOpen() {
-        return client().widgetByText("Enter amount:").isPresent()
-            || client().widgetByText("Enter name:").isPresent();
+        return widgetVisible(InterfaceID.Chatbox.MES_TEXT2);
     }
 
     public static boolean isNotedMode() {
@@ -221,9 +226,13 @@ public final class Bank {
                 InterfaceID.Bankmain.ITEMS);
         }
 
-        int id = (qty == 3) ? 1 : 6;
-        int op = (qty == 3) ? MenuAction.CC_OP : MenuAction.CC_OP_LOW_PRIORITY;
-        return actions().widgetInteract(op, id, slot, InterfaceID.Bankmain.ITEMS);
+        // Withdraw-X is op 6 under CC_OP -- observed live, and what the Java
+        // reference sends (BankUtils.withdrawItemAmount). The op list is fixed
+        // (2=1, 3=5, 4=10, 5=lastX, 6=X, 7=All); op 1 is only a duplicate of
+        // whichever quantity the bank buttons have selected, so for qty == 3 it
+        // is Withdraw-lastX -- the wrong amount, and no prompt.
+        return actions().widgetInteract(MenuAction.CC_OP, 6, slot,
+            InterfaceID.Bankmain.ITEMS);
     }
 
     public static boolean interactItemInBank(int itemId) {
