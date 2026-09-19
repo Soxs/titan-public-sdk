@@ -1304,7 +1304,7 @@ interface MatrixRowInit {
 /**
  * A grid of checkboxes: one row per entry in `rows`, one column per entry in
  * `columns`. Collapses a run of repetitive per-row booleans into one control,
- * and into one of the 40 settings a plugin may declare instead of N. SDK 135+.
+ * and into one setting entry instead of N. SDK 135+.
  *
  * The value is a cell bitmask, `bit = row * columns.length + column`, capped at
  * 31 cells so bit 31 is never set and the mask stays a positive 32-bit int on
