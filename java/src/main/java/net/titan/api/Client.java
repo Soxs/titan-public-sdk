@@ -263,6 +263,19 @@ public interface Client {
         return TitanRuntime.getInteractionBackend().useInventoryItemOnObject(
             srcSlot, srcItemId, objectId, tileX, tileY);
     }
+    /** Immutable snapshots in zero-based slot order, including empty slots.
+     * Returns an empty list when Grand Exchange data is unavailable. */
+    default List<GrandExchangeOffer> getGrandExchangeOffers() {
+        return java.util.Collections.emptyList();
+    }
+    /** Empty when the slot is invalid or the native snapshot is unavailable. */
+    default Optional<GrandExchangeOffer> getGrandExchangeOffer(int slot) {
+        if (slot < 0) return Optional.empty();
+        return getGrandExchangeOffers().stream().filter(offer -> offer.slot() == slot).findFirst();
+    }
+    /** Whether the current client exposes validated Grand Exchange data. */
+    default boolean isGrandExchangeAvailable() { return false; }
+
     Optional<ItemContainer> itemContainer(int containerId);
     Optional<ItemComposition> itemComposition(int itemId);
 

@@ -1580,6 +1580,47 @@ interface ItemContainerChangedEvent {
     readonly items: ItemContainerSlot[];
 }
 
+/** RuneLite-style personal offer states. SDK 136+. */
+enum GrandExchangeOfferState {
+    Unknown = -1, Empty = 0, CancelledBuy = 1, CancelledSell = 2,
+    Buying = 3, Bought = 4, Selling = 5, Sold = 6,
+    UNKNOWN = -1, EMPTY = 0, CANCELLED_BUY = 1, CANCELLED_SELL = 2,
+    BUYING = 3, BOUGHT = 4, SELLING = 5, SOLD = 6
+}
+
+/** Immutable owned snapshot of a personal Grand Exchange offer. SDK 136+.
+ * Monetary values remain bigint on every client revision, including clients
+ * that store 64-bit prices and completed gold. Empty slots are included. */
+interface GrandExchangeOffer {
+    /** Zero-based personal offer slot. */
+    readonly slot: number;
+    readonly itemId: number;
+    readonly totalQuantity: number;
+    /** Completed quantity for either a buy or sell offer (RuneLite naming). */
+    readonly quantitySold: number;
+    /** Unit price. Use bigint arithmetic to preserve precision. */
+    readonly price: bigint;
+    /** Completed gold for either a buy or sell offer (RuneLite naming). */
+    readonly spent: bigint;
+    readonly state: GrandExchangeOfferState;
+    /** Native status value; use state for normalized offer semantics. */
+    readonly status: number;
+    /** Native direction: 0 buy, 1 sell. */
+    readonly type: number;
+}
+
+/** Personal offer update, with an immutable snapshot captured for this event.
+ * Each login/attach begins with synthetic Empty events for all slots, followed
+ * by known populated offers and native slot replacements. Repeated native
+ * updates are delivered even when their contents match. The initial Empty
+ * events do not imply that every live slot is queryable yet.
+ * Retaining the event never turns it into a view of a later offer. SDK 136+. */
+interface GrandExchangeOfferChangedEvent {
+    readonly offer: GrandExchangeOffer;
+    /** Zero-based personal offer slot. */
+    readonly slot: number;
+}
+
 /** Runtime ItemDef snapshot (RuneLite Client parity).
  * When `runtimeResolved` is true the fields came from the live game table or
  * native ITEM_DEF_LOOKUP (includes resolved transforms and preserves runtime
@@ -1882,6 +1923,8 @@ class Plugin {
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick. Detection is tick-level diff. Added in SDK 26. */
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;
+    /** RuneLite-style personal Grand Exchange offer update. SDK 136+. */
+    onGrandExchangeOfferChanged?(event: GrandExchangeOfferChangedEvent): void;
 
     onNpcSpawned?(npc: Npc): void;
     onNpcDespawned?(npc: Npc): void;
@@ -2334,6 +2377,12 @@ interface PanelElement {
             getLocalDestinationLocation(): LocalPoint | null;
             /** Active minimap red-flag destination in world coords. SDK 82+. */
             getWorldDestinationLocation(): WorldPoint | null;
+            /** Personal offer snapshot, or null for an invalid slot/unavailable data. SDK 136+. */
+            getGrandExchangeOffer(slot: number): GrandExchangeOffer | null;
+            /** All personal slots, including empty slots; [] when unavailable. SDK 136+. */
+            getGrandExchangeOffers(): readonly GrandExchangeOffer[];
+            /** True when a complete personal-offer snapshot is available. SDK 136+. */
+            isGrandExchangeAvailable(): boolean;
             /**
              * Dispatch a fully-specified menu-action entry. Mirrors
              * `titan::ClientFacade::invokeMenuAction(...)` in C++.
@@ -2349,6 +2398,16 @@ interface PanelElement {
              * spell widget so the host binds its live item. True means queued. */
             invokeSelectedMenuAction(source: MenuActionSpec, target: MenuActionSpec,
                                      expectedSourceItemId?: number): boolean;
+        };
+
+        /** Personal offers, with immutable snapshots and lossless monetary values. SDK 136+. */
+        const grandExchange: {
+            /** True when the current client has validated offer data. */
+            readonly available: boolean;
+            /** Invalid slots and unavailable data return null. Slots are zero-based. */
+            offer(slot: number): GrandExchangeOffer | null;
+            /** All personal slots, including empty slots; [] when unavailable. */
+            offers(): readonly GrandExchangeOffer[];
         };
 
         const camera: {

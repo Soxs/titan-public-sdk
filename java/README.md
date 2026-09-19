@@ -61,6 +61,44 @@ public final class MyPlugin {
 }
 ```
 
+## Grand Exchange Offers (0.1.60+, native SDK 136)
+
+`Client.getGrandExchangeOffers()` returns immutable snapshots of the local
+player's slots in slot order, including empty slots. `getGrandExchangeOffer(slot)`
+returns an `Optional` for one zero-based slot. Use
+`client.isGrandExchangeAvailable()` to distinguish unavailable native data from
+an empty offer. These APIs are also available through `Titan.client()`.
+
+```java
+import net.titan.api.GrandExchangeOffer;
+import net.titan.api.eventbus.Subscribe;
+import net.titan.api.events.GrandExchangeOfferChanged;
+
+@Subscribe
+public void onGrandExchangeOfferChanged(GrandExchangeOfferChanged event) {
+    GrandExchangeOffer offer = event.getGrandExchangeOffer();
+    int slot = event.getSlot();
+    long price = offer.getPrice();
+    long completedGold = offer.getSpent();
+    // Retaining this offer is safe: later updates cannot change the snapshot.
+}
+```
+
+States follow the RuneLite names: `EMPTY`, `BUYING`, `BOUGHT`, `SELLING`, `SOLD`,
+`CANCELLED_BUY`, `CANCELLED_SELL`, and `UNKNOWN`. `getQuantitySold()` is the
+completed quantity on both buy and sell offers; `getSpent()` is completed gold
+on either side. Price and completed gold are Java `long`, preserving the native
+client's 64-bit values. This API reads existing offers; it does not submit or
+cancel trades.
+
+On initial observation after attach/login, events first provide a synthetic
+`EMPTY` baseline for every slot, followed by observed offers. This initialization
+does not mean a trade was cancelled or collected. Later native updates produce
+events even when the offer values are unchanged. Delivery occurs on the game
+thread at the next safe main-loop phase; use the event's retained snapshot when
+processing that update, since a fresh client query may already reflect a later
+offer.
+
 ## Hot Reload For Plugin Authors
 
 The `net.titan.dev` Gradle plugin (published into the same Maven repo as the
