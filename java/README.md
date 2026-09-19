@@ -61,6 +61,20 @@ public final class MyPlugin {
 }
 ```
 
+## Shared Item Prices (0.1.61+, native SDK 137)
+
+`Titan.itemPrices()` and `client.itemPrices()` read the same client-wide public
+Wiki catalog and quote cache used by native and JavaScript plugins. Call
+`requestCatalog()` or `request(itemId)` to enqueue a refresh; requests coalesce
+and respect the shared cache and retry limits. Reads do not start network work.
+
+`item(id)`, `items()`, `price(id)`, and `status()` return immutable owned values.
+Prices, alchemy values, buy limits, and trade timestamps use `OptionalLong` so
+missing data stays distinct from zero and 64-bit GP remains exact. Failed
+refreshes retain earlier quotes with `fetchedAt()`, `lastAttemptAt()`, and
+`error()`; `status().catalogRevision()` lets consumers cache catalog lists.
+Only public item IDs are requested: no private offers or account data are sent.
+
 ## Grand Exchange Offers (0.1.60+, native SDK 136)
 
 `Client.getGrandExchangeOffers()` returns immutable snapshots of the local

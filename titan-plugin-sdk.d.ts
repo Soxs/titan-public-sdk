@@ -1609,6 +1609,48 @@ interface GrandExchangeOffer {
     readonly type: number;
 }
 
+/** Cached public Wiki item metadata. Missing amounts are null; zero is a known value. SDK 137+. */
+interface ItemPriceMetadata {
+    readonly id: number;
+    readonly name: string;
+    readonly examine: string;
+    readonly buyLimit: bigint | null;
+    readonly highAlch: bigint | null;
+    readonly members: boolean;
+}
+
+/** Public Wiki high/low trade prices, not personal offer prices. All amounts/times are lossless. SDK 137+. */
+interface ItemPrice {
+    readonly id: number;
+    readonly high: bigint | null;
+    readonly low: bigint | null;
+    /** Unix seconds, or null when no trade time is available. */
+    readonly highTime: bigint | null;
+    readonly lowTime: bigint | null;
+    /** Unix seconds of the last successful fetch and last request attempt; zero before either occurs. */
+    readonly fetchedAt: bigint;
+    readonly lastAttemptAt: bigint;
+    readonly loading: boolean;
+    readonly pending: boolean;
+    /** Refresh failure, if any. Previously cached values remain available. */
+    readonly error: string;
+}
+
+/** Client-wide asynchronous public-price cache status. SDK 137+. */
+interface ItemPriceStatus {
+    /** True when a catalogue has been fetched successfully. */
+    readonly available: boolean;
+    readonly catalogLoading: boolean;
+    readonly catalogPending: boolean;
+    readonly pendingCount: number;
+    /** -1 when idle, 0 while loading the catalogue, otherwise the requested item ID. */
+    readonly loadingItem: number;
+    readonly catalogRevision: bigint;
+    readonly catalogFetchedAt: bigint;
+    readonly catalogLastAttemptAt: bigint;
+    readonly error: string;
+}
+
 /** Personal offer update, with an immutable snapshot captured for this event.
  * Each login/attach begins with synthetic Empty events for all slots, followed
  * by known populated offers and native slot replacements. Repeated native
@@ -2379,9 +2421,9 @@ interface PanelElement {
             getWorldDestinationLocation(): WorldPoint | null;
             /** Personal offer snapshot, or null for an invalid slot/unavailable data. SDK 136+. */
             getGrandExchangeOffer(slot: number): GrandExchangeOffer | null;
-            /** All personal slots, including empty slots; [] when unavailable. SDK 136+. */
+            /** All personal slots, including empty slots; [] when unavailable or offer-event delivery is pending. SDK 136+. */
             getGrandExchangeOffers(): readonly GrandExchangeOffer[];
-            /** True when a complete personal-offer snapshot is available. SDK 136+. */
+            /** True when a complete personal-offer snapshot is available and queued callbacks have settled. SDK 136+. */
             isGrandExchangeAvailable(): boolean;
             /**
              * Dispatch a fully-specified menu-action entry. Mirrors
@@ -2402,12 +2444,25 @@ interface PanelElement {
 
         /** Personal offers, with immutable snapshots and lossless monetary values. SDK 136+. */
         const grandExchange: {
-            /** True when the current client has validated offer data. */
+            /** True when validated full offer data is available and queued offer callbacks have settled. */
             readonly available: boolean;
             /** Invalid slots and unavailable data return null. Slots are zero-based. */
             offer(slot: number): GrandExchangeOffer | null;
-            /** All personal slots, including empty slots; [] when unavailable. */
+            /** All personal slots, including empty slots; [] when unavailable or offer-event delivery is pending. */
             offers(): readonly GrandExchangeOffer[];
+        };
+
+        /** Shared asynchronous Wiki prices. Reads return immutable owned snapshots and never start HTTP work. SDK 137+. */
+        const itemPrices: {
+            /** Coalesced with existing work and fresh/backoff cache entries. False if unavailable or the queue is full. */
+            requestCatalog(): boolean;
+            /** Queue a positive int32 item ID; repeated requests share the same client cache. */
+            request(id: number): boolean;
+            status(): ItemPriceStatus;
+            item(id: number): ItemPriceMetadata | null;
+            /** One catalogue revision; [] if unavailable or it changes during the read. */
+            items(): readonly ItemPriceMetadata[];
+            price(id: number): ItemPrice | null;
         };
 
         const camera: {

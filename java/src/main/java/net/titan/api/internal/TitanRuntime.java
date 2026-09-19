@@ -28,6 +28,7 @@ public final class TitanRuntime {
     private static volatile WebWalkerBackend webWalkerBackend;
     private static volatile WorldMapBackend worldMapBackend;
     private static volatile ScreenshotBackend screenshotBackend;
+    private static volatile ItemPricesBackend itemPricesBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -130,6 +131,15 @@ public final class TitanRuntime {
         if (worldMapBackend == backend) {
             worldMapBackend = null;
         }
+    }
+
+    public static ItemPricesBackend getItemPricesBackend() {
+        ItemPricesBackend value = itemPricesBackend;
+        return value == null ? ItemPricesBackend.UNAVAILABLE : value;
+    }
+    public static void setItemPricesBackend(ItemPricesBackend backend) { itemPricesBackend = backend; }
+    public static void clearItemPricesBackend(ItemPricesBackend backend) {
+        if (itemPricesBackend == backend) itemPricesBackend = null;
     }
 
     public static ScreenshotBackend getScreenshotBackend() {

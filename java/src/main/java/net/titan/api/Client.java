@@ -264,7 +264,8 @@ public interface Client {
             srcSlot, srcItemId, objectId, tileX, tileY);
     }
     /** Immutable snapshots in zero-based slot order, including empty slots.
-     * Returns an empty list when Grand Exchange data is unavailable. */
+     * Returns an empty list when data is unavailable or queued offer callbacks
+     * have not finished delivery. Owned event payloads remain usable. */
     default List<GrandExchangeOffer> getGrandExchangeOffers() {
         return java.util.Collections.emptyList();
     }
@@ -273,8 +274,11 @@ public interface Client {
         if (slot < 0) return Optional.empty();
         return getGrandExchangeOffers().stream().filter(offer -> offer.slot() == slot).findFirst();
     }
-    /** Whether the current client exposes validated Grand Exchange data. */
+    /** Whether validated full Grand Exchange data is available and queued offer
+     * callbacks have finished delivery. */
     default boolean isGrandExchangeAvailable() { return false; }
+    /** Client-wide public Wiki metadata and price cache (SDK 137). */
+    default ItemPrices itemPrices() { return Titan.itemPrices(); }
 
     Optional<ItemContainer> itemContainer(int containerId);
     Optional<ItemComposition> itemComposition(int itemId);

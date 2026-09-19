@@ -8,6 +8,7 @@ public final class Titan {
     private static final WebWalk WEB_WALK = new WebWalk();
     private static final WorldMap WORLD_MAP = new WorldMap();
     private static final Screenshot SCREENSHOT = new Screenshot();
+    private static final ItemPrices ITEM_PRICES = new ItemPrices();
 
     private Titan() {}
 
@@ -50,6 +51,9 @@ public final class Titan {
     public static Screenshot screenshot() {
         return SCREENSHOT;
     }
+
+    /** Shared public Wiki price cache (SDK 137). */
+    public static ItemPrices itemPrices() { return ITEM_PRICES; }
 
     public static void runOnClientTick(Runnable callback) {
         TitanRuntime.getSchedulerBackend().runOnClientTick(callback);
