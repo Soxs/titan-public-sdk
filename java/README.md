@@ -61,6 +61,49 @@ public final class MyPlugin {
 }
 ```
 
+## Queued GE Buying (0.1.64+, native SDK 139)
+
+`net.titan.api.utils.Ge` is a thin binding to the C++ host queue. Submit once
+with `Ge.addBuyToQueue(itemId, quantity)` or
+`Ge.addBuyToQueue(GeBuyOptions)`, retain the returned handle, and poll
+`Ge.request(handle)`. Zero means rejected or unsupported. Check
+`GeRequest.isSuccessful()` separately from `isComplete()`; failed requests can
+have partial fills. Release terminal handles with `Ge.release(handle)`.
+No plugin context is required. The queue is shared; disabling/unloading a plugin
+does not cancel purchases. Cancel explicitly with `Ge.abortRequest(handle)`;
+`Ge.clearExchangeQueue()` cancels all pending requests in the shared queue.
+
+Defaults are noted collection to inventory, no auto-opening, three attempts,
+10 seconds per offer and a three-minute overall deadline. The three-argument
+boolean overload enables auto-opening. Options also expose collection mode,
+attempt/deadline limits and an optional unit-price ceiling. The user supplies
+coins in inventory/bank; Java owns no workflow or cache. Selling is a stub.
+See the [cross-SDK contract and examples](../titan/PUBLIC_API.md#queued-ge-buying-sdk-v139--java-0164)
+for retries, cancellation, collection and lifecycle behavior.
+
+## Remembered Bank Items (0.1.62+, native SDK 138)
+
+`ItemCache.bank()` (also `client.getItemCacheBank()`) returns the current
+character's shared bank snapshot. Check `known()` before treating a zero count
+as missing stock, and `live()` before treating remembered quantities as current.
+`ItemCache.count(995)` and `getItemsCountInBank(int... ids)` return remembered
+quantities; `countByName(names, ignore)` and the string overloads support
+case-insensitive substring matching and exclusions.
+
+`ItemCache` is a read-only binding to the C++ service: observation, account
+switching, state, and persistence all run in C++. Java only reads and queries
+returned snapshots.
+
+`Bank.getAll/find/contains/count` prefer a readable open bank, then fall back to
+ItemCache, then empty. A valid empty live bank overrides remembered stock.
+Cached items and
+their collection are owned read-only values; use Bank action helpers to resolve
+current slots while the bank is open. A previously saved bank is restored by
+character name on login, and opening the bank confirms its contents. The cache
+persists in `%USERPROFILE%\.titanclient\item_cache` independently of plugins.
+Unknown banks, stale memory, and loading/storage errors are visible in the
+snapshot and the Dev Tools Item Cache Inspector.
+
 ## Shared Item Prices (0.1.61+, native SDK 137)
 
 `Titan.itemPrices()` and `client.itemPrices()` read the same client-wide public

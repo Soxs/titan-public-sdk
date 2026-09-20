@@ -277,6 +277,24 @@ public interface Client {
     /** Whether validated full Grand Exchange data is available and queued offer
      * callbacks have finished delivery. */
     default boolean isGrandExchangeAvailable() { return false; }
+
+    /** SDK 139. Bindings for the shared C++ GE queue; no plugin context is required. */
+    default long geSubmitBuy(GeBuyOptions options) { return 0; }
+    default List<GeRequest> geRequests(long id) { return java.util.Collections.emptyList(); }
+    default boolean geCancelRequest(long id) { return false; }
+    default boolean geReleaseRequest(long id) { return false; }
+
+    /** @deprecated The queue is shared; the legacy owner argument is ignored. */
+    @Deprecated default long geSubmitBuy(String ignored, GeBuyOptions options) { return geSubmitBuy(options); }
+    /** @deprecated Use {@link #geRequests(long)}. */
+    @Deprecated default List<GeRequest> geRequests(String ignored, long id) { return geRequests(id); }
+    /** @deprecated Use {@link #geCancelRequest(long)}. */
+    @Deprecated default boolean geCancelRequest(String ignored, long id) { return geCancelRequest(id); }
+    /** @deprecated Use {@link #geReleaseRequest(long)}. */
+    @Deprecated default boolean geReleaseRequest(String ignored, long id) { return geReleaseRequest(id); }
+
+    /** SDK 138. Empty optional means unsupported; an unknown bank has known=false. */
+    default Optional<BankCacheSnapshot> getItemCacheBank() { return Optional.empty(); }
     /** Client-wide public Wiki metadata and price cache (SDK 137). */
     default ItemPrices itemPrices() { return Titan.itemPrices(); }
 

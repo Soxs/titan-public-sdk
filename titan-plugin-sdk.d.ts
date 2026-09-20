@@ -1588,6 +1588,36 @@ enum GrandExchangeOfferState {
     BUYING = 3, BOUGHT = 4, SELLING = 5, SOLD = 6
 }
 
+/** SDK 139: values submitted to the shared C++ buying queue. */
+interface GeBuyOptions {
+    itemId: number;
+    quantity: number;
+    /** Defaults: 3 attempts, 10 seconds per offer, 3 minutes overall. */
+    maxAttempts?: number;
+    waitPerAttemptMs?: number;
+    timeoutMs?: number;
+    toInventory?: boolean;
+    noted?: boolean;
+    autoOpen?: boolean;
+    /** 0n (default) means no ceiling; each retry adds another +5% guide-price step. */
+    maxUnitPrice?: bigint;
+}
+interface GeRequest {
+    readonly requestId: bigint;
+    readonly itemId: number;
+    readonly quantity: number;
+    readonly filled: number;
+    readonly remaining: number;
+    readonly attempts: number;
+    readonly slot: number;
+    readonly phase: titan.GeRequestPhase;
+    readonly unitPrice: bigint;
+    readonly spent: bigint;
+    readonly message: string;
+    readonly isComplete: boolean;
+    readonly isSuccessful: boolean;
+}
+
 /** Immutable owned snapshot of a personal Grand Exchange offer. SDK 136+.
  * Monetary values remain bigint on every client revision, including clients
  * that store 64-bit prices and completed gold. Empty slots are included. */
@@ -1657,6 +1687,19 @@ interface ItemPriceStatus {
  * updates are delivered even when their contents match. The initial Empty
  * events do not imply that every live slot is queryable yet.
  * Retaining the event never turns it into a view of a later offer. SDK 136+. */
+/** SDK 138. Owned remembered bank; known=false differs from a known empty bank.
+ * live means observed through the open bank. Historical slots are not action targets. */
+interface BankCacheSnapshot {
+    readonly account: string;
+    readonly known: boolean;
+    readonly live: boolean;
+    readonly loading: boolean;
+    /** UTC Unix seconds of the last confirmed observation; 0 when unknown. */
+    readonly lastObservedAt: number;
+    readonly error: string;
+    readonly items: readonly Readonly<ItemContainerSlot>[];
+}
+
 interface GrandExchangeOfferChangedEvent {
     readonly offer: GrandExchangeOffer;
     /** Zero-based personal offer slot. */
@@ -2442,6 +2485,18 @@ interface PanelElement {
                                      expectedSourceItemId?: number): boolean;
         };
 
+        /** Per-character bank memory, shared across all runtimes. SDK 138+. */
+        const itemCache: {
+            /** null only on unsupported hosts; inspect known before interpreting counts. */
+            bank(): BankCacheSnapshot | null;
+            readonly isLoaded: boolean;
+            getBankItems(): readonly Readonly<ItemContainerSlot>[];
+            count(...ids: number[]): number;
+            countByName(names: readonly string[], ignore?: readonly string[]): number;
+            getItemsCountInBank(...ids: number[]): number;
+            getItemsCountInBank(...names: string[]): number;
+            getItemsCountInBank(names: readonly string[], ignore: readonly string[]): number;
+        };
         /** Personal offers, with immutable snapshots and lossless monetary values. SDK 136+. */
         const grandExchange: {
             /** True when validated full offer data is available and queued offer callbacks have settled. */
@@ -2653,6 +2708,12 @@ interface PanelElement {
      * `titan.state.*` and `titan.queries.*`. No chaining, no setup —
      * just call.
      */
+    enum GeRequestPhase {
+        Queued = 0, Opening = 1, Selecting = 2, Quantity = 3, Pricing = 4,
+        Confirming = 5, Buying = 6, Cancelling = 7, Collecting = 8,
+        Completed = 9, Cancelled = 10, Failed = 11
+    }
+
     namespace utils {
         /**
          * Inventory state, query, and action helpers. Composes
@@ -3124,12 +3185,31 @@ interface PanelElement {
             unequipSlot(slot: number): boolean;
         };
 
-        /**
-         * Bank state, query, and action helpers. Mirrors
-         * `titan::utils::Bank::*` from
-         * [shared/titan/utils/bank.h](shared/titan/utils/bank.h).
-         * Added in SDK 44.
-         */
+        /** Host-driven shared GE queue, available directly from scripts and the JS shell.
+         * Keep enough coins in inventory/bank. No withdrawal or cache prediction occurs.
+         * Plugin disable/unload does not cancel requests; use abortRequest explicitly.
+         * Logout/account changes stop automation and leave existing offers for manual management. */
+        const ge: {
+            /** null means rejected/unsupported. Default: inventory, noted, autoOpen=false. */
+            addBuyToQueue(options: GeBuyOptions): bigint | null;
+            addBuyToQueue(itemId: number, quantity: number, autoOpen?: boolean): bigint | null;
+            /** Explicit unsupported stub. */
+            addSellToQueue(itemId: number, quantity: number): null;
+            request(id: bigint): GeRequest | null;
+            getRequests(): readonly GeRequest[];
+            getExchangeQueue(): readonly GeRequest[];
+            getQueueSize(): number;
+            isExchanging(): boolean;
+            getStatus(): string;
+            /** Abort and collect this request's partial purchase/refund. */
+            abortRequest(id: bigint): boolean;
+            /** Release a terminal handle. Pending requests cannot be released. */
+            release(id: bigint): boolean;
+            /** Requests cancellation of every pending request in the shared queue. */
+            clearExchangeQueue(): void;
+        };
+
+        /** Bank state, query, and actions. Mirrors titan::utils::Bank (SDK 44). */
         const bank: {
             /** True when the bank interface is open. */
             readonly isOpen: boolean;

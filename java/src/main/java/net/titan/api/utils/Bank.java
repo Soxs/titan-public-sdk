@@ -5,6 +5,7 @@ import net.titan.api.Client;
 import net.titan.api.InventoryId;
 import net.titan.api.InventoryItem;
 import net.titan.api.ItemContainer;
+import net.titan.api.ItemCache;
 import net.titan.api.MenuAction;
 import net.titan.api.Player;
 import net.titan.api.TileObject;
@@ -18,6 +19,7 @@ import net.titan.gamevals.InterfaceID;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /// Plugin-side bank state, query, action, and PIN helpers. Mirrors the C++
 /// {@code titan::utils::Bank} surface (open/close, deposit/withdraw, PIN,
@@ -67,9 +69,16 @@ public final class Bank {
 
     // --- Bank container queries ------------------------------------------
 
+    /** Live open bank, then the C++ host's remembered bank, then empty. */
     public static List<InventoryItem> getAll() {
-        Optional<ItemContainer> snap = client().itemContainer(InventoryId.BANK);
-        return snap.map(ItemContainer::items).orElse(java.util.Collections.emptyList());
+        if (isOpen()) {
+            Optional<ItemContainer> live = client().itemContainer(InventoryId.BANK);
+            // A present but empty live bank must not resurrect remembered stock.
+            if (live.isPresent()) return live.get().items().stream()
+                .filter(item -> item.quantity() > 0)
+                .collect(Collectors.toUnmodifiableList());
+        }
+        return ItemCache.getBankItems();
     }
 
     public static boolean contains(int itemId) {
@@ -102,14 +111,14 @@ public final class Bank {
 
     public static Optional<InventoryItem> find(int itemId) {
         for (InventoryItem item : getAll()) {
-            if (item.id() == itemId) return Optional.of(item);
+            if (item.id() == itemId && item.quantity() > 0) return Optional.of(item);
         }
         return Optional.empty();
     }
 
     public static Optional<InventoryItem> find(String name) {
         for (InventoryItem item : getAll()) {
-            if (containsIgnoreCase(itemName(item), name)) return Optional.of(item);
+            if (item.quantity() > 0 && containsIgnoreCase(itemName(item), name)) return Optional.of(item);
         }
         return Optional.empty();
     }
@@ -173,8 +182,14 @@ public final class Bank {
         return false;
     }
 
+    private static Optional<InventoryItem> findLive(int itemId) {
+        if (!isOpen()) return Optional.empty();
+        return client().itemContainer(InventoryId.BANK).flatMap(bank -> bank.items().stream()
+            .filter(item -> item.id() == itemId && item.quantity() > 0).findFirst());
+    }
+
     public static boolean withdrawItem(int itemId) {
-        Optional<InventoryItem> slot = find(itemId);
+        Optional<InventoryItem> slot = findLive(itemId);
         if (slot.isEmpty()) return false;
         int qty = bankQuantityType();
         int identifier = (qty == 0) ? 1 : 2;
@@ -184,7 +199,7 @@ public final class Bank {
     }
 
     public static boolean withdrawAllItem(int itemId) {
-        Optional<InventoryItem> slot = find(itemId);
+        Optional<InventoryItem> slot = findLive(itemId);
         if (slot.isEmpty()) return false;
         int qty = bankQuantityType();
         int identifier = (qty == 4) ? 1 : 7;
@@ -198,7 +213,7 @@ public final class Bank {
     /// the fast path is clicked; otherwise Withdraw-X is clicked and {@code true}
     /// is returned so the caller can type the amount once {@link #isSearchOpen()}.
     public static boolean withdrawItemAmount(int itemId, int amount) {
-        Optional<InventoryItem> found = find(itemId);
+        Optional<InventoryItem> found = findLive(itemId);
         if (found.isEmpty()) return false;
         int slot = found.get().slot();
         int qty = bankQuantityType();
@@ -240,7 +255,7 @@ public final class Bank {
     }
 
     public static boolean interactItemInBank(int itemId, int identifier) {
-        Optional<InventoryItem> slot = find(itemId);
+        Optional<InventoryItem> slot = findLive(itemId);
         if (slot.isEmpty()) return false;
         return actions().widgetInteract(MenuAction.CC_OP, identifier, slot.get().slot(),
             InterfaceID.Bankmain.ITEMS);
