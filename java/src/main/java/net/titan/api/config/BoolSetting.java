@@ -6,7 +6,7 @@ public final class BoolSetting implements ConfigSetting {
     private final String section;
     private final String description;
     private final int position;
-    private final boolean hidden;
+    private volatile boolean hidden;
     private final boolean defaultValue;
     private volatile boolean value;
 
@@ -34,6 +34,7 @@ public final class BoolSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
+    public void setHidden(boolean hidden) { this.hidden = hidden; }
     public boolean defaultValue() { return defaultValue; }
     public boolean get() { return value; }
     public void set(boolean value) { this.value = value; }

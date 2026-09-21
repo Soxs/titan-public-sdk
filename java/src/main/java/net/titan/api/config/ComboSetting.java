@@ -25,7 +25,7 @@ public final class ComboSetting implements ConfigSetting {
     private final String section;
     private final String description;
     private final int position;
-    private final boolean hidden;
+    private volatile boolean hidden;
     private final int defaultValue;
     private final List<Option> options;
     private volatile int value;
@@ -51,6 +51,7 @@ public final class ComboSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
+    public void setHidden(boolean hidden) { this.hidden = hidden; }
     public int defaultValue() { return defaultValue; }
     public List<Option> options() { return options; }
     public int get() { return value; }

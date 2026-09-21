@@ -1203,7 +1203,10 @@ interface SettingMetaBase {
     section?: Section;
     /** Render order within the section. */
     position?: number;
-    /** Start hidden. Can be flipped at runtime via setting.isHidden = true. */
+    /**
+     * Start hidden. Flip it at runtime with `setting.isHidden = true`; the
+     * value keeps its own state and stays saved either way.
+     */
     hidden?: boolean;
     /** Tooltip shown on the control. */
     tooltip?: string;
@@ -1322,11 +1325,27 @@ interface MatrixSettingInit extends SettingMetaBase {
 interface Setting<T> {
     readonly key: string;
     readonly name: string;
+    /**
+     * The current value. Assigning saves it to the user's controller
+     * config exactly as an edit made in the side panel is, so it survives a
+     * restart (SDK 140). Writing the same value again costs nothing, and
+     * repeated writes coalesce into one save, so this is safe per tick.
+     *
+     * Values the controller pushes down do not come through this setter, so
+     * the host can always tell your write from its own replay of saved
+     * state.
+     */
     value: T;
     readonly defaultValue: T;
+    /**
+     * Show or hide this setting in the controller panel. Presentation only:
+     * the value is untouched and stays saved, so a setting hidden behind a
+     * mode switch keeps whatever the user last chose. Flipping it repaints
+     * the panel.
+     */
     isHidden: boolean;
     readonly position: number;
-    /** Restore the value to defaultValue. */
+    /** Restore the value to defaultValue, and save that. */
     reset(): void;
 }
 

@@ -7,7 +7,7 @@ public final class IntSetting implements ConfigSetting {
     private final String section;
     private final String description;
     private final int position;
-    private final boolean hidden;
+    private volatile boolean hidden;
     private final int defaultValue;
     private final int min;
     private final int max;
@@ -34,6 +34,7 @@ public final class IntSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
+    public void setHidden(boolean hidden) { this.hidden = hidden; }
     public int defaultValue() { return defaultValue; }
     public int min() { return min; }
     public int max() { return max; }

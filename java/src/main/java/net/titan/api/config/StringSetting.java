@@ -9,7 +9,7 @@ public final class StringSetting implements ConfigSetting {
     private final String section;
     private final String description;
     private final int position;
-    private final boolean hidden;
+    private volatile boolean hidden;
     private final boolean secret;
     private final String defaultValue;
     private volatile String value;
@@ -34,6 +34,7 @@ public final class StringSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
+    public void setHidden(boolean hidden) { this.hidden = hidden; }
     public boolean secret() { return secret; }
     public String defaultValue() { return defaultValue; }
     public String get() { return value; }

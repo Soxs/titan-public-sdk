@@ -13,7 +13,7 @@ public final class ButtonSetting implements ConfigSetting {
     private final String section;
     private final String description;
     private final int position;
-    private final boolean hidden;
+    private volatile boolean hidden;
 
     public ButtonSetting(String key, String name, String section,
                          String description, int position, boolean hidden) {
@@ -31,6 +31,7 @@ public final class ButtonSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
+    public void setHidden(boolean hidden) { this.hidden = hidden; }
 
     @Override
     public Kind kind() { return Kind.BUTTON; }

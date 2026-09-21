@@ -27,6 +27,10 @@ import java.util.stream.Collectors;
 public final class Bank {
     private Bank() {}
 
+    /// Interface group of the bank PIN keypad (213).
+    private static final int BANKPIN_KEYPAD_GROUP =
+        InterfaceID.BankpinKeypad.UNIVERSE >>> 16;
+
     private static Client client() {
         return Titan.client();
     }
@@ -294,18 +298,36 @@ public final class Bank {
 
     // --- PIN helpers -----------------------------------------------------
 
+    /// True while the bank PIN keypad (interface 213) is up.
+    ///
+    /// Structural, not textual, for the same reason as {@link #isSearchOpen()}:
+    /// a text scan for the prompt reads only the primary text slot, matches
+    /// case-sensitively, and needs a packed id on the hit, so it misses pads
+    /// whose instruction text sits in the secondary slot or carries colour
+    /// tags. Visibility already fails when the widget's group is inactive, so
+    /// a visible pad child implies the pad is open.
     public static boolean isPinVisible() {
-        return client().widgetByText("Please enter your PIN").isPresent();
+        // FRAME and CANCEL persist for the whole pad session; the digit slots
+        // and the shuffled letter keys do not.
+        return widgetVisible(InterfaceID.BankpinKeypad.FRAME)
+            || widgetVisible(InterfaceID.BankpinKeypad.CANCEL)
+            || widgetVisible(InterfaceID.BankpinKeypad.UNIVERSE);
     }
 
+    /// Index (0-3) of the digit the pad is asking for, or -1 when the pad is
+    /// down or has not named a digit yet.
+    ///
+    /// Sweeps every visible widget in the pad group rather than reading
+    /// {@code FRAME} alone: the instruction text does not reliably live on
+    /// that one child. {@code FRAME} is included in the sweep.
     public static int pinRequestedDigitIndex() {
-        Optional<Widget> w = client().widget(InterfaceID.BankpinKeypad.FRAME);
-        if (w.isEmpty() || !w.get().isVisible()) return -1;
-        String txt = w.get().text();
-        if (containsIgnoreCase(txt, "FIRST")) return 0;
-        if (containsIgnoreCase(txt, "SECOND")) return 1;
-        if (containsIgnoreCase(txt, "THIRD")) return 2;
-        if (containsIgnoreCase(txt, "FOURTH")) return 3;
+        for (Widget widget : Queries.widgets(BANKPIN_KEYPAD_GROUP).isVisible().toList()) {
+            String txt = widget.text();
+            if (containsIgnoreCase(txt, "FIRST")) return 0;
+            if (containsIgnoreCase(txt, "SECOND")) return 1;
+            if (containsIgnoreCase(txt, "THIRD")) return 2;
+            if (containsIgnoreCase(txt, "FOURTH")) return 3;
+        }
         return -1;
     }
 

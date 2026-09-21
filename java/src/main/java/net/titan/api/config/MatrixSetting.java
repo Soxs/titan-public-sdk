@@ -31,7 +31,7 @@ public final class MatrixSetting implements ConfigSetting {
     private final String section;
     private final String description;
     private final int position;
-    private final boolean hidden;
+    private volatile boolean hidden;
     private final int defaultValue;
     private final int availability;
     private final List<String> rowLabels;
@@ -63,6 +63,7 @@ public final class MatrixSetting implements ConfigSetting {
     public String description() { return description; }
     public int position() { return position; }
     public boolean hidden() { return hidden; }
+    public void setHidden(boolean hidden) { this.hidden = hidden; }
 
     public int rowCount() { return rowLabels.size(); }
     public int columnCount() { return columnLabels.size(); }
