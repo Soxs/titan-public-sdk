@@ -29,6 +29,7 @@ public final class TitanRuntime {
     private static volatile WorldMapBackend worldMapBackend;
     private static volatile ScreenshotBackend screenshotBackend;
     private static volatile ItemPricesBackend itemPricesBackend;
+    private static volatile CrossTabBackend crossTabBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -384,6 +385,25 @@ public final class TitanRuntime {
     public static void clearBreakHandlerBackend(BreakHandlerBackend backend) {
         if (breakHandlerBackend == backend) {
             breakHandlerBackend = null;
+        }
+    }
+
+    public static CrossTabBackend getCrossTabBackend() {
+        CrossTabBackend value = crossTabBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java Cross-Tab Store backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setCrossTabBackend(CrossTabBackend backend) {
+        crossTabBackend = backend;
+    }
+
+    public static void clearCrossTabBackend(CrossTabBackend backend) {
+        if (crossTabBackend == backend) {
+            crossTabBackend = null;
         }
     }
 

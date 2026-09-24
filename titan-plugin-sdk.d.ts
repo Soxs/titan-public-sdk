@@ -1922,6 +1922,202 @@ interface BreakHandlerUtility {
     running(plugin: Plugin): boolean;
 }
 
+/** What happened to a Cross-Tab Store key. Values match `CROSS_TAB_CHANGE_*`. SDK 141+. */
+enum CrossTabChangeKind {
+    /** The key is present at `version`. */
+    Set = 0,
+    /** The key is absent. */
+    Erased = 1,
+    /** Write `writeId` was refused; the key shows the controller's state again. */
+    Rejected = 2,
+}
+
+/** Why this plugin is hearing about a change. Values match `CROSS_TAB_ORIGIN_*`. SDK 141+. */
+enum CrossTabChangeOrigin {
+    /** Another tab, or another instance of this plugin, changed the key. */
+    Remote = 0,
+    /** This instance just bound: one event per key in its namespace. */
+    Replay = 1,
+    /** The result of this instance's own `putIf` / `eraseIf`. */
+    Outcome = 2,
+}
+
+/** Why a key changed or a write was refused. Values match `CROSS_TAB_CAUSE_*`. SDK 141+. */
+enum CrossTabChangeCause {
+    /** An ordinary write. */
+    Writer = 0,
+    /** The controller session ended (Titan sign-out, sign-in, controller exit). */
+    SessionReset = 1,
+    /** A namespace or store limit. */
+    Limit = 2,
+    /** A conditional write's `expectedVersion` did not match. */
+    Conflict = 3,
+    /** A secret written from a tab this controller did not launch, or the store is signed out. */
+    NotPermitted = 4,
+}
+
+/**
+ * One change to a key of this plugin's Cross-Tab Store namespace, delivered
+ * to `Plugin.onCrossTabChanged`. Immutable. It never carries the value: read
+ * that with `titan.crossTab`. SDK 141+.
+ */
+interface CrossTabChange {
+    readonly key: string;
+    readonly kind: CrossTabChangeKind;
+    readonly origin: CrossTabChangeOrigin;
+    readonly cause: CrossTabChangeCause;
+    readonly secret: boolean;
+    /** A secret whose value this tab may not hold. */
+    readonly redacted: boolean;
+    /**
+     * Set / Erased: the version it happened at. Outcome: the version the
+     * write got. Rejected: the key's version after the revert -- re-read the
+     * key. 0n for a pending value, a session reset, and a key a resync left
+     * out.
+     */
+    readonly version: bigint;
+    /** Outcome and Rejected: the write id `putIf` / `eraseIf` returned. Otherwise 0n. */
+    readonly writeId: bigint;
+}
+
+/** Options for `titan.crossTab.put` / `putIf`. SDK 141+. */
+interface CrossTabOptions {
+    /**
+     * Handle the value as a secret: never logged or persisted, sent only to
+     * tabs this controller launched (other tabs see it redacted), and read
+     * back only through `getSecret`. Refused in a tab this controller did not
+     * launch. It is not access control: other plugins in the same tab share
+     * the runtime.
+     */
+    secret?: boolean;
+}
+
+/** A key's state as this tab sees it, without its value. SDK 141+. */
+interface CrossTabInfo {
+    /** Controller-assigned and rising; 0n while pending. */
+    readonly version: bigint;
+    /** Value bytes; 0 when redacted. */
+    readonly size: number;
+    readonly secret: boolean;
+    /** This tab's own put, not yet confirmed. */
+    readonly pending: boolean;
+    /** A secret whose value this tab may not hold. */
+    readonly redacted: boolean;
+}
+
+/** A non-secret value, as `titan.crossTab.get` returns it. SDK 141+. */
+interface CrossTabValue {
+    /** The raw bytes, in a buffer of the caller's own. */
+    readonly bytes: ArrayBuffer;
+    /** `bytes` decoded as UTF-8, the encoding a string value is stored in. */
+    text(): string;
+    /** 0n while pending. */
+    readonly version: bigint;
+    /** This tab's own put, not yet confirmed. */
+    readonly pending: boolean;
+}
+
+/**
+ * Cross-Tab Store: small values that every tab launched by the same
+ * controller sees, for the life of one controller sign-in session. Each
+ * plugin owns one namespace. Every call takes the exact `Plugin` object
+ * passed to `titan.register`, as `titan.breakHandler` does: the host derives
+ * the namespace from it, never from a string, so a plugin reaches only its
+ * own keys. Calls with any other object, before the plugin has loaded, or
+ * from a plugin whose id is not 1-63 printable ASCII characters (no spaces)
+ * fail. SDK 141+.
+ *
+ * ```ts
+ * titan.crossTab.put(this, "route.last", "lumbridge");   // every tab sees it
+ * const value = titan.crossTab.get(this, "route.last");  // non-secret keys only
+ * if (value) titan.log(value.text());
+ * titan.crossTab.erase(this, "route.last");              // every tab loses it
+ * ```
+ *
+ * - **Limits.** Keys are 1-63 characters of `[A-Za-z0-9._:/-]`. A value is
+ *   raw bytes -- a string is stored as its UTF-8 encoding -- at most 16 KiB;
+ *   zero-length values are allowed. A namespace holds at most 64 keys,
+ *   128 KiB and 16 secrets; the whole store at most 4096 entries and 1 MiB.
+ *   A tab holds at most 256 unacknowledged writes (512 KiB). A write that
+ *   breaks a limit the tab can see fails at once; one that breaks a
+ *   store-wide limit is rejected later with `CrossTabChangeCause.Limit`.
+ * - **Lifetime.** The controller keeps the values in memory for one sign-in
+ *   session. They outlive plugin reloads and tab restarts and are never
+ *   written to disk. Titan sign-out, sign-in and controller exit forget them;
+ *   each key that disappears this way arrives as `Erased` with cause
+ *   `SessionReset`.
+ * - **Unconditional writes** (`put`, `erase`) show in this tab at once
+ *   (`pending`, version 0n) and are resent until the controller acknowledges
+ *   them; the last write the controller receives wins. You get no event for
+ *   your own write unless the controller rejects it.
+ * - **Every write is sent.** The outbox of unacknowledged writes does not
+ *   coalesce: ten puts of one key are ten writes. Write when a value changes,
+ *   not every tick.
+ * - **Conditional writes** (`putIf`, `eraseIf`) change nothing locally. The
+ *   controller applies them only if the key's version still equals
+ *   `expectedVersion` (0n = only if absent), and you hear `Outcome` (`Set` or
+ *   `Erased`, with the new version) or `Rejected` (`Conflict` or another
+ *   cause), carrying the returned write id.
+ * - **`Rejected` means re-read.** This tab has already reverted the key to
+ *   the controller's state, and the event's `version` is that confirmed
+ *   version (0n when the key is absent).
+ * - **An erase reaches every tab**, including tabs that never held the key.
+ * - **Replay.** Each time an instance binds (plugin load or reload, JS runtime
+ *   rebuild) it gets one `Replay` event per key in its namespace, including
+ *   keys its own tab wrote.
+ * - **Secret is handling, not access control.** A secret is never logged,
+ *   persisted, or put in settings, labels or gateway frames, and goes only to
+ *   tabs this controller launched; other (attached) tabs see it `redacted`
+ *   and cannot write secrets. `get` refuses secrets; `getSecret` returns them
+ *   as an `ArrayBuffer`, never a string. Zero it when done
+ *   (`new Uint8Array(buffer).fill(0)`); the host also zeroes the buffer's
+ *   memory when the engine frees it. The engine's own copies cannot be
+ *   scrubbed -- a string you derive, `slice()`, a `transfer()` to another
+ *   length, and a string passed to `put` -- so hand secrets over as a
+ *   `Uint8Array` you wipe afterwards. None of this hides a value from other
+ *   plugins in the same tab: JS plugins share one runtime.
+ * - **Callbacks** (`Plugin.onCrossTabChanged`) run on the game thread from
+ *   the MainLoop drain, on the title and login screens too, for every loaded
+ *   plugin whether or not it is enabled. Keep them cheap: note what changed
+ *   and act later. Queued changes to one key coalesce; outcomes never do.
+ * - **Namespaces are per runtime.** A native or Java plugin with the same id
+ *   never shares this plugin's keys.
+ */
+interface CrossTabFacade {
+    /**
+     * Set `key`; true when accepted. False when refused locally: not this
+     * plugin's registered object, a bad key, a value that is not a string,
+     * `ArrayBuffer` or `Uint8Array` or is over 16 KiB, a namespace limit, a
+     * secret in a tab this controller did not launch, or a full outbox.
+     */
+    put(plugin: Plugin, key: string, value: string | ArrayBuffer | Uint8Array,
+        options?: CrossTabOptions): boolean;
+    /** Erase `key`, even if it is absent: the erase reaches every tab. */
+    erase(plugin: Plugin, key: string): boolean;
+    /**
+     * Propose setting `key` only if its version is still `expectedVersion`
+     * (0n = only if absent). Returns the write id the Outcome or Rejected
+     * event will carry, or null when refused locally (as `put`, or an
+     * `expectedVersion` that is not a uint64 bigint).
+     */
+    putIf(plugin: Plugin, key: string, value: string | ArrayBuffer | Uint8Array,
+          expectedVersion: bigint, options?: CrossTabOptions): bigint | null;
+    /**
+     * Propose erasing `key` only if its version is still `expectedVersion`;
+     * as `putIf`, with an Outcome of `Erased`.
+     */
+    eraseIf(plugin: Plugin, key: string, expectedVersion: bigint): bigint | null;
+    /** The value of a non-secret key; null when it is absent or secret. */
+    get(plugin: Plugin, key: string): CrossTabValue | null;
+    /**
+     * A key's bytes, secret or not; null when it is absent or its value is
+     * withheld in this tab (redacted -- `info` says so).
+     */
+    getSecret(plugin: Plugin, key: string): ArrayBuffer | null;
+    /** A key's state without its value; null when it is absent. */
+    info(plugin: Plugin, key: string): CrossTabInfo | null;
+}
+
 /**
  * Extend titan.Plugin, declare setting / section / overlay members via the
  * helper methods (this.boolSetting, this.section, this.overlay, ...) and
@@ -2029,6 +2225,14 @@ class Plugin {
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;
     /** RuneLite-style personal Grand Exchange offer update. SDK 136+. */
     onGrandExchangeOfferChanged?(event: GrandExchangeOfferChangedEvent): void;
+    /**
+     * A key in this plugin's Cross-Tab Store namespace changed, this instance
+     * just bound (one `Replay` per key), or one of its own `putIf` / `eraseIf`
+     * has an outcome. Runs on the game thread whether or not the plugin is
+     * enabled, and never carries the value: read it with `titan.crossTab`.
+     * Keep it cheap. SDK 141+.
+     */
+    onCrossTabChanged?(change: CrossTabChange): void;
 
     onNpcSpawned?(npc: Npc): void;
     onNpcDespawned?(npc: Npc): void;
@@ -2383,6 +2587,9 @@ interface PanelElement {
 
     /** Cross-runtime coordinated break utility. SDK 97+. */
     const breakHandler: BreakHandlerUtility;
+
+    /** Values shared by every tab launched by the same controller. SDK 141+. */
+    const crossTab: CrossTabFacade;
 
     // Logging.
     function log(message: string): void;
