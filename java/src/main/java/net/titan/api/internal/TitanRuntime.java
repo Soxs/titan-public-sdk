@@ -30,6 +30,7 @@ public final class TitanRuntime {
     private static volatile ScreenshotBackend screenshotBackend;
     private static volatile ItemPricesBackend itemPricesBackend;
     private static volatile CrossTabBackend crossTabBackend;
+    private static volatile PreviewPillBackend previewPillBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -404,6 +405,25 @@ public final class TitanRuntime {
     public static void clearCrossTabBackend(CrossTabBackend backend) {
         if (crossTabBackend == backend) {
             crossTabBackend = null;
+        }
+    }
+
+    public static PreviewPillBackend getPreviewPillBackend() {
+        PreviewPillBackend value = previewPillBackend;
+        if (value == null) {
+            throw new IllegalStateException(
+                "Titan Java preview pill backend is not available for this client tab yet.");
+        }
+        return value;
+    }
+
+    public static void setPreviewPillBackend(PreviewPillBackend backend) {
+        previewPillBackend = backend;
+    }
+
+    public static void clearPreviewPillBackend(PreviewPillBackend backend) {
+        if (previewPillBackend == backend) {
+            previewPillBackend = null;
         }
     }
 

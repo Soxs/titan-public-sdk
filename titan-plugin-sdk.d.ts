@@ -2118,6 +2118,63 @@ interface CrossTabFacade {
     info(plugin: Plugin, key: string): CrossTabInfo | null;
 }
 
+/** One preview pill, as `titan.previewPills.set` shows it. SDK 142+. */
+interface PreviewPill {
+    /** Drawn first. May be empty or omitted when `countdownMs` is set. */
+    text?: string;
+    /** A `titan.PanelTone` value; neutral when omitted or unknown. */
+    tone?: PanelTone;
+    /**
+     * When set, a live `HH:MM:SS` countdown of this many milliseconds from
+     * now, drawn after the text. Negative counts as zero; past 999:59:59 is
+     * shortened.
+     */
+    countdownMs?: number;
+}
+
+/**
+ * Preview pills: short labels a plugin pins over its tab's thumbnail on the
+ * controller's Home grid. Each plugin owns its own pills. Every call takes
+ * the exact `Plugin` object passed to `titan.register`, as `titan.crossTab`
+ * does: the host derives the owner from it, never from a string, so a plugin
+ * reaches only its own pills. SDK 142+.
+ *
+ * ```ts
+ * titan.previewPills.set(this, "break", {
+ *     text: "Breaking:", tone: titan.PanelTone.info, countdownMs: 12 * 60000,
+ * });                                          // "Breaking: 00:12:00", ticking down
+ * titan.previewPills.set(this, "task", { text: "Mining iron" });
+ * titan.previewPills.clear(this, "break");
+ * ```
+ *
+ * - **Countdowns tick on their own.** The controller counts down from the
+ *   moment of the call, so set a countdown once. It stops at 00:00:00 and
+ *   stays there until you clear or replace the pill.
+ * - **Limits.** Keys are 1-32 characters of `[A-Za-z0-9._:/-]`. A plugin
+ *   shows at most 2 pills and a tab at most 8; a new pill past either limit
+ *   is refused, never swapped for another. Text becomes one line of UTF-8,
+ *   cut to 63 bytes. Pills keep the order they were first set in; replacing
+ *   one keeps its place.
+ * - **Lifetime.** Only an enabled plugin may set a pill. Disabling,
+ *   unloading or reloading the plugin, or rebuilding the JS runtime, drops
+ *   every pill it set.
+ * - Pills appear on the tab's Home-grid card only, never in the game view.
+ */
+interface PreviewPillsFacade {
+    /**
+     * Show pill `key`, replacing the one already under that key; true when
+     * shown. False when refused: not this plugin's registered object, the
+     * plugin is disabled, a bad key, a `text` that is not a string or a
+     * `tone` that is not a number, empty text with no countdown, a
+     * `countdownMs` that is not a number, or a new pill past a limit.
+     */
+    set(plugin: Plugin, key: string, pill: PreviewPill): boolean;
+    /** Remove pill `key`; true once it is gone, including when it was never shown. */
+    clear(plugin: Plugin, key: string): boolean;
+    /** Remove every pill this plugin shows. */
+    clearAll(plugin: Plugin): boolean;
+}
+
 /**
  * Extend titan.Plugin, declare setting / section / overlay members via the
  * helper methods (this.boolSetting, this.section, this.overlay, ...) and
@@ -2590,6 +2647,9 @@ interface PanelElement {
 
     /** Values shared by every tab launched by the same controller. SDK 141+. */
     const crossTab: CrossTabFacade;
+
+    /** Short labels over this tab's thumbnail on the Home grid. SDK 142+. */
+    const previewPills: PreviewPillsFacade;
 
     // Logging.
     function log(message: string): void;
