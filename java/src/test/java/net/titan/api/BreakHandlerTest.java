@@ -92,6 +92,62 @@ final class BreakHandlerTest {
     }
 
     @Test
+    void observeReadsTheCommandWithoutPolling() {
+        backend = new TestBackend();
+        TitanRuntime.setBreakHandlerBackend(backend);
+        Plugin plugin = new TestPlugin();
+        backend.observed = new BreakCommand(
+            true, 7L, BreakPhase.BREAK_ACTIVE, BreakMode.AFK, "auto_fighter");
+
+        BreakCommand command = BreakHandler.observe(plugin);
+
+        assertSame(plugin, backend.lastPlugin);
+        assertEquals(0, backend.polls);
+        assertEquals(7L, command.epoch());
+        assertEquals(BreakPhase.BREAK_ACTIVE, command.phase());
+        assertEquals("auto_fighter", command.triggeringOwnerId());
+        assertTrue(command.isBreakInProgress());
+        assertTrue(BreakHandler.isBreakInProgress(plugin));
+        assertEquals(0, backend.polls);
+
+        for (BreakPhase phase : new BreakPhase[] {
+                BreakPhase.PREPARE, BreakPhase.RESUME}) {
+            backend.observed = new BreakCommand(true, 7L, phase, BreakMode.AFK, "");
+            assertTrue(BreakHandler.isBreakInProgress(plugin));
+        }
+        backend.observed = new BreakCommand(true, 7L, BreakPhase.NONE, BreakMode.AFK, "");
+        assertFalse(BreakHandler.isBreakInProgress(plugin));
+        backend.observed = new BreakCommand(false, 7L, BreakPhase.BREAK_ACTIVE, BreakMode.AFK, "");
+        assertFalse(BreakHandler.isBreakInProgress(plugin),
+            "an unavailable command never reports a break");
+        backend.observed = null;
+        assertSame(BreakCommand.none(), BreakHandler.observe(plugin));
+    }
+
+    @Test
+    void observeFailsClosedOnABridgeThatPredatesIt() {
+        BreakHandlerBackend legacy = new BreakHandlerBackend() {
+            @Override public boolean register(Plugin plugin, boolean configurable) { return true; }
+            @Override public boolean start(Plugin plugin) { return true; }
+            @Override public boolean stop(Plugin plugin) { return true; }
+            @Override public boolean unregister(Plugin plugin) { return true; }
+            @Override public BreakCommand poll(Plugin plugin) {
+                return new BreakCommand(true, 1L, BreakPhase.BREAK_ACTIVE, BreakMode.AFK, "");
+            }
+            @Override public boolean report(Plugin plugin, int state, int code,
+                                            int retryAfterMs, String reason) { return true; }
+        };
+        TitanRuntime.setBreakHandlerBackend(legacy);
+        try {
+            Plugin plugin = new TestPlugin();
+            assertFalse(BreakHandler.observe(plugin).available());
+            assertFalse(BreakHandler.isBreakInProgress(plugin));
+        } finally {
+            TitanRuntime.clearBreakHandlerBackend(legacy);
+        }
+    }
+
+    @Test
     void reportMethodsUseStableProtocolStatesAndSanitizeNullReasons() {
         backend = new TestBackend();
         TitanRuntime.setBreakHandlerBackend(backend);
@@ -158,6 +214,8 @@ final class BreakHandlerTest {
         int lastRetryAfterMs;
         String lastReason;
         BreakCommand command = BreakCommand.none();
+        BreakCommand observed = BreakCommand.none();
+        int polls;
 
         private boolean accepts(Plugin plugin) {
             lastPlugin = plugin;
@@ -187,7 +245,13 @@ final class BreakHandlerTest {
 
         @Override
         public BreakCommand poll(Plugin plugin) {
+            polls++;
             return accepts(plugin) ? command : BreakCommand.none();
+        }
+
+        @Override
+        public BreakCommand observe(Plugin plugin) {
+            return accepts(plugin) ? observed : BreakCommand.none();
         }
 
         @Override

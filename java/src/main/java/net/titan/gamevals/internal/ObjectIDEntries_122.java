@@ -43,7 +43,7 @@ final class ObjectIDEntries_122 {
             new GamevalEntry(62494, "DOGQ_GOBLIN_STUFFED_DOG", "Stuffed dog", "loctypes"),
             new GamevalEntry(62495, "DOGQ_DOG_GUARD_HOUSE_MULTI", "dogq_dog_guard_house_multi", "loctypes"),
             new GamevalEntry(62496, "DOGQ_DOG_GUARD_BALL_MULTI", "dogq_dog_guard_ball_multi", "loctypes"),
-            new GamevalEntry(62497, "DOGQ_DOG_GUARD_HOUSE", "dogq_dog_guard_house", "loctypes"),
+            new GamevalEntry(62497, "DOGQ_DOG_GUARD_HOUSE", "Dog bed", "loctypes"),
             new GamevalEntry(62498, "DOGQ_DOGHOUSE01_DEFAULT01", "Doghouse", "loctypes"),
             new GamevalEntry(62499, "DOGQ_SHELTER01_HUMAN01", "Shelter", "loctypes"),
             new GamevalEntry(62500, "DOGQ_DOGHOUSE01_KENNEL01", "Kennel", "loctypes"),

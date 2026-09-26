@@ -1188,6 +1188,13 @@ interface SectionOptions {
     position?: number;
     /** Start collapsed. Defaults to false. */
     closedByDefault?: boolean;
+    /**
+     * Section of this plugin to nest this one inside. The controller draws it
+     * as a collapsing header within the parent's, after the parent's own
+     * settings, ordered by `position` among its siblings. A parent chain that
+     * loops back leaves it at the top level. SDK 143+.
+     */
+    parent?: Section;
 }
 
 interface Section {
@@ -1196,6 +1203,8 @@ interface Section {
     readonly description: string;
     readonly position: number;
     readonly isClosedByDefault: boolean;
+    /** Key of the section this one is nested in; "" at the top level. SDK 143+. */
+    readonly parentKey: string;
 }
 
 interface SettingMetaBase {
@@ -1881,7 +1890,7 @@ type BreakPhase = "NONE" | "PREPARE" | "BREAK_ACTIVE" | "RESUME";
 /** Whether the coordinated break stays logged in or confirms logout. SDK 97+. */
 type BreakMode = "AFK" | "LOGOUT";
 
-/** Immutable result returned by `titan.breakHandler.poll`. SDK 97+. */
+/** Immutable result returned by `titan.breakHandler.poll` and `observe`. SDK 97+. */
 interface BreakCommand {
     readonly available: boolean;
     readonly epoch: bigint;
@@ -1912,6 +1921,14 @@ interface BreakHandlerUtility {
     shouldBreak(plugin: Plugin): boolean;
     isBreakActive(plugin: Plugin): boolean;
     shouldResume(plugin: Plugin): boolean;
+    /**
+     * Read the break the coordinator has currently published, without
+     * registering. Phase `"NONE"` means no break is in progress. Records no
+     * epoch, so a participant still polls before reporting. SDK 144+.
+     */
+    observe(plugin: Plugin): BreakCommand;
+    /** True while any break is preparing, active or resuming (uses `observe`). SDK 144+. */
+    isBreakInProgress(plugin: Plugin): boolean;
     /** Acknowledge a safe paused boundary for the last polled epoch. */
     paused(plugin: Plugin): boolean;
     /** Report a bounded preparation deferral for the last polled epoch. */

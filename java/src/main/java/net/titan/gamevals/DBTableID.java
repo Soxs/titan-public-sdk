@@ -11949,6 +11949,7 @@ public final class DBTableID
         public static final int COL_ID = 1;
         public static final int COL_HEADER = 2;
         public static final int COL_MEMBERSONLY = 3;
+        public static final int COL_CUSTOM_ORDER = 4;
     }
 
     public static final class SkillFeatures {
@@ -11965,6 +11966,7 @@ public final class DBTableID
         public static final int COL_OTHERDATA_MAGIC = 7;
         public static final int COL_OTHERDATA_SAILING = 8;
         public static final int COL_OTHERDATA_CONSTRUCTION = 9;
+        public static final int COL_CUSTOM_ORDERING = 10;
     }
 
     public static final class MinigameTeleport {

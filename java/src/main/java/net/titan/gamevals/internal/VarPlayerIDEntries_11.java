@@ -57,6 +57,13 @@ final class VarPlayerIDEntries_11 {
             new GamevalEntry(5740, "CRAB_SECONDARY", "crab_secondary", "varptypes"),
             new GamevalEntry(5741, "CRAB_TEMP", "crab_temp", "varptypes"),
             new GamevalEntry(5742, "DOGQUEST_MAIN", "dogquest_main", "varptypes"),
+            new GamevalEntry(5745, "SETTINGS_FARMING_PATCH_OVERLAY_COLOUR", "settings_farming_patch_overlay_colour", "varptypes"),
+            new GamevalEntry(5746, "FARMING_COMPOST_TRANSMIT_1", "farming_compost_transmit_1", "varptypes"),
+            new GamevalEntry(5747, "FARMING_COMPOST_TRANSMIT_2", "farming_compost_transmit_2", "varptypes"),
+            new GamevalEntry(5748, "FARMING_COMPOST_TRANSMIT_3", "farming_compost_transmit_3", "varptypes"),
+            new GamevalEntry(5749, "FARMING_COMPOST_TRANSMIT_4", "farming_compost_transmit_4", "varptypes"),
+            new GamevalEntry(5750, "FARMING_COMPOST_TRANSMIT_5", "farming_compost_transmit_5", "varptypes"),
+            new GamevalEntry(5751, "FARMING_COMPOST_TRANSMIT_6", "farming_compost_transmit_6", "varptypes"),
         };
     }
 

@@ -87,6 +87,12 @@ final class DbRowIDEntries_33 {
             new GamevalEntry(16970, "YORKIE", "yorkie", "rowtypes"),
             new GamevalEntry(16971, "QUEST_RUFFSITUATION", "quest_ruffsituation", "rowtypes"),
             new GamevalEntry(16972, "QUEST_CRABQUEST", "quest_crabquest", "rowtypes"),
+            new GamevalEntry(16973, "SKILL_FEATURE_HITPOINTS_GIANT_KRILL_COOKED", "skill_feature_hitpoints_giant_krill_cooked", "rowtypes"),
+            new GamevalEntry(16974, "SKILL_FEATURE_HITPOINTS_HADDOCK_COOKED", "skill_feature_hitpoints_haddock_cooked", "rowtypes"),
+            new GamevalEntry(16975, "SKILL_FEATURE_HITPOINTS_YELLOWFIN_COOKED", "skill_feature_hitpoints_yellowfin_cooked", "rowtypes"),
+            new GamevalEntry(16976, "SKILL_FEATURE_HITPOINTS_HALIBUT_COOKED", "skill_feature_hitpoints_halibut_cooked", "rowtypes"),
+            new GamevalEntry(16977, "SKILL_FEATURE_HITPOINTS_BLUEFIN_COOKED", "skill_feature_hitpoints_bluefin_cooked", "rowtypes"),
+            new GamevalEntry(16978, "SKILL_FEATURE_HITPOINTS_MARLIN_COOKED", "skill_feature_hitpoints_marlin_cooked", "rowtypes"),
         };
     }
 

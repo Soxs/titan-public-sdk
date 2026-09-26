@@ -300,4 +300,5 @@ public interface ItemIDConstants_67 {
     int DOGQ_PUPPY_THREE_OBJECT = 34600;
     int DOGQ_STRAY_DOG_FOLLOWER_OBJECT = 34601;
     int DOGQ_STUFFED_DOG = 34602;
+    int CERT_BLANKRUNE_DAEYALT = 34603;
 }

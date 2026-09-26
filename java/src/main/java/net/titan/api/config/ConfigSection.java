@@ -15,4 +15,14 @@ public @interface ConfigSection {
     String description() default "";
     int position() default 0;
     boolean closedByDefault() default false;
+
+    /**
+     * keyName of another section in the same config to nest this one inside.
+     * The controller draws it as a collapsing header within the parent's,
+     * after the parent's own settings, ordered by position among its
+     * siblings. An unknown parent, a section that is its own parent, and
+     * parents that loop are rejected when the plugin is scanned.
+     * SDK 143, Java SDK 0.1.68.
+     */
+    String parent() default "";
 }

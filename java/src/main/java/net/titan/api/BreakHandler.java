@@ -95,6 +95,31 @@ public final class BreakHandler {
     }
 
     /**
+     * Read the break the coordinator has currently published, without
+     * registering. {@link BreakPhase#NONE} means no break is in progress.
+     * Nothing is recorded, so this never joins a pause quorum and a
+     * participant still polls before reporting. SDK 144.
+     *
+     * @param plugin exact loaded plugin instance
+     * @return current command, or an unavailable {@link BreakCommand#none()}
+     */
+    public static BreakCommand observe(Plugin plugin) {
+        BreakCommand command = backend().observe(requirePlugin(plugin));
+        return command == null ? BreakCommand.none() : command;
+    }
+
+    /**
+     * True while any break is preparing, active or resuming. Uses
+     * {@link #observe(Plugin)}, so the plugin need not be registered. SDK 144.
+     *
+     * @param plugin exact loaded plugin instance
+     * @return whether a coordinated break is in progress
+     */
+    public static boolean isBreakInProgress(Plugin plugin) {
+        return observe(plugin).isBreakInProgress();
+    }
+
+    /**
      * Acknowledge the safe paused boundary for the most recently polled epoch.
      *
      * @param plugin exact loaded plugin instance

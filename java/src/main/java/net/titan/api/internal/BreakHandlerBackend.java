@@ -16,5 +16,17 @@ public interface BreakHandlerBackend {
     boolean stop(Plugin plugin);
     boolean unregister(Plugin plugin);
     BreakCommand poll(Plugin plugin);
+
+    /**
+     * The command the coordinator has currently published, without a
+     * registration (SDK 144). Defaults to unavailable so a runtime bridge
+     * that predates it fails closed.
+     *
+     * @param plugin exact loaded plugin instance
+     * @return current command, or {@link BreakCommand#none()}
+     */
+    default BreakCommand observe(Plugin plugin) {
+        return BreakCommand.none();
+    }
     boolean report(Plugin plugin, int state, int code, int retryAfterMs, String reason);
 }

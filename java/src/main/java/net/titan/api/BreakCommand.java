@@ -2,7 +2,7 @@ package net.titan.api;
 
 import java.util.Objects;
 
-/** Immutable command returned by {@link BreakHandler#poll}. */
+/** Immutable command returned by {@link BreakHandler#poll} and {@link BreakHandler#observe}. */
 public final class BreakCommand {
     private static final BreakCommand NONE =
         new BreakCommand(false, 0L, BreakPhase.NONE, BreakMode.AFK, "");
@@ -61,5 +61,14 @@ public final class BreakCommand {
 
     public boolean shouldResume() {
         return available && phase == BreakPhase.RESUME;
+    }
+
+    /**
+     * Any break phase at all: preparing, active or resuming. SDK 144.
+     *
+     * @return whether a coordinated break is in progress
+     */
+    public boolean isBreakInProgress() {
+        return available && phase != BreakPhase.NONE;
     }
 }
