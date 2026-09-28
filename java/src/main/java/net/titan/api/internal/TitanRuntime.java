@@ -484,9 +484,7 @@ public final class TitanRuntime {
             if (panels == null || panels.isEmpty()) return;
             panels = new ArrayList<>(panels);
         }
-        for (OverlayPanel panel : panels) {
-            panel.close();
-        }
+        closePanels(panels);
     }
 
     public static void closeAllOverlayPanels() {
@@ -497,8 +495,20 @@ public final class TitanRuntime {
             }
             OVERLAY_PANELS.clear();
         }
+        closePanels(panels);
+    }
+
+    private static void closePanels(List<OverlayPanel> panels) {
+        Throwable first = null;
         for (OverlayPanel panel : panels) {
-            panel.close();
+            try {
+                panel.close();
+            } catch (RuntimeException | Error failure) {
+                if (first == null) first = failure;
+                else if (first != failure) first.addSuppressed(failure);
+            }
         }
+        if (first instanceof Error) throw (Error) first;
+        if (first != null) throw (RuntimeException) first;
     }
 }

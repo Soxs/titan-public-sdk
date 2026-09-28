@@ -3076,10 +3076,10 @@ interface PanelElement {
          */
         const dialogue: {
         /**
-         * Click the active "click here to continue" widget (level-up,
-         * NPC dialogue continue, minigame dialog, tutorial-island
-         * prompt, ...). @returns true when a continue widget was found
-         * and the click was queued.
+         * Press Space to advance the active "click here to continue"
+         * prompt (level-up, NPC dialogue continue, minigame dialog, item
+         * box, tutorial-island prompt, ...). @returns true when a
+         * continue prompt was found and the key press was queued.
          */
         continueDialogue(): boolean;
         /** True when a continue prompt or a multi-option dialog is visible. */
@@ -3092,25 +3092,32 @@ interface PanelElement {
         closeQuestCompletion(): boolean;
         /**
          * Packed widget id of the active continue prompt, or 0 when
-         * no continue widget is up.
+         * no continue widget is up. For the item box (Objectbox), whose
+         * prompt is dynamic child 2, this is `Objectbox.UNIVERSE`; that
+         * prompt is not clickable as a whole widget, so advance it with
+         * `continueDialogue()`.
          */
         readonly continueWidgetPackedId: number;
         /**
          * @returns true when the multi-option dialog is visible and at
          *          least one option contains any of `needles` (case-
-         *          insensitive substring).
+         *          insensitive substring). The title/header is not an
+         *          option.
          */
         hasOption(needles: string[]): boolean;
         /**
-         * Click the first dialog option whose text matches any of
-         * `needles` (case-insensitive substring). Tries needles in
-         * order; the first matching option wins.
-         * @returns true when a matching option was clicked.
+         * Pick the first dialog option whose text matches any of
+         * `needles` (case-insensitive substring) by pressing its digit
+         * key (option N = key N). Tries needles in order; for each
+         * needle an exact match beats an earlier partial match. The
+         * title/header is never picked.
+         * @returns true when a matching option was found and the key
+         *          press was queued.
          */
         selectOption(needles: string[]): boolean;
         /**
-         * Convenience: click a matching dialog option if one is up,
-         * otherwise advance a continue widget. Mirrors RuneLite's
+         * Convenience: pick a matching dialog option if one is up,
+         * otherwise advance a continue prompt. Mirrors RuneLite's
          * `handleDialogue(String...)` helper.
          */
         handleDialogue(needles: string[]): boolean;
