@@ -245,7 +245,7 @@ final class ItemIDEntries_66 {
             new GamevalEntry(34024, "JEWELLERS_CHISEL", "Jeweller's chisel", "objtypes"),
             new GamevalEntry(34025, "PLACEHOLDER_JEWELLERS_CHISEL", "placeholder_jewellers_chisel", "objtypes"),
             new GamevalEntry(34026, "GOLEM_CRAFTING_DROPTRACKING", "Golem crafting", "objtypes"),
-            new GamevalEntry(34027, "HALLOWFELL", "A Hallowfell", "objtypes"),
+            new GamevalEntry(34027, "HALLOWFELL", "Hallowfell", "objtypes"),
             new GamevalEntry(34028, "CERT_HALLOWFELL", "cert_hallowfell", "objtypes"),
             new GamevalEntry(34029, "PLACEHOLDER_HALLOWFELL", "placeholder_hallowfell", "objtypes"),
             new GamevalEntry(34030, "JAR_OF_LIGHT", "Jar of Light", "objtypes"),

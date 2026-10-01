@@ -432,7 +432,7 @@ final class ItemIDEntries_43 {
             new GamevalEntry(22435, "SILVER_SICKLE_ENCHANTED", "Enchanted emerald sickle (b)", "objtypes"),
             new GamevalEntry(22436, "PLACEHOLDER_SILVER_SICKLE_ENCHANTED", "placeholder_silver_sickle_enchanted", "objtypes"),
             new GamevalEntry(22437, "ROTTEN_CARROT", "Rotten carrot", "objtypes"),
-            new GamevalEntry(22438, "SET_JUSTICIAR_ARMOUR", "6h A Justiciar armour set", "objtypes"),
+            new GamevalEntry(22438, "SET_JUSTICIAR_ARMOUR", "6h A? Justiciar armour set", "objtypes"),
             new GamevalEntry(22439, "CERT_SET_JUSTICIAR_ARMOUR", "cert_set_justiciar_armour", "objtypes"),
             new GamevalEntry(22440, "PLACEHOLDER_SET_JUSTICIAR_ARMOUR", "placeholder_set_justiciar_armour", "objtypes"),
             new GamevalEntry(22441, "INFERNAL_DEFENDER_BROKEN", "Avernic defender (broken)", "objtypes"),

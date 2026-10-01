@@ -7,7 +7,8 @@ import net.titan.gamevals.internal.VarClientIDEntries;
 public final class VarClientID
         implements VarClientIDConstants_0,
                    VarClientIDConstants_1,
-                   VarClientIDConstants_2 {
+                   VarClientIDConstants_2,
+                   VarClientIDConstants_3 {
     private VarClientID() {}
 
     public static final String SOURCE_CATALOG = "varctypes";

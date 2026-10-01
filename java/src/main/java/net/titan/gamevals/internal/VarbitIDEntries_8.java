@@ -160,7 +160,6 @@ final class VarbitIDEntries_8 {
             new GamevalEntry(4394, "CHAT_STFU", "chat_stfu", "varbittypes"),
             new GamevalEntry(4396, "GE_NEWOFFER_QUANTITY", "ge_newoffer_quantity", "varbittypes"),
             new GamevalEntry(4397, "GE_NEWOFFER_TYPE", "ge_newoffer_type", "varbittypes"),
-            new GamevalEntry(4398, "GE_NEWOFFER_PRICE", "ge_newoffer_price", "varbittypes"),
             new GamevalEntry(4429, "PET_INSURANCE_VENENATISPET", "pet_insurance_venenatispet", "varbittypes"),
             new GamevalEntry(4430, "DEPOSITBOX_MODE", "depositbox_mode", "varbittypes"),
             new GamevalEntry(4439, "GE_SELECTEDSLOT", "ge_selectedslot", "varbittypes"),

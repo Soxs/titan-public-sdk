@@ -310,6 +310,9 @@ final class ItemIDEntries_67 {
             new GamevalEntry(34601, "DOGQ_STRAY_DOG_FOLLOWER_OBJECT", "Stray dog", "objtypes"),
             new GamevalEntry(34602, "DOGQ_STUFFED_DOG", "Stuffed dog", "objtypes"),
             new GamevalEntry(34603, "CERT_BLANKRUNE_DAEYALT", "cert_blankrune_daeyalt", "objtypes"),
+            new GamevalEntry(34604, "COINS_AND_PLATINUM", "Coins and platinum", "objtypes"),
+            new GamevalEntry(34605, "COINS_AND_PLATINUM_MID", "coins_and_platinum_mid", "objtypes"),
+            new GamevalEntry(34606, "COINS_AND_PLATINUM_HIGH", "coins_and_platinum_high", "objtypes"),
         };
     }
 

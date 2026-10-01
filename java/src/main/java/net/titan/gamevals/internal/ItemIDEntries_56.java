@@ -271,7 +271,7 @@ final class ItemIDEntries_56 {
             new GamevalEntry(28930, "PLACEHOLDER_SUNFIRERUNE", "placeholder_sunfirerune", "objtypes"),
             new GamevalEntry(28931, "WINT_SEARING_PAGE", "Searing page", "objtypes"),
             new GamevalEntry(28932, "PLACEHOLDER_WINT_SEARING_PAGE", "placeholder_wint_searing_page", "objtypes"),
-            new GamevalEntry(28933, "SUNFIRE_HELM", "K ? A Sunfire fanatic helm", "objtypes"),
+            new GamevalEntry(28933, "SUNFIRE_HELM", "Sunfire fanatic helm", "objtypes"),
             new GamevalEntry(28934, "CERT_SUNFIRE_HELM", "cert_sunfire_helm", "objtypes"),
             new GamevalEntry(28935, "PLACEHOLDER_SUNFIRE_HELM", "placeholder_sunfire_helm", "objtypes"),
             new GamevalEntry(28936, "SUNFIRE_BODY", "Sunfire fanatic cuirass", "objtypes"),

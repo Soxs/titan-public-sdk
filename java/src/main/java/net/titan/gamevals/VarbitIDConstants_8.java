@@ -151,7 +151,6 @@ public interface VarbitIDConstants_8 {
     int CHAT_STFU = 4394;
     int GE_NEWOFFER_QUANTITY = 4396;
     int GE_NEWOFFER_TYPE = 4397;
-    int GE_NEWOFFER_PRICE = 4398;
     int PET_INSURANCE_VENENATISPET = 4429;
     int DEPOSITBOX_MODE = 4430;
     int GE_SELECTEDSLOT = 4439;

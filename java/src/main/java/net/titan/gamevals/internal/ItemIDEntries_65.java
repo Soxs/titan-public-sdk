@@ -381,7 +381,7 @@ final class ItemIDEntries_65 {
             new GamevalEntry(33648, "RUPTURE_NECKLACE_ZENYTE_DUMMY", "rupture_necklace_zenyte_dummy", "objtypes"),
             new GamevalEntry(33649, "RUPTURE_NECKLACE_RUPTURE01_DUMMY", "rupture_necklace_rupture01_dummy", "objtypes"),
             new GamevalEntry(33650, "RUPTURE_NECKLACE_RUPTURE02_DUMMY", "rupture_necklace_rupture02_dummy", "objtypes"),
-            new GamevalEntry(33651, "STYMPHIKE_FEATHER", "A Stymphike feather", "objtypes"),
+            new GamevalEntry(33651, "STYMPHIKE_FEATHER", "Stymphike feather", "objtypes"),
             new GamevalEntry(33652, "PLACEHOLDER_STYMPHIKE_FEATHER", "placeholder_stymphike_feather", "objtypes"),
             new GamevalEntry(33653, "STYMPHIKE_CARCASS", "Stymphike carcass", "objtypes"),
             new GamevalEntry(33654, "PLACEHOLDER_STYMPHIKE_CARCASS", "placeholder_stymphike_carcass", "objtypes"),

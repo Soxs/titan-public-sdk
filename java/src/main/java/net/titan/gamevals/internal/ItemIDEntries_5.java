@@ -405,7 +405,7 @@ final class ItemIDEntries_5 {
             new GamevalEntry(2952, "DAGGER_WOLFBANE", "Wolfbane", "objtypes"),
             new GamevalEntry(2953, "BUCKET_MURKYWATER", "Murky water", "objtypes"),
             new GamevalEntry(2954, "BUCKET_BLESSEDWATER", "Blessed water", "objtypes"),
-            new GamevalEntry(2955, "MOONLIGHT_MEAD", "& A( ?(T ?(X Moonlight mead", "objtypes"),
+            new GamevalEntry(2955, "MOONLIGHT_MEAD", "Moonlight mead", "objtypes"),
             new GamevalEntry(2956, "CERT_MOONLIGHT_MEAD", "cert_moonlight_mead", "objtypes"),
             new GamevalEntry(2957, "DRUID_POUCH_EMPTY", "Druid pouch", "objtypes"),
             new GamevalEntry(2958, "DRUID_POUCH", "Druid pouch", "objtypes"),

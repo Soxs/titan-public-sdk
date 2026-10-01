@@ -508,7 +508,7 @@ final class ItemIDEntries_42 {
             new GamevalEntry(22003, "DRAGONFIRE_WARD_UNCHARGED", "Dragonfire ward", "objtypes"),
             new GamevalEntry(22004, "CERT_DRAGONFIRE_WARD_UNCHARGED", "cert_dragonfire_ward_uncharged", "objtypes"),
             new GamevalEntry(22005, "PLACEHOLDER_DRAGONFIRE_WARD_UNCHARGED", "placeholder_dragonfire_ward_uncharged", "objtypes"),
-            new GamevalEntry(22006, "SKELETAL_VISAGE", "7 A Skeletal visage", "objtypes"),
+            new GamevalEntry(22006, "SKELETAL_VISAGE", "7 A? Skeletal visage", "objtypes"),
             new GamevalEntry(22007, "CERT_SKELETAL_VISAGE", "cert_skeletal_visage", "objtypes"),
             new GamevalEntry(22008, "PLACEHOLDER_SKELETAL_VISAGE", "placeholder_skeletal_visage", "objtypes"),
             new GamevalEntry(22009, "FOSSIL_MAP_PIECE_A1", "Map piece", "objtypes"),

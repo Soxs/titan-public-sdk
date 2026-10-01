@@ -514,7 +514,7 @@ final class ItemIDEntries_8 {
             new GamevalEntry(4597, "FEUD_FIB_HINT", "Note", "objtypes"),
             new GamevalEntry(4598, "FEUD_NOS_NOTE", "Note", "objtypes"),
             new GamevalEntry(4599, "BLACKJACK_OAK", "Oak blackjack", "objtypes"),
-            new GamevalEntry(4600, "BLACKJACK_WILLOW", "X A( &? Willow blackjack", "objtypes"),
+            new GamevalEntry(4600, "BLACKJACK_WILLOW", "Willow blackjack", "objtypes"),
             new GamevalEntry(4601, "FEUD_CAMEL_POOH_BUCKET", "Ugthanki dung", "objtypes"),
             new GamevalEntry(4602, "FEUD_CAMEL_POISON_POOH_BUCKET", "Ugthanki dung", "objtypes"),
             new GamevalEntry(4603, "FEUD_CAMEL_RECEIPT", "Receipt", "objtypes"),

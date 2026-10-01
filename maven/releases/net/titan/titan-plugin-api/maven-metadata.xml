@@ -3,8 +3,8 @@
   <groupId>net.titan</groupId>
   <artifactId>titan-plugin-api</artifactId>
   <versioning>
-    <latest>0.1.71</latest>
-    <release>0.1.71</release>
+    <latest>0.1.72</latest>
+    <release>0.1.72</release>
     <versions>
       <version>0.1.1</version>
       <version>0.1.2</version>
@@ -59,7 +59,8 @@
       <version>0.1.67</version>
       <version>0.1.69</version>
       <version>0.1.71</version>
+      <version>0.1.72</version>
     </versions>
-    <lastUpdated>20260928144421</lastUpdated>
+    <lastUpdated>20261001035711</lastUpdated>
   </versioning>
 </metadata>

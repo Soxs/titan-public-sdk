@@ -64,6 +64,22 @@ final class VarPlayerIDEntries_11 {
             new GamevalEntry(5749, "FARMING_COMPOST_TRANSMIT_4", "farming_compost_transmit_4", "varptypes"),
             new GamevalEntry(5750, "FARMING_COMPOST_TRANSMIT_5", "farming_compost_transmit_5", "varptypes"),
             new GamevalEntry(5751, "FARMING_COMPOST_TRANSMIT_6", "farming_compost_transmit_6", "varptypes"),
+            new GamevalEntry(5754, "GE_TAX_SLOT_LONG_0", "ge_tax_slot_long_0", "varptypes"),
+            new GamevalEntry(5755, "GE_TAX_SLOT_LONG_1", "ge_tax_slot_long_1", "varptypes"),
+            new GamevalEntry(5756, "GE_TAX_SLOT_LONG_2", "ge_tax_slot_long_2", "varptypes"),
+            new GamevalEntry(5757, "GE_TAX_SLOT_LONG_3", "ge_tax_slot_long_3", "varptypes"),
+            new GamevalEntry(5758, "GE_TAX_SLOT_LONG_4", "ge_tax_slot_long_4", "varptypes"),
+            new GamevalEntry(5759, "GE_TAX_SLOT_LONG_5", "ge_tax_slot_long_5", "varptypes"),
+            new GamevalEntry(5760, "GE_TAX_SLOT_LONG_6", "ge_tax_slot_long_6", "varptypes"),
+            new GamevalEntry(5761, "GE_TAX_SLOT_LONG_7", "ge_tax_slot_long_7", "varptypes"),
+            new GamevalEntry(5762, "GE_ITEMSINK_PRICE_LONG_0", "ge_itemsink_price_long_0", "varptypes"),
+            new GamevalEntry(5763, "GE_ITEMSINK_PRICE_LONG_1", "ge_itemsink_price_long_1", "varptypes"),
+            new GamevalEntry(5764, "GE_ITEMSINK_PRICE_LONG_2", "ge_itemsink_price_long_2", "varptypes"),
+            new GamevalEntry(5765, "GE_ITEMSINK_PRICE_LONG_3", "ge_itemsink_price_long_3", "varptypes"),
+            new GamevalEntry(5766, "GE_ITEMSINK_PRICE_LONG_4", "ge_itemsink_price_long_4", "varptypes"),
+            new GamevalEntry(5767, "GE_ITEMSINK_PRICE_LONG_5", "ge_itemsink_price_long_5", "varptypes"),
+            new GamevalEntry(5768, "GE_ITEMSINK_PRICE_LONG_6", "ge_itemsink_price_long_6", "varptypes"),
+            new GamevalEntry(5769, "GE_ITEMSINK_PRICE_LONG_7", "ge_itemsink_price_long_7", "varptypes"),
         };
     }
 

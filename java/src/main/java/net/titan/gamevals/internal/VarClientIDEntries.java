@@ -13,6 +13,7 @@ public final class VarClientIDEntries {
             VarClientIDEntries_0.entries(),
             VarClientIDEntries_1.entries(),
             VarClientIDEntries_2.entries(),
+            VarClientIDEntries_3.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -32,6 +33,8 @@ public final class VarClientIDEntries {
         hit = VarClientIDEntries_1.byId(id);
         if (hit.isPresent()) return hit;
         hit = VarClientIDEntries_2.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarClientIDEntries_3.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

@@ -310,7 +310,7 @@ final class ItemIDEntries_62 {
             new GamevalEntry(32041, "SAILING_BOAT_HULL_PART_WOODEN", "Wooden hull parts", "objtypes"),
             new GamevalEntry(32042, "CERT_SAILING_BOAT_HULL_PART_WOODEN", "cert_sailing_boat_hull_part_wooden", "objtypes"),
             new GamevalEntry(32043, "PLACEHOLDER_SAILING_BOAT_HULL_PART_WOODEN", "placeholder_sailing_boat_hull_part_wooden", "objtypes"),
-            new GamevalEntry(32044, "SAILING_BOAT_HULL_PART_OAK", "qA( 3 B ? Oak hull parts", "objtypes"),
+            new GamevalEntry(32044, "SAILING_BOAT_HULL_PART_OAK", "qA?( 3 B ? Oak hull parts", "objtypes"),
             new GamevalEntry(32045, "CERT_SAILING_BOAT_HULL_PART_OAK", "cert_sailing_boat_hull_part_oak", "objtypes"),
             new GamevalEntry(32046, "PLACEHOLDER_SAILING_BOAT_HULL_PART_OAK", "placeholder_sailing_boat_hull_part_oak", "objtypes"),
             new GamevalEntry(32047, "SAILING_BOAT_HULL_PART_TEAK", "3 + Teak hull parts", "objtypes"),

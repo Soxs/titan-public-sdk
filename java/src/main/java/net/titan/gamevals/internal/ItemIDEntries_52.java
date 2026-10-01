@@ -383,7 +383,7 @@ final class ItemIDEntries_52 {
             new GamevalEntry(26994, "GOTR_AMULET_OF_THE_EYE_BLUE", "Amulet of the Eye", "objtypes"),
             new GamevalEntry(26995, "PLACEHOLDER_GOTR_AMULET_OF_THE_EYE_BLUE", "placeholder_gotr_amulet_of_the_eye_blue", "objtypes"),
             new GamevalEntry(26996, "ARCEUUS_CORPSE_HELLHOUND_INITIAL", "Ensouled hellhound head", "objtypes"),
-            new GamevalEntry(26997, "ARCEUUS_CORPSE_HELLHOUND", "A Ensouled hellhound head", "objtypes"),
+            new GamevalEntry(26997, "ARCEUUS_CORPSE_HELLHOUND", "Ensouled hellhound head", "objtypes"),
             new GamevalEntry(26998, "CERT_ARCEUUS_CORPSE_HELLHOUND", "cert_arceuus_corpse_hellhound", "objtypes"),
             new GamevalEntry(26999, "PLACEHOLDER_ARCEUUS_CORPSE_HELLHOUND", "placeholder_arceuus_corpse_hellhound", "objtypes"),
             new GamevalEntry(27000, "LEAGUE_3_VOID_KNIGHT_TOP_TROUVER", "Void knight top (l)(or)", "objtypes"),
