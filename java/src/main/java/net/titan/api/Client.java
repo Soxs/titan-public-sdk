@@ -396,6 +396,13 @@ public interface Client {
     default boolean sendKeyboardKey(int key) { return sendKeyboardKey(key, 0); }
 
     // --- Human-like delayed keyboard typing ---
+    /**
+     * Starts human-like typing on the game thread. Returns {@code false}, and
+     * types nothing, when the keyboard subsystem is unavailable or while the
+     * embedded runtime is resetting or stopping (no keystrokes are injected on
+     * behalf of a plugin that is being unloaded). In that case the callback
+     * overload never invokes its callback.
+     */
     boolean typeKeyboardString(String text);
     boolean typeKeyboardString(String text, int minDelayMs, int maxDelayMs);
     boolean typeKeyboardString(String text, int minDelayMs, int maxDelayMs,
