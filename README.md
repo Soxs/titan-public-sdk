@@ -1,6 +1,6 @@
 # Titan Public SDK
 
-Public Java and JavaScript/TypeScript SDK surface for TitanClient plugins.
+Public C++, Java, and JavaScript/TypeScript SDK for TitanClient plugins.
 
 This repository is auto-mirrored from the canonical TitanClient source tree.
 Direct commits to `main` may be overwritten by the next outbound sync.
@@ -9,12 +9,63 @@ Direct commits to `main` may be overwritten by the next outbound sync.
 
 | Path | Purpose |
 | --- | --- |
+| `CMakeLists.txt` | Native `titan_sdk` interface target and plugin/development helpers. |
+| `cmake/` | Native DLL build, immutable staging, run, reload, and watch helpers. |
+| `titan/` | Public C++ headers, Native ABI v1 contracts, and [API documentation](titan/PUBLIC_API.md). Include `<titan/plugin.h>` to start. |
+| `plugin_sdk.h` | Deprecated low-level compatibility shim; new plugins use `<titan/plugin.h>`. |
+| `examples/native-plugin/` | Complete C++ plugin starter with CMake development targets. |
 | `java/` | Public Java plugin API source, Gradle build, sources JAR, and Javadoc JAR. |
 | `maven/releases/` | Generated Maven repository for `net.titan:titan-plugin-api` and the `net.titan.dev` Gradle plugin. |
 | `titan-plugin-sdk.d.ts` | TypeScript declarations for QuickJS plugins. |
 
-The native C++ SDK, ABI internals, loader handoff schemas, and controller/client
-IPC headers are intentionally not published here.
+Native plugin contracts are included; private controller/client IPC and loader
+handoff headers are not needed to build plugins and are not published here.
+
+## Native C++ Plugins
+
+Use Windows x64, Visual Studio 2022 or newer with the MSVC C++ tools and Windows
+SDK, and CMake 3.24+. The supported profile is C++20 with the static MSVC runtime
+(`/MT`, or `/MTd` in Debug), selected by the SDK helpers.
+
+```powershell
+git clone https://github.com/Soxs/titan-public-sdk.git
+cd titan-public-sdk
+cmake -S examples/native-plugin -B build/native-plugin -A x64
+cmake --build build/native-plugin --config Debug --target titan_run_my_plugin
+# After editing, reload in the same game process:
+cmake --build build/native-plugin --config Debug --target titan_reload_my_plugin
+# Or watch and rebuild/reload on saves; Ctrl+C stops watching:
+cmake --build build/native-plugin --config Debug --target titan_watch_my_plugin
+```
+
+The example uses this SDK checkout automatically. To start your own project,
+copy `examples/native-plugin/`, rename its plugin ID, and configure it with
+`-DTITAN_PLUGIN_SDK_ROOT=C:/path/to/titan-public-sdk`.
+See the [starter README](examples/native-plugin/README.md) for lifecycle,
+debugger, runtime-asset, and IDE details.
+
+Run discovers your normal Titan installation through the launcher's state at
+`%USERPROFILE%/.titanclient/repository/state.json`. Keep Titan updated normally;
+no separate runtime download is part of setup. Your account needs DEV
+entitlement. `-DTITAN_CLIENT_ROOT=...` is an optional override for a compatible
+source build or prerelease. Configure/build needs no installed runtime.
+TitanClient 0.1.14 predates Native ABI v1 and the new native reload capabilities;
+those client changes must ship through the regular updater. Finding an older
+installation does not make it compatible.
+
+Run starts or reuses the plugin's DEV tab. Each changed successful build stages
+an immutable DLL/PDB generation; reload replaces the plugin while keeping the
+game open. Watch retries after the next save when a build or reload fails.
+Plugin state is recreated, and the host restores persisted settings. Workers
+must stop/join during unload and service leases must be short-lived; see
+[native ownership](titan/PUBLIC_API.md#native-ownership-and-service-lifetime).
+
+Native ABI v1 is independent of the SDK source release number. Updating headers
+does not by itself invalidate an older DLL: the bootstrap ABI and the plugin's
+required capability IDs, major versions, and table sizes determine compatibility.
+Missing optional capabilities remain unavailable. Legacy `TitanCreatePlugin`
+DLLs need a one-time rebuild to use `TitanPlugin_QueryNative`. Pin an SDK commit
+for reproducible builds; see [version compatibility](titan/PUBLIC_API.md#version-compatibility).
 
 ## Java Plugins
 
@@ -164,8 +215,8 @@ Use `titan-plugin-sdk.d.ts` for IntelliSense and type checking:
 /// <reference path="./titan-plugin-sdk.d.ts" />
 ```
 
-JavaScript plugins still run in TitanClient's QuickJS runtime; this repository
-only publishes the type declarations and public Java SDK. SDK 106 item cache
+JavaScript plugins still run in TitanClient's QuickJS runtime; their public
+SDK surface here is the type declarations. SDK 106 item cache
 definitions and SDK 107 runtime item compositions expose `subOps` as a fixed
 five-by-twenty nested string array with empty strings for unused slots.
 Inventory-item `interact(action)` resolves ordinary actions first and then live

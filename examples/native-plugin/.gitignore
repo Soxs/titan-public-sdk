@@ -1,0 +1,23 @@
+# Build output
+build/
+out/
+cmake-build-*/
+
+# Dev-loop staging owned by titan_add_plugin / titan_add_dev_session.
+# Generation folders, session manifests, and the generation counter
+# all live under .titan/. Never commit these -- they encode absolute
+# paths from the dev's machine.
+.titan/
+
+# IDE-generated run/launch configs. The SDK helpers regenerate them
+# on the first configure if they're absent, so committing them just
+# couples the repo to one dev's IDE state.
+.idea/
+.vs/
+.vscode/
+
+# Common build / OS clutter
+*.user
+*.suo
+.DS_Store
+Thumbs.db
