@@ -1,30 +1,39 @@
 # Titan native plugin starter
 
-A standalone C++20/MSVC x64 project using the public Titan SDK. Rename
-`my_plugin` in CMake and the source metadata to your plugin ID.
+A standalone C++20/MSVC x64 project using the public Titan SDK.
+
+Click **[Use this template](https://github.com/Soxs/titan-plugin-template/generate)**
+to create your plugin repository, then clone it. Rename `my_plugin` in
+`CMakeLists.txt` and `src/my_plugin.cpp` to your plugin ID.
 
 ## Setup
 
-Use Windows x64, MSVC 2022 or newer with the Windows SDK, and CMake 3.24+.
+Use Windows x64, MSVC 2022 or newer with the Windows SDK, CMake 3.24+, and Git 2.27+.
 The SDK helpers select C++20 and the static MSVC runtime (`/MT`, `/MTd` in Debug).
-If using the bundled `titan-public-sdk/examples/native-plugin` example, its SDK
-path is discovered automatically; from that example directory run:
+From your cloned project directory, run:
 
 ```powershell
 cmake -S . -B build -A x64
 cmake --build build --config Debug --target my_plugin
 ```
 
-For a standalone copy of this project, clone the public SDK and select its path:
+The first configure fetches a pinned public C++ SDK into `build/_deps`.
+It downloads the native SDK files only; subsequent configures reuse that
+revision locally. Internet access is needed for the first fetch. If you open
+the bundled `titan-public-sdk/examples/native-plugin` example, it uses its
+parent SDK checkout instead.
+
+To update the SDK dependency, change the pinned public SDK commit in
+`cmake/AcquireTitanSdk.cmake` and reconfigure.
+
+For local SDK development or an offline setup, select an existing SDK:
 
 ```powershell
-git clone https://github.com/Soxs/titan-public-sdk.git C:/sdks/titan-public-sdk
 cmake -S . -B build -A x64 -DTITAN_PLUGIN_SDK_ROOT="C:/sdks/titan-public-sdk"
-cmake --build build --config Debug --target my_plugin
 ```
 
-You can also set `TITAN_PLUGIN_SDK_ROOT` in your environment. For repeatable
-builds, use a chosen SDK revision or submodule. An SDK source update does not
+You can also set `TITAN_PLUGIN_SDK_ROOT` in your environment; the CMake `-D`
+option takes precedence. An SDK source update does not
 invalidate old DLLs solely because its release number changes: native ABI v1
 and required capabilities determine compatibility.
 

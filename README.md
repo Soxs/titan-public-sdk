@@ -24,23 +24,30 @@ handoff headers are not needed to build plugins and are not published here.
 ## Native C++ Plugins
 
 Use Windows x64, Visual Studio 2022 or newer with the MSVC C++ tools and Windows
-SDK, and CMake 3.24+. The supported profile is C++20 with the static MSVC runtime
+SDK, CMake 3.24+, and Git 2.27+. The supported profile is C++20 with the static MSVC runtime
 (`/MT`, or `/MTd` in Debug), selected by the SDK helpers.
 
+Start with **[titan-plugin-template](https://github.com/Soxs/titan-plugin-template)**
+and click **Use this template** to create your plugin repository. Clone your
+new repository and run:
+
 ```powershell
-git clone https://github.com/Soxs/titan-public-sdk.git
-cd titan-public-sdk
-cmake -S examples/native-plugin -B build/native-plugin -A x64
-cmake --build build/native-plugin --config Debug --target titan_run_my_plugin
+cmake -S . -B build -A x64
+cmake --build build --config Debug --target titan_run_my_plugin
 # After editing, reload in the same game process:
-cmake --build build/native-plugin --config Debug --target titan_reload_my_plugin
+cmake --build build --config Debug --target titan_reload_my_plugin
 # Or watch and rebuild/reload on saves; Ctrl+C stops watching:
-cmake --build build/native-plugin --config Debug --target titan_watch_my_plugin
+cmake --build build --config Debug --target titan_watch_my_plugin
 ```
 
-The example uses this SDK checkout automatically. To start your own project,
-copy `examples/native-plugin/`, rename its plugin ID, and configure it with
-`-DTITAN_PLUGIN_SDK_ROOT=C:/path/to/titan-public-sdk`.
+The template fetches a pinned native SDK on its first configure and caches it
+under `build/_deps`. Rename `my_plugin` in CMake and the source metadata to your
+plugin ID. Use `-DTITAN_PLUGIN_SDK_ROOT=C:/path/to/titan-public-sdk` for local
+SDK development or an offline checkout.
+
+The bundled `examples/native-plugin/` is the same starter and automatically
+uses this SDK checkout. Configure it with
+`cmake -S examples/native-plugin -B build/native-plugin -A x64`.
 See the [starter README](examples/native-plugin/README.md) for lifecycle,
 debugger, runtime-asset, and IDE details.
 

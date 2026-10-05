@@ -8,37 +8,16 @@ project(my_plugin LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Select an SDK checkout with an env var or -D cache var. When this example
-# lives under titan-public-sdk/examples/native-plugin, its parent SDK is used
-# automatically. A standalone copy needs an explicit SDK path:
-#
-#   TITAN_PLUGIN_SDK_ROOT  -> your titan-public-sdk checkout
-#                            git clone https://github.com/Soxs/titan-public-sdk.git
-#
-# TITAN_CLIENT_ROOT is optional. When unset, the dev loop reads the
-# launcher repository state at `%USERPROFILE%/.titanclient/repository`
-# and uses the latest synced release containing controller.exe. Set it
-# only when you want to target a custom install or local source build.
-#
-# Per-build overrides via `cmake -DTITAN_PLUGIN_SDK_ROOT=... -DTITAN_CLIENT_ROOT=...`
-# still work and take priority over the env vars.
-set(_titan_default_sdk "$ENV{TITAN_PLUGIN_SDK_ROOT}")
-if(NOT _titan_default_sdk AND
-   EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../CMakeLists.txt" AND
-   EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../titan/plugin.h")
-    get_filename_component(_titan_default_sdk "${CMAKE_CURRENT_SOURCE_DIR}/../.." ABSOLUTE)
-endif()
-set(TITAN_PLUGIN_SDK_ROOT "${_titan_default_sdk}" CACHE PATH
-    "titan-public-sdk checkout (environment override or bundled example's parent SDK)")
+# Optional override: cache value > environment > bundled parent SDK. Otherwise
+# acquire only the pinned C++ SDK files into build/_deps, without the Maven repo.
+set(TITAN_PLUGIN_SDK_ROOT "" CACHE PATH "Optional existing titan-public-sdk checkout")
+include(cmake/AcquireTitanSdk.cmake)
+titan_acquire_sdk(TITAN_PLUGIN_SDK_ROOT)
+
+# Run discovers the normal Titan installation when this override is unset.
+# Configure/build does not require an installed runtime.
 set(TITAN_CLIENT_ROOT "$ENV{TITAN_CLIENT_ROOT}" CACHE PATH
     "Optional TitanClient runtime directory containing controller.exe")
-
-if(NOT TITAN_PLUGIN_SDK_ROOT)
-    message(FATAL_ERROR
-        "TITAN_PLUGIN_SDK_ROOT is not set. Clone https://github.com/Soxs/titan-public-sdk.git "
-        "and pass `-DTITAN_PLUGIN_SDK_ROOT=C:/path/to/titan-public-sdk` to cmake, "
-        "or set the matching environment variable. See README.md.")
-endif()
 # Pulls in the titan_sdk INTERFACE library AND the titan_add_plugin /
 # titan_add_dev_session helper functions. The SDK exports its own
 # CMakeLists.txt at the root so this is the one and only entry point.

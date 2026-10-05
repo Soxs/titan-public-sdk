@@ -1,5 +1,6 @@
 # Build output
 build/
+build-*/
 out/
 cmake-build-*/
 
@@ -9,9 +10,7 @@ cmake-build-*/
 # paths from the dev's machine.
 .titan/
 
-# IDE-generated run/launch configs. The SDK helpers regenerate them
-# on the first configure if they're absent, so committing them just
-# couples the repo to one dev's IDE state.
+# Local IDE state and personal launch configurations.
 .idea/
 .vs/
 .vscode/
