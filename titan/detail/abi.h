@@ -284,7 +284,7 @@
 ///
 /// v125 -- Native client game cycle
 ///   + `HostApi::getGameCycle` exposes the analyzer-backed signed 32-bit
-///     `Client.GameCycle` clock used by graphics-object start cycles.
+///     native game-cycle clock used by graphics-object start cycles.
 ///   + C++ `ClientFacade::gameCycle()`, JS/TS `state.client.gameCycle`, and
 ///     Java `Client.gameCycle()` expose the same live value.
 ///   ~ The game cycle advances nominally every 20 ms (50 Hz); 30 cycles make
@@ -4626,11 +4626,11 @@ struct HostApi {
                                   uint32_t mode) = nullptr;
 
     // --- SDK 125: current native client game cycle -----------------
-    /// Return the analyzer-backed signed 32-bit Client.GameCycle value.
+    /// Return the analyzer-backed signed 32-bit native game-cycle value.
     /// This clock advances at the nominal 20 ms client logic cadence and is
     /// distinct from ClientState::tickCount; 30 cycles make one server tick.
     /// Null when the host predates SDK 125 or the loaded analyzer bundle did
-    /// not provide Client.GameCycle for the current revision.
+    /// not provide a valid game-cycle source for the current revision.
     int32_t (*getGameCycle)() = nullptr;
 
     // SDK 127. Game-thread only. outLength receives the required UTF-8 byte

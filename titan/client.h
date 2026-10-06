@@ -171,14 +171,14 @@ public:
     }
 
     int32_t tick() const { return snapshot().value_or(ClientSnapshot{}).tickCount; }
-    /// Current native Client.GameCycle. This signed 32-bit clock advances at
-    /// the nominal 20 ms client logic cadence (50 Hz); 30 cycles make one
-    /// 600 ms server tick. It is distinct from tick(). Returns 0 when the
-    /// current host or analyzer bundle does not expose the field. SDK 125+.
     /// SDK 127: DirectAccess=1, Events=2 (all five accepted speech sources).
     uint32_t getOverheadTextCapabilities() const {
         auto* b = detail::backend(); return b ? b->getOverheadTextCapabilities() : 0;
     }
+    /// Current native game cycle. This signed 32-bit clock advances at
+    /// the nominal 20 ms client logic cadence (50 Hz); 30 cycles make one
+    /// 600 ms server tick. It is distinct from tick(). Returns 0 when the
+    /// current host or analyzer bundle does not expose the clock. SDK 125+.
     int32_t gameCycle() const {
         auto* b = detail::backend();
         return b ? b->getGameCycle() : 0;
