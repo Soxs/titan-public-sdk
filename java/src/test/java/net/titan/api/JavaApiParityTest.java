@@ -83,6 +83,12 @@ class JavaApiParityTest {
         assertEquals(Instant.EPOCH, Magic.lastHomeTeleportUsage());
         assertFalse(Magic.isHomeTeleportOnCooldown());
         assertTrue(Magic.cast(Magic.Standard.VARROCK_TELEPORT));
+        assertEquals(MenuAction.CC_OP, state.lastWidgetOpcode);
+        assertEquals(1, state.lastWidgetIdentifier);
+        assertEquals(-1, state.lastWidgetParam0);
+        assertEquals(InterfaceID.MagicSpellbook.VARROCK_TELEPORT, state.lastWidgetParam1);
+
+        assertTrue(Magic.select(Magic.Standard.VARROCK_TELEPORT));
         assertEquals(MenuAction.WIDGET_TARGET, state.lastWidgetOpcode);
         assertEquals(0, state.lastWidgetIdentifier);
         assertEquals(-1, state.lastWidgetParam0);
