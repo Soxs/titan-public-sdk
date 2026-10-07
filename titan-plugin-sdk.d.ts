@@ -2210,6 +2210,8 @@ class Plugin {
      * `buildPanel` / `onPanelAction` model.
      */
     panels?: PanelDef[];
+    /** Up to eight embedded HTML HUD overlays; default input is click-through. */
+    htmlOverlays?: HtmlOverlayDef[];
     readonly isEnabled: boolean;
     /** One-line description shown as a tooltip in the plugin list. */
     description?: string;
@@ -2259,6 +2261,10 @@ class Plugin {
      * chained onto the registration call. Added in SDK 46.
      */
     overlayPanel(init: OverlayPanelInit): OverlayPanelInstance;
+
+    /** Declare an owned HTML HUD before titan.register, normally in a constructor.
+     * Shares eight slots with htmlOverlays; native overlay names cannot collide. */
+    htmlOverlayPanel(options: HtmlOverlayPanelOptions): HtmlOverlayPanelInstance;
 
     // Lifecycle hooks — override as needed.
     onEnable?(): void;
@@ -2331,7 +2337,7 @@ class Plugin {
  * may declare multiple panels; each gets its own nav button in the controller
  * side rail.
  */
-interface PanelDef {
+interface PanelIconDef {
     /** Stable per-plugin id used to route panel content and actions. */
     id: string;
     /** Display title shown on the nav button tooltip / header. */
@@ -2354,10 +2360,86 @@ interface PanelDef {
      * `icon`.
      */
     image?: string;
+}
+
+interface NativePanelDef extends PanelIconDef {
+    /** Omitted for existing native panels. */
+    kind?: "native";
+    bundle?: never;
+    onMessage?: never;
     /** Build the panel's contents (called whenever the panel is visible). */
     build(panel: Panel): void;
     /** Handle a control interaction inside this panel. */
     onAction?(actionId: number, value: SettingValue): void;
+}
+
+/** Native and HTML side panels share eight slots and one ID namespace. */
+type PanelDef = NativePanelDef | HtmlPanelDef;
+type HtmlJsonValue = null | boolean | number | string | HtmlJsonValue[] | { [key: string]: HtmlJsonValue };
+interface HtmlResource {
+    mime: "text/html" | "text/css" | "text/javascript" | "application/javascript" | "application/json" | "text/plain"
+        | "image/png" | "image/jpeg" | "image/webp" | "font/woff" | "font/woff2";
+    /** Text is encoded as UTF-8. Binary bytes remain in this script artifact. */
+    content: string | readonly number[] | Uint8Array;
+}
+interface HtmlPanelBundle {
+    version: 1;
+    entrypoint: string;
+    /** Normalized relative paths; 128 resources, 2 MiB each, 8 MiB total. */
+    resources: { readonly [path: string]: HtmlResource };
+}
+interface HtmlPanelMessage<T extends HtmlJsonValue = HtmlJsonValue> {
+    version: 1;
+    id?: string;
+    type: string;
+    payload: T;
+}
+interface HtmlPanelDef extends PanelIconDef {
+    kind: "html";
+    bundle: HtmlPanelBundle;
+    /** MainLoop callback under the plugin lifecycle gate. */
+    onMessage?(message: HtmlPanelMessage): void;
+    build?: never;
+    getPanelElements?: never;
+    onAction?: never;
+    onPanelAction?: never;
+}
+interface HtmlOverlayDef extends Omit<HtmlPanelDef, "title"> {
+    title?: string;
+    anchor?: OverlayAnchor | number;
+    /** CSS pixels: width 80..600, height 24..600; default 220x160. */
+    width?: number;
+    height?: number;
+    priority?: number;
+    /** HtmlInput bitmask; Tooltip anchors must stay click-through. */
+    input?: number;
+    visible?: boolean;
+}
+/** The factory supplies the HTML discriminator; array definitions still require it. */
+type HtmlOverlayPanelOptions = Omit<HtmlOverlayDef, "kind"> & { kind?: "html" };
+interface HtmlOverlayPanelInstance {
+    readonly id: string;
+    /** Constructor calls initialize replayable state; retired owners return false. */
+    setState(state: HtmlJsonValue): boolean;
+    /** False before activation, while hidden, after retirement, or on queue overflow. */
+    postMessage(type: string, payload: HtmlJsonValue, correlationId?: string): boolean;
+    setVisible(visible: boolean): boolean;
+    setSize(width: number, height: number): boolean;
+    /** Configure before titan.register; callback this is the declaring plugin. */
+    onMessage(callback: (message: HtmlPanelMessage) => void): this;
+}
+interface HtmlPanelsFacade {
+    /** True only after a connected renderer has been observed for this client.
+     * False includes unobserved and unavailable. Register HTML definitions
+     * unconditionally; never use this flag to gate their initial visibility. */
+    readonly available: boolean;
+    setState(plugin: Plugin, panelId: string, state: HtmlJsonValue): boolean;
+    /** False when inactive or full (64 messages / 1 MiB); no oldest-message eviction. */
+    postMessage(plugin: Plugin, panelId: string, type: string, payload: HtmlJsonValue, correlationId?: string): boolean;
+}
+interface HtmlOverlaysFacade extends HtmlPanelsFacade {
+    setVisible(plugin: Plugin, panelId: string, visible: boolean): boolean;
+    setSize(plugin: Plugin, panelId: string, width: number, height: number): boolean;
 }
 
 type PanelTone = number;
@@ -2667,6 +2749,9 @@ interface PanelElement {
 
     /** Short labels over this tab's thumbnail on the Home grid. SDK 142+. */
     const previewPills: PreviewPillsFacade;
+    const htmlPanels: HtmlPanelsFacade;
+    const htmlOverlays: HtmlOverlaysFacade;
+    const HtmlInput: { readonly ClickThrough: 0; readonly Buttons: 1; readonly Scroll: 2; readonly Text: 4 };
 
     // Logging.
     function log(message: string): void;
@@ -3630,6 +3715,18 @@ interface PanelElement {
         contentType: number;
         /** Primary native sprite id, or -1 when absent/unavailable. SDK v110+. */
         spriteId: number;
+        /**
+         * Model source kind stored by the client, matching RuneLite's
+         * `WidgetModelType`: 0 none, 1 model, 2 NPC chathead, 3 local player
+         * chathead, 4 item, 5 player, 6 NPC chathead by index. -1 when
+         * unavailable. SDK v146+.
+         */
+        modelType: number;
+        /**
+         * Id selected by `modelType` (a model, NPC or item id), or -1 when the
+         * widget has no model or the value is unavailable. SDK v146+.
+         */
+        modelId: number;
         opacity: number;
         itemId: number;
         itemQuantity: number;

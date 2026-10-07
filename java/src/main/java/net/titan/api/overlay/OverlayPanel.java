@@ -22,6 +22,7 @@ public class OverlayPanel implements AutoCloseable {
     public OverlayPanel(String name, OverlayPanelAnchor anchor, int priority) {
         this.pluginId = TitanRuntime.currentPluginId();
         this.name = name == null ? "" : name;
+        TitanRuntime.getHtmlUiBackend().checkNativeOverlayName(pluginId, this.name);
         OverlayPanelAnchor safeAnchor = anchor == null ? OverlayPanelAnchor.DYNAMIC : anchor;
         this.handle = backend().overlayPanelRegister(
             pluginId, this.name, safeAnchor.protocolId(), priority);

@@ -1,4 +1,4 @@
-# Titan Plugin SDK -- public symbol inventory (v144)
+# Titan Plugin SDK -- public symbol inventory (v146)
 
 This file is the authoritative contract of what plugin authors can rely on.
 The native binary contract is Native ABI v1. SDK release numbers describe
@@ -13,6 +13,60 @@ the top of [shared/titan/detail/abi.h](detail/abi.h), or the mirrored copy
 in `CHANGELOG.md` in the SDK distribution package.
 
 ---
+
+## HTML side panels and overlays (SDK v145)
+
+HTML surfaces are separate from existing ImGui panels. Their resources are
+embedded in the C++ DLL, retained in the declaring Java plugin's JAR, or supplied
+as a JS/TS in-source asset map. A released plugin needs no loose UI files.
+
+| Operation | C++ | Java | JS / TypeScript |
+| --- | --- | --- | --- |
+| Side panel | `Plugin::htmlPanel(id, title, HtmlPanelBundle)` | repeatable `@HtmlSidePanel` | `panels: [{kind: "html", id, title, bundle}]` |
+| Overlay | `Plugin::htmlOverlayPanel(id, bundle, HtmlOverlayOptions)` | repeatable `@HtmlOverlayPanel` | `this.htmlOverlayPanel({id, bundle})` or `htmlOverlays: [{kind: "html", id, bundle}]` |
+| Canonical state | `panel.setState(json)` | `HtmlPanels.of(this).setState(id, json)` | `titan.htmlPanels.setState(this, id, value)` |
+| Transient message | `panel.postMessage(type, json, correlationId)` | `HtmlPanels.of(this).postMessage(id, type, json, correlationId)` | `titan.htmlPanels.postMessage(this, id, type, value, correlationId)` |
+| Incoming message | `panel.onMessage(callback)` | `Plugin.onHtmlPanelMessage(id, message)` / `onHtmlOverlayMessage(id, message)` | HTML definition or factory handle `onMessage(message)` |
+| Overlay updates | `overlay.setVisible(bool)`, `setSize(width, height)` | `HtmlOverlays` facade | Factory handle `setVisible(bool)`, `setSize(width, height)` or `titan.htmlOverlays` facade |
+
+The JS/TS class factory `Plugin.htmlOverlayPanel(options: HtmlOverlayPanelOptions)`
+returns an owner-bound `HtmlOverlayPanelInstance` with `id`, `setState(value)`,
+`postMessage(type, payload, correlationId?)`, `setVisible(bool)`,
+`setSize(width, height)`, and `onMessage(callback)`. Its factory options may omit
+`kind`; an explicit value must be `"html"`. Constructor-time state, size, and
+visibility initialize the registered overlay. Configure definitions and callbacks
+before `titan.register`; retired handles cannot act on a replacement plugin.
+
+`<titan/html_panels.h>` is dependency-free apart from the C++ standard library.
+`HtmlPanelBundle::text(path, mime, contents)` and `binary(path, mime, bytes, size)`
+copy owned resources. Registration copies and validates the whole bundle.
+Metadata and callbacks are configured in the plugin constructor and frozen
+before publication. State and messages may subsequently change; immutable
+resource reads and owned update snapshots are safe while the host pins the DLL.
+
+HTML message callbacks run on the game thread through MainLoop under the plugin
+lifecycle gate. Page JavaScript has only `titanHtml` state/message/resource and
+page-local saved view-state operations, never plugin objects or game SDK access. C++ `htmlUiAvailable()` and
+JS/TS `titan.htmlPanels.available` / `titan.htmlOverlays.available` report an
+observed connected renderer for this client. False includes both unobserved and
+unavailable, and can be returned before the first rendered activation or after
+the last one closes. This is observational status, not an installation preflight.
+Register HTML surfaces unconditionally in every SDK and choose visibility from
+plugin state, never from this flag: suppressing the first activation based on
+false would prevent availability from being established. Missing support never
+prevents an otherwise compatible native plugin from loading; the controller
+provides native diagnostics and retry controls when a requested renderer fails.
+
+Side panels share the existing aggregate limit of eight and one ID namespace.
+HTML overlays allow eight definitions per plugin and eight active per client,
+with a separate overlay name namespace shared with native overlay panels.
+Native-to-native overlay name behavior and native overlay limits are unchanged.
+HTML overlays default to click-through, 220×160 CSS pixels, Dynamic anchor,
+priority 50, and visible. Width is 80..600, height 24..600. Input bits opt into
+buttons (1), scroll (2), and text (4) in C++/JS. Java's annotation uses
+`interactive=true` to enable all three. Tooltip overlays remain click-through.
+
+See [the complete bundle/bridge contract and examples](../docs/html_ui.md).
 
 ## Preview pills (SDK v142)
 
@@ -596,7 +650,7 @@ headers below; publishing native contracts does not expose private client IPC.
 | `<titan/client.h>` | Top-level free helpers (`titan::log`, `titan::logf`, `titan::addChatMessage`, `titan::runOnClientTick`, `titan::runOnRender`) plus the **state** facade factories under `titan::state::*` (`client()`, `camera()`, `hider()`, `audio()`, `cache()`, `vars()`, `skills()`, `prayers()`, `script()`, `widgets()`, `idle()`, `proxy()`, `login()`, `walk()`, `itemContainer()`, `itemDef()`, and `world::current() / list() / hop() / hopByListIndex() / hopIngame()`) |
 | `<titan/query.h>` | **Query** factories under `titan::queries::*` -- `npcs()`, `players()`, `objects()`, `groundItems()`, `inventory()`, `projectiles()`, `graphicsObjects()`, `widgets([groupId])` |
 | `<titan/collision.h>` | `titan::CollisionFlag::*` masks + `titan::state::collisions()` with live single-tile reads and SDK 112 immutable bulk cached-region/current-scene snapshots. |
-| `<titan/definition_extras.h>` | Optional `titan::definitions` reads: `widgetModelId(address)`, `npcBaseId(worldViewId, hashIndex)`, and `itemWornActions(itemId)`. Live reads require the game thread; worn labels come from immutable cache definitions. Missing capability/data returns `nullopt`. Negotiated separately from frozen native records. |
+| `<titan/definition_extras.h>` | Optional `titan::definitions` reads: `widgetModelId(address)`, `npcBaseId(worldViewId, hashIndex)`, and `itemWornActions(itemId)`. Live reads require the game thread; worn labels come from immutable cache definitions. Missing capability/data returns `nullopt`. Negotiated separately from native records; since SDK v146 every widget read also carries the model id as `Widget::modelId()`. |
 | `<titan/web_walker.h>` | Read-only asynchronous `titan::webWalker()` path generation: `submit`, `poll`, `copySteps`, `cancel`, and `release` (SDK 112). |
 | `<titan/web_walker_provider.h>` | Versioned walker provider contracts: V1 planning compatibility and V2 complete planning, payload, and execution service. The host currently selects external providers through the entitled `web_walker_provider` DEV policy. Normal consumers use `<titan/web_walker.h>`. |
 | `<titan/world_point.h>` | Lightweight public `Tile`, `WorldPos`, and `WorldPoint` coordinate contract. `<titan/actor.h>` includes it for compatibility. |
@@ -759,7 +813,7 @@ auto-marshalled onto the game thread where required.
 | `titan::state::skills()` | `SkillsFacade` | `boosted(int\|Skill)`, `real(int\|Skill)`, `experience(int\|Skill)` (SDK v37+). |
 | `titan::state::prayers()` | `PrayersFacade` | `isActive(int\|Prayer)` (SDK v37+). |
 | `titan::state::script()` | `ScriptFacade` | `run(id, args)`, `runAndGetInt(id, args)`, `questState(id)` |
-| `titan::state::widgets()` | `WidgetsFacade` | Compatibility facade: `find(packedId)`, `children(parentPackedId)` (SDK v38+; preserves empty native slots; sized to the true child count via the SDK 124 sizing probe, up to 2,048 per call), `findByText(query)` (SDK v39+; primary-text substring match, case-sensitive), `setText(packedId, text)` (SDK v51+), `setText(parentPackedId, slot, text)` (SDK v63+), `WidgetsFacade::pack(group, child)`, `interact(opcode, identifier, param0, param1)`. `identifier` is the menu-entry identifier, not a widget packed id; `interact` returns action accepted / queued, not state already changed. Returned `Widget` handles expose accessor methods such as `packedId()`, `dynamicParentPackedId()`, `dynamicChildSlot()`, `rootPackedId()`, `dynamicPath()`, `spriteId()` (SDK v110+, primary native sprite id or `-1`), `text()`, `exists()`, `snapshot()`, `setText(text)`, and `interact(opcode, identifier[, childSlot])`. Accessor reads resolve the retained live path through the host's internal widget resolver; `WidgetSnapshot` is the explicit frozen value returned by `snapshot()`. Operations re-resolve the retained path and fail closed for stale segments. Current offset bundles use native EASTL range assignment for widget text up to 256 UTF-8 bytes; older bundles retain the 22-byte inline fallback. |
+| `titan::state::widgets()` | `WidgetsFacade` | Compatibility facade: `find(packedId)`, `children(parentPackedId)` (SDK v38+; preserves empty native slots; sized to the true child count via the SDK 124 sizing probe, up to 2,048 per call), `findByText(query)` (SDK v39+; primary-text substring match, case-sensitive), `setText(packedId, text)` (SDK v51+), `setText(parentPackedId, slot, text)` (SDK v63+), `WidgetsFacade::pack(group, child)`, `interact(opcode, identifier, param0, param1)`. `identifier` is the menu-entry identifier, not a widget packed id; `interact` returns action accepted / queued, not state already changed. Returned `Widget` handles expose accessor methods such as `packedId()`, `dynamicParentPackedId()`, `dynamicChildSlot()`, `rootPackedId()`, `dynamicPath()`, `spriteId()` (SDK v110+, primary native sprite id or `-1`), `modelType()` and `modelId()` (SDK v146+; the client's model source kind, matching RuneLite's `WidgetModelType` from 0 none to 6 NPC chathead by index, and the model, NPC or item id it selects, each `-1` when unavailable), `text()`, `exists()`, `snapshot()`, `setText(text)`, and `interact(opcode, identifier[, childSlot])`. Accessor reads resolve the retained live path through the host's internal widget resolver; `WidgetSnapshot` is the explicit frozen value returned by `snapshot()`. Operations re-resolve the retained path and fail closed for stale segments. Current offset bundles use native EASTL range assignment for widget text up to 256 UTF-8 bytes; older bundles retain the 22-byte inline fallback. |
 | `titan::state::idle()` | `IdleFacade` | `remaining()` (ms), `reset()` |
 | `titan::state::proxy()` | `ProxyFacade` | `list()` returns only stable proxy id/label; `setRoute(id)` selects a proxy (`""` means Direct); `status()` reports route generation/kind, sanitized failure stage/code, and whether the current generation's egress probe is ready. The measured egress address, endpoints, and credentials are never exposed. SDK 97. |
 | `titan::state::login()` | `LoginFacade` | `snapshot()`, `state()` (including native `LoginGameState::Loading` = 25 in SDK v126+), `isLoggedIn()` (native `LoginGameState::LoggedIn`), `isWorldReady()` (local player / world view / scene ready), `setUsername/setPassword/...`, `setCharacter(...)`, `resetCharacter()`, and SDK 97 `submitLauncherCredentials()`. For a staged Jagex profile, the submit call holds Enter through a login-screen update and releases it on the next poll or cancellation. It is guarded to the exact login screen and Jagex launcher index and reports operation acceptance, not completed authentication. The later post-authentication `advanceClickToPlay()` action remains separate. |
@@ -1455,8 +1509,10 @@ plays through without re-dispatching the event.
 
 ## Version compatibility
 
-Native ABI v1 replaces the unpublished SDK-version window. Rebuild all
-existing native DLLs once. The loader now discovers
+Native ABI v1 and the SDK floor decide whether a native DLL loads.
+SDK 146 grew `WidgetState`, so `kMinSupportedSdkVersion` is 146: rebuild every
+native DLL built against SDK 145 or older, and publish the client, controller
+and plugins together. The loader discovers
 `TitanPlugin_QueryNative(uint32_t abiVersion)`, which returns a module-owned
 `ModuleDescriptorV1`. It checks required interfaces before calling the
 per-index factory. The factory returns a plugin-owned `PluginDescriptorV1`;
@@ -1465,14 +1521,20 @@ No SDK-sized output structure is written into another module's allocation.
 
 | Situation | Outcome |
 | --- | --- |
-| A native plugin and host implement ABI v1 and its required capabilities | Loads, regardless of their source SDK release numbers. |
+| A native plugin built against SDK 146+ and a 146+ host implement ABI v1 and its required capabilities | Loads. A plugin built against a newer SDK than the host also loads; functions the host lacks import as unavailable. |
+| A module's `sdkRelease` is below the host's `kMinSupportedSdkVersion` | Refused before the plugin is constructed, with a rebuild message. |
+| An SDK-built plugin finds the host's `HostCoreV1::sdkRelease` below its own `kMinSupportedSdkVersion`, or a host too old to publish one | The plugin's factory refuses creation, asking for a TitanClient update. |
 | An optional domain or appended function is absent | Imports as unavailable; facade checks retain their documented failure/default behaviour. |
 | A required interface id, major, or byte prefix is absent | Creation is refused before constructing the plugin instance; DLL initialization and bootstrap discovery have already run. |
 | A bootstrap ABI major is unsupported | Query fails cleanly. |
 | A DLL exports only legacy `TitanCreatePlugin` | Rebuild against the Native ABI v1 SDK. |
 
-`kSdkVersion` and descriptor `sdkRelease` identify source releases and aid
-diagnostics. `NativeAbi::kAbiVersion` identifies the bootstrap contract.
+`kSdkVersion` identifies the source release. `kMinSupportedSdkVersion` is the
+native load floor: it rises only in the change that alters a payload record
+layout, never for appended optional functions. Modules publish their release
+in `ModuleDescriptorV1::sdkRelease` and hosts in `HostCoreV1::sdkRelease`;
+`PluginDescriptorV1::sdkRelease` is diagnostic only.
+`NativeAbi::kAbiVersion` identifies the bootstrap contract.
 Individual capabilities have stable ids, major versions, and published byte
 sizes. `HostApi` and `PluginApi` are local dispatch views populated from those
 capabilities; their local layout is not the DLL contract.
@@ -1486,10 +1548,11 @@ physically shorter table. Advanced plugins can declare extra requirements
 with `TITAN_REQUIRE_NATIVE_INTERFACES`; include the required `LifetimeV1`
 contract when supplying an explicit list.
 
-Payloads follow a stricter rule: **every existing record, nested array extent,
-enum value, field type and meaning is frozen**. A `structSize` field alone
-does not make arrays extensible because their element stride is fixed. New
-payload shapes require new types and an independently negotiated contract.
+Payloads follow a stricter rule: **a record's layout, nested array extents,
+enum values, field types and meanings change only together with
+`kMinSupportedSdkVersion`**, so the host refuses every DLL built against the
+old layout. A `structSize` field alone does not make arrays extensible because
+their element stride is fixed.
 Cache-definition records use `kNativePayloadVersion == 1`; source SDK
 releases do not change accepted snapshot tags. Native UI records live in
 `detail/native_records.h`, independently of the controller IPC records.
@@ -1498,7 +1561,42 @@ releases do not change accepted snapshot tags. Native UI records live in
 values; `detail/native_abi.h` pins capability offsets. The compatibility
 suite also loads a real DLL compiled from a frozen standalone v1 header,
 checking short tables, settings arrays, instance state and destruction.
-Released fixture DLLs should be retained and tested without recompilation.
+Released fixture DLLs should be retained and tested without recompilation;
+they exercise the ABI mechanics directly, and the SDK floor is covered by the
+native plugin instance tests.
+
+### Optional HTML interfaces (v1)
+
+| Interface | Stable ID | Major | Complete required prefix (Windows x64) |
+| --- | --- | --- | --- |
+| `HostHtmlUiV1` | `0x1007` | 1 | 16 bytes |
+| `PluginHtmlPanelsV1` | `0x2004` | 1 | 88 bytes |
+| `PluginHtmlOverlaysV1` | `0x2005` | 1 | 88 bytes |
+
+Each plugin HTML table contains `InterfaceHeader` and the complete
+`HtmlUiCallbacks` block. All ten callbacks must be present. Missing tables,
+physically short allocations, partial final pointers, null required callbacks,
+and unknown majors import atomically as absent. A future tail is ignored.
+The host capability returns support bits `kHtmlUiSidePanels` (1) and
+`kHtmlUiOverlays` (2), with `kHtmlUiRuntimeAvailable` (`1u << 31`) independently
+describing renderer availability. The new interfaces are not default required
+capabilities; old hosts and old ABI v1 plugins continue to load.
+
+The new immutable records in `detail/html_ui_abi.h` are `DescriptorV1` (456
+bytes), `ResourceV1` (324 bytes), and `SnapshotV1` (48 bytes). These records,
+their field meanings, and their array strides must not grow after publication.
+The existing 168-byte native `PanelDescriptor` remains unchanged.
+
+`getDescriptors` returns the total count and copies at most the supplied
+capacity. `getResource` copies immutable metadata; `copyResource` and `copyIcon`
+copy bounded byte ranges. `copyState` and `copyMessage` return required byte
+counts excluding NUL, and leave null/short output buffers untouched. A changed
+state revision returns zero so the caller can retry its snapshot. `reset(0)`
+deactivates; a new nonzero activation discards transients and replays state;
+repeating the current activation is idempotent. `acknowledge` only accepts an
+issued sequence for the current activation. `dispatchMessage` validates the
+activation and envelope, but the host must first marshal it to MainLoop under
+the lifecycle gate and validate the complete controller/client identity.
 
 ### Native ownership and service lifetime
 

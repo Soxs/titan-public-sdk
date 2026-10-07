@@ -20,7 +20,7 @@
 
 #include "../bank_sets.h"
 #include "../client.h"
-#include "../gamevals.h"
+#include "../generated/gamevals/interface_id.h"
 #include "../inventory_id.h"
 #include "../item_cache.h"
 #include "../keyboard.h"

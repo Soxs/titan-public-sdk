@@ -21,6 +21,8 @@ public final class Widget {
     private int type;
     private int contentType;
     private int spriteId = -1;
+    private int modelType = -1;
+    private int modelId = -1;
     private int opacity;
     private int itemId = -1;
     private int itemQuantity;
@@ -48,6 +50,14 @@ public final class Widget {
     public int type() { return live().type; }
     public int contentType() { return live().contentType; }
     public int spriteId() { return live().spriteId; }
+    /**
+     * Model source kind stored by the client, matching RuneLite's
+     * {@code WidgetModelType}: 0 none, 1 model, 2 NPC chathead, 3 local player
+     * chathead, 4 item, 5 player, 6 NPC chathead by index. -1 when unavailable.
+     */
+    public int modelType() { return live().modelType; }
+    /** Id selected by {@link #modelType()}, or -1 when the widget has no model. */
+    public int modelId() { return live().modelId; }
     public int opacity() { return live().opacity; }
     public int itemId() { return live().itemId; }
     public int itemQuantity() { return live().itemQuantity; }

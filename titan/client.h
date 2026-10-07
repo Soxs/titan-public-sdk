@@ -829,6 +829,10 @@ struct WidgetSnapshot {
     int32_t type = 0;
     int32_t contentType = 0;
     int32_t spriteId = -1;
+    /// Model source kind and the id it selects (SDK v146+). See
+    /// `TitanPluginSdk::WidgetState::modelType`; -1 when unavailable.
+    int32_t modelType = -1;
+    int32_t modelId = -1;
     int32_t opacity = 0;
     int32_t itemId = -1;
     int32_t itemQuantity = 0;
@@ -892,6 +896,7 @@ inline WidgetSnapshot widgetSnapshotFromState(const TitanPluginSdk::WidgetState&
     w.scrollX = s.scrollX; w.scrollY = s.scrollY;
     w.type = s.type; w.contentType = s.contentType;
     w.spriteId = s.spriteId;
+    w.modelType = s.modelType; w.modelId = s.modelId;
     w.opacity = s.opacity; w.itemId = s.itemId;
     w.itemQuantity = s.itemQuantity; w.parentId = s.parentId;
     w.hidden = s.hidden != 0;
@@ -1034,6 +1039,8 @@ public:
     int32_t type() const { return state().type; }
     int32_t contentType() const { return state().contentType; }
     int32_t spriteId() const { return state().spriteId; }
+    int32_t modelType() const { return state().modelType; }
+    int32_t modelId() const { return state().modelId; }
     int32_t opacity() const { return state().opacity; }
     int32_t itemId() const { return state().itemId; }
     int32_t itemQuantity() const { return state().itemQuantity; }

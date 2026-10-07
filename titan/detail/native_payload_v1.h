@@ -1,12 +1,15 @@
 #pragma once
 
 // Native ABI v1 payload golden contract (Windows x64).
-// Captured once from the pre-release v1 baseline, never regenerated at build
-// time. These constants protect record stride, field types/array extents,
+// Captured from the pre-release v1 baseline, never regenerated at build time.
+// These constants protect record stride, field types/array extents,
 // alignment, enum representations, and numeric meanings. Do not update an
-// existing expectation to accommodate a mutation: introduce a new payload
-// and a separately negotiated interface instead. UI payloads have equivalent
-// checks in native_records.h; native_abi.h freezes function-table layouts.
+// existing expectation to accommodate a mutation. A deliberate layout break
+// updates its expectations only in the same change that raises
+// kMinSupportedSdkVersion (SDK 146: WidgetState modelType/modelId), so the
+// host refuses every DLL built against the old layout. UI payloads have
+// equivalent checks in native_records.h; native_abi.h freezes function-table
+// layouts.
 #include "abi.h"
 
 #include <cstddef>
@@ -425,7 +428,7 @@ TITAN_NATIVE_FIELD(TitanHookArg, type, 0, uint8_t);
 TITAN_NATIVE_FIELD(TitanHookArg, intVal, 4, int32_t);
 TITAN_NATIVE_FIELD(TitanHookArg, stringVal, 8, char[23]);
 
-TITAN_NATIVE_RECORD(WidgetState, 324, 4);
+TITAN_NATIVE_RECORD(WidgetState, 332, 4);
 TITAN_NATIVE_FIELD(WidgetState, screenX, 0, int32_t);
 TITAN_NATIVE_FIELD(WidgetState, screenY, 4, int32_t);
 TITAN_NATIVE_FIELD(WidgetState, width, 8, int32_t);
@@ -446,15 +449,17 @@ TITAN_NATIVE_FIELD(WidgetState, visible, 58, uint8_t);
 TITAN_NATIVE_FIELD(WidgetState, text, 59, char[256]);
 TITAN_NATIVE_FIELD(WidgetState, packedId, 316, int32_t);
 TITAN_NATIVE_FIELD(WidgetState, spriteId, 320, int32_t);
+TITAN_NATIVE_FIELD(WidgetState, modelType, 324, int32_t);
+TITAN_NATIVE_FIELD(WidgetState, modelId, 328, int32_t);
 
 TITAN_NATIVE_RECORD(WidgetAddressState, 56, 4);
 TITAN_NATIVE_FIELD(WidgetAddressState, rootPackedId, 0, uint32_t);
 TITAN_NATIVE_FIELD(WidgetAddressState, depth, 4, uint32_t);
 TITAN_NATIVE_FIELD(WidgetAddressState, slots, 8, int32_t[12]);
 
-TITAN_NATIVE_RECORD(WidgetQueryState, 380, 4);
+TITAN_NATIVE_RECORD(WidgetQueryState, 388, 4);
 TITAN_NATIVE_FIELD(WidgetQueryState, widget, 0, WidgetState);
-TITAN_NATIVE_FIELD(WidgetQueryState, address, 324, WidgetAddressState);
+TITAN_NATIVE_FIELD(WidgetQueryState, address, 332, WidgetAddressState);
 
 TITAN_NATIVE_RECORD(VarbitDefSnapshot, 28, 4);
 TITAN_NATIVE_FIELD(VarbitDefSnapshot, structSize, 0, uint32_t);

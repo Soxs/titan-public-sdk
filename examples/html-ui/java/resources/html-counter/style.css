@@ -1,0 +1,5 @@
+:root { color: var(--titan-text, #eeeeee); background: var(--titan-bg, #202026); font: 14px sans-serif; }
+body { margin: 12px; } h1 { margin: 0; font-size: 16px; } p { margin: 12px 0; font-size: 26px; }
+button { color: inherit; background: var(--titan-accent, #406ba0); border: 1px solid var(--titan-border, #666666); padding: 6px 12px; }
+output { display: block; margin-top: 8px; color: var(--titan-muted, #aaaaaa); font-size: 12px; }
+.setting { font-size: 14px; }

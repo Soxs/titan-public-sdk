@@ -11,7 +11,7 @@
 
 #include "../actor.h"
 #include "../client.h"
-#include "../gamevals.h"
+#include "../generated/gamevals/interface_id.h"
 #include "../skill.h"
 #include "../var_player.h"
 #include "../varbits.h"

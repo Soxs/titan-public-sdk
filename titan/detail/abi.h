@@ -9,16 +9,22 @@
 ///
 /// Native ABI v1 is a deliberate pre-release reset. Rebuild every existing
 /// native plugin once; legacy TitanCreatePlugin DLLs are not supported.
-/// After that reset, kSdkVersion identifies a source SDK release only. It is
-/// not a native load gate. Required interface id/major/minimum-size contracts
-/// decide compatibility; absent optional operations import as null.
+/// Required interface id/major/minimum-size contracts decide which optional
+/// operations a plugin can call; absent optional operations import as null.
 ///
-/// Existing payload layouts, array extents, enum values and meanings are
-/// frozen. A structSize tag does not make an array element extensible. Add a
-/// new payload type and negotiate a new interface for incompatible changes.
-/// Only capability tables permit appended optional functions, with bounds
-/// checks against the producer's published table size. See native_payload_v1.h,
-/// native_records.h and native_abi.h for explicit baseline checks.
+/// kMinSupportedSdkVersion is the native load gate for payload layout breaks.
+/// The host refuses a module whose ModuleDescriptorV1::sdkRelease is below
+/// it, and an SDK-built plugin refuses a host whose HostCoreV1::sdkRelease is
+/// below it. Raise it only in the change that alters a payload record layout;
+/// every native DLL is then rebuilt and published together with the client.
+/// Appended optional functions never raise it.
+///
+/// Payload layouts, array extents, enum values and meanings change only at
+/// such a gated break. A structSize tag does not make an array element
+/// extensible. Only capability tables permit appended optional functions, with
+/// bounds checks against the producer's published table size. See
+/// native_payload_v1.h, native_records.h and native_abi.h for explicit
+/// baseline checks.
 ///
 /// Preserve these public binary contracts when obfuscating: the bootstrap
 /// export name, descriptors, capability tables, payloads, calling conventions
@@ -27,10 +33,37 @@
 /// return to its allocating module; exceptions never cross the boundary.
 ///
 /// The changelog below records source SDK releases, including historical
-/// compatibility policies from before the Native ABI v1 reset. Those old
-/// SDK-version windows do not describe the current native loader.
+/// compatibility policies from before the Native ABI v1 reset. The two-sided
+/// SDK-version windows of those entries do not describe the current loader;
+/// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+///
+/// v146 -- Widget model type and id; the SDK floor gates native loads again.
+///   + WidgetState appends modelType (the client's model source kind) and
+///     modelId (the model, NPC or item id it selects). Exposed as C++
+///     Widget::modelType()/modelId() and WidgetSnapshot::modelType/modelId,
+///     JS/TS WidgetState.modelType/modelId (snapshot() included), and Java
+///     Widget.modelType()/modelId() in 0.1.75. -1 means the offset is
+///     unavailable; modelId is also -1 for a widget without a model.
+///   + HostCoreV1 appends sdkRelease, the host's source SDK release.
+///   ~ titan/utils headers include only the generated interface_id.h, not all
+///     of gamevals.h; include <titan/gamevals.h> for other gameval constants.
+///   - WidgetState grows, so kMinSupportedSdkVersion is raised to 146 and
+///     enforced again: the host refuses native DLLs built against an older
+///     SDK, and plugins built against 146 refuse an older host. Rebuild every
+///     native DLL and publish it with the client.
+///
+/// v145 -- Packaged HTML side panels and HTML HUD overlays.
+///   + PluginHtmlPanelsV1, PluginHtmlOverlaysV1 and HostHtmlUiV1 are optional
+///     separately negotiated capabilities. Existing Native ABI v1 DLLs do not
+///     need rebuilding; frozen UI records and tables remain unchanged.
+///   + C++ HtmlPanelBundle / HtmlSidePanel / HtmlOverlayPanel; Java repeatable
+///     HTML annotations and facades; JS/TS discriminated panel definitions.
+///   + Validated embedded resources, bounded typed messages, replayable state,
+///     constructor metadata, and runtime overlay size/visibility controls.
+///   ~ Native/HTML side panels share eight slots. HTML overlays have eight
+///     definitions per plugin; existing native overlay limits are unchanged.
 ///
 /// v144 -- Break Handler observation: see a break without registering.
 ///   + HostApi::breakHandlerObserve: copies the break command the coordinator
@@ -1718,6 +1751,7 @@
 #include <cstdint>
 
 #include "native_records.h"
+#include "html_ui_abi.h"
 
 /// Private ABI namespace. Public plugin code should use `namespace titan` instead.
 namespace TitanPluginSdk {
@@ -1725,15 +1759,20 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 144;
+constexpr uint32_t kSdkVersion = 146;
 
 /// Immutable cache-definition payload contract for Native ABI v1. SDK source
 /// releases do not change this value or the records carrying it.
 constexpr uint32_t kNativePayloadVersion = 1;
 
-/// Historical SDK-window floor retained for local source compatibility and
-/// pre-reset changelog/tests. Native ABI v1 does not consult this constant.
-constexpr uint32_t kMinSupportedSdkVersion = 135;
+/// Native load gate for payload layout breaks. The host refuses native
+/// modules whose ModuleDescriptorV1::sdkRelease is lower; plugins built with
+/// this SDK refuse a host whose HostCoreV1::sdkRelease is lower. Raise it in
+/// the same change as any payload record layout change, never for appended
+/// optional functions.
+///
+/// Raised to 146 when WidgetState gained modelType and modelId.
+constexpr uint32_t kMinSupportedSdkVersion = 146;
 
 /// Upper bound for one VarClient string snapshot including its NUL terminator.
 /// The host getter exposes a required-size ABI; clients use this cap before
@@ -2667,6 +2706,14 @@ struct WidgetState {
     /// Primary native widget sprite id. Added in SDK 110. A value of -1 means
     /// the widget has no sprite or the SpriteId offset is unavailable.
     int32_t spriteId = -1;
+    /// Model source kind stored by the client, matching RuneLite's
+    /// WidgetModelType: 0 none, 1 model, 2 NPC chathead, 3 local player
+    /// chathead, 4 item, 5 player, 6 NPC chathead by index. Added in SDK 146;
+    /// -1 when the ModelType offset is unavailable.
+    int32_t modelType = -1;
+    /// Id selected by modelType: a model, NPC or item id. Added in SDK 146;
+    /// -1 when the widget has no model or the ModelId offset is unavailable.
+    int32_t modelId = -1;
 };
 
 /// Maximum retained dynamic-child depth for widget query snapshots. Matches
@@ -3647,6 +3694,9 @@ static_assert(sizeof(PreviewPillWrite) == 40, "PreviewPillWrite ABI size changed
 // Consumer-local dispatch view. Native ABI v1 imports negotiated functions
 // into this allocation; this structure itself is not a cross-DLL contract.
 struct HostApi {
+    /// A host's own SDK release, exported as HostCoreV1::sdkRelease. In a
+    /// view imported by a native plugin it is that host's release, or 0 when
+    /// the host predates SDK 146.
     uint32_t sdkVersion = kSdkVersion;
 
     // --- Logging ---
@@ -4803,6 +4853,9 @@ struct HostApi {
     /// selects the current view. Missing identity/definition returns 0.
     uint8_t (*getNpcBaseId)(int32_t worldViewId, int32_t hashIndex,
                            int32_t* outBaseId) = nullptr;
+    /// Optional HostHtmlUiV1. Zero/absent means HTML is unavailable; native
+    /// plugin lifecycle and existing ImGui panels continue unchanged.
+    uint32_t (*htmlUiCapabilities)() = nullptr;
 };
 
 /// Consumer-local callback view, populated from the negotiated native tables.
@@ -5014,6 +5067,10 @@ struct PluginApi {
     /// drain. Signal and join load-lifetime workers here; this is independent
     /// of the plugin's UI enabled state. No new work may be submitted.
     void (*prepareUnload)(void* userData) = nullptr;
+
+    // Local views only. Frozen PluginUiV1 and PanelDescriptor stay unchanged.
+    HtmlUiCallbacks htmlPanels{};
+    HtmlUiCallbacks htmlOverlays{};
 };
 
 /// Historical local embedding signatures. These tables must never cross a

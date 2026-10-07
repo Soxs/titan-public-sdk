@@ -35,6 +35,93 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Packaged HTML sidebars and overlays (0.1.74+)
+
+`@HtmlSidePanel` is separate from the existing ImGui `@SidePanel`. Both kinds
+share eight sidebar slots and one ID namespace. Repeatable `@HtmlOverlayPanel`
+declarations have eight slots in a separate overlay namespace; their IDs must
+not collide with a native `OverlayPanel` name. Each HTML ID is 1–31 characters
+of `[A-Za-z0-9._-]`. Overlays default to 220×160 CSS pixels and click-through
+input; supported dimensions are width 80–600 and height 24–600.
+
+```java
+@PluginDescriptor(id="html_counter", name="HTML Counter",
+    description="Packaged HTML counter", author="Your Name", version="1.0.0")
+@HtmlSidePanel(id="counter", title="Counter", resourceRoot="counter")
+public final class CounterPlugin implements Plugin {
+    private final HtmlPanels panels = HtmlPanels.of(this);
+    private int count;
+    @Override public void onLoad() { publish(); }
+    @Override public void onHtmlPanelMessage(String id, HtmlMessage message) {
+        if (id.equals("counter") && message.type().equals("increment")) {
+            ++count;
+            publish();
+            panels.postMessage(id, "updated", Integer.toString(count),
+                message.correlationId().orElse(null));
+        }
+    }
+    private void publish() {
+        panels.setState("counter", "{\"count\":" + count + "}");
+    }
+}
+```
+
+Import annotations from `net.titan.api.plugins` and helpers/message types from
+`net.titan.api.html`. `HtmlOverlays.of(this)` has the same `setState` and
+`postMessage` methods, plus `setSize(id, width, height)` and
+`setVisible(id, visible)`; overlay messages use `Plugin.onHtmlOverlayMessage`.
+Helpers retain the exact loaded plugin instance. They are thread-safe, return
+`HtmlUiResult`, and need no JSON library: inputs and callback payloads are JSON
+strings. Constructor writes return `STALE`; `onLoad` may initialize state.
+Callbacks execute on MainLoop under the native lifecycle gate. A new plugin
+instance cannot inherit an old helper's authority.
+
+Put `index.html`, `style.css`, `app.js`, and resources under
+`src/main/resources/counter/`. The default entrypoint is `index.html`; specify
+`entrypoint` to change it. Resources are copied from the declaring JAR, including
+marketplace JARs held in memory. No resource extraction or loose release files
+are needed. The sample in `java/titan-sample-plugin` includes a sidebar and an
+overlay using this contract.
+
+Declare HTML surfaces unconditionally and choose overlay visibility from plugin
+state. Renderer startup is lazy; an unused HTML feature starts no helper.
+The controller shows native diagnostics and retry controls if a requested
+surface cannot start. The C++/JS observed-availability flag is not a runtime
+installation preflight and must not gate initial declarations or visibility.
+
+V1 bundles allow at most 128 resources, 2 MiB per resource and 8 MiB total.
+Paths are relative ASCII paths of at most 255 characters using letters, digits,
+`/`, `.`, `_` and `-`; empty/dot/traversal segments, percent escapes, absolute
+paths, backslashes, duplicate names and case collisions are rejected. HTML,
+CSS, JS, JSON, plain text, PNG, JPEG, WebP, WOFF and WOFF2 are supported through
+their usual file extensions. Text must be valid UTF-8. SVG, GIF, ICO, TTF and
+arbitrary binary MIME types are not supported.
+
+Use bundled classic scripts and stylesheets. The page's `titanHtml` bridge
+exposes `getState`, `onState`, `postMessage`, `onMessage` and `resource` for
+packaged JSON/text resources. Remote URLs, fetch/XHR, frames and browser host
+objects are unavailable. Theme CSS variables include `--titan-bg`,
+`--titan-text`, `--titan-muted`, `--titan-accent`, and `--titan-border`.
+
+The v1 message is `{version:1, type, payload, id?}`. Type is 1–128 printable
+non-space ASCII characters; optional correlation ID is at most 128 UTF-8 bytes
+without NUL. Complete messages and state are limited to 64 KiB UTF-8 with at
+most 32 JSON nesting levels; duplicate keys and malformed Unicode are rejected.
+State coalesces to the latest replacement and replays after switching or
+recreating the surface. It survives resize and disable/enable; unload destroys it.
+Transient messages preserve order while active, with a 64-message/1 MiB queue
+per surface and an 8 MiB Java-client aggregate queue budget. Acknowledgements
+free only delivered messages from the matching activation. Overflow rejects the
+new write; deactivation drops transients. A successful write confirms acceptance,
+not page execution. State revisions and message sequences are independent.
+
+The optional annotation `image` names a packaged PNG icon in the same JAR and
+is copied at inspection/load time with a 256 KiB limit. Existing native panel
+icons retain their prior behavior.
+
+Browser/cache persistence is a separate renderer concern: packaged JAR delivery
+does not establish that the renderer makes zero plaintext disk writes.
+
 ## Main Loop Event (0.1.43+)
 
 `MainLoop` fires from the client's outer loop in every state, including the

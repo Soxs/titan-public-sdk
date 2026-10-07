@@ -7,7 +7,7 @@
 
 namespace titan::gamevals::manifest {
 
-inline constexpr std::string_view exportedAt = "2026-10-03T17:45:24.624840900Z";
+inline constexpr std::string_view exportedAt = "2026-10-06T17:04:56.434352800Z";
 inline constexpr uint32_t catalogCount = 13;
 inline constexpr uint32_t entryCount = 168957;
 

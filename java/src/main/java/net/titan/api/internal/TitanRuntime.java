@@ -31,6 +31,7 @@ public final class TitanRuntime {
     private static volatile ItemPricesBackend itemPricesBackend;
     private static volatile CrossTabBackend crossTabBackend;
     private static volatile PreviewPillBackend previewPillBackend;
+    private static volatile HtmlUiBackend htmlUiBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -38,6 +39,16 @@ public final class TitanRuntime {
         new LinkedHashMap<>();
 
     private TitanRuntime() {}
+
+    public static HtmlUiBackend getHtmlUiBackend() {
+        HtmlUiBackend value = htmlUiBackend;
+        return value == null ? HtmlUiBackend.UNAVAILABLE : value;
+    }
+
+    public static void setHtmlUiBackend(HtmlUiBackend backend) { htmlUiBackend = backend; }
+    public static void clearHtmlUiBackend(HtmlUiBackend backend) {
+        if (htmlUiBackend == backend) htmlUiBackend = null;
+    }
 
     public static Injector getInjector() {
         Injector value = injector;

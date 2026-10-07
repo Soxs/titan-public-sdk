@@ -42,7 +42,7 @@
 #pragma once
 
 #include "../client.h"
-#include "../gamevals.h"
+#include "../generated/gamevals/interface_id.h"
 #include "../keyboard.h"
 #include "../menu_action.h"
 

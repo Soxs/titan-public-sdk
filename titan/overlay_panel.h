@@ -242,9 +242,14 @@ private:
 // Implementation (header-only inline)
 // ---------------------------------------------------------------------------
 
+inline Plugin* reserveOverlayPanelName(Plugin* owner, const char* name) {
+    if (owner) owner->_registerOverlayPanelName(name);
+    return owner;
+}
+
 inline OverlayPanel::OverlayPanel(Plugin* owner, const char* name,
                                   Anchor defaultAnchor, int32_t defaultPriority)
-    : Overlay(owner, Layer::AboveWidgets) {
+    : Overlay(reserveOverlayPanelName(owner, name), Layer::AboveWidgets) {
     if (auto* b = detail::backend()) {
         const char* pid = (owner ? owner->id() : "");
         const char* n   = (name ? name : "");

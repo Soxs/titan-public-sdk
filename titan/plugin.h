@@ -36,6 +36,7 @@
 #include "detail/registrable.h"
 #include "events.h"
 #include "panel.h"
+#include "html_panels.h"
 
 #include <algorithm>
 #include <cstring>
@@ -290,11 +291,43 @@ public:
     /// @endcode
     SidePanel& panel(const char* id, const char* title,
                      std::function<void(Panel&)> build) {
+        _validateSidePanelId(id);
         auto sp = std::make_unique<SidePanel>(id ? id : "", title ? title : "",
                                               std::move(build));
         SidePanel& ref = *sp;
         panels_.push_back(std::move(sp));
         return ref;
+    }
+
+    /// Register embedded HTML resources. Metadata/callbacks are configured in
+    /// the constructor; state/messages may be published throughout the lifetime.
+    HtmlSidePanel& htmlPanel(const char* id, const char* title, const HtmlPanelBundle& bundle) {
+        _requireHtmlRegistrationOpen();
+        _validateSidePanelId(id);
+        auto panel = std::make_unique<HtmlSidePanel>(id, title ? title : "", bundle);
+        auto& result = *panel; htmlPanels_.push_back(std::move(panel)); return result;
+    }
+    HtmlOverlayPanel& htmlOverlayPanel(const char* id, const HtmlPanelBundle& bundle, HtmlOverlayOptions options = {}) {
+        _requireHtmlRegistrationOpen();
+        if (!id || !TitanHtmlUi::validId(id)) throw std::invalid_argument("invalid HTML overlay ID");
+        if (htmlOverlays_.size() >= TitanHtmlUi::kMaxHtmlOverlays) throw std::invalid_argument("a plugin may register at most eight HTML overlays");
+        if (_findHtml(TitanHtmlUi::SurfaceKind::Overlay, id)) throw std::invalid_argument("duplicate HTML overlay ID");
+        if (std::find(nativeOverlayNames_.begin(), nativeOverlayNames_.end(), id) != nativeOverlayNames_.end())
+            throw std::invalid_argument("HTML overlay ID collides with a native overlay name");
+        auto panel = std::make_unique<HtmlOverlayPanel>(id, bundle, options);
+        auto& result = *panel; htmlOverlays_.push_back(std::move(panel)); return result;
+    }
+    /// True only after a connected renderer has been observed for this client.
+    /// False includes unobserved and unavailable, including old hosts. Register
+    /// HTML surfaces unconditionally and choose visibility from plugin state,
+    /// never from this flag: a first visible activation establishes availability.
+    /// HTML support is optional and never prevents native callbacks from loading.
+    bool htmlUiAvailable(TitanHtmlUi::SurfaceKind kind = TitanHtmlUi::SurfaceKind::SidePanel) const {
+        auto* api = host(); const uint32_t flag = kind == TitanHtmlUi::SurfaceKind::SidePanel
+            ? TitanPluginSdk::kHtmlUiSidePanels : TitanPluginSdk::kHtmlUiOverlays;
+        return api && api->htmlUiCapabilities &&
+            (api->htmlUiCapabilities() & (flag | TitanPluginSdk::kHtmlUiRuntimeAvailable)) ==
+                (flag | TitanPluginSdk::kHtmlUiRuntimeAvailable);
     }
 
     // --- Host / backend access ---
@@ -373,6 +406,23 @@ public:
     const std::vector<detail::SettingBase*>& _settings() const { return settings_; }
     const std::vector<detail::OverlayBase*>& _overlays() const { return overlays_; }
     const std::vector<std::unique_ptr<SidePanel>>& _panels() const { return panels_; }
+    const std::vector<std::unique_ptr<HtmlSidePanel>>& _htmlPanels() const { return htmlPanels_; }
+    const std::vector<std::unique_ptr<HtmlOverlayPanel>>& _htmlOverlays() const { return htmlOverlays_; }
+    HtmlSidePanel* _findHtml(TitanHtmlUi::SurfaceKind kind, const char* id) const {
+        if (!id) return nullptr;
+        if (kind == TitanHtmlUi::SurfaceKind::SidePanel) { for (const auto& p : htmlPanels_) if (p->id() == id) return p.get(); }
+        else if (kind == TitanHtmlUi::SurfaceKind::Overlay) { for (const auto& p : htmlOverlays_) if (p->id() == id) return p.get(); }
+        return nullptr;
+    }
+    void _freezeHtml() noexcept {
+        htmlRegistrationFrozen_ = true;
+        for (auto& p : htmlPanels_) p->_freeze();
+        for (auto& p : htmlOverlays_) p->_freeze();
+    }
+    void _registerOverlayPanelName(const char* name) {
+        if (_findHtml(TitanHtmlUi::SurfaceKind::Overlay, name)) throw std::invalid_argument("native overlay name collides with an HTML overlay ID");
+        nativeOverlayNames_.emplace_back(name ? name : "");
+    }
     /// Look up a registered side panel by its id. Returns null when no panel
     /// with that id exists.
     SidePanel* _findPanel(const char* id) const {
@@ -404,6 +454,17 @@ public:
     }
 
 private:
+    void _requireHtmlRegistrationOpen() const {
+        if (htmlRegistrationFrozen_)
+            throw std::logic_error("HTML surfaces must be registered in the plugin constructor before interface publication");
+    }
+    void _validateSidePanelId(const char* id) const {
+        if (!id || !TitanHtmlUi::validId(id)) throw std::invalid_argument("side panel ID must contain 1..31 ASCII letters, digits, '.', '_' or '-'");
+        if (panels_.size() + htmlPanels_.size() >= TitanHtmlUi::kMaxSidePanels)
+            throw std::invalid_argument("native and HTML side panels share the eight-panel limit");
+        if (_findPanel(id) || _findHtml(TitanHtmlUi::SurfaceKind::SidePanel, id))
+            throw std::invalid_argument("duplicate native/HTML side panel ID");
+    }
     detail::ExternalBackend* nativeBackend_ = nullptr;
     bool enabled_ = false;
     /// Set by the first `_setEnabledFromHost` call so we can distinguish
@@ -423,6 +484,10 @@ private:
     // Side panels registered via panel(). Each maps to a nav button in the
     // controller's right-hand rail.
     std::vector<std::unique_ptr<SidePanel>> panels_;
+    std::vector<std::unique_ptr<HtmlSidePanel>> htmlPanels_;
+    std::vector<std::unique_ptr<HtmlOverlayPanel>> htmlOverlays_;
+    std::vector<std::string> nativeOverlayNames_;
+    bool htmlRegistrationFrozen_ = false;
 };
 
 namespace detail {
@@ -779,10 +844,103 @@ struct GuardedPluginCallback<Callback> {
     }
 };
 
+template <TitanHtmlUi::SurfaceKind Kind>
+inline const auto& htmlSurfaces(Plugin* plugin) {
+    if constexpr (Kind == TitanHtmlUi::SurfaceKind::SidePanel) return plugin->_htmlPanels();
+    else return plugin->_htmlOverlays();
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint32_t thunkHtmlDescriptors(void* ud, TitanPluginSdk::HtmlUiRecords::DescriptorV1* out, uint32_t capacity) {
+    const auto& panels = htmlSurfaces<Kind>(self(ud));
+    if (out) for (size_t i = 0; i < panels.size() && i < capacity; ++i) {
+        const auto& p = *panels[i]; const auto& d = p.descriptor(); const auto& bundle = p.bundle();
+        auto& target = out[i]; target = {}; target.kind = static_cast<uint32_t>(Kind);
+        copyFixed(target.id, sizeof(target.id), d.id.c_str()); copyFixed(target.title, sizeof(target.title), d.title.c_str());
+        copyFixed(target.icon, sizeof(target.icon), d.icon.c_str()); copyFixed(target.entrypoint, sizeof(target.entrypoint), bundle.entrypoint.c_str());
+        target.iconColor = d.iconColor; target.iconBytes = static_cast<uint32_t>(d.iconPng.size());
+        target.resourceCount = static_cast<uint32_t>(bundle.resources.size());
+        for (const auto& r : bundle.resources) target.bundleBytes += static_cast<uint32_t>(r.bytes.size());
+        target.width = d.width; target.height = d.height; target.priority = d.priority;
+        target.anchor = d.anchor; target.input = d.input; target.visible = d.visible ? 1 : 0;
+    }
+    return static_cast<uint32_t>(panels.size());
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint8_t thunkHtmlResource(void* ud, const char* id, uint32_t index, TitanPluginSdk::HtmlUiRecords::ResourceV1* out) {
+    const auto* p = self(ud)->_findHtml(Kind, id); if (!p || !out || index >= p->bundle().resources.size()) return 0;
+    const auto& r = p->bundle().resources[index]; *out = {};
+    copyFixed(out->path, sizeof(out->path), r.path.c_str()); copyFixed(out->mime, sizeof(out->mime), r.mime.c_str());
+    out->bytes = static_cast<uint32_t>(r.bytes.size()); return 1;
+}
+inline uint32_t copyHtmlBytes(const std::vector<uint8_t>& source, uint32_t offset, uint8_t* out, uint32_t capacity) {
+    if (!out || offset >= source.size()) return 0;
+    const auto count = static_cast<uint32_t>((std::min)(source.size() - offset, static_cast<size_t>(capacity)));
+    if (count) std::memcpy(out, source.data() + offset, count); return count;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint32_t thunkHtmlCopyResource(void* ud, const char* id, uint32_t index, uint32_t offset, uint8_t* out, uint32_t capacity) {
+    const auto* p = self(ud)->_findHtml(Kind, id); if (!p || index >= p->bundle().resources.size()) return 0;
+    return copyHtmlBytes(p->bundle().resources[index].bytes, offset, out, capacity);
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint8_t thunkHtmlSnapshot(void* ud, const char* id, uint64_t activation, TitanPluginSdk::HtmlUiRecords::SnapshotV1* out) {
+    auto* p = self(ud)->_findHtml(Kind, id); if (!p || !out) return 0; TitanHtmlUi::UpdateBatch batch;
+    if (!p->_updates().snapshot(activation, batch)) return 0;
+    *out = {}; out->activation = batch.activation; out->lastSequence = batch.lastSequence; out->stateRevision = batch.stateRevision;
+    out->stateBytes = static_cast<uint32_t>(batch.state.size()); out->messageCount = static_cast<uint32_t>(batch.messages.size());
+    out->visible = p->_visible() ? 1 : 0;
+    const auto size = p->_size(); out->width = size.first; out->height = size.second; return 1;
+}
+inline uint32_t copyHtmlString(const std::string& source, char* out, uint32_t capacity) {
+    const auto size = static_cast<uint32_t>(source.size()); if (out && capacity >= size && size) std::memcpy(out, source.data(), size); return size;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint32_t thunkHtmlState(void* ud, const char* id, uint64_t revision, char* out, uint32_t capacity) {
+    auto* p = self(ud)->_findHtml(Kind, id); std::string state;
+    return p && p->_updates().copyState(revision, state) ? copyHtmlString(state, out, capacity) : 0;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint32_t thunkHtmlMessage(void* ud, const char* id, uint64_t activation, uint32_t index, char* out, uint32_t capacity, uint64_t* sequence) {
+    auto* p = self(ud)->_findHtml(Kind, id); TitanHtmlUi::Update update; if (sequence) *sequence = 0;
+    if (!p || !sequence || !p->_updates().copyMessage(activation, index, update)) return 0;
+    *sequence = update.sequence; return copyHtmlString(TitanHtmlUi::serializeMessage({update.type, update.payload, update.correlationId}), out, capacity);
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint8_t thunkHtmlAcknowledge(void* ud, const char* id, uint64_t activation, uint64_t through) {
+    auto* p = self(ud)->_findHtml(Kind, id); return p && p->_updates().acknowledge(activation, through) ? 1 : 0;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint8_t thunkHtmlReset(void* ud, const char* id, uint64_t activation) {
+    auto* p = self(ud)->_findHtml(Kind, id); return p && p->_updates().reset(activation) ? 1 : 0;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint8_t thunkHtmlDispatch(void* ud, const char* id, uint64_t activation, const char* message, uint32_t bytes) {
+    auto* p = self(ud)->_findHtml(Kind, id);
+    return p && message && bytes <= TitanHtmlUi::kMaxJsonBytes && p->_dispatch(activation, std::string_view(message, bytes)) ? 1 : 0;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline uint32_t thunkHtmlIcon(void* ud, const char* id, uint32_t offset, uint8_t* out, uint32_t capacity) {
+    const auto* p = self(ud)->_findHtml(Kind, id); return p ? copyHtmlBytes(p->descriptor().iconPng, offset, out, capacity) : 0;
+}
+template <TitanHtmlUi::SurfaceKind Kind>
+inline TitanPluginSdk::HtmlUiCallbacks htmlCallbacks() {
+    return {&GuardedPluginCallback<&thunkHtmlDescriptors<Kind>>::invoke,
+        &GuardedPluginCallback<&thunkHtmlResource<Kind>>::invoke, &GuardedPluginCallback<&thunkHtmlCopyResource<Kind>>::invoke,
+        &GuardedPluginCallback<&thunkHtmlSnapshot<Kind>>::invoke, &GuardedPluginCallback<&thunkHtmlState<Kind>>::invoke,
+        &GuardedPluginCallback<&thunkHtmlMessage<Kind>>::invoke, &GuardedPluginCallback<&thunkHtmlAcknowledge<Kind>>::invoke,
+        &GuardedPluginCallback<&thunkHtmlReset<Kind>>::invoke, &GuardedPluginCallback<&thunkHtmlDispatch<Kind>>::invoke,
+        &GuardedPluginCallback<&thunkHtmlIcon<Kind>>::invoke};
+}
+
 inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outApi) {
     *outApi = {};
     outApi->sdkVersion = TitanPluginSdk::kSdkVersion;
     outApi->userData = instance;
+    if (instance) {
+        instance->_freezeHtml();
+        if (!instance->_htmlPanels().empty()) outApi->htmlPanels = htmlCallbacks<TitanHtmlUi::SurfaceKind::SidePanel>();
+        if (!instance->_htmlOverlays().empty()) outApi->htmlOverlays = htmlCallbacks<TitanHtmlUi::SurfaceKind::Overlay>();
+    }
 
     outApi->getId = &GuardedPluginCallback<&thunkGetId>::invoke;
     outApi->getName = &GuardedPluginCallback<&thunkGetName>::invoke;
@@ -860,7 +1018,8 @@ uint8_t createPlugin(const TitanPluginSdk::HostApi* hostApi,
         populatePluginApi(instance.get(), outApi);
         instance.release();
         return 1;
-    } catch (...) { copyFixed(errOut, errOutLen, "Plugin construction failed"); return 0; }
+    } catch (const std::exception& ex) { copyFixed(errOut, errOutLen, ex.what()); return 0; }
+    catch (...) { copyFixed(errOut, errOutLen, "Plugin construction failed"); return 0; }
 }
 
 struct NativePluginStorage final : TitanPluginSdk::NativeAbi::PluginDescriptorV1 {
@@ -908,22 +1067,32 @@ uint8_t createNativePlugin(const TitanPluginSdk::NativeAbi::InterfaceProviderV1*
             copyFixed(error, capacity, "Native ABI v1 instance lifetime interface is unavailable");
             return 0;
         }
+        // Payload layouts change only together with kMinSupportedSdkVersion,
+        // so an older host would fill this plugin's records with its layout.
+        if (storage->hostView.sdkVersion < TitanPluginSdk::kMinSupportedSdkVersion) {
+            copyFixed(error, capacity, "Plugin built against SDK "
+                + std::to_string(TitanPluginSdk::kSdkVersion) + " needs a client with SDK "
+                + std::to_string(TitanPluginSdk::kMinSupportedSdkVersion)
+                + " or newer; update TitanClient");
+            return 0;
+        }
         // Stateless facade fallback for plugin-created threads. Ownership-sensitive
         // calls require an explicit owner/PluginThreadContext on such threads.
         installNativeModuleFallback(storage->hostView);
         storage->backend.setLifetime(lifetime(host));
         ScopedBackendContext context(&storage->backend, &storage->hostView, nullptr);
         TitanPluginSdk::PluginApi api{};
-        populatePluginApi(nullptr, &api);
-        storage->callbacks = std::make_unique<PluginInterfaceSet>(api);
         storage->instance = std::make_unique<PluginT>();
         storage->instance->_bindSdkBackend(&storage->backend);
+        populatePluginApi(storage->instance.get(), &api);
+        storage->callbacks = std::make_unique<PluginInterfaceSet>(api);
         storage->interfaces = storage->callbacks->provider();
         storage->userData = storage->instance.get();
         storage->destroy = &NativePluginStorage::destroyStorage;
         *out = storage.release();
         return 1;
-    } catch (...) { copyFixed(error, capacity, "Native plugin construction failed"); return 0; }
+    } catch (const std::exception& ex) { copyFixed(error, capacity, ex.what()); return 0; }
+    catch (...) { copyFixed(error, capacity, "Native plugin construction failed"); return 0; }
 }
 
 template <typename PluginT>

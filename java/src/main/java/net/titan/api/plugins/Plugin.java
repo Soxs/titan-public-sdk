@@ -5,6 +5,11 @@ import net.titan.api.panel.Panel;
 import net.titan.api.panel.PanelValue;
 
 public interface Plugin {
+    /** A validated page message, dispatched on the game thread while enabled. */
+    default void onHtmlPanelMessage(String panelId, net.titan.api.html.HtmlMessage message) {}
+
+    /** A validated overlay message, dispatched separately from sidebar messages. */
+    default void onHtmlOverlayMessage(String overlayId, net.titan.api.html.HtmlMessage message) {}
     default void onLoad() {}
     default void onUnload() {}
     default void onEnable() {}

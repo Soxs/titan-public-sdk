@@ -1,10 +1,13 @@
 #pragma once
 
 // Native DLL ABI v1. This is the public binary contract, independent of the
-// source SDK release number and the client/controller transport protocol.
-// Existing table members and the records they reference are frozen. New
-// optional functions may only be appended; incompatible changes need a new
-// interface major. Do not regenerate existing declarations from HostApi.
+// client/controller transport protocol. Existing table members are frozen.
+// New optional functions may only be appended; incompatible table changes
+// need a new interface major. Referenced payload records change layout only
+// together with kMinSupportedSdkVersion: hosts refuse modules whose
+// sdkRelease is below it, and plugins refuse hosts whose
+// HostCoreV1::sdkRelease is below it. Do not regenerate existing
+// declarations from HostApi.
 // The supported ABI is the Windows x64 C calling convention and natural
 // alignment. C++ facades and the local HostApi/PluginApi views are not ABI.
 #include "abi.h"
@@ -46,7 +49,7 @@ struct InterfaceRequirement {
 struct PluginDescriptorV1 {
     uint32_t structSize = sizeof(PluginDescriptorV1);
     uint32_t abiVersion = kAbiVersion;
-    uint32_t sdkRelease = kSdkVersion; // Diagnostics only; never a load gate.
+    uint32_t sdkRelease = kSdkVersion; // Diagnostics only; the module's release is the gate.
     uint32_t reserved = 0;
     void* userData = nullptr;
     InterfaceProviderV1 interfaces{};
@@ -62,7 +65,8 @@ using CreatePluginFn = uint8_t (*)(
 struct ModuleDescriptorV1 {
     uint32_t structSize = sizeof(ModuleDescriptorV1);
     uint32_t abiVersion = kAbiVersion;
-    uint32_t sdkRelease = kSdkVersion; // Diagnostics only; never a load gate.
+    // Hosts refuse modules built below their kMinSupportedSdkVersion.
+    uint32_t sdkRelease = kSdkVersion;
     uint32_t pluginCount = 0;
     CreatePluginFn createPlugin = nullptr;
     // Borrowed immutable requirements, valid for the DLL lifetime. A null
@@ -142,12 +146,46 @@ inline constexpr uint64_t kHostActionsId = 0x1003;
 inline constexpr uint64_t kHostRenderId = 0x1004;
 inline constexpr uint64_t kHostNavigationId = 0x1005;
 inline constexpr uint64_t kHostDefinitionExtrasId = 0x1006;
+inline constexpr uint64_t kHostHtmlUiId = 0x1007;
 inline constexpr uint64_t kPluginCoreId = 0x2001;
 inline constexpr uint64_t kPluginUiId = 0x2002;
 inline constexpr uint64_t kPluginEventsId = 0x2003;
+inline constexpr uint64_t kPluginHtmlPanelsId = 0x2004;
+inline constexpr uint64_t kPluginHtmlOverlaysId = 0x2005;
 
-// Separately negotiated optional data reads. Never grow WidgetState,
-// ItemDefSnapshot or HostGameV1 to add these facts to an existing native ABI.
+// HTML is additive. Absence of either optional side never rejects a plugin.
+// Each interface has one required prefix, imported atomically. Future tail
+// extensions require independent size checks; records above never grow.
+struct HostHtmlUiV1 {
+    InterfaceHeader header{sizeof(HostHtmlUiV1), 1};
+    uint32_t (*capabilities)() = nullptr;
+};
+struct PluginHtmlPanelsV1 {
+    InterfaceHeader header{sizeof(PluginHtmlPanelsV1), 1};
+    HtmlUiCallbacks callbacks{};
+};
+struct PluginHtmlOverlaysV1 {
+    InterfaceHeader header{sizeof(PluginHtmlOverlaysV1), 1};
+    HtmlUiCallbacks callbacks{};
+};
+inline HtmlUiCallbacks importHtmlCallbacks(const InterfaceProviderV1* provider, uint64_t id) {
+    const auto* table = queryInterface(provider, id);
+    // This check must precede forming any reference to trailing fields: an
+    // older provider may allocate only its physically short prefix.
+    if (!table || table->structSize < sizeof(PluginHtmlPanelsV1)) return {};
+    auto callbacks = readMember<HtmlUiCallbacks>(table, offsetof(PluginHtmlPanelsV1, callbacks));
+    return callbacks.complete() ? callbacks : HtmlUiCallbacks{};
+}
+static_assert(std::is_standard_layout_v<HostHtmlUiV1>);
+static_assert(std::is_standard_layout_v<PluginHtmlPanelsV1>);
+static_assert(std::is_standard_layout_v<PluginHtmlOverlaysV1>);
+static_assert(sizeof(HostHtmlUiV1) == 16);
+static_assert(sizeof(PluginHtmlPanelsV1) == 88 && sizeof(PluginHtmlOverlaysV1) == 88);
+static_assert(offsetof(PluginHtmlPanelsV1, callbacks) == 8 && offsetof(PluginHtmlOverlaysV1, callbacks) == 8);
+
+// Separately negotiated optional data reads, added without a payload layout
+// break. Since SDK 146 WidgetState::modelId carries the same model id as
+// getWidgetModelIdAtPath, which remains for existing callers.
 struct HostDefinitionExtrasV1 {
     InterfaceHeader header{sizeof(HostDefinitionExtrasV1), 1};
     uint8_t (*getWidgetModelIdAtPath)(const WidgetAddressState* address,
@@ -191,6 +229,10 @@ struct HostCoreV1 {
     uint8_t (*breakHandlerObserve)(const void* pluginInstance, const char* pluginId, BreakCommandState* outCommand) = nullptr;
     // Only permanent host-resident tables; never the plugin service registry.
     void* (*getHostService)(const char* serviceId) = nullptr;
+    // The host's source SDK release (SDK 146+). An SDK-built plugin refuses a
+    // host whose release is below its kMinSupportedSdkVersion; a table too
+    // short to hold this field means a host older than SDK 146.
+    uint32_t sdkRelease = kSdkVersion;
 };
 static_assert(std::is_standard_layout_v<HostCoreV1>);
 static_assert(offsetof(HostCoreV1, header) == 0);
@@ -500,7 +542,7 @@ inline constexpr InterfaceRequirement kPluginCoreRequirement{
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostCoreV1) == 192);
+static_assert(sizeof(HostCoreV1) == 200);
 static_assert(offsetof(HostCoreV1, log) == 8);
 static_assert(offsetof(HostCoreV1, setInternalToolVisible) == 16);
 static_assert(offsetof(HostCoreV1, getInternalToolVisible) == 24);
@@ -524,6 +566,7 @@ static_assert(offsetof(HostCoreV1, crossTabRead) == 160);
 static_assert(offsetof(HostCoreV1, previewPillWrite) == 168);
 static_assert(offsetof(HostCoreV1, breakHandlerObserve) == 176);
 static_assert(offsetof(HostCoreV1, getHostService) == 184);
+static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 #endif
 
 // ABI v1 golden offsets: append only; never update an existing offset.
@@ -1101,6 +1144,7 @@ public:
     HostRenderV1 render{};
     HostNavigationV1 navigation{};
     HostDefinitionExtrasV1 definitionExtras{};
+    HostHtmlUiV1 htmlUi{};
 
     explicit HostInterfaceSet(const HostApi& api,
                               const void* extensionContext = nullptr,
@@ -1109,6 +1153,7 @@ public:
 #define TITAN_NATIVE_ASSIGN(name) core.name = api.name;
         TITAN_NATIVE_HOSTCOREV1_MEMBERS(TITAN_NATIVE_ASSIGN)
 #undef TITAN_NATIVE_ASSIGN
+        core.sdkRelease = api.sdkVersion;
 #define TITAN_NATIVE_ASSIGN(name) game.name = api.name;
         TITAN_NATIVE_HOSTGAMEV1_MEMBERS(TITAN_NATIVE_ASSIGN)
 #undef TITAN_NATIVE_ASSIGN
@@ -1124,6 +1169,7 @@ public:
         definitionExtras.getWidgetModelIdAtPath = api.getWidgetModelIdAtPath;
         definitionExtras.copyItemWornAction = api.copyItemWornAction;
         definitionExtras.getNpcBaseId = api.getNpcBaseId;
+        htmlUi.capabilities = api.htmlUiCapabilities;
     }
     HostInterfaceSet(const HostInterfaceSet&) = delete;
     HostInterfaceSet& operator=(const HostInterfaceSet&) = delete;
@@ -1149,6 +1195,7 @@ private:
                         || self.definitionExtras.copyItemWornAction
                         || self.definitionExtras.getNpcBaseId
                     ? &self.definitionExtras.header : nullptr;
+            case kHostHtmlUiId: return self.htmlUi.capabilities ? &self.htmlUi.header : nullptr;
             default: break;
             }
         }
@@ -1168,6 +1215,8 @@ public:
     PluginCoreV1 core{};
     PluginUiV1 ui{};
     PluginEventsV1 events{};
+    PluginHtmlPanelsV1 htmlPanels{};
+    PluginHtmlOverlaysV1 htmlOverlays{};
 
     explicit PluginInterfaceSet(const PluginApi& api) {
 #define TITAN_NATIVE_ASSIGN(name) core.name = api.name;
@@ -1179,6 +1228,8 @@ public:
 #define TITAN_NATIVE_ASSIGN(name) events.name = api.name;
         TITAN_NATIVE_PLUGINEVENTSV1_MEMBERS(TITAN_NATIVE_ASSIGN)
 #undef TITAN_NATIVE_ASSIGN
+        htmlPanels.callbacks = api.htmlPanels;
+        htmlOverlays.callbacks = api.htmlOverlays;
     }
     PluginInterfaceSet(const PluginInterfaceSet&) = delete;
     PluginInterfaceSet& operator=(const PluginInterfaceSet&) = delete;
@@ -1197,6 +1248,8 @@ private:
             case kPluginCoreId: return &self.core.header;
             case kPluginUiId: return &self.ui.header;
             case kPluginEventsId: return &self.events.header;
+            case kPluginHtmlPanelsId: return self.htmlPanels.callbacks.complete() ? &self.htmlPanels.header : nullptr;
+            case kPluginHtmlOverlaysId: return self.htmlOverlays.callbacks.complete() ? &self.htmlOverlays.header : nullptr;
             default: break;
             }
         }
@@ -1215,6 +1268,8 @@ inline bool importHostApi(const InterfaceProviderV1* provider, HostApi& out) {
 #define TITAN_NATIVE_IMPORT(name) out.name = readMember<decltype(out.name)>(table, offsetof(HostCoreV1, name));
         TITAN_NATIVE_HOSTCOREV1_MEMBERS(TITAN_NATIVE_IMPORT)
 #undef TITAN_NATIVE_IMPORT
+        // A host older than SDK 146 publishes no release and imports as 0.
+        out.sdkVersion = readMember<uint32_t>(table, offsetof(HostCoreV1, sdkRelease));
     }
     {
         const auto* table = queryInterface(provider, kHostGameId);
@@ -1249,6 +1304,10 @@ inline bool importHostApi(const InterfaceProviderV1* provider, HostApi& out) {
         out.getNpcBaseId = readMember<decltype(out.getNpcBaseId)>(
             table, offsetof(HostDefinitionExtrasV1, getNpcBaseId));
     }
+    {
+        const auto* table = queryInterface(provider, kHostHtmlUiId);
+        out.htmlUiCapabilities = readMember<decltype(out.htmlUiCapabilities)>(table, offsetof(HostHtmlUiV1, capabilities));
+    }
     return true;
 }
 
@@ -1277,6 +1336,8 @@ inline bool importPluginApi(const PluginDescriptorV1* descriptor, PluginApi& out
         TITAN_NATIVE_PLUGINEVENTSV1_MEMBERS(TITAN_NATIVE_IMPORT)
 #undef TITAN_NATIVE_IMPORT
     }
+    out.htmlPanels = importHtmlCallbacks(provider, kPluginHtmlPanelsId);
+    out.htmlOverlays = importHtmlCallbacks(provider, kPluginHtmlOverlaysId);
     return out.getId && out.getName;
 }
 

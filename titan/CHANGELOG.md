@@ -16,6 +16,41 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v146 -- Widget model type and id; the SDK floor gates native loads again
+
+- `+` Widget handles and snapshots expose the client's model source kind and
+  the id it selects: C++ `Widget::modelType()`/`modelId()` and
+  `WidgetSnapshot::modelType`/`modelId`, JS/TS `WidgetState.modelType`/
+  `modelId` (included in `snapshot()`), and Java `Widget.modelType()`/
+  `modelId()` in 0.1.75. Kinds match RuneLite's `WidgetModelType`
+  (0 none, 1 model, 2 NPC chathead, 3 local player chathead, 4 item,
+  5 player, 6 NPC chathead by index). `-1` means unavailable; `modelId` is
+  also `-1` for a widget without a model.
+- `+` `HostCoreV1::sdkRelease` publishes the host's source SDK release.
+- `~` `titan/utils` headers include only the generated `interface_id.h`, not
+  all of `gamevals.h` (about 25 MB), so files using them compile up to 4x
+  faster. Include `<titan/gamevals.h>` or the specific generated header for
+  other gameval constants.
+- `-` `WidgetState` grows, so `kMinSupportedSdkVersion` is raised to 146 and
+  enforced again. The host refuses native DLLs built against an older SDK;
+  plugins built against 146 refuse an older host. Rebuild every native DLL
+  and publish it together with the client and controller.
+
+## v145 -- Packaged HTML side panels and HTML HUD overlays
+
+- `+` Optional `PluginHtmlPanelsV1`, `PluginHtmlOverlaysV1`, and `HostHtmlUiV1`
+  capabilities. Existing Native ABI v1 DLLs do not need rebuilding; frozen
+  UI records, table offsets, and array strides remain unchanged.
+- `+` C++ `HtmlPanelBundle`, `HtmlSidePanel`, and `HtmlOverlayPanel`; Java
+  repeatable HTML annotations and facades; JS/TS discriminated panel definitions.
+- `+` Validated embedded resources, bounded typed messages, replayable state,
+  constructor metadata, and runtime overlay size/visibility controls.
+- `~` Native and HTML side panels share eight slots. HTML overlays have eight
+  definitions per plugin; existing native overlay limits are unchanged.
+
+See [the HTML UI contract](../docs/html_ui.md) for packaging, bridge,
+security, threading, and runtime distribution requirements.
+
 ## v144 -- Break Handler observation: see a break without registering
 
 - `+` `HostApi::breakHandlerObserve`: copies the break command the
