@@ -39,6 +39,12 @@
 ///
 /// --- Changelog (most recent first) ---
 ///
+/// v147 -- Optional scene-object snapshot and collision-source readiness.
+///   + HostGameV1 appends getCurrentSceneTileObjects for all four planes of
+///     the current scene. HostNavigationV1 appends getCollisionSourceReady.
+///   ~ Sized capability negotiation preserves older native clients/plugins;
+///     payload records and kMinSupportedSdkVersion remain unchanged at 146.
+///
 /// v146 -- Widget model type and id; the SDK floor gates native loads again.
 ///   + WidgetState appends modelType (the client's model source kind) and
 ///     modelId (the model, NPC or item id it selects). Exposed as C++
@@ -1759,7 +1765,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 146;
+constexpr uint32_t kSdkVersion = 147;
 
 /// Immutable cache-definition payload contract for Native ABI v1. SDK source
 /// releases do not change this value or the records carrying it.
@@ -4856,6 +4862,15 @@ struct HostApi {
     /// Optional HostHtmlUiV1. Zero/absent means HTML is unavailable; native
     /// plugin lifecycle and existing ImGui panels continue unchanged.
     uint32_t (*htmlUiCapabilities)() = nullptr;
+
+    /// Optional game-thread snapshot of current-view objects on all four
+    /// planes. Returns total rows; null/zero queries size, a short buffer gets
+    /// only its capacity. UINT32_MAX means unavailable; ignore partial output.
+    uint32_t (*getCurrentSceneTileObjects)(TileObjectState* out,
+                                          uint32_t capacity) = nullptr;
+    /// Optional nonblocking, thread-safe collision-source readiness query.
+    /// Returns 1 with outReady=0/1, or 0 when the observation is unavailable.
+    uint8_t (*getCollisionSourceReady)(uint8_t* outReady) = nullptr;
 };
 
 /// Consumer-local callback view, populated from the negotiated native tables.

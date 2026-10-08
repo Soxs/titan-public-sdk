@@ -100,6 +100,17 @@ struct LiveCollisionScene {
 
 class CollisionsFacade {
 public:
+    /// Nonblocking source readiness, independent of region existence. Any
+    /// thread; nullopt on hosts without the optional capability. A ready
+    /// source can still have missing/unreadable individual regions.
+    std::optional<bool> sourceReady() const {
+        auto* b = detail::backend();
+        uint8_t ready = 0;
+        if (!b || !b->getCollisionSourceReady(&ready) || ready > 1)
+            return std::nullopt;
+        return ready != 0;
+    }
+
     int32_t flag(int32_t plane, int32_t tileX, int32_t tileY) const {
         auto* b = detail::backend();
         return b ? b->getCollisionFlag(plane, tileX, tileY) : 0;

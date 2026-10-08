@@ -529,6 +529,13 @@ struct IBackend {
         uint64_t expectedEpoch) = 0;
 
     // --- Bulk collision snapshots + web walker (SDK 112) ---
+    virtual bool supportsCurrentSceneTileObjects() const { return false; }
+    virtual uint32_t getCurrentSceneTileObjects(
+        TitanPluginSdk::TileObjectState*, uint32_t) { return UINT32_MAX; }
+    virtual uint8_t getCollisionSourceReady(uint8_t* outReady) {
+        if (outReady) *outReady = 0;
+        return 0;
+    }
     virtual uint8_t copyCachedCollisionRegion(
         uint32_t regionId, int32_t* outFlags, uint32_t capacity,
         uint32_t* outCount) {

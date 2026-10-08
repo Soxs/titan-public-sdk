@@ -305,6 +305,7 @@ struct HostGameV1 {
     int32_t (*getItemPriceItemIds)(int32_t* out, int32_t capacity) = nullptr;
     bool (*getItemPrice)(int32_t id, ItemPrice* out) = nullptr;
     bool (*getItemCacheBank)(BankCacheState* out) = nullptr;
+    uint32_t (*getCurrentSceneTileObjects)(TileObjectState* out, uint32_t capacity) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostGameV1>);
 static_assert(offsetof(HostGameV1, header) == 0);
@@ -453,6 +454,7 @@ struct HostNavigationV1 {
     uint8_t (*webWalkRelease)(uint64_t walkId) = nullptr;
     uint8_t (*webWalkAdvance)(uint64_t walkId) = nullptr;
     uint8_t (*webPathCopyStepPayload)(uint64_t requestId, uint32_t stepIndex, char* outUtf8, uint32_t capacity, uint32_t* outRequired) = nullptr;
+    uint8_t (*getCollisionSourceReady)(uint8_t* outReady) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostNavigationV1>);
 static_assert(offsetof(HostNavigationV1, header) == 0);
@@ -571,7 +573,7 @@ static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostGameV1) == 536);
+static_assert(sizeof(HostGameV1) == 544);
 static_assert(offsetof(HostGameV1, isPrayerActive) == 8);
 static_assert(offsetof(HostGameV1, findNearestNpc) == 16);
 static_assert(offsetof(HostGameV1, findNearestObject) == 24);
@@ -638,6 +640,7 @@ static_assert(offsetof(HostGameV1, getItemPriceMetadata) == 504);
 static_assert(offsetof(HostGameV1, getItemPriceItemIds) == 512);
 static_assert(offsetof(HostGameV1, getItemPrice) == 520);
 static_assert(offsetof(HostGameV1, getItemCacheBank) == 528);
+static_assert(offsetof(HostGameV1, getCurrentSceneTileObjects) == 536);
 #endif
 
 // ABI v1 golden offsets: append only; never update an existing offset.
@@ -759,7 +762,7 @@ static_assert(offsetof(HostRenderV1, screenshotRelease) == 312);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostNavigationV1) == 176);
+static_assert(sizeof(HostNavigationV1) == 184);
 static_assert(offsetof(HostNavigationV1, getCollisionFlag) == 8);
 static_assert(offsetof(HostNavigationV1, walkTo) == 16);
 static_assert(offsetof(HostNavigationV1, walkToWorld) == 24);
@@ -781,6 +784,7 @@ static_assert(offsetof(HostNavigationV1, webWalkCancel) == 144);
 static_assert(offsetof(HostNavigationV1, webWalkRelease) == 152);
 static_assert(offsetof(HostNavigationV1, webWalkAdvance) == 160);
 static_assert(offsetof(HostNavigationV1, webPathCopyStepPayload) == 168);
+static_assert(offsetof(HostNavigationV1, getCollisionSourceReady) == 176);
 #endif
 
 // ABI v1 golden offsets: append only; never update an existing offset.
@@ -941,7 +945,8 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(getItemPriceMetadata) \
     X(getItemPriceItemIds) \
     X(getItemPrice) \
-    X(getItemCacheBank)
+    X(getItemCacheBank) \
+    X(getCurrentSceneTileObjects)
 
 #define TITAN_NATIVE_HOSTACTIONSV1_MEMBERS(X) \
     X(executeSyntheticAction) \
@@ -1075,7 +1080,8 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(webWalkCancel) \
     X(webWalkRelease) \
     X(webWalkAdvance) \
-    X(webPathCopyStepPayload)
+    X(webPathCopyStepPayload) \
+    X(getCollisionSourceReady)
 
 #define TITAN_NATIVE_PLUGINCOREV1_MEMBERS(X) \
     X(getId) \

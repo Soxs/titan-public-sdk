@@ -1025,6 +1025,19 @@ public:
             : 0;
     }
 
+    bool supportsCurrentSceneTileObjects() const override {
+        return api_ && api_->getCurrentSceneTileObjects;
+    }
+    uint32_t getCurrentSceneTileObjects(
+            TitanPluginSdk::TileObjectState* out, uint32_t capacity) override {
+        return api_ && api_->getCurrentSceneTileObjects
+            ? api_->getCurrentSceneTileObjects(out, capacity) : UINT32_MAX;
+    }
+    uint8_t getCollisionSourceReady(uint8_t* outReady) override {
+        if (outReady) *outReady = 0;
+        return api_ && api_->getCollisionSourceReady
+            ? api_->getCollisionSourceReady(outReady) : 0;
+    }
     uint8_t copyCachedCollisionRegion(
             uint32_t regionId, int32_t* outFlags, uint32_t capacity,
             uint32_t* outCount) override {

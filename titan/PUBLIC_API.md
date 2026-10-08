@@ -1,4 +1,4 @@
-# Titan Plugin SDK -- public symbol inventory (v146)
+# Titan Plugin SDK -- public symbol inventory (v147)
 
 This file is the authoritative contract of what plugin authors can rely on.
 The native binary contract is Native ABI v1. SDK release numbers describe
@@ -13,6 +13,27 @@ the top of [shared/titan/detail/abi.h](detail/abi.h), or the mirrored copy
 in `CHANGELOG.md` in the SDK distribution package.
 
 ---
+
+## Scene snapshots and collision readiness (SDK v147)
+
+`titan::state::collisions().sourceReady()` returns `std::optional<bool>`:
+`false` while the static collision source is loading, `true` after publication,
+and `nullopt` when the host lacks the optional capability or cannot report it.
+It is nonblocking and safe on any thread; ready does not guarantee that every
+individual mapsquare exists or can be decoded.
+
+The optional native `HostGameV1::getCurrentSceneTileObjects(out, capacity)`
+copies objects from all four planes of the current world view on the game
+thread. It returns the total row count; a null buffer or zero capacity queries
+the size, and a short buffer receives only its capacity. `UINT32_MAX` means
+unavailable, including a scene transition during capture; ignore partial output.
+Rows retain scene coordinates, plane, world-view identity, shape, orientation,
+name and actions. This is generic scene data, with no navigation policy applied.
+
+`HostNavigationV1::getCollisionSourceReady(outReady)` and the scene-object
+operation are appended optional function pointers in sized Native ABI v1
+tables. Missing functions import as null. SDK 146 hosts and plugins remain
+compatible; payload layouts and the minimum supported SDK stay at 146.
 
 ## HTML side panels and overlays (SDK v145)
 
