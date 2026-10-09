@@ -37,7 +37,9 @@ struct HtmlUiCallbacks {
     uint8_t (*acknowledge)(void*, const char*, uint64_t, uint64_t) = nullptr;
     uint8_t (*reset)(void*, const char*, uint64_t) = nullptr;
     // Host MUST marshal dispatchMessage to MainLoop under the plugin lifecycle
-    // gate. Copy/read operations are thread-safe while that gate pins the DLL.
+    // gate. Other operations access synchronized framework data while lifetime
+    // admission pins the DLL; they must not invoke user handlers or HostApi.
+    // Passive reads/reset/acknowledgements may overlap overlay rendering.
     uint8_t (*dispatchMessage)(void*, const char*, uint64_t, const char*, uint32_t) = nullptr;
     uint32_t (*copyIcon)(void*, const char*, uint32_t, uint8_t*, uint32_t) = nullptr;
     bool complete() const noexcept {

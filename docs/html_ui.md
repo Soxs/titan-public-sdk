@@ -233,6 +233,27 @@ lifecycle gate. Immutable resource reads may occur on other threads only while
 the plugin's lifetime is pinned. No renderer/input callback waits for a
 synchronous multi-second client pipe request.
 
+Routine HTML polling, resource copies and activation bookkeeping retain the
+plugin's lifetime without suppressing scene or panel rendering. Only message
+delivery executes user code and uses the existing callback exclusion. Native
+HTML copy/read/reset callbacks must operate on synchronized framework data;
+they must not invoke plugin handlers or HostApi. The SDK-provided callbacks
+already follow this contract. No native ABI layout or SDK floor change is needed.
+
+MainLoop services at most four HTML requests and yields between requests after
+2 ms; an individual callback is not preempted. Failed lifecycle admission leaves
+the request at the FIFO head. Unchanged state revisions omit the state bytes
+without discarding messages or visibility updates. The render thread snapshots
+the active HTML mappings under a short lock and keeps their memory alive until
+the frame finishes; input contention does not discard an otherwise valid image.
+Replacement and retirement invalidate that exact mapping, even when a resize
+reuses the activation nonce.
+
+The Debug renderer diagnostics include `htmlDispatch`: admitted request count,
+maximum request duration, admission deferrals, and per-layer skips attributable
+to HTML user callbacks versus other lifecycle work. Ordinary polling must not
+increment either skip counter when no lifecycle operation or callback is active.
+
 Controller input admission counts commands across the producer queue, transport
 queue and in-flight slot together (64 commands / 1 MiB per view). Adjacent pointer
 moves keep the latest position; adjacent wheel events at the same position and
