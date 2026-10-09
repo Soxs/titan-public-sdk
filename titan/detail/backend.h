@@ -37,6 +37,30 @@ namespace detail {
 struct IBackend {
     virtual ~IBackend() = default;
 
+    /// SDK 148 optional, game-thread-only snapshot queries.
+    virtual uint32_t getHintArrows(TitanPluginSdk::HintArrowState*, uint32_t) {
+        return TitanPluginSdk::kHintArrowsUnavailable;
+    }
+    virtual uint8_t getServerHintArrow(TitanPluginSdk::HintArrowState* out) {
+        if (out) *out = {};
+        return static_cast<uint8_t>(TitanPluginSdk::HintArrowReadStatus::Unavailable);
+    }
+    virtual uint8_t setHintArrowCoordinate(const TitanPluginSdk::HintArrowCoordinateTarget*) {
+        return static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
+    virtual uint8_t setHintArrowActor(const TitanPluginSdk::HintArrowActorTarget*) {
+        return static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
+    virtual uint8_t clearHintArrow() {
+        return static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
+    /// SDK 149 optional coordinate snapshot resolution.
+    virtual uint8_t getHintArrowWorldPoint(const TitanPluginSdk::HintArrowState*,
+                                          TitanPluginSdk::WorldPointState* out) {
+        if (out) *out = {};
+        return 0;
+    }
+
     // Optional data capabilities; older/local test backends remain valid.
     virtual uint8_t getWidgetModelIdAtPath(
             const TitanPluginSdk::WidgetAddressState*, int32_t* outModelId) {

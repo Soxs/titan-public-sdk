@@ -39,6 +39,16 @@
 ///
 /// --- Changelog (most recent first) ---
 ///
+/// v149 -- Optional world point on coordinate hint-arrow locations.
+///   + HostGameV1 appends getHintArrowWorldPoint. Snapshots retain the native
+///     selected WorldView and its current plane; existing payloads and the
+///     native SDK floor remain unchanged.
+///
+/// v148 -- Hint-arrow snapshots, resolved actor identities and server-arrow updates.
+///   + Optional HostGameV1 tail queries; existing payloads and the native
+///     SDK floor remain unchanged. Coordinate arrows do not expose a plane.
+///   + Optional HostActionsV1 setters return actual game-thread results.
+///
 /// v147 -- Optional scene-object snapshot and collision-source readiness.
 ///   + HostGameV1 appends getCurrentSceneTileObjects for all four planes of
 ///     the current scene. HostNavigationV1 appends getCollisionSourceReady.
@@ -1765,7 +1775,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 147;
+constexpr uint32_t kSdkVersion = 149;
 
 /// Immutable cache-definition payload contract for Native ABI v1. SDK source
 /// releases do not change this value or the records carrying it.
@@ -2216,6 +2226,69 @@ struct PlayerCompositionState {
     int32_t npcTransformId = -1;
     uint32_t slotCount = 0;
     PlayerCompositionSlotState slots[kMaxPlayerCompositionSlots] = {};
+};
+
+/// SDK 148. Normalized API values, independent of the client's stored kinds.
+enum class HintArrowKind : uint32_t {
+    None = 0, Npc = 1, Coordinate = 2, Player = 3, WorldEntity = 4, Unknown = 5
+};
+
+constexpr uint32_t kMaxHintArrows = 4096;
+constexpr uint32_t kHintArrowsUnavailable = UINT32_MAX;
+enum class HintArrowReadStatus : uint8_t { Unavailable = 0, Absent = 1, Present = 2 };
+
+/// Owned read-only snapshot. Actor addresses are identity tokens captured at
+/// query time, never permission to dereference a retained pointer. Resolve by
+/// index/view again and compare identities before obtaining a live actor.
+/// Location fields apply only to Coordinate; no plane has been established.
+/// Height is the stored value (the native renderer multiplies it by two).
+struct HintArrowState {
+    uint32_t slot = 0;
+    HintArrowKind kind = HintArrowKind::None;
+    int32_t rawKind = 0;
+    int32_t targetIndex = -1;
+    int32_t tileX = 0;
+    int32_t tileY = 0;
+    int32_t subX = 0;
+    int32_t subY = 0;
+    int32_t height = 0;
+    int32_t flashPeriod = 0;
+    int32_t flashThreshold = 0;
+    uint8_t drawInWorld = 0;
+    uint8_t targetResolved = 0;
+    uint8_t reserved[2] = {};
+    int32_t actorWorldViewId = -1;
+    uint32_t reservedAlignment = 0;
+    uint64_t actorEntityPtr = 0;
+    uint64_t actorWorldViewPtr = 0;
+};
+
+/// SDK 148. Synchronous mutation result, never merely queue acceptance.
+enum class HintArrowUpdateResult : uint8_t {
+    Unavailable = 0, Applied = 1, WrongThread = 2, InvalidArgument = 3,
+    TargetUnavailable = 4, NoServerArrow = 5, WriteFailed = 6
+};
+
+/// Server slot-zero coordinate target. The requested view/plane must match
+/// the native coordinate selector; neither is silently discarded. The
+/// stored height is half the height supplied to native world projection.
+struct HintArrowCoordinateTarget {
+    WorldPointState worldPoint{};
+    int32_t subX = 64;
+    int32_t subY = 64;
+    int32_t height = 0;
+};
+
+/// Exact NPC/player identity to use as the server hint target. The host
+/// verifies both this identity and the native cross-view resolver's choice.
+/// Supported indexes are 0..2048 for players and 0..65535 for NPCs, inclusive.
+struct HintArrowActorTarget {
+    HintArrowKind kind = HintArrowKind::None;
+    int32_t targetIndex = -1;
+    int32_t worldViewId = -1;
+    uint32_t reservedAlignment = 0;
+    uint64_t entityPtr = 0;
+    uint64_t worldViewPtr = 0;
 };
 
 /// Per-player snapshot: position, animation, combat level, interaction target.
@@ -4871,6 +4944,28 @@ struct HostApi {
     /// Optional nonblocking, thread-safe collision-source readiness query.
     /// Returns 1 with outReady=0/1, or 0 when the observation is unavailable.
     uint8_t (*getCollisionSourceReady)(uint8_t* outReady) = nullptr;
+
+    /// SDK 148. Game-thread, world-ready query. Returns total rows, bounded
+    /// by kMaxHintArrows; null/zero queries the size, a short buffer receives
+    /// its capacity. UINT32_MAX means unavailable; ignore partial output.
+    /// Empty means a readable empty vector, not a missing capability. Native
+    /// null slots are omitted; every row retains its original slot number.
+    uint32_t (*getHintArrows)(HintArrowState* out, uint32_t capacity) = nullptr;
+    /// SDK 148. Same query restrictions. Unavailable=0, Absent=1, Present=2.
+    /// Present with kind None means slot zero exists but has no active target.
+    uint8_t (*getServerHintArrow)(HintArrowState* out) = nullptr;
+
+    /// SDK 148. Replace existing server slot zero on the game thread.
+    /// Return HintArrowUpdateResult; Applied confirms the actual write.
+    /// Native server updates can subsequently replace these local changes.
+    uint8_t (*setHintArrowCoordinate)(const HintArrowCoordinateTarget* target) = nullptr;
+    uint8_t (*setHintArrowActor)(const HintArrowActorTarget* target) = nullptr;
+    uint8_t (*clearHintArrow)() = nullptr;
+
+    /// SDK 149. Game-thread query for a still-matching coordinate snapshot.
+    /// Success returns its tile with the native selected WorldView and plane.
+    /// Missing capability, stale snapshot or unavailable resolution returns 0.
+    uint8_t (*getHintArrowWorldPoint)(const HintArrowState* expected, WorldPointState* out) = nullptr;
 };
 
 /// Consumer-local callback view, populated from the negotiated native tables.

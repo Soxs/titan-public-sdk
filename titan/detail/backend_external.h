@@ -30,6 +30,33 @@ public:
         lifetime_ = lifetime;
     }
 
+    uint32_t getHintArrows(TitanPluginSdk::HintArrowState* out, uint32_t capacity) override {
+        return api_ && api_->getHintArrows
+            ? api_->getHintArrows(out, capacity) : TitanPluginSdk::kHintArrowsUnavailable;
+    }
+    uint8_t getServerHintArrow(TitanPluginSdk::HintArrowState* out) override {
+        if (out) *out = {};
+        return api_ && api_->getServerHintArrow ? api_->getServerHintArrow(out)
+            : static_cast<uint8_t>(TitanPluginSdk::HintArrowReadStatus::Unavailable);
+    }
+    uint8_t setHintArrowCoordinate(const TitanPluginSdk::HintArrowCoordinateTarget* target) override {
+        return api_ && api_->setHintArrowCoordinate ? api_->setHintArrowCoordinate(target)
+            : static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
+    uint8_t setHintArrowActor(const TitanPluginSdk::HintArrowActorTarget* target) override {
+        return api_ && api_->setHintArrowActor ? api_->setHintArrowActor(target)
+            : static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
+    uint8_t clearHintArrow() override {
+        return api_ && api_->clearHintArrow ? api_->clearHintArrow()
+            : static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
+    uint8_t getHintArrowWorldPoint(const TitanPluginSdk::HintArrowState* expected,
+                                  TitanPluginSdk::WorldPointState* out) override {
+        if (out) *out = {};
+        return api_ && api_->getHintArrowWorldPoint ? api_->getHintArrowWorldPoint(expected, out) : 0;
+    }
+
     uint8_t getWidgetModelIdAtPath(const TitanPluginSdk::WidgetAddressState* address,
                                   int32_t* outModelId) override {
         if (outModelId) *outModelId = -1;

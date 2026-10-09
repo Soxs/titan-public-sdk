@@ -595,7 +595,7 @@ From `java`, run the runtime tests and packaged samples against this checkout's
 SDK version (the quoted dotted property is important in PowerShell):
 
 ```powershell
-./gradlew.bat --no-daemon :titan-java-runtime-core:test :titan-java-embedded:test :titan-sample-plugin:jar :titan-java-embedded:fatJar -PtitanGenerateGamevals=false '-PtitanSdkVersion=0.1.74'
+./gradlew.bat --no-daemon :titan-java-runtime-core:test :titan-java-embedded:test :titan-sample-plugin:jar :titan-java-embedded:fatJar -PtitanGenerateGamevals=false '-PtitanSdkVersion=0.1.78'
 ```
 
 The isolated real-renderer suite avoids private walker dependencies:

@@ -622,6 +622,7 @@ public:
     Actor interacting() const;
 
 private:
+    friend class ClientFacade; // Copy retained setter identity without a live slot refresh.
     const TitanPluginSdk::PlayerState& state() const {
         return detail::liveState(state_, lastReadEpoch_, exists_, live_);
     }
@@ -791,6 +792,7 @@ public:
     Actor interacting() const;
 
 private:
+    friend class ClientFacade; // Copy retained setter identity without a live slot refresh.
     const TitanPluginSdk::NpcState& state() const {
         return detail::liveState(state_, lastReadEpoch_, exists_, live_);
     }

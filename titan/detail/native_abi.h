@@ -306,6 +306,11 @@ struct HostGameV1 {
     bool (*getItemPrice)(int32_t id, ItemPrice* out) = nullptr;
     bool (*getItemCacheBank)(BankCacheState* out) = nullptr;
     uint32_t (*getCurrentSceneTileObjects)(TileObjectState* out, uint32_t capacity) = nullptr;
+    // SDK 148 optional tail; older tables import these operations as null.
+    uint32_t (*getHintArrows)(HintArrowState* out, uint32_t capacity) = nullptr;
+    uint8_t (*getServerHintArrow)(HintArrowState* out) = nullptr;
+    // SDK 149 optional tail; HintArrowState retains its original layout.
+    uint8_t (*getHintArrowWorldPoint)(const HintArrowState* expected, WorldPointState* out) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostGameV1>);
 static_assert(offsetof(HostGameV1, header) == 0);
@@ -382,6 +387,10 @@ struct HostActionsV1 {
     int32_t (*geGetRequests)(const char* legacyUnused, GeRequestState* out, int32_t capacity) = nullptr;
     bool (*geCancelRequest)(const char* legacyUnused, uint64_t id) = nullptr;
     bool (*geReleaseRequest)(const char* legacyUnused, uint64_t id) = nullptr;
+    // SDK 148 optional tail. Return HintArrowUpdateResult, synchronously.
+    uint8_t (*setHintArrowCoordinate)(const HintArrowCoordinateTarget* target) = nullptr;
+    uint8_t (*setHintArrowActor)(const HintArrowActorTarget* target) = nullptr;
+    uint8_t (*clearHintArrow)() = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostActionsV1>);
 static_assert(offsetof(HostActionsV1, header) == 0);
@@ -573,7 +582,7 @@ static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostGameV1) == 544);
+static_assert(sizeof(HostGameV1) == 568);
 static_assert(offsetof(HostGameV1, isPrayerActive) == 8);
 static_assert(offsetof(HostGameV1, findNearestNpc) == 16);
 static_assert(offsetof(HostGameV1, findNearestObject) == 24);
@@ -641,11 +650,18 @@ static_assert(offsetof(HostGameV1, getItemPriceItemIds) == 512);
 static_assert(offsetof(HostGameV1, getItemPrice) == 520);
 static_assert(offsetof(HostGameV1, getItemCacheBank) == 528);
 static_assert(offsetof(HostGameV1, getCurrentSceneTileObjects) == 536);
+static_assert(offsetof(HostGameV1, getHintArrows) == 544);
+static_assert(offsetof(HostGameV1, getServerHintArrow) == 552);
+static_assert(offsetof(HostGameV1, getHintArrowWorldPoint) == 560);
+static_assert(sizeof(HintArrowState) == 72);
+static_assert(offsetof(HintArrowState, actorWorldViewId) == 48);
+static_assert(offsetof(HintArrowState, actorEntityPtr) == 56);
+static_assert(offsetof(HintArrowState, actorWorldViewPtr) == 64);
 #endif
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostActionsV1) == 552);
+static_assert(sizeof(HostActionsV1) == 576);
 static_assert(offsetof(HostActionsV1, executeSyntheticAction) == 8);
 static_assert(offsetof(HostActionsV1, executeSyntheticEntry) == 16);
 static_assert(offsetof(HostActionsV1, interactNpc) == 24);
@@ -714,6 +730,13 @@ static_assert(offsetof(HostActionsV1, geGetRequest) == 520);
 static_assert(offsetof(HostActionsV1, geGetRequests) == 528);
 static_assert(offsetof(HostActionsV1, geCancelRequest) == 536);
 static_assert(offsetof(HostActionsV1, geReleaseRequest) == 544);
+static_assert(offsetof(HostActionsV1, setHintArrowCoordinate) == 552);
+static_assert(offsetof(HostActionsV1, setHintArrowActor) == 560);
+static_assert(offsetof(HostActionsV1, clearHintArrow) == 568);
+static_assert(sizeof(HintArrowCoordinateTarget) == 28);
+static_assert(sizeof(HintArrowActorTarget) == 32);
+static_assert(offsetof(HintArrowActorTarget, entityPtr) == 16);
+static_assert(offsetof(HintArrowActorTarget, worldViewPtr) == 24);
 #endif
 
 // ABI v1 golden offsets: append only; never update an existing offset.
@@ -946,7 +969,10 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(getItemPriceItemIds) \
     X(getItemPrice) \
     X(getItemCacheBank) \
-    X(getCurrentSceneTileObjects)
+    X(getCurrentSceneTileObjects) \
+    X(getHintArrows) \
+    X(getServerHintArrow) \
+    X(getHintArrowWorldPoint)
 
 #define TITAN_NATIVE_HOSTACTIONSV1_MEMBERS(X) \
     X(executeSyntheticAction) \
@@ -1016,7 +1042,10 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(geGetRequest) \
     X(geGetRequests) \
     X(geCancelRequest) \
-    X(geReleaseRequest)
+    X(geReleaseRequest) \
+    X(setHintArrowCoordinate) \
+    X(setHintArrowActor) \
+    X(clearHintArrow)
 
 #define TITAN_NATIVE_HOSTRENDERV1_MEMBERS(X) \
     X(setImGuiContext) \

@@ -17,6 +17,7 @@
 #include "events.h"
 #include "gamevals.h"
 #include "head_icon.h"
+#include "hint_arrow.h"
 #include "inventory_id.h"
 #include "local_point.h"
 #include "menu_action.h"

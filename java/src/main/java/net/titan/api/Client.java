@@ -9,6 +9,20 @@ import java.util.OptionalLong;
 import java.util.List;
 
 public interface Client {
+    /** SDK 148: unavailable is empty; an available snapshot may have zero entries. Game-thread read. */
+    default Optional<HintArrowSnapshot> hintArrows() { return Optional.empty(); }
+    /** Set server slot zero at the tile center. The native-selected WorldView and plane must match. */
+    default HintArrowUpdateResult setHintArrow(WorldPoint point) {
+        return setHintArrow(point, 64, 64, 0);
+    }
+    /** SDK 148: synchronous game-thread write; sub-tile units are 1/128 tile and height is native units. */
+    default HintArrowUpdateResult setHintArrow(WorldPoint point, int subX, int subY, int height) {
+        return HintArrowUpdateResult.UNAVAILABLE;
+    }
+    /** Set server slot zero to an existing NPC/player, revalidating the full actor identity. */
+    default HintArrowUpdateResult setHintArrow(Actor actor) { return HintArrowUpdateResult.UNAVAILABLE; }
+    /** Clear server slot zero. Subsequent server updates can replace locally written state. */
+    default HintArrowUpdateResult clearHintArrow() { return HintArrowUpdateResult.UNAVAILABLE; }
     int tick();
     /**
      * Current signed 32-bit native Client.GameCycle. This clock advances at

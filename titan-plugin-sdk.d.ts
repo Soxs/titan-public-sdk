@@ -52,6 +52,62 @@
 
 declare namespace titan {
 
+/** SDK 148 normalized kind. Unknown retains its rawKind on the arrow. */
+enum HintArrowKind { None = 0, Npc = 1, Coordinate = 2, Player = 3, WorldEntity = 4, Unknown = 5 }
+
+/** Actual result of a synchronous game-thread mutation of server slot zero. */
+enum HintArrowUpdateResult {
+    Unavailable = 0, Applied = 1, WrongThread = 2, InvalidArgument = 3,
+    TargetUnavailable = 4, NoServerArrow = 5, WriteFailed = 6
+}
+
+interface HintArrowCoordinateOptions {
+    /** 1/128-tile units; defaults to the tile center (64). */
+    readonly subX?: number;
+    readonly subY?: number;
+    /** Raw native height; defaults to zero. */
+    readonly height?: number;
+}
+
+/** Copied coordinate-arrow position, with an optional host-resolved world point. */
+interface HintArrowLocation {
+    readonly tileX: number;
+    readonly tileY: number;
+    /** In 1/128-tile units; a tile edge may be 128. */
+    readonly subX: number;
+    readonly subY: number;
+    /** Raw native height, not a plane. */
+    readonly height: number;
+    /** SDK 149+: cached tile, selected WorldView and its plane; null when resolution is unavailable. */
+    readonly worldPoint: WorldPoint | null;
+}
+
+interface HintArrow {
+    readonly slot: number;
+    readonly kind: HintArrowKind;
+    readonly rawKind: number;
+    /** Retained even when the target actor is unresolved. */
+    readonly targetIndex: number;
+    readonly location: HintArrowLocation | null;
+    readonly drawInWorld: boolean;
+    readonly flashPeriod: number;
+    readonly flashThreshold: number;
+    /** Native read found an NPC/player identity; target may be null if it changes before hydration. */
+    readonly targetResolved: boolean;
+    readonly actorWorldViewId: number;
+    readonly actorEntityPtr: bigint;
+    readonly actorWorldViewPtr: bigint;
+    /** A matching live actor handle whose state may change, never fabricated from an unresolved index. */
+    readonly target: Npc | Player | null;
+}
+
+/** Available collection, including None entries. Unavailable is represented by null. */
+interface HintArrowSnapshot {
+    readonly entries: readonly HintArrow[];
+    /** Server-controlled slot zero, or null when absent. Reads this same snapshot. */
+    server(): HintArrow | null;
+}
+
 // ---------------------------------------------------------------------------
 // Positional types
 // ---------------------------------------------------------------------------
@@ -2850,6 +2906,14 @@ interface PanelElement {
             getLocalDestinationLocation(): LocalPoint | null;
             /** Active minimap red-flag destination in world coords. SDK 82+. */
             getWorldDestinationLocation(): WorldPoint | null;
+            /** SDK 148: copied game-thread read; null unavailable, [] entries means available and empty. */
+            hintArrows(): HintArrowSnapshot | null;
+            /** SDK 148: update existing server slot zero; the native-selected plane/WorldView must match. */
+            setHintArrow(point: WorldPoint, options?: HintArrowCoordinateOptions): HintArrowUpdateResult;
+            /** Revalidate the actor's captured index, pointer and WorldView before applying. */
+            setHintArrow(actor: Npc | Player): HintArrowUpdateResult;
+            /** Deactivate server slot zero. A subsequent server update can replace local changes. */
+            clearHintArrow(): HintArrowUpdateResult;
             /** Personal offer snapshot, or null for an invalid slot/unavailable data. SDK 136+. */
             getGrandExchangeOffer(slot: number): GrandExchangeOffer | null;
             /** All personal slots, including empty slots; [] when unavailable or offer-event delivery is pending. SDK 136+. */

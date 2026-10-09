@@ -25,6 +25,7 @@
 #include "world_view.h"
 #include "grand_exchange.h"
 #include "item_prices.h"
+#include "hint_arrow.h"
 
 #include <algorithm>
 #include <array>
@@ -270,6 +271,42 @@ public:
         TitanPluginSdk::PlayerState ps = {};
         if (!b->getLocalPlayer(&ps)) return std::nullopt;
         return Player{ps};
+    }
+
+    /// Game-thread snapshot; unavailable differs from a readable empty list.
+    std::optional<HintArrowSnapshot> hintArrows() const {
+        return HintArrowSnapshot::read();
+    }
+
+    /// Replace server slot zero now. Call on the game thread; the result is
+    /// the actual update outcome. Later server packets can replace this arrow.
+    HintArrowUpdateResult setHintArrow(const WorldPoint& point, int32_t subX = 64,
+                                       int32_t subY = 64, int32_t height = 0) const {
+        auto* backend = detail::backend();
+        if (!backend) return HintArrowUpdateResult::Unavailable;
+        const TitanPluginSdk::HintArrowCoordinateTarget target{
+            {point.x, point.y, point.z, point.worldViewId}, subX, subY, height};
+        return static_cast<HintArrowUpdateResult>(backend->setHintArrowCoordinate(&target));
+    }
+    HintArrowUpdateResult setHintArrow(const Actor& actor) const {
+        auto* backend = detail::backend();
+        if (!backend) return HintArrowUpdateResult::Unavailable;
+        if (actor.isEmpty()) return HintArrowUpdateResult::InvalidArgument;
+        TitanPluginSdk::HintArrowActorTarget target{};
+        const auto copyIdentity = [&target](HintArrowKind kind, const auto& retained) {
+            target = {kind, retained.hashIndex, retained.worldViewId, 0,
+                      retained.entityPtr, retained.worldViewPtr};
+        };
+        if (const auto* npc = actor.asNpc()) copyIdentity(HintArrowKind::Npc, npc->state_);
+        else if (const auto* player = actor.asPlayer()) copyIdentity(HintArrowKind::Player, player->state_);
+        return static_cast<HintArrowUpdateResult>(backend->setHintArrowActor(&target));
+    }
+    HintArrowUpdateResult setHintArrow(const Npc& npc) const { return setHintArrow(Actor{npc}); }
+    HintArrowUpdateResult setHintArrow(const Player& player) const { return setHintArrow(Actor{player}); }
+    HintArrowUpdateResult clearHintArrow() const {
+        auto* backend = detail::backend();
+        return backend ? static_cast<HintArrowUpdateResult>(backend->clearHintArrow())
+                       : HintArrowUpdateResult::Unavailable;
     }
 
     // ---- Synthetic menu dispatch (SDK v37+) ---------------------------

@@ -1,4 +1,4 @@
-# Titan Plugin SDK -- public symbol inventory (v147)
+# Titan Plugin SDK -- public symbol inventory (v149)
 
 This file is the authoritative contract of what plugin authors can rely on.
 The native binary contract is Native ABI v1. SDK release numbers describe
@@ -13,6 +13,32 @@ the top of [shared/titan/detail/abi.h](detail/abi.h), or the mirrored copy
 in `CHANGELOG.md` in the SDK distribution package.
 
 ---
+
+## Hint-arrow snapshots (SDK v148, resolved locations v149)
+
+Read `titan::state::client().hintArrows()` in C++, `Client.hintArrows()` in Java,
+or `titan.state.client.hintArrows()` in JavaScript/TypeScript from a game-thread
+callback. The optional snapshot owns its arrow entries; `server()` selects slot
+zero. Unavailable, an empty collection, and a present cleared (`None`) arrow
+are distinct states. Coordinate arrows expose tile/subtile coordinates and raw
+height without an inferred plane. NPC/player arrows expose the target index and
+an actor only after matching its complete identity and owning WorldView.
+World-entity arrows expose their index without an Actor.
+
+Coordinate locations also expose a cached optional `worldPoint()` in C++ and
+Java, or `location.worldPoint` in JavaScript/TypeScript. It contains the tile,
+current plane, and identity of the WorldView selected by the native renderer.
+It is unavailable if that view cannot be uniquely identified or the coordinate
+snapshot changed during capture. Raw tile/subtile coordinates remain available.
+The appended optional native `HostGameV1::getHintArrowWorldPoint(expected, out)`
+captures this value on the game thread; the payload floor remains SDK 146.
+
+Native `HostGameV1::getHintArrows(out, capacity)` returns the total count or
+`UINT32_MAX` when unavailable. `getServerHintArrow(out)` returns
+`HintArrowReadStatus`: unavailable, absent, or present. Both are appended
+optional functions; the native payload floor remains SDK 146. A missing or
+mismatched analyzer contract disables these reads. See the
+[hint-arrow examples and snapshot semantics](../../docs/hint_arrows.md).
 
 ## Scene snapshots and collision readiness (SDK v147)
 
