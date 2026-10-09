@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 16574> kNpcIDEntries = {{
+inline constexpr std::array<Entry, 16629> kNpcIDEntries = {{
     {0, "FARMING_TOOLS_LEPRECHAUN", "Tool Leprechaun", "npctypes"},
     {1, "MOLANISK", "Molanisk", "npctypes"},
     {2, "SLAYER_ABBERANT_SPECTRE_1", "Aberrant spectre", "npctypes"},
@@ -16581,6 +16581,61 @@ inline constexpr std::array<Entry, 16574> kNpcIDEntries = {{
     {16573, "POH_YORKIE_BROWN", "? Yorkie", "npctypes"},
     {16574, "POH_YORKIE_WHITE", "? Yorkie", "npctypes"},
     {16575, "POH_YORKIE_YELLOW", "? Yorkie", "npctypes"},
+    {16576, "PVPTUT_TUTOR", "Pete Kayer", "npctypes"},
+    {16577, "PVPTUT_TUTOR_INSTANCE", "Pete Kayer", "npctypes"},
+    {16578, "PVPTUT_NPC_TO_KILL_1", "Bowman67", "npctypes"},
+    {16579, "PVPTUT_EXPERT_BOSS_MAGIC", "Pete Kayer", "npctypes"},
+    {16580, "PVPTUT_EXPERT_BOSS_MELEE_VOIDWAKER", "Pete Kayer", "npctypes"},
+    {16581, "PVPTUT_EXPERT_BOSS_MELEE_HALBERD", "Pete Kayer", "npctypes"},
+    {16582, "PVPTUT_EXPERT_BOSS_RANGED", "Pete Kayer", "npctypes"},
+    {16583, "PVPTUT_EXPERT_BOSS_TANK", "Pete Kayer", "npctypes"},
+    {16584, "PVPTUT_EXPERT_BOSS_MELEE_MISTAKE", "Pete Kayer", "npctypes"},
+    {16585, "PVPTUT_EXPERT_BOSS_RANGED_MISTAKE", "Pete Kayer", "npctypes"},
+    {16586, "PVPTUT_EXPERT_BOSS_MAGIC_MISTAKE", "Pete Kayer", "npctypes"},
+    {16587, "PVPTUT_BOSS_TUTOR", "Pete Kayer", "npctypes"},
+    {16588, "PVPTUT_MEDIUM_BOSS_MAGIC", "Pete Kayer", "npctypes"},
+    {16589, "PVPTUT_MEDIUM_BOSS_RANGED", "Pete Kayer", "npctypes"},
+    {16590, "PVPTUT_MEDIUM_BOSS_MELEE", "Pete Kayer", "npctypes"},
+    {16591, "PVPTUT_MEDIUM_BOSS_MELEE_SPECIAL", "Pete Kayer", "npctypes"},
+    {16592, "PVPTUT_MEDIUM_BOSS_MORE_MAGIC_THAN_MELEE", "Pete Kayer", "npctypes"},
+    {16593, "PVPTUT_MEDIUM_BOSS_MORE_MELEE_THAN_MAGIC", "Pete Kayer", "npctypes"},
+    {16594, "PVPTUT_MEDIUM_BOSS_MORE_RANGED_THAN_MELEE", "Pete Kayer", "npctypes"},
+    {16595, "PVPTUT_MEDIUM_BOSS_MORE_MELEE_THAN_RANGED", "Pete Kayer", "npctypes"},
+    {16596, "PVPTUT_MEDIUM_BOSS_MORE_RANGED_THAN_MAGIC", "Pete Kayer", "npctypes"},
+    {16597, "PVPTUT_MEDIUM_BOSS_MORE_MAGIC_THAN_RANGED", "Pete Kayer", "npctypes"},
+    {16598, "PVPTUT_COMBO_EATING_NPC_AGSMAUL_SPEC", "Blink", "npctypes"},
+    {16599, "PVPTUT_COMBO_EATING_NPC_ELDER_MAUL_SPEC", "Dave", "npctypes"},
+    {16600, "PVPTUT_COMBO_EATING_NPC_DRAGON_DAGGER_SPEC", "Double Decimation Daryl", "npctypes"},
+    {16601, "PVPTUT_COMBO_EATING_NPC_WIZARD", "Walter Blue", "npctypes"},
+    {16602, "PVPTUT_COMBO_EATING_NPC_HARM_ORB_SPEC", "Kinetic Katara", "npctypes"},
+    {16603, "PVPTUT_COMBO_EATING_NPC_RANGED_DBOW_SPEC_1", "Xx I DB0W I xX", "npctypes"},
+    {16604, "PVPTUT_COMBO_EATING_NPC_RANGED_DBOW_SPEC_2", "Xx I DBOW I xX", "npctypes"},
+    {16605, "PVPTUT_COMBO_EATING_NPC_DCLAWS_SPEC", "I D CLAW U", "npctypes"},
+    {16606, "PVPTUT_COMBO_EATING_NPC_DHAROKS_SPEC", "IM 1 HP GL", "npctypes"},
+    {16607, "PVPTUT_FREEZE_NPC", "Sparring partner", "npctypes"},
+    {16608, "PVPTUT_GEAR_SWITCH_NPC_MELEE", "Sparring partner", "npctypes"},
+    {16609, "PVPTUT_GEAR_SWITCH_NPC_RANGED", "Sparring partner", "npctypes"},
+    {16610, "PVPTUT_GEAR_SWITCH_NPC_MAGIC", "Sparring partner", "npctypes"},
+    {16611, "PVPTUT_PRAYER_NPC_AGS_SPEC", "Sparring partner", "npctypes"},
+    {16612, "PVPTUT_PRAYER_NPC_VOIDWAKER", "Sparring partner", "npctypes"},
+    {16613, "PVPTUT_PRAYER_NPC_GMAUL_SPEC", "Sparring partner", "npctypes"},
+    {16614, "PVPTUT_PRAYER_NPC_DCLAWS_SPEC", "Sparring partner", "npctypes"},
+    {16615, "PVPTUT_PRAYER_NPC_CROSSBOW", "Sparring partner", "npctypes"},
+    {16616, "PVPTUT_PRAYER_NPC_RANGED_DBOW_SPEC", "Sparring partner", "npctypes"},
+    {16617, "PVPTUT_PRAYER_NPC_SPELL", "Sparring partner", "npctypes"},
+    {16618, "PVPTUT_SA_NPC_PARTNER_7", "Kevin", "npctypes"},
+    {16619, "PVPTUT_SA_NPC_SHOWCASE_1", "Daniel", "npctypes"},
+    {16620, "PVPTUT_SA_NPC_SHOWCASE_2", "Rowenna", "npctypes"},
+    {16621, "PVPTUT_SA_NPC_SHOWCASE_3", "Adam", "npctypes"},
+    {16622, "PVPTUT_SA_NPC_SHOWCASE_4", "Kimmie", "npctypes"},
+    {16623, "PVPTUT_SA_NPC_SHOWCASE_5", "Jack", "npctypes"},
+    {16624, "PVPTUT_SA_NPC_SHOWCASE_6", "Kate", "npctypes"},
+    {16625, "PVPTUT_SA_NPC_PARTNER_1", "Blink", "npctypes"},
+    {16626, "PVPTUT_SA_NPC_PARTNER_2", "Dave", "npctypes"},
+    {16627, "PVPTUT_SA_NPC_PARTNER_3", "Double Decimation Daryl", "npctypes"},
+    {16628, "PVPTUT_SA_NPC_PARTNER_4", "Xx I DBOW I xX", "npctypes"},
+    {16629, "PVPTUT_SA_NPC_PARTNER_5", "Kinetic Katara", "npctypes"},
+    {16630, "PVPTUT_SA_NPC_PARTNER_6", "I D CLAW U", "npctypes"},
 }};
 }  // namespace detail
 
@@ -33162,6 +33217,61 @@ struct NpcID final {
     static constexpr int32_t POH_YORKIE_BROWN = 16573;
     static constexpr int32_t POH_YORKIE_WHITE = 16574;
     static constexpr int32_t POH_YORKIE_YELLOW = 16575;
+    static constexpr int32_t PVPTUT_TUTOR = 16576;
+    static constexpr int32_t PVPTUT_TUTOR_INSTANCE = 16577;
+    static constexpr int32_t PVPTUT_NPC_TO_KILL_1 = 16578;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_MAGIC = 16579;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_MELEE_VOIDWAKER = 16580;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_MELEE_HALBERD = 16581;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_RANGED = 16582;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_TANK = 16583;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_MELEE_MISTAKE = 16584;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_RANGED_MISTAKE = 16585;
+    static constexpr int32_t PVPTUT_EXPERT_BOSS_MAGIC_MISTAKE = 16586;
+    static constexpr int32_t PVPTUT_BOSS_TUTOR = 16587;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MAGIC = 16588;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_RANGED = 16589;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MELEE = 16590;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MELEE_SPECIAL = 16591;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MORE_MAGIC_THAN_MELEE = 16592;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MORE_MELEE_THAN_MAGIC = 16593;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MORE_RANGED_THAN_MELEE = 16594;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MORE_MELEE_THAN_RANGED = 16595;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MORE_RANGED_THAN_MAGIC = 16596;
+    static constexpr int32_t PVPTUT_MEDIUM_BOSS_MORE_MAGIC_THAN_RANGED = 16597;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_AGSMAUL_SPEC = 16598;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_ELDER_MAUL_SPEC = 16599;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_DRAGON_DAGGER_SPEC = 16600;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_WIZARD = 16601;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_HARM_ORB_SPEC = 16602;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_RANGED_DBOW_SPEC_1 = 16603;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_RANGED_DBOW_SPEC_2 = 16604;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_DCLAWS_SPEC = 16605;
+    static constexpr int32_t PVPTUT_COMBO_EATING_NPC_DHAROKS_SPEC = 16606;
+    static constexpr int32_t PVPTUT_FREEZE_NPC = 16607;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH_NPC_MELEE = 16608;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH_NPC_RANGED = 16609;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH_NPC_MAGIC = 16610;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_AGS_SPEC = 16611;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_VOIDWAKER = 16612;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_GMAUL_SPEC = 16613;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_DCLAWS_SPEC = 16614;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_CROSSBOW = 16615;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_RANGED_DBOW_SPEC = 16616;
+    static constexpr int32_t PVPTUT_PRAYER_NPC_SPELL = 16617;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_7 = 16618;
+    static constexpr int32_t PVPTUT_SA_NPC_SHOWCASE_1 = 16619;
+    static constexpr int32_t PVPTUT_SA_NPC_SHOWCASE_2 = 16620;
+    static constexpr int32_t PVPTUT_SA_NPC_SHOWCASE_3 = 16621;
+    static constexpr int32_t PVPTUT_SA_NPC_SHOWCASE_4 = 16622;
+    static constexpr int32_t PVPTUT_SA_NPC_SHOWCASE_5 = 16623;
+    static constexpr int32_t PVPTUT_SA_NPC_SHOWCASE_6 = 16624;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_1 = 16625;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_2 = 16626;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_3 = 16627;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_4 = 16628;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_5 = 16629;
+    static constexpr int32_t PVPTUT_SA_NPC_PARTNER_6 = 16630;
 
     static constexpr std::span<const Entry> entries() { return detail::kNpcIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

@@ -41,7 +41,7 @@ final class ObjectIDEntries_99 {
             new GamevalEntry(50716, "HUNTING_SAPLING_CATCHING_MOUNTAIN", "Net trap", "loctypes"),
             new GamevalEntry(50717, "HUNTING_SAPLING_FULL_MOUNTAIN", "Net trap", "loctypes"),
             new GamevalEntry(50718, "HUNTING_SAPLING_FAILING_MOUNTAIN", "Net trap", "loctypes"),
-            new GamevalEntry(50719, "HUNTING_SAPLING_FAILED_MOUNTAIN", "Dismantle", "loctypes"),
+            new GamevalEntry(50719, "HUNTING_SAPLING_FAILED_MOUNTAIN", "Net trap", "loctypes"),
             new GamevalEntry(50720, "HUNTING_SAPLING_SET_MOUNTAIN", "Young tree", "loctypes"),
             new GamevalEntry(50721, "HUNTING_SAPLING_UP_MOUNTAIN", "Young tree", "loctypes"),
             new GamevalEntry(50722, "HUNTING_SAPLING_SETTING_MOUNTAIN", "Young tree", "loctypes"),

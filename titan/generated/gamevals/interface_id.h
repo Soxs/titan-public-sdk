@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 970> kInterfaceIDEntries = {{
+inline constexpr std::array<Entry, 973> kInterfaceIDEntries = {{
     {0, "_100GUIDE_EGGS_OVERLAY", "100guide_eggs_overlay", "iftypes"},
     {1, "_100GUIDE_FLOUR_OVERLAY", "100guide_flour_overlay", "iftypes"},
     {2, "RANGINGGUILD_TICKETEXCHANGE", "rangingguild_ticketexchange", "iftypes"},
@@ -977,6 +977,9 @@ inline constexpr std::array<Entry, 970> kInterfaceIDEntries = {{
     {967, "CASTLE_DRAKAN_WORLD_MAP", "castle_drakan_world_map", "iftypes"},
     {968, "MYQ6_INTEGRITY_BAR", "myq6_integrity_bar", "iftypes"},
     {969, "MOURNING_DEATHALTAR_LIST", "mourning_deathaltar_list", "iftypes"},
+    {970, "PVPTUT_UI", "pvptut_ui", "iftypes"},
+    {971, "PVP_TUT_2026_SETUP_INTERFACE", "pvp_tut_2026_setup_interface", "iftypes"},
+    {972, "PVPTUT_SCOREBOARD_UI", "pvptut_scoreboard_ui", "iftypes"},
 }};
 }  // namespace detail
 
@@ -1954,6 +1957,9 @@ struct InterfaceID final {
     static constexpr int32_t CASTLE_DRAKAN_WORLD_MAP = 967;
     static constexpr int32_t MYQ6_INTEGRITY_BAR = 968;
     static constexpr int32_t MOURNING_DEATHALTAR_LIST = 969;
+    static constexpr int32_t PVPTUT_UI = 970;
+    static constexpr int32_t PVP_TUT_2026_SETUP_INTERFACE = 971;
+    static constexpr int32_t PVPTUT_SCOREBOARD_UI = 972;
 
     static constexpr int32_t pack(int32_t groupId, int32_t childId) {
         return static_cast<int32_t>((static_cast<uint32_t>(groupId) << 16)
@@ -32278,6 +32284,145 @@ struct InterfaceID final {
         static constexpr int32_t CONTAINER = 63504388;
         static constexpr int32_t TEXT = 63504389;
         static constexpr int32_t SCROLLBAR = 63504390;
+    };
+
+    struct PvptutUi final {
+        PvptutUi() = delete;
+        static constexpr int32_t UNIVERSE = 63569920;
+        static constexpr int32_t WINDOW = 63569921;
+        static constexpr int32_t FRAME = 63569922;
+        static constexpr int32_t BTN_CLOSE = 63569923;
+        static constexpr int32_t BTN_BACK = 63569924;
+        static constexpr int32_t CONTENT = 63569925;
+        static constexpr int32_t MAINMENU = 63569926;
+        static constexpr int32_t MAINMENU_CONTENT = 63569927;
+        static constexpr int32_t MAINMENU_CONTENT_ENTRIES = 63569928;
+        static constexpr int32_t MAINMENU_CONTENT_CLICKBOXES = 63569929;
+        static constexpr int32_t MAINMENU_CONTENT_SCROLLBAR = 63569930;
+        static constexpr int32_t TUTORIAL = 63569931;
+        static constexpr int32_t TUTORIAL_BTN_START = 63569932;
+        static constexpr int32_t TUTORIAL_BTN_START_FILL = 63569933;
+        static constexpr int32_t TUTORIAL_BTN_START_COMPLETE_ICON = 63569934;
+        static constexpr int32_t TUTORIAL_CONTENT_CONTAINER = 63569935;
+        static constexpr int32_t TUTORIAL_BTN_LOADOUT = 63569936;
+        static constexpr int32_t TUTORIAL_CONTENT_BORDER = 63569937;
+        static constexpr int32_t TUTORIAL_CONTENT = 63569938;
+        static constexpr int32_t TUTORIAL_CONTENT_INNER = 63569939;
+        static constexpr int32_t TUTORIAL_CONTENT_SCROLLBAR = 63569940;
+        static constexpr int32_t TUTORIAL_CONTENT_1 = 63569941;
+        static constexpr int32_t TUTORIAL_BTN_LOADOUT_FILL = 63569942;
+    };
+
+    struct PvpTut2026SetupInterface final {
+        PvpTut2026SetupInterface() = delete;
+        static constexpr int32_t UNIVERSE = 63635456;
+        static constexpr int32_t FRAME = 63635457;
+        static constexpr int32_t TABS = 63635458;
+        static constexpr int32_t ATAB = 63635459;
+        static constexpr int32_t BTAB = 63635460;
+        static constexpr int32_t CTAB = 63635461;
+        static constexpr int32_t DISPLAYS = 63635462;
+        static constexpr int32_t ADISPLAY = 63635463;
+        static constexpr int32_t ASPELLBOOK_DISPLAY = 63635464;
+        static constexpr int32_t ATRASH = 63635465;
+        static constexpr int32_t AWORN = 63635466;
+        static constexpr int32_t COM_11 = 63635467;
+        static constexpr int32_t COM_12 = 63635468;
+        static constexpr int32_t COM_13 = 63635469;
+        static constexpr int32_t COM_14 = 63635470;
+        static constexpr int32_t COM_15 = 63635471;
+        static constexpr int32_t ASLOT0 = 63635472;
+        static constexpr int32_t ASLOT1 = 63635473;
+        static constexpr int32_t ASLOT2 = 63635474;
+        static constexpr int32_t ASLOT3 = 63635475;
+        static constexpr int32_t ASLOT4 = 63635476;
+        static constexpr int32_t ASLOT5 = 63635477;
+        static constexpr int32_t ASLOT7 = 63635478;
+        static constexpr int32_t ASLOT9 = 63635479;
+        static constexpr int32_t ASLOT10 = 63635480;
+        static constexpr int32_t ASLOT12 = 63635481;
+        static constexpr int32_t ASLOT13 = 63635482;
+        static constexpr int32_t AINVENTORY = 63635483;
+        static constexpr int32_t AMENU_CONTAINER = 63635484;
+        static constexpr int32_t COM_29 = 63635485;
+        static constexpr int32_t AMENU = 63635486;
+        static constexpr int32_t ASCROLLBAR = 63635487;
+        static constexpr int32_t ASPELLBOOK_CONTAINER = 63635488;
+        static constexpr int32_t COM_33 = 63635489;
+        static constexpr int32_t ASPELLBOOK_MENU = 63635490;
+        static constexpr int32_t COM_35 = 63635491;
+        static constexpr int32_t ASTATUS = 63635492;
+        static constexpr int32_t BDISPLAY = 63635493;
+        static constexpr int32_t BSPELLBOOK_DISPLAY = 63635494;
+        static constexpr int32_t BTRASH = 63635495;
+        static constexpr int32_t BWORN = 63635496;
+        static constexpr int32_t COM_41 = 63635497;
+        static constexpr int32_t COM_42 = 63635498;
+        static constexpr int32_t COM_43 = 63635499;
+        static constexpr int32_t COM_44 = 63635500;
+        static constexpr int32_t COM_45 = 63635501;
+        static constexpr int32_t BSLOT0 = 63635502;
+        static constexpr int32_t BSLOT1 = 63635503;
+        static constexpr int32_t BSLOT2 = 63635504;
+        static constexpr int32_t BSLOT3 = 63635505;
+        static constexpr int32_t BSLOT4 = 63635506;
+        static constexpr int32_t BSLOT5 = 63635507;
+        static constexpr int32_t BSLOT7 = 63635508;
+        static constexpr int32_t BSLOT9 = 63635509;
+        static constexpr int32_t BSLOT10 = 63635510;
+        static constexpr int32_t BSLOT12 = 63635511;
+        static constexpr int32_t BSLOT13 = 63635512;
+        static constexpr int32_t BINVENTORY = 63635513;
+        static constexpr int32_t BMENU_CONTAINER = 63635514;
+        static constexpr int32_t COM_59 = 63635515;
+        static constexpr int32_t BMENU = 63635516;
+        static constexpr int32_t BSCROLLBAR = 63635517;
+        static constexpr int32_t BSPELLBOOK_CONTAINER = 63635518;
+        static constexpr int32_t COM_63 = 63635519;
+        static constexpr int32_t BSPELLBOOK_MENU = 63635520;
+        static constexpr int32_t COM_65 = 63635521;
+        static constexpr int32_t BSTATUS = 63635522;
+        static constexpr int32_t CDISPLAY = 63635523;
+        static constexpr int32_t CSPELLBOOK_DISPLAY = 63635524;
+        static constexpr int32_t CTRASH = 63635525;
+        static constexpr int32_t CWORN = 63635526;
+        static constexpr int32_t COM_71 = 63635527;
+        static constexpr int32_t COM_72 = 63635528;
+        static constexpr int32_t COM_73 = 63635529;
+        static constexpr int32_t COM_74 = 63635530;
+        static constexpr int32_t COM_75 = 63635531;
+        static constexpr int32_t CSLOT0 = 63635532;
+        static constexpr int32_t CSLOT1 = 63635533;
+        static constexpr int32_t CSLOT2 = 63635534;
+        static constexpr int32_t CSLOT3 = 63635535;
+        static constexpr int32_t CSLOT4 = 63635536;
+        static constexpr int32_t CSLOT5 = 63635537;
+        static constexpr int32_t CSLOT7 = 63635538;
+        static constexpr int32_t CSLOT9 = 63635539;
+        static constexpr int32_t CSLOT10 = 63635540;
+        static constexpr int32_t CSLOT12 = 63635541;
+        static constexpr int32_t CSLOT13 = 63635542;
+        static constexpr int32_t CINVENTORY = 63635543;
+        static constexpr int32_t CMENU_CONTAINER = 63635544;
+        static constexpr int32_t COM_89 = 63635545;
+        static constexpr int32_t CMENU = 63635546;
+        static constexpr int32_t CSCROLLBAR = 63635547;
+        static constexpr int32_t CSPELLBOOK_CONTAINER = 63635548;
+        static constexpr int32_t COM_93 = 63635549;
+        static constexpr int32_t CSPELLBOOK_MENU = 63635550;
+        static constexpr int32_t COM_95 = 63635551;
+        static constexpr int32_t CSTATUS = 63635552;
+    };
+
+    struct PvptutScoreboardUi final {
+        PvptutScoreboardUi() = delete;
+        static constexpr int32_t UNIVERSE = 63700992;
+        static constexpr int32_t DODGER = 63700993;
+        static constexpr int32_t CONTENTS = 63700994;
+        static constexpr int32_t TOOLTIP = 63700995;
+        static constexpr int32_t COM_4 = 63700996;
+        static constexpr int32_t TEXT = 63700997;
+        static constexpr int32_t OUTPUT = 63700998;
     };
 
     static constexpr std::span<const Entry> entries() { return detail::kInterfaceIDEntries; }

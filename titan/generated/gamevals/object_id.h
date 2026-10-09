@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
+inline constexpr std::array<Entry, 62466> kObjectIDEntries = {{
     {0, "MCANNONREMAINS_MULTILOC", "mcannonremains_multiloc", "loctypes"},
     {1, "MCANNONCRATEBOY", "Crate", "loctypes"},
     {2, "MCANNONCAVE", "Cave Entrance", "loctypes"},
@@ -8957,7 +8957,7 @@ inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
     {8970, "VIKING_PIER_RAIL_CURVE_OUT", "viking_pier_rail_curve_out", "loctypes"},
     {8971, "VIKING_PIER_RAIL_CURVE_IN", "viking_pier_rail_curve_in", "loctypes"},
     {8972, "HUNTING_SAPLING_CATCHING_ORANGE", "Net trap", "loctypes"},
-    {8973, "HUNTING_SAPLING_FAILED_ORANGE", "Dismantle", "loctypes"},
+    {8973, "HUNTING_SAPLING_FAILED_ORANGE", "Net trap", "loctypes"},
     {8974, "HUNTING_SAPLING_FAILING_ORANGE", "Net trap", "loctypes"},
     {8975, "ARCEUUS_RUNESTONE_BASE_MINE", "Dense runestone", "loctypes"},
     {8976, "ARCEUUS_RUNESTONE_BASE_DEPLETED", "Depleted runestone", "loctypes"},
@@ -8972,7 +8972,7 @@ inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
     {8985, "HUNTING_SAPLING_CATCHING_RED", "Net trap", "loctypes"},
     {8986, "HUNTING_SAPLING_FULL_RED", "Net trap", "loctypes"},
     {8987, "HUNTING_SAPLING_FAILING_RED", "Net trap", "loctypes"},
-    {8988, "HUNTING_SAPLING_FAILED_RED", "Dismantle", "loctypes"},
+    {8988, "HUNTING_SAPLING_FAILED_RED", "Net trap", "loctypes"},
     {8989, "HUNTING_SAPLING_SET_RED", "Young tree", "loctypes"},
     {8990, "HUNTING_SAPLING_UP_RED", "Young tree", "loctypes"},
     {8991, "HUNTING_SAPLING_SETTING_RED", "Young tree", "loctypes"},
@@ -8982,7 +8982,7 @@ inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
     {8995, "PINBALL_POST_COAL", "Pinball Post", "loctypes"},
     {8996, "HUNTING_SAPLING_FULL_BLACK", "Net trap", "loctypes"},
     {8997, "HUNTING_SAPLING_FAILING_BLACK", "Net trap", "loctypes"},
-    {8998, "HUNTING_SAPLING_FAILED_BLACK", "Dismantle", "loctypes"},
+    {8998, "HUNTING_SAPLING_FAILED_BLACK", "Net trap", "loctypes"},
     {8999, "HUNTING_SAPLING_SET_BLACK", "Young tree", "loctypes"},
     {9000, "HUNTING_SAPLING_UP_BLACK", "Young tree", "loctypes"},
     {9001, "HUNTING_SAPLING_SETTING_BLACK", "Young tree", "loctypes"},
@@ -9142,7 +9142,7 @@ inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
     {9155, "WOM_RICH_GLOBE_MODEL", "Globe of Gielinor", "loctypes"},
     {9156, "WOM_RICH_NARROW_STUDYDESK", "Study Desk", "loctypes"},
     {9157, "WOM_SUITOFARMOUR_SARADOMIN", "Suit of armour", "loctypes"},
-    {9158, "HUNTING_SAPLING_FAILED_SWAMP", "Dismantle", "loctypes"},
+    {9158, "HUNTING_SAPLING_FAILED_SWAMP", "Net trap", "loctypes"},
     {9159, "CANDLES_1", "Candles", "loctypes"},
     {9160, "CANDLES_2", "Candles", "loctypes"},
     {9161, "CANDLES_2_MIRROR", "Candles", "loctypes"},
@@ -50659,7 +50659,7 @@ inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
     {50716, "HUNTING_SAPLING_CATCHING_MOUNTAIN", "Net trap", "loctypes"},
     {50717, "HUNTING_SAPLING_FULL_MOUNTAIN", "Net trap", "loctypes"},
     {50718, "HUNTING_SAPLING_FAILING_MOUNTAIN", "Net trap", "loctypes"},
-    {50719, "HUNTING_SAPLING_FAILED_MOUNTAIN", "Dismantle", "loctypes"},
+    {50719, "HUNTING_SAPLING_FAILED_MOUNTAIN", "Net trap", "loctypes"},
     {50720, "HUNTING_SAPLING_SET_MOUNTAIN", "Young tree", "loctypes"},
     {50721, "HUNTING_SAPLING_UP_MOUNTAIN", "Young tree", "loctypes"},
     {50722, "HUNTING_SAPLING_SETTING_MOUNTAIN", "Young tree", "loctypes"},
@@ -62461,6 +62461,18 @@ inline constexpr std::array<Entry, 62454> kObjectIDEntries = {{
     {62519, "TOA_KEPHRI_DUNG01_TILE", "toa_kephri_dung01_tile", "loctypes"},
     {62520, "TOA_KEPHRI_DUNG02_TILE", "toa_kephri_dung02_tile", "loctypes"},
     {62521, "TOA_KEPHRI_DUNG03_TILE", "toa_kephri_dung03_tile", "loctypes"},
+    {62522, "HUNTING_SAPLING_UP_RESET_ORANGE", "Young tree", "loctypes"},
+    {62523, "HUNTING_SAPLING_NET_RESET_ORANGE", "Net trap", "loctypes"},
+    {62524, "HUNTING_SAPLING_UP_RESET_RED", "Young tree", "loctypes"},
+    {62525, "HUNTING_SAPLING_NET_RESET_RED", "Net trap", "loctypes"},
+    {62526, "HUNTING_SAPLING_UP_RESET_BLACK", "Young tree", "loctypes"},
+    {62527, "HUNTING_SAPLING_NET_RESET_BLACK", "Net trap", "loctypes"},
+    {62528, "HUNTING_SAPLING_UP_RESET_SWAMP", "Young tree", "loctypes"},
+    {62529, "HUNTING_SAPLING_NET_RESET_SWAMP", "Net trap", "loctypes"},
+    {62530, "HUNTING_SAPLING_UP_RESET_MOUNTAIN", "Young tree", "loctypes"},
+    {62531, "HUNTING_SAPLING_NET_RESET_MOUNTAIN", "Net trap", "loctypes"},
+    {62532, "PVPTUT_BOSS_EXIT", "Portal", "loctypes"},
+    {62533, "PVPTUT_REWARD_CRATE", "Pete's crate", "loctypes"},
 }};
 }  // namespace detail
 
@@ -124922,6 +124934,18 @@ struct ObjectID final {
     static constexpr int32_t TOA_KEPHRI_DUNG01_TILE = 62519;
     static constexpr int32_t TOA_KEPHRI_DUNG02_TILE = 62520;
     static constexpr int32_t TOA_KEPHRI_DUNG03_TILE = 62521;
+    static constexpr int32_t HUNTING_SAPLING_UP_RESET_ORANGE = 62522;
+    static constexpr int32_t HUNTING_SAPLING_NET_RESET_ORANGE = 62523;
+    static constexpr int32_t HUNTING_SAPLING_UP_RESET_RED = 62524;
+    static constexpr int32_t HUNTING_SAPLING_NET_RESET_RED = 62525;
+    static constexpr int32_t HUNTING_SAPLING_UP_RESET_BLACK = 62526;
+    static constexpr int32_t HUNTING_SAPLING_NET_RESET_BLACK = 62527;
+    static constexpr int32_t HUNTING_SAPLING_UP_RESET_SWAMP = 62528;
+    static constexpr int32_t HUNTING_SAPLING_NET_RESET_SWAMP = 62529;
+    static constexpr int32_t HUNTING_SAPLING_UP_RESET_MOUNTAIN = 62530;
+    static constexpr int32_t HUNTING_SAPLING_NET_RESET_MOUNTAIN = 62531;
+    static constexpr int32_t PVPTUT_BOSS_EXIT = 62532;
+    static constexpr int32_t PVPTUT_REWARD_CRATE = 62533;
 
     static constexpr std::span<const Entry> entries() { return detail::kObjectIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

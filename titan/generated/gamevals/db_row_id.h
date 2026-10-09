@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 16862> kDbRowIDEntries = {{
+inline constexpr std::array<Entry, 16870> kDbRowIDEntries = {{
     {0, "QUEST_ANIMALMAGNETISM", "quest_animalmagnetism", "rowtypes"},
     {1, "QUEST_ANOTHERSLICEOFHAM", "quest_anothersliceofham", "rowtypes"},
     {2, "MUSIC_RAT_BOSS", "music_rat_boss", "rowtypes"},
@@ -16869,6 +16869,14 @@ inline constexpr std::array<Entry, 16862> kDbRowIDEntries = {{
     {16976, "SKILL_FEATURE_HITPOINTS_HALIBUT_COOKED", "skill_feature_hitpoints_halibut_cooked", "rowtypes"},
     {16977, "SKILL_FEATURE_HITPOINTS_BLUEFIN_COOKED", "skill_feature_hitpoints_bluefin_cooked", "rowtypes"},
     {16978, "SKILL_FEATURE_HITPOINTS_MARLIN_COOKED", "skill_feature_hitpoints_marlin_cooked", "rowtypes"},
+    {16979, "PVPTUT_PRAYER", "pvptut_prayer", "rowtypes"},
+    {16980, "PVPTUT_COMBO_EATING", "pvptut_combo_eating", "rowtypes"},
+    {16981, "PVPTUT_FREEZE", "pvptut_freeze", "rowtypes"},
+    {16982, "PVPTUT_SPECIAL_ATTACK", "pvptut_special_attack", "rowtypes"},
+    {16983, "PVPTUT_GEAR_SWITCH", "pvptut_gear_switch", "rowtypes"},
+    {16984, "PVPTUT_TESTBED", "pvptut_testbed", "rowtypes"},
+    {16985, "PVPTUT_BOSS_MEDIUM", "pvptut_boss_medium", "rowtypes"},
+    {16986, "PVPTUT_BOSS_EXPERT", "pvptut_boss_expert", "rowtypes"},
 }};
 }  // namespace detail
 
@@ -33738,6 +33746,14 @@ struct DbRowID final {
     static constexpr int32_t SKILL_FEATURE_HITPOINTS_HALIBUT_COOKED = 16976;
     static constexpr int32_t SKILL_FEATURE_HITPOINTS_BLUEFIN_COOKED = 16977;
     static constexpr int32_t SKILL_FEATURE_HITPOINTS_MARLIN_COOKED = 16978;
+    static constexpr int32_t PVPTUT_PRAYER = 16979;
+    static constexpr int32_t PVPTUT_COMBO_EATING = 16980;
+    static constexpr int32_t PVPTUT_FREEZE = 16981;
+    static constexpr int32_t PVPTUT_SPECIAL_ATTACK = 16982;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH = 16983;
+    static constexpr int32_t PVPTUT_TESTBED = 16984;
+    static constexpr int32_t PVPTUT_BOSS_MEDIUM = 16985;
+    static constexpr int32_t PVPTUT_BOSS_EXPERT = 16986;
 
     static constexpr std::span<const Entry> entries() { return detail::kDbRowIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

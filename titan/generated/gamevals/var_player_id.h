@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 2966> kVarPlayerIDEntries = {{
+inline constexpr std::array<Entry, 3006> kVarPlayerIDEntries = {{
     {0, "MCANNON", "mcannon", "varptypes"},
     {1, "MCANNONMULTI", "mcannonmulti", "varptypes"},
     {2, "DROPCANNON", "dropcannon", "varptypes"},
@@ -2957,6 +2957,7 @@ inline constexpr std::array<Entry, 2966> kVarPlayerIDEntries = {{
     {5749, "FARMING_COMPOST_TRANSMIT_4", "farming_compost_transmit_4", "varptypes"},
     {5750, "FARMING_COMPOST_TRANSMIT_5", "farming_compost_transmit_5", "varptypes"},
     {5751, "FARMING_COMPOST_TRANSMIT_6", "farming_compost_transmit_6", "varptypes"},
+    {5753, "GE_NEWOFFER_PRICE", "ge_newoffer_price", "varptypes"},
     {5754, "GE_TAX_SLOT_LONG_0", "ge_tax_slot_long_0", "varptypes"},
     {5755, "GE_TAX_SLOT_LONG_1", "ge_tax_slot_long_1", "varptypes"},
     {5756, "GE_TAX_SLOT_LONG_2", "ge_tax_slot_long_2", "varptypes"},
@@ -2973,6 +2974,45 @@ inline constexpr std::array<Entry, 2966> kVarPlayerIDEntries = {{
     {5767, "GE_ITEMSINK_PRICE_LONG_5", "ge_itemsink_price_long_5", "varptypes"},
     {5768, "GE_ITEMSINK_PRICE_LONG_6", "ge_itemsink_price_long_6", "varptypes"},
     {5769, "GE_ITEMSINK_PRICE_LONG_7", "ge_itemsink_price_long_7", "varptypes"},
+    {5850, "PVPTUT_ACTIVE_TUTORIAL", "pvptut_active_tutorial", "varptypes"},
+    {5851, "PVPTUT_LOADOUTS_0", "pvptut_loadouts_0", "varptypes"},
+    {5852, "PVPTUT_LOADOUTS_1", "pvptut_loadouts_1", "varptypes"},
+    {5853, "PVPTUT_LOADOUTS_2", "pvptut_loadouts_2", "varptypes"},
+    {5854, "PVPTUT_LOADOUTS_3", "pvptut_loadouts_3", "varptypes"},
+    {5855, "PVPTUT_LOADOUTS_4", "pvptut_loadouts_4", "varptypes"},
+    {5856, "PVPTUT_LOADOUTS_5", "pvptut_loadouts_5", "varptypes"},
+    {5857, "PVPTUT_LOADOUTS_6", "pvptut_loadouts_6", "varptypes"},
+    {5858, "PVPTUT_LOADOUTS_7", "pvptut_loadouts_7", "varptypes"},
+    {5859, "PVPTUT_LOADOUTS_8", "pvptut_loadouts_8", "varptypes"},
+    {5860, "PVPTUT_LOADOUTS_9", "pvptut_loadouts_9", "varptypes"},
+    {5861, "PVPTUT_LOADOUTS_10", "pvptut_loadouts_10", "varptypes"},
+    {5862, "PVPTUT_LOADOUTS_11", "pvptut_loadouts_11", "varptypes"},
+    {5863, "PVPTUT_LOADOUTS_12", "pvptut_loadouts_12", "varptypes"},
+    {5864, "PVPTUT_LOADOUTS_13", "pvptut_loadouts_13", "varptypes"},
+    {5865, "PVPTUT_LOADOUTS_14", "pvptut_loadouts_14", "varptypes"},
+    {5866, "PVPTUT_LOADOUTS_15", "pvptut_loadouts_15", "varptypes"},
+    {5867, "PVPTUT_LOADOUTS_16", "pvptut_loadouts_16", "varptypes"},
+    {5868, "PVPTUT_LOADOUTS_17", "pvptut_loadouts_17", "varptypes"},
+    {5869, "PVPTUT_LOADOUTS_18", "pvptut_loadouts_18", "varptypes"},
+    {5870, "PVPTUT_LOADOUTS_19", "pvptut_loadouts_19", "varptypes"},
+    {5871, "PVPTUT_LOADOUTS_20", "pvptut_loadouts_20", "varptypes"},
+    {5872, "PVPTUT_LOADOUTS_21", "pvptut_loadouts_21", "varptypes"},
+    {5873, "PVPTUT_LOADOUTS_22", "pvptut_loadouts_22", "varptypes"},
+    {5874, "PVPTUT_LOADOUTS_23", "pvptut_loadouts_23", "varptypes"},
+    {5875, "PVPTUT_LOADOUTS_24", "pvptut_loadouts_24", "varptypes"},
+    {5876, "PVPTUT_LOADOUTS_25", "pvptut_loadouts_25", "varptypes"},
+    {5877, "PVPTUT_LOADOUTS_26", "pvptut_loadouts_26", "varptypes"},
+    {5878, "PVPTUT_LOADOUTS_27", "pvptut_loadouts_27", "varptypes"},
+    {5879, "PVPTUT_LOADOUTS_28", "pvptut_loadouts_28", "varptypes"},
+    {5880, "PVPTUT_LOADOUTS_29", "pvptut_loadouts_29", "varptypes"},
+    {5881, "PVPTUT_TUTORIALS_VARP1", "pvptut_tutorials_varp1", "varptypes"},
+    {5882, "PVPTUT_TUTORIALS_VARP2", "pvptut_tutorials_varp2", "varptypes"},
+    {5885, "PVPTUT_TUTORIALS_HIGHEST_SCORE_PERM", "pvptut_tutorials_highest_score_perm", "varptypes"},
+    {5886, "PVPTUT_TUTORIALS_HIGHEST_SCORE_PERM_2", "pvptut_tutorials_highest_score_perm_2", "varptypes"},
+    {5887, "PVPTUT_TUTORIALS_HIGHEST_SCORE_PERM_BOSS", "pvptut_tutorials_highest_score_perm_boss", "varptypes"},
+    {5888, "PVPTUT_TUTORIALS_SCORE_1", "pvptut_tutorials_score_1", "varptypes"},
+    {5889, "PVPTUT_TUTORIALS_SCORE_2", "pvptut_tutorials_score_2", "varptypes"},
+    {5890, "PVPTUT_TUTORIALS_SCORE_3", "pvptut_tutorials_score_3", "varptypes"},
 }};
 }  // namespace detail
 
@@ -5930,6 +5970,7 @@ struct VarPlayerID final {
     static constexpr int32_t FARMING_COMPOST_TRANSMIT_4 = 5749;
     static constexpr int32_t FARMING_COMPOST_TRANSMIT_5 = 5750;
     static constexpr int32_t FARMING_COMPOST_TRANSMIT_6 = 5751;
+    static constexpr int32_t GE_NEWOFFER_PRICE = 5753;
     static constexpr int32_t GE_TAX_SLOT_LONG_0 = 5754;
     static constexpr int32_t GE_TAX_SLOT_LONG_1 = 5755;
     static constexpr int32_t GE_TAX_SLOT_LONG_2 = 5756;
@@ -5946,6 +5987,45 @@ struct VarPlayerID final {
     static constexpr int32_t GE_ITEMSINK_PRICE_LONG_5 = 5767;
     static constexpr int32_t GE_ITEMSINK_PRICE_LONG_6 = 5768;
     static constexpr int32_t GE_ITEMSINK_PRICE_LONG_7 = 5769;
+    static constexpr int32_t PVPTUT_ACTIVE_TUTORIAL = 5850;
+    static constexpr int32_t PVPTUT_LOADOUTS_0 = 5851;
+    static constexpr int32_t PVPTUT_LOADOUTS_1 = 5852;
+    static constexpr int32_t PVPTUT_LOADOUTS_2 = 5853;
+    static constexpr int32_t PVPTUT_LOADOUTS_3 = 5854;
+    static constexpr int32_t PVPTUT_LOADOUTS_4 = 5855;
+    static constexpr int32_t PVPTUT_LOADOUTS_5 = 5856;
+    static constexpr int32_t PVPTUT_LOADOUTS_6 = 5857;
+    static constexpr int32_t PVPTUT_LOADOUTS_7 = 5858;
+    static constexpr int32_t PVPTUT_LOADOUTS_8 = 5859;
+    static constexpr int32_t PVPTUT_LOADOUTS_9 = 5860;
+    static constexpr int32_t PVPTUT_LOADOUTS_10 = 5861;
+    static constexpr int32_t PVPTUT_LOADOUTS_11 = 5862;
+    static constexpr int32_t PVPTUT_LOADOUTS_12 = 5863;
+    static constexpr int32_t PVPTUT_LOADOUTS_13 = 5864;
+    static constexpr int32_t PVPTUT_LOADOUTS_14 = 5865;
+    static constexpr int32_t PVPTUT_LOADOUTS_15 = 5866;
+    static constexpr int32_t PVPTUT_LOADOUTS_16 = 5867;
+    static constexpr int32_t PVPTUT_LOADOUTS_17 = 5868;
+    static constexpr int32_t PVPTUT_LOADOUTS_18 = 5869;
+    static constexpr int32_t PVPTUT_LOADOUTS_19 = 5870;
+    static constexpr int32_t PVPTUT_LOADOUTS_20 = 5871;
+    static constexpr int32_t PVPTUT_LOADOUTS_21 = 5872;
+    static constexpr int32_t PVPTUT_LOADOUTS_22 = 5873;
+    static constexpr int32_t PVPTUT_LOADOUTS_23 = 5874;
+    static constexpr int32_t PVPTUT_LOADOUTS_24 = 5875;
+    static constexpr int32_t PVPTUT_LOADOUTS_25 = 5876;
+    static constexpr int32_t PVPTUT_LOADOUTS_26 = 5877;
+    static constexpr int32_t PVPTUT_LOADOUTS_27 = 5878;
+    static constexpr int32_t PVPTUT_LOADOUTS_28 = 5879;
+    static constexpr int32_t PVPTUT_LOADOUTS_29 = 5880;
+    static constexpr int32_t PVPTUT_TUTORIALS_VARP1 = 5881;
+    static constexpr int32_t PVPTUT_TUTORIALS_VARP2 = 5882;
+    static constexpr int32_t PVPTUT_TUTORIALS_HIGHEST_SCORE_PERM = 5885;
+    static constexpr int32_t PVPTUT_TUTORIALS_HIGHEST_SCORE_PERM_2 = 5886;
+    static constexpr int32_t PVPTUT_TUTORIALS_HIGHEST_SCORE_PERM_BOSS = 5887;
+    static constexpr int32_t PVPTUT_TUTORIALS_SCORE_1 = 5888;
+    static constexpr int32_t PVPTUT_TUTORIALS_SCORE_2 = 5889;
+    static constexpr int32_t PVPTUT_TUTORIALS_SCORE_3 = 5890;
 
     static constexpr std::span<const Entry> entries() { return detail::kVarPlayerIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

@@ -10784,6 +10784,18 @@ public final class DBTableID
         public static final int COL_LOCATION_HINT = 9;
     }
 
+    public static final class PvpTutorial {
+        private PvpTutorial() {}
+
+        public static final int ID = 133;
+        public static final int COL_TYPE = 0;
+        public static final int COL_TITLE = 1;
+        public static final int COL_SHORT_DESCRIPTION = 2;
+        public static final int COL_MODIFIED_STATS = 3;
+        public static final int COL_MODIFIED_ITEMS = 4;
+        public static final int COL_WIPEITEM_ONEXIT = 5;
+    }
+
     public static final class FletchingBlowpipeCrafting {
         private FletchingBlowpipeCrafting() {}
 

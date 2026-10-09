@@ -33,4 +33,5 @@ public interface VarClientIDConstants_3 {
     int SLOTINFO_OTHER_25_LONG = 1565;
     int SLOTINFO_OTHER_26_LONG = 1566;
     int SLOTINFO_OTHER_27_LONG = 1567;
+    int PVPTUT_UI_SELECTED_TUTORIAL = 1568;
 }

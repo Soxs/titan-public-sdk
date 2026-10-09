@@ -42,6 +42,7 @@ final class VarClientIDEntries_3 {
             new GamevalEntry(1565, "SLOTINFO_OTHER_25_LONG", "slotinfo_other_25_long", "varctypes"),
             new GamevalEntry(1566, "SLOTINFO_OTHER_26_LONG", "slotinfo_other_26_long", "varctypes"),
             new GamevalEntry(1567, "SLOTINFO_OTHER_27_LONG", "slotinfo_other_27_long", "varctypes"),
+            new GamevalEntry(1568, "PVPTUT_UI_SELECTED_TUTORIAL", "pvptut_ui_selected_tutorial", "varctypes"),
         };
     }
 

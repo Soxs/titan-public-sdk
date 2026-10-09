@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
+inline constexpr std::array<Entry, 13570> kVarbitIDEntries = {{
     {0, "TROLL_FREED_EADGAR", "troll_freed_eadgar", "varbittypes"},
     {1, "TROLL_OPENED_BACK_EXIT", "troll_opened_back_exit", "varbittypes"},
     {2, "TROLL_ENTERED_STRONGHOLD", "troll_entered_stronghold", "varbittypes"},
@@ -3209,6 +3209,17 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {4394, "CHAT_STFU", "chat_stfu", "varbittypes"},
     {4396, "GE_NEWOFFER_QUANTITY", "ge_newoffer_quantity", "varbittypes"},
     {4397, "GE_NEWOFFER_TYPE", "ge_newoffer_type", "varbittypes"},
+    {4398, "PVPTUT_LOADOUT_A_INV_00", "pvptut_loadout_a_inv_00", "varbittypes"},
+    {4409, "PVPTUT_LOADOUT_A_INV_01", "pvptut_loadout_a_inv_01", "varbittypes"},
+    {4410, "PVPTUT_LOADOUT_A_INV_02", "pvptut_loadout_a_inv_02", "varbittypes"},
+    {4411, "PVPTUT_LOADOUT_A_INV_03", "pvptut_loadout_a_inv_03", "varbittypes"},
+    {4412, "PVPTUT_LOADOUT_A_INV_04", "pvptut_loadout_a_inv_04", "varbittypes"},
+    {4413, "PVPTUT_LOADOUT_A_INV_05", "pvptut_loadout_a_inv_05", "varbittypes"},
+    {4414, "PVPTUT_LOADOUT_A_INV_06", "pvptut_loadout_a_inv_06", "varbittypes"},
+    {4415, "PVPTUT_LOADOUT_A_INV_07", "pvptut_loadout_a_inv_07", "varbittypes"},
+    {4416, "PVPTUT_LOADOUT_A_INV_08", "pvptut_loadout_a_inv_08", "varbittypes"},
+    {4417, "PVPTUT_LOADOUT_A_INV_09", "pvptut_loadout_a_inv_09", "varbittypes"},
+    {4418, "PVPTUT_LOADOUT_A_INV_10", "pvptut_loadout_a_inv_10", "varbittypes"},
     {4429, "PET_INSURANCE_VENENATISPET", "pet_insurance_venenatispet", "varbittypes"},
     {4430, "DEPOSITBOX_MODE", "depositbox_mode", "varbittypes"},
     {4439, "GE_SELECTEDSLOT", "ge_selectedslot", "varbittypes"},
@@ -3887,6 +3898,16 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {5556, "MOTHERLODE_BIGGERSACK", "motherlode_biggersack", "varbittypes"},
     {5557, "FARMING_BLOCKWEEDS", "farming_blockweeds", "varbittypes"},
     {5558, "MOTHERLODE_SACK_TRANSMIT", "motherlode_sack_transmit", "varbittypes"},
+    {5567, "PVPTUT_LOADOUT_A_INV_11", "pvptut_loadout_a_inv_11", "varbittypes"},
+    {5568, "PVPTUT_LOADOUT_A_INV_12", "pvptut_loadout_a_inv_12", "varbittypes"},
+    {5569, "PVPTUT_LOADOUT_A_INV_13", "pvptut_loadout_a_inv_13", "varbittypes"},
+    {5570, "PVPTUT_LOADOUT_A_INV_14", "pvptut_loadout_a_inv_14", "varbittypes"},
+    {5571, "PVPTUT_LOADOUT_A_INV_15", "pvptut_loadout_a_inv_15", "varbittypes"},
+    {5572, "PVPTUT_LOADOUT_A_INV_16", "pvptut_loadout_a_inv_16", "varbittypes"},
+    {5573, "PVPTUT_LOADOUT_A_INV_17", "pvptut_loadout_a_inv_17", "varbittypes"},
+    {5574, "PVPTUT_LOADOUT_A_INV_18", "pvptut_loadout_a_inv_18", "varbittypes"},
+    {5575, "PVPTUT_LOADOUT_A_INV_19", "pvptut_loadout_a_inv_19", "varbittypes"},
+    {5576, "PVPTUT_LOADOUT_A_INV_20", "pvptut_loadout_a_inv_20", "varbittypes"},
     {5597, "EMOTE_HOTLINE_BLING", "emote_hotline_bling", "varbittypes"},
     {5598, "EMOTE_GANGNAM", "emote_gangnam", "varbittypes"},
     {5599, "FOLLOWEROPS_DEPRIORITISED", "followerops_deprioritised", "varbittypes"},
@@ -4857,6 +4878,26 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {8121, "PVP_AREA_CLIENT", "pvp_area_client", "varbittypes"},
     {8122, "KARAM_DUNGEON_PERMANENTACCESS", "karam_dungeon_permanentaccess", "varbittypes"},
     {8123, "KARAM_DUNGEON_DOORDATA", "karam_dungeon_doordata", "varbittypes"},
+    {8143, "PVPTUT_LOADOUT_A_INV_21", "pvptut_loadout_a_inv_21", "varbittypes"},
+    {8144, "PVPTUT_LOADOUT_A_INV_22", "pvptut_loadout_a_inv_22", "varbittypes"},
+    {8145, "PVPTUT_LOADOUT_A_INV_23", "pvptut_loadout_a_inv_23", "varbittypes"},
+    {8146, "PVPTUT_LOADOUT_A_INV_24", "pvptut_loadout_a_inv_24", "varbittypes"},
+    {8147, "PVPTUT_LOADOUT_A_INV_25", "pvptut_loadout_a_inv_25", "varbittypes"},
+    {8148, "PVPTUT_LOADOUT_A_INV_26", "pvptut_loadout_a_inv_26", "varbittypes"},
+    {8149, "PVPTUT_LOADOUT_A_INV_27", "pvptut_loadout_a_inv_27", "varbittypes"},
+    {8150, "PVPTUT_LOADOUT_A_WORN_HAT", "pvptut_loadout_a_worn_hat", "varbittypes"},
+    {8151, "PVPTUT_LOADOUT_A_WORN_BACK", "pvptut_loadout_a_worn_back", "varbittypes"},
+    {8152, "PVPTUT_LOADOUT_A_WORN_FRONT", "pvptut_loadout_a_worn_front", "varbittypes"},
+    {8153, "PVPTUT_LOADOUT_A_WORN_RHAND", "pvptut_loadout_a_worn_rhand", "varbittypes"},
+    {8154, "PVPTUT_LOADOUT_A_WORN_TORSO", "pvptut_loadout_a_worn_torso", "varbittypes"},
+    {8155, "PVPTUT_LOADOUT_A_WORN_LHAND", "pvptut_loadout_a_worn_lhand", "varbittypes"},
+    {8156, "PVPTUT_LOADOUT_A_WORN_LEGS", "pvptut_loadout_a_worn_legs", "varbittypes"},
+    {8157, "PVPTUT_LOADOUT_A_WORN_HANDS", "pvptut_loadout_a_worn_hands", "varbittypes"},
+    {8158, "PVPTUT_LOADOUT_A_WORN_FEET", "pvptut_loadout_a_worn_feet", "varbittypes"},
+    {8159, "PVPTUT_LOADOUT_A_WORN_RING", "pvptut_loadout_a_worn_ring", "varbittypes"},
+    {8160, "PVPTUT_LOADOUT_A_WORN_QUIVER", "pvptut_loadout_a_worn_quiver", "varbittypes"},
+    {8161, "PVPTUT_LOADOUT_SPELLBOOK", "pvptut_loadout_spellbook", "varbittypes"},
+    {8162, "PVPTUT_LOADOUT_B_INV_00", "pvptut_loadout_b_inv_00", "varbittypes"},
     {8168, "SIDE_JOURNAL_TAB", "side_journal_tab", "varbittypes"},
     {8171, "SEED_VAULT_CATEGORY", "seed_vault_category", "varbittypes"},
     {8172, "SEED_VAULT_FAVE1", "seed_vault_fave1", "varbittypes"},
@@ -10572,21 +10613,84 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16011, "FARMING_COMPOST_VARBIT_VEG_15_TRANSMIT", "farming_compost_varbit_veg_15_transmit", "varbittypes"},
     {16012, "FARMING_COMPOST_VARBIT_VEG_16_TRANSMIT", "farming_compost_varbit_veg_16_transmit", "varbittypes"},
     {16013, "FARMING_COMPOST_VARBIT_VEG_17_TRANSMIT", "farming_compost_varbit_veg_17_transmit", "varbittypes"},
+    {16014, "PVPTUT_LOADOUT_B_INV_01", "pvptut_loadout_b_inv_01", "varbittypes"},
+    {16015, "PVPTUT_LOADOUT_B_INV_02", "pvptut_loadout_b_inv_02", "varbittypes"},
+    {16016, "PVPTUT_LOADOUT_B_INV_03", "pvptut_loadout_b_inv_03", "varbittypes"},
+    {16017, "PVPTUT_LOADOUT_B_INV_04", "pvptut_loadout_b_inv_04", "varbittypes"},
+    {16018, "PVPTUT_LOADOUT_B_INV_05", "pvptut_loadout_b_inv_05", "varbittypes"},
+    {16019, "PVPTUT_LOADOUT_B_INV_06", "pvptut_loadout_b_inv_06", "varbittypes"},
+    {16020, "PVPTUT_LOADOUT_B_INV_07", "pvptut_loadout_b_inv_07", "varbittypes"},
+    {16021, "PVPTUT_LOADOUT_B_INV_08", "pvptut_loadout_b_inv_08", "varbittypes"},
+    {16022, "PVPTUT_LOADOUT_B_INV_09", "pvptut_loadout_b_inv_09", "varbittypes"},
+    {16023, "PVPTUT_LOADOUT_B_INV_10", "pvptut_loadout_b_inv_10", "varbittypes"},
+    {16024, "PVPTUT_LOADOUT_B_INV_11", "pvptut_loadout_b_inv_11", "varbittypes"},
     {16025, "BH_STATIUS_WARHAMMER_REFUND_QUANTITY", "bh_statius_warhammer_refund_quantity", "varbittypes"},
     {16026, "BH_MORRIGAN_AXE_REFUND_QUANTITY", "bh_morrigan_axe_refund_quantity", "varbittypes"},
+    {16027, "PVPTUT_LOADOUT_B_INV_12", "pvptut_loadout_b_inv_12", "varbittypes"},
+    {16028, "PVPTUT_LOADOUT_B_INV_13", "pvptut_loadout_b_inv_13", "varbittypes"},
+    {16029, "PVPTUT_LOADOUT_B_INV_14", "pvptut_loadout_b_inv_14", "varbittypes"},
+    {16030, "PVPTUT_LOADOUT_B_INV_15", "pvptut_loadout_b_inv_15", "varbittypes"},
     {16031, "BH_MORRIGAN_JAVELIN_REFUND_QUANTITY", "bh_morrigan_javelin_refund_quantity", "varbittypes"},
+    {16032, "PVPTUT_LOADOUT_B_INV_16", "pvptut_loadout_b_inv_16", "varbittypes"},
+    {16033, "PVPTUT_LOADOUT_B_INV_17", "pvptut_loadout_b_inv_17", "varbittypes"},
+    {16034, "PVPTUT_LOADOUT_B_INV_18", "pvptut_loadout_b_inv_18", "varbittypes"},
+    {16035, "PVPTUT_LOADOUT_B_INV_19", "pvptut_loadout_b_inv_19", "varbittypes"},
+    {16036, "PVPTUT_LOADOUT_B_INV_20", "pvptut_loadout_b_inv_20", "varbittypes"},
+    {16037, "PVPTUT_LOADOUT_B_INV_21", "pvptut_loadout_b_inv_21", "varbittypes"},
+    {16038, "PVPTUT_LOADOUT_B_INV_22", "pvptut_loadout_b_inv_22", "varbittypes"},
+    {16039, "PVPTUT_LOADOUT_B_INV_23", "pvptut_loadout_b_inv_23", "varbittypes"},
+    {16040, "PVPTUT_LOADOUT_B_INV_24", "pvptut_loadout_b_inv_24", "varbittypes"},
+    {16041, "PVPTUT_LOADOUT_B_INV_25", "pvptut_loadout_b_inv_25", "varbittypes"},
+    {16042, "PVPTUT_LOADOUT_B_INV_26", "pvptut_loadout_b_inv_26", "varbittypes"},
+    {16043, "PVPTUT_LOADOUT_B_INV_27", "pvptut_loadout_b_inv_27", "varbittypes"},
+    {16044, "PVPTUT_LOADOUT_B_WORN_HAT", "pvptut_loadout_b_worn_hat", "varbittypes"},
+    {16045, "PVPTUT_LOADOUT_B_WORN_BACK", "pvptut_loadout_b_worn_back", "varbittypes"},
+    {16046, "PVPTUT_LOADOUT_B_WORN_FRONT", "pvptut_loadout_b_worn_front", "varbittypes"},
+    {16047, "PVPTUT_LOADOUT_B_WORN_RHAND", "pvptut_loadout_b_worn_rhand", "varbittypes"},
+    {16048, "PVPTUT_LOADOUT_B_WORN_TORSO", "pvptut_loadout_b_worn_torso", "varbittypes"},
+    {16049, "PVPTUT_LOADOUT_B_WORN_LHAND", "pvptut_loadout_b_worn_lhand", "varbittypes"},
+    {16050, "PVPTUT_LOADOUT_B_WORN_LEGS", "pvptut_loadout_b_worn_legs", "varbittypes"},
+    {16051, "PVPTUT_LOADOUT_B_WORN_HANDS", "pvptut_loadout_b_worn_hands", "varbittypes"},
+    {16052, "PVPTUT_LOADOUT_B_WORN_FEET", "pvptut_loadout_b_worn_feet", "varbittypes"},
+    {16053, "PVPTUT_LOADOUT_B_WORN_RING", "pvptut_loadout_b_worn_ring", "varbittypes"},
+    {16054, "PVPTUT_LOADOUT_B_WORN_QUIVER", "pvptut_loadout_b_worn_quiver", "varbittypes"},
+    {16055, "PVPTUT_LOADOUT_C_INV_00", "pvptut_loadout_c_inv_00", "varbittypes"},
+    {16056, "PVPTUT_LOADOUT_C_INV_01", "pvptut_loadout_c_inv_01", "varbittypes"},
+    {16057, "PVPTUT_LOADOUT_C_INV_02", "pvptut_loadout_c_inv_02", "varbittypes"},
+    {16058, "PVPTUT_LOADOUT_C_INV_03", "pvptut_loadout_c_inv_03", "varbittypes"},
     {16059, "BH_ZURIEL_STAFF_REFUND_QUANTITY", "bh_zuriel_staff_refund_quantity", "varbittypes"},
+    {16060, "PVPTUT_LOADOUT_C_INV_04", "pvptut_loadout_c_inv_04", "varbittypes"},
+    {16061, "PVPTUT_LOADOUT_C_INV_05", "pvptut_loadout_c_inv_05", "varbittypes"},
+    {16062, "PVPTUT_LOADOUT_C_INV_06", "pvptut_loadout_c_inv_06", "varbittypes"},
+    {16063, "PVPTUT_LOADOUT_C_INV_07", "pvptut_loadout_c_inv_07", "varbittypes"},
+    {16064, "PVPTUT_LOADOUT_C_INV_08", "pvptut_loadout_c_inv_08", "varbittypes"},
+    {16065, "PVPTUT_LOADOUT_C_INV_09", "pvptut_loadout_c_inv_09", "varbittypes"},
+    {16066, "PVPTUT_LOADOUT_C_INV_10", "pvptut_loadout_c_inv_10", "varbittypes"},
+    {16067, "PVPTUT_LOADOUT_C_INV_11", "pvptut_loadout_c_inv_11", "varbittypes"},
+    {16068, "PVPTUT_LOADOUT_C_INV_12", "pvptut_loadout_c_inv_12", "varbittypes"},
+    {16069, "PVPTUT_LOADOUT_C_INV_13", "pvptut_loadout_c_inv_13", "varbittypes"},
+    {16070, "PVPTUT_LOADOUT_C_INV_14", "pvptut_loadout_c_inv_14", "varbittypes"},
+    {16071, "PVPTUT_LOADOUT_C_INV_15", "pvptut_loadout_c_inv_15", "varbittypes"},
+    {16072, "PVPTUT_LOADOUT_C_INV_16", "pvptut_loadout_c_inv_16", "varbittypes"},
     {16073, "FLOATER_IS_SEARCHING", "floater_is_searching", "varbittypes"},
     {16074, "FLOATER_SEARCH_LISTEN_FOR_KEYBOARD", "floater_search_listen_for_keyboard", "varbittypes"},
     {16075, "FLOATER_CHATBOX_OPENED", "floater_chatbox_opened", "varbittypes"},
+    {16077, "PVPTUT_LOADOUT_C_INV_17", "pvptut_loadout_c_inv_17", "varbittypes"},
+    {16078, "PVPTUT_LOADOUT_C_INV_18", "pvptut_loadout_c_inv_18", "varbittypes"},
     {16085, "COLLECTION_BOSSES_ROYAL_TITANS_COMPLETED", "collection_bosses_royal_titans_completed", "varbittypes"},
+    {16086, "PVPTUT_LOADOUT_C_INV_19", "pvptut_loadout_c_inv_19", "varbittypes"},
+    {16087, "PVPTUT_LOADOUT_C_INV_20", "pvptut_loadout_c_inv_20", "varbittypes"},
     {16088, "CA_TOTAL_TASKS_COMPLETED_ROYAL_TITANS", "ca_total_tasks_completed_royal_titans", "varbittypes"},
     {16089, "ROYAL_TITANS_ENTER_WARNING", "royal_titans_enter_warning", "varbittypes"},
     {16090, "PRAYER_DEADEYE", "prayer_deadeye", "varbittypes"},
     {16091, "PRAYER_MYSTICVIGOUR", "prayer_mysticvigour", "varbittypes"},
     {16092, "POH_MENAGERIE_MULTIFORM_ROYALTITANPET", "poh_menagerie_multiform_royaltitanpet", "varbittypes"},
+    {16095, "PVPTUT_LOADOUT_C_INV_21", "pvptut_loadout_c_inv_21", "varbittypes"},
+    {16096, "PVPTUT_LOADOUT_C_INV_22", "pvptut_loadout_c_inv_22", "varbittypes"},
     {16097, "PRAYER_DEADEYE_UNLOCKED", "prayer_deadeye_unlocked", "varbittypes"},
     {16098, "PRAYER_MYSTIC_VIGOUR_UNLOCKED", "prayer_mystic_vigour_unlocked", "varbittypes"},
+    {16104, "PVPTUT_LOADOUT_C_INV_23", "pvptut_loadout_c_inv_23", "varbittypes"},
+    {16105, "PVPTUT_LOADOUT_C_INV_24", "pvptut_loadout_c_inv_24", "varbittypes"},
     {16106, "OPTION_CAMERA_EFFECT_COMBAT_DISABLED", "option_camera_effect_combat_disabled", "varbittypes"},
     {16107, "OPTION_CAMERA_EFFECT_SHAMANS_DISABLED", "option_camera_effect_shamans_disabled", "varbittypes"},
     {16108, "OPTION_CAMERA_EFFECT_OLM_DISABLED", "option_camera_effect_olm_disabled", "varbittypes"},
@@ -10594,12 +10698,16 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16110, "OPTION_CAMERA_EFFECT_ATMOSPHERICS_DISABLED", "option_camera_effect_atmospherics_disabled", "varbittypes"},
     {16111, "SETTINGS_MOBILE_TAPTODROP_ENABLED", "settings_mobile_taptodrop_enabled", "varbittypes"},
     {16112, "SETTINGS_MOBILE_TILE_HIGHLIGHT_ENABLED", "settings_mobile_tile_highlight_enabled", "varbittypes"},
+    {16113, "PVPTUT_LOADOUT_C_INV_25", "pvptut_loadout_c_inv_25", "varbittypes"},
+    {16114, "PVPTUT_LOADOUT_C_INV_26", "pvptut_loadout_c_inv_26", "varbittypes"},
     {16115, "SETTINGS_MOBILE_TILE_HIGHLIGHTS_HIDDEN", "settings_mobile_tile_highlights_hidden", "varbittypes"},
     {16116, "SETTINGS_MOBILE_SHOW_FILTER_STONES_ENABLED", "settings_mobile_show_filter_stones_enabled", "varbittypes"},
     {16118, "CLAN_DISABLE_LASTSEEN", "clan_disable_lastseen", "varbittypes"},
     {16119, "OSB12_DONE", "osb12_done", "varbittypes"},
     {16120, "CHARGES_BOW_OF_FAERDHINEN_CORRUPTION", "charges_bow_of_faerdhinen_corruption", "varbittypes"},
     {16121, "CHARGES_BLADE_OF_SAELDOR_CORRUPTION", "charges_blade_of_saeldor_corruption", "varbittypes"},
+    {16122, "PVPTUT_LOADOUT_C_INV_27", "pvptut_loadout_c_inv_27", "varbittypes"},
+    {16123, "PVPTUT_LOADOUT_C_WORN_HAT", "pvptut_loadout_c_worn_hat", "varbittypes"},
     {16124, "CHARGES_DIZANAS_QUIVER_BLESSING", "charges_dizanas_quiver_blessing", "varbittypes"},
     {16125, "BANK_BANKOPS_TOGGLE_ON", "bank_bankops_toggle_on", "varbittypes"},
     {16126, "CHARGES_TRIDENT_OF_THE_SEAS_QUANTITY", "charges_trident_of_the_seas_quantity", "varbittypes"},
@@ -10607,6 +10715,8 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16128, "CHARGES_SERPENTINE_HELM_QUANTITY", "charges_serpentine_helm_quantity", "varbittypes"},
     {16129, "CHARGES_TOXIC_STAFF_OF_THE_DEAD_QUANTITY", "charges_toxic_staff_of_the_dead_quantity", "varbittypes"},
     {16130, "CHARGES_BOW_OF_FAERDHINEN_QUANTITY", "charges_bow_of_faerdhinen_quantity", "varbittypes"},
+    {16131, "PVPTUT_LOADOUT_C_WORN_BACK", "pvptut_loadout_c_worn_back", "varbittypes"},
+    {16132, "PVPTUT_LOADOUT_C_WORN_FRONT", "pvptut_loadout_c_worn_front", "varbittypes"},
     {16133, "CHARGES_BLADE_OF_SAELDOR_QUANTITY", "charges_blade_of_saeldor_quantity", "varbittypes"},
     {16134, "CHARGES_ARCLIGHT_QUANTITY", "charges_arclight_quantity", "varbittypes"},
     {16135, "CHARGES_WILDERNESS_WEAPON_QUANTITY", "charges_wilderness_weapon_quantity", "varbittypes"},
@@ -10614,6 +10724,8 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16137, "CHARGES_ASH_SANCTIFIER_QUANTITY", "charges_ash_sanctifier_quantity", "varbittypes"},
     {16138, "CHARGES_CIRCLET_OF_WATER_QUANTITY", "charges_circlet_of_water_quantity", "varbittypes"},
     {16139, "CHARGES_BRYOPHYTAS_STAFF_QUANTITY", "charges_bryophytas_staff_quantity", "varbittypes"},
+    {16140, "PVPTUT_LOADOUT_C_WORN_RHAND", "pvptut_loadout_c_worn_rhand", "varbittypes"},
+    {16141, "PVPTUT_LOADOUT_C_WORN_TORSO", "pvptut_loadout_c_worn_torso", "varbittypes"},
     {16142, "CHARGES_CRYSTAL_ARMOUR_QUANTITY", "charges_crystal_armour_quantity", "varbittypes"},
     {16143, "CHARGES_SANGUINESTI_STAFF_QUANTITY", "charges_sanguinesti_staff_quantity", "varbittypes"},
     {16144, "CHARGES_RING_OF_SUFFERING_QUANTITY", "charges_ring_of_suffering_quantity", "varbittypes"},
@@ -10621,6 +10733,8 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16146, "CHARGES_VENATOR_BOW_QUANTITY", "charges_venator_bow_quantity", "varbittypes"},
     {16147, "CHARGES_TOXIC_BLOWPIPE_QUANTITY", "charges_toxic_blowpipe_quantity", "varbittypes"},
     {16148, "CHARGES_CRYSTAL_TOOLS_QUANTITY", "charges_crystal_tools_quantity", "varbittypes"},
+    {16149, "PVPTUT_LOADOUT_C_WORN_LHAND", "pvptut_loadout_c_worn_lhand", "varbittypes"},
+    {16150, "PVPTUT_LOADOUT_C_WORN_LEGS", "pvptut_loadout_c_worn_legs", "varbittypes"},
     {16151, "CHARGES_BLOOD_FURY_QUANTITY", "charges_blood_fury_quantity", "varbittypes"},
     {16152, "CHARGES_TOME_OF_WATER_QUANTITY", "charges_tome_of_water_quantity", "varbittypes"},
     {16153, "CHARGES_TOME_OF_FIRE_QUANTITY", "charges_tome_of_fire_quantity", "varbittypes"},
@@ -10628,17 +10742,25 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16155, "CHARGES_WARPED_SCEPTRE_QUANTITY", "charges_warped_sceptre_quantity", "varbittypes"},
     {16156, "CHARGES_TUMEKENS_SHADOW_QUANTITY", "charges_tumekens_shadow_quantity", "varbittypes"},
     {16157, "CHARGES_ECHO_BOOTS_QUANTITY", "charges_echo_boots_quantity", "varbittypes"},
+    {16158, "PVPTUT_LOADOUT_C_WORN_HANDS", "pvptut_loadout_c_worn_hands", "varbittypes"},
+    {16159, "PVPTUT_LOADOUT_C_WORN_FEET", "pvptut_loadout_c_worn_feet", "varbittypes"},
     {16160, "CHARGES_SOUL_BEARER_QUANTITY", "charges_soul_bearer_quantity", "varbittypes"},
     {16161, "CHARGES_TONALZTICS_OF_RALOS_QUANTITY", "charges_tonalztics_of_ralos_quantity", "varbittypes"},
     {16162, "CHARGES_BRACELET_OF_ETHEREUM_QUANTITY", "charges_bracelet_of_ethereum_quantity", "varbittypes"},
     {16163, "CHARGES_CELESTIAL_RING_QUANTITY", "charges_celestial_ring_quantity", "varbittypes"},
     {16164, "CHARGES_TRIDENT_OF_THE_SEAS_E_QUANTITY", "charges_trident_of_the_seas_e_quantity", "varbittypes"},
     {16165, "CHARGES_TOME_OF_EARTH_QUANTITY", "charges_tome_of_earth_quantity", "varbittypes"},
+    {16167, "PVPTUT_LOADOUT_C_WORN_RING", "pvptut_loadout_c_worn_ring", "varbittypes"},
+    {16168, "PVPTUT_LOADOUT_C_WORN_QUIVER", "pvptut_loadout_c_worn_quiver", "varbittypes"},
     {16172, "CHARGES_CRYSTAL_WEAK_QUANTITY", "charges_crystal_weak_quantity", "varbittypes"},
     {16173, "CHARGES_ALCHEMISTS_AMULET_QUANTITY", "charges_alchemists_amulet_quantity", "varbittypes"},
     {16174, "CHARGES_GIANTSOUL_AMULET_QUANTITY", "charges_giantsoul_amulet_quantity", "varbittypes"},
     {16175, "CHARGES_PENDANT_OF_ATES_QUANTITY", "charges_pendant_of_ates_quantity", "varbittypes"},
+    {16176, "PVPTUT_LOADOUT_A_SPELLBOOK", "pvptut_loadout_a_spellbook", "varbittypes"},
+    {16177, "PVPTUT_LOADOUT_B_SPELLBOOK", "pvptut_loadout_b_spellbook", "varbittypes"},
     {16184, "RAIDS_BOOK_HOUNDMASTER_READ", "raids_book_houndmaster_read", "varbittypes"},
+    {16185, "PVPTUT_LOADOUT_C_SPELLBOOK", "pvptut_loadout_c_spellbook", "varbittypes"},
+    {16186, "PVPTUT_LOADOUT_DEFAULT_TAB", "pvptut_loadout_default_tab", "varbittypes"},
     {16187, "RAIDS_BOOK_CREATUREKEEPER_READ", "raids_book_creaturekeeper_read", "varbittypes"},
     {16188, "RAIDS_BOOK_VANGUARD_READ", "raids_book_vanguard_read", "varbittypes"},
     {16189, "RAIDS_BOOK_VESPULA_READ", "raids_book_vespula_read", "varbittypes"},
@@ -10646,10 +10768,14 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16191, "RAIDS_BOOK_TEKTON_READ", "raids_book_tekton_read", "varbittypes"},
     {16192, "RAIDS_BOOK_VASANISTIRIO_READ", "raids_book_vasanistirio_read", "varbittypes"},
     {16193, "OMNISHOP_HASITEM", "omnishop_hasitem", "varbittypes"},
+    {16194, "PVPTUT_PRAYER_COMPLETE", "pvptut_prayer_complete", "varbittypes"},
+    {16195, "PVPTUT_FREEZE_COMPLETE", "pvptut_freeze_complete", "varbittypes"},
     {16196, "OMNISHOP_ALTERNATE_COST", "omnishop_alternate_cost", "varbittypes"},
     {16198, "CASTLEWARS_BARRICADES_INSIDE", "castlewars_barricades_inside", "varbittypes"},
     {16199, "CASTLEWARS_BARRICADES_OUTSIDE", "castlewars_barricades_outside", "varbittypes"},
     {16201, "RUNE_POUCH_SELECTEDQUANTITY", "rune_pouch_selectedquantity", "varbittypes"},
+    {16203, "PVPTUT_SPECIAL_ATTACK_COMPLETE", "pvptut_special_attack_complete", "varbittypes"},
+    {16204, "PVPTUT_GEAR_SWITCH_COMPLETE", "pvptut_gear_switch_complete", "varbittypes"},
     {16205, "MYARM_LEPRECHAUN_MOVED", "myarm_leprechaun_moved", "varbittypes"},
     {16206, "RUNE_POUCH_CUSTOMQUANTITY", "rune_pouch_customquantity", "varbittypes"},
     {16207, "CASTLEWARS_WORLD_CLIENT", "castlewars_world_client", "varbittypes"},
@@ -10657,6 +10783,8 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16209, "EASTER25_JUICE", "easter25_juice", "varbittypes"},
     {16210, "EASTER25_ATE_CARROT", "easter25_ate_carrot", "varbittypes"},
     {16211, "EASTER25_DRANK_JUICE", "easter25_drank_juice", "varbittypes"},
+    {16212, "PVPTUT_COMBO_EATING_COMPLETE", "pvptut_combo_eating_complete", "varbittypes"},
+    {16213, "PVPTUT_BOSS_MEDIUM_COMPLETE", "pvptut_boss_medium_complete", "varbittypes"},
     {16214, "EASTER25_BUNS", "easter25_buns", "varbittypes"},
     {16215, "EASTER25_RAISINS_COMPLETE", "easter25_raisins_complete", "varbittypes"},
     {16216, "EASTER25_ATE_BUN", "easter25_ate_bun", "varbittypes"},
@@ -10665,6 +10793,7 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16219, "EASTER25_DANCE", "easter25_dance", "varbittypes"},
     {16220, "EASTER25_SCRIPT_READ", "easter25_script_read", "varbittypes"},
     {16221, "EASTER25_COSTUME_FOUND", "easter25_costume_found", "varbittypes"},
+    {16222, "PVPTUT_TUTOR_INTRO_CHAT_COMPLETE", "pvptut_tutor_intro_chat_complete", "varbittypes"},
     {16223, "EASTER25_DANCE_DISCUSSED", "easter25_dance_discussed", "varbittypes"},
     {16224, "EASTER25_EGG_TAKEN", "easter25_egg_taken", "varbittypes"},
     {16225, "EASTER25_DOUGH_TAKEN", "easter25_dough_taken", "varbittypes"},
@@ -10682,19 +10811,48 @@ inline constexpr std::array<Entry, 13412> kVarbitIDEntries = {{
     {16238, "BOOKOFSCROLLS_CHASMOFFIRE", "bookofscrolls_chasmoffire", "varbittypes"},
     {16239, "BUFF_SURGE_POTION_COOLDOWN_DISABLED", "buff_surge_potion_cooldown_disabled", "varbittypes"},
     {16240, "POTIONSTORE_VILE_SIZE_SURGE_POTION", "potionstore_vile_size_surge_potion", "varbittypes"},
+    {16248, "PVPTUT_BOSS_EXPERT_COMPLETE", "pvptut_boss_expert_complete", "varbittypes"},
     {16254, "COLLECTION_BOSSES_YAMA_COMPLETED", "collection_bosses_yama_completed", "varbittypes"},
     {16255, "CA_TOTAL_TASKS_COMPLETED_YAMA", "ca_total_tasks_completed_yama", "varbittypes"},
+    {16257, "PVPTUT_PRAYER_REWARDS_CLAIMED", "pvptut_prayer_rewards_claimed", "varbittypes"},
+    {16258, "PVPTUT_FREEZE_REWARDS_CLAIMED", "pvptut_freeze_rewards_claimed", "varbittypes"},
     {16264, "YAMA_HORN_RADIUS", "yama_horn_radius", "varbittypes"},
     {16265, "YAMA_HORN_MAX_PLAYERS", "yama_horn_max_players", "varbittypes"},
+    {16266, "PVPTUT_SPECIAL_ATTACK_REWARDS_CLAIMED", "pvptut_special_attack_rewards_claimed", "varbittypes"},
+    {16267, "PVPTUT_GEAR_SWITCH_REWARDS_CLAIMED", "pvptut_gear_switch_rewards_claimed", "varbittypes"},
     {16268, "PLAYER_HAS_EQUIPPED_SOULFLAME_HORN", "player_has_equipped_soulflame_horn", "varbittypes"},
     {16269, "DEATH_CHARGE_SCROLL_USED", "death_charge_scroll_used", "varbittypes"},
     {16270, "SURGE_POTION_TIMER", "surge_potion_timer", "varbittypes"},
+    {16275, "PVPTUT_COMBO_EATING_REWARDS_CLAIMED", "pvptut_combo_eating_rewards_claimed", "varbittypes"},
+    {16276, "PVPTUT_PETE_VOUCHERS_COUNT", "pvptut_pete_vouchers_count", "varbittypes"},
+    {16280, "PVPTUT_PETE_VOUCHERS_CLAIMED", "pvptut_pete_vouchers_claimed", "varbittypes"},
+    {16281, "PVPTUT_EXIT_CLEANUP", "pvptut_exit_cleanup", "varbittypes"},
     {16284, "CHASM_VOICE_PROGRESS", "chasm_voice_progress", "varbittypes"},
     {16285, "YAMA_IMP_CONTRACT_SIGNED", "yama_imp_contract_signed", "varbittypes"},
     {16286, "YAMA_THRONE_STATE", "yama_throne_state", "varbittypes"},
     {16289, "EQUIPMENT_ACTIVITY_LOCKED_TEMP", "equipment_activity_locked_temp", "varbittypes"},
+    {16292, "PVPTUT_PREVIOUS_SPELLBOOK", "pvptut_previous_spellbook", "varbittypes"},
+    {16293, "PVPTUT_PREVIOUS_SA_ENERGY", "pvptut_previous_sa_energy", "varbittypes"},
+    {16297, "PVPTUT_PRAYER_SWITCHING_HIGHEST_COUNT", "pvptut_prayer_switching_highest_count", "varbittypes"},
+    {16298, "PVPTUT_COMBO_EATING_HIGHEST_COUNT", "pvptut_combo_eating_highest_count", "varbittypes"},
+    {16299, "PVPTUT_SPECIAL_ATTACK_HIGHEST_COUNT", "pvptut_special_attack_highest_count", "varbittypes"},
+    {16300, "PVPTUT_GEAR_SWITCH_HIGHEST_COUNT", "pvptut_gear_switch_highest_count", "varbittypes"},
+    {16301, "PVPTUT_SCORE_PRAYER", "pvptut_score_prayer", "varbittypes"},
+    {16302, "PVPTUT_SCORE_SPECIAL_ATTACK", "pvptut_score_special_attack", "varbittypes"},
+    {16303, "PVPTUT_SCORE_SPECIAL_ATTACK_STAGE", "pvptut_score_special_attack_stage", "varbittypes"},
+    {16304, "PVPTUT_SCORE_PRAYER_CHALLENGE", "pvptut_score_prayer_challenge", "varbittypes"},
+    {16305, "PVPTUT_SCORE_PRAYER_EXTENDED_STAGE", "pvptut_score_prayer_extended_stage", "varbittypes"},
+    {16306, "PVPTUT_SCORE_FREEZE_STAGE", "pvptut_score_freeze_stage", "varbittypes"},
+    {16307, "PVPTUT_SCORE_GEAR_SWITCH", "pvptut_score_gear_switch", "varbittypes"},
+    {16308, "PVPTUT_SCORE_GEAR_SWITCH_UPDATE", "pvptut_score_gear_switch_update", "varbittypes"},
+    {16309, "PVPTUT_SCORE_GEAR_SWITCH_STAGE", "pvptut_score_gear_switch_stage", "varbittypes"},
+    {16310, "PVPTUT_SCORE_BOSS_TOTAL_DAMAGE", "pvptut_score_boss_total_damage", "varbittypes"},
     {16312, "PET_INSURANCE_ARAXXOR", "pet_insurance_araxxor", "varbittypes"},
     {16313, "PET_INSURANCE_HUEY", "pet_insurance_huey", "varbittypes"},
+    {16314, "PVPTUT_SCORE_COMBO_EATING", "pvptut_score_combo_eating", "varbittypes"},
+    {16315, "PVPTUT_SCORE_COMBO_EATING_STAGE", "pvptut_score_combo_eating_stage", "varbittypes"},
+    {16316, "PVPTUT_SCORE_MEDIUM_BOSS_HIGHSCORE", "pvptut_score_medium_boss_highscore", "varbittypes"},
+    {16317, "PVPTUT_SCORE_EXPERT_BOSS_HIGHSCORE", "pvptut_score_expert_boss_highscore", "varbittypes"},
     {16342, "PET_INSURANCE_AMOXLIATL", "pet_insurance_amoxliatl", "varbittypes"},
     {16343, "PET_INSURANCE_ROYALTITANS", "pet_insurance_royaltitans", "varbittypes"},
     {16345, "PET_INSURANCE_DOM", "pet_insurance_dom", "varbittypes"},
@@ -16628,6 +16786,17 @@ struct VarbitID final {
     static constexpr int32_t CHAT_STFU = 4394;
     static constexpr int32_t GE_NEWOFFER_QUANTITY = 4396;
     static constexpr int32_t GE_NEWOFFER_TYPE = 4397;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_00 = 4398;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_01 = 4409;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_02 = 4410;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_03 = 4411;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_04 = 4412;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_05 = 4413;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_06 = 4414;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_07 = 4415;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_08 = 4416;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_09 = 4417;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_10 = 4418;
     static constexpr int32_t PET_INSURANCE_VENENATISPET = 4429;
     static constexpr int32_t DEPOSITBOX_MODE = 4430;
     static constexpr int32_t GE_SELECTEDSLOT = 4439;
@@ -17306,6 +17475,16 @@ struct VarbitID final {
     static constexpr int32_t MOTHERLODE_BIGGERSACK = 5556;
     static constexpr int32_t FARMING_BLOCKWEEDS = 5557;
     static constexpr int32_t MOTHERLODE_SACK_TRANSMIT = 5558;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_11 = 5567;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_12 = 5568;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_13 = 5569;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_14 = 5570;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_15 = 5571;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_16 = 5572;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_17 = 5573;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_18 = 5574;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_19 = 5575;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_20 = 5576;
     static constexpr int32_t EMOTE_HOTLINE_BLING = 5597;
     static constexpr int32_t EMOTE_GANGNAM = 5598;
     static constexpr int32_t FOLLOWEROPS_DEPRIORITISED = 5599;
@@ -18276,6 +18455,26 @@ struct VarbitID final {
     static constexpr int32_t PVP_AREA_CLIENT = 8121;
     static constexpr int32_t KARAM_DUNGEON_PERMANENTACCESS = 8122;
     static constexpr int32_t KARAM_DUNGEON_DOORDATA = 8123;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_21 = 8143;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_22 = 8144;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_23 = 8145;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_24 = 8146;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_25 = 8147;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_26 = 8148;
+    static constexpr int32_t PVPTUT_LOADOUT_A_INV_27 = 8149;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_HAT = 8150;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_BACK = 8151;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_FRONT = 8152;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_RHAND = 8153;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_TORSO = 8154;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_LHAND = 8155;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_LEGS = 8156;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_HANDS = 8157;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_FEET = 8158;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_RING = 8159;
+    static constexpr int32_t PVPTUT_LOADOUT_A_WORN_QUIVER = 8160;
+    static constexpr int32_t PVPTUT_LOADOUT_SPELLBOOK = 8161;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_00 = 8162;
     static constexpr int32_t SIDE_JOURNAL_TAB = 8168;
     static constexpr int32_t SEED_VAULT_CATEGORY = 8171;
     static constexpr int32_t SEED_VAULT_FAVE1 = 8172;
@@ -23991,21 +24190,84 @@ struct VarbitID final {
     static constexpr int32_t FARMING_COMPOST_VARBIT_VEG_15_TRANSMIT = 16011;
     static constexpr int32_t FARMING_COMPOST_VARBIT_VEG_16_TRANSMIT = 16012;
     static constexpr int32_t FARMING_COMPOST_VARBIT_VEG_17_TRANSMIT = 16013;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_01 = 16014;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_02 = 16015;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_03 = 16016;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_04 = 16017;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_05 = 16018;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_06 = 16019;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_07 = 16020;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_08 = 16021;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_09 = 16022;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_10 = 16023;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_11 = 16024;
     static constexpr int32_t BH_STATIUS_WARHAMMER_REFUND_QUANTITY = 16025;
     static constexpr int32_t BH_MORRIGAN_AXE_REFUND_QUANTITY = 16026;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_12 = 16027;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_13 = 16028;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_14 = 16029;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_15 = 16030;
     static constexpr int32_t BH_MORRIGAN_JAVELIN_REFUND_QUANTITY = 16031;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_16 = 16032;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_17 = 16033;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_18 = 16034;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_19 = 16035;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_20 = 16036;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_21 = 16037;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_22 = 16038;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_23 = 16039;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_24 = 16040;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_25 = 16041;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_26 = 16042;
+    static constexpr int32_t PVPTUT_LOADOUT_B_INV_27 = 16043;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_HAT = 16044;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_BACK = 16045;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_FRONT = 16046;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_RHAND = 16047;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_TORSO = 16048;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_LHAND = 16049;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_LEGS = 16050;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_HANDS = 16051;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_FEET = 16052;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_RING = 16053;
+    static constexpr int32_t PVPTUT_LOADOUT_B_WORN_QUIVER = 16054;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_00 = 16055;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_01 = 16056;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_02 = 16057;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_03 = 16058;
     static constexpr int32_t BH_ZURIEL_STAFF_REFUND_QUANTITY = 16059;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_04 = 16060;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_05 = 16061;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_06 = 16062;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_07 = 16063;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_08 = 16064;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_09 = 16065;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_10 = 16066;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_11 = 16067;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_12 = 16068;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_13 = 16069;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_14 = 16070;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_15 = 16071;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_16 = 16072;
     static constexpr int32_t FLOATER_IS_SEARCHING = 16073;
     static constexpr int32_t FLOATER_SEARCH_LISTEN_FOR_KEYBOARD = 16074;
     static constexpr int32_t FLOATER_CHATBOX_OPENED = 16075;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_17 = 16077;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_18 = 16078;
     static constexpr int32_t COLLECTION_BOSSES_ROYAL_TITANS_COMPLETED = 16085;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_19 = 16086;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_20 = 16087;
     static constexpr int32_t CA_TOTAL_TASKS_COMPLETED_ROYAL_TITANS = 16088;
     static constexpr int32_t ROYAL_TITANS_ENTER_WARNING = 16089;
     static constexpr int32_t PRAYER_DEADEYE = 16090;
     static constexpr int32_t PRAYER_MYSTICVIGOUR = 16091;
     static constexpr int32_t POH_MENAGERIE_MULTIFORM_ROYALTITANPET = 16092;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_21 = 16095;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_22 = 16096;
     static constexpr int32_t PRAYER_DEADEYE_UNLOCKED = 16097;
     static constexpr int32_t PRAYER_MYSTIC_VIGOUR_UNLOCKED = 16098;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_23 = 16104;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_24 = 16105;
     static constexpr int32_t OPTION_CAMERA_EFFECT_COMBAT_DISABLED = 16106;
     static constexpr int32_t OPTION_CAMERA_EFFECT_SHAMANS_DISABLED = 16107;
     static constexpr int32_t OPTION_CAMERA_EFFECT_OLM_DISABLED = 16108;
@@ -24013,12 +24275,16 @@ struct VarbitID final {
     static constexpr int32_t OPTION_CAMERA_EFFECT_ATMOSPHERICS_DISABLED = 16110;
     static constexpr int32_t SETTINGS_MOBILE_TAPTODROP_ENABLED = 16111;
     static constexpr int32_t SETTINGS_MOBILE_TILE_HIGHLIGHT_ENABLED = 16112;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_25 = 16113;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_26 = 16114;
     static constexpr int32_t SETTINGS_MOBILE_TILE_HIGHLIGHTS_HIDDEN = 16115;
     static constexpr int32_t SETTINGS_MOBILE_SHOW_FILTER_STONES_ENABLED = 16116;
     static constexpr int32_t CLAN_DISABLE_LASTSEEN = 16118;
     static constexpr int32_t OSB12_DONE = 16119;
     static constexpr int32_t CHARGES_BOW_OF_FAERDHINEN_CORRUPTION = 16120;
     static constexpr int32_t CHARGES_BLADE_OF_SAELDOR_CORRUPTION = 16121;
+    static constexpr int32_t PVPTUT_LOADOUT_C_INV_27 = 16122;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_HAT = 16123;
     static constexpr int32_t CHARGES_DIZANAS_QUIVER_BLESSING = 16124;
     static constexpr int32_t BANK_BANKOPS_TOGGLE_ON = 16125;
     static constexpr int32_t CHARGES_TRIDENT_OF_THE_SEAS_QUANTITY = 16126;
@@ -24026,6 +24292,8 @@ struct VarbitID final {
     static constexpr int32_t CHARGES_SERPENTINE_HELM_QUANTITY = 16128;
     static constexpr int32_t CHARGES_TOXIC_STAFF_OF_THE_DEAD_QUANTITY = 16129;
     static constexpr int32_t CHARGES_BOW_OF_FAERDHINEN_QUANTITY = 16130;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_BACK = 16131;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_FRONT = 16132;
     static constexpr int32_t CHARGES_BLADE_OF_SAELDOR_QUANTITY = 16133;
     static constexpr int32_t CHARGES_ARCLIGHT_QUANTITY = 16134;
     static constexpr int32_t CHARGES_WILDERNESS_WEAPON_QUANTITY = 16135;
@@ -24033,6 +24301,8 @@ struct VarbitID final {
     static constexpr int32_t CHARGES_ASH_SANCTIFIER_QUANTITY = 16137;
     static constexpr int32_t CHARGES_CIRCLET_OF_WATER_QUANTITY = 16138;
     static constexpr int32_t CHARGES_BRYOPHYTAS_STAFF_QUANTITY = 16139;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_RHAND = 16140;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_TORSO = 16141;
     static constexpr int32_t CHARGES_CRYSTAL_ARMOUR_QUANTITY = 16142;
     static constexpr int32_t CHARGES_SANGUINESTI_STAFF_QUANTITY = 16143;
     static constexpr int32_t CHARGES_RING_OF_SUFFERING_QUANTITY = 16144;
@@ -24040,6 +24310,8 @@ struct VarbitID final {
     static constexpr int32_t CHARGES_VENATOR_BOW_QUANTITY = 16146;
     static constexpr int32_t CHARGES_TOXIC_BLOWPIPE_QUANTITY = 16147;
     static constexpr int32_t CHARGES_CRYSTAL_TOOLS_QUANTITY = 16148;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_LHAND = 16149;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_LEGS = 16150;
     static constexpr int32_t CHARGES_BLOOD_FURY_QUANTITY = 16151;
     static constexpr int32_t CHARGES_TOME_OF_WATER_QUANTITY = 16152;
     static constexpr int32_t CHARGES_TOME_OF_FIRE_QUANTITY = 16153;
@@ -24047,17 +24319,25 @@ struct VarbitID final {
     static constexpr int32_t CHARGES_WARPED_SCEPTRE_QUANTITY = 16155;
     static constexpr int32_t CHARGES_TUMEKENS_SHADOW_QUANTITY = 16156;
     static constexpr int32_t CHARGES_ECHO_BOOTS_QUANTITY = 16157;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_HANDS = 16158;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_FEET = 16159;
     static constexpr int32_t CHARGES_SOUL_BEARER_QUANTITY = 16160;
     static constexpr int32_t CHARGES_TONALZTICS_OF_RALOS_QUANTITY = 16161;
     static constexpr int32_t CHARGES_BRACELET_OF_ETHEREUM_QUANTITY = 16162;
     static constexpr int32_t CHARGES_CELESTIAL_RING_QUANTITY = 16163;
     static constexpr int32_t CHARGES_TRIDENT_OF_THE_SEAS_E_QUANTITY = 16164;
     static constexpr int32_t CHARGES_TOME_OF_EARTH_QUANTITY = 16165;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_RING = 16167;
+    static constexpr int32_t PVPTUT_LOADOUT_C_WORN_QUIVER = 16168;
     static constexpr int32_t CHARGES_CRYSTAL_WEAK_QUANTITY = 16172;
     static constexpr int32_t CHARGES_ALCHEMISTS_AMULET_QUANTITY = 16173;
     static constexpr int32_t CHARGES_GIANTSOUL_AMULET_QUANTITY = 16174;
     static constexpr int32_t CHARGES_PENDANT_OF_ATES_QUANTITY = 16175;
+    static constexpr int32_t PVPTUT_LOADOUT_A_SPELLBOOK = 16176;
+    static constexpr int32_t PVPTUT_LOADOUT_B_SPELLBOOK = 16177;
     static constexpr int32_t RAIDS_BOOK_HOUNDMASTER_READ = 16184;
+    static constexpr int32_t PVPTUT_LOADOUT_C_SPELLBOOK = 16185;
+    static constexpr int32_t PVPTUT_LOADOUT_DEFAULT_TAB = 16186;
     static constexpr int32_t RAIDS_BOOK_CREATUREKEEPER_READ = 16187;
     static constexpr int32_t RAIDS_BOOK_VANGUARD_READ = 16188;
     static constexpr int32_t RAIDS_BOOK_VESPULA_READ = 16189;
@@ -24065,10 +24345,14 @@ struct VarbitID final {
     static constexpr int32_t RAIDS_BOOK_TEKTON_READ = 16191;
     static constexpr int32_t RAIDS_BOOK_VASANISTIRIO_READ = 16192;
     static constexpr int32_t OMNISHOP_HASITEM = 16193;
+    static constexpr int32_t PVPTUT_PRAYER_COMPLETE = 16194;
+    static constexpr int32_t PVPTUT_FREEZE_COMPLETE = 16195;
     static constexpr int32_t OMNISHOP_ALTERNATE_COST = 16196;
     static constexpr int32_t CASTLEWARS_BARRICADES_INSIDE = 16198;
     static constexpr int32_t CASTLEWARS_BARRICADES_OUTSIDE = 16199;
     static constexpr int32_t RUNE_POUCH_SELECTEDQUANTITY = 16201;
+    static constexpr int32_t PVPTUT_SPECIAL_ATTACK_COMPLETE = 16203;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH_COMPLETE = 16204;
     static constexpr int32_t MYARM_LEPRECHAUN_MOVED = 16205;
     static constexpr int32_t RUNE_POUCH_CUSTOMQUANTITY = 16206;
     static constexpr int32_t CASTLEWARS_WORLD_CLIENT = 16207;
@@ -24076,6 +24360,8 @@ struct VarbitID final {
     static constexpr int32_t EASTER25_JUICE = 16209;
     static constexpr int32_t EASTER25_ATE_CARROT = 16210;
     static constexpr int32_t EASTER25_DRANK_JUICE = 16211;
+    static constexpr int32_t PVPTUT_COMBO_EATING_COMPLETE = 16212;
+    static constexpr int32_t PVPTUT_BOSS_MEDIUM_COMPLETE = 16213;
     static constexpr int32_t EASTER25_BUNS = 16214;
     static constexpr int32_t EASTER25_RAISINS_COMPLETE = 16215;
     static constexpr int32_t EASTER25_ATE_BUN = 16216;
@@ -24084,6 +24370,7 @@ struct VarbitID final {
     static constexpr int32_t EASTER25_DANCE = 16219;
     static constexpr int32_t EASTER25_SCRIPT_READ = 16220;
     static constexpr int32_t EASTER25_COSTUME_FOUND = 16221;
+    static constexpr int32_t PVPTUT_TUTOR_INTRO_CHAT_COMPLETE = 16222;
     static constexpr int32_t EASTER25_DANCE_DISCUSSED = 16223;
     static constexpr int32_t EASTER25_EGG_TAKEN = 16224;
     static constexpr int32_t EASTER25_DOUGH_TAKEN = 16225;
@@ -24101,19 +24388,48 @@ struct VarbitID final {
     static constexpr int32_t BOOKOFSCROLLS_CHASMOFFIRE = 16238;
     static constexpr int32_t BUFF_SURGE_POTION_COOLDOWN_DISABLED = 16239;
     static constexpr int32_t POTIONSTORE_VILE_SIZE_SURGE_POTION = 16240;
+    static constexpr int32_t PVPTUT_BOSS_EXPERT_COMPLETE = 16248;
     static constexpr int32_t COLLECTION_BOSSES_YAMA_COMPLETED = 16254;
     static constexpr int32_t CA_TOTAL_TASKS_COMPLETED_YAMA = 16255;
+    static constexpr int32_t PVPTUT_PRAYER_REWARDS_CLAIMED = 16257;
+    static constexpr int32_t PVPTUT_FREEZE_REWARDS_CLAIMED = 16258;
     static constexpr int32_t YAMA_HORN_RADIUS = 16264;
     static constexpr int32_t YAMA_HORN_MAX_PLAYERS = 16265;
+    static constexpr int32_t PVPTUT_SPECIAL_ATTACK_REWARDS_CLAIMED = 16266;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH_REWARDS_CLAIMED = 16267;
     static constexpr int32_t PLAYER_HAS_EQUIPPED_SOULFLAME_HORN = 16268;
     static constexpr int32_t DEATH_CHARGE_SCROLL_USED = 16269;
     static constexpr int32_t SURGE_POTION_TIMER = 16270;
+    static constexpr int32_t PVPTUT_COMBO_EATING_REWARDS_CLAIMED = 16275;
+    static constexpr int32_t PVPTUT_PETE_VOUCHERS_COUNT = 16276;
+    static constexpr int32_t PVPTUT_PETE_VOUCHERS_CLAIMED = 16280;
+    static constexpr int32_t PVPTUT_EXIT_CLEANUP = 16281;
     static constexpr int32_t CHASM_VOICE_PROGRESS = 16284;
     static constexpr int32_t YAMA_IMP_CONTRACT_SIGNED = 16285;
     static constexpr int32_t YAMA_THRONE_STATE = 16286;
     static constexpr int32_t EQUIPMENT_ACTIVITY_LOCKED_TEMP = 16289;
+    static constexpr int32_t PVPTUT_PREVIOUS_SPELLBOOK = 16292;
+    static constexpr int32_t PVPTUT_PREVIOUS_SA_ENERGY = 16293;
+    static constexpr int32_t PVPTUT_PRAYER_SWITCHING_HIGHEST_COUNT = 16297;
+    static constexpr int32_t PVPTUT_COMBO_EATING_HIGHEST_COUNT = 16298;
+    static constexpr int32_t PVPTUT_SPECIAL_ATTACK_HIGHEST_COUNT = 16299;
+    static constexpr int32_t PVPTUT_GEAR_SWITCH_HIGHEST_COUNT = 16300;
+    static constexpr int32_t PVPTUT_SCORE_PRAYER = 16301;
+    static constexpr int32_t PVPTUT_SCORE_SPECIAL_ATTACK = 16302;
+    static constexpr int32_t PVPTUT_SCORE_SPECIAL_ATTACK_STAGE = 16303;
+    static constexpr int32_t PVPTUT_SCORE_PRAYER_CHALLENGE = 16304;
+    static constexpr int32_t PVPTUT_SCORE_PRAYER_EXTENDED_STAGE = 16305;
+    static constexpr int32_t PVPTUT_SCORE_FREEZE_STAGE = 16306;
+    static constexpr int32_t PVPTUT_SCORE_GEAR_SWITCH = 16307;
+    static constexpr int32_t PVPTUT_SCORE_GEAR_SWITCH_UPDATE = 16308;
+    static constexpr int32_t PVPTUT_SCORE_GEAR_SWITCH_STAGE = 16309;
+    static constexpr int32_t PVPTUT_SCORE_BOSS_TOTAL_DAMAGE = 16310;
     static constexpr int32_t PET_INSURANCE_ARAXXOR = 16312;
     static constexpr int32_t PET_INSURANCE_HUEY = 16313;
+    static constexpr int32_t PVPTUT_SCORE_COMBO_EATING = 16314;
+    static constexpr int32_t PVPTUT_SCORE_COMBO_EATING_STAGE = 16315;
+    static constexpr int32_t PVPTUT_SCORE_MEDIUM_BOSS_HIGHSCORE = 16316;
+    static constexpr int32_t PVPTUT_SCORE_EXPERT_BOSS_HIGHSCORE = 16317;
     static constexpr int32_t PET_INSURANCE_AMOXLIATL = 16342;
     static constexpr int32_t PET_INSURANCE_ROYALTITANS = 16343;
     static constexpr int32_t PET_INSURANCE_DOM = 16345;

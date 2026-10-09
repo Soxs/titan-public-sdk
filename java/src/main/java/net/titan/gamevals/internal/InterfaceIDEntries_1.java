@@ -468,6 +468,9 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(967, "CASTLE_DRAKAN_WORLD_MAP", "castle_drakan_world_map", "iftypes"),
             new GamevalEntry(968, "MYQ6_INTEGRITY_BAR", "myq6_integrity_bar", "iftypes"),
             new GamevalEntry(969, "MOURNING_DEATHALTAR_LIST", "mourning_deathaltar_list", "iftypes"),
+            new GamevalEntry(970, "PVPTUT_UI", "pvptut_ui", "iftypes"),
+            new GamevalEntry(971, "PVP_TUT_2026_SETUP_INTERFACE", "pvp_tut_2026_setup_interface", "iftypes"),
+            new GamevalEntry(972, "PVPTUT_SCOREBOARD_UI", "pvptut_scoreboard_ui", "iftypes"),
         };
     }
 

@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 34125> kItemIDEntries = {{
+inline constexpr std::array<Entry, 34164> kItemIDEntries = {{
     {0, "MCANNONREMAINS", "Dwarf remains", "objtypes"},
     {1, "MCANNONTOOLKIT", "Toolkit", "objtypes"},
     {2, "MCANNONBALL", "Steel cannonball", "objtypes"},
@@ -34132,6 +34132,45 @@ inline constexpr std::array<Entry, 34125> kItemIDEntries = {{
     {34604, "COINS_AND_PLATINUM", "Coins and platinum", "objtypes"},
     {34605, "COINS_AND_PLATINUM_MID", "coins_and_platinum_mid", "objtypes"},
     {34606, "COINS_AND_PLATINUM_HIGH", "coins_and_platinum_high", "objtypes"},
+    {34607, "DEADMAN_MA2_ZAROS_CAPE", "Imbued ancient cape (Deadman)", "objtypes"},
+    {34608, "PLACEHOLDER_DEADMAN_MA2_ZAROS_CAPE", "placeholder_deadman_ma2_zaros_cape", "objtypes"},
+    {34609, "BR_BARROWS_KARIL_LEGS", "Karil's leatherskirt", "objtypes"},
+    {34610, "CERT_BR_BARROWS_KARIL_LEGS", "cert_br_barrows_karil_legs", "objtypes"},
+    {34611, "BR_BANDOS_CHESTPLATE", "Bandos chestplate", "objtypes"},
+    {34612, "CERT_BR_BANDOS_CHESTPLATE", "cert_br_bandos_chestplate", "objtypes"},
+    {34613, "BR_BARBASSAULT_PENANCE_FIGHTER_TORSO", "Fighter torso", "objtypes"},
+    {34614, "CERT_BR_BARBASSAULT_PENANCE_FIGHTER_TORSO", "cert_br_barbassault_penance_fighter_torso", "objtypes"},
+    {34615, "BR_BLACK_DHIDE_SHIELD", "Black d'hide shield", "objtypes"},
+    {34616, "CERT_BR_BLACK_DHIDE_SHIELD", "cert_br_black_dhide_shield", "objtypes"},
+    {34617, "BR_TORVA_HELM", "Torva full helm", "objtypes"},
+    {34618, "CERT_BR_TORVA_HELM", "cert_br_torva_helm", "objtypes"},
+    {34619, "BR_ABYSSAL_TENTACLE", "Abyssal tentacle", "objtypes"},
+    {34620, "CERT_BR_ABYSSAL_TENTACLE", "cert_br_abyssal_tentacle", "objtypes"},
+    {34621, "BR_DRAGON_BOOTS", "Dragon boots", "objtypes"},
+    {34622, "CERT_BR_DRAGON_BOOTS", "cert_br_dragon_boots", "objtypes"},
+    {34623, "BR_ANGLERFISH", "Anglerfish", "objtypes"},
+    {34624, "PLACEHOLDER_BR_ANGLERFISH", "placeholder_br_anglerfish", "objtypes"},
+    {34625, "SKILLCAPE_MAX_ZAROS", "Imbued ancient max cape", "objtypes"},
+    {34626, "PLACEHOLDER_SKILLCAPE_MAX_ZAROS", "placeholder_skillcape_max_zaros", "objtypes"},
+    {34627, "SKILLCAPE_MAX_HOOD_ZAROS", "Imbued ancient max hood", "objtypes"},
+    {34628, "PLACEHOLDER_SKILLCAPE_MAX_HOOD_ZAROS", "placeholder_skillcape_max_hood_zaros", "objtypes"},
+    {34629, "SKILLCAPE_MAX_ZAROS_BROKEN", "Imbued ancient max cape (broken)", "objtypes"},
+    {34630, "PLACEHOLDER_SKILLCAPE_MAX_ZAROS_BROKEN", "placeholder_skillcape_max_zaros_broken", "objtypes"},
+    {34631, "NET_TRAP", "Net trap", "objtypes"},
+    {34632, "PLACEHOLDER_NET_TRAP", "placeholder_net_trap", "objtypes"},
+    {34633, "MA2_ZAROS_CAPE", "Imbued ancient cape", "objtypes"},
+    {34634, "PLACEHOLDER_MA2_ZAROS_CAPE", "placeholder_ma2_zaros_cape", "objtypes"},
+    {34635, "MA2_ZAROS_CAPE_BROKEN", "Imbued ancient cape (broken)", "objtypes"},
+    {34636, "PLACEHOLDER_MA2_ZAROS_CAPE_BROKEN", "placeholder_ma2_zaros_cape_broken", "objtypes"},
+    {34637, "MA2_ZAROS_CAPE_TROUVER", "Imbued ancient cape (l)", "objtypes"},
+    {34638, "PLACEHOLDER_MA2_ZAROS_CAPE_TROUVER", "placeholder_ma2_zaros_cape_trouver", "objtypes"},
+    {34639, "MA2_ZAROS_CAPE_DARKER", "Imbued ancient cape", "objtypes"},
+    {34640, "PLACEHOLDER_MA2_ZAROS_CAPE_DARKER", "placeholder_ma2_zaros_cape_darker", "objtypes"},
+    {34641, "PVPTUT_FABRIC", "Ancient fabric", "objtypes"},
+    {34642, "PLACEHOLDER_PVPTUT_FABRIC", "placeholder_pvptut_fabric", "objtypes"},
+    {34643, "PVPTUT_COMBO_EATING_SUPPLY_CRATE", "Supply crate", "objtypes"},
+    {34644, "PVPTUT_REWARD_VOUCHER", "Pete's vouchers", "objtypes"},
+    {34645, "PLACEHOLDER_PVPTUT_REWARD_VOUCHER", "placeholder_pvptut_reward_voucher", "objtypes"},
 }};
 }  // namespace detail
 
@@ -68264,6 +68303,45 @@ struct ItemID final {
     static constexpr int32_t COINS_AND_PLATINUM = 34604;
     static constexpr int32_t COINS_AND_PLATINUM_MID = 34605;
     static constexpr int32_t COINS_AND_PLATINUM_HIGH = 34606;
+    static constexpr int32_t DEADMAN_MA2_ZAROS_CAPE = 34607;
+    static constexpr int32_t PLACEHOLDER_DEADMAN_MA2_ZAROS_CAPE = 34608;
+    static constexpr int32_t BR_BARROWS_KARIL_LEGS = 34609;
+    static constexpr int32_t CERT_BR_BARROWS_KARIL_LEGS = 34610;
+    static constexpr int32_t BR_BANDOS_CHESTPLATE = 34611;
+    static constexpr int32_t CERT_BR_BANDOS_CHESTPLATE = 34612;
+    static constexpr int32_t BR_BARBASSAULT_PENANCE_FIGHTER_TORSO = 34613;
+    static constexpr int32_t CERT_BR_BARBASSAULT_PENANCE_FIGHTER_TORSO = 34614;
+    static constexpr int32_t BR_BLACK_DHIDE_SHIELD = 34615;
+    static constexpr int32_t CERT_BR_BLACK_DHIDE_SHIELD = 34616;
+    static constexpr int32_t BR_TORVA_HELM = 34617;
+    static constexpr int32_t CERT_BR_TORVA_HELM = 34618;
+    static constexpr int32_t BR_ABYSSAL_TENTACLE = 34619;
+    static constexpr int32_t CERT_BR_ABYSSAL_TENTACLE = 34620;
+    static constexpr int32_t BR_DRAGON_BOOTS = 34621;
+    static constexpr int32_t CERT_BR_DRAGON_BOOTS = 34622;
+    static constexpr int32_t BR_ANGLERFISH = 34623;
+    static constexpr int32_t PLACEHOLDER_BR_ANGLERFISH = 34624;
+    static constexpr int32_t SKILLCAPE_MAX_ZAROS = 34625;
+    static constexpr int32_t PLACEHOLDER_SKILLCAPE_MAX_ZAROS = 34626;
+    static constexpr int32_t SKILLCAPE_MAX_HOOD_ZAROS = 34627;
+    static constexpr int32_t PLACEHOLDER_SKILLCAPE_MAX_HOOD_ZAROS = 34628;
+    static constexpr int32_t SKILLCAPE_MAX_ZAROS_BROKEN = 34629;
+    static constexpr int32_t PLACEHOLDER_SKILLCAPE_MAX_ZAROS_BROKEN = 34630;
+    static constexpr int32_t NET_TRAP = 34631;
+    static constexpr int32_t PLACEHOLDER_NET_TRAP = 34632;
+    static constexpr int32_t MA2_ZAROS_CAPE = 34633;
+    static constexpr int32_t PLACEHOLDER_MA2_ZAROS_CAPE = 34634;
+    static constexpr int32_t MA2_ZAROS_CAPE_BROKEN = 34635;
+    static constexpr int32_t PLACEHOLDER_MA2_ZAROS_CAPE_BROKEN = 34636;
+    static constexpr int32_t MA2_ZAROS_CAPE_TROUVER = 34637;
+    static constexpr int32_t PLACEHOLDER_MA2_ZAROS_CAPE_TROUVER = 34638;
+    static constexpr int32_t MA2_ZAROS_CAPE_DARKER = 34639;
+    static constexpr int32_t PLACEHOLDER_MA2_ZAROS_CAPE_DARKER = 34640;
+    static constexpr int32_t PVPTUT_FABRIC = 34641;
+    static constexpr int32_t PLACEHOLDER_PVPTUT_FABRIC = 34642;
+    static constexpr int32_t PVPTUT_COMBO_EATING_SUPPLY_CRATE = 34643;
+    static constexpr int32_t PVPTUT_REWARD_VOUCHER = 34644;
+    static constexpr int32_t PLACEHOLDER_PVPTUT_REWARD_VOUCHER = 34645;
 
     static constexpr std::span<const Entry> entries() { return detail::kItemIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

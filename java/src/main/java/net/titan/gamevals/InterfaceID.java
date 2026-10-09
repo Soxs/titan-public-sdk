@@ -31307,6 +31307,148 @@ public final class InterfaceID
         public static final int SCROLLBAR = 63504390;
     }
 
+    public static final class PvptutUi {
+        private PvptutUi() {}
+
+        public static final int UNIVERSE = 63569920;
+        public static final int WINDOW = 63569921;
+        public static final int FRAME = 63569922;
+        public static final int BTN_CLOSE = 63569923;
+        public static final int BTN_BACK = 63569924;
+        public static final int CONTENT = 63569925;
+        public static final int MAINMENU = 63569926;
+        public static final int MAINMENU_CONTENT = 63569927;
+        public static final int MAINMENU_CONTENT_ENTRIES = 63569928;
+        public static final int MAINMENU_CONTENT_CLICKBOXES = 63569929;
+        public static final int MAINMENU_CONTENT_SCROLLBAR = 63569930;
+        public static final int TUTORIAL = 63569931;
+        public static final int TUTORIAL_BTN_START = 63569932;
+        public static final int TUTORIAL_BTN_START_FILL = 63569933;
+        public static final int TUTORIAL_BTN_START_COMPLETE_ICON = 63569934;
+        public static final int TUTORIAL_CONTENT_CONTAINER = 63569935;
+        public static final int TUTORIAL_BTN_LOADOUT = 63569936;
+        public static final int TUTORIAL_CONTENT_BORDER = 63569937;
+        public static final int TUTORIAL_CONTENT = 63569938;
+        public static final int TUTORIAL_CONTENT_INNER = 63569939;
+        public static final int TUTORIAL_CONTENT_SCROLLBAR = 63569940;
+        public static final int TUTORIAL_CONTENT_1 = 63569941;
+        public static final int TUTORIAL_BTN_LOADOUT_FILL = 63569942;
+    }
+
+    public static final class PvpTut2026SetupInterface {
+        private PvpTut2026SetupInterface() {}
+
+        public static final int UNIVERSE = 63635456;
+        public static final int FRAME = 63635457;
+        public static final int TABS = 63635458;
+        public static final int ATAB = 63635459;
+        public static final int BTAB = 63635460;
+        public static final int CTAB = 63635461;
+        public static final int DISPLAYS = 63635462;
+        public static final int ADISPLAY = 63635463;
+        public static final int ASPELLBOOK_DISPLAY = 63635464;
+        public static final int ATRASH = 63635465;
+        public static final int AWORN = 63635466;
+        public static final int COM_11 = 63635467;
+        public static final int COM_12 = 63635468;
+        public static final int COM_13 = 63635469;
+        public static final int COM_14 = 63635470;
+        public static final int COM_15 = 63635471;
+        public static final int ASLOT0 = 63635472;
+        public static final int ASLOT1 = 63635473;
+        public static final int ASLOT2 = 63635474;
+        public static final int ASLOT3 = 63635475;
+        public static final int ASLOT4 = 63635476;
+        public static final int ASLOT5 = 63635477;
+        public static final int ASLOT7 = 63635478;
+        public static final int ASLOT9 = 63635479;
+        public static final int ASLOT10 = 63635480;
+        public static final int ASLOT12 = 63635481;
+        public static final int ASLOT13 = 63635482;
+        public static final int AINVENTORY = 63635483;
+        public static final int AMENU_CONTAINER = 63635484;
+        public static final int COM_29 = 63635485;
+        public static final int AMENU = 63635486;
+        public static final int ASCROLLBAR = 63635487;
+        public static final int ASPELLBOOK_CONTAINER = 63635488;
+        public static final int COM_33 = 63635489;
+        public static final int ASPELLBOOK_MENU = 63635490;
+        public static final int COM_35 = 63635491;
+        public static final int ASTATUS = 63635492;
+        public static final int BDISPLAY = 63635493;
+        public static final int BSPELLBOOK_DISPLAY = 63635494;
+        public static final int BTRASH = 63635495;
+        public static final int BWORN = 63635496;
+        public static final int COM_41 = 63635497;
+        public static final int COM_42 = 63635498;
+        public static final int COM_43 = 63635499;
+        public static final int COM_44 = 63635500;
+        public static final int COM_45 = 63635501;
+        public static final int BSLOT0 = 63635502;
+        public static final int BSLOT1 = 63635503;
+        public static final int BSLOT2 = 63635504;
+        public static final int BSLOT3 = 63635505;
+        public static final int BSLOT4 = 63635506;
+        public static final int BSLOT5 = 63635507;
+        public static final int BSLOT7 = 63635508;
+        public static final int BSLOT9 = 63635509;
+        public static final int BSLOT10 = 63635510;
+        public static final int BSLOT12 = 63635511;
+        public static final int BSLOT13 = 63635512;
+        public static final int BINVENTORY = 63635513;
+        public static final int BMENU_CONTAINER = 63635514;
+        public static final int COM_59 = 63635515;
+        public static final int BMENU = 63635516;
+        public static final int BSCROLLBAR = 63635517;
+        public static final int BSPELLBOOK_CONTAINER = 63635518;
+        public static final int COM_63 = 63635519;
+        public static final int BSPELLBOOK_MENU = 63635520;
+        public static final int COM_65 = 63635521;
+        public static final int BSTATUS = 63635522;
+        public static final int CDISPLAY = 63635523;
+        public static final int CSPELLBOOK_DISPLAY = 63635524;
+        public static final int CTRASH = 63635525;
+        public static final int CWORN = 63635526;
+        public static final int COM_71 = 63635527;
+        public static final int COM_72 = 63635528;
+        public static final int COM_73 = 63635529;
+        public static final int COM_74 = 63635530;
+        public static final int COM_75 = 63635531;
+        public static final int CSLOT0 = 63635532;
+        public static final int CSLOT1 = 63635533;
+        public static final int CSLOT2 = 63635534;
+        public static final int CSLOT3 = 63635535;
+        public static final int CSLOT4 = 63635536;
+        public static final int CSLOT5 = 63635537;
+        public static final int CSLOT7 = 63635538;
+        public static final int CSLOT9 = 63635539;
+        public static final int CSLOT10 = 63635540;
+        public static final int CSLOT12 = 63635541;
+        public static final int CSLOT13 = 63635542;
+        public static final int CINVENTORY = 63635543;
+        public static final int CMENU_CONTAINER = 63635544;
+        public static final int COM_89 = 63635545;
+        public static final int CMENU = 63635546;
+        public static final int CSCROLLBAR = 63635547;
+        public static final int CSPELLBOOK_CONTAINER = 63635548;
+        public static final int COM_93 = 63635549;
+        public static final int CSPELLBOOK_MENU = 63635550;
+        public static final int COM_95 = 63635551;
+        public static final int CSTATUS = 63635552;
+    }
+
+    public static final class PvptutScoreboardUi {
+        private PvptutScoreboardUi() {}
+
+        public static final int UNIVERSE = 63700992;
+        public static final int DODGER = 63700993;
+        public static final int CONTENTS = 63700994;
+        public static final int TOOLTIP = 63700995;
+        public static final int COM_4 = 63700996;
+        public static final int TEXT = 63700997;
+        public static final int OUTPUT = 63700998;
+    }
+
     public static GamevalEntry[] entries() { return InterfaceIDEntries.entries(); }
 
     public static Optional<GamevalEntry> byId(int id) {

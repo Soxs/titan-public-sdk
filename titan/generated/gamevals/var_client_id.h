@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 1568> kVarClientIDEntries = {{
+inline constexpr std::array<Entry, 1569> kVarClientIDEntries = {{
     {0, "FAIRYRINGS_SCROLLPOS", "fairyrings_scrollpos", "varctypes"},
     {1, "TOOLTIP_TIME", "tooltip_time", "varctypes"},
     {2, "TOOLTIP_BUILT", "tooltip_built", "varctypes"},
@@ -1575,6 +1575,7 @@ inline constexpr std::array<Entry, 1568> kVarClientIDEntries = {{
     {1565, "SLOTINFO_OTHER_25_LONG", "slotinfo_other_25_long", "varctypes"},
     {1566, "SLOTINFO_OTHER_26_LONG", "slotinfo_other_26_long", "varctypes"},
     {1567, "SLOTINFO_OTHER_27_LONG", "slotinfo_other_27_long", "varctypes"},
+    {1568, "PVPTUT_UI_SELECTED_TUTORIAL", "pvptut_ui_selected_tutorial", "varctypes"},
 }};
 }  // namespace detail
 
@@ -3150,6 +3151,7 @@ struct VarClientID final {
     static constexpr int32_t SLOTINFO_OTHER_25_LONG = 1565;
     static constexpr int32_t SLOTINFO_OTHER_26_LONG = 1566;
     static constexpr int32_t SLOTINFO_OTHER_27_LONG = 1567;
+    static constexpr int32_t PVPTUT_UI_SELECTED_TUTORIAL = 1568;
 
     static constexpr std::span<const Entry> entries() { return detail::kVarClientIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

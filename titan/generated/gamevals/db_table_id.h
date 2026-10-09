@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 249> kDBTableIDEntries = {{
+inline constexpr std::array<Entry, 250> kDBTableIDEntries = {{
     {0, "QUEST", "quest", "tabletypes"},
     {1, "EVENTS", "events", "tabletypes"},
     {2, "CR_MODULE", "cr_module", "tabletypes"},
@@ -139,6 +139,7 @@ inline constexpr std::array<Entry, 249> kDBTableIDEntries = {{
     {130, "NPC_CONTACT", "npc_contact", "tabletypes"},
     {131, "SLAYER_MODIFIERS", "slayer_modifiers", "tabletypes"},
     {132, "PUPPY_COLOURS", "puppy_colours", "tabletypes"},
+    {133, "PVP_TUTORIAL", "pvp_tutorial", "tabletypes"},
     {142, "FLETCHING_BLOWPIPE_CRAFTING", "fletching_blowpipe_crafting", "tabletypes"},
     {143, "SAILING_BT_TRIAL_CORE", "sailing_bt_trial_core", "tabletypes"},
     {144, "SAILING_BT_GWENITH_GLIDE_CRYSTAL_DATA", "sailing_bt_gwenith_glide_crystal_data", "tabletypes"},
@@ -395,6 +396,7 @@ struct DBTableID final {
     static constexpr int32_t NPC_CONTACT = 130;
     static constexpr int32_t SLAYER_MODIFIERS = 131;
     static constexpr int32_t PUPPY_COLOURS = 132;
+    static constexpr int32_t PVP_TUTORIAL = 133;
     static constexpr int32_t FLETCHING_BLOWPIPE_CRAFTING = 142;
     static constexpr int32_t SAILING_BT_TRIAL_CORE = 143;
     static constexpr int32_t SAILING_BT_GWENITH_GLIDE_CRYSTAL_DATA = 144;
@@ -11050,6 +11052,17 @@ struct DBTableID final {
         static constexpr int32_t COL_FREE_UNLOCK = 7;
         static constexpr int32_t COL_UNLOCK_BIT = 8;
         static constexpr int32_t COL_LOCATION_HINT = 9;
+    };
+
+    struct PvpTutorial final {
+        PvpTutorial() = delete;
+        static constexpr int32_t ID = 133;
+        static constexpr int32_t COL_TYPE = 0;
+        static constexpr int32_t COL_TITLE = 1;
+        static constexpr int32_t COL_SHORT_DESCRIPTION = 2;
+        static constexpr int32_t COL_MODIFIED_STATS = 3;
+        static constexpr int32_t COL_MODIFIED_ITEMS = 4;
+        static constexpr int32_t COL_WIPEITEM_ONEXIT = 5;
     };
 
     struct FletchingBlowpipeCrafting final {

@@ -93,6 +93,14 @@ final class DbRowIDEntries_33 {
             new GamevalEntry(16976, "SKILL_FEATURE_HITPOINTS_HALIBUT_COOKED", "skill_feature_hitpoints_halibut_cooked", "rowtypes"),
             new GamevalEntry(16977, "SKILL_FEATURE_HITPOINTS_BLUEFIN_COOKED", "skill_feature_hitpoints_bluefin_cooked", "rowtypes"),
             new GamevalEntry(16978, "SKILL_FEATURE_HITPOINTS_MARLIN_COOKED", "skill_feature_hitpoints_marlin_cooked", "rowtypes"),
+            new GamevalEntry(16979, "PVPTUT_PRAYER", "pvptut_prayer", "rowtypes"),
+            new GamevalEntry(16980, "PVPTUT_COMBO_EATING", "pvptut_combo_eating", "rowtypes"),
+            new GamevalEntry(16981, "PVPTUT_FREEZE", "pvptut_freeze", "rowtypes"),
+            new GamevalEntry(16982, "PVPTUT_SPECIAL_ATTACK", "pvptut_special_attack", "rowtypes"),
+            new GamevalEntry(16983, "PVPTUT_GEAR_SWITCH", "pvptut_gear_switch", "rowtypes"),
+            new GamevalEntry(16984, "PVPTUT_TESTBED", "pvptut_testbed", "rowtypes"),
+            new GamevalEntry(16985, "PVPTUT_BOSS_MEDIUM", "pvptut_boss_medium", "rowtypes"),
+            new GamevalEntry(16986, "PVPTUT_BOSS_EXPERT", "pvptut_boss_expert", "rowtypes"),
         };
     }
 

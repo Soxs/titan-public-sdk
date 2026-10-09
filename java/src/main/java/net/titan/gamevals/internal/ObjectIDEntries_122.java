@@ -68,6 +68,18 @@ final class ObjectIDEntries_122 {
             new GamevalEntry(62519, "TOA_KEPHRI_DUNG01_TILE", "toa_kephri_dung01_tile", "loctypes"),
             new GamevalEntry(62520, "TOA_KEPHRI_DUNG02_TILE", "toa_kephri_dung02_tile", "loctypes"),
             new GamevalEntry(62521, "TOA_KEPHRI_DUNG03_TILE", "toa_kephri_dung03_tile", "loctypes"),
+            new GamevalEntry(62522, "HUNTING_SAPLING_UP_RESET_ORANGE", "Young tree", "loctypes"),
+            new GamevalEntry(62523, "HUNTING_SAPLING_NET_RESET_ORANGE", "Net trap", "loctypes"),
+            new GamevalEntry(62524, "HUNTING_SAPLING_UP_RESET_RED", "Young tree", "loctypes"),
+            new GamevalEntry(62525, "HUNTING_SAPLING_NET_RESET_RED", "Net trap", "loctypes"),
+            new GamevalEntry(62526, "HUNTING_SAPLING_UP_RESET_BLACK", "Young tree", "loctypes"),
+            new GamevalEntry(62527, "HUNTING_SAPLING_NET_RESET_BLACK", "Net trap", "loctypes"),
+            new GamevalEntry(62528, "HUNTING_SAPLING_UP_RESET_SWAMP", "Young tree", "loctypes"),
+            new GamevalEntry(62529, "HUNTING_SAPLING_NET_RESET_SWAMP", "Net trap", "loctypes"),
+            new GamevalEntry(62530, "HUNTING_SAPLING_UP_RESET_MOUNTAIN", "Young tree", "loctypes"),
+            new GamevalEntry(62531, "HUNTING_SAPLING_NET_RESET_MOUNTAIN", "Net trap", "loctypes"),
+            new GamevalEntry(62532, "PVPTUT_BOSS_EXIT", "Portal", "loctypes"),
+            new GamevalEntry(62533, "PVPTUT_REWARD_CRATE", "Pete's crate", "loctypes"),
         };
     }
 
