@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 16870> kDbRowIDEntries = {{
+inline constexpr std::array<Entry, 16873> kDbRowIDEntries = {{
     {0, "QUEST_ANIMALMAGNETISM", "quest_animalmagnetism", "rowtypes"},
     {1, "QUEST_ANOTHERSLICEOFHAM", "quest_anothersliceofham", "rowtypes"},
     {2, "MUSIC_RAT_BOSS", "music_rat_boss", "rowtypes"},
@@ -16877,6 +16877,9 @@ inline constexpr std::array<Entry, 16870> kDbRowIDEntries = {{
     {16984, "PVPTUT_TESTBED", "pvptut_testbed", "rowtypes"},
     {16985, "PVPTUT_BOSS_MEDIUM", "pvptut_boss_medium", "rowtypes"},
     {16986, "PVPTUT_BOSS_EXPERT", "pvptut_boss_expert", "rowtypes"},
+    {16987, "SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_50", "skill_feature_runecraft_pouch_colossal_level_50", "rowtypes"},
+    {16988, "SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_75", "skill_feature_runecraft_pouch_colossal_level_75", "rowtypes"},
+    {16989, "SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_85", "skill_feature_runecraft_pouch_colossal_level_85", "rowtypes"},
 }};
 }  // namespace detail
 
@@ -33754,6 +33757,9 @@ struct DbRowID final {
     static constexpr int32_t PVPTUT_TESTBED = 16984;
     static constexpr int32_t PVPTUT_BOSS_MEDIUM = 16985;
     static constexpr int32_t PVPTUT_BOSS_EXPERT = 16986;
+    static constexpr int32_t SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_50 = 16987;
+    static constexpr int32_t SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_75 = 16988;
+    static constexpr int32_t SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_85 = 16989;
 
     static constexpr std::span<const Entry> entries() { return detail::kDbRowIDEntries; }
     static const Entry* byId(int32_t id) { return findById(entries(), id); }

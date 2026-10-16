@@ -308,8 +308,10 @@ editing the API itself.
 ## Package Layout
 
 - `net.titan.api`: game-facing services, core types, and catalogs such as
-  `Client`, `Player`, `Logger`, `Prayer`, `Varbits`, `InterfaceId`,
+  `Client`, `Player`, `Logger`, `Prayer`, `Varbits`,
   `ChatMessageType`, `ScriptId`, and `QuestId`.
+- `net.titan.gamevals`: generated game constants, including `InterfaceID`
+  with packed widget IDs and `pack`, `group`, and `child` helpers.
 - `net.titan.api.plugins`: `Plugin` and `PluginDescriptor`.
 - `net.titan.api.config`: config interfaces, annotations, sections, and
   setting metadata.

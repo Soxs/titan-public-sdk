@@ -47,7 +47,7 @@ inline bool isAutoRetaliateEnabled() {
     return titan::state::vars().varp(VarPlayerID::AUTO_RETALIATE) == 0;
 }
 
-/// Click the special-attack orb (interface 160 / 34).
+/// Click the special-attack orb button (interface 160 / 36).
 ///
 /// Reproduces the RuneLite `LegacyMenuEntry` shape
 /// `{option="Use", target=<spec orb name>, identifier=1, opcode=CC_OP(57),
@@ -62,7 +62,7 @@ inline bool enableSpecialAttack(bool skipMovement = false) {
         static_cast<uint32_t>(MenuAction::Id::CcOp),
         /*identifier=*/1,
         /*param0=*/-1,
-        /*param1 (widget packed id)=*/gamevals::InterfaceID::Orbs::ORB_SPECENERGY);
+        /*param1 (widget packed id)=*/gamevals::InterfaceID::Orbs::SPECBUTTON);
 }
 
 /// Toggle auto-retaliate to `enabled`. No-op (returns true) when the

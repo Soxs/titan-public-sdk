@@ -16,6 +16,31 @@ in `PUBLIC_API.md`.
 
 ---
 
+## Unreleased -- Bank deposit containers
+
+- `+` C++ `Bank::depositContainers()`, JS/TS `titan.utils.bank.depositContainers()`
+  and Java `Bank.depositContainers()` (0.1.82) activate widget `786477` with the
+  same action parameters and dispatch result as deposit inventory/equipment.
+- `~` Composed over existing widget interaction; native ABI and payload floor unchanged.
+
+## v151 -- Optional "render only my plane"
+
+- `+` C++ `HiderFacade::setOtherPlanes`/`isOtherPlanesHidden`/
+  `isPlaneHidingAvailable`, JS/TS `hider.otherPlanes`/`planeHidingAvailable`,
+  and Java `Client.setOtherPlanesHidden`/`otherPlanesHidden`/
+  `planeHidingAvailable` (0.1.81) hide every plane except the local player's.
+- `~` Append-only `HostRenderV1` capability tail; native payload floor remains
+  146. The toggle is thread-safe, global, last writer wins, not saved, and
+  survives plugin unload.
+
+## v150 -- Optional texture skipping
+
+- `+` C++, JS/TS and Java expose availability, accepted runtime requests,
+  requested/applied state and errors through the shared client implementation.
+- `~` Append-only `HostRenderV1` capability tail; native payload floor remains 146.
+  Requests are thread-safe, last writer wins, do not save user preferences and
+  survive plugin unload. See [texture skipping](../../docs/texture_skipping.md).
+
 ## v146 -- Widget model type and id; the SDK floor gates native loads again
 
 - `+` Widget handles and snapshots expose the client's model source kind and

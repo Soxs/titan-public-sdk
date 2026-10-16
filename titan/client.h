@@ -26,6 +26,7 @@
 #include "grand_exchange.h"
 #include "item_prices.h"
 #include "hint_arrow.h"
+#include "texture_skip.h"
 
 #include <algorithm>
 #include <array>
@@ -131,6 +132,29 @@ struct InstanceTemplateChunks {
 
 class ClientFacade {
 public:
+    /// SDK 150. Safe from plugin callbacks and owned workers. Setter queues a
+    /// runtime request; true does not mean applied. No saved preference changes.
+    bool isTextureSkippingAvailable() const {
+        auto* b = detail::backend();
+        return b && b->isTextureSkippingAvailable() != 0;
+    }
+    bool setTexturesDisabled(bool disabled) const {
+        auto* b = detail::backend();
+        return b && b->setTexturesDisabled(disabled ? 1 : 0) != 0;
+    }
+    bool getTexturesDisabledRequested() const {
+        auto* b = detail::backend();
+        return b && b->getTexturesDisabledRequested() != 0;
+    }
+    bool getTexturesDisabledApplied() const {
+        auto* b = detail::backend();
+        return b && b->getTexturesDisabledApplied() != 0;
+    }
+    TextureSkippingError getTextureSkippingError() const {
+        auto* b = detail::backend();
+        return b ? static_cast<TextureSkippingError>(b->getTextureSkippingError()) : TextureSkippingError::Unavailable;
+    }
+
     bool isGrandExchangeAvailable() const { return GrandExchangeFacade{}.available(); }
     std::optional<GrandExchangeOffer> getGrandExchangeOffer(int32_t slot) const {
         return GrandExchangeFacade{}.offer(slot);
@@ -502,6 +526,33 @@ public:
     bool isNpcsHidden()    const { return readChannel(1); }
     bool isSelfHidden()    const { return readChannel(2); }
     bool isSceneHidden()   const { return readChannel(3); }
+
+    /// SDK 151. "Render only my plane": hide every plane except the one
+    /// the local player stands on (floors above and below, with what stands
+    /// on them). Process-wide, last writer wins, never saved, and it stays
+    /// on after the plugin unloads, so turn it off in onDisable(). Safe from
+    /// any thread; the next scene draw applies it. Returns false when the
+    /// client cannot hide planes (missing offsets, or a host older than
+    /// SDK 151); turning it off is always accepted by a newer host.
+    ///
+    /// Known limitation (TODO): like every hider channel this is one global
+    /// switch, so plugins sharing it can undo each other. Turning it off, or
+    /// restoring the state seen earlier, also clears a request another plugin
+    /// made in between. Planned: per-plugin requests that stay hidden while
+    /// any plugin asks.
+    bool setOtherPlanes(bool hidden) {
+        auto* b = detail::backend();
+        return b && b->setOtherPlanesHidden(hidden ? 1 : 0) != 0;
+    }
+    bool isOtherPlanesHidden() const {
+        auto* b = detail::backend();
+        return b && b->getOtherPlanesHidden() != 0;
+    }
+    /// Whether this client can hide planes at all (SDK 151).
+    bool isPlaneHidingAvailable() const {
+        auto* b = detail::backend();
+        return b && b->isPlaneHidingAvailable() != 0;
+    }
 
 private:
     static void writeChannel(uint8_t channel, bool v) {

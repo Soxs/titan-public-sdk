@@ -183,6 +183,28 @@ public interface Client {
      */
     boolean audioPlaybackDisabled();
 
+    /** SDK 150: thread-safe texture capability. */
+    default boolean isTextureSkippingAvailable() { return false; }
+    /** Queues a runtime request; accepted does not mean applied. Last writer wins;
+     * does not save preferences or restore an earlier value on plugin unload.
+     * Safe from callbacks and plugin-owned workers. */
+    default boolean setTexturesDisabled(boolean disabled) { return false; }
+    default boolean getTexturesDisabledRequested() { return false; }
+    default boolean getTexturesDisabledApplied() { return false; }
+    /** 0=None, 1=Unavailable, 2=InstallFailed, 3=RemoveFailed, 4=ProviderReadFailed,
+     * 5=CacheResetFailed, 6=DirtyWriteFailed, 7=ShuttingDown. */
+    default int getTextureSkippingError() { return 1; }
+
+    /** SDK 151: whether this client can render only the local player's plane. */
+    default boolean planeHidingAvailable() { return false; }
+    /** SDK 151: whether every plane except the local player's is hidden. */
+    default boolean otherPlanesHidden() { return false; }
+    /** SDK 151: render only the local player's plane (floors above and below
+     * are hidden). Process-wide, last writer wins, not saved, and it stays on
+     * after the plugin unloads, so turn it off when the plugin stops. Safe from
+     * any thread. Returns false when the client cannot hide planes. */
+    default boolean setOtherPlanesHidden(boolean hidden) { return false; }
+
     /**
      * Globally suppress (or re-enable) sound playback. When disabled, the
      * sound hooks still fire {@code onSoundPlayed} but skip the native playback

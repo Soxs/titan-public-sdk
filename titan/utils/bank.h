@@ -218,6 +218,12 @@ inline bool depositEquipment() {
         detail::kCcOp, 1, -1, ::titan::gamevals::InterfaceID::Bankmain::DEPOSITWORN);
 }
 
+/// Activate the bank's Deposit containers button.
+inline bool depositContainers() {
+    return ::titan::state::widgets().interact(
+        detail::kCcOp, 1, -1, ::titan::gamevals::InterfaceID::Bankmain::DEPOSITCONTAINERS);
+}
+
 inline bool depositAllOfSlot(int32_t slot) {
     return ::titan::state::widgets().interact(
         detail::kCcOpLow, 8, slot,

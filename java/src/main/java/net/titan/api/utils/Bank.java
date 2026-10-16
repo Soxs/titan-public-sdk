@@ -149,6 +149,12 @@ public final class Bank {
             MenuAction.CC_OP, 1, -1, InterfaceID.Bankmain.DEPOSITWORN);
     }
 
+    /** Activate the bank's Deposit containers button. */
+    public static boolean depositContainers() {
+        return actions().widgetInteract(
+            MenuAction.CC_OP, 1, -1, InterfaceID.Bankmain.DEPOSITCONTAINERS);
+    }
+
     public static boolean depositAllOfSlot(int slot) {
         return actions().widgetInteract(
             MenuAction.CC_OP_LOW_PRIORITY, 8, slot,

@@ -27,7 +27,7 @@ public final class Combat {
 
     public static boolean enableSpecialAttack(boolean skipMovement) {
         return TitanRuntime.getInteractionBackend().widgetInteract(
-            MenuAction.CC_OP, 1, -1, InterfaceID.Orbs.ORB_SPECENERGY);
+            MenuAction.CC_OP, 1, -1, InterfaceID.Orbs.SPECBUTTON);
     }
 
     public static boolean setAutoRetaliate(boolean enabled) {

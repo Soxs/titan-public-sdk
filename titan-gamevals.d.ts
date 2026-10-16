@@ -161106,6 +161106,9 @@ declare namespace titan {
             readonly PVPTUT_TESTBED: 16984;
             readonly PVPTUT_BOSS_MEDIUM: 16985;
             readonly PVPTUT_BOSS_EXPERT: 16986;
+            readonly SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_50: 16987;
+            readonly SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_75: 16988;
+            readonly SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_85: 16989;
             byId(id: number): GamevalEntry | null;
         };
         readonly QuestID: {

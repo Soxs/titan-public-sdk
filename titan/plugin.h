@@ -884,10 +884,10 @@ inline uint32_t thunkHtmlCopyResource(void* ud, const char* id, uint32_t index, 
 }
 template <TitanHtmlUi::SurfaceKind Kind>
 inline uint8_t thunkHtmlSnapshot(void* ud, const char* id, uint64_t activation, TitanPluginSdk::HtmlUiRecords::SnapshotV1* out) {
-    auto* p = self(ud)->_findHtml(Kind, id); if (!p || !out) return 0; TitanHtmlUi::UpdateBatch batch;
-    if (!p->_updates().snapshot(activation, batch)) return 0;
+    auto* p = self(ud)->_findHtml(Kind, id); if (!p || !out) return 0; TitanHtmlUi::UpdateSnapshot batch;
+    if (!p->_updates().snapshotMetadata(activation, batch)) return 0;
     *out = {}; out->activation = batch.activation; out->lastSequence = batch.lastSequence; out->stateRevision = batch.stateRevision;
-    out->stateBytes = static_cast<uint32_t>(batch.state.size()); out->messageCount = static_cast<uint32_t>(batch.messages.size());
+    out->stateBytes = batch.stateBytes; out->messageCount = batch.messageCount;
     out->visible = p->_visible() ? 1 : 0;
     const auto size = p->_size(); out->width = size.first; out->height = size.second; return 1;
 }
@@ -896,8 +896,8 @@ inline uint32_t copyHtmlString(const std::string& source, char* out, uint32_t ca
 }
 template <TitanHtmlUi::SurfaceKind Kind>
 inline uint32_t thunkHtmlState(void* ud, const char* id, uint64_t revision, char* out, uint32_t capacity) {
-    auto* p = self(ud)->_findHtml(Kind, id); std::string state;
-    return p && p->_updates().copyState(revision, state) ? copyHtmlString(state, out, capacity) : 0;
+    auto* p = self(ud)->_findHtml(Kind, id);
+    return p ? p->_updates().copyState(revision, out, capacity) : 0;
 }
 template <TitanHtmlUi::SurfaceKind Kind>
 inline uint32_t thunkHtmlMessage(void* ud, const char* id, uint64_t activation, uint32_t index, char* out, uint32_t capacity, uint64_t* sequence) {

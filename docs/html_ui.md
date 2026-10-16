@@ -239,6 +239,10 @@ delivery executes user code and uses the existing callback exclusion. Native
 HTML copy/read/reset callbacks must operate on synchronized framework data;
 they must not invoke plugin handlers or HostApi. The SDK-provided callbacks
 already follow this contract. No native ABI layout or SDK floor change is needed.
+Native metadata polls read counts and revisions without copying canonical state
+or queued messages. State reads copy directly into the caller's buffer under
+the queue lock. These callbacks live in the SDK headers: rebuild native HTML
+plugins to obtain this optimization; existing compatible DLLs still work.
 
 MainLoop services at most four HTML requests and yields between requests after
 2 ms; an individual callback is not preempted. Failed lifecycle admission leaves
@@ -317,10 +321,26 @@ context was removed, triggering fail-stop. Calling `Renderer::PurgeMemory()`
 after page destruction did not prevent that callback. Production therefore
 keeps process destruction as the activation boundary; it does not ignore old
 callbacks to make process reuse appear safe.
-The controller keeps a single active HTML sidebar. Overlays render CPU frames
-in the game process, which contains no HTML engine. The target duplicates a
+The controller keeps a single active HTML sidebar. The game process uploads and
+composites overlay frames; it contains no HTML engine. The target duplicates a
 controller-owned read-only mapping only after accepting the current command;
 dropped asynchronous IPC commands therefore create no remote handles.
+
+The broker worker converts new frames to the straight alpha expected by the
+existing ImGui pipelines before publication. Overlay clients advertise support
+in their input reply and the controller marks the attached mapping's encoding;
+older controller/client pairs retain the existing consumer-side conversion.
+The encoding is fixed for each activation. The game render thread still copies
+a stable shared frame and uploads it with its owning OpenGL context, but reuses
+the CPU pixel buffer and updates existing texture storage with `glTexSubImage2D`.
+Texture allocation occurs only on creation or dimension changes. Unchanged
+frame sequences do not copy or upload pixels.
+
+Each helper waits on a private command event and its next render deadline,
+instead of waking every 2 ms to poll commands. The helper receives only a
+wait-capable event handle. Engine updates, display refresh, JavaScript timers,
+CSS animations and animation callbacks retain the 60 Hz cadence and 4 ms
+input/loading render floor. Static pages still publish only dirty frames.
 
 Floating game overlays continue receiving state and messages while the
 controller is minimized or occluded. A 33 ms background broker beat services
@@ -682,6 +702,29 @@ before a panel is opened. A fresh host also spends about 40 ms authenticating
 and pinning the runtime before its first helper starts. These are helper-side
 measurements; they exclude the client activation round trip and controller
 texture upload.
+
+### Frame preparation and idle overhead validation (2026-10-16)
+
+The Release standalone HTML contracts passed 10/10 and the production renderer
+suite passed 56/56. The Release client, controller and packaged helper built
+successfully with upload/publish disabled, and `html_overlay_snapshot_tests`
+passed. The native callback test polls a 60 KB state and 64 queued
+messages 100 times without allocating, then verifies the copied bytes,
+acknowledgement and activation semantics. The frame transport test retains the
+same pixel allocation across 100 updates and preserves the prior result on
+unchanged, stale and revoked reads.
+
+The real-renderer `presentation` case compares every pixel from legacy
+premultiplied output with broker-converted output and its published mapping,
+including resize and hide/show. The `pacing` case checks that a static page does
+not repaint continuously while JavaScript timers and animation callbacks keep
+running, then starts a CSS animation through an idle command wake.
+
+Five 20-second soak rounds in one process exercised the broker-converted path
+through 5,000 total transitions. All helpers exited after each round; parent
+handle counts after host destruction were 176, 177, 179, 179 and 179, with the
+final three handle inventories identical. These are automated lifecycle and
+correctness checks, not a long-session game FPS measurement.
 
 ### Interactive acceptance still required
 

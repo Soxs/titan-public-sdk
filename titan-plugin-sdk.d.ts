@@ -2845,6 +2845,16 @@ interface PanelElement {
      */
     namespace state {
         const client: {
+            /** SDK 150: thread-safe, process-wide texture skipping. */
+            isTextureSkippingAvailable(): boolean;
+            /** Queues a runtime request; accepted does not mean applied. Last writer wins.
+             * Does not save preferences or restore state on plugin unload. */
+            setTexturesDisabled(disabled: boolean): boolean;
+            getTexturesDisabledRequested(): boolean;
+            getTexturesDisabledApplied(): boolean;
+            /** 0=None, 1=Unavailable, 2=InstallFailed, 3=RemoveFailed,
+             * 4=ProviderReadFailed, 5=CacheResetFailed, 6=DirtyWriteFailed, 7=ShuttingDown. */
+            getTextureSkippingError(): number;
             readonly tick: number;
             /**
              * Current signed 32-bit native Client.GameCycle. It advances at
@@ -3018,6 +3028,13 @@ interface PanelElement {
             npcs: boolean;
             self: boolean;
             scene: boolean;
+            /** SDK 151: render only the local player's plane (floors above and
+             * below are hidden). Process-wide, last writer wins, not saved, and it
+             * stays on after the plugin unloads. Assigning true is ignored while
+             * `planeHidingAvailable` is false; read the value back to check. */
+            otherPlanes: boolean;
+            /** SDK 151: whether this client can hide planes. */
+            readonly planeHidingAvailable: boolean;
         };
 
         /** Global sound playback suppression. When true, the sound hooks
@@ -3705,6 +3722,8 @@ interface PanelElement {
             depositAll(): boolean;
             /** Deposit all equipped items. */
             depositEquipment(): boolean;
+            /** Activate the bank's Deposit containers button. */
+            depositContainers(): boolean;
             /** Deposit all of item at a specific inventory slot. */
             depositAllOfSlot(slot: number): boolean;
             /** Deposit one of item at a specific inventory slot. */

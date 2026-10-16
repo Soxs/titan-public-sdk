@@ -371,6 +371,32 @@ public:
         return (api_ && api_->getEntityHidden) ? api_->getEntityHidden(type) : 0;
     }
 
+    uint8_t isTextureSkippingAvailable() override {
+        return api_ && api_->isTextureSkippingAvailable ? api_->isTextureSkippingAvailable() : 0;
+    }
+    uint8_t setTexturesDisabled(uint8_t disabled) override {
+        return api_ && api_->setTexturesDisabled ? api_->setTexturesDisabled(disabled) : 0;
+    }
+    uint8_t getTexturesDisabledRequested() override {
+        return api_ && api_->getTexturesDisabledRequested ? api_->getTexturesDisabledRequested() : 0;
+    }
+    uint8_t getTexturesDisabledApplied() override {
+        return api_ && api_->getTexturesDisabledApplied ? api_->getTexturesDisabledApplied() : 0;
+    }
+    uint32_t getTextureSkippingError() override {
+        return api_ && api_->getTextureSkippingError ? api_->getTextureSkippingError() : 1;
+    }
+
+    uint8_t isPlaneHidingAvailable() override {
+        return api_ && api_->isPlaneHidingAvailable ? api_->isPlaneHidingAvailable() : 0;
+    }
+    uint8_t setOtherPlanesHidden(uint8_t hidden) override {
+        return api_ && api_->setOtherPlanesHidden ? api_->setOtherPlanesHidden(hidden) : 0;
+    }
+    uint8_t getOtherPlanesHidden() override {
+        return api_ && api_->getOtherPlanesHidden ? api_->getOtherPlanesHidden() : 0;
+    }
+
     // --- Audio playback toggle ---
     void setAudioPlaybackDisabled(uint8_t disabled) override {
         if (api_ && api_->setAudioPlaybackDisabled) api_->setAudioPlaybackDisabled(disabled);

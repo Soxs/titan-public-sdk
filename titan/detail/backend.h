@@ -726,6 +726,17 @@ struct IBackend {
         return 0;
     }
 
+    virtual uint8_t isTextureSkippingAvailable() { return 0; }
+    virtual uint8_t setTexturesDisabled(uint8_t disabled) { (void)disabled; return 0; }
+    virtual uint8_t getTexturesDisabledRequested() { return 0; }
+    virtual uint8_t getTexturesDisabledApplied() { return 0; }
+    virtual uint32_t getTextureSkippingError() { return 1; }
+
+    // SDK 151. Fail closed for backend adapters that predate the feature.
+    virtual uint8_t isPlaneHidingAvailable() { return 0; }
+    virtual uint8_t setOtherPlanesHidden(uint8_t hidden) { (void)hidden; return 0; }
+    virtual uint8_t getOtherPlanesHidden() { return 0; }
+
     // --- Break Handler observation (SDK 144) -----------------------
     // Default fails closed so backend adapters that predate the feature
     // still compile.

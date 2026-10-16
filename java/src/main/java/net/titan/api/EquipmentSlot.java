@@ -1,5 +1,7 @@
 package net.titan.api;
 
+import net.titan.gamevals.InterfaceID;
+
 public enum EquipmentSlot {
     HEAD(0, 15),
     CAPE(1, 16),
@@ -33,7 +35,7 @@ public enum EquipmentSlot {
     public int slot() { return ordinal; }
 
     public int widgetPackedId() {
-        return widgetChild < 0 ? 0 : InterfaceId.pack(WORN_ITEMS_GROUP, widgetChild);
+        return widgetChild < 0 ? 0 : InterfaceID.pack(WORN_ITEMS_GROUP, widgetChild);
     }
 
     public static boolean isValid(int ordinal) {

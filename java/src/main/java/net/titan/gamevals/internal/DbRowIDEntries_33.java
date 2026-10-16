@@ -101,6 +101,9 @@ final class DbRowIDEntries_33 {
             new GamevalEntry(16984, "PVPTUT_TESTBED", "pvptut_testbed", "rowtypes"),
             new GamevalEntry(16985, "PVPTUT_BOSS_MEDIUM", "pvptut_boss_medium", "rowtypes"),
             new GamevalEntry(16986, "PVPTUT_BOSS_EXPERT", "pvptut_boss_expert", "rowtypes"),
+            new GamevalEntry(16987, "SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_50", "skill_feature_runecraft_pouch_colossal_level_50", "rowtypes"),
+            new GamevalEntry(16988, "SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_75", "skill_feature_runecraft_pouch_colossal_level_75", "rowtypes"),
+            new GamevalEntry(16989, "SKILL_FEATURE_RUNECRAFT_POUCH_COLOSSAL_LEVEL_85", "skill_feature_runecraft_pouch_colossal_level_85", "rowtypes"),
         };
     }
 

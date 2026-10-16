@@ -6,6 +6,7 @@
 #include <charconv>
 #include <cmath>
 #include <cstdint>
+#include <cstring>
 #include <deque>
 #include <limits>
 #include <mutex>
@@ -238,6 +239,11 @@ inline bool parseMessage(std::string_view json, Message& out) {
 }
 struct Update { uint64_t sequence = 0, stateRevision = 0; std::string type, payload, correlationId; };
 struct UpdateBatch { uint64_t activation = 0, lastSequence = 0, stateRevision = 0; std::string state = "null"; std::vector<Update> messages; };
+// Metadata only: polling must not copy canonical state or the transient queue.
+struct UpdateSnapshot {
+    uint64_t activation = 0, lastSequence = 0, stateRevision = 0;
+    uint32_t stateBytes = 0, messageCount = 0;
+};
 
 // Canonical state survives activation changes. Transients do not. Mutations
 // and immutable snapshots are protected for off-game-thread copy operations.
@@ -273,6 +279,11 @@ public:
         std::lock_guard<std::mutex> lock(mutex_); if (!activation || activation != activation_) return false;
         out = {activation_, sequence_, revision_, state_, {messages_.begin(), messages_.end()}}; issued_ = sequence_; return true;
     }
+    bool snapshotMetadata(uint64_t activation, UpdateSnapshot& out) {
+        std::lock_guard<std::mutex> lock(mutex_); if (!activation || activation != activation_) return false;
+        out = {activation_, sequence_, revision_, static_cast<uint32_t>(state_.size()), static_cast<uint32_t>(messages_.size())};
+        issued_ = sequence_; return true;
+    }
     bool acknowledge(uint64_t activation, uint64_t through) {
         std::lock_guard<std::mutex> lock(mutex_);
         if (!activation || activation != activation_ || through > issued_ || through < acknowledged_) return false;
@@ -287,6 +298,12 @@ public:
     }
     bool copyState(uint64_t revision, std::string& out) const {
         std::lock_guard<std::mutex> lock(mutex_); if (revision != revision_) return false; out = state_; return true;
+    }
+    uint32_t copyState(uint64_t revision, char* out, uint32_t capacity) const {
+        std::lock_guard<std::mutex> lock(mutex_); if (revision != revision_) return 0;
+        const auto bytes = static_cast<uint32_t>(state_.size());
+        if (out && capacity >= bytes) std::memcpy(out, state_.data(), bytes);
+        return bytes;
     }
     bool copyMessage(uint64_t activation, uint32_t index, Update& out) const {
         std::lock_guard<std::mutex> lock(mutex_); if (!activation || activation != activation_ || index >= messages_.size()) return false;

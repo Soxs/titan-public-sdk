@@ -1,4 +1,36 @@
-# Titan Plugin SDK -- public symbol inventory (v149)
+# Titan Plugin SDK -- public symbol inventory (v151)
+
+## Render only my plane (SDK 151)
+
+`titan::state::hider()` adds `setOtherPlanes(bool)`, `isOtherPlanesHidden()` and
+`isPlaneHidingAvailable()`. JS/TS `titan.state.hider` adds `otherPlanes` and
+the read-only `planeHidingAvailable`; Java `Client` (0.1.81) adds
+`setOtherPlanesHidden(boolean)`, `otherPlanesHidden()` and
+`planeHidingAvailable()`. When on, the scene draws only the plane the local
+player stands on: floors above and below disappear together with what stands
+on them. The next scene draw applies a change.
+
+The toggle is global to one game process, last writer wins, is never saved,
+and stays on after the plugin unloads, so turn it off in `onDisable()`. All
+three calls are safe from any thread. The setter returns false when the
+client cannot hide planes (its offsets lack the analyzer's PLANE_CULLING keys)
+or the host predates SDK 151; such optional `HostRenderV1` tail entries fail
+closed. Payload records and the SDK floor remain unchanged.
+
+## Texture skipping (SDK 150)
+
+`titan::state::client()` adds `isTextureSkippingAvailable()`,
+`setTexturesDisabled(bool)`, `getTexturesDisabledRequested()`,
+`getTexturesDisabledApplied()` and `getTextureSkippingError()`. JS/TS
+`titan.state.client` and Java `Client` expose matching methods. These are safe
+from plugin callbacks and owned workers. True from the setter acknowledges a
+queued request; only a completed render-thread transition changes applied state.
+
+Requests are global to one game process, last writer wins, do not save user
+preferences, and survive plugin unload. Optional `HostRenderV1` tail entries
+fail closed on older hosts. Payload records and the SDK floor remain unchanged.
+See [behavior, example, errors and lifecycle limits](../../docs/texture_skipping.md).
+
 
 This file is the authoritative contract of what plugin authors can rely on.
 The native binary contract is Native ABI v1. SDK release numbers describe
@@ -723,7 +755,7 @@ headers below; publishing native contracts does not expose private client IPC.
 | `<titan/utils/mouse.h>` | Header-only inline `titan::utils::Mouse::*` -- action click-point resolution for menu entries, using the same target-aware native clickbox/projected-footprint resolver as synthetic dispatch. Added in SDK 94. |
 | `<titan/utils/equipment.h>` | Header-only inline `titan::utils::Equipment::*` -- equipment container queries + unequip dispatch built on `titan::state::itemContainer()` / `titan::state::itemDef()` / `titan::state::widgets()`. `unequip` returns action accepted / queued; confirm state via `onItemContainerChanged`. Composition only. Added in SDK 40. |
 | `<titan/utils/ge.h>` | Host-driven queued buying: `Ge::addBuyToQueue`, `request`, `getRequests`, `getExchangeQueue`, `getQueueSize`, `isExchanging`, `getStatus`, `abortRequest`, `clearExchangeQueue`, `release`; options and request phases. Selling stub returns 0. SDK 139. |
-| `<titan/utils/bank.h>` | Header-only inline `titan::utils::Bank::*` -- bank state reads (`isOpen`, `isGeOpen`, `isNotedMode`, `getBankTab`), container queries (`contains`, `count`, `find`), actions (`close`, `depositAll`, `depositEquipment`, `withdrawItem`, `withdrawAllItem`, `withdrawItemAmount`, `open`), PIN helpers (`isPinVisible`, `pinRequestedDigitIndex`, `typePin`), and `LoadoutRunner` class. Composed over `titan::state::widgets()` / `titan::state::vars()` / `titan::state::itemContainer()` / `titan::queries::objects()` / `titan::keyboard::typeString()`. Added in SDK 44. |
+| `<titan/utils/bank.h>` | Header-only inline `titan::utils::Bank::*` -- bank state reads (`isOpen`, `isGeOpen`, `isNotedMode`, `getBankTab`), container queries (`contains`, `count`, `find`), actions (`close`, `depositAll`, `depositEquipment`, `depositContainers`, `withdrawItem`, `withdrawAllItem`, `withdrawItemAmount`, `open`), PIN helpers (`isPinVisible`, `pinRequestedDigitIndex`, `typePin`), and `LoadoutRunner` class. Composed over `titan::state::widgets()` / `titan::state::vars()` / `titan::state::itemContainer()` / `titan::queries::objects()` / `titan::keyboard::typeString()`. Added in SDK 44. |
 | `<titan/utils/deposit_box.h>` | Header-only inline `titan::utils::DepositBox::*` -- bank deposit box state reads (`isOpen`, `isDepositAllSelected`) and component-operation actions (`close`, `depositInventory`, `depositWorn`, `depositLootingBag`, `selectDepositAll`) built on `titan::state::widgets()` / `titan::state::vars()`. Composition only. Added in SDK 133. |
 | `<titan/keyboard.h>` | Inline `titan::keyboard::*` facade -- `sendString`, `sendKey`, `typeString`, `cancelTypeString`, `isTyping`. Routes through `IBackend` keyboard virtuals. Added in SDK 44. |
 | `<titan/bank_sets.h>` | `titan::BankSets::kBooths`, `kChests`, `kDepositBoxes`, `kAllBanksAndChests` constexpr arrays + `isBankObject(id)` helper. Added in SDK 44. |
@@ -853,7 +885,7 @@ auto-marshalled onto the game thread where required.
 | `titan::state::client()` | `ClientFacade` | `snapshot()`, `tick()`, `gameCycle()` (native 20 ms `Client.GameCycle`, distinct from `tick()`, SDK v125+), `plane()`, `playerCount()`, `sceneSizeX()` / `sceneSizeY()` (SDK v52+), `loggedIn()`, `localPlayer()`, `runEnergy()` (0-10000, SDK v45+), `weight()` (signed kg, SDK v45+), `accountType()`, `isIronman()` / `isIronMan()`, `isGroupIronman()` / `isGroupIronMan()` (SDK v50+), `currentWorldViewId()`, `currentWorldViewPtr()`, `worldViewPtr(id)`, `topLevelWorldViewPtr()`, top-level base/plane/scene plus projected local-player tile (SDK v85+), `isInInstance()`, `instanceTemplateChunks()` (SDK v81+), `getLocalDestinationLocation()` / `getWorldDestinationLocation()` (SDK v82+), `invokeMenuAction(opcode, id, p0, p1)` / `invokeMenuAction(MenuAction::Entry)` (SDK v37+) |
 | `titan::state::camera()` | `CameraFacade` | `snapshot()`, `yaw()`, `pitch()`, `zoom()`, `posX()` / `posY()` / `posZ()` world-space camera position (SDK v39+; fields were always in `CameraState`), `interfaceScale()` -> `InterfaceScale{scaleX, scaleY, canvasOriginX, canvasOriginY, valid}` plus `interfaceScaleX()` / `interfaceScaleY()` convenience -- live UI-frame -> physical scale factor for aligning plugin-drawn pixel geometry at 150%/200% in-game interface scaling (SDK v109+; identity 1.0 when unavailable) |
 | `titan::state::worldMap()` | `WorldMapFacade` | `snapshot()` returns coherent physical/logical viewports, the logical-to-physical interface transform, global centre, distinct current/target zoom, and validated logical pixels-per-tile scale. `worldToScreen` returns physical overlay pixels; `screenToWorld` inverse-transforms them before applying RLPL/RuneLite map math; scalar pixel/tile helpers use logical units (SDK 113). Returns unavailable atomically when any generated field, scale proof, native pointer/state, viewport, or transform is missing or inconsistent. |
-| `titan::state::hider()` | `HiderFacade` | `setPlayers(v)`, `setNpcs(v)`, `setSelf(v)`, `setScene(v)`, `isPlayersHidden()`, `isNpcsHidden()`, `isSelfHidden()`, `isSceneHidden()` |
+| `titan::state::hider()` | `HiderFacade` | `setPlayers(v)`, `setNpcs(v)`, `setSelf(v)`, `setScene(v)`, `isPlayersHidden()`, `isNpcsHidden()`, `isSelfHidden()`, `isSceneHidden()`; SDK 151 `setOtherPlanes(v)` (render only the local player's plane; returns false when unavailable), `isOtherPlanesHidden()`, `isPlaneHidingAvailable()` |
 | `titan::state::audio()` | `AudioFacade` | `setPlaybackDisabled(v)`, `playbackDisabled()` -- global discrete sound-effect suppression. Added in SDK 69. |
 | `titan::state::cache()` | `CacheFacade` | `item(id)`, `npc(id)`, `obj(id)`, `varbit(id)` -> `std::optional<Def>`. Varbit definitions come from Titan-owned JS5 cache data. SDK 106 `ItemDef::subOps` is the raw fixed 5-parent-by-20-submenu opcode-43 label matrix; empty strings preserve positional gaps. |
 | `titan::state::vars()` | `VarsFacade` | `varbit(id)`, `varp(id)`, `varClientInt(id)`, `setVarClientInt(id,value)`, `varClientString(id)`, `setVarClientString(id,value)`, `varClientLong(id)`, `setVarClientLong(id,value)`. Varbit reads use Titan-owned JS5 definitions plus direct varp reads; they do not call native GET_VARBIT. VarClient reads are helper-backed optionals; writes queue onto the client tick. Optional long support fails closed when unavailable. Skill / prayer queries moved to `skills()` / `prayers()` in SDK v37. |
@@ -1236,6 +1268,7 @@ Header-only inline helpers in `<titan/utils/bank.h>`. Composed over
 | `Bank::setNotedMode(bool)` | `.setNotedMode(bool)` | Toggle noted mode |
 | `Bank::depositAll()` | `.depositAll()` | Deposit entire inventory |
 | `Bank::depositEquipment()` | `.depositEquipment()` | Deposit worn equipment |
+| `Bank::depositContainers()` | `.depositContainers()` | Activate Deposit containers widget (`786477`); also Java `Bank.depositContainers()` (0.1.82+) |
 | `Bank::depositAllOfSlot(slot)` | `.depositAllOfSlot(slot)` | Deposit all of item at inventory slot |
 | `Bank::depositOneOfSlot(slot)` | `.depositOneOfSlot(slot)` | Deposit one of item at inventory slot |
 | `Bank::depositAllOfItem(itemId)` | `.depositAllOfItem(itemId)` | Deposit all of item by item ID |
@@ -1313,7 +1346,7 @@ class.
 | `MouseButtonEvent` | `void onMousePressed(MouseButtonEvent&)` / `void onMouseReleased(MouseButtonEvent&)` -- real (non-synthetic) mouse button press/release with client-area `x()/y()`, `button()`, and `KeyboardMods` `modifiers()`. `consume()` on a PRESS suppresses the native click and its paired release; `consume()` on a RELEASE is handler-ordering only (never suppresses, so the game can't be stranded down-without-up). Suppression covers the game's WndProc (V1) pipeline only -- the low-level (V2) pipeline still observes real hardware input. Fires on the INPUT thread -- copy fields out, act from `onClientTick`. Added in SDK 115. |
 | -- | `void onNpcSpawned(const Npc&)` / `onNpcDespawned(const Npc&)` |
 | -- | `void onPlayerSpawned(const Player&)` / `onPlayerDespawned(const Player&)` |
-| -- | `void onTileObjectSpawned(const TileObject&)` / `onTileObjectDespawned(const TileObject&)` |
+| -- | `void onTileObjectSpawned(const TileObject&)` / `onTileObjectDespawned(const TileObject&)` -- the game's own loc changes (a door opening, a rock depleting) on every plane and WorldView, once per game tick in the order they happened. A replaced object is a despawn followed by a spawn, even when the new object reuses the old address. Region loads raise no events. A despawned object's `entityPtr` is freed memory: compare it, never read through it. See `docs/loc_change_events.md`. |
 | -- | `void onProjectileSpawned(const Projectile&)` / `onProjectileDespawned(const Projectile&)` / `onProjectileMoved(const Projectile&)` |
 | -- | `void onGraphicsObjectSpawned(const GraphicsObject&)` / `onGraphicsObjectDespawned(const GraphicsObject&)` / `onGraphicsObjectMoved(const GraphicsObject&)` |
 | -- | `void onSettingChanged(const char* settingKey)` |

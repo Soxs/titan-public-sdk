@@ -38,6 +38,25 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// Unreleased -- Bank deposit containers.
+///   + C++ Bank::depositContainers(), JS/TS titan.utils.bank.depositContainers()
+///     and Java Bank.depositContainers() (0.1.82) activate widget 786477 with
+///     the same action parameters and dispatch result as inventory/equipment.
+///   ~ Composed over existing widget interaction; ABI and payload floor unchanged.
+///
+/// v151 -- Optional "render only my plane" through HostRenderV1.
+///   + isPlaneHidingAvailable / setOtherPlanesHidden / getOtherPlanesHidden:
+///     C++ HiderFacade::isPlaneHidingAvailable/setOtherPlanes/
+///     isOtherPlanesHidden, JS/TS hider.otherPlanes/planeHidingAvailable,
+///     Java Client planeHidingAvailable/otherPlanesHidden/
+///     setOtherPlanesHidden (0.1.81). Thread-safe global toggle; not saved.
+///   ~ Append-only capability tail; payload floor remains 146.
+///
+/// v150 -- Optional texture skipping through HostRenderV1.
+///   + Available, requested/applied, accepted setter and error queries; all
+///     thread-safe. Runtime requests do not persist or restore on plugin unload.
+///   ~ Append-only capability tail; payload floor remains 146.
+///
 ///
 /// v149 -- Optional world point on coordinate hint-arrow locations.
 ///   + HostGameV1 appends getHintArrowWorldPoint. Snapshots retain the native
@@ -1775,7 +1794,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 149;
+constexpr uint32_t kSdkVersion = 151;
 
 /// Immutable cache-definition payload contract for Native ABI v1. SDK source
 /// releases do not change this value or the records carrying it.
@@ -2437,6 +2456,10 @@ struct TileObjectState {
     int32_t sizeX = 1;
     int32_t sizeY = 1;
     uint64_t packedId = 0;
+    /// Scene object address. In onTileObjectDespawned it is the address the
+    /// object had before the game freed it: an identity for matching an
+    /// earlier spawn, never to be dereferenced. The replacing object (a door
+    /// opening, say) often reuses it.
     uint64_t entityPtr = 0;
     uint64_t definitionPtr = 0;
     char type[kMaxLabelLen] = {};
@@ -4966,6 +4989,24 @@ struct HostApi {
     /// Success returns its tile with the native selected WorldView and plane.
     /// Missing capability, stale snapshot or unavailable resolution returns 0.
     uint8_t (*getHintArrowWorldPoint)(const HintArrowState* expected, WorldPointState* out) = nullptr;
+
+    // SDK 150. Thread-safe global requests; accepted != applied. Runtime-only,
+    // last writer wins, survives plugin unload. See PUBLIC_API.md.
+    uint8_t (*isTextureSkippingAvailable)() = nullptr;
+    uint8_t (*setTexturesDisabled)(uint8_t disabled) = nullptr;
+    uint8_t (*getTexturesDisabledRequested)() = nullptr;
+    uint8_t (*getTexturesDisabledApplied)() = nullptr;
+    uint32_t (*getTextureSkippingError)() = nullptr;
+
+    // SDK 151. "Render only my plane" (hide every plane but the local
+    // player's). Thread-safe global toggle, applied by the next scene draw.
+    // Last writer wins, not saved, survives plugin unload. The setter
+    // returns 0 when the client cannot hide planes; turning it off is
+    // always accepted by a host that has the entry.
+    uint8_t (*isPlaneHidingAvailable)() = nullptr;
+    uint8_t (*setOtherPlanesHidden)(uint8_t hidden) = nullptr;
+    uint8_t (*getOtherPlanesHidden)() = nullptr;
+
 };
 
 /// Consumer-local callback view, populated from the negotiated native tables.

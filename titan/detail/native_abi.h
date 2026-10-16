@@ -436,6 +436,19 @@ struct HostRenderV1 {
     uint8_t (*screenshotPoll)(uint64_t requestId, ScreenshotStatusState* outStatus) = nullptr;
     uint8_t (*screenshotCopyPng)(uint64_t requestId, uint8_t* out, uint32_t capacity, uint32_t* outRequired) = nullptr;
     uint8_t (*screenshotRelease)(uint64_t requestId) = nullptr;
+    // SDK 150. Thread-safe global requests; accepted != applied. Runtime-only,
+    // last writer wins, survives plugin unload. See PUBLIC_API.md.
+    uint8_t (*isTextureSkippingAvailable)() = nullptr;
+    uint8_t (*setTexturesDisabled)(uint8_t disabled) = nullptr;
+    uint8_t (*getTexturesDisabledRequested)() = nullptr;
+    uint8_t (*getTexturesDisabledApplied)() = nullptr;
+    uint32_t (*getTextureSkippingError)() = nullptr;
+    // SDK 151. "Render only my plane": thread-safe global toggle, applied by
+    // the next scene draw. Last writer wins, not saved, survives plugin unload.
+    uint8_t (*isPlaneHidingAvailable)() = nullptr;
+    uint8_t (*setOtherPlanesHidden)(uint8_t hidden) = nullptr;
+    uint8_t (*getOtherPlanesHidden)() = nullptr;
+
 };
 static_assert(std::is_standard_layout_v<HostRenderV1>);
 static_assert(offsetof(HostRenderV1, header) == 0);
@@ -741,7 +754,16 @@ static_assert(offsetof(HintArrowActorTarget, worldViewPtr) == 24);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostRenderV1) == 320);
+static_assert(sizeof(HostRenderV1) == 384);
+static_assert(offsetof(HostRenderV1, isTextureSkippingAvailable) == 320);
+static_assert(offsetof(HostRenderV1, setTexturesDisabled) == 328);
+static_assert(offsetof(HostRenderV1, getTexturesDisabledRequested) == 336);
+static_assert(offsetof(HostRenderV1, getTexturesDisabledApplied) == 344);
+static_assert(offsetof(HostRenderV1, getTextureSkippingError) == 352);
+static_assert(offsetof(HostRenderV1, isPlaneHidingAvailable) == 360);
+static_assert(offsetof(HostRenderV1, setOtherPlanesHidden) == 368);
+static_assert(offsetof(HostRenderV1, getOtherPlanesHidden) == 376);
+
 static_assert(offsetof(HostRenderV1, setImGuiContext) == 8);
 static_assert(offsetof(HostRenderV1, worldToScreen) == 16);
 static_assert(offsetof(HostRenderV1, tileToScreen) == 24);
@@ -1086,7 +1108,15 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(screenshotSubmit) \
     X(screenshotPoll) \
     X(screenshotCopyPng) \
-    X(screenshotRelease)
+    X(screenshotRelease) \
+    X(isTextureSkippingAvailable) \
+    X(setTexturesDisabled) \
+    X(getTexturesDisabledRequested) \
+    X(getTexturesDisabledApplied) \
+    X(getTextureSkippingError) \
+    X(isPlaneHidingAvailable) \
+    X(setOtherPlanesHidden) \
+    X(getOtherPlanesHidden)
 
 #define TITAN_NATIVE_HOSTNAVIGATIONV1_MEMBERS(X) \
     X(getCollisionFlag) \
