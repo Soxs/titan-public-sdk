@@ -456,6 +456,13 @@ public:
     template <typename T>
     bool isInMeleeDistance(const Locatable<T>& other) const;
 
+    /// True when the local player can walk onto one of this entity's tiles,
+    /// or onto a tile cardinally adjacent to them from which it can be
+    /// interacted with (see `utils::BFS::reachableAdjacentTiles`). Uses the
+    /// per-tick reachability map. Defined in <titan/utils/bfs.h>; include it
+    /// where this is called. Added in SDK 153.
+    bool isReachable() const;
+
 private:
     const Derived& self_() const { return static_cast<const Derived&>(*this); }
 };

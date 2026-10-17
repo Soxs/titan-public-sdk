@@ -32,8 +32,23 @@ function Require-Relative([string]$Path) {
 function Atomic-Write([string]$Path, [string]$Content) {
     $temporary = "$Path.tmp-$([Guid]::NewGuid().ToString('N'))"
     [IO.File]::WriteAllText($temporary, $Content, $utf8)
-    if ([IO.File]::Exists($Path)) { [IO.File]::Replace($temporary, $Path, [NullString]::Value) }
-    else { [IO.File]::Move($temporary, $Path) }
+    # An on-access scanner or indexer can hold either file for a moment
+    # without delete sharing, and Replace then fails with "Unable to remove
+    # the file to be replaced". Retry for about two seconds, and never leave
+    # the temporary behind.
+    for ($attempt = 1; ; ++$attempt) {
+        try {
+            if ([IO.File]::Exists($Path)) { [IO.File]::Replace($temporary, $Path, [NullString]::Value) }
+            else { [IO.File]::Move($temporary, $Path) }
+            return
+        } catch [IO.IOException] {
+            if ($attempt -ge 20) {
+                try { [IO.File]::Delete($temporary) } catch { }
+                throw
+            }
+            Start-Sleep -Milliseconds 100
+        }
+    }
 }
 function Add-Input([string]$Source, [string]$Destination) {
     $sourcePath = Full-Path $Source

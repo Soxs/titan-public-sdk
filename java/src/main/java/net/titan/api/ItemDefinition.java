@@ -19,12 +19,22 @@ public final class ItemDefinition {
     private List<String> inventoryActions;
     private List<String> groundActions;
     private List<List<String>> subOps;
+    private boolean geTradeable;
+    private int storeValue;
 
     public int id() { return id; }
     public String name() { return name == null ? "" : name; }
     public boolean isMembers() { return members; }
     public boolean isStackable() { return stackable; }
     public boolean isNoted() { return noted; }
+    /** Whether the item can be offered on the Grand Exchange (cache opcode 65).
+     * Noted forms report their unnoted item; placeholders report false. Player
+     * tradeability is not in the cache: coins report false. Requires host SDK 152. */
+    public boolean isGeTradeable() { return geTradeable; }
+    /** General store value (cache opcode 12; 1 when the cache omits it). Noted
+     * forms report their unnoted item; bought and placeholder forms report 0.
+     * High alchemy pays 3/5 of it. Requires host SDK 152. */
+    public int storeValue() { return storeValue; }
     public int noteId() { return noteId; }
     public int linkedId() { return linkedId; }
     public List<String> inventoryActions() {

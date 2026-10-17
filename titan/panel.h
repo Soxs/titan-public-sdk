@@ -405,7 +405,8 @@ public:
     SidePanel(std::string id, std::string title, std::function<void(Panel&)> build)
         : id_(std::move(id)), title_(std::move(title)), build_(std::move(build)) {}
 
-    /// Handle control interactions inside this panel.
+    /// Handle control interactions inside this panel. A text input's value
+    /// (`value.stringValue`) is borrowed for the call: copy it to keep it.
     SidePanel& onAction(ActionFn fn) { action_ = std::move(fn); return *this; }
     /// Set a side-panel icon spec. Use `awesome:alias`, `lucide:name`,
     /// `phosphor:name[:weight]`, or a legacy raw Font Awesome glyph.

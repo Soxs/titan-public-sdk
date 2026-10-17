@@ -1,4 +1,118 @@
-# Titan Plugin SDK -- public symbol inventory (v151)
+# Titan Plugin SDK -- public symbol inventory (v154)
+
+## Setting strings without a length cap (SDK 154)
+
+String settings, setting tooltips and section descriptions have no length
+cap in C++, JS/TS or Java, and the controller's text box grows with the text.
+A long objective list or a JSON blob fits in one `StringSetting`.
+
+Native records carry text as a borrowed `TitanNativeRecords::Text` (pointer
+and length, NUL after the last byte) instead of a 4096-byte array, so a record
+costs only what its text does. Read one through `view()` or let it convert to
+`std::string_view`: `std::string(value.stringValue)` and
+`member = value.stringValue` work unchanged. The bytes are borrowed, so copy
+what you keep:
+
+| Record | Valid for |
+| --- | --- |
+| `setSetting` / `onPanelAction` value (host to plugin) | The call. `SidePanel::onAction` handlers copy a text input before returning. |
+| `markSettingChanged` value (plugin to host) | The call. |
+| `getSettings` / `getSections` result | Until that entry point next runs on the same thread. The SDK thunks copy each string into a per-thread buffer before returning, so a plugin thread changing a setting cannot free the bytes the host reads. |
+
+The typed settings and sections handle this; only code that fills records by
+hand, or keeps a `Value` past its call, needs to care. `kMinSupportedSdkVersion`
+is 154: rebuild every native DLL and publish it with the client.
+
+## BFS reachability and Locatable::isReachable (SDK 153)
+
+`<titan/utils/bfs.h>` adds `titan::utils::BFS`, tile reachability and natural
+pathfinding over the scene collision map using the game's 8-directional
+movement and wall/diagonal-corner rules. It is a port of the Java SDK's
+`net.titan.api.utils.BFS` (Java 0.1.84) with identical results, pinned by a
+shared golden fixture (`tests/bfs_sdk_tests.cpp` and `BFSTest.java`). JS/TS
+`titan.utils.bfs` binds to the C++ header.
+
+| C++ `titan::utils::BFS` | Result |
+| --- | --- |
+| `getReachabilityMap()` | `shared_ptr<const ReachabilityMap>`: `reachable`, `pathLength`, `pathTo`, `parentOf`, `getWorldPoints` (discovery order), `source`, `forEachTile` |
+| `findPath(end, partial = true)`, `findPath(start, end, partial)`, `findPath(area)` | Natural path, start tile excluded. `partial` falls back to the best reachable cardinal neighbour, then the closest reachable tile |
+| `pathLength(end)`, `pathLength(start, end)`, `pathLength(area)` | `optional<int32_t>` |
+| `reachable(wp)`, `walkable(wp)`, `canStep(from, to)`, `canStep(from, dx, dy)` | Tile tests |
+| `reachableTilesAtCost(n)`, `reachableTilesWithinCost(n)` | Tiles in discovery order |
+| `reachableAdjacentTiles(area)`, `meleeable(area)`, `reachableWithinRange(area, range, requireLoS)` | Interaction tiles of a footprint |
+| `isReachable(area)`, `isReachable(wp)` | Stand on a footprint tile or a cardinally adjacent one |
+| `hasLineOfSight(to)`, `hasLineOfSight(from, to)` | The BFS line of sight (off-scene tiles block) |
+| `blockingTiles(target, removable)` | Removable tiles to clear, in walk order; empty when already reachable, nullopt when unreachable |
+| `weighted()` | `WeightedSearch` with `weight`, `block`, `run`, `findPath`, `reachable`, `pathLength`, `clickTile`, `nearestSafeTile`, `safePathTo` |
+| `runTiles(path)` | Tiles landed on when running a path as one click |
+
+The player map is cached per game tick, loaded scene and player tile; one
+collision snapshot and solid-blocker NPC scan serve the whole tick. Points are
+keyed by tile and plane, ignoring world view ids. Call from game-thread
+callbacks; the caches are mutex-guarded, but one `WeightedSearch` instance is
+not thread-safe.
+
+`isReachable()` is added to every locatable: C++ `Locatable<T>::isReachable()`
+(defined in `bfs.h`, so include it where it is called), Java
+`Locatable.isReachable()` and JS/TS `npc/player/object/groundItem/...isReachable()`.
+It is true when the local player can walk onto one of the entity's tiles or
+onto a tile cardinally adjacent to them from which it can be interacted with.
+
+## Runtime dialogue option lists (SDK 153)
+
+`titan::utils::Dialogue::hasOption`, `selectOption` and `handleDialogue` take a
+braced list (`{"Yes", "Okay"}`) or any runtime range whose elements convert to
+`std::string_view`, such as a `std::vector<std::string>` built from settings.
+Matching is identical either way: needles are tried in order; for each one,
+option slots 1 onwards are scanned (slot 0 is the title), an exact
+case-insensitive match (widget side trimmed) wins, else the first option
+containing the needle is picked, and the option's digit key is pressed. JS/TS
+arrays run this C++ matcher; Java's varargs `Dialogue` applies the same rules.
+
+Continue prompts (`getContinueWidgetPackedId`, `continueDialogue`, and the
+continue fallback of `handleDialogue`) also recognise `ChatBoth`,
+`MessageboxUrl`, `MessageboxTitled` and `Screenhighlight` `CONTINUE_`, without a
+text gate, in every SDK and the host helper.
+
+## Shop helpers (SDK 153)
+
+`<titan/utils/shop.h>` adds `titan::utils::Shop` (JS/TS `titan.utils.shop`,
+Java `Shop`) over the shared shop interface:
+
+| C++ | JS/TS | Java | Purpose |
+| --- | --- | --- | --- |
+| `isOpen()` | `isOpen` (getter) | `isOpen()` | The stock grid is visible |
+| `items()` | `items()` | `items()` | Stocked slots: item id, quantity (0 = sold out), grid slot |
+| `slotOf(id)`, `stock(id)`, `has(id, qty = 1)` | same | same | Stock reads; 0 / false when closed |
+| `storeValue(id)` | same | same | The cache store value the shop's price scales from |
+| `buy(id, qty)` | same | same | Largest Buy button (50/10/5/1) not above `qty`; false when stock is short |
+| `sell(id, qty)`, `sellByName(name, qty)`, `hasItemToSell(name)` | same | same | Inventory-panel sells; names match the cache name case-insensitively |
+| `close()` | same | same | The frame's close X; true when no shop is open |
+
+Each action fires one component operation and reports queue acceptance, not
+gameplay success; repeat it until you hold what you need. The behaviour
+follows the ThePlug `ShopUtils` the Account Maker uses.
+
+## Item GE flag and store value (SDK 152)
+
+Cache item definitions add `geTradeable` and `storeValue`: C++
+`titan::ItemDef::geTradeable`/`storeValue` from `state::cache().item(id)`,
+JS/TS `ItemDef.geTradeable`/`storeValue` from `titan.state.cache.item(id)`,
+and Java `ItemDefinition.isGeTradeable()`/`storeValue()` (0.1.83).
+
+- `geTradeable` is cache opcode 65: the item can be offered on the Grand
+  Exchange. The cache holds no player-trade flag, so coins report `false`.
+- `storeValue` is cache opcode 12, the general store value. It is 1 when the
+  cache omits it, as in the client. High alchemy pays 3/5 of it. For live GE
+  prices use `state::itemPrices()`.
+- Noted forms report the values of the item they note. Bought and placeholder
+  forms have a store value of 0, and placeholders are never GE-tradeable.
+- The runtime `state::itemDef(id)` composition does not carry these fields.
+
+`ItemDefSnapshot` keeps `geTradeable` in its former `reserved0` byte and
+appends `storeValue`, so `kMinSupportedSdkVersion` is 152: the client refuses
+native DLLs built against an older SDK, and SDK 152 plugins refuse an older
+client. Rebuild every native DLL and publish it with the client.
 
 ## Render only my plane (SDK 151)
 
@@ -887,7 +1001,7 @@ auto-marshalled onto the game thread where required.
 | `titan::state::worldMap()` | `WorldMapFacade` | `snapshot()` returns coherent physical/logical viewports, the logical-to-physical interface transform, global centre, distinct current/target zoom, and validated logical pixels-per-tile scale. `worldToScreen` returns physical overlay pixels; `screenToWorld` inverse-transforms them before applying RLPL/RuneLite map math; scalar pixel/tile helpers use logical units (SDK 113). Returns unavailable atomically when any generated field, scale proof, native pointer/state, viewport, or transform is missing or inconsistent. |
 | `titan::state::hider()` | `HiderFacade` | `setPlayers(v)`, `setNpcs(v)`, `setSelf(v)`, `setScene(v)`, `isPlayersHidden()`, `isNpcsHidden()`, `isSelfHidden()`, `isSceneHidden()`; SDK 151 `setOtherPlanes(v)` (render only the local player's plane; returns false when unavailable), `isOtherPlanesHidden()`, `isPlaneHidingAvailable()` |
 | `titan::state::audio()` | `AudioFacade` | `setPlaybackDisabled(v)`, `playbackDisabled()` -- global discrete sound-effect suppression. Added in SDK 69. |
-| `titan::state::cache()` | `CacheFacade` | `item(id)`, `npc(id)`, `obj(id)`, `varbit(id)` -> `std::optional<Def>`. Varbit definitions come from Titan-owned JS5 cache data. SDK 106 `ItemDef::subOps` is the raw fixed 5-parent-by-20-submenu opcode-43 label matrix; empty strings preserve positional gaps. |
+| `titan::state::cache()` | `CacheFacade` | `item(id)`, `npc(id)`, `obj(id)`, `varbit(id)` -> `std::optional<Def>`. Varbit definitions come from Titan-owned JS5 cache data. SDK 106 `ItemDef::subOps` is the raw fixed 5-parent-by-20-submenu opcode-43 label matrix; empty strings preserve positional gaps. SDK 152 `ItemDef::geTradeable` (opcode 65, Grand Exchange) and `ItemDef::storeValue` (opcode 12; noted forms report their unnoted item, bought and placeholder forms 0). |
 | `titan::state::vars()` | `VarsFacade` | `varbit(id)`, `varp(id)`, `varClientInt(id)`, `setVarClientInt(id,value)`, `varClientString(id)`, `setVarClientString(id,value)`, `varClientLong(id)`, `setVarClientLong(id,value)`. Varbit reads use Titan-owned JS5 definitions plus direct varp reads; they do not call native GET_VARBIT. VarClient reads are helper-backed optionals; writes queue onto the client tick. Optional long support fails closed when unavailable. Skill / prayer queries moved to `skills()` / `prayers()` in SDK v37. |
 | `titan::state::skills()` | `SkillsFacade` | `boosted(int\|Skill)`, `real(int\|Skill)`, `experience(int\|Skill)` (SDK v37+). |
 | `titan::state::prayers()` | `PrayersFacade` | `isActive(int\|Prayer)` (SDK v37+). |
@@ -1590,9 +1704,10 @@ plays through without re-dispatching the event.
 ## Version compatibility
 
 Native ABI v1 and the SDK floor decide whether a native DLL loads.
-SDK 146 grew `WidgetState`, so `kMinSupportedSdkVersion` is 146: rebuild every
-native DLL built against SDK 145 or older, and publish the client, controller
-and plugins together. The loader discovers
+SDK 154 changed the settings records' strings to borrowed views, so
+`kMinSupportedSdkVersion` is 154 (after 146 for `WidgetState` and 152 for
+`ItemDefSnapshot`): rebuild every native DLL built against SDK 153 or older,
+and publish the client, controller and plugins together. The loader discovers
 `TitanPlugin_QueryNative(uint32_t abiVersion)`, which returns a module-owned
 `ModuleDescriptorV1`. It checks required interfaces before calling the
 per-index factory. The factory returns a plugin-owned `PluginDescriptorV1`;
@@ -1601,7 +1716,7 @@ No SDK-sized output structure is written into another module's allocation.
 
 | Situation | Outcome |
 | --- | --- |
-| A native plugin built against SDK 146+ and a 146+ host implement ABI v1 and its required capabilities | Loads. A plugin built against a newer SDK than the host also loads; functions the host lacks import as unavailable. |
+| A native plugin built against SDK 154+ and a 154+ host implement ABI v1 and its required capabilities | Loads. A plugin built against a newer SDK than the host also loads; functions the host lacks import as unavailable. |
 | A module's `sdkRelease` is below the host's `kMinSupportedSdkVersion` | Refused before the plugin is constructed, with a rebuild message. |
 | An SDK-built plugin finds the host's `HostCoreV1::sdkRelease` below its own `kMinSupportedSdkVersion`, or a host too old to publish one | The plugin's factory refuses creation, asking for a TitanClient update. |
 | An optional domain or appended function is absent | Imports as unavailable; facade checks retain their documented failure/default behaviour. |
@@ -1640,7 +1755,10 @@ releases do not change accepted snapshot tags. Native UI records live in
 `detail/native_payload_v1.h` pins payload layouts, array types and numeric
 values; `detail/native_abi.h` pins capability offsets. The compatibility
 suite also loads a real DLL compiled from a frozen standalone v1 header,
-checking short tables, settings arrays, instance state and destruction.
+checking short tables, settings arrays (including a string longer than the
+pre-154 capacity, read by view across the module boundary), instance state
+and destruction. That header's settings records were edited by hand in the
+SDK 154 break, the only change allowed to touch them.
 Released fixture DLLs should be retained and tested without recompilation;
 they exercise the ABI mechanics directly, and the SDK floor is covered by the
 native plugin instance tests.

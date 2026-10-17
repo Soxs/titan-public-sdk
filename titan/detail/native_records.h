@@ -1,12 +1,12 @@
 /// @file titan/detail/native_records.h
-/// @brief Frozen metadata and UI records for native ABI 1.
+/// @brief Metadata and UI records for native ABI 1.
 ///
 /// These records belong to the DLL contract. They deliberately do not include
-/// or alias the controller IPC protocol. Never grow a record, an embedded
-/// array, or a string capacity here: the host and plugin exchange arrays of
-/// these records using their frozen sizeof as the element stride. Introduce
-/// a separately negotiated interface and new record types for new layouts.
-/// Existing enum values and field semantics must also remain stable.
+/// or alias the controller IPC protocol. The host and plugin exchange arrays
+/// of these records using their sizeof as the element stride, so a layout
+/// change -- a grown record, an embedded array, a string field -- is an ABI
+/// break that ships with a raised kMinSupportedSdkVersion (SDK 135, SDK 154).
+/// Existing enum values and field semantics must remain stable.
 ///
 /// C++ facades construct these records inside the plugin. The client translates
 /// them field by field to its independently evolving controller protocol.
@@ -15,6 +15,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
+#include <string_view>
 #include <type_traits>
 #include <vector>
 
@@ -31,7 +32,6 @@ constexpr uint32_t kMaxNameLen = 64;
 constexpr uint32_t kMaxDescriptionLen = 256;
 constexpr uint32_t kMaxAuthorLen = 64;
 constexpr uint32_t kMaxVersionLen = 16;
-constexpr uint32_t kMaxStringLen = 4096;
 constexpr uint32_t kMaxErrorLen = 160;
 constexpr uint32_t kMaxLogMessage = 256;
 constexpr uint32_t kMaxPanelTextLen = 128;
@@ -56,11 +56,52 @@ enum class ControlType : uint8_t {
     numberInput = 9
 };
 
+/// A borrowed UTF-8 string (SDK 154): `length` bytes at `data`, followed by
+/// a NUL. A null `data` reads as "". Strings have no capacity limit: a record
+/// carries a pointer into memory its producer owns, never a copy, so a value
+/// costs exactly its own length.
+///
+/// The bytes stay valid only as long as the entry point that carries the
+/// record says, so copy what you keep:
+///  - Host to plugin (PluginApi::setSetting, onPanelAction): for the call.
+///  - Plugin to host (HostApi::markSettingChanged): for the call.
+///  - Plugin results (PluginApi::getSettings, getSections): until the next
+///    call of the same entry point into that module on the same thread. The
+///    SDK copies each string into a per-thread buffer before it returns, so
+///    a plugin thread changing a setting cannot free the bytes the host is
+///    about to read.
+///
+/// Read a Text through view(), or let it convert to std::string_view;
+/// c_str() relies on the NUL that producers must write.
+struct Text {
+    const char* data = nullptr;
+    uint32_t length = 0;
+    uint32_t reserved = 0;
+
+    std::string_view view() const noexcept {
+        return data ? std::string_view(data, length) : std::string_view();
+    }
+    operator std::string_view() const noexcept { return view(); }
+    const char* c_str() const noexcept { return data ? data : ""; }
+    bool empty() const noexcept { return !data || length == 0; }
+};
+
+/// Point @p out at @p text, which must outlive every reader the entry point
+/// allows (see Text). @p text must be NUL-terminated after its length, as a
+/// std::string's c_str() is.
+inline void lendText(Text& out, std::string_view text) noexcept {
+    out = {};
+    if (text.empty()) return;
+    out.data = text.data();
+    out.length = static_cast<uint32_t>(text.size());
+}
+
 struct Value {
     ValueType type = ValueType::boolean;
     int32_t intValue = 0;
     uint8_t boolValue = 0;
-    char stringValue[kMaxStringLen] = {};
+    uint8_t padding[7] = {};
+    Text stringValue = {};
 };
 
 struct SettingOption {
@@ -71,13 +112,13 @@ struct Setting {
     char key[kMaxIdLen] = {};
     char name[kMaxNameLen] = {};
     char section[kMaxIdLen] = {};
-    char tooltip[kMaxStringLen] = {};
+    Text tooltip = {};
     Value value = {};
     Value defaultValue = {};
     ControlType controlType = ControlType::autoDetect;
     uint8_t optionCount = 0;
     uint8_t hidden = 0;
-    uint8_t padding[2] = {};
+    uint8_t padding[5] = {};
     int32_t position = 0;
     int32_t minValue = 0;
     int32_t maxValue = 0;
@@ -85,7 +126,7 @@ struct Setting {
     uint32_t matrixAvailable = 0;
     uint8_t matrixRows = 0;
     uint8_t matrixColumns = 0;
-    uint8_t matrixPadding[2] = {};
+    uint8_t matrixPadding[6] = {};
 };
 inline bool normalizeMatrixSetting(Setting& setting, int32_t rows, int32_t columns,
                                    int32_t available) {
@@ -115,13 +156,13 @@ inline bool normalizeMatrixSetting(Setting& setting, int32_t rows, int32_t colum
 struct Section {
     char key[kMaxIdLen] = {};
     char name[kMaxNameLen] = {};
-    char description[kMaxStringLen] = {};
+    Text description = {};
     int32_t position = 0;
     uint8_t closedByDefault = 0;
     uint8_t parentIndex = 0;
     uint8_t padding[2] = {};
 };
-static_assert(sizeof(Section) == kMaxIdLen + kMaxNameLen + kMaxStringLen + 8,
+static_assert(sizeof(Section) == kMaxIdLen + kMaxNameLen + sizeof(Text) + 8,
               "getSections() fills a host-allocated Section[], so its stride is ABI");
 static_assert(offsetof(Section, parentIndex) == offsetof(Section, closedByDefault) + 1,
               "parentIndex must stay in the bytes that were padding before SDK 143");
@@ -245,46 +286,55 @@ struct PanelElement {
     uint8_t  padding2[3] = {};
 };
 
-// Every size, alignment, and offset is part of native ABI 1, including array stride.
+// Every size, alignment, and offset is part of native ABI 1, including array
+// stride. The string-bearing layout below is SDK 154's (kMinSupportedSdkVersion
+// 154); the x64 client and plugins are the only supported targets.
+static_assert(sizeof(void*) == 8, "native records pin the x64 layout");
+static_assert(std::is_standard_layout_v<Text> && std::is_trivially_copyable_v<Text>);
+static_assert(sizeof(Text) == 16 && alignof(Text) == 8);
+static_assert(offsetof(Text, data) == 0);
+static_assert(offsetof(Text, length) == 8);
+static_assert(offsetof(Text, reserved) == 12);
 static_assert(std::is_standard_layout_v<Value> && std::is_trivially_copyable_v<Value>);
-static_assert(sizeof(Value) == 4108 && alignof(Value) == 4);
+static_assert(sizeof(Value) == 32 && alignof(Value) == 8);
 static_assert(offsetof(Value, type) == 0);
 static_assert(offsetof(Value, intValue) == 4);
 static_assert(offsetof(Value, boolValue) == 8);
-static_assert(offsetof(Value, stringValue) == 9);
+static_assert(offsetof(Value, padding) == 9);
+static_assert(offsetof(Value, stringValue) == 16);
 static_assert(std::is_standard_layout_v<SettingOption> && std::is_trivially_copyable_v<SettingOption>);
 static_assert(sizeof(SettingOption) == 68 && alignof(SettingOption) == 4);
 static_assert(offsetof(SettingOption, intValue) == 0);
 static_assert(offsetof(SettingOption, label) == 4);
 static_assert(std::is_standard_layout_v<Setting> && std::is_trivially_copyable_v<Setting>);
-static_assert(sizeof(Setting) == 14644 && alignof(Setting) == 4);
+static_assert(sizeof(Setting) == 2416 && alignof(Setting) == 8);
 static_assert(offsetof(Setting, key) == 0);
 static_assert(offsetof(Setting, name) == 32);
 static_assert(offsetof(Setting, section) == 96);
 static_assert(offsetof(Setting, tooltip) == 128);
-static_assert(offsetof(Setting, value) == 4224);
-static_assert(offsetof(Setting, defaultValue) == 8332);
-static_assert(offsetof(Setting, controlType) == 12440);
-static_assert(offsetof(Setting, optionCount) == 12441);
-static_assert(offsetof(Setting, hidden) == 12442);
-static_assert(offsetof(Setting, padding) == 12443);
-static_assert(offsetof(Setting, position) == 12448);
-static_assert(offsetof(Setting, minValue) == 12452);
-static_assert(offsetof(Setting, maxValue) == 12456);
-static_assert(offsetof(Setting, options) == 12460);
-static_assert(offsetof(Setting, matrixAvailable) == 14636);
-static_assert(offsetof(Setting, matrixRows) == 14640);
-static_assert(offsetof(Setting, matrixColumns) == 14641);
-static_assert(offsetof(Setting, matrixPadding) == 14642);
+static_assert(offsetof(Setting, value) == 144);
+static_assert(offsetof(Setting, defaultValue) == 176);
+static_assert(offsetof(Setting, controlType) == 208);
+static_assert(offsetof(Setting, optionCount) == 209);
+static_assert(offsetof(Setting, hidden) == 210);
+static_assert(offsetof(Setting, padding) == 211);
+static_assert(offsetof(Setting, position) == 216);
+static_assert(offsetof(Setting, minValue) == 220);
+static_assert(offsetof(Setting, maxValue) == 224);
+static_assert(offsetof(Setting, options) == 228);
+static_assert(offsetof(Setting, matrixAvailable) == 2404);
+static_assert(offsetof(Setting, matrixRows) == 2408);
+static_assert(offsetof(Setting, matrixColumns) == 2409);
+static_assert(offsetof(Setting, matrixPadding) == 2410);
 static_assert(std::is_standard_layout_v<Section> && std::is_trivially_copyable_v<Section>);
-static_assert(sizeof(Section) == 4200 && alignof(Section) == 4);
+static_assert(sizeof(Section) == 120 && alignof(Section) == 8);
 static_assert(offsetof(Section, key) == 0);
 static_assert(offsetof(Section, name) == 32);
 static_assert(offsetof(Section, description) == 96);
-static_assert(offsetof(Section, position) == 4192);
-static_assert(offsetof(Section, closedByDefault) == 4196);
-static_assert(offsetof(Section, parentIndex) == 4197);
-static_assert(offsetof(Section, padding) == 4198);
+static_assert(offsetof(Section, position) == 112);
+static_assert(offsetof(Section, closedByDefault) == 116);
+static_assert(offsetof(Section, parentIndex) == 117);
+static_assert(offsetof(Section, padding) == 118);
 static_assert(std::is_standard_layout_v<PanelDescriptor> && std::is_trivially_copyable_v<PanelDescriptor>);
 static_assert(sizeof(PanelDescriptor) == 168 && alignof(PanelDescriptor) == 4);
 static_assert(offsetof(PanelDescriptor, id) == 0);

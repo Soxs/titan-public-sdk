@@ -602,6 +602,11 @@ struct ItemDef {
     bool members = false;
     bool stackable = false;
     bool noted = false;
+    /// The item can be offered on the Grand Exchange (cache opcode 65). Noted
+    /// forms report their unnoted item; placeholders report false. Player
+    /// tradeability is not in the cache: coins trade but report false.
+    /// Added in SDK 152.
+    bool geTradeable = false;
     int32_t noteId = -1;
     /// Other item id in the note pair; -1 when there is no note pair.
     int32_t linkedId = -1;
@@ -610,6 +615,10 @@ struct ItemDef {
     /// Raw cache submenu labels indexed by inventory action then submenu slot.
     /// Empty strings preserve the fixed 5 x 20 positional shape.
     SubOps subOps;
+    /// General store value (cache opcode 12; 1 when the cache omits it).
+    /// Noted forms report their unnoted item; bought and placeholder forms
+    /// report 0. High alchemy pays 3/5 of it. Added in SDK 152.
+    int32_t storeValue = 0;
 };
 
 struct NpcDef {
@@ -658,6 +667,7 @@ public:
         d.members = s.members != 0;
         d.stackable = s.stackable != 0;
         d.noted = s.noted != 0;
+        d.geTradeable = s.geTradeable != 0;
         d.noteId = s.noteId; d.linkedId = s.linkedId;
         for (int i = 0; i < 5; ++i) {
             d.inventoryActions[i] = s.inventoryActions[i];
@@ -667,6 +677,7 @@ public:
                 d.subOps[i][subOp] = s.subOps[i][subOp];
             }
         }
+        d.storeValue = s.storeValue;
         return d;
     }
 

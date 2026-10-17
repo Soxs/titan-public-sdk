@@ -78,7 +78,7 @@ public:
         out = {};
         detail::copyFixed(out.key, sizeof(out.key), key_);
         detail::copyFixed(out.name, sizeof(out.name), name_);
-        detail::copyFixed(out.description, sizeof(out.description), opts_.description);
+        TitanNativeRecords::lendText(out.description, opts_.description);
         out.position = opts_.position;
         out.closedByDefault = opts_.closedByDefault ? 1 : 0;
     }
@@ -216,7 +216,7 @@ protected:
     void fillMeta(TitanNativeRecords::Setting& out) const {
         copyFixed(out.key, sizeof(out.key), key_);
         copyFixed(out.name, sizeof(out.name), name_);
-        copyFixed(out.tooltip, sizeof(out.tooltip), meta_.tooltip);
+        TitanNativeRecords::lendText(out.tooltip, meta_.tooltip);
         if (meta_.section) {
             copyFixed(out.section, sizeof(out.section), meta_.section->key());
         }
@@ -443,24 +443,23 @@ public:
     void buildValue(TitanNativeRecords::Value& out) const override {
         out = {};
         out.type = TitanNativeRecords::ValueType::string;
-        detail::copyFixed(out.stringValue, sizeof(out.stringValue), value_);
+        TitanNativeRecords::lendText(out.stringValue, value_);
     }
 
     void serialize(TitanNativeRecords::Setting& out) const override {
         out = {};
         fillMeta(out);
         out.value.type = TitanNativeRecords::ValueType::string;
-        detail::copyFixed(out.value.stringValue, sizeof(out.value.stringValue), value_);
+        TitanNativeRecords::lendText(out.value.stringValue, value_);
         out.defaultValue.type = TitanNativeRecords::ValueType::string;
-        detail::copyFixed(out.defaultValue.stringValue, sizeof(out.defaultValue.stringValue),
-                          defaultValue_);
+        TitanNativeRecords::lendText(out.defaultValue.stringValue, defaultValue_);
         out.controlType = TitanNativeRecords::ControlType::textInput;
     }
 
     std::string apply(const TitanNativeRecords::Value& v) override {
         if (v.type != TitanNativeRecords::ValueType::string)
             return "Expected string value";
-        value_.assign(v.stringValue);
+        value_.assign(v.stringValue.view());
         return {};
     }
 };
@@ -480,24 +479,23 @@ public:
     void buildValue(TitanNativeRecords::Value& out) const override {
         out = {};
         out.type = TitanNativeRecords::ValueType::string;
-        detail::copyFixed(out.stringValue, sizeof(out.stringValue), value_);
+        TitanNativeRecords::lendText(out.stringValue, value_);
     }
 
     void serialize(TitanNativeRecords::Setting& out) const override {
         out = {};
         fillMeta(out);
         out.value.type = TitanNativeRecords::ValueType::string;
-        detail::copyFixed(out.value.stringValue, sizeof(out.value.stringValue), value_);
+        TitanNativeRecords::lendText(out.value.stringValue, value_);
         out.defaultValue.type = TitanNativeRecords::ValueType::string;
-        detail::copyFixed(out.defaultValue.stringValue, sizeof(out.defaultValue.stringValue),
-                          defaultValue_);
+        TitanNativeRecords::lendText(out.defaultValue.stringValue, defaultValue_);
         out.controlType = TitanNativeRecords::ControlType::protectedText;
     }
 
     std::string apply(const TitanNativeRecords::Value& v) override {
         if (v.type != TitanNativeRecords::ValueType::string)
             return "Expected string value";
-        value_.assign(v.stringValue);
+        value_.assign(v.stringValue.view());
         return {};
     }
 };

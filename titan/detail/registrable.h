@@ -53,9 +53,9 @@ public:
     ///
     /// Every concrete type overrides this to write the value directly. The
     /// default is a correct fallback for a hypothetical out-of-tree
-    /// SettingBase, but it materializes a whole TitanNativeRecords::Setting
-    /// (kilobytes, most of it fixed-size label and tooltip buffers) to read
-    /// one union out of it, so nothing in-tree should reach it.
+    /// SettingBase: it materializes a whole TitanNativeRecords::Setting to
+    /// read one union out of it. A string value stays lent from the
+    /// setting's own member, which serialize() points the record at.
     virtual void buildValue(TitanNativeRecords::Value& out) const {
         TitanNativeRecords::Setting scratch{};
         serialize(scratch);

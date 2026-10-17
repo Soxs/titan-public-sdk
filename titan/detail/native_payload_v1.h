@@ -6,8 +6,9 @@
 // alignment, enum representations, and numeric meanings. Do not update an
 // existing expectation to accommodate a mutation. A deliberate layout break
 // updates its expectations only in the same change that raises
-// kMinSupportedSdkVersion (SDK 146: WidgetState modelType/modelId), so the
-// host refuses every DLL built against the old layout. UI payloads have
+// kMinSupportedSdkVersion (SDK 146: WidgetState modelType/modelId; SDK 152:
+// ItemDefSnapshot geTradeable/storeValue), so the host refuses every DLL
+// built against the old layout. UI payloads have
 // equivalent checks in native_records.h; native_abi.h freezes function-table
 // layouts.
 #include "abi.h"
@@ -377,7 +378,7 @@ TITAN_NATIVE_FIELD(CameraState, viewportH, 24, int32_t);
 TITAN_NATIVE_FIELD(CameraState, zoom, 28, int32_t);
 TITAN_NATIVE_FIELD(CameraState, valid, 32, uint8_t);
 
-TITAN_NATIVE_RECORD(ItemDefSnapshot, 7128, 4);
+TITAN_NATIVE_RECORD(ItemDefSnapshot, 7132, 4);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, structSize, 0, uint32_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, apiVersion, 4, uint32_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, id, 8, int32_t);
@@ -385,12 +386,13 @@ TITAN_NATIVE_FIELD(ItemDefSnapshot, name, 12, char[64]);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, members, 76, uint8_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, stackable, 77, uint8_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, noted, 78, uint8_t);
-TITAN_NATIVE_FIELD(ItemDefSnapshot, reserved0, 79, uint8_t);
+TITAN_NATIVE_FIELD(ItemDefSnapshot, geTradeable, 79, uint8_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, noteId, 80, int32_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, linkedId, 84, int32_t);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, inventoryActions, 88, char[5][64]);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, groundActions, 408, char[5][64]);
 TITAN_NATIVE_FIELD(ItemDefSnapshot, subOps, 728, char[5][20][64]);
+TITAN_NATIVE_FIELD(ItemDefSnapshot, storeValue, 7128, int32_t);
 
 TITAN_NATIVE_RECORD(NpcDefSnapshot, 416, 4);
 TITAN_NATIVE_FIELD(NpcDefSnapshot, structSize, 0, uint32_t);

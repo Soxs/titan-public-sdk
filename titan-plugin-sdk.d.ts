@@ -680,6 +680,8 @@ interface ActorBase extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this actor's footprint to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when the local player can stand on one of this entity's tiles or on a tile cardinally adjacent to them (titan.utils.bfs.isReachable). SDK 153+. */
+    isReachable(): boolean;
     /** True when this actor's footprint is exactly one orthogonal tile from another footprint/point. SDK 86+. */
     isInMeleeDistance(other: SpatialTarget): boolean;
 
@@ -810,6 +812,8 @@ interface TileObject extends InstanceConvertible {
     hasAction(action: string): boolean;
     /** RuneLite-style line of sight from this object's footprint to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when the local player can stand on one of this entity's tiles or on a tile cardinally adjacent to them (titan.utils.bfs.isReachable). SDK 153+. */
+    isReachable(): boolean;
     /** True when this object's footprint is exactly one orthogonal tile from another footprint/point. SDK 86+. */
     isInMeleeDistance(other: SpatialTarget): boolean;
     /** RuneLite-style dynamic scenery animation id lookup. SDK 71+. */
@@ -851,6 +855,8 @@ interface GroundItem extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this item tile to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when the local player can stand on one of this entity's tiles or on a tile cardinally adjacent to them (titan.utils.bfs.isReachable). SDK 153+. */
+    isReachable(): boolean;
     /** True when this item tile is exactly one orthogonal tile from another footprint/point. SDK 86+. */
     isInMeleeDistance(other: SpatialTarget): boolean;
 
@@ -938,6 +944,8 @@ interface Projectile extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this projectile tile to another locatable or world point. SDK 52+. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when the local player can stand on one of this entity's tiles or on a tile cardinally adjacent to them (titan.utils.bfs.isReachable). SDK 153+. */
+    isReachable(): boolean;
     /** True when this projectile tile is exactly one orthogonal tile from another footprint/point. SDK 86+. */
     isInMeleeDistance(other: SpatialTarget): boolean;
 }
@@ -989,6 +997,8 @@ interface GraphicsObject extends InstanceConvertible {
 
     /** RuneLite-style line of sight from this graphics object's tile to another locatable or world point. */
     hasLineOfSight(other: LineOfSightTarget): boolean;
+    /** True when the local player can stand on one of this entity's tiles or on a tile cardinally adjacent to them (titan.utils.bfs.isReachable). SDK 153+. */
+    isReachable(): boolean;
     /** True when this graphics object's tile is exactly one orthogonal tile from another footprint/point. SDK 86+. */
     isInMeleeDistance(other: SpatialTarget): boolean;
 }
@@ -3053,6 +3063,15 @@ interface PanelElement {
         isMembers: boolean;
         stackable: boolean;
         noted: boolean;
+        /** The item can be offered on the Grand Exchange (cache opcode 65).
+         * Noted forms report their unnoted item; placeholders report false.
+         * Player tradeability is not in the cache: coins report false.
+         * Added in SDK 152. */
+        geTradeable: boolean;
+        /** General store value (cache opcode 12; 1 when the cache omits it).
+         * Noted forms report their unnoted item; bought and placeholder forms
+         * report 0. High alchemy pays 3/5 of it. Added in SDK 152. */
+        storeValue: number;
         noteId: number;
         /** Other item id in the note pair; -1 when there is no note pair. */
         linkedId: number;
@@ -3771,6 +3790,133 @@ interface PanelElement {
             depositLootingBag(): boolean;
             /** Select the "All" deposit quantity; true immediately when already selected. */
             selectDepositAll(): boolean;
+        };
+
+        /** One stocked slot of the shop's grid; `quantity` is 0 when sold out. */
+        interface ShopItem {
+            itemId: number;
+            quantity: number;
+            /** Dynamic child slot of `Shopmain.ITEMS` (the CC_OP param0). */
+            slot: number;
+        }
+
+        /**
+         * Shop state and action helpers. Mirrors `titan::utils::Shop::*` from
+         * [shared/titan/utils/shop.h](shared/titan/utils/shop.h). Buying and
+         * selling fire the slot's own component operation for the largest
+         * quantity button (50, 10, 5 or 1) not above the request, once per
+         * call, so repeat until you hold what you need. Actions report queue
+         * acceptance, not gameplay success. Added in SDK 153.
+         */
+        const shop: {
+            /** True while a shop interface is open (its stock grid is visible). */
+            readonly isOpen: boolean;
+            /** Every stocked slot in grid order; empty when the shop is closed. */
+            items(): ShopItem[];
+            /** Grid slot of the item, or null when closed or unlisted. */
+            slotOf(itemId: number): number | null;
+            /** The shop's stock of the item; 0 when closed, unlisted or sold out. */
+            stock(itemId: number): number;
+            /** True when the shop has at least `quantity` (default 1) in stock. */
+            has(itemId: number, quantity?: number): boolean;
+            /** The item's general store value (`ItemDef.storeValue`); 0 when unknown. */
+            storeValue(itemId: number): number;
+            /** True while the shop is open and an inventory item's name contains `name`. */
+            hasItemToSell(name: string): boolean;
+            /** Buy with the largest quantity button not above `quantity`; false when stock is short. */
+            buy(itemId: number, quantity: number): boolean;
+            /** Sell the first inventory slot holding the item. */
+            sell(itemId: number, quantity: number): boolean;
+            /** Sell the first inventory item whose name contains `name` (case-insensitive). */
+            sellByName(name: string, quantity: number): boolean;
+            /** Close the shop through its frame's close X; true when none is open. */
+            close(): boolean;
+        };
+
+        /** Player-anchored BFS flood map snapshot (see `bfs.getReachabilityMap`). */
+        interface BfsReachabilityMap {
+            /** The source tile (the player's), or null with no player. */
+            source(): WorldPoint | null;
+            reachable(wp: WorldPoint): boolean;
+            /** Natural path length from the source, or null when unreachable. */
+            pathLength(wp: WorldPoint): number | null;
+            /** Natural path from the source (start tile excluded); empty when unreachable. */
+            pathTo(wp: WorldPoint): WorldPoint[];
+            /** The tile `wp` is entered from; null for the source and unreachable tiles. */
+            parentOf(wp: WorldPoint): WorldPoint | null;
+            /** Every reachable tile, the source first, in BFS discovery order. */
+            getWorldPoints(): WorldPoint[];
+        }
+
+        /**
+         * Weighted / constrained search (see `bfs.weighted`). The weight is an
+         * extra cost (>= 0) for entering a tile; the block predicate makes a
+         * tile impassable. Both receive the tile and the steps (run mode: the
+         * move count) from the source. A player starting on a blocked tile
+         * escapes through the least-blocked route.
+         */
+        interface BfsWeightedSearch {
+            weight(fn: (tile: WorldPoint, stepsFromStart: number) => number): BfsWeightedSearch;
+            block(fn: (tile: WorldPoint, stepsFromStart: number) => boolean): BfsWeightedSearch;
+            /** Run-aware costing: weight is charged only on the tiles you land on. */
+            run(run: boolean): BfsWeightedSearch;
+            /** Weighted path (run mode: the landed tiles); `run` also sets the mode. */
+            findPath(end: WorldPoint, partial?: boolean, run?: boolean): WorldPoint[];
+            reachable(wp: WorldPoint): boolean;
+            pathLength(wp: WorldPoint): number | null;
+            /** Farthest tile of the route whose natural path matches it. */
+            clickTile(endOrIntended: WorldPoint | WorldPoint[]): WorldPoint | null;
+            /** Closest natural-map tile the block predicate allows. */
+            nearestSafeTile(): WorldPoint | null;
+            /** Path to the goal with the lowest weighted cost; empty if none is reachable. */
+            safePathTo(goals: WorldPoint[]): WorldPoint[];
+        }
+
+        /**
+         * Tile reachability and natural pathfinding over the scene collision
+         * map, from the game's 8-directional movement rules. The player
+         * reachability map is cached per game tick. Every call binds to
+         * `titan::utils::BFS::*` from
+         * [shared/titan/utils/bfs.h](shared/titan/utils/bfs.h), the C++ port
+         * of the Java SDK's `BFS`. Areas are `{x, y, width, height, plane}`
+         * (a `WorldArea`). Callbacks run synchronously; an exception thrown by
+         * one ends the search and is re-thrown. Added in SDK 153.
+         */
+        const bfs: {
+            getReachabilityMap(): BfsReachabilityMap;
+            /** Natural path from the player; `partial` (default true) falls back to the nearest reachable tile. */
+            findPath(end: WorldPoint, partial?: boolean): WorldPoint[];
+            findPath(start: WorldPoint, end: WorldPoint, partial?: boolean): WorldPoint[];
+            /** Path to the nearest reachable tile adjacent to the area (the interact tile). */
+            findPath(area: WorldArea): WorldPoint[];
+            pathLength(end: WorldPoint): number | null;
+            pathLength(start: WorldPoint, end: WorldPoint): number | null;
+            pathLength(area: WorldArea): number | null;
+            reachable(wp: WorldPoint): boolean;
+            /** True when the tile is inside the scene and not fully blocked. */
+            walkable(wp: WorldPoint): boolean;
+            canStep(from: WorldPoint, to: WorldPoint): boolean;
+            canStep(from: WorldPoint, dx: number, dy: number): boolean;
+            reachableTilesAtCost(n: number): WorldPoint[];
+            reachableTilesWithinCost(n: number): WorldPoint[];
+            /** Reachable tiles cardinally adjacent to the area's footprint. */
+            reachableAdjacentTiles(area: WorldArea): WorldPoint[];
+            meleeable(area: WorldArea): boolean;
+            reachableWithinRange(area: WorldArea, range: number, requireLoS: boolean): boolean;
+            /** Stand on a tile of the target or cardinally next to it (Locatable `isReachable`). */
+            isReachable(target: WorldPoint | WorldArea): boolean;
+            hasLineOfSight(to: WorldPoint): boolean;
+            hasLineOfSight(from: WorldPoint, to: WorldPoint): boolean;
+            /**
+             * Removable tiles to clear, in walk order, to reach the target;
+             * empty when already reachable, null when unreachable even after
+             * clearing every removable tile.
+             */
+            blockingTiles(target: WorldPoint | WorldArea,
+                          removable: ((tile: WorldPoint) => boolean) | WorldPoint[] | null): WorldPoint[] | null;
+            weighted(): BfsWeightedSearch;
+            /** The tiles you land on running `path` as one click. */
+            runTiles(path: WorldPoint[]): WorldPoint[];
         };
     }
 

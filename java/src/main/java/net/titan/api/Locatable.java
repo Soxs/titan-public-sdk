@@ -70,4 +70,14 @@ public interface Locatable<T extends Locatable<T>> {
     default boolean hasLineOfSight(Locatable<?> other) {
         return other != null && worldArea().hasLineOfSight(other.worldArea());
     }
+
+    /**
+     * True when the local player can walk onto one of this entity's tiles, or onto a
+     * tile cardinally adjacent to them from which it can be interacted with (see
+     * {@link net.titan.api.utils.BFS#reachableAdjacentTiles}). Uses the per-tick
+     * reachability map. Added in Java SDK 0.1.84.
+     */
+    default boolean isReachable() {
+        return net.titan.api.utils.BFS.isReachable(worldArea());
+    }
 }

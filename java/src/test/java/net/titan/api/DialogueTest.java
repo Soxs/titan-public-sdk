@@ -64,6 +64,30 @@ class DialogueTest {
     }
 
     @Test
+    void combinedAndRewardPromptsContinueWithSpace() {
+        // The two-chathead, link, titled and screen-highlight prompts ThePlug's
+        // WidgetUtils also checks; none is text-gated (matches the native header).
+        install();
+        for (int prompt : new int[] {InterfaceID.ChatBoth.CONTINUE_, InterfaceID.MessageboxUrl.CONTINUE_,
+                InterfaceID.MessageboxTitled.CONTINUE_, InterfaceID.Screenhighlight.CONTINUE_}) {
+            state.visible.clear();
+            state.visible.add(prompt);
+            state.reset();
+            assertEquals(prompt, Dialogue.getContinueWidgetPackedId());
+            assertTrue(Dialogue.inDialogue());
+            assertTrue(Dialogue.handleDialogue("missing option"));
+            assertEquals(1, state.keyPresses);
+            assertEquals(KeyboardKey.SPACE, state.lastKey);
+            assertEquals(0, state.interactions);
+        }
+        state.visible.clear();
+        state.reset();
+        assertEquals(0, Dialogue.getContinueWidgetPackedId());
+        assertFalse(Dialogue.continueDialogue());
+        assertEquals(0, state.keyPresses);
+    }
+
+    @Test
     void objectboxPromptIsDynamicChildTwo() {
         install();
         state.visible.add(InterfaceID.Objectbox.UNIVERSE);

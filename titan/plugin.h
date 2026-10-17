@@ -40,6 +40,7 @@
 
 #include <algorithm>
 #include <cstring>
+#include <deque>
 #include <functional>
 #include <memory>
 #include <string>
@@ -533,12 +534,52 @@ inline uint8_t thunkGetEnabled(void* ud) { return self(ud)->isEnabled() ? 1 : 0;
 inline void thunkSetEnabled(void* ud, uint8_t v) { self(ud)->_setEnabledFromHost(v != 0); }
 inline void thunkPrepareUnload(void* ud) { self(ud)->onUnload(); }
 
+/// Per-thread owner of the strings a getSettings / getSections result points
+/// at (SDK 154). serialize() lends a record each member's own std::string,
+/// and the thunk re-points it here before returning, so the host reads bytes
+/// no plugin thread can reallocate under it. Valid until the same entry point
+/// next runs on this thread. One per entry point, so collecting a plugin's
+/// sections cannot invalidate settings the host has not converted yet.
+class ResultTexts {
+public:
+    void reset() { held_.clear(); }
+    void hold(TitanNativeRecords::Text& text) {
+        if (text.empty()) {
+            text = {};
+            return;
+        }
+        held_.emplace_back(text.view());
+        TitanNativeRecords::lendText(text, held_.back());
+    }
+
+private:
+    // A deque never moves an element it already holds; a vector would, and
+    // moving a short std::string moves its inline buffer out from under the
+    // records lent before it.
+    std::deque<std::string> held_;
+};
+
+inline ResultTexts& settingsResultTexts() {
+    thread_local ResultTexts texts;
+    return texts;
+}
+
+inline ResultTexts& sectionsResultTexts() {
+    thread_local ResultTexts texts;
+    return texts;
+}
+
 inline uint32_t thunkGetSections(void* ud, TitanNativeRecords::Section* out, uint32_t max) {
     Plugin* p = self(ud);
     const auto& list = p->_sections();
     const uint32_t count = static_cast<uint32_t>(
         (std::min)(list.size(), static_cast<size_t>(max)));
-    for (uint32_t i = 0; i < count; ++i) list[i]->serialize(out[i]);
+    auto& texts = sectionsResultTexts();
+    texts.reset();
+    for (uint32_t i = 0; i < count; ++i) {
+        list[i]->serialize(out[i]);
+        texts.hold(out[i].description);
+    }
     // SDK 143: a parent crosses the ABI as its 1-based position in this same
     // array. One the host never receives -- another plugin's section, or one
     // past `max` -- leaves the section at the top level.
@@ -561,7 +602,14 @@ inline uint32_t thunkGetSettings(void* ud, TitanNativeRecords::Setting* out, uin
     const auto& list = p->_settings();
     const uint32_t count = static_cast<uint32_t>(
         (std::min)(list.size(), static_cast<size_t>(max)));
-    for (uint32_t i = 0; i < count; ++i) list[i]->serialize(out[i]);
+    auto& texts = settingsResultTexts();
+    texts.reset();
+    for (uint32_t i = 0; i < count; ++i) {
+        list[i]->serialize(out[i]);
+        texts.hold(out[i].tooltip);
+        texts.hold(out[i].value.stringValue);
+        texts.hold(out[i].defaultValue.stringValue);
+    }
     return count;
 }
 

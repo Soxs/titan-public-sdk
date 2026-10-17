@@ -27,6 +27,11 @@ public final class Dialogue {
         InterfaceID.Messagebox.CONTENT,
         InterfaceID.ChatLeft.CONTINUE_,
         InterfaceID.ChatRight.CONTINUE_,
+        // Two-chathead, link, titled and screen-highlight prompts (0.1.84).
+        InterfaceID.ChatBoth.CONTINUE_,
+        InterfaceID.MessageboxUrl.CONTINUE_,
+        InterfaceID.MessageboxTitled.CONTINUE_,
+        InterfaceID.Screenhighlight.CONTINUE_,
         InterfaceID.ObjectboxDouble.PAUSEBUTTON,
         InterfaceID.Messagebox.SAFEZONE,
         InterfaceID.Chatbox.CLOSE_ICON,

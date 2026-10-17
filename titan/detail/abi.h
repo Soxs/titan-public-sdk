@@ -38,11 +38,70 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
-/// Unreleased -- Bank deposit containers.
+/// v154 -- Setting strings without a length cap (ABI BREAK -- rebuild every plugin)
+///   - TitanNativeRecords::Value::stringValue, Setting::tooltip and
+///     Section::description are TitanNativeRecords::Text views (pointer and
+///     length) instead of 4096-byte arrays, so a string setting holds text of
+///     any length and a record costs only what its text does: Value shrinks
+///     4108 -> 32 bytes, Setting 14644 -> 2416, Section 4200 -> 120. Text
+///     converts to std::string_view, so `std::string(value.stringValue)` and
+///     `member = value.stringValue` still compile; sizeof / strnlen on the old
+///     array do not. A record's bytes are borrowed: host-to-plugin and
+///     markSettingChanged strings live for the call, and getSettings /
+///     getSections results until that entry point next runs on the thread
+///     (the SDK thunks copy them into a per-thread buffer first). Copy what
+///     you keep. kMinSupportedSdkVersion 152 -> 154: a DLL built at 153 or
+///     earlier has the old layout and is refused.
+///   ~ The controller edits string settings in a buffer that grows with the
+///     text, and setSettingValue / panelAction carry their value in the
+///     msgpack payload (controller protocol 39). JS/TS and Java settings and
+///     their descriptor defaults, tooltips and section descriptions are
+///     uncapped too; Java plugins need no rebuild.
+///
+/// v153 -- BFS reachability, Locatable isReachable, and shop helpers.
+///   + <titan/utils/bfs.h> titan::utils::BFS: the per-tick player reachability
+///     map, natural paths (partial fallback), path lengths, step and walkable
+///     tests, area adjacency/melee/range checks, the BFS line of sight,
+///     minimum-blocker routes and weighted / run-aware constrained search. A
+///     port of the Java SDK's net.titan.api.utils.BFS (Java 0.1.84) with
+///     identical results; JS/TS titan.utils.bfs binds to the C++ header.
+///   + Locatable::isReachable() in C++ (defined in bfs.h), Java and JS/TS:
+///     the player can stand on one of the entity's tiles or a tile
+///     cardinally adjacent to them.
+///   + <titan/utils/shop.h> titan::utils::Shop, JS/TS titan.utils.shop and
+///     Java Shop: isOpen, items, slotOf, stock, has, storeValue,
+///     hasItemToSell, buy, sell, sellByName and close over the Shopmain /
+///     Shopside component operations.
+///   + Dialogue::hasOption / selectOption / handleDialogue accept any runtime
+///     range of strings (std::vector<std::string>, std::span, ...) besides a
+///     braced list, with identical matching. JS/TS now runs that overload over
+///     the whole needle array, so all three SDKs pick the same option.
+///   + Continue prompts include ChatBoth, MessageboxUrl, MessageboxTitled and
+///     Screenhighlight CONTINUE (not text-gated) in C++, JS/TS, Java and the
+///     host helper, so continueDialogue/handleDialogue advance two-chathead,
+///     link, titled and screen-highlight dialogues as ThePlug's WidgetUtils does.
+///   ~ Composed over existing HostApi calls; native ABI and payload floor
+///     (152) unchanged.
+///
+/// v152 -- Item GE-tradeable flag and store value; bank deposit containers.
+///   + ItemDefSnapshot::geTradeable (cache opcode 65, in the former reserved0
+///     byte) and the appended ItemDefSnapshot::storeValue (opcode 12, 1 when
+///     the cache omits it). Exposed as C++ ItemDef::geTradeable/storeValue,
+///     JS/TS ItemDef.geTradeable/storeValue and Java
+///     ItemDefinition.isGeTradeable()/storeValue() (0.1.83). Noted forms
+///     report their unnoted item; bought and placeholder forms have a store
+///     value of 0, and placeholders are never GE-tradeable. Player
+///     tradeability is not in the cache: coins report false.
+///   ~ The cache item parser skips opcode 251, a payload-free flag written
+///     after opcode 65. Stopping at it had dropped the name and later fields
+///     of every GE-tradeable item definition.
 ///   + C++ Bank::depositContainers(), JS/TS titan.utils.bank.depositContainers()
 ///     and Java Bank.depositContainers() (0.1.82) activate widget 786477 with
 ///     the same action parameters and dispatch result as inventory/equipment.
-///   ~ Composed over existing widget interaction; ABI and payload floor unchanged.
+///   - ItemDefSnapshot grows, so kMinSupportedSdkVersion is raised to 152:
+///     the host refuses native DLLs built against an older SDK, and plugins
+///     built against 152 refuse an older host. Rebuild every native DLL and
+///     publish it with the client.
 ///
 /// v151 -- Optional "render only my plane" through HostRenderV1.
 ///   + isPlaneHidingAvailable / setOtherPlanesHidden / getOtherPlanesHidden:
@@ -1794,10 +1853,11 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 151;
+constexpr uint32_t kSdkVersion = 154;
 
-/// Immutable cache-definition payload contract for Native ABI v1. SDK source
-/// releases do not change this value or the records carrying it.
+/// Cache-definition payload tag for Native ABI v1. SDK source releases do not
+/// change this value; the records carrying it change layout only together
+/// with kMinSupportedSdkVersion (SDK 152: ItemDefSnapshot).
 constexpr uint32_t kNativePayloadVersion = 1;
 
 /// Native load gate for payload layout breaks. The host refuses native
@@ -1806,8 +1866,10 @@ constexpr uint32_t kNativePayloadVersion = 1;
 /// the same change as any payload record layout change, never for appended
 /// optional functions.
 ///
-/// Raised to 146 when WidgetState gained modelType and modelId.
-constexpr uint32_t kMinSupportedSdkVersion = 146;
+/// Raised to 146 when WidgetState gained modelType and modelId, to 152
+/// when ItemDefSnapshot gained geTradeable and storeValue, and to 154 when
+/// setting and section strings became borrowed TitanNativeRecords::Text.
+constexpr uint32_t kMinSupportedSdkVersion = 154;
 
 /// Upper bound for one VarClient string snapshot including its NUL terminator.
 /// The host getter exposes a required-size ABI; clients use this cap before
@@ -2660,7 +2722,9 @@ struct ItemDefSnapshot {
     uint8_t members = 0;
     uint8_t stackable = 0;
     uint8_t noted = 0;
-    uint8_t reserved0 = 0;
+    /// SDK 152: cache opcode 65, the item can be offered on the Grand
+    /// Exchange. Noted forms report their unnoted item; placeholders report 0.
+    uint8_t geTradeable = 0;
     int32_t noteId = -1;
     int32_t linkedId = -1;
     char inventoryActions[kMaxActionCount][kMaxLabelLen] = {};
@@ -2668,6 +2732,10 @@ struct ItemDefSnapshot {
     /// Raw opcode-43 labels indexed by inventory action then submenu slot.
     /// Empty strings preserve positional gaps.
     char subOps[kMaxActionCount][kMaxItemSubOpCount][kMaxLabelLen] = {};
+    /// SDK 152: cache opcode 12, the general store value (1 when the cache
+    /// omits it). Noted forms report their unnoted item; bought and
+    /// placeholder forms report 0. High alchemy pays 3/5 of it.
+    int32_t storeValue = 0;
 };
 
 /// NPC definition snapshot for cross-DLL transfer.

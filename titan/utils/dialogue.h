@@ -18,7 +18,10 @@
 ///   - `hasOption(...)`, `selectOption(...)`, `handleDialogue(...)`
 ///     (SDK 38) -- dialog-option selection by case-insensitive text
 ///     match, backed by `titan::state::widgets().children(pack(219, 1))`;
-///     `selectOption` presses the matched option's digit key.
+///     `selectOption` presses the matched option's digit key. Each takes a
+///     braced list (`{"Yes", "Okay"}`) or, since SDK 153, any runtime range
+///     of strings (`std::vector<std::string>`, `std::span<const
+///     std::string_view>`, ...) with the same matching.
 ///
 /// **What is still NOT here:**
 ///   - `findWidgetWithText(...)` -- a recursive walk of every widget
@@ -48,9 +51,11 @@
 
 #include <array>
 #include <cctype>
+#include <concepts>
 #include <cstdint>
 #include <initializer_list>
 #include <optional>
+#include <ranges>
 #include <string_view>
 #include <vector>
 
@@ -68,12 +73,18 @@ struct ContinueCandidate {
     int32_t dynamicSlot = -1;
 };
 
-inline constexpr std::array<ContinueCandidate, 10> kContinueCandidates = {{
+inline constexpr std::array<ContinueCandidate, 14> kContinueCandidates = {{
     {gamevals::InterfaceID::LevelupDisplay::CONTINUE_, false},
     {gamevals::InterfaceID::Messagebox::CONTINUE_,     false},
     {gamevals::InterfaceID::Messagebox::CONTENT,        false},
     {gamevals::InterfaceID::ChatLeft::CONTINUE_,        false},
     {gamevals::InterfaceID::ChatRight::CONTINUE_,       false},
+    // SDK 153: two-chathead, link, titled and screen-highlight prompts (the
+    // reward and combined chat dialogues ThePlug's WidgetUtils also checks).
+    {gamevals::InterfaceID::ChatBoth::CONTINUE_,        false},
+    {gamevals::InterfaceID::MessageboxUrl::CONTINUE_,   false},
+    {gamevals::InterfaceID::MessageboxTitled::CONTINUE_, false},
+    {gamevals::InterfaceID::Screenhighlight::CONTINUE_, false},
     {gamevals::InterfaceID::ObjectboxDouble::PAUSEBUTTON, false},
     {gamevals::InterfaceID::Messagebox::SAFEZONE,       false},
     {gamevals::InterfaceID::Chatbox::CLOSE_ICON,        true},
@@ -239,38 +250,37 @@ inline bool closeQuestCompletion() {
     return detail::clickWholeWidget(gamevals::InterfaceID::Questscroll::CLOSE_BUTTON);
 }
 
-/// @return true when the multi-option dialog widget (219, 1) is visible
-///         and at least one option text contains any of `needles` (case-
-///         insensitive substring match). The title/header at slot 0 is not
-///         an option. Returns false when the dialog is hidden, has no
-///         dynamic children, or the host is pre-SDK-38 (child enumeration
-///         unavailable).
-inline bool hasOption(std::initializer_list<std::string_view> needles) {
-    if (!detail::resolveVisible(gamevals::InterfaceID::Chatmenu::OPTIONS)) return false;
+namespace detail {
+
+/// A runtime list of option needles: any range whose elements convert to
+/// `std::string_view` (`std::vector<std::string>`, `std::vector<
+/// std::string_view>`, `std::array<const char*, N>`, `std::span`, ...).
+template <typename Range>
+concept NeedleRange = std::ranges::input_range<const Range&>
+    && std::convertible_to<std::ranges::range_reference_t<const Range&>, std::string_view>;
+
+template <typename Range>
+bool hasOptionIn(const Range& needles) {
+    if (!resolveVisible(gamevals::InterfaceID::Chatmenu::OPTIONS)) return false;
 
     const auto children = titan::state::widgets().children(gamevals::InterfaceID::Chatmenu::OPTIONS);
     if (children.empty()) return false;
 
     // Slot 0 is the dialog title/header. It is NOT needle-proof: a header
     // like "Travel to where?" contains "Travel", so options start at slot 1.
-    for (auto needle : needles) {
+    for (const auto& item : needles) {
+        const std::string_view needle = item;
         for (std::size_t i = 1; i < children.size(); ++i) {
-            if (!detail::isVisibleWidget(children[i])) continue;
-            if (detail::icontains(children[i].text(), needle)) return true;
+            if (!isVisibleWidget(children[i])) continue;
+            if (icontains(children[i].text(), needle)) return true;
         }
     }
     return false;
 }
 
-/// Pick the first dialog option whose text contains any of `needles`
-/// (case-insensitive substring) by pressing its digit key: option N is
-/// dynamic child N of widget (219, 1), matching "press 1 = first option"
-/// in the RuneLite reference. Slot 0, the title/header, is never picked,
-/// and within one needle an exact match beats an earlier substring match.
-/// @return true when a matching option was found and the key press was
-///         queued.
-inline bool selectOption(std::initializer_list<std::string_view> needles) {
-    if (!detail::resolveVisible(gamevals::InterfaceID::Chatmenu::OPTIONS)) return false;
+template <typename Range>
+bool selectOptionIn(const Range& needles) {
+    if (!resolveVisible(gamevals::InterfaceID::Chatmenu::OPTIONS)) return false;
 
     const auto children = titan::state::widgets().children(gamevals::InterfaceID::Chatmenu::OPTIONS);
     if (children.empty()) return false;
@@ -291,19 +301,58 @@ inline bool selectOption(std::initializer_list<std::string_view> needles) {
         return titan::keyboard::sendString(key);
     };
 
-    for (auto needle : needles) {
+    for (const auto& item : needles) {
+        const std::string_view needle = item;
         std::optional<std::size_t> substringMatch;
         for (std::size_t i = 1; i < children.size(); ++i) {
-            if (!detail::isVisibleWidget(children[i])) continue;
+            if (!isVisibleWidget(children[i])) continue;
             const auto& text = children[i].text();
-            if (detail::iequals(text, needle)) return press(i);
-            if (!substringMatch && detail::icontains(text, needle)) {
+            if (iequals(text, needle)) return press(i);
+            if (!substringMatch && icontains(text, needle)) {
                 substringMatch = i;
             }
         }
         if (substringMatch) return press(*substringMatch);
     }
     return false;
+}
+
+}  // namespace detail
+
+/// @return true when the multi-option dialog widget (219, 1) is visible
+///         and at least one option text contains any of `needles` (case-
+///         insensitive substring match). The title/header at slot 0 is not
+///         an option. Returns false when the dialog is hidden, has no
+///         dynamic children, or the host is pre-SDK-38 (child enumeration
+///         unavailable).
+inline bool hasOption(std::initializer_list<std::string_view> needles) {
+    return detail::hasOptionIn(needles);
+}
+
+/// Runtime-list form of `hasOption` (SDK 153): identical matching over any
+/// range of strings, e.g. a `std::vector<std::string>` built from settings.
+template <detail::NeedleRange Range>
+bool hasOption(const Range& needles) {
+    return detail::hasOptionIn(needles);
+}
+
+/// Pick the first dialog option whose text contains any of `needles`
+/// (case-insensitive substring) by pressing its digit key: option N is
+/// dynamic child N of widget (219, 1), matching "press 1 = first option"
+/// in the RuneLite reference. Needles are tried in order. Slot 0, the
+/// title/header, is never picked, and within one needle an exact match beats
+/// an earlier substring match.
+/// @return true when a matching option was found and the key press was
+///         queued.
+inline bool selectOption(std::initializer_list<std::string_view> needles) {
+    return detail::selectOptionIn(needles);
+}
+
+/// Runtime-list form of `selectOption` (SDK 153): identical matching over
+/// any range of strings, e.g. a `std::vector<std::string>` built at runtime.
+template <detail::NeedleRange Range>
+bool selectOption(const Range& needles) {
+    return detail::selectOptionIn(needles);
 }
 
 /// Convenience: pick a matching dialog option when one is visible, otherwise
@@ -313,7 +362,15 @@ inline bool selectOption(std::initializer_list<std::string_view> needles) {
 /// @return true when either a continue prompt was advanced or an option
 ///         was selected.
 inline bool handleDialogue(std::initializer_list<std::string_view> needles) {
-    if (selectOption(needles)) return true;
+    if (detail::selectOptionIn(needles)) return true;
+    return continueDialogue();
+}
+
+/// Runtime-list form of `handleDialogue` (SDK 153): identical behaviour
+/// over any range of strings.
+template <detail::NeedleRange Range>
+bool handleDialogue(const Range& needles) {
+    if (detail::selectOptionIn(needles)) return true;
     return continueDialogue();
 }
 
