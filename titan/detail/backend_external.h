@@ -30,6 +30,19 @@ public:
         lifetime_ = lifetime;
     }
 
+    uint8_t getActorAnimationProgress(const TitanPluginSdk::ActorDataIdentity* identity,
+            TitanPluginSdk::ActorAnimationProgressState* out) override {
+        if (out) *out = {};
+        return api_ && api_->sdkVersion >= 155 && api_->getActorAnimationProgress
+            ? api_->getActorAnimationProgress(identity, out) : 0;
+    }
+    uint8_t getNpcModelOverrides(const TitanPluginSdk::ActorDataIdentity* identity,
+            TitanPluginSdk::NpcModelOverridesState* out, int32_t* ids, uint32_t capacity) override {
+        if (out) *out = {};
+        return api_ && api_->sdkVersion >= 155 && api_->getNpcModelOverrides
+            ? api_->getNpcModelOverrides(identity, out, ids, capacity) : 0;
+    }
+
     uint32_t getHintArrows(TitanPluginSdk::HintArrowState* out, uint32_t capacity) override {
         return api_ && api_->getHintArrows
             ? api_->getHintArrows(out, capacity) : TitanPluginSdk::kHintArrowsUnavailable;
@@ -369,6 +382,22 @@ public:
     }
     uint8_t getEntityHidden(uint8_t type) override {
         return (api_ && api_->getEntityHidden) ? api_->getEntityHidden(type) : 0;
+    }
+
+    uint8_t isAnimationSmoothingAvailable() override {
+        return api_ && api_->isAnimationSmoothingAvailable ? api_->isAnimationSmoothingAvailable() : 0;
+    }
+    uint8_t setAnimationSmoothingEnabled(uint8_t enabled) override {
+        return api_ && api_->setAnimationSmoothingEnabled ? api_->setAnimationSmoothingEnabled(enabled) : 0;
+    }
+    uint8_t getAnimationSmoothingEnabledRequested() override {
+        return api_ && api_->getAnimationSmoothingEnabledRequested ? api_->getAnimationSmoothingEnabledRequested() : 0;
+    }
+    uint8_t getAnimationSmoothingEnabledApplied() override {
+        return api_ && api_->getAnimationSmoothingEnabledApplied ? api_->getAnimationSmoothingEnabledApplied() : 0;
+    }
+    uint32_t getAnimationSmoothingError() override {
+        return api_ && api_->getAnimationSmoothingError ? api_->getAnimationSmoothingError() : 1;
     }
 
     uint8_t isTextureSkippingAvailable() override {

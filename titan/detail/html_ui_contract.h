@@ -280,9 +280,12 @@ public:
         out = {activation_, sequence_, revision_, state_, {messages_.begin(), messages_.end()}}; issued_ = sequence_; return true;
     }
     bool snapshotMetadata(uint64_t activation, UpdateSnapshot& out) {
-        std::lock_guard<std::mutex> lock(mutex_); if (!activation || activation != activation_) return false;
+        // Activation zero is a passive canonical-state probe. It neither
+        // activates the surface nor issues a sequence that can be acknowledged.
+        // Older SDKs reject this probe; hosts must treat that as unsupported.
+        std::lock_guard<std::mutex> lock(mutex_); if (activation && activation != activation_) return false;
         out = {activation_, sequence_, revision_, static_cast<uint32_t>(state_.size()), static_cast<uint32_t>(messages_.size())};
-        issued_ = sequence_; return true;
+        if (activation) issued_ = sequence_; return true;
     }
     bool acknowledge(uint64_t activation, uint64_t through) {
         std::lock_guard<std::mutex> lock(mutex_);

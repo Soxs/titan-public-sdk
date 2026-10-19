@@ -140,6 +140,9 @@ public final class NPC implements Actor {
 
     public NPC snapshot() { return TitanRuntime.snapshotLive(this); }
 
+    /** SDK 155: owned runtime body-model overrides, including explicit absence/failure status. */
+    public NpcModelOverrides modelOverrides() { return TitanRuntime.npcModelOverrides(this); }
+
     @Override
     public boolean equals(Object other) {
         return TitanRuntime.liveEquals(this, other);

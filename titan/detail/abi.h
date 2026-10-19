@@ -38,6 +38,19 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v156 -- Optional classic actor animation smoothing controls
+///   + Five HostRenderV1 tail functions expose availability, enabled request/applied
+///     state and error. C++/Java/JS controls are process-wide and default off.
+///     Existing animation events, payload layouts and SDK floor 154 are unchanged.
+///
+/// v155 -- Owned actor animation progress and NPC runtime model overrides
+///   + Actor/Player/Npc::animationProgress() and Npc::modelOverrides(): guarded,
+///     game-thread snapshots with explicit availability and retained identity.
+///     Classic frame index/cycle and cached sequence progress are distinguished;
+///     same-ID animation event semantics are unchanged. Optional HostGameV1
+///     functions append new output records; existing payloads and SDK floor 154
+///     are unchanged. Java and JS/TS expose the same data and status values.
+///
 /// v154 -- Setting strings without a length cap (ABI BREAK -- rebuild every plugin)
 ///   - TitanNativeRecords::Value::stringValue, Setting::tooltip and
 ///     Section::description are TitanNativeRecords::Text views (pointer and
@@ -1845,6 +1858,7 @@
 #include <cstdint>
 
 #include "native_records.h"
+#include "actor_data_abi.h"
 #include "html_ui_abi.h"
 
 /// Private ABI namespace. Public plugin code should use `namespace titan` instead.
@@ -1853,7 +1867,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 154;
+constexpr uint32_t kSdkVersion = 156;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5074,6 +5088,21 @@ struct HostApi {
     uint8_t (*isPlaneHidingAvailable)() = nullptr;
     uint8_t (*setOtherPlanesHidden)(uint8_t hidden) = nullptr;
     uint8_t (*getOtherPlanesHidden)() = nullptr;
+
+    /// SDK 155. Game-thread owned snapshot reads using a retained actor identity.
+    /// Return value equals out->status; missing capability is Unavailable.
+    uint8_t (*getActorAnimationProgress)(const ActorDataIdentity*, ActorAnimationProgressState*) = nullptr;
+    /// BufferTooSmall reports modelCount and copies nothing. Active with zero
+    /// IDs means an active customization without a model-list replacement.
+    uint8_t (*getNpcModelOverrides)(const ActorDataIdentity*, NpcModelOverridesState*, int32_t* modelIds, uint32_t capacity) = nullptr;
+
+    // SDK 156. Optional classic actor smoothing; process-wide, default off.
+    // Thread-safe, last request wins. Not saved; disable when the owning plugin stops.
+    uint8_t (*isAnimationSmoothingAvailable)() = nullptr;
+    uint8_t (*setAnimationSmoothingEnabled)(uint8_t enabled) = nullptr;
+    uint8_t (*getAnimationSmoothingEnabledRequested)() = nullptr;
+    uint8_t (*getAnimationSmoothingEnabledApplied)() = nullptr;
+    uint32_t (*getAnimationSmoothingError)() = nullptr;
 
 };
 

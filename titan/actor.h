@@ -9,6 +9,7 @@
 #pragma once
 
 #include "detail/abi.h"
+#include "detail/actor_game_data.h"
 #include "detail/account_mode.h"
 #include "detail/backend.h"
 #include "detail/overhead_text.h"
@@ -161,6 +162,21 @@ bool containsActionCI(const ActionsT& actions, const char* needle) {
         }
     }
     return false;
+}
+
+template<class State>
+TitanPluginSdk::ActorDataIdentity actorDataIdentity(const State& state, int32_t kind) {
+    return {state.entityPtr, state.worldViewPtr, state.worldViewId, state.hashIndex, kind, 0};
+}
+inline ActorAnimationProgress actorAnimationProgress(const TitanPluginSdk::ActorDataIdentity& identity) {
+    return readActorAnimationProgressWith([](const auto* actor, auto* out) {
+        auto* b = backend(); return b ? b->getActorAnimationProgress(actor, out) : 0;
+    }, identity);
+}
+inline NpcModelOverrides npcModelOverrides(const TitanPluginSdk::ActorDataIdentity& identity) {
+    return readNpcModelOverridesWith([](const auto* actor, auto* out, auto* ids, uint32_t capacity) {
+        auto* b = backend(); return b ? b->getNpcModelOverrides(actor, out, ids, capacity) : 0;
+    }, identity);
 }
 
 inline std::vector<WorldPoint> actorPathQueue(uint64_t entityPtr,
@@ -474,7 +490,8 @@ private:
 class Player : public Locatable<Player> {
 public:
     Player() = default;
-    explicit Player(const TitanPluginSdk::PlayerState& s) : state_(s) {}
+    explicit Player(const TitanPluginSdk::PlayerState& s) : state_(s),
+        actorDataIdentity_(detail::actorDataIdentity(s, TitanPluginSdk::EntityType::PLAYER)) {}
 
     const TitanPluginSdk::PlayerState& raw() const { return state(); }
     /// Construct an immutable identity snapshot without resolving its slot.
@@ -487,6 +504,7 @@ public:
         Player copy;
         copy.state_ = state();
         copy.overheadTextSnapshot_ = overheadTextSnapshot_;
+        copy.actorDataIdentity_ = actorDataIdentity_;
         copy.live_ = false;
         copy.exists_ = true;
         return copy;
@@ -523,6 +541,15 @@ public:
     uint64_t worldViewPtr() const { return state().worldViewPtr; }
     int32_t orientation() const { return state().orientation; }
     int32_t animation() const { return state().animation; }
+    /// Owned primary/action-sequence snapshot; validates the originally captured actor.
+    ActorAnimationProgress animationProgress() const {
+        if (!live_) {
+            TitanPluginSdk::ActorAnimationProgressState failure{};
+            failure.status = ActorDataStatus::InvalidActor;
+            return ActorAnimationProgress(failure);
+        }
+        return detail::actorAnimationProgress(actorDataIdentity_);
+    }
     int32_t movementPose() const { return state().movementPose; }
     int32_t idlePose() const { return state().idlePose; }
     int32_t combatLevel() const { return state().combatLevel; }
@@ -635,6 +662,7 @@ private:
     }
 
     mutable TitanPluginSdk::PlayerState state_ = {};
+    TitanPluginSdk::ActorDataIdentity actorDataIdentity_{};
     mutable int32_t lastReadEpoch_ = INT32_MIN;
     mutable bool exists_ = true;
     std::optional<std::string> overheadTextSnapshot_;
@@ -648,7 +676,8 @@ private:
 class Npc : public Locatable<Npc> {
 public:
     Npc() = default;
-    explicit Npc(const TitanPluginSdk::NpcState& s) : state_(s) {}
+    explicit Npc(const TitanPluginSdk::NpcState& s) : state_(s),
+        actorDataIdentity_(detail::actorDataIdentity(s, TitanPluginSdk::EntityType::NPC)) {}
 
     const TitanPluginSdk::NpcState& raw() const { return state(); }
     /// Construct an immutable identity snapshot without resolving its slot.
@@ -661,6 +690,7 @@ public:
         Npc copy;
         copy.state_ = state();
         copy.overheadTextSnapshot_ = overheadTextSnapshot_;
+        copy.actorDataIdentity_ = actorDataIdentity_;
         copy.live_ = false;
         copy.exists_ = true;
         return copy;
@@ -684,6 +714,15 @@ public:
 
     std::string name() const { return state().name; }
     int32_t id() const { return state().npcId; }
+    /// Runtime body-model IDs, copied without falling back to the NPC definition.
+    NpcModelOverrides modelOverrides() const {
+        if (!live_) {
+            TitanPluginSdk::NpcModelOverridesState failure{};
+            failure.status = ActorDataStatus::InvalidActor;
+            return NpcModelOverrides(failure);
+        }
+        return detail::npcModelOverrides(actorDataIdentity_);
+    }
     int32_t tileX() const { return state().tileX; }
     int32_t tileY() const { return state().tileY; }
     int32_t plane() const { return state().plane; }
@@ -695,6 +734,15 @@ public:
     int32_t worldViewId() const { return state().worldViewId; }
     uint64_t worldViewPtr() const { return state().worldViewPtr; }
     int32_t animation() const { return state().animation; }
+    /// Owned primary/action-sequence snapshot; validates the originally captured actor.
+    ActorAnimationProgress animationProgress() const {
+        if (!live_) {
+            TitanPluginSdk::ActorAnimationProgressState failure{};
+            failure.status = ActorDataStatus::InvalidActor;
+            return ActorAnimationProgress(failure);
+        }
+        return detail::actorAnimationProgress(actorDataIdentity_);
+    }
     int32_t orientation() const { return state().orientation; }
     int32_t movementPose() const { return state().movementPose; }
     int32_t idlePose() const { return state().idlePose; }
@@ -805,6 +853,7 @@ private:
     }
 
     mutable TitanPluginSdk::NpcState state_ = {};
+    TitanPluginSdk::ActorDataIdentity actorDataIdentity_{};
     mutable int32_t lastReadEpoch_ = INT32_MIN;
     mutable bool exists_ = true;
     std::optional<std::string> overheadTextSnapshot_;
@@ -1277,6 +1326,13 @@ public:
     explicit Actor(Player p) : kind_(Kind::player), player_(std::move(p)) {}
     explicit Actor(Npc n)    : kind_(Kind::npc),    npc_(std::move(n)) {}
 
+    ActorAnimationProgress animationProgress() const {
+        if (isPlayer()) return player_.animationProgress();
+        if (isNpc()) return npc_.animationProgress();
+        TitanPluginSdk::ActorAnimationProgressState unavailable{};
+        unavailable.status = ActorDataStatus::InvalidActor;
+        return ActorAnimationProgress(unavailable);
+    }
     bool isPlayer() const { return kind_ == Kind::player; }
     bool isNpc()    const { return kind_ == Kind::npc; }
     bool isEmpty()  const { return kind_ == Kind::none; }

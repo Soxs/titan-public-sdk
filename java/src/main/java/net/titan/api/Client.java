@@ -183,6 +183,18 @@ public interface Client {
      */
     boolean audioPlaybackDisabled();
 
+    /** SDK 156: thread-safe, process-wide classic actor smoothing; default off.
+     * Unsupported poses continue to use native rendering. */
+    default boolean isAnimationSmoothingAvailable() { return false; }
+    /** Last request wins, not saved; disable when the plugin stops. Acceptance
+     * does not guarantee every pose can be smoothed. Safe from any thread. */
+    default boolean setAnimationSmoothingEnabled(boolean enabled) { return false; }
+    default boolean getAnimationSmoothingEnabledRequested() { return false; }
+    /** Whether the smoothing path is enabled, not whether every pose is supported. */
+    default boolean getAnimationSmoothingEnabledApplied() { return false; }
+    /** 0=None, 1=Unavailable, 2=InstallFailed, 3=ShuttingDown. */
+    default int getAnimationSmoothingError() { return 1; }
+
     /** SDK 150: thread-safe texture capability. */
     default boolean isTextureSkippingAvailable() { return false; }
     /** Queues a runtime request; accepted does not mean applied. Last writer wins;

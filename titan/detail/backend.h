@@ -77,6 +77,17 @@ struct IBackend {
         return 0;
     }
 
+    virtual uint8_t getActorAnimationProgress(const TitanPluginSdk::ActorDataIdentity*,
+            TitanPluginSdk::ActorAnimationProgressState* out) {
+        if (out) *out = {};
+        return static_cast<uint8_t>(TitanPluginSdk::ActorDataStatus::Unavailable);
+    }
+    virtual uint8_t getNpcModelOverrides(const TitanPluginSdk::ActorDataIdentity*,
+            TitanPluginSdk::NpcModelOverridesState* out, int32_t*, uint32_t) {
+        if (out) *out = {};
+        return static_cast<uint8_t>(TitanPluginSdk::ActorDataStatus::Unavailable);
+    }
+
     // --- Logging ---
     virtual void log(const char* msg) = 0;
 
@@ -725,6 +736,13 @@ struct IBackend {
         (void)pluginInstance; (void)pluginId; (void)write;
         return 0;
     }
+
+    // SDK 156. Optional thread-safe classic actor smoothing controls.
+    virtual uint8_t isAnimationSmoothingAvailable() { return 0; }
+    virtual uint8_t setAnimationSmoothingEnabled(uint8_t enabled) { (void)enabled; return 0; }
+    virtual uint8_t getAnimationSmoothingEnabledRequested() { return 0; }
+    virtual uint8_t getAnimationSmoothingEnabledApplied() { return 0; }
+    virtual uint32_t getAnimationSmoothingError() { return 1; }
 
     virtual uint8_t isTextureSkippingAvailable() { return 0; }
     virtual uint8_t setTexturesDisabled(uint8_t disabled) { (void)disabled; return 0; }

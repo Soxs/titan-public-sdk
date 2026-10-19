@@ -52,6 +52,31 @@
 
 declare namespace titan {
 
+/** SDK 155: guarded game-thread actor data reads. None and Inactive share value 3. */
+const ActorDataStatus: Readonly<{Unavailable: 0; InvalidActor: 1; Unreadable: 2;
+    Inactive: 3; None: 3; Active: 4; BufferTooSmall: 5; WrongThread: 6}>;
+const AnimationSequenceMode: Readonly<{Unknown: 0; Classic: 1; Cached: 2}>;
+interface ActorAnimationProgress {
+    readonly status: number;
+    readonly available: boolean;
+    readonly active: boolean;
+    readonly mode: number;
+    readonly animationId: number;
+    /** Classic keyframe index or cached progress in client ticks; -1 unless active. */
+    readonly frame: number;
+    readonly frameCycleAvailable: boolean;
+    readonly frameCycle: number | null;
+    readonly loopCount: number;
+    readonly delay: number;
+}
+interface NpcModelOverrides {
+    readonly status: number;
+    readonly available: boolean;
+    readonly active: boolean;
+    /** Owned stored runtime IDs, never definition IDs. Active with an empty array is valid. */
+    readonly modelIds: readonly number[];
+}
+
 /** SDK 148 normalized kind. Unknown retains its rawKind on the arrow. */
 enum HintArrowKind { None = 0, Npc = 1, Coordinate = 2, Player = 3, WorldEntity = 4, Unknown = 5 }
 
@@ -661,6 +686,8 @@ interface ActorBase extends InstanceConvertible {
     /** SDK 127: complete UTF-8 text; null is unavailable/invalid, empty is valid. */
     getOverheadText(): string | null;
     getOverheadTextCyclesRemaining(): number | null;
+    /** SDK 155: immutable primary animation snapshot; does not change animation events. */
+    animationProgress(): ActorAnimationProgress;
     readonly currentSpotAnims: ActorSpotAnim[];
 
     readonly isPlayer: boolean;
@@ -727,6 +754,8 @@ interface Player extends ActorBase {
 }
 
 interface Npc extends ActorBase {
+    /** SDK 155: immutable runtime body-model override snapshot. */
+    modelOverrides(): NpcModelOverrides;
     readonly id: number;
     readonly overrideTransform: number;
     readonly sizeX: number;
@@ -2855,6 +2884,15 @@ interface PanelElement {
      */
     namespace state {
         const client: {
+            /** SDK 156: thread-safe classic actor smoothing. Default off; unsupported poses render natively. */
+            isAnimationSmoothingAvailable(): boolean;
+            /** Process-wide, last request wins, not saved. Disable when the plugin stops. */
+            setAnimationSmoothingEnabled(enabled: boolean): boolean;
+            getAnimationSmoothingEnabledRequested(): boolean;
+            /** Whether the path is enabled, not whether every pose is supported. */
+            getAnimationSmoothingEnabledApplied(): boolean;
+            /** 0=None, 1=Unavailable, 2=InstallFailed, 3=ShuttingDown. */
+            getAnimationSmoothingError(): number;
             /** SDK 150: thread-safe, process-wide texture skipping. */
             isTextureSkippingAvailable(): boolean;
             /** Queues a runtime request; accepted does not mean applied. Last writer wins.

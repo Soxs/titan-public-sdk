@@ -33,6 +33,41 @@ static_assert(sizeof(bool) == 1 && sizeof(float) == 4);
 #define TITAN_NATIVE_VALUE(name, value) \
     static_assert(static_cast<int64_t>(name) == value, "Native ABI v1 numeric contract changed")
 
+TITAN_NATIVE_RECORD(ActorDataIdentity, 32, 8);
+TITAN_NATIVE_FIELD(ActorDataIdentity, entityPtr, 0, uint64_t);
+TITAN_NATIVE_FIELD(ActorDataIdentity, worldViewPtr, 8, uint64_t);
+TITAN_NATIVE_FIELD(ActorDataIdentity, worldViewId, 16, int32_t);
+TITAN_NATIVE_FIELD(ActorDataIdentity, hashIndex, 20, int32_t);
+TITAN_NATIVE_FIELD(ActorDataIdentity, entityType, 24, int32_t);
+TITAN_NATIVE_FIELD(ActorDataIdentity, reserved, 28, uint32_t);
+TITAN_NATIVE_RECORD(ActorAnimationProgressState, 24, 4);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, status, 0, ActorDataStatus);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, mode, 1, AnimationSequenceMode);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, frameCycleAvailable, 2, uint8_t);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, reserved, 3, uint8_t);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, animationId, 4, int32_t);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, frame, 8, int32_t);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, frameCycle, 12, int32_t);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, loopCount, 16, int32_t);
+TITAN_NATIVE_FIELD(ActorAnimationProgressState, delay, 20, int32_t);
+TITAN_NATIVE_RECORD(NpcModelOverridesState, 8, 4);
+TITAN_NATIVE_FIELD(NpcModelOverridesState, status, 0, ActorDataStatus);
+TITAN_NATIVE_FIELD(NpcModelOverridesState, reserved, 1, uint8_t[3]);
+TITAN_NATIVE_FIELD(NpcModelOverridesState, modelCount, 4, uint32_t);
+TITAN_NATIVE_ENUM(ActorDataStatus, uint8_t);
+TITAN_NATIVE_ENUM(AnimationSequenceMode, uint8_t);
+TITAN_NATIVE_VALUE(ActorDataStatus::Unavailable, 0);
+TITAN_NATIVE_VALUE(ActorDataStatus::InvalidActor, 1);
+TITAN_NATIVE_VALUE(ActorDataStatus::Unreadable, 2);
+TITAN_NATIVE_VALUE(ActorDataStatus::Inactive, 3);
+TITAN_NATIVE_VALUE(ActorDataStatus::None, 3);
+TITAN_NATIVE_VALUE(ActorDataStatus::Active, 4);
+TITAN_NATIVE_VALUE(ActorDataStatus::BufferTooSmall, 5);
+TITAN_NATIVE_VALUE(ActorDataStatus::WrongThread, 6);
+TITAN_NATIVE_VALUE(AnimationSequenceMode::Unknown, 0);
+TITAN_NATIVE_VALUE(AnimationSequenceMode::Classic, 1);
+TITAN_NATIVE_VALUE(AnimationSequenceMode::Cached, 2);
+
 TITAN_NATIVE_RECORD(ProjectileActorRefAbi, 8, 4);
 TITAN_NATIVE_FIELD(ProjectileActorRefAbi, hashIndex, 0, int32_t);
 TITAN_NATIVE_FIELD(ProjectileActorRefAbi, entityType, 4, int32_t);

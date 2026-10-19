@@ -27,6 +27,7 @@
 #include "item_prices.h"
 #include "hint_arrow.h"
 #include "texture_skip.h"
+#include "animation_smoothing.h"
 
 #include <algorithm>
 #include <array>
@@ -132,6 +133,30 @@ struct InstanceTemplateChunks {
 
 class ClientFacade {
 public:
+    /// SDK 156. Thread-safe classic actor smoothing. Default off, process-wide,
+    /// last request wins. Not persisted; disable it when the owning plugin stops.
+    /// Applied means the smoothing path is enabled, not that every pose is supported.
+    bool isAnimationSmoothingAvailable() const {
+        auto* b = detail::backend();
+        return b && b->isAnimationSmoothingAvailable() != 0;
+    }
+    bool setAnimationSmoothingEnabled(bool enabled) const {
+        auto* b = detail::backend();
+        return b && b->setAnimationSmoothingEnabled(enabled ? 1 : 0) != 0;
+    }
+    bool getAnimationSmoothingEnabledRequested() const {
+        auto* b = detail::backend();
+        return b && b->getAnimationSmoothingEnabledRequested() != 0;
+    }
+    bool getAnimationSmoothingEnabledApplied() const {
+        auto* b = detail::backend();
+        return b && b->getAnimationSmoothingEnabledApplied() != 0;
+    }
+    AnimationSmoothingError getAnimationSmoothingError() const {
+        auto* b = detail::backend();
+        return b ? static_cast<AnimationSmoothingError>(b->getAnimationSmoothingError()) : AnimationSmoothingError::Unavailable;
+    }
+
     /// SDK 150. Safe from plugin callbacks and owned workers. Setter queues a
     /// runtime request; true does not mean applied. No saved preference changes.
     bool isTextureSkippingAvailable() const {

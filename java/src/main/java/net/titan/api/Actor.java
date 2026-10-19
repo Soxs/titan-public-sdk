@@ -45,6 +45,9 @@ public interface Actor extends Locatable<Actor> {
 
     default boolean isAnimating() { return animation() != -1; }
 
+    /** SDK 155: owned primary animation progress; reads require the game thread. */
+    default ActorAnimationProgress animationProgress() { return TitanRuntime.actorAnimationProgress(this); }
+
     default boolean isStationary() { return movementPose() == idlePose(); }
 
     // NOTE: No generic interact(String) is declared here. The canonical

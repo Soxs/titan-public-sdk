@@ -35,6 +35,40 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Actor game-data snapshots (0.1.86+)
+
+`Actor.animationProgress()` returns immutable primary/action animation progress;
+`NPC.modelOverrides()` returns an immutable runtime body-model ID list. Read them
+from a game-thread callback on a live actor. Results own their data and remain
+valid after the actor changes. Calls on a retained actor validate its original
+slot, pointer and world view; detached actors return `INVALID_ACTOR`.
+
+```java
+ActorAnimationProgress progress = actor.animationProgress();
+if (progress.active() && progress.frame() == 0) {
+    // The primary sequence is currently at frame/progress zero.
+}
+NpcModelOverrides overrides = npc.modelOverrides();
+if (overrides.active()) {
+    List<Integer> ids = overrides.modelIds(); // Immutable, possibly empty.
+}
+```
+
+`AnimationSequenceMode.CLASSIC` uses a frame index and supports
+`frameCycleAvailable()`/`frameCycle()`. `CACHED` uses progress in client ticks and
+has no meaningful frame-cycle value. Signed frame sentinels are preserved.
+Inactive progress has ID/frame `-1`; unavailable data never represents frame
+zero. Equal-ID animation resets still do not produce `onAnimationChanged`.
+Polling only observes state at the chosen callback phase.
+
+`ActorDataStatus` distinguishes `UNAVAILABLE`, `INVALID_ACTOR`, `UNREADABLE`,
+`INACTIVE` (also `NONE` for overrides), `ACTIVE`, `BUFFER_TOO_SMALL` and
+`WRONG_THREAD`. `available()` is true for active or successfully read inactive
+data. An active model customization with an empty list differs from no
+customization; the list preserves signed IDs, including `-1`. It contains stored
+runtime overrides, not NPC definition models. Hosts without the optional native
+capability return `UNAVAILABLE`.
+
 ## Packaged HTML sidebars and overlays (0.1.74+)
 
 `@HtmlSidePanel` is separate from the existing ImGui `@SidePanel`. Both kinds

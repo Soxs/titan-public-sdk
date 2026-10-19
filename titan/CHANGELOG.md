@@ -16,6 +16,25 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v156 -- Classic actor animation smoothing controls
+
+- `+` Optional `HostRenderV1` tail controls expose classic actor smoothing
+  availability, requested/applied enabled state and diagnostics in C++, Java and
+  JS/TS. Default off, process-wide, thread-safe and not persisted; plugins should
+  disable it when stopping. Unsupported poses keep native rendering.
+- `~` Animation advancement/events, existing payload layouts and SDK floor 154
+  are unchanged.
+
+## v155 -- Owned actor animation progress and NPC runtime model overrides
+
+- `+` `Actor`/`Player`/`Npc::animationProgress()` and `Npc::modelOverrides()`:
+  guarded, game-thread snapshots with explicit availability and retained actor
+  identity. Classic frame index/cycle and cached sequence progress are
+  distinguished; same-ID animation event semantics are unchanged.
+- `+` Optional `HostGameV1::getActorAnimationProgress` and
+  `getNpcModelOverrides` append new output records. Existing payload layouts and
+  SDK floor 154 are unchanged. Java and JS/TS expose the same data and statuses.
+
 ## v154 -- Setting strings without a length cap (ABI break -- rebuild every plugin)
 
 - `-` `TitanNativeRecords::Value::stringValue`, `Setting::tooltip` and

@@ -311,6 +311,9 @@ struct HostGameV1 {
     uint8_t (*getServerHintArrow)(HintArrowState* out) = nullptr;
     // SDK 149 optional tail; HintArrowState retains its original layout.
     uint8_t (*getHintArrowWorldPoint)(const HintArrowState* expected, WorldPointState* out) = nullptr;
+    // SDK 155 optional tail. Existing actor payloads retain their layout.
+    uint8_t (*getActorAnimationProgress)(const ActorDataIdentity*, ActorAnimationProgressState*) = nullptr;
+    uint8_t (*getNpcModelOverrides)(const ActorDataIdentity*, NpcModelOverridesState*, int32_t*, uint32_t) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostGameV1>);
 static_assert(offsetof(HostGameV1, header) == 0);
@@ -448,6 +451,14 @@ struct HostRenderV1 {
     uint8_t (*isPlaneHidingAvailable)() = nullptr;
     uint8_t (*setOtherPlanesHidden)(uint8_t hidden) = nullptr;
     uint8_t (*getOtherPlanesHidden)() = nullptr;
+
+    // SDK 156. Optional classic actor smoothing; process-wide, default off.
+    // Thread-safe, last request wins. Not saved; disable when the owning plugin stops.
+    uint8_t (*isAnimationSmoothingAvailable)() = nullptr;
+    uint8_t (*setAnimationSmoothingEnabled)(uint8_t enabled) = nullptr;
+    uint8_t (*getAnimationSmoothingEnabledRequested)() = nullptr;
+    uint8_t (*getAnimationSmoothingEnabledApplied)() = nullptr;
+    uint32_t (*getAnimationSmoothingError)() = nullptr;
 
 };
 static_assert(std::is_standard_layout_v<HostRenderV1>);
@@ -595,7 +606,7 @@ static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostGameV1) == 568);
+static_assert(sizeof(HostGameV1) == 584);
 static_assert(offsetof(HostGameV1, isPrayerActive) == 8);
 static_assert(offsetof(HostGameV1, findNearestNpc) == 16);
 static_assert(offsetof(HostGameV1, findNearestObject) == 24);
@@ -666,6 +677,8 @@ static_assert(offsetof(HostGameV1, getCurrentSceneTileObjects) == 536);
 static_assert(offsetof(HostGameV1, getHintArrows) == 544);
 static_assert(offsetof(HostGameV1, getServerHintArrow) == 552);
 static_assert(offsetof(HostGameV1, getHintArrowWorldPoint) == 560);
+static_assert(offsetof(HostGameV1, getActorAnimationProgress) == 568);
+static_assert(offsetof(HostGameV1, getNpcModelOverrides) == 576);
 static_assert(sizeof(HintArrowState) == 72);
 static_assert(offsetof(HintArrowState, actorWorldViewId) == 48);
 static_assert(offsetof(HintArrowState, actorEntityPtr) == 56);
@@ -754,7 +767,12 @@ static_assert(offsetof(HintArrowActorTarget, worldViewPtr) == 24);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostRenderV1) == 384);
+static_assert(sizeof(HostRenderV1) == 424);
+static_assert(offsetof(HostRenderV1, isAnimationSmoothingAvailable) == 384);
+static_assert(offsetof(HostRenderV1, setAnimationSmoothingEnabled) == 392);
+static_assert(offsetof(HostRenderV1, getAnimationSmoothingEnabledRequested) == 400);
+static_assert(offsetof(HostRenderV1, getAnimationSmoothingEnabledApplied) == 408);
+static_assert(offsetof(HostRenderV1, getAnimationSmoothingError) == 416);
 static_assert(offsetof(HostRenderV1, isTextureSkippingAvailable) == 320);
 static_assert(offsetof(HostRenderV1, setTexturesDisabled) == 328);
 static_assert(offsetof(HostRenderV1, getTexturesDisabledRequested) == 336);
@@ -994,7 +1012,9 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(getCurrentSceneTileObjects) \
     X(getHintArrows) \
     X(getServerHintArrow) \
-    X(getHintArrowWorldPoint)
+    X(getHintArrowWorldPoint) \
+    X(getActorAnimationProgress) \
+    X(getNpcModelOverrides)
 
 #define TITAN_NATIVE_HOSTACTIONSV1_MEMBERS(X) \
     X(executeSyntheticAction) \
@@ -1116,7 +1136,12 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(getTextureSkippingError) \
     X(isPlaneHidingAvailable) \
     X(setOtherPlanesHidden) \
-    X(getOtherPlanesHidden)
+    X(getOtherPlanesHidden) \
+    X(isAnimationSmoothingAvailable) \
+    X(setAnimationSmoothingEnabled) \
+    X(getAnimationSmoothingEnabledRequested) \
+    X(getAnimationSmoothingEnabledApplied) \
+    X(getAnimationSmoothingError)
 
 #define TITAN_NATIVE_HOSTNAVIGATIONV1_MEMBERS(X) \
     X(getCollisionFlag) \

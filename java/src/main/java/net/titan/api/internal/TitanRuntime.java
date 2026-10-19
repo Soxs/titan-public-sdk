@@ -184,6 +184,20 @@ public final class TitanRuntime {
         LiveStateBackend backend = liveStateBackend;
         return backend == null || actor == null || isDetachedSnapshot(actor) ? null : backend.actorOverheadText(actor.entityPtr());
     }
+    public static net.titan.api.ActorAnimationProgress actorAnimationProgress(Actor actor) {
+        LiveStateBackend backend = liveStateBackend;
+        if (backend == null) return net.titan.api.ActorAnimationProgress.failure(net.titan.api.ActorDataStatus.UNAVAILABLE);
+        if (actor == null || isDetachedSnapshot(actor))
+            return net.titan.api.ActorAnimationProgress.failure(net.titan.api.ActorDataStatus.INVALID_ACTOR);
+        return backend.actorAnimationProgress(actor);
+    }
+    public static net.titan.api.NpcModelOverrides npcModelOverrides(net.titan.api.NPC npc) {
+        LiveStateBackend backend = liveStateBackend;
+        if (backend == null) return net.titan.api.NpcModelOverrides.failure(net.titan.api.ActorDataStatus.UNAVAILABLE);
+        if (npc == null || isDetachedSnapshot(npc))
+            return net.titan.api.NpcModelOverrides.failure(net.titan.api.ActorDataStatus.INVALID_ACTOR);
+        return backend.npcModelOverrides(npc);
+    }
     public static Integer actorOverheadTextCycles(Actor actor) {
         LiveStateBackend backend = liveStateBackend;
         return backend == null || actor == null || isDetachedSnapshot(actor) ? null : backend.actorOverheadTextCycles(actor.entityPtr());

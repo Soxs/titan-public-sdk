@@ -1,4 +1,56 @@
-# Titan Plugin SDK -- public symbol inventory (v154)
+# Titan Plugin SDK -- public symbol inventory (v156)
+
+## Actor animation progress and NPC runtime model overrides (SDK 155)
+
+Call these getters from a game-thread callback on a live actor. They return owned
+snapshots that remain valid after the actor changes. A retained handle validates
+its original pointer, actor slot and world view before reading; a changed slot
+returns `InvalidActor`. Detached actor snapshots cannot query live progress.
+
+| API | Result |
+| --- | --- |
+| C++ `Actor`/`Player`/`Npc::animationProgress()` | `titan::ActorAnimationProgress` |
+| C++ `Npc::modelOverrides()` | `titan::NpcModelOverrides` |
+| Java `Actor.animationProgress()`, `NPC.modelOverrides()` | Immutable `ActorAnimationProgress`, `NpcModelOverrides` |
+| JS/TS `actor.animationProgress()`, `npc.modelOverrides()` | Frozen result objects; model IDs are a frozen copied array |
+
+Animation progress describes the primary/action sequence. `animationId`, `frame`,
+`loopCount` and `delay` are copied from that sequence state. `mode` is `Classic`
+(frame index, with frame-cycle timing) or `Cached` (progress in client ticks, with
+no meaningful frame cycle). `frame` preserves the signed native frame, including
+the `-1` sentinel. Test `active()` and `frame() == 0` in C++/Java, or `active &&
+frame === 0` in JS, to distinguish a real frame zero from missing data. Idle or
+completed sequences return `Inactive`, `animationId = frame = -1` and zero timing.
+This polling API does not change `onAnimationChanged`: equal animation IDs still
+produce no event. Sampling frequency and callback phase determine which resets
+can be observed; live fast-attack parity must be checked in the relevant callback.
+
+C++ `frameCycle()` is `std::optional<int32_t>`. Java exposes
+`frameCycleAvailable()` plus `frameCycle()` (zero when unavailable). JS/TS exposes
+`frameCycleAvailable` and `frameCycle: number | null`.
+
+`modelOverrides()` returns the active per-NPC body-model customization's stored
+signed model-ID list, including any `-1` entries. It never substitutes definition
+model IDs or rendered mesh data. An active customization can have an empty list
+(for example, a recolor-only customization); this differs from `None`, meaning no
+customization object. Native data cannot distinguish an omitted model list from
+an explicitly empty list. C++ exposes `const std::vector<int32_t>& modelIds()`;
+Java exposes an immutable `List<Integer>` and JS/TS a readonly array.
+
+Shared `ActorDataStatus` values are `Unavailable=0`, `InvalidActor=1`,
+`Unreadable=2`, `Inactive/None=3`, `Active=4`, `BufferTooSmall=5`, `WrongThread=6`.
+Java uses `INACTIVE` with `NONE` as an alias. `available` is true only for active
+or successfully read inactive/none results. Missing offsets/capabilities return
+`Unavailable`; failed memory/container checks return `Unreadable`.
+
+Native `HostGameV1` appends `getActorAnimationProgress` and `getNpcModelOverrides`
+with new fixed-layout `ActorDataIdentity`, `ActorAnimationProgressState` and
+`NpcModelOverridesState` records. Import checks the advertised table size before
+reading either optional pointer. Model IDs are copied into caller-owned storage;
+`BufferTooSmall` reports the required count without a partial copy. SDK helpers
+retry with owned storage, capped at 4096 IDs. Existing native payloads and
+`kMinSupportedSdkVersion = 154` remain unchanged; older hosts safely report the
+new capabilities unavailable.
 
 ## Setting strings without a length cap (SDK 154)
 
@@ -130,6 +182,21 @@ three calls are safe from any thread. The setter returns false when the
 client cannot hide planes (its offsets lack the analyzer's PLANE_CULLING keys)
 or the host predates SDK 151; such optional `HostRenderV1` tail entries fail
 closed. Payload records and the SDK floor remain unchanged.
+
+## Classic actor animation smoothing (SDK 156)
+
+`titan::state::client()`, JS/TS `titan.state.client` and Java `Client` expose
+`isAnimationSmoothingAvailable()`, `setAnimationSmoothingEnabled(bool)`,
+`getAnimationSmoothingEnabledRequested()`, `getAnimationSmoothingEnabledApplied()`
+and `getAnimationSmoothingError()`. C++ returns `AnimationSmoothingError`;
+Java and JS return its numeric value. Calls are thread-safe, default off,
+process-wide and not persisted. Last request wins; disable on plugin stop.
+Applied means the interpolation path is enabled, not that every pose is
+supported. Native fallback is expected for cached sequences, unsupported blends,
+missing bindings and incompatible frames. Animation progression and event
+semantics remain native. Older or short `HostRenderV1` tables fail closed without
+changing existing payloads or the SDK floor.
+See [scope, diagnostics and plugin lifecycle](../../docs/animation_smoothing.md).
 
 ## Texture skipping (SDK 150)
 
