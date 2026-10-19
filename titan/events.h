@@ -22,6 +22,52 @@
 
 namespace titan {
 
+namespace KeyInputType = TitanPluginSdk::KeyInputType;
+
+/// Real keyboard input before game processing. Borrowed for the callback only.
+/// Input-thread handlers must use cached state and avoid game-state queries.
+class KeyInputEvent {
+public:
+    explicit KeyInputEvent(TitanPluginSdk::KeyInputEvent* raw) : raw_(raw) {}
+
+    int32_t type() const { return raw_ ? raw_->type : KeyInputType::KEYDOWN; }
+    int32_t keyCode() const { return raw_ ? raw_->keyCode : -1; }
+    /// One UTF-16 WM_CHAR code unit; zero for keydown/keyup.
+    uint32_t character() const { return raw_ ? raw_->character : 0; }
+    int32_t mods() const { return raw_ ? raw_->mods : 0; }
+    bool repeat() const { return raw_ && raw_->repeat != 0; }
+    bool consumed() const { return raw_ && raw_->consumed != 0; }
+    bool replaced() const { return raw_ && raw_->replaced != 0; }
+
+    /// Suppress the original and cancel any replacement requested in this call.
+    void consume() {
+        if (!raw_) return;
+        raw_->consumed = 1;
+        raw_->replaced = 0;
+    }
+
+    /// Replace a key edge and consume the original. The first down fixes the
+    /// held key's repeat/release route; changes on its repeats/up are ignored.
+    /// Does not generate text. Invalid VK/modifiers and CHAR are ignored.
+    void replaceWith(int32_t keyCode, std::optional<int32_t> mods = std::nullopt) {
+        if (!raw_ || (raw_->type != KeyInputType::KEYDOWN && raw_->type != KeyInputType::KEYUP)
+            || keyCode < 1 || keyCode > 255) return;
+        const int32_t replacementMods = mods.value_or(raw_->mods);
+        constexpr int32_t validMods = TitanPluginSdk::KeyboardMods::SHIFT
+            | TitanPluginSdk::KeyboardMods::CTRL | TitanPluginSdk::KeyboardMods::ALT;
+        if ((replacementMods & ~validMods) != 0) return;
+        raw_->replacementKeyCode = keyCode;
+        raw_->replacementMods = replacementMods;
+        raw_->replaced = 1;
+        raw_->consumed = 1;
+    }
+
+    TitanPluginSdk::KeyInputEvent* raw() { return raw_; }
+
+private:
+    TitanPluginSdk::KeyInputEvent* raw_ = nullptr;
+};
+
 /// Owned copy; both event and offer remain valid when retained by a plugin.
 class GrandExchangeOfferChangedEvent {
 public:

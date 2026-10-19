@@ -1505,6 +1505,38 @@ interface MenuOptionClicked {
     clearReplacement(): void;
 }
 
+/** Real keyboard input, delivered synchronously before the game sees it (SDK 157+).
+ * Runs on the input/pump thread: defer game queries and actions to onClientTick.
+ * The first consumer stops later plugin handlers. UI-captured and synthetic
+ * input bypass this callback. Events may pass through while the script runtime
+ * is busy; handlers must be short and synchronous.
+ *
+ * The initial keydown fixes the route for held repeats and the paired keyup.
+ * Those later events are still observable, but cannot change that route.
+ * Consuming/replacing keydown also suppresses its original typed characters.
+ * Replacement sends key edges only; it does not generate a replacement char.
+ * Retained events remain readable; mutators throw after dispatch returns.
+ */
+interface KeyInputEvent {
+    readonly type: "keydown" | "keyup" | "char";
+    /** Raw Win32 VK code (1..255), not titan.keyboard.Key; -1 for char events. */
+    readonly keyCode: number;
+    /** One UTF-16 code unit for char events, otherwise an empty string. */
+    readonly char: string;
+    /** titan.keyboard.Mod bitmask sampled at dispatch. */
+    readonly mods: number;
+    readonly repeat: boolean;
+    /** Setting this clears a pending replacement. */
+    consumed: boolean;
+    /** Suppress this event entirely, clearing a pending replacement. */
+    consume(): void;
+    /** Replace a keydown/keyup with a raw Win32 VK code (1..255) and consume it.
+     * Defaults mods to the original event's modifiers. Throws for char events,
+     * noninteger/invalid VK codes, and modifier bits outside Shift/Ctrl/Alt.
+     */
+    replaceWith(keyCode: number, mods?: number): void;
+}
+
 interface ScriptEvent {
     readonly scriptId: number;
     readonly intArgs: number[];
@@ -2376,6 +2408,8 @@ class Plugin {
     onSettingChanged?(key: string): void;
 
     onMenuOptionClicked?(event: MenuOptionClicked): void;
+    /** Synchronous input interception; see KeyInputEvent for threading and key-pair rules. SDK 157+. */
+    onKeyEvent?(event: KeyInputEvent): void;
     onScriptFired?(event: ScriptEvent): void;
     /** Fired when a varbit's resolved value actually changes. Added in SDK 21. */
     onVarbitChanged?(event: VarbitChangedEvent): void;

@@ -38,6 +38,13 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v157 -- Consumable keyboard input and key replacement
+///   + Optional PluginEventsV1::onKeyEvent and KeyInputEvent expose synchronous
+///     keydown, keyup and UTF-16 char input in C++, Java and JS/TS. Handlers may
+///     consume input or replace key pairs; synthetic input bypasses callbacks.
+///   ~ New payload and appended callback only; existing payload layouts and
+///     SDK floor 154 are unchanged.
+///
 /// v156 -- Optional classic actor animation smoothing controls
 ///   + Five HostRenderV1 tail functions expose availability, enabled request/applied
 ///     state and error. C++/Java/JS controls are process-wide and default off.
@@ -1867,7 +1874,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 156;
+constexpr uint32_t kSdkVersion = 157;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -3322,6 +3329,34 @@ struct MouseButtonEvent {
     int32_t modifiers = 0;  ///< KeyboardMods bitmask sampled at click time.
     int32_t gameTick = 0;   ///< Current game tick at capture time, or 0.
     uint8_t consumed = 0;
+};
+
+/// Numeric input kinds used by KeyInputEvent. Added in SDK 157.
+namespace KeyInputType {
+    constexpr int32_t KEYDOWN = 0;
+    constexpr int32_t KEYUP = 1;
+    constexpr int32_t CHAR = 2;
+}
+
+/// Borrowed real keyboard input, delivered before the game's WndProc handles
+/// it. Callbacks run synchronously on the message-pump thread: do not access
+/// game state or wait for game-thread work here. Synthetic SDK input bypasses
+/// this callback. The first handler to consume or replace an event wins.
+///
+/// An initial down establishes the repeat/release policy. The host preserves
+/// the matching release and suppresses original WM_CHAR input for a consumed
+/// or replaced down. Replacements are key events, not text input. CHAR carries
+/// one UTF-16 WM_CHAR code unit and cannot be replaced. Added in SDK 157.
+struct KeyInputEvent {
+    int32_t type = KeyInputType::KEYDOWN;
+    int32_t keyCode = -1;     ///< Win32 VK 1..255 for keys; -1 for CHAR.
+    uint32_t character = 0;  ///< UTF-16 code unit for CHAR; 0 for keys.
+    int32_t mods = 0;        ///< KeyboardMods SHIFT/CTRL/ALT at capture time.
+    uint8_t repeat = 0;
+    uint8_t consumed = 0;
+    uint8_t replaced = 0;
+    int32_t replacementKeyCode = 0;
+    int32_t replacementMods = 0;
 };
 
 /// Event payload delivered to plugins when the native client applies a
@@ -5319,6 +5354,10 @@ struct PluginApi {
     // Local views only. Frozen PluginUiV1 and PanelDescriptor stay unchanged.
     HtmlUiCallbacks htmlPanels{};
     HtmlUiCallbacks htmlOverlays{};
+
+    /// SDK 157. Real key input on the synchronous input/message-pump thread.
+    /// First consumer/replacer wins. See KeyInputEvent for paired lifecycle.
+    void (*onKeyEvent)(void* userData, KeyInputEvent* event) = nullptr;
 };
 
 /// Historical local embedding signatures. These tables must never cross a

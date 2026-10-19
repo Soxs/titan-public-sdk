@@ -657,6 +657,20 @@ TITAN_NATIVE_FIELD(MouseButtonEvent, modifiers, 12, int32_t);
 TITAN_NATIVE_FIELD(MouseButtonEvent, gameTick, 16, int32_t);
 TITAN_NATIVE_FIELD(MouseButtonEvent, consumed, 20, uint8_t);
 
+TITAN_NATIVE_RECORD(KeyInputEvent, 28, 4);
+TITAN_NATIVE_FIELD(KeyInputEvent, type, 0, int32_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, keyCode, 4, int32_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, character, 8, uint32_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, mods, 12, int32_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, repeat, 16, uint8_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, consumed, 17, uint8_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, replaced, 18, uint8_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, replacementKeyCode, 20, int32_t);
+TITAN_NATIVE_FIELD(KeyInputEvent, replacementMods, 24, int32_t);
+TITAN_NATIVE_VALUE(KeyInputType::KEYDOWN, 0);
+TITAN_NATIVE_VALUE(KeyInputType::KEYUP, 1);
+TITAN_NATIVE_VALUE(KeyInputType::CHAR, 2);
+
 TITAN_NATIVE_RECORD(HitsplatAppliedEvent, 720, 8);
 TITAN_NATIVE_FIELD(HitsplatAppliedEvent, actorType, 0, uint8_t);
 TITAN_NATIVE_FIELD(HitsplatAppliedEvent, reserved, 1, uint8_t[7]);

@@ -560,6 +560,7 @@ struct PluginEventsV1 {
     void (*onOverheadTextChanged)(void* userData, const OverheadTextChangedEvent* event) = nullptr;
     void (*onGrandExchangeOfferChanged)(void* userData, const GrandExchangeOfferChangedEvent* event) = nullptr;
     void (*onCrossTabChanged)(void* userData, const CrossTabChangeEvent* event) = nullptr;
+    void (*onKeyEvent)(void* userData, KeyInputEvent* event) = nullptr;
 };
 static_assert(std::is_standard_layout_v<PluginEventsV1>);
 static_assert(offsetof(PluginEventsV1, header) == 0);
@@ -883,7 +884,7 @@ static_assert(offsetof(PluginUiV1, getPanelIcon) == 40);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(PluginEventsV1) == 256);
+static_assert(sizeof(PluginEventsV1) == 264);
 static_assert(offsetof(PluginEventsV1, onGameTick) == 8);
 static_assert(offsetof(PluginEventsV1, onClientTick) == 16);
 static_assert(offsetof(PluginEventsV1, onProjectileSpawned) == 24);
@@ -915,6 +916,7 @@ static_assert(offsetof(PluginEventsV1, onMainLoop) == 224);
 static_assert(offsetof(PluginEventsV1, onOverheadTextChanged) == 232);
 static_assert(offsetof(PluginEventsV1, onGrandExchangeOfferChanged) == 240);
 static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
+static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
 #endif
 
 #define TITAN_NATIVE_HOSTCOREV1_MEMBERS(X) \
@@ -1222,7 +1224,8 @@ static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
     X(onMainLoop) \
     X(onOverheadTextChanged) \
     X(onGrandExchangeOfferChanged) \
-    X(onCrossTabChanged)
+    X(onCrossTabChanged) \
+    X(onKeyEvent)
 
 // Owns immutable capability tables. The provider contains this object's
 // address, so keep the object alive and stationary while anyone can call it.

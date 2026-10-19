@@ -16,6 +16,14 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v157 -- Consumable keyboard input and key replacement
+
+- `+` Optional `PluginEventsV1::onKeyEvent` and `KeyInputEvent` expose synchronous
+  keydown, keyup and UTF-16 char input in C++, Java and JS/TS. Handlers may consume
+  input or replace key pairs; synthetic input bypasses callbacks.
+- `~` New payload and appended callback only; existing payload layouts and SDK
+  floor 154 are unchanged.
+
 ## v156 -- Classic actor animation smoothing controls
 
 - `+` Optional `HostRenderV1` tail controls expose classic actor smoothing

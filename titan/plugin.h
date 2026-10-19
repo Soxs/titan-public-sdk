@@ -196,6 +196,12 @@ public:
 
     // --- Other events ---
     virtual void onMenuOptionClicked(MenuClickEvent&) {}
+    /// Real keyboard input before the game's WndProc. Synchronous pump thread:
+    /// use cached state, never query game memory or wait for game-thread work.
+    /// First consumer/replacer wins. Initial down fixes repeats and paired up;
+    /// original typed chars are suppressed for consumed/replaced downs. SDK
+    /// synthetic input bypasses this event. Added in SDK 157.
+    virtual void onKeyEvent(KeyInputEvent&) {}
     virtual void onScriptFired(const ScriptEvent&) {}
 
     /// Called when the native client requests a discrete sound effect.
@@ -705,6 +711,11 @@ inline void thunkOnMenuOptionClicked(void* ud, TitanPluginSdk::MenuOptionClicked
     MenuClickEvent wrapper{e};
     self(ud)->onMenuOptionClicked(wrapper);
 }
+inline void thunkOnKeyEvent(void* ud, TitanPluginSdk::KeyInputEvent* e) {
+    if (!e) return;
+    KeyInputEvent wrapper{e};
+    self(ud)->onKeyEvent(wrapper);
+}
 inline void thunkOnScriptFired(void* ud, const TitanPluginSdk::ScriptFiredEvent* e) {
     if (!e) return;
     ScriptEvent wrapper{e};
@@ -1028,6 +1039,7 @@ inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outAp
     outApi->onTileObjectSpawned = &GuardedPluginCallback<&thunkOnTileObjectSpawned>::invoke;
     outApi->onTileObjectDespawned = &GuardedPluginCallback<&thunkOnTileObjectDespawned>::invoke;
     outApi->onMenuOptionClicked = &GuardedPluginCallback<&thunkOnMenuOptionClicked>::invoke;
+    outApi->onKeyEvent = &GuardedPluginCallback<&thunkOnKeyEvent>::invoke;
     outApi->onScriptFired = &GuardedPluginCallback<&thunkOnScriptFired>::invoke;
     outApi->onVarbitChanged = &GuardedPluginCallback<&thunkOnVarbitChanged>::invoke;
     outApi->onChatMessage = &GuardedPluginCallback<&thunkOnChatMessage>::invoke;

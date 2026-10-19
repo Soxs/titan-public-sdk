@@ -1515,6 +1515,7 @@ class.
 | -- | `void onClientTick()` |
 | -- | `void onMainLoop()` -- outer client loop in every state, including title/login screens. Added in SDK 118. |
 | `MenuClickEvent` | `void onMenuOptionClicked(MenuClickEvent&)` (`consume()` blocks; `replaceWith(...)` or replacement setters change the DoAction that reaches the game). Wraps `MenuOptionClickedEvent` / RuneLite-style menu fields. |
+| `KeyInputEvent` | `void onKeyEvent(KeyInputEvent&)` -- real keydown, keyup and typed character input before game processing. `consume()` suppresses input; `replaceWith(vk, optionalMods)` replaces a key pair. Runs synchronously on the input thread; see the keyboard contract below. Added in SDK 157. |
 | `ScriptEvent` | `void onScriptFired(const ScriptEvent&)` |
 | `VarbitChangedEvent` | `void onVarbitChanged(const VarbitChangedEvent&)` |
 | `GameStateChangedEvent` | `void onGameStateChanged(const GameStateChangedEvent&)` -- native `Client.GameState` transitions from `SetGameState`. Values use native `LoginGameState` numbers; `Loading` (25) is mapped in SDK v126+. Added in SDK 91. |
@@ -1552,6 +1553,58 @@ onMainLoop() {
     const local = titan.state.client.localPlayer;
 }
 ```
+
+### Keyboard event contract (SDK 157)
+
+`onKeyEvent` is available in C++, Java and JS/TypeScript. C++
+`KeyInputEvent::type()` uses `titan::KeyInputType::{KEYDOWN,KEYUP,CHAR}`
+(0, 1, 2); JS/TS uses `"keydown"`, `"keyup"`, `"char"`.
+`keyCode` is the Win32 virtual key (1..255), or -1 for typed characters.
+`character()` in C++ is one UTF-16 `WM_CHAR` code unit; JS/TS `char` is the
+corresponding one-unit string. Supplementary Unicode characters therefore
+arrive in two events. `mods` contains SHIFT=1, CTRL=2, ALT=4 sampled at capture
+time; `repeat` reports the native repeat flag.
+
+Handlers execute synchronously before the game's window procedure. They must
+return quickly using cached state: do not query game memory, perform blocking
+work, or wait for a game-thread callback. Cache any gameplay condition needed
+for remapping during `onClientTick`. SDK-generated keyboard input and the
+host's replacement events bypass `onKeyEvent` to prevent recursion.
+Interception uses bounded callback admission to keep the input pump responsive.
+If a handler cannot be admitted, that interception is skipped rather than
+replayed later; a new keydown passes through and retains that route for its pair.
+
+The first handler to consume or replace wins. `replaceWith(vk, mods)` consumes
+the original and sends replacement key edges; it does not synthesize typed
+text. Omitted modifiers retain the original mask. Only VK 1..255 and modifier
+bits 1/2/4 are accepted; CHAR cannot be replaced. Invalid requests are ignored
+in C++, and rejected by JS/Java. `consume()` cancels a replacement previously
+requested in that callback.
+
+The initial keydown fixes the repeat and paired keyup route. Repeats and keyup
+are delivered for observation; changes requested for an existing pair cannot
+change its route or strand a game key down. Consuming a down suppresses its
+repeats, original typed characters and paired up. Replacing a down suppresses
+the original typed characters and routes repeats/up to the replacement.
+Suppressed original characters are not dispatched. The host releases held
+replacement keys/modifiers on focus loss, window destruction or input capture.
+This contract covers window-message input; independently polled hardware state
+is outside its scope.
+
+```cpp
+void onKeyEvent(titan::KeyInputEvent& event) override {
+    // remappingEnabled_ is a cached value; do not query game state here.
+    if (remappingEnabled_ && event.type() == titan::KeyInputType::KEYDOWN
+        && event.keyCode() == 'W') {
+        event.replaceWith(0x26); // VK_UP, preserving physical modifiers
+    }
+}
+```
+
+Native ABI v1 appends optional `PluginEventsV1::onKeyEvent` at offset 256 and
+introduces a separate 28-byte `KeyInputEvent` record. Existing payload layouts
+and the SDK 154 load floor remain unchanged. Older compatible hosts continue
+to load plugins but do not deliver the absent optional callback.
 
 ---
 
@@ -1742,7 +1795,7 @@ versions.
 | `onProjectileSpawned/Despawned/Moved` | Game thread | Yes | No |
 | `onGraphicsObjectSpawned/Despawned/Moved` | Game thread | Yes | No |
 | `onMenuOptionClicked`, `onChatMessage`, `onSoundPlayed`, `onHitsplatApplied`, `onActorSpotAnim`, `onAnimationChanged`, `onGameStateChanged`, `onVarbitChanged`, `onScriptFired` | Game thread (inside the detour or main-loop marshal) | Yes for queries; avoid heavy work | Dispatch heavy work via `runOnClientTick` |
-| `onMousePressed`, `onMouseReleased` | **Input (message-pump) thread** -- may NOT be the game thread | **No** -- do not read game state or call `titan::*` queries/actions; copy the event fields out and return quickly | Hand off to a game-thread callback (e.g. store a pending value and act in `onClientTick`) |
+| `onMousePressed`, `onMouseReleased`, `onKeyEvent` | **Input (message-pump) thread** -- may NOT be the game thread | **No** -- do not read game state or call `titan::*` queries/actions; copy the event fields out and return quickly | Hand off to a game-thread callback (e.g. store a pending value and act in `onClientTick`) |
 | `onRender` overlay callback | Render thread (SwapBuffers hook) | Yes for queries; mutation APIs must be dispatched | Dispatch mutations via `runOnClientTick` |
 | `titan::screenshot()` `submit` / `poll` / `copyPng` / `release` | Any plugin callback thread | N/A -- a mutex-guarded host table; the capture itself rides the render thread and encoding a worker, so none of the work lands on the caller | No |
 | side panel `build` / `onAction` callbacks | Controller process | No -- HostApi does NOT reach the game thread from here. Treat panel code as pure UI + intent queueing. | N/A |

@@ -35,6 +35,34 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Keyboard interception (0.1.88+, client SDK 157+)
+
+Subscribe to `net.titan.api.events.KeyInputEvent` to consume or remap input before
+the game receives it. Key codes are raw Win32 VK values; they are not the internal
+`KeyboardKey` IDs used by the typing API. Modifier masks use `KeyboardModifiers`.
+
+```java
+@Subscribe
+public void onKeyEvent(KeyInputEvent event) {
+    if (event.type().equals(KeyInputEvent.KEYDOWN) && event.keyCode() == 'W') {
+        event.replaceWith(0x26); // VK_UP, preserving the original modifiers
+    }
+}
+```
+
+`consume()` suppresses the event and cancels any replacement. `replaceWith(vk,
+mods)` consumes the original key edge and substitutes a key with the requested
+modifiers. The first keydown fixes the route for its repeats and paired release,
+even if a later callback consumes or changes that release. Focus or input-capture
+changes release active replacements. Original typed characters from consumed or
+replaced keys are suppressed, and replacements do not generate new typed
+characters. Other `CHAR` events expose one UTF-16 code unit through `character()`;
+they may be consumed but cannot be replaced.
+
+Handlers run synchronously on the window input thread. Keep them short and avoid
+game-thread-only APIs; cache any needed game state from normal game events. A
+staged Java runtime predating this feature leaves input unchanged.
+
 ## Actor game-data snapshots (0.1.86+)
 
 `Actor.animationProgress()` returns immutable primary/action animation progress;
