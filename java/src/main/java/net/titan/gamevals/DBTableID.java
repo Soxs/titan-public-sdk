@@ -285,6 +285,7 @@ public final class DBTableID
             public static final int QUEST_BLOODMOONRISES = 16414;
             public static final int QUEST_RUFFSITUATION = 16971;
             public static final int QUEST_CRABQUEST = 16972;
+            public static final int MINIQUEST_FRACTUREDARCHIVE = 17027;
         }
     }
 
@@ -2953,6 +2954,11 @@ public final class DBTableID
             public static final int EASTER26_EGG_COMPANION_CHICK = 13316;
             public static final int EASTER26_EGG_COMPANION_MELTED = 13317;
             public static final int EASTER26_EGG_COMPANION_DRAGON = 13318;
+            public static final int TFA_CAPE_T1 = 17014;
+            public static final int TFA_CAPE_T2 = 17015;
+            public static final int TFA_CAPE_T3 = 17016;
+            public static final int TFA_CAPE_T4 = 17017;
+            public static final int TFA_CAPE_T5 = 17018;
         }
     }
 
@@ -3095,6 +3101,11 @@ public final class DBTableID
         public static final int COL_OMNISHOP_SHOP_ALLOW_SELLING = 16;
         public static final int COL_OMNISHOP_SHOP_SHOW_STOCK = 17;
         public static final int COL_OMNISHOP_SHOP_SHOW_COST_IN_INFO = 18;
+        public static final int COL_OMNISHOP_SHOP_DEBOUNCE_PURCHASE_BUTTONS = 19;
+        public static final int COL_OMNISHOP_BUY_Q1 = 20;
+        public static final int COL_OMNISHOP_BUY_Q2 = 21;
+        public static final int COL_OMNISHOP_BUY_Q3 = 22;
+        public static final int COL_OMNISHOP_BUY_Q4 = 23;
 
         public static final class Row {
             private Row() {}
@@ -3127,6 +3138,8 @@ public final class DBTableID
             public static final int VAMPYRIUM_CONSUMABLE_SHOP = 16873;
             public static final int VAMPYRIUM_CONSUMABLE_SHOP_IVAN = 16874;
             public static final int TEMPOROSS_SHOP_DATA = 16951;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP = 17150;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_FAILURE = 17151;
         }
     }
 
@@ -3477,6 +3490,17 @@ public final class DBTableID
             public static final int GOTR_SHOP_DATA_ABYSSAL_LANTERN = 16948;
             public static final int TEMPOROSS_SHOP_DATA_FISH_BARREL = 16952;
             public static final int TEMPOROSS_SHOP_DATA_TACKLE_BOX = 16953;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_NOTE = 17152;
+            public static final int TFA_MIDRAID_SUPPLIES_LEFTOVERS = 17153;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_KRILL = 17154;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_MANTARAY = 17155;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_HALIBUT = 17156;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_2DOSEPRAYERRESTORE = 17157;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_4DOSEPRAYERRESTORE = 17158;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_4DOSEPOTIONOFSARADOMIN = 17159;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_4DOSE2RESTORE = 17160;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_2DOSERANGERSPOTION = 17161;
+            public static final int TFA_MIDRAID_SUPPLIES_SHOP_2DOSE2COMBAT = 17162;
         }
     }
 
@@ -3538,6 +3562,7 @@ public final class DBTableID
             public static final int OMNISHOP_CURRENCY_DEADMAN_SKULL_POINTS = 9576;
             public static final int OMNISHOP_CURRENCY_ABYSSAL_PEARL = 16949;
             public static final int OMNISHOP_CURRENCY_SPIRIT_FLAKES = 16954;
+            public static final int OMNISHOP_CURRENCY_TFA_SUPPLY_POINTS = 17149;
         }
     }
 
@@ -4479,6 +4504,16 @@ public final class DBTableID
             public static final int MUSIC_CASTLE_DRAKAN = 16410;
             public static final int MUSIC_SANGVESTI = 16411;
             public static final int MUSIC_BRIDGE_ATTACK = 16412;
+            public static final int MUSIC_TFA_LOBBY = 17001;
+            public static final int MUSIC_TFA_BOSS_ARCHIVE_GUARDIAN = 17002;
+            public static final int MUSIC_TFA_BOSS_EZEKIEL = 17003;
+            public static final int MUSIC_TFA_BOSS_BORK = 17004;
+            public static final int MUSIC_TFA_BOSS_DAGONHAI = 17005;
+            public static final int MUSIC_TFA_BOSS_JELLY = 17006;
+            public static final int MUSIC_TFA_BOSS_MOIA = 17007;
+            public static final int MUSIC_TFA_BOSS_XARTH = 17008;
+            public static final int MUSIC_TFA_BOSS_OCELLUS = 17009;
+            public static final int MUSIC_TFA_BOSS_OCELLUS_2 = 17010;
         }
     }
 
@@ -5407,6 +5442,8 @@ public final class DBTableID
         public static final int COL_CHARGES_GRANTED = 2;
         public static final int COL_CHARGES_TYPE = 3;
         public static final int COL_CHARGES_QUANTITY_BITS_AND_VARP = 4;
+        public static final int COL_CHARGES_ALLOW_ATTACKS_UNCHARGED = 5;
+        public static final int COL_UNCHARGING_DISABLED = 6;
 
         public static final class Row {
             private Row() {}
@@ -5455,6 +5492,9 @@ public final class DBTableID
             public static final int CHARGES_HORN_OF_PLENTY = 7039;
             public static final int CHARGES_SAILORS_AMULET = 7040;
             public static final int CHARGES_COWBELL_AMULET = 9644;
+            public static final int CHARGES_ARCHIVISTS_FOLIO = 17019;
+            public static final int CHARGES_OBLIGATOR = 17020;
+            public static final int CHARGES_ZORYAS_TOME = 17021;
         }
     }
 
@@ -10657,6 +10697,14 @@ public final class DBTableID
         public static final int ID = 125;
         public static final int COL_TRANSPARENCY_RANGE = 0;
         public static final int COL_STEP_DURATION = 1;
+        public static final int COL_USE_GLOBAL_TIME = 2;
+
+        public static final class Row {
+            private Row() {}
+
+            public static final int UI_HIGHLIGHTING_FX_PULSE_TUTORIAL_CTA = 7035;
+            public static final int UI_HIGHLIGHTING_FX_PULSE_TUTORIAL_ALERT = 7037;
+        }
     }
 
     public static final class UiHighlightingStyleBorder {
@@ -10673,6 +10721,7 @@ public final class DBTableID
 
             public static final int UI_HIGHLIGHTING_STYLE_TUTORIAL_CTA = 7034;
             public static final int UI_HIGHLIGHTING_STYLE_TUTORIAL_ALERT = 7036;
+            public static final int UI_HIGHLIGHTING_STYLE_PING_TFA = 17176;
         }
     }
 
@@ -10794,6 +10843,83 @@ public final class DBTableID
         public static final int COL_MODIFIED_STATS = 3;
         public static final int COL_MODIFIED_ITEMS = 4;
         public static final int COL_WIPEITEM_ONEXIT = 5;
+    }
+
+    public static final class DynamicTableTheme {
+        private DynamicTableTheme() {}
+
+        public static final int ID = 134;
+        public static final int COL_DIVIDER_COLOUR = 0;
+        public static final int COL_DIVIDER_WIDTH = 1;
+        public static final int COL_ROW_BG_TRANSPARENCY = 2;
+        public static final int COL_SCROLLBAR_VERTICAL_SPRITES = 3;
+        public static final int COL_SCROLLBAR_HORIZONTAL_SPRITES = 4;
+    }
+
+    public static final class DropInstantReveal {
+        private DropInstantReveal() {}
+
+        public static final int ID = 135;
+        public static final int COL_ALL_FOOD = 0;
+        public static final int COL_ALL_POTIONS = 1;
+        public static final int COL_WHITELIST_ITEM = 2;
+        public static final int COL_WHITELIST_CATEGORY = 3;
+    }
+
+    public static final class TfaEzekielSwordGrid {
+        private TfaEzekielSwordGrid() {}
+
+        public static final int ID = 136;
+        public static final int COL_COORDS = 0;
+    }
+
+    public static final class TfaEzekielStar {
+        private TfaEzekielStar() {}
+
+        public static final int ID = 137;
+        public static final int COL_OFFSETS = 0;
+        public static final int COL_CORNER = 1;
+    }
+
+    public static final class TfaEzekielFinaleRotation {
+        private TfaEzekielFinaleRotation() {}
+
+        public static final int ID = 138;
+        public static final int COL_ID = 0;
+        public static final int COL_COMBO = 1;
+    }
+
+    public static final class TfaEzekielFinaleCombo {
+        private TfaEzekielFinaleCombo() {}
+
+        public static final int ID = 139;
+        public static final int COL_ATTACK = 0;
+    }
+
+    public static final class TfaEzekielFinaleAttack {
+        private TfaEzekielFinaleAttack() {}
+
+        public static final int ID = 140;
+        public static final int COL_DEBUG_NAME = 0;
+        public static final int COL_TELEGRAPH_DIRECTION = 1;
+        public static final int COL_ATTACK_ANIM = 2;
+        public static final int COL_HIT_DELAY_TICKS = 3;
+        public static final int COL_TELEGRAPH_LENGTH = 4;
+        public static final int COL_ANIM_DELAY_TICKS = 5;
+        public static final int COL_NEXT_ATTACK_DELAY_TICKS = 6;
+        public static final int COL_DANGER_TILE_LINE = 7;
+        public static final int COL_DAMAGE_TYPE = 8;
+        public static final int COL_PRAYER_PROTECTION = 9;
+    }
+
+    public static final class TfaOcellusBarrage {
+        private TfaOcellusBarrage() {}
+
+        public static final int ID = 141;
+        public static final int COL_PHASE = 0;
+        public static final int COL_SPEED = 1;
+        public static final int COL_ATTACK_COLUMN = 2;
+        public static final int COL_ATTACK_ROW = 3;
     }
 
     public static final class FletchingBlowpipeCrafting {
@@ -12576,6 +12702,159 @@ public final class DBTableID
             public static final int SLAYER_BROAD_ARROWS = 16932;
             public static final int ATLATL_DART = 16933;
         }
+    }
+
+    public static final class TfaRoomEncounterEntryConfig {
+        private TfaRoomEncounterEntryConfig() {}
+
+        public static final int ID = 259;
+        public static final int COL_ENTRY_COORD = 0;
+        public static final int COL_ENTRY_FACING = 1;
+        public static final int COL_AVOID_CATEGORIES = 2;
+        public static final int COL_AVOID_LOCS = 3;
+        public static final int COL_AVOID_NPCS = 4;
+        public static final int COL_AVOID_CONTROLLERS = 5;
+    }
+
+    public static final class TfaNexusDoors {
+        private TfaNexusDoors() {}
+
+        public static final int ID = 260;
+        public static final int COL_WEST_DOOR_COORD = 0;
+        public static final int COL_WEST_DOOR_LOC_CLOSED = 1;
+        public static final int COL_WEST_DOOR_LOC_OPEN = 2;
+        public static final int COL_WEST_DOOR_LOC_OPEN_SLIGHTLY = 3;
+        public static final int COL_WEST_DOOR_LOC_OPEN_SLIGHTLY_IDLE = 4;
+        public static final int COL_EAST_DOOR_COORD = 5;
+        public static final int COL_EAST_DOOR_LOC_CLOSED = 6;
+        public static final int COL_EAST_DOOR_LOC_OPEN = 7;
+        public static final int COL_EAST_DOOR_LOC_OPEN_SLIGHTLY = 8;
+        public static final int COL_EAST_DOOR_LOC_OPEN_SLIGHTLY_IDLE = 9;
+        public static final int COL_DOOR_OPEN_ANIM = 10;
+    }
+
+    public static final class TfaDroptable {
+        private TfaDroptable() {}
+
+        public static final int ID = 261;
+        public static final int COL_TABLE_CHANCE = 0;
+        public static final int COL_DEBUG_GUARANTEE_GOD_ROLL = 1;
+        public static final int COL_DEBUG_NAME = 2;
+        public static final int COL_MODIFY_DROPRATE_ID = 3;
+        public static final int COL_ENTRIES = 4;
+    }
+
+    public static final class TfaDroptableEntryTable {
+        private TfaDroptableEntryTable() {}
+
+        public static final int ID = 262;
+        public static final int COL_DEBUG_NAME = 0;
+        public static final int COL_ENTRIES = 1;
+    }
+
+    public static final class TfaDroptableEntryItem {
+        private TfaDroptableEntryItem() {}
+
+        public static final int ID = 263;
+        public static final int COL_ITEM = 0;
+        public static final int COL_QUANTITY_RANGE = 1;
+        public static final int COL_SCALING_MODE = 2;
+        public static final int COL_MAX_OWNED = 3;
+        public static final int COL_RARE_QUANTITY_CHANCE = 4;
+        public static final int COL_RARE_QUANTITY_MULTIPLIER = 5;
+    }
+
+    public static final class TfaStatsCategory {
+        private TfaStatsCategory() {}
+
+        public static final int ID = 264;
+        public static final int COL_TITLE = 0;
+        public static final int COL_SHORT_TITLE = 1;
+        public static final int COL_SPRITE_25X25 = 2;
+        public static final int COL_ASSOCIATED_ROOM = 3;
+        public static final int COL_ROWS = 4;
+    }
+
+    public static final class TfaStatsRow {
+        private TfaStatsRow() {}
+
+        public static final int ID = 265;
+        public static final int COL_TITLE = 0;
+        public static final int COL_GLOBAL_MAX = 1;
+        public static final int COL_PERSONAL_MAX = 2;
+        public static final int COL_CURRENT_MAX = 3;
+        public static final int COL_IS_TIME = 4;
+        public static final int COL_UNRECORDED_THRESHOLD = 5;
+        public static final int COL_AUTO_PERSIST_MODE = 6;
+        public static final int COL_ROW_PER_PARTY_SIZE = 7;
+        public static final int COL_PERSISTENT_MODE_VARIANTS_ENUM = 8;
+    }
+
+    public static final class CombatDynamicAnims {
+        private CombatDynamicAnims() {}
+
+        public static final int ID = 266;
+        public static final int COL_COM_MODE_OVERRIDE_ANIM = 0;
+        public static final int COL_STAB_ANIM = 1;
+        public static final int COL_SLASH_ANIM = 2;
+        public static final int COL_CRUSH_ANIM = 3;
+        public static final int COL_RANGED_ANIM = 4;
+        public static final int COL_COM_MODE_OVERRIDE_ANIM_B = 5;
+        public static final int COL_STAB_ANIM_B = 6;
+        public static final int COL_SLASH_ANIM_B = 7;
+        public static final int COL_CRUSH_ANIM_B = 8;
+        public static final int COL_RANGED_ANIM_B = 9;
+    }
+
+    public static final class CombatDynamicAnimSequenced {
+        private CombatDynamicAnimSequenced() {}
+
+        public static final int ID = 267;
+        public static final int COL_TIMEOUT = 0;
+        public static final int COL_ANIMS = 1;
+    }
+
+    public static final class CombatDynamicAnimRandom {
+        private CombatDynamicAnimRandom() {}
+
+        public static final int ID = 268;
+        public static final int COL_PICK_UNIQUE = 0;
+        public static final int COL_ANIMS = 1;
+    }
+
+    public static final class CombatAnim {
+        private CombatAnim() {}
+
+        public static final int ID = 269;
+        public static final int COL_PLAYERANIM_PVN = 0;
+        public static final int COL_PLAYERANIM_PVP = 1;
+        public static final int COL_SPOTANIM = 2;
+        public static final int COL_PROJANIM_PVN = 3;
+        public static final int COL_PROJANIM_PVP = 4;
+        public static final int COL_PROJANIM_ADV_PVN = 5;
+        public static final int COL_PROJANIM_ADV_PVP = 6;
+        public static final int COL_PROJANIM_TILES_PER_CYCLE = 7;
+        public static final int COL_SOUND_SYNTH = 8;
+        public static final int COL_SOUND_SYNTH_TARGET = 9;
+        public static final int COL_SOUND_AREA = 10;
+    }
+
+    public static final class AlternatePrayers {
+        private AlternatePrayers() {}
+
+        public static final int ID = 270;
+        public static final int COL_DEFAULT_ = 0;
+        public static final int COL_PRAYER = 1;
+    }
+
+    public static final class UiHighlightingFxSinglePulse {
+        private UiHighlightingFxSinglePulse() {}
+
+        public static final int ID = 271;
+        public static final int COL_TRANSPARENCY_RANGE = 0;
+        public static final int COL_USE_GLOBAL_TIME = 1;
+        public static final int COL_START_DURATION = 2;
+        public static final int COL_END_DURATION = 3;
     }
 
     public static GamevalEntry[] entries() { return DBTableIDEntries.entries(); }

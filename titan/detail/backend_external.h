@@ -88,6 +88,27 @@ public:
         return api_ && api_->getNpcBaseId
             ? api_->getNpcBaseId(worldViewId, hashIndex, outBaseId) : 0;
     }
+    uint8_t getItemIntParam(int32_t itemId, int32_t paramId, int32_t* outValue) override {
+        if (outValue) *outValue = 0;
+        return api_ && api_->getItemIntParam
+            ? api_->getItemIntParam(itemId, paramId, outValue)
+            : static_cast<uint8_t>(TitanPluginSdk::ItemParamStatus::Unavailable);
+    }
+    uint8_t copyWidgetName(const TitanPluginSdk::WidgetAddressState* address, char* outUtf8,
+                           uint32_t capacity, uint32_t* outRequired) override {
+        if (outRequired) *outRequired = 0;
+        return api_ && api_->copyWidgetName
+            ? api_->copyWidgetName(address, outUtf8, capacity, outRequired)
+            : static_cast<uint8_t>(TitanPluginSdk::WidgetOpsStatus::Unavailable);
+    }
+    uint8_t copyWidgetActions(const TitanPluginSdk::WidgetAddressState* address, char* outUtf8,
+                              uint32_t capacity, uint32_t* outRequired, uint32_t* outCount) override {
+        if (outRequired) *outRequired = 0;
+        if (outCount) *outCount = 0;
+        return api_ && api_->copyWidgetActions
+            ? api_->copyWidgetActions(address, outUtf8, capacity, outRequired, outCount)
+            : static_cast<uint8_t>(TitanPluginSdk::WidgetOpsStatus::Unavailable);
+    }
 
     // --- Logging ---
     void log(const char* msg) override {

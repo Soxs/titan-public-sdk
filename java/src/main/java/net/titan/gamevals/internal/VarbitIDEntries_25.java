@@ -357,6 +357,7 @@ final class VarbitIDEntries_25 {
             new GamevalEntry(13215, "SAILING_SIDEPANEL_FACILITY_ORDER_5_10", "sailing_sidepanel_facility_order_5_10", "varbittypes"),
             new GamevalEntry(13216, "SAILING_SIDEPANEL_FACILITY_ORDER_5_11", "sailing_sidepanel_facility_order_5_11", "varbittypes"),
             new GamevalEntry(13217, "SAILING_SIDEPANEL_FACILITY_ORDER_5_12", "sailing_sidepanel_facility_order_5_12", "varbittypes"),
+            new GamevalEntry(13218, "COLLECTION_ITEM_BOSUNS_WORKBENCH_SCHEMATIC", "collection_item_bosuns_workbench_schematic", "varbittypes"),
             new GamevalEntry(13219, "TRR_PIRATE_SHIPS_SLAIN", "trr_pirate_ships_slain", "varbittypes"),
             new GamevalEntry(13220, "SAILING_SIDEPANEL_AMMUNITION_TYPE_0", "sailing_sidepanel_ammunition_type_0", "varbittypes"),
             new GamevalEntry(13221, "SAILING_SIDEPANEL_AMMUNITION_TYPE_1", "sailing_sidepanel_ammunition_type_1", "varbittypes"),

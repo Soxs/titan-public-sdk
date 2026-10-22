@@ -35,6 +35,18 @@ struct InterfaceComponentEntry {
     std::string_view constantName;
 };
 
+namespace detail {
+
+// Specialised by each generated <catalog>_table.h with the entry table
+// behind that catalog's entries() and by-id lookups.
+template <typename Catalog>
+struct GamevalTable;
+
+template <typename Catalog>
+concept HasGamevalTable = requires { GamevalTable<Catalog>::entries(); };
+
+}  // namespace detail
+
 inline const Entry* findById(std::span<const Entry> entries, int32_t id) {
     for (const Entry& entry : entries) {
         if (entry.id == id) return &entry;

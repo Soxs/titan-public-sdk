@@ -264,6 +264,7 @@ final class VarPlayerIDEntries_10 {
             new GamevalEntry(5405, "COWBOSS_MISC", "cowboss_misc", "varptypes"),
             new GamevalEntry(5407, "TOTAL_COWBOSS_KILLS", "total_cowboss_kills", "varptypes"),
             new GamevalEntry(5408, "TOTAL_COWBOSS_HARDMODE_KILLS", "total_cowboss_hardmode_kills", "varptypes"),
+            new GamevalEntry(5411, "COLLECTION_ITEMS_358", "collection_items_358", "varptypes"),
             new GamevalEntry(5412, "COWQUEST_MAIN", "cowquest_main", "varptypes"),
             new GamevalEntry(5413, "POH_NEXUS_TELEPORT8", "poh_nexus_teleport8", "varptypes"),
             new GamevalEntry(5414, "POH_NEXUS_TELEPORT9", "poh_nexus_teleport9", "varptypes"),

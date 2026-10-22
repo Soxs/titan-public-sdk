@@ -226,6 +226,7 @@ final class QuestIDEntries_0 {
             new QuestEntry(7133, 214, "QUEST_FALLENFROMGRACE", "Fallen From Grace", "Fallen From Grace", "", "questtypes"),
             new QuestEntry(16971, 215, "QUEST_RUFFSITUATION", "A Ruff Situation", "Ruff Situation, A", "", "questtypes"),
             new QuestEntry(16972, 216, "QUEST_CRABQUEST", "Crab Quest", "Crab Quest", "", "questtypes"),
+            new QuestEntry(17027, 217, "MINIQUEST_FRACTUREDARCHIVE", "The Fractured Archive", "Fractured Archive, The", "", "questtypes"),
         };
     }
 

@@ -462,4 +462,11 @@ public interface InterfaceIDConstants_1 {
     int PVPTUT_UI = 970;
     int PVP_TUT_2026_SETUP_INTERFACE = 971;
     int PVPTUT_SCOREBOARD_UI = 972;
+    int TFA_CHESTS = 973;
+    int TFA_HUD = 974;
+    int TFA_LOBBY = 975;
+    int TFA_PARTYDETAILS = 976;
+    int TFA_PARTYLIST = 977;
+    int TFA_SPECTATE_HUD_INV = 978;
+    int TFA_STATS = 979;
 }

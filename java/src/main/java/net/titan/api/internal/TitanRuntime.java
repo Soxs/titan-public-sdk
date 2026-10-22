@@ -180,6 +180,16 @@ public final class TitanRuntime {
         return backend == null || value == null || backend.exists(value);
     }
 
+    /** Widget reads are by address, so detached snapshots read the live widget too. */
+    public static String widgetName(net.titan.api.WidgetAddress address) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null || address == null ? null : backend.widgetName(address);
+    }
+    public static String[] widgetActions(net.titan.api.WidgetAddress address) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null || address == null ? null : backend.widgetActions(address);
+    }
+
     public static String actorOverheadText(Actor actor) {
         LiveStateBackend backend = liveStateBackend;
         return backend == null || actor == null || isDetachedSnapshot(actor) ? null : backend.actorOverheadText(actor.entityPtr());

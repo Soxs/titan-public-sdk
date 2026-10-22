@@ -471,6 +471,13 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(970, "PVPTUT_UI", "pvptut_ui", "iftypes"),
             new GamevalEntry(971, "PVP_TUT_2026_SETUP_INTERFACE", "pvp_tut_2026_setup_interface", "iftypes"),
             new GamevalEntry(972, "PVPTUT_SCOREBOARD_UI", "pvptut_scoreboard_ui", "iftypes"),
+            new GamevalEntry(973, "TFA_CHESTS", "tfa_chests", "iftypes"),
+            new GamevalEntry(974, "TFA_HUD", "tfa_hud", "iftypes"),
+            new GamevalEntry(975, "TFA_LOBBY", "tfa_lobby", "iftypes"),
+            new GamevalEntry(976, "TFA_PARTYDETAILS", "tfa_partydetails", "iftypes"),
+            new GamevalEntry(977, "TFA_PARTYLIST", "tfa_partylist", "iftypes"),
+            new GamevalEntry(978, "TFA_SPECTATE_HUD_INV", "tfa_spectate_hud_inv", "iftypes"),
+            new GamevalEntry(979, "TFA_STATS", "tfa_stats", "iftypes"),
         };
     }
 

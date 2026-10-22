@@ -18,6 +18,7 @@
 #include "detail/abi.h"
 #include "detail/account_mode.h"
 #include "detail/backend.h"
+#include "detail/widget_ops.h"
 #include "menu_action.h"
 #include "prayer.h"
 #include "skill.h"
@@ -990,6 +991,18 @@ struct WidgetSnapshot {
     template <typename SpellT>
     bool castOn(SpellT spell) const;
 
+    /// Op base (RuneLite `Widget.getName()`), read live at this snapshot's
+    /// address (SDK v159), e.g. "<col=ff9040>Shark</col>" on an item slot.
+    /// Empty when the widget has no op base; nullopt when the host cannot read
+    /// it (older host, missing offsets or the widget is gone). Non-breaking
+    /// spaces read as spaces, as in RuneLite. Strings are bounded like text.
+    std::optional<std::string> name() const;
+    /// Op strings (RuneLite `Widget.getActions()`), read live (SDK v159): one
+    /// entry per native slot, empty where unset (RuneLite's null). An empty
+    /// vector means the widget has no op array (RuneLite returns null);
+    /// nullopt means the host cannot read it.
+    std::optional<std::vector<std::string>> actions() const;
+
     TitanPluginSdk::WidgetAddressState addressState() const {
         TitanPluginSdk::WidgetAddressState address = {};
         address.rootPackedId = rootPackedId != 0
@@ -1173,6 +1186,10 @@ public:
     bool selfHidden() const { return state().selfHidden; }
     bool visible() const { return state().visible; }
     const std::string& text() const { return state().text; }
+    /// See WidgetSnapshot::name(); always a live read at the retained address.
+    std::optional<std::string> name() const { return state_.name(); }
+    /// See WidgetSnapshot::actions(); always a live read at the retained address.
+    std::optional<std::vector<std::string>> actions() const { return state_.actions(); }
 
     bool exists() const {
         (void)state();
@@ -1387,6 +1404,25 @@ inline bool WidgetSnapshot::setText(const char* text) const {
     if (!b || dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth) return false;
     const auto address = addressState();
     return b->setWidgetTextAtPath(&address, text ? text : "") != 0;
+}
+
+inline std::optional<std::string> WidgetSnapshot::name() const {
+    auto* b = detail::backend();
+    if (!b || dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth) return std::nullopt;
+    const auto address = addressState();
+    return detail::readWidgetName([&](char* out, uint32_t capacity, uint32_t* required) {
+        return b->copyWidgetName(&address, out, capacity, required);
+    });
+}
+
+inline std::optional<std::vector<std::string>> WidgetSnapshot::actions() const {
+    auto* b = detail::backend();
+    if (!b || dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth) return std::nullopt;
+    const auto address = addressState();
+    return detail::readWidgetActions(
+        [&](char* out, uint32_t capacity, uint32_t* required, uint32_t* count) {
+            return b->copyWidgetActions(&address, out, capacity, required, count);
+        });
 }
 
 // ---------------------------------------------------------------------------

@@ -195,13 +195,24 @@ struct HostDefinitionExtrasV1 {
                                  uint32_t* outRequired) = nullptr;
     uint8_t (*getNpcBaseId)(int32_t worldViewId, int32_t hashIndex,
                            int32_t* outBaseId) = nullptr;
+    // SDK 158 optional tail; returns an ItemParamStatus.
+    uint8_t (*getItemIntParam)(int32_t itemId, int32_t paramId, int32_t* outValue) = nullptr;
+    // SDK 159 optional tail; both return a WidgetOpsStatus.
+    uint8_t (*copyWidgetName)(const WidgetAddressState* address, char* outUtf8,
+                             uint32_t capacity, uint32_t* outRequired) = nullptr;
+    uint8_t (*copyWidgetActions)(const WidgetAddressState* address, char* outUtf8,
+                                uint32_t capacity, uint32_t* outRequired,
+                                uint32_t* outCount) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostDefinitionExtrasV1>);
-static_assert(sizeof(HostDefinitionExtrasV1) == 32);
+static_assert(sizeof(HostDefinitionExtrasV1) == 56);
 static_assert(offsetof(HostDefinitionExtrasV1, header) == 0);
 static_assert(offsetof(HostDefinitionExtrasV1, getWidgetModelIdAtPath) == 8);
 static_assert(offsetof(HostDefinitionExtrasV1, copyItemWornAction) == 16);
 static_assert(offsetof(HostDefinitionExtrasV1, getNpcBaseId) == 24);
+static_assert(offsetof(HostDefinitionExtrasV1, getItemIntParam) == 32);
+static_assert(offsetof(HostDefinitionExtrasV1, copyWidgetName) == 40);
+static_assert(offsetof(HostDefinitionExtrasV1, copyWidgetActions) == 48);
 
 struct HostCoreV1 {
     InterfaceHeader header{sizeof(HostCoreV1), 1};
@@ -1262,6 +1273,9 @@ public:
         definitionExtras.getWidgetModelIdAtPath = api.getWidgetModelIdAtPath;
         definitionExtras.copyItemWornAction = api.copyItemWornAction;
         definitionExtras.getNpcBaseId = api.getNpcBaseId;
+        definitionExtras.getItemIntParam = api.getItemIntParam;
+        definitionExtras.copyWidgetName = api.copyWidgetName;
+        definitionExtras.copyWidgetActions = api.copyWidgetActions;
         htmlUi.capabilities = api.htmlUiCapabilities;
     }
     HostInterfaceSet(const HostInterfaceSet&) = delete;
@@ -1287,6 +1301,9 @@ private:
                 return self.definitionExtras.getWidgetModelIdAtPath
                         || self.definitionExtras.copyItemWornAction
                         || self.definitionExtras.getNpcBaseId
+                        || self.definitionExtras.getItemIntParam
+                        || self.definitionExtras.copyWidgetName
+                        || self.definitionExtras.copyWidgetActions
                     ? &self.definitionExtras.header : nullptr;
             case kHostHtmlUiId: return self.htmlUi.capabilities ? &self.htmlUi.header : nullptr;
             default: break;
@@ -1396,6 +1413,12 @@ inline bool importHostApi(const InterfaceProviderV1* provider, HostApi& out) {
             table, offsetof(HostDefinitionExtrasV1, copyItemWornAction));
         out.getNpcBaseId = readMember<decltype(out.getNpcBaseId)>(
             table, offsetof(HostDefinitionExtrasV1, getNpcBaseId));
+        out.getItemIntParam = readMember<decltype(out.getItemIntParam)>(
+            table, offsetof(HostDefinitionExtrasV1, getItemIntParam));
+        out.copyWidgetName = readMember<decltype(out.copyWidgetName)>(
+            table, offsetof(HostDefinitionExtrasV1, copyWidgetName));
+        out.copyWidgetActions = readMember<decltype(out.copyWidgetActions)>(
+            table, offsetof(HostDefinitionExtrasV1, copyWidgetActions));
     }
     {
         const auto* table = queryInterface(provider, kHostHtmlUiId);

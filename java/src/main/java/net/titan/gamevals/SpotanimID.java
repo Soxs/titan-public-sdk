@@ -12,7 +12,8 @@ public final class SpotanimID
                    SpotanimIDConstants_4,
                    SpotanimIDConstants_5,
                    SpotanimIDConstants_6,
-                   SpotanimIDConstants_7 {
+                   SpotanimIDConstants_7,
+                   SpotanimIDConstants_8 {
     private SpotanimID() {}
 
     public static final String SOURCE_CATALOG = "spottypes";

@@ -33,7 +33,8 @@ public final class AnimationID
                    AnimationIDConstants_25,
                    AnimationIDConstants_26,
                    AnimationIDConstants_27,
-                   AnimationIDConstants_28 {
+                   AnimationIDConstants_28,
+                   AnimationIDConstants_29 {
     private AnimationID() {}
 
     public static final String SOURCE_CATALOG = "seqtypes";

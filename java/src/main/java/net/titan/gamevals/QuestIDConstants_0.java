@@ -217,4 +217,5 @@ public interface QuestIDConstants_0 {
     int QUEST_FALLENFROMGRACE = 214;
     int QUEST_RUFFSITUATION = 215;
     int QUEST_CRABQUEST = 216;
+    int MINIQUEST_FRACTUREDARCHIVE = 217;
 }

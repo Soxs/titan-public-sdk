@@ -38,6 +38,30 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v159 -- Widget names and actions; constants-only gamevals.h
+///   + C++ Widget::name()/actions(), Java Widget.name()/actions()/opsAvailable()
+///     and JS/TS widget name()/actions()/opsAvailable() read the IfType op base
+///     and op strings behind RuneLite's Widget.getName()/getActions(), for flat
+///     widgets and dynamic children alike. Callers can tell a host that cannot
+///     read them from an empty name or a widget without an op array.
+///   ~ Optional HostDefinitionExtrasV1 tail functions copyWidgetName and
+///     copyWidgetActions; existing payload layouts and SDK floor 154 are
+///     unchanged, and older hosts import them as null.
+///   + <titan/gamevals_tables.h> and the per-catalog
+///     generated/gamevals/<catalog>_table.h headers hold the gameval entry
+///     tables behind entries(), byId(), QuestID::byQuestId() and byRowId().
+///   - <titan/gamevals.h> and the per-catalog generated headers now declare
+///     only the constants, so files that include them compile about 10x faster
+///     with about a tenth of the memory. Code that calls entries() or a by-id
+///     lookup must include a table header; without one the build stops with a
+///     static_assert naming it. Existing plugin DLLs need no rebuild.
+///
+/// v158 -- Integer item-definition params
+///   + titan::definitions::itemIntParam(itemId, paramId): the item definition's
+///     integer param from the cache, reported as present, absent or unavailable
+///     (no ParamComposition default is applied). Optional HostDefinitionExtrasV1
+///     tail function; existing payload layouts and SDK floor 154 are unchanged.
+///
 /// v157 -- Consumable keyboard input and key replacement
 ///   + Optional PluginEventsV1::onKeyEvent and KeyInputEvent expose synchronous
 ///     keydown, keyup and UTF-16 char input in C++, Java and JS/TS. Handlers may
@@ -1874,7 +1898,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 157;
+constexpr uint32_t kSdkVersion = 159;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -2338,6 +2362,12 @@ enum class HintArrowKind : uint32_t {
 constexpr uint32_t kMaxHintArrows = 4096;
 constexpr uint32_t kHintArrowsUnavailable = UINT32_MAX;
 enum class HintArrowReadStatus : uint8_t { Unavailable = 0, Absent = 1, Present = 2 };
+/// SDK 158 getItemIntParam result: the host cannot read the item (or lacks the
+/// capability), the definition has no such integer param, or the value was written.
+enum class ItemParamStatus : uint8_t { Unavailable = 0, Absent = 1, Present = 2 };
+/// SDK 159 copyWidgetName/copyWidgetActions result: the host cannot read the
+/// widget (capability, offsets, path or memory), or the read succeeded.
+enum class WidgetOpsStatus : uint8_t { Unavailable = 0, Present = 1 };
 
 /// Owned read-only snapshot. Actor addresses are identity tokens captured at
 /// query time, never permission to dereference a retained pointer. Resolve by
@@ -5072,6 +5102,23 @@ struct HostApi {
     /// selects the current view. Missing identity/definition returns 0.
     uint8_t (*getNpcBaseId)(int32_t worldViewId, int32_t hashIndex,
                            int32_t* outBaseId) = nullptr;
+    /// SDK 158. Integer param `paramId` of the cached item definition. Returns an
+    /// ItemParamStatus; *outValue is written only for Present. Any thread.
+    uint8_t (*getItemIntParam)(int32_t itemId, int32_t paramId, int32_t* outValue) = nullptr;
+    /// SDK 159. Op base of the widget at `address` (RuneLite Widget.getName(),
+    /// non-breaking spaces read as spaces) as NUL-terminated UTF-8. Returns a
+    /// WidgetOpsStatus. On Present, *outRequired is the size including the NUL and
+    /// the text is written only when `capacity` is at least that. An unset op
+    /// base is Present and empty. Any thread; strings are bounded like widget text.
+    uint8_t (*copyWidgetName)(const WidgetAddressState* address, char* outUtf8,
+                             uint32_t capacity, uint32_t* outRequired) = nullptr;
+    /// SDK 159. Op strings of the widget at `address` (RuneLite
+    /// Widget.getActions()): *outCount native slots packed as consecutive
+    /// NUL-terminated UTF-8 strings, unset slots empty. Zero slots means the
+    /// widget has no op array. Status and sizing follow copyWidgetName.
+    uint8_t (*copyWidgetActions)(const WidgetAddressState* address, char* outUtf8,
+                                uint32_t capacity, uint32_t* outRequired,
+                                uint32_t* outCount) = nullptr;
     /// Optional HostHtmlUiV1. Zero/absent means HTML is unavailable; native
     /// plugin lifecycle and existing ImGui panels continue unchanged.
     uint32_t (*htmlUiCapabilities)() = nullptr;

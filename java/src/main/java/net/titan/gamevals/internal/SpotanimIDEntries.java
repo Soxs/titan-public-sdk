@@ -18,6 +18,7 @@ public final class SpotanimIDEntries {
             SpotanimIDEntries_5.entries(),
             SpotanimIDEntries_6.entries(),
             SpotanimIDEntries_7.entries(),
+            SpotanimIDEntries_8.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -47,6 +48,8 @@ public final class SpotanimIDEntries {
         hit = SpotanimIDEntries_6.byId(id);
         if (hit.isPresent()) return hit;
         hit = SpotanimIDEntries_7.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = SpotanimIDEntries_8.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

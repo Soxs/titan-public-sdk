@@ -4050,6 +4050,23 @@ interface PanelElement {
          */
         setText(text: string): boolean;
         /**
+         * Op base, read live at this handle's path (RuneLite
+         * `Widget.getName()`), e.g. `"<col=ff9040>Shark</col>"` on an
+         * inventory slot. `""` when the widget has no op base; `null` when
+         * the host cannot read it. Non-breaking spaces read as spaces.
+         * SDK v159+.
+         */
+        name(): string | null;
+        /**
+         * Op strings, read live (RuneLite `Widget.getActions()`): one entry
+         * per native slot, `null` where unset. `null` when the widget has no
+         * op array or when the host cannot read it; `opsAvailable()` tells
+         * the two apart. SDK v159+.
+         */
+        actions(): (string | null)[] | null;
+        /** Whether the host can read this widget's name and actions now. SDK v159+. */
+        opsAvailable(): boolean;
+        /**
          * Dispatch a widget-family DoAction against this exact widget. With
          * two arguments the handle itself is targeted. A third argument
          * selects one exact direct dynamic child beneath it. SDK v64+.

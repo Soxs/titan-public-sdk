@@ -16,6 +16,36 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v159 -- Widget names and actions; constants-only gamevals.h
+
+- `+` C++ `Widget::name()` / `actions()`, Java `Widget.name()` / `actions()` /
+  `opsAvailable()` (0.1.89) and JS/TS widget `name()` / `actions()` /
+  `opsAvailable()` read the IfType op base and op strings behind RuneLite's
+  `Widget.getName()` / `getActions()`, live at the widget's address, for flat
+  widgets and dynamic children. Callers can tell a host that cannot read them
+  from an empty name or a widget without an op array.
+- `~` Optional `HostDefinitionExtrasV1` tail functions `copyWidgetName` and
+  `copyWidgetActions`; existing payload layouts and SDK floor 154 are unchanged,
+  and older hosts import them as null.
+- `+` `<titan/gamevals_tables.h>` and the per-catalog
+  `generated/gamevals/<catalog>_table.h` headers hold the gameval entry tables
+  behind `entries()`, `byId()`, `QuestID::byQuestId()` and `QuestID::byRowId()`.
+- `-` `<titan/gamevals.h>` and the per-catalog generated headers now declare
+  only the constants, so files that include them compile about 10x faster with
+  about a tenth of the memory. Code that calls `entries()` or a by-id lookup
+  must include a table header; without one the build stops with a
+  `static_assert` naming it. Constants, `InterfaceID::pack()`/`group()`/
+  `child()` and the nested structs are unchanged, and existing plugin DLLs need
+  no rebuild.
+
+## v158 -- Integer item-definition params
+
+- `+` `titan::definitions::itemIntParam(itemId, paramId)` and
+  `itemIntParamsAvailable(itemId)` read a cached item definition's integer param,
+  reporting present, absent or unavailable; no ParamComposition default is applied.
+- `~` Optional `HostDefinitionExtrasV1` tail function only; existing payload layouts
+  and SDK floor 154 are unchanged.
+
 ## v157 -- Consumable keyboard input and key replacement
 
 - `+` Optional `PluginEventsV1::onKeyEvent` and `KeyInputEvent` expose synchronous

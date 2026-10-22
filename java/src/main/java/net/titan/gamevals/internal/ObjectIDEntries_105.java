@@ -363,7 +363,7 @@ final class ObjectIDEntries_105 {
             new GamevalEntry(54110, "LUC2_MOVARIO_BASE_JAILBARS_WIRE_MULTI_1", "luc2_movario_base_jailbars_wire_multi_1", "loctypes"),
             new GamevalEntry(54111, "LUC2_MOVARIO_BASE_JAILBARS_WIRE_MULTI_2", "luc2_movario_base_jailbars_wire_multi_2", "loctypes"),
             new GamevalEntry(54112, "DS2_LITHKREN_VAULT_TUBE", "ds2_lithkren_vault_tube", "loctypes"),
-            new GamevalEntry(54113, "LUC2_RAID_ENTRY2", "luc2_raid_entry2", "loctypes"),
+            new GamevalEntry(54113, "LUC2_RAID_ENTRY2", "Opening", "loctypes"),
             new GamevalEntry(54114, "POH_DEADMAN_RUGCORNER", "Rug", "loctypes"),
             new GamevalEntry(54115, "POH_DEADMAN_RUGSIDE", "Rug", "loctypes"),
             new GamevalEntry(54116, "POH_DEADMAN_RUGMIDDLE", "Rug", "loctypes"),

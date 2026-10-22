@@ -39,6 +39,7 @@ public final class AnimationIDEntries {
             AnimationIDEntries_26.entries(),
             AnimationIDEntries_27.entries(),
             AnimationIDEntries_28.entries(),
+            AnimationIDEntries_29.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -110,6 +111,8 @@ public final class AnimationIDEntries {
         hit = AnimationIDEntries_27.byId(id);
         if (hit.isPresent()) return hit;
         hit = AnimationIDEntries_28.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = AnimationIDEntries_29.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

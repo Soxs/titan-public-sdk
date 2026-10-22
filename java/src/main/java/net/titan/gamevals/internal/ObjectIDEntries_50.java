@@ -484,7 +484,7 @@ final class ObjectIDEntries_50 {
             new GamevalEntry(26071, "KR_MANSION_EXTERNAL_WALLS_WITH_FENCE", "kr_mansion_external_walls_with_fence", "loctypes"),
             new GamevalEntry(26072, "KR_MANSION_EXTERNAL_WALLS_WITH_FENCE_MIRROR", "kr_mansion_external_walls_with_fence_mirror", "loctypes"),
             new GamevalEntry(26073, "KR_CAMELOT_KNIGHT_STATUE", "Statue", "loctypes"),
-            new GamevalEntry(26074, "KR_CAMELOT_TABLE", "Table", "loctypes"),
+            new GamevalEntry(26074, "KR_CAMELOT_TABLE", "kr_camelot_table", "loctypes"),
             new GamevalEntry(26075, "KR_CAMELOT_CHAIR_01", "Chair", "loctypes"),
             new GamevalEntry(26076, "KR_CAMELOT_CHAIR_01_MIRROR", "Chair", "loctypes"),
             new GamevalEntry(26077, "KR_CAMELOT_CHAIR_02", "Chair", "loctypes"),

@@ -62,4 +62,28 @@ inline std::optional<std::array<std::string, 8>> itemWornActions(int32_t itemId)
     return result;
 }
 
+/// Integer param `paramId` of the cached item definition (SDK 158). Any thread.
+/// Present values are returned; nullopt means the definition has no such integer
+/// param or the host cannot read it (itemIntParamsAvailable() tells the two apart).
+/// RuneLite's ItemComposition.getIntValue applies the ParamComposition default to
+/// an absent param; this read does not.
+inline std::optional<int32_t> itemIntParam(int32_t itemId, int32_t paramId) {
+    auto* backend = detail::backend();
+    if (!backend || itemId < 0) return std::nullopt;
+    int32_t value = 0;
+    return backend->getItemIntParam(itemId, paramId, &value)
+            == static_cast<uint8_t>(TitanPluginSdk::ItemParamStatus::Present)
+        ? std::optional<int32_t>{value} : std::nullopt;
+}
+
+/// Whether the host answers itemIntParam for `itemId`: false when the capability is
+/// missing or the item definition cannot be read.
+inline bool itemIntParamsAvailable(int32_t itemId) {
+    auto* backend = detail::backend();
+    if (!backend || itemId < 0) return false;
+    int32_t value = 0;
+    return backend->getItemIntParam(itemId, 0, &value)
+        != static_cast<uint8_t>(TitanPluginSdk::ItemParamStatus::Unavailable);
+}
+
 } // namespace titan::definitions

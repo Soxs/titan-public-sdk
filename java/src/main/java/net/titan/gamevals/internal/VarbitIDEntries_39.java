@@ -127,6 +127,7 @@ final class VarbitIDEntries_39 {
             new GamevalEntry(20082, "_25TH_HOST_OUTSIDE", "25th_host_outside", "varbittypes"),
             new GamevalEntry(20083, "CA_TOTAL_TASKS_COMPLETED_COWBOSS", "ca_total_tasks_completed_cowboss", "varbittypes"),
             new GamevalEntry(20090, "COWBOSS_SCOREBOARDS", "cowboss_scoreboards", "varbittypes"),
+            new GamevalEntry(20094, "COLLECTION_ITEM_BALLISTIC_ATTRACTOR_SCHEMATIC", "collection_item_ballistic_attractor_schematic", "varbittypes"),
             new GamevalEntry(20095, "DEPOSITBOX_HIDEDEPOSITWORN", "depositbox_hidedepositworn", "varbittypes"),
             new GamevalEntry(20096, "REV_CAVE_TELE_LOCATION", "rev_cave_tele_location", "varbittypes"),
             new GamevalEntry(20097, "CHARGES_COWBELL_AMULET_QUANTITY", "charges_cowbell_amulet_quantity", "varbittypes"),

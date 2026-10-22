@@ -69,6 +69,24 @@ public final class Widget {
         String value = live().text;
         return value == null ? "" : value;
     }
+    /**
+     * Op base, read live at {@link #address()} (RuneLite {@code Widget.getName()}),
+     * e.g. {@code "<col=ff9040>Shark</col>"} on an inventory slot. {@code ""} when
+     * the widget has no op base; null when the host cannot read it. Non-breaking
+     * spaces read as spaces. SDK 159.
+     */
+    public String name() { return TitanRuntime.widgetName(address()); }
+    /**
+     * Op strings, read live (RuneLite {@code Widget.getActions()}): one entry per
+     * native slot, null where unset. Null when the widget has no op array or when
+     * the host cannot read it; {@link #opsAvailable()} tells the two apart. SDK 159.
+     */
+    public String[] actions() {
+        String[] slots = TitanRuntime.widgetActions(address());
+        return slots == null || slots.length == 0 ? null : slots;
+    }
+    /** Whether the host can read this widget's name and actions now. SDK 159. */
+    public boolean opsAvailable() { return name() != null; }
     public int packedId() { return live().packedId; }
     public int dynamicParentPackedId() { return live().dynamicParentPackedId; }
     public int dynamicChildSlot() { return live().dynamicChildSlot; }

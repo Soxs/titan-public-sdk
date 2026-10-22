@@ -254,6 +254,7 @@ final class VarbitIDEntries_22 {
             new GamevalEntry(11625, "HORN_OF_PLENTY_COUNTER", "horn_of_plenty_counter", "varbittypes"),
             new GamevalEntry(11626, "GIANT_MOLE_WARNING_INTERFACE_INSTANCE", "giant_mole_warning_interface_instance", "varbittypes"),
             new GamevalEntry(11627, "GIANT_MOLE_IMMACULATE_MOLESKIN_WARNING", "giant_mole_immaculate_moleskin_warning", "varbittypes"),
+            new GamevalEntry(11628, "COLLECTION_ITEM_IMMACULATE_MOLE_SKIN", "collection_item_immaculate_mole_skin", "varbittypes"),
             new GamevalEntry(11629, "SAILING_SIDEPANEL_BOAT_MAX_WIND_CHARGES", "sailing_sidepanel_boat_max_wind_charges", "varbittypes"),
             new GamevalEntry(11630, "SAILING_SIDEPANEL_FACILITY_ORDER_FROMCAPTAIN_00", "sailing_sidepanel_facility_order_fromcaptain_00", "varbittypes"),
             new GamevalEntry(11631, "SAILING_SIDEPANEL_FACILITY_ORDER_FROMCAPTAIN_01", "sailing_sidepanel_facility_order_fromcaptain_01", "varbittypes"),

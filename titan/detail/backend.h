@@ -76,6 +76,21 @@ struct IBackend {
         if (outBaseId) *outBaseId = -1;
         return 0;
     }
+    virtual uint8_t getItemIntParam(int32_t, int32_t, int32_t* outValue) {
+        if (outValue) *outValue = 0;
+        return static_cast<uint8_t>(TitanPluginSdk::ItemParamStatus::Unavailable);
+    }
+    virtual uint8_t copyWidgetName(const TitanPluginSdk::WidgetAddressState*, char*, uint32_t,
+                                   uint32_t* outRequired) {
+        if (outRequired) *outRequired = 0;
+        return static_cast<uint8_t>(TitanPluginSdk::WidgetOpsStatus::Unavailable);
+    }
+    virtual uint8_t copyWidgetActions(const TitanPluginSdk::WidgetAddressState*, char*, uint32_t,
+                                      uint32_t* outRequired, uint32_t* outCount) {
+        if (outRequired) *outRequired = 0;
+        if (outCount) *outCount = 0;
+        return static_cast<uint8_t>(TitanPluginSdk::WidgetOpsStatus::Unavailable);
+    }
 
     virtual uint8_t getActorAnimationProgress(const TitanPluginSdk::ActorDataIdentity*,
             TitanPluginSdk::ActorAnimationProgressState* out) {
