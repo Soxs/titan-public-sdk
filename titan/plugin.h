@@ -25,6 +25,7 @@
 /// @endcode
 
 #pragma once
+#include "detail/plugin_catalog.h"
 
 #include "detail/abi.h"
 #include "detail/backend.h"
@@ -1288,6 +1289,7 @@ constexpr IdListBuffer<256> makeIdList() {
 #define TITAN_PLUGIN(PLUGIN_ID, PLUGIN_NAME)                                   \
 public:                                                                        \
     static constexpr const char* kPluginId = PLUGIN_ID;                        \
+    static constexpr auto catalogMetadata() { return ::titan::catalog::metadata(PLUGIN_ID, PLUGIN_NAME, "", "", "", false); } \
     const char* id() const override { return PLUGIN_ID; }                      \
     const char* name() const override { return PLUGIN_NAME; }                  \
 private:
@@ -1319,6 +1321,7 @@ private:
 #define TITAN_PLUGIN_META(PLUGIN_ID, PLUGIN_NAME, PLUGIN_DESC, PLUGIN_AUTHOR, PLUGIN_VERSION, PLUGIN_DEFAULT_ENABLED) \
 public:                                                                        \
     static constexpr const char* kPluginId = PLUGIN_ID;                        \
+    static constexpr auto catalogMetadata() { return ::titan::catalog::metadata(PLUGIN_ID, PLUGIN_NAME, PLUGIN_DESC, PLUGIN_AUTHOR, PLUGIN_VERSION, PLUGIN_DEFAULT_ENABLED); } \
     const char* id() const override          { return PLUGIN_ID; }             \
     const char* name() const override        { return PLUGIN_NAME; }           \
     const char* description() const override { return PLUGIN_DESC; }           \
@@ -1355,6 +1358,8 @@ private:
 /// Native ABI v1 entry point. The ID exports remain available to static PE
 /// metadata readers. No SDK-sized output table crosses the DLL boundary.
 #define TITAN_REGISTER_PLUGINS(...)                                            \
+    extern "C" __declspec(dllexport) \
+    constinit const auto TitanPluginCatalog = ::titan::catalog::make<::titan::Plugin, __VA_ARGS__>(); \
     extern "C" __declspec(dllexport)                                           \
     const ::titan::detail::IdListBuffer<256> TitanPluginIdList =                 \
         ::titan::detail::makeIdList<__VA_ARGS__>();                             \
@@ -1387,6 +1392,7 @@ private:
 /// @endcode
 #define TITAN_PLUGIN_DEPS(...)                                                  \
 public:                                                                        \
+    inline static constexpr auto kCatalogDependencies = []<typename... T>() { return std::array<const char*, sizeof...(T)>{T::kPluginId...}; }.template operator()<__VA_ARGS__>(); \
     std::vector<const char*> dependencies() const override {                   \
         return ::titan::detail::pluginDependencyIds<__VA_ARGS__>();             \
     }                                                                          \
@@ -1401,7 +1407,11 @@ private:
 /// @endcode
 #define TITAN_PLUGIN_DEP_IDS(...)                                               \
 public:                                                                        \
+    inline static constexpr const char* kCatalogDependencies[] = { __VA_ARGS__ }; \
     std::vector<const char*> dependencies() const override {                   \
         return { __VA_ARGS__ };                                                \
     }                                                                          \
 private:
+
+/// Preload constructor-published services even when the plugin is disabled.
+#define TITAN_PRELOAD_PLUGIN() public: inline static constexpr bool kCatalogPreload = true; private:
