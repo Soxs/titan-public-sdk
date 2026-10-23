@@ -8,6 +8,7 @@
 #pragma once
 
 #include "actor.h"
+#include "authorization.h"
 #include "account_profiles.h"
 #include "break_handler.h"
 #include "client.h"

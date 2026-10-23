@@ -52,6 +52,89 @@
 
 declare namespace titan {
 
+/** Plugin-bundled authorization prelude is required; enabling a plugin consumes no slot. */
+interface InstanceCancellation { readonly cancelled: boolean; }
+interface InstanceBot {
+    start(cancellation: InstanceCancellation): boolean | void | Promise<boolean | void>;
+    tick?(tick: number): void;
+    stop(reason: string): void | Promise<void>;
+}
+interface InstanceStartResult { readonly started: boolean; readonly reason: string; }
+interface ManagedInstance {
+    readonly status: "stopped" | "starting" | "running" | "reconnecting" | "stopping";
+    readonly reason: string;
+    readonly active: boolean;
+    /** Conservative Unix-seconds reservation horizon including lost replies; zero when elapsed. */
+    readonly releasePendingUntil: number;
+    start(): Promise<InstanceStartResult>;
+    stop(): void;
+    complete(): void;
+    controls(panel: Panel): void;
+    control(actionId: number): boolean;
+    panel(id?: string, title?: string): NativePanelDef;
+    run(task: (cancellation: InstanceCancellation) => void | Promise<void>): Promise<InstanceStartResult>;
+    close(): void;
+}
+/** One persistent worker binding per exact registered plugin object. */
+function instance(owner: Plugin, bot: InstanceBot): ManagedInstance;
+interface PluginEntitlement {
+    readonly key: string;
+    readonly plugin_id: string;
+    readonly canonical_plugin_id: string;
+    readonly runtime_plugin_id?: string;
+    readonly display_name?: string;
+    readonly access_mode?: string;
+    readonly owned: boolean;
+    readonly entitled: boolean;
+    readonly runtime_eligible: boolean;
+    readonly delivery_eligible?: boolean;
+    readonly next_change_at?: number | null;
+    readonly usage?: Readonly<{ active: number; retiring: number; observed_at: number }>;
+    readonly access_expires_at: number | null;
+    readonly runtime_access_expires_at?: number | null;
+    readonly included_instances: number | null;
+    readonly extra_instances: number;
+    /** null means unlimited; zero never means unlimited. */
+    readonly total_instances: number | null;
+    readonly source: readonly string[];
+    readonly extra_expiries?: readonly Readonly<{ quantity: number; expires_at: number | null }>[];
+}
+interface EntitlementCheck {
+    readonly decision: "granted" | "denied" | "unknown";
+    readonly reason: string;
+    readonly scopeError?: boolean;
+    readonly verifiedAt?: number;
+    readonly entitlement?: PluginEntitlement | PublicEntitlement;
+    readonly validUntil?: number;
+}
+interface PublicEntitlement {
+    readonly key: string;
+    readonly owned: boolean;
+    readonly entitled: boolean;
+    readonly runtime_eligible: boolean;
+    readonly access_expires_at: number | null;
+    readonly value: string | readonly string[] | boolean | null;
+}
+interface EntitlementSnapshot {
+    readonly entries: readonly PluginEntitlement[];
+    readonly publicClient: Readonly<{ tier?: string | null; features?: readonly string[] }>;
+    readonly snapshotId?: string;
+    readonly complete: boolean;
+    readonly freshness: "current" | "stale" | "unavailable";
+    readonly issuedAt: number;
+    readonly validUntil: number;
+}
+interface EntitlementAccess {
+    /** Omit the key for this plugin. Other keys must belong to its approved scope. */
+    check(key?: string): Promise<EntitlementCheck>;
+    list(): Promise<EntitlementSnapshot>;
+    snapshot(): EntitlementSnapshot;
+    onChanged(listener: (snapshot: EntitlementSnapshot) => void): () => void;
+    close(): void;
+}
+/** Current customer, calling publisher + approved dependencies + public client features. */
+function entitlements(owner: Plugin): EntitlementAccess;
+
 /** SDK 155: guarded game-thread actor data reads. None and Inactive share value 3. */
 const ActorDataStatus: Readonly<{Unavailable: 0; InvalidActor: 1; Unreadable: 2;
     Inactive: 3; None: 3; Active: 4; BufferTooSmall: 5; WrongThread: 6}>;

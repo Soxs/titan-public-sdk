@@ -17,6 +17,16 @@ import java.util.Map;
 import java.util.Optional;
 
 public final class TitanRuntime {
+    private static volatile AuthorizationBackend authorizationBackend;
+    public static AuthorizationBackend getAuthorizationBackend() {
+        return authorizationBackend;
+    }
+    public static void setAuthorizationBackend(AuthorizationBackend backend) {
+        authorizationBackend = backend;
+    }
+    public static void clearAuthorizationBackend(AuthorizationBackend backend) {
+        if (authorizationBackend == backend) authorizationBackend = null;
+    }
     private static volatile Injector injector;
     private static volatile OverlayBackend overlayBackend;
     private static volatile ActorResolver actorResolver;

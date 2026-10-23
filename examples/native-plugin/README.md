@@ -49,6 +49,18 @@ or prerelease containing `controller.exe`.
 
 ## Build, run, reload
 
+For marketplace bots using SDK 160+, include `<titan/authorization.h>`, bind once
+with `titan::instance(*this, std::make_shared<MyBot>())`, and call `run.controls()`
+in the constructor to add Start/Stop/status controls. The bot supplies `start()`,
+optional `tick()`, and `stop()`. The normal SDK target links its verifier into your
+DLL. Binding does not acquire a slot. Use `titan::entitlements(*this)` for access
+checks and the customer's scoped entitlement list.
+
+Until SDK 160 is published and the pinned revision above is updated, select the
+updated SDK explicitly with `TITAN_PLUGIN_SDK_ROOT`. Managed startup also requires
+the corresponding website, gateway and client rollout. See the SDK's
+`docs/plugin_authorization.md` and `examples/authorization/managed_bot.cpp`.
+
 ```powershell
 cmake --build build --config Debug --target titan_run_my_plugin
 # Edit code, then replace this plugin in the same game process:

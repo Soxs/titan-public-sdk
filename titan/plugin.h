@@ -34,6 +34,7 @@
 #include "detail/native_lifetime.h"
 #include "detail/plugin_context.h"
 #include "detail/registrable.h"
+#include "detail/managed_lifecycle.h"
 #include "events.h"
 #include "panel.h"
 #include "html_panels.h"
@@ -102,6 +103,20 @@ struct CrossTabChange {
 class Plugin {
 public:
     virtual ~Plugin() = default;
+    std::shared_ptr<detail::ManagedLifecycle> _managedInstance, _managedEntitlements;
+    void _pumpManaged() {
+        if (_managedEntitlements) _managedEntitlements->pump();
+        if (_managedInstance) _managedInstance->pump();
+    }
+    void _tickManaged() { if (_managedInstance) _managedInstance->tick(); }
+    void _stopManaged() {
+        if (_managedInstance) _managedInstance->stop();
+        if (_managedEntitlements) _managedEntitlements->stop();
+    }
+    void _closeManaged() {
+        if (_managedInstance) _managedInstance->close();
+        if (_managedEntitlements) _managedEntitlements->close();
+    }
 
     // --- Identity (supplied by TITAN_PLUGIN) ---
     virtual const char* id() const = 0;
@@ -453,6 +468,7 @@ public:
     ///
     /// Subsequent calls fire only on actual state transitions.
     void _setEnabledFromHost(bool enabled) {
+        if (!enabled) _stopManaged();
         const bool prev = enabled_;
         const bool first = !enabledInitialised_;
         enabled_ = enabled;
@@ -538,7 +554,7 @@ inline uint8_t thunkGetDefaultEnabled(void* ud) { return self(ud)->isDefaultEnab
 
 inline uint8_t thunkGetEnabled(void* ud) { return self(ud)->isEnabled() ? 1 : 0; }
 inline void thunkSetEnabled(void* ud, uint8_t v) { self(ud)->_setEnabledFromHost(v != 0); }
-inline void thunkPrepareUnload(void* ud) { self(ud)->onUnload(); }
+inline void thunkPrepareUnload(void* ud) { self(ud)->_closeManaged(); self(ud)->onUnload(); }
 
 /// Per-thread owner of the strings a getSettings / getSections result points
 /// at (SDK 154). serialize() lends a record each member's own std::string,
@@ -660,8 +676,8 @@ inline uint8_t thunkSetSetting(void* ud, const char* key,
 }
 
 inline void thunkOnClientTick(void* ud) { self(ud)->onClientTick(); }
-inline void thunkOnMainLoop(void* ud) { self(ud)->onMainLoop(); }
-inline void thunkOnGameTick(void* ud, int32_t tick) { self(ud)->onGameTick(tick); }
+inline void thunkOnMainLoop(void* ud) { self(ud)->_pumpManaged(); self(ud)->onMainLoop(); }
+inline void thunkOnGameTick(void* ud, int32_t tick) { self(ud)->_tickManaged(); self(ud)->onGameTick(tick); }
 
 inline void thunkRenderOverlay(void* ud, uint8_t layer) {
     Plugin* p = self(ud);

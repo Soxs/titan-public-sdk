@@ -15,6 +15,14 @@ function(_titan_validate_sdk root)
                 "-DTITAN_PLUGIN_SDK_ROOT=<path>, or clear that override to acquire the pinned SDK.")
         endif()
     endforeach()
+    if(EXISTS "${root}/titan/authorization.h")
+        foreach(_required IN ITEMS authorization/managed.cpp authorization/receipt.cpp
+                authorization/receipt.h authorization/public_keys.h authorization/third_party/json.hpp)
+            if(NOT EXISTS "${root}/${_required}")
+                message(FATAL_ERROR "Managed authorization SDK is incomplete: ${root}/${_required}")
+            endif()
+        endforeach()
+    endif()
 endfunction()
 
 function(_titan_sdk_git root output)
@@ -107,7 +115,7 @@ function(titan_acquire_sdk output)
         # Only local index/worktree metadata is read. A completed checkout never
         # contacts origin during a normal reconfigure, even when offline.
         _titan_sdk_git("${_cache}" _missing ls-files --deleted --
-            CMakeLists.txt plugin_sdk.h cmake titan THIRD_PARTY_NOTICES.md)
+            CMakeLists.txt plugin_sdk.h cmake titan authorization THIRD_PARTY_NOTICES.md)
         if(NOT _missing STREQUAL "")
             message(FATAL_ERROR "Cached Titan SDK files are missing: ${_missing}. Use a fresh build directory.")
         endif()
@@ -129,7 +137,7 @@ function(titan_acquire_sdk output)
     _titan_sdk_git("${_cache}" _unused -c protocol.version=2 fetch
         --no-tags --depth=1 --filter=blob:none origin "${_titan_sdk_revision}")
     _titan_sdk_git("${_cache}" _unused sparse-checkout set --no-cone
-        /CMakeLists.txt /plugin_sdk.h /cmake/ /titan/ /THIRD_PARTY_NOTICES.md)
+        /CMakeLists.txt /plugin_sdk.h /cmake/ /titan/ /authorization/ /THIRD_PARTY_NOTICES.md)
     _titan_sdk_git("${_cache}" _unused checkout --detach "${_titan_sdk_revision}")
     _titan_validate_sdk("${_cache}")
     _titan_sdk_git("${_cache}" _head rev-parse --verify HEAD)

@@ -1,0 +1,35 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+group = 'net.titan'
+version = providers.gradleProperty('titanJavaSdkVersion').get()
+java { sourceCompatibility = JavaVersion.VERSION_11; targetCompatibility = JavaVersion.VERSION_11; withSourcesJar() }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 11 }
+repositories { mavenCentral() }
+dependencies {
+    compileOnly project(':')
+    testImplementation project(':')
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.3'
+}
+tasks.named('test') {
+    useJUnitPlatform()
+    systemProperty 'titanAuthorizationFixture', rootProject.file('../authorization/test-fixtures/plugin-authorization.json').absolutePath
+}
+publishing {
+    publications { mavenJava(MavenPublication) { from components.java } }
+    repositories {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL').orNull
+        if (repositoryUrl) {
+            maven {
+                name = 'titan'
+                url = uri(repositoryUrl)
+                def repositoryUsername = providers.environmentVariable('TITAN_MAVEN_USERNAME').orNull
+                def repositoryPassword = providers.environmentVariable('TITAN_MAVEN_PASSWORD').orNull
+                if (repositoryUsername != null || repositoryPassword != null) {
+                    credentials { username = repositoryUsername ?: ''; password = repositoryPassword ?: '' }
+                }
+            }
+        }
+    }
+}

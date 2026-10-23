@@ -43,6 +43,18 @@ if(NOT TARGET titan_sdk)
     )
 endif()
 
+# Receipt verification is linked into each plugin, independently of the host.
+# The vendored parser is private; consumers do not acquire a JSON dependency.
+if(WIN32 AND NOT TARGET titan_authorization)
+    add_library(titan_authorization STATIC authorization/receipt.cpp authorization/managed.cpp)
+    target_include_directories(titan_authorization PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+    target_compile_features(titan_authorization PUBLIC cxx_std_20)
+    target_compile_definitions(titan_authorization PRIVATE NOMINMAX WIN32_LEAN_AND_MEAN)
+    target_link_libraries(titan_authorization PUBLIC bcrypt crypt32)
+    set_property(TARGET titan_authorization PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    target_link_libraries(titan_sdk INTERFACE titan_authorization)
+endif()
+
 # SDK-side CMake helpers. The in-tree adapter shares the staging implementation
 # while preserving its normal DLL output under `build/plugins/...`.
 if(NOT COMMAND titan_add_plugin)

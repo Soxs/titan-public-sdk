@@ -16,6 +16,15 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v160 -- Managed plugin instances and verified entitlements
+
+- `+` Owner-bound `titan::instance` and `titan::entitlements`, standard controls,
+  cancellation-aware finite tasks, and a verifier linked into each native plugin.
+- `+` Optional `titan.plugin-authorization.v1` transport capability. Existing ABI
+  records and minimum supported SDK 154 remain unchanged.
+- `+` Java 0.1.90 and bundled JavaScript equivalents with plugin-local verifiers.
+  See [managed instances](../docs/plugin_authorization.md) for integration.
+
 ## v159 -- Widget names and actions; constants-only gamevals.h
 
 - `+` C++ `Widget::name()` / `actions()`, Java `Widget.name()` / `actions()` /

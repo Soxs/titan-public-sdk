@@ -1,4 +1,19 @@
-# Titan Plugin SDK -- public symbol inventory (v159)
+# Titan Plugin SDK -- public symbol inventory (v160)
+
+## Managed instances and entitlements (SDK 160)
+
+`titan::instance(owner, bot)` binds an owned bot once. `start()` asynchronously
+obtains signed authorization before startup; `stop()` is idempotent. `controls()`
+adds standard Start/Stop/status controls. `run(task)` executes a finite worker with
+a cancellation token and stops on completion or failure. Binding consumes no slot.
+
+`titan::entitlements(owner)` exposes `check()`, `check(key)`, `list()`, `snapshot()`
+and `onChanged(callback)`. Reads cover the calling publisher, approved dependencies
+and public client features. They never reserve capacity. Futures complete on the
+plugin MainLoop: poll readiness instead of blocking that callback with `get()`.
+
+See [the integration guide](../docs/plugin_authorization.md) and
+[Java/JavaScript examples](../docs/plugin_authorization_java_js.md).
 
 ## Actor animation progress and NPC runtime model overrides (SDK 155)
 

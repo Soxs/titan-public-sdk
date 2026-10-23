@@ -1,0 +1,80 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.titan",
+    "module": "titan-authorization",
+    "version": "0.1.90",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "titan-authorization-0.1.90.jar",
+          "url": "titan-authorization-0.1.90.jar",
+          "size": 43956,
+          "sha512": "a50391f7b382d8bbbb6429a08f9a3141d70fa9ebe4e9c93908602838bf6b5e70b4a4f7d8327d7fedf9ddf824ed4f6aa84c5fa448247afff6da0f8b95d5b956af",
+          "sha256": "880be087cafca64de8c843d4a9afaf6b19cc30f421452e907a51a0cbe82e8845",
+          "sha1": "22dfd6d214e1eca48c526eee78a76695f6491b71",
+          "md5": "c6be72adba93c1d57c7737ec1ebaa32b"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-authorization-0.1.90.jar",
+          "url": "titan-authorization-0.1.90.jar",
+          "size": 43956,
+          "sha512": "a50391f7b382d8bbbb6429a08f9a3141d70fa9ebe4e9c93908602838bf6b5e70b4a4f7d8327d7fedf9ddf824ed4f6aa84c5fa448247afff6da0f8b95d5b956af",
+          "sha256": "880be087cafca64de8c843d4a9afaf6b19cc30f421452e907a51a0cbe82e8845",
+          "sha1": "22dfd6d214e1eca48c526eee78a76695f6491b71",
+          "md5": "c6be72adba93c1d57c7737ec1ebaa32b"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-authorization-0.1.90-sources.jar",
+          "url": "titan-authorization-0.1.90-sources.jar",
+          "size": 15943,
+          "sha512": "80d3fb64562ff8900e9e0e0e9e3d27fd13c8d40496cb7ffea5e42f64155c9e751461b7a671d3021b3fda5de6e67e7d2bc64df5136782fc23b2b4d62998335945",
+          "sha256": "e8cf6f1134ca1d768db06dedf539f78b028db9a56a52a7e16df1621d7b841be7",
+          "sha1": "e404b18350e82c944512651806408669c3619aff",
+          "md5": "34bf378e566b0482212d5f22a2bd90b7"
+        }
+      ]
+    }
+  ]
+}

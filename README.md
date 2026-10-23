@@ -9,17 +9,30 @@ Direct commits to `main` may be overwritten by the next outbound sync.
 
 | Path | Purpose |
 | --- | --- |
-| `CMakeLists.txt` | Native `titan_sdk` interface target and plugin/development helpers. |
+| `CMakeLists.txt` | Native `titan_sdk` target, bundled authorization verifier, and plugin/development helpers. |
 | `cmake/` | Native DLL build, immutable staging, run, reload, and watch helpers. |
 | `titan/` | Public C++ headers, Native ABI v1 contracts, and [API documentation](titan/PUBLIC_API.md). Include `<titan/plugin.h>` to start. |
 | `plugin_sdk.h` | Deprecated low-level compatibility shim; new plugins use `<titan/plugin.h>`. |
 | `examples/native-plugin/` | Complete C++ plugin starter with CMake development targets. |
+| `authorization/` | Native managed-run implementation, pinned private JSON parser, and shared signed test fixtures. |
+| `examples/authorization/` | Native and Java examples of managed Start/Stop controls. |
 | `java/` | Public Java plugin API source, Gradle build, sources JAR, and Javadoc JAR. |
-| `maven/releases/` | Generated Maven repository for `net.titan:titan-plugin-api` and the `net.titan.dev` Gradle plugin. |
+| `maven/releases/` | Generated Maven repository for the API, `net.titan:titan-authorization`, and the `net.titan.dev` Gradle plugin. |
 | `titan-plugin-sdk.d.ts` | TypeScript declarations for QuickJS plugins. |
+| `js/authorization/` | Bundled JavaScript verifier, deterministic packaging helper, tests, and TypeScript example. |
 
 Native plugin contracts are included; private controller/client IPC and loader
 handoff headers are not needed to build plugins and are not published here.
+
+SDK 160 adds managed plugin instances and entitlement checks. Bind your bot once,
+then connect its Start/Stop actions to the managed run. The verifier bundled in
+each plugin checks signed admission before invoking startup. A running permit can
+survive a short gateway outage until its signed expiry, up to five minutes;
+starting a new run requires a valid response. Entitlement checks and cached lists
+describe access and do not reserve a concurrent instance.
+See [native authorization](docs/plugin_authorization.md) and
+[Java and JavaScript authorization](docs/plugin_authorization_java_js.md) for
+lifecycle, cancellation, deployment compatibility, and examples.
 
 ## Native C++ Plugins
 
@@ -44,6 +57,11 @@ The template fetches a pinned native SDK on its first configure and caches it
 under `build/_deps`. Rename `my_plugin` in CMake and the source metadata to your
 plugin ID. Use `-DTITAN_PLUGIN_SDK_ROOT=C:/path/to/titan-public-sdk` for local
 SDK development or an offline checkout.
+
+Until SDK 160 is published and the template's SDK commit is updated, building
+the authorization examples requires a local SDK 160 checkout through
+`TITAN_PLUGIN_SDK_ROOT`. The existing template pin remains on its published
+revision; configuring that revision does not provide the new authorization API.
 
 The bundled `examples/native-plugin/` is the same starter and automatically
 uses this SDK checkout. Configure it with
@@ -78,6 +96,12 @@ for reproducible builds; see [version compatibility](titan/PUBLIC_API.md#version
 
 Use the API as a `compileOnly` dependency. TitanClient's embedded Java runtime
 supplies the API and Guice classes at runtime.
+
+Authorization uses a separate library bundled into each plugin. With Java SDK
+`0.1.90` and `net.titan.dev` `0.1.2`, the convention plugin automatically includes
+`net.titan:titan-authorization` in the JAR and relocates its verifier classes.
+Keep the convention plugin's JAR task when adding managed instances; a thin JAR
+containing only your own classes omits the verifier.
 
 ```gradle
 repositories {
@@ -222,8 +246,20 @@ Use `titan-plugin-sdk.d.ts` for IntelliSense and type checking:
 /// <reference path="./titan-plugin-sdk.d.ts" />
 ```
 
-JavaScript plugins still run in TitanClient's QuickJS runtime; their public
-SDK surface here is the type declarations. SDK 106 item cache
+JavaScript plugins run in TitanClient's QuickJS runtime. For managed instances,
+prepend the plugin-local verifier after compiling your TypeScript:
+
+```powershell
+python js/authorization/build.py --plugin my-plugin.js --output my-plugin.authorized.js
+```
+
+Upload that resulting artifact, or pass it to the usual bytecode compiler. The
+approved artifact hash must cover the verifier and plugin together. The helper
+checks pinned dependency hashes and needs no network access. See the
+[packaging guide](js/authorization/README.md) and
+[Start/Stop example](js/authorization/example.ts).
+
+SDK 106 item cache
 definitions and SDK 107 runtime item compositions expose `subOps` as a fixed
 five-by-twenty nested string array with empty strings for unused slots.
 Inventory-item `interact(action)` resolves ordinary actions first and then live

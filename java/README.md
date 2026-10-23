@@ -35,6 +35,21 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Managed instances and entitlements (0.1.90)
+
+Apply `net.titan.dev` 0.1.2 and keep `titan-plugin-api` compile-only. The convention
+plugin bundles and relocates `titan-authorization` into your plugin JAR, so signed
+receipts are verified independently inside each plugin. This helper is packaged;
+the shared API remains provided by the host.
+
+Bind an existing bot with `Instance.bind(this, bot)` from `net.titan.authorization`,
+then connect buttons to `run.start()` and `run.stop()`. The SDK acquires capacity
+before startup and handles reporting, outages, expiry and lifecycle cleanup.
+`Entitlements.forPlugin(this)` provides `check()`, `check(key)`, `list()`,
+`snapshot()` and `onChanged(...)` for the customer's scoped library.
+See the public SDK's `docs/plugin_authorization_java_js.md` and managed instance
+sample for complete examples. These APIs require the matching server/client rollout.
+
 ## Keyboard interception (0.1.88+, client SDK 157+)
 
 Subscribe to `net.titan.api.events.KeyInputEvent` to consume or remap input before

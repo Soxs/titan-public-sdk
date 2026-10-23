@@ -443,6 +443,20 @@ class TitanDevPlugin implements Plugin<Project> {
         // Tasks need the `jar`/`build` tasks, so register once the java plugin
         // is applied. Works for both `java` and `java-library`.
         project.pluginManager.withPlugin('java') {
+            def authorization = project.configurations.create('titanAuthorization') {
+                canBeConsumed = false
+                transitive = false
+            }
+            def authorizationVersion = providers.gradleProperty('titanAuthorizationVersion').orElse('0.1.90').get()
+            project.dependencies.add('titanAuthorization', "net.titan:titan-authorization:${authorizationVersion}")
+            project.configurations.named('implementation') { extendsFrom authorization }
+            project.tasks.named('jar') {
+                dependsOn authorization
+                from { authorization.collect { project.zipTree(it) } }
+                exclude 'META-INF/MANIFEST.MF'
+                duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
+                doLast { AuthorizationRelocator.relocate(archiveFile.get().asFile) }
+            }
             def titanPluginDir = project.file(providers.gradleProperty('titanPluginDir')
                 .orElse(providers.environmentVariable('TITAN_PLUGIN_DIR'))
                 .orElse(new File(System.getProperty('user.home'), '.titanclient/plugins').absolutePath)
