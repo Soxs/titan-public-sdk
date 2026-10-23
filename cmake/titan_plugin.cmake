@@ -99,7 +99,7 @@ function(titan_plugin_runtime_file)
 endfunction()
 
 function(titan_add_plugin)
-    cmake_parse_arguments(TP "" "TARGET;SLUG" "SOURCES;SLUGS" ${ARGN})
+    cmake_parse_arguments(TP "MANAGED_INSTANCES" "TARGET;SLUG" "SOURCES;SLUGS" ${ARGN})
     if(NOT TP_TARGET OR NOT TP_SOURCES)
         message(FATAL_ERROR "titan_add_plugin requires TARGET and SOURCES")
     endif()
@@ -120,6 +120,7 @@ function(titan_add_plugin)
     set_target_properties(${TP_TARGET} PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/plugins"
         TITAN_SLUG "${TP_SLUG}" TITAN_SLUGS "${_slugs}"
+        TITAN_MANAGED_INSTANCES "${TP_MANAGED_INSTANCES}"
         MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     _titan_configure_native_staging(${TP_TARGET})
 endfunction()

@@ -94,9 +94,12 @@ function installAuthorization(host, forge, trustedKeys) {
         if (typeof envelope.result_json !== 'string' || forge.util.encodeUtf8(envelope.result_json).length > MAX_BODY || claims.result_sha256 !== hash(envelope.result_json)) invalid();
         const result = object(strictJson(envelope.result_json)); if (result.operation !== pending.op) invalid();
         if (pending.run && claims.run_id !== pending.run && (claims.run_id !== undefined || result.allowed !== false)) invalid();
-        const deadline = pending.started + Math.min(claims.exp - claims.iat, claims.exp - Math.floor(Date.now() / 1000)) * 1000;
-        if (deadline <= host._authorizationNow()) invalid();
-        return { claims, result, deadline };
+        const observedAt = host._authorizationNow(), observedWall = Math.floor(Date.now() / 1000);
+        // Bound request lifetime and signed wall expiry independently; transit is counted once.
+        const deadline = Math.min(pending.started + (claims.exp - claims.iat) * 1000,
+            observedAt + (claims.exp - observedWall) * 1000);
+        if (pending.started > observedAt || deadline <= observedAt) invalid();
+        return { claims, result, deadline, observedAt, observedWall };
     }
     function client(owner, hooks) {
         const pending = new Map(); let context;
@@ -157,7 +160,8 @@ function installAuthorization(host, forge, trustedKeys) {
         function applyPermit(response, permit) {
             if (permit.run_id !== runId || typeof permit.lease_id !== 'string' || !permit.lease_id || (leaseId && permit.lease_id !== leaseId)) invalid();
             const revision = number(permit, 'permit_sequence');
-            let nextDeadline = Math.min(response.deadline, response.deadline + (number(permit, 'permit_expires_at') - response.claims.exp) * 1000);
+            let nextDeadline = Math.min(response.deadline,
+                response.observedAt + (number(permit, 'permit_expires_at') - response.observedWall) * 1000);
             if (revision <= 0 || revision < permitSequence || nextDeadline <= host._authorizationNow()) invalid();
             if (revision === permitSequence && permitSequence) nextDeadline = Math.min(deadline, nextDeadline);
             let nextWall = number(permit, 'permit_expires_at') * 1000;

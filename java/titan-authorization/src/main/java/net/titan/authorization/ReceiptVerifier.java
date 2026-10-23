@@ -18,12 +18,15 @@ final class ReceiptVerifier {
     static final class Receipt {
         final Map<String,Object> claims, result;
         final long deadlineNanos;
-        Receipt(Map<String,Object> claims, Map<String,Object> result, long deadlineNanos) {
+        private final long observedAtNanos, observedWallSeconds;
+        Receipt(Map<String,Object> claims, Map<String,Object> result, long deadlineNanos,
+                long observedAtNanos, long observedWallSeconds) {
             this.claims=claims; this.result=result; this.deadlineNanos=deadlineNanos;
+            this.observedAtNanos=observedAtNanos; this.observedWallSeconds=observedWallSeconds;
         }
         long permitDeadline(Map<String,Object> permit) {
-            long seconds = Json.number(permit,"permit_expires_at") - Json.number(claims,"exp");
-            return Math.min(deadlineNanos, deadlineNanos + seconds * 1000000000L);
+            long seconds = Json.number(permit,"permit_expires_at") - observedWallSeconds;
+            return Math.min(deadlineNanos, observedAtNanos + seconds * 1000000000L);
         }
     }
     Receipt verify(String response, String operation, String requestId, String challenge,
@@ -70,9 +73,12 @@ final class ReceiptVerifier {
             if(!operation.equals(result.get("operation")))throw invalid();
             if(runId!=null&&!runId.equals(claims.get("run_id"))&&
                 (claims.containsKey("run_id")||!Boolean.FALSE.equals(result.get("allowed"))))throw invalid();
-            long deadline=requestedAtNanos+Math.min(expires-issued,expires-now)*1000000000L;
-            if(deadline<=monotonicNanos.getAsLong())throw invalid();
-            return new Receipt(claims,result,deadline);
+            long observedAt=monotonicNanos.getAsLong(),observedWall=wallSeconds.getAsLong();
+            // Bound request lifetime and signed wall expiry independently; transit is counted once.
+            long deadline=Math.min(requestedAtNanos+(expires-issued)*1000000000L,
+                observedAt+(expires-observedWall)*1000000000L);
+            if(requestedAtNanos>observedAt||deadline<=observedAt)throw invalid();
+            return new Receipt(claims,result,deadline,observedAt,observedWall);
         } catch(GeneralSecurityException | CharacterCodingException | IllegalArgumentException failure) {
             throw new IllegalArgumentException("invalid_authorization_receipt",failure);
         }
