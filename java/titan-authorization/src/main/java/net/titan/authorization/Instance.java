@@ -47,23 +47,28 @@ public final class Instance implements AutoCloseable {
     }
     private final Bot bot;
     private final AuthorizationClient client;
+    private final java.util.function.LongSupplier monotonicNanos,wallMillis;
     private ScheduledExecutorService watchdogExecutor;
     private ScheduledFuture<?> watchdogTask;
     private final AtomicBoolean expiredSignal=new AtomicBoolean();
     private volatile long watchdogNanos,watchdogWallMillis;
     private State state=State.STOPPED;
     private volatile long epoch,permitDeadline,permitWallMillis;
-    private long sequence,permitSequence,startDeadline,nextReport;
+    private long sequence,permitSequence,startDeadline,nextReport,nextAcquire,retryWallMillis,identityEpoch;
     private int retryAttempt;
     private String lastReason="";
     private long releasePendingUntil;
     private String runId,leaseId;
-    private boolean entered,reportPending,closed,finitePending;
+    private boolean entered,reportPending,closed,finitePending,waitingForSlot;
     private CompletableFuture<StartResult> startFuture;
     private CompletionStage<?> task;
     private Instance(Plugin owner,Bot bot){this(owner,bot,new ReceiptVerifier());}
     Instance(Plugin owner,Bot bot,ReceiptVerifier verifier){
-        this.bot=bot;client=new AuthorizationClient(owner,verifier);client.hooks(this::pulse,this::tick,this::runtimeStop);
+        this(owner,bot,verifier,System::nanoTime,System::currentTimeMillis);
+    }
+    Instance(Plugin owner,Bot bot,ReceiptVerifier verifier,java.util.function.LongSupplier monotonic,java.util.function.LongSupplier wall){
+        this.bot=bot;monotonicNanos=monotonic;wallMillis=wall;
+        client=new AuthorizationClient(owner,verifier,monotonic);client.hooks(this::pulse,this::tick,this::runtimeStop);
     }
     private void startWatchdog(){
         stopWatchdog();
@@ -76,24 +81,29 @@ public final class Instance implements AutoCloseable {
         if(watchdogTask!=null){watchdogTask.cancel(false);watchdogTask=null;}
         if(watchdogExecutor!=null){watchdogExecutor.shutdownNow();watchdogExecutor=null;}
     }
-    private void hostDeadline(){client.deadline(Math.min((watchdogNanos-System.nanoTime())/1000000L,watchdogWallMillis-System.currentTimeMillis()));}
+    private void hostDeadline(){client.deadline(Math.min((watchdogNanos-monotonicNanos.getAsLong())/1000000L,watchdogWallMillis-wallMillis.getAsLong()));}
     private void watchdog(){
         long limit=watchdogNanos,wall=watchdogWallMillis;
-        if(limit!=0&&(System.nanoTime()>=limit||System.currentTimeMillis()>=wall)&&expiredSignal.compareAndSet(false,true))
-            client.dispatch(()->{synchronized(this){if(expiredSignal.get())finish(state==State.STARTING?StopReason.START_FAILED:StopReason.PERMIT_EXPIRED,state==State.STARTING?"startup_timeout":"permit_expired");}});
+        if(limit!=0&&(monotonicNanos.getAsLong()>=limit||wallMillis.getAsLong()>=wall)&&expiredSignal.compareAndSet(false,true))
+            client.dispatch(()->{synchronized(this){if(expiredSignal.get())finish(state==State.STARTING?StopReason.START_FAILED:StopReason.PERMIT_EXPIRED,state==State.STARTING?(entered?"startup_timeout":"authorization_timeout"):"permit_expired");}});
     }
-    private boolean expired(){return expiredSignal.get()||System.nanoTime()>=permitDeadline||System.currentTimeMillis()>=permitWallMillis;}
+    private boolean expired(){return expiredSignal.get()||monotonicNanos.getAsLong()>=permitDeadline||wallMillis.getAsLong()>=permitWallMillis;}
     private boolean running(){return state==State.RUNNING||state==State.RECONNECTING;}
     public synchronized State status(){return state;}
-    public synchronized String reason(){return lastReason;}
+    public synchronized String reason(){
+        if(!waitingForSlot)return lastReason;
+        long remaining=Math.min((nextAcquire-monotonicNanos.getAsLong())/1000000L,retryWallMillis-wallMillis.getAsLong());
+        return "Waiting for an instance slot. Retrying in "+Math.max(0,(remaining+999)/1000)+"s.";
+    }
     /** Use control(actionId) from the matching onPanelAction callback. */
     public synchronized void controls(Panel panel){
-        panel.label("Status",state.name()).label("Reason",lastReason).button("Start",0x415a0001).button("Stop",0x415a0002);
-        if(!active()&&releasePendingUntil()!=0)panel.wrapped("A previous permit may reserve the slot for up to five minutes.");
+        panel.label("Status",state.name()).label("Reason",reason()).button("Start",0x415a0001).button("Stop",0x415a0002);
+        if(!active()&&releasePendingUntil()!=0)panel.wrapped("Last confirmed reservation: "+Math.max(0,releasePendingUntil()-wallMillis.getAsLong()/1000)+"s remaining");
+        if(!active()&&(lastReason.equals("authorization_unavailable")||lastReason.equals("authorization_timeout")))panel.wrapped("Reservation status is unavailable. Start checks capacity online.");
     }
     public boolean control(int actionId){if(actionId==0x415a0001){start();return true;}if(actionId==0x415a0002){stop();return true;}return false;}
-    /** Conservative Unix-seconds reservation horizon, including lost replies; zero when elapsed. */
-    public synchronized long releasePendingUntil(){return releasePendingUntil>System.currentTimeMillis()/1000?releasePendingUntil:0;}
+    /** Latest verified Unix-seconds reservation horizon; zero means none currently known, not confirmed free capacity. */
+    public synchronized long releasePendingUntil(){return releasePendingUntil>wallMillis.getAsLong()/1000?releasePendingUntil:0;}
     public synchronized boolean active(){return running()&&!expired();}
     public synchronized CompletionStage<StartResult> start(){
         if(closed)return CompletableFuture.completedFuture(new StartResult(false,"closed"));
@@ -101,28 +111,45 @@ public final class Instance implements AutoCloseable {
         if(state==State.STARTING)return startFuture;
         if(active())return CompletableFuture.completedFuture(new StartResult(true,"already_running"));
         if(running())finish(StopReason.PERMIT_EXPIRED,"permit_expired");
-        epoch++;final long generation=epoch;state=State.STARTING;entered=false;reportPending=false;retryAttempt=0;lastReason="";expiredSignal.set(false);
-        runId=AuthorizationClient.nonce();leaseId=null;permitSequence=0;startDeadline=System.nanoTime()+30000000000L;
-        watchdogNanos=startDeadline;watchdogWallMillis=System.currentTimeMillis()+30000;
-        startWatchdog();hostDeadline();
+        epoch++;state=State.STARTING;entered=false;reportPending=false;retryAttempt=0;lastReason="";expiredSignal.set(false);waitingForSlot=false;
+        runId=AuthorizationClient.nonce();leaseId=null;permitSequence=0;
         startFuture=new CompletableFuture<>();CompletableFuture<StartResult> result=startFuture;
-        releasePendingUntil=Math.max(releasePendingUntil,System.currentTimeMillis()/1000+300);
+        acquire();
+        return result;
+    }
+    private void acquire(){
+        final long generation=epoch;
+        waitingForSlot=false;startDeadline=monotonicNanos.getAsLong()+30000000000L;expiredSignal.set(false);
+        watchdogNanos=startDeadline;watchdogWallMillis=wallMillis.getAsLong()+30000;startWatchdog();
         client.request("acquire",Json.map("run_id",runId,"sequence",++sequence),runId).whenComplete((receipt,error)->{
             synchronized(Instance.this){
                 if(epoch!=generation||state!=State.STARTING)return;
                 if(error!=null){finish(StopReason.DENIED,"authorization_unavailable");return;}
-                if(!Boolean.TRUE.equals(receipt.result.get("allowed"))){finish(StopReason.DENIED,String.valueOf(receipt.result.get("code")));return;}
                 try {
+                    if(monotonicNanos.getAsLong()>=startDeadline||expiredSignal.get()){finish(StopReason.DENIED,"authorization_timeout");return;}
+                    if(!Boolean.TRUE.equals(receipt.result.get("allowed"))){
+                        rememberHold(receipt.result,runId);
+                        Object retry=receipt.result.get("retry_at");
+                        if("instance-limit".equals(receipt.result.get("code"))&&runId.equals(receipt.result.get("run_id"))&&retry instanceof Long&&(Long)retry>0){
+                            long nowMillis=wallMillis.getAsLong(),seconds=Math.min(301L,Math.max(0L,(Long)retry-nowMillis/1000));
+                            long delay=Math.min(300000L,Math.max(1000L,seconds*1000L-nowMillis%1000))+ThreadLocalRandom.current().nextLong(1001);
+                            nextAcquire=monotonicNanos.getAsLong()+delay*1000000L;retryWallMillis=wallMillis.getAsLong()+delay;
+                            waitingForSlot=true;startDeadline=0;watchdogNanos=0;watchdogWallMillis=0;stopWatchdog();lastReason=reason();return;
+                        }
+                        finish(StopReason.DENIED,String.valueOf(receipt.result.get("code")));return;
+                    }
+                    startDeadline=monotonicNanos.getAsLong()+30000000000L;watchdogWallMillis=wallMillis.getAsLong()+30000;
                     applyPermit(receipt,receipt.result);
-                    if(System.nanoTime()>=startDeadline)throw new TimeoutException("startup_timeout");
-                    entered=true;
-                    if(!bot.start()||System.nanoTime()>=startDeadline||expired())throw new IllegalStateException("startup_failed");
                     if(epoch!=generation||state!=State.STARTING)return;
-                    state=State.RUNNING;watchdogNanos=permitDeadline;watchdogWallMillis=permitWallMillis;hostDeadline();nextReport=0;lastReason="started";result.complete(new StartResult(true,"started"));report();
+                    entered=true;
+                    if(!bot.start()||monotonicNanos.getAsLong()>=startDeadline||expired())throw new IllegalStateException("startup_failed");
+                    if(epoch!=generation||state!=State.STARTING)return;
+                    state=State.RUNNING;watchdogNanos=permitDeadline;watchdogWallMillis=permitWallMillis;hostDeadline();
+                    if(epoch!=generation||state!=State.RUNNING)return;
+                    nextReport=0;lastReason="started";startFuture.complete(new StartResult(true,"started"));report();
                 }catch(Throwable failure){finish(StopReason.START_FAILED,"startup_failed");}
             }
         });
-        return result;
     }
     /** Finite async work completes the managed run when its stage settles. */
     public CompletionStage<StartResult> run(Supplier<? extends CompletionStage<?>> work){
@@ -155,22 +182,32 @@ public final class Instance implements AutoCloseable {
     }
     public synchronized void stop(){finish(StopReason.USER,"stopped");}
     public synchronized void complete(){finish(StopReason.COMPLETED,"completed");}
+    private void rememberHold(Map<String,Object> result,String expectedRun){
+        if(!client.sessionValid()||!Objects.equals(expectedRun,result.get("run_id")))return;
+        Object held=result.get("held_until");
+        if(held instanceof Long&&(Long)held>0)releasePendingUntil=Math.max(releasePendingUntil,(Long)held);
+    }
     private void applyPermit(ReceiptVerifier.Receipt receipt,Map<String,Object> permit){
         if(!runId.equals(permit.get("run_id")))throw new IllegalArgumentException("wrong_run");
         String lease=Json.string(permit,"lease_id");long revision=Json.number(permit,"permit_sequence");
         long deadline=receipt.permitDeadline(permit);
-        if(lease.isEmpty()||revision<=0||leaseId!=null&&!leaseId.equals(lease)||revision<permitSequence||deadline<=System.nanoTime())throw new IllegalArgumentException("invalid_permit");
+        if(lease.isEmpty()||revision<=0||leaseId!=null&&!leaseId.equals(lease)||revision<permitSequence||deadline<=monotonicNanos.getAsLong())throw new IllegalArgumentException("invalid_permit");
         if(revision==permitSequence&&permitSequence!=0)deadline=Math.min(deadline,permitDeadline);
         long wall=Json.number(permit,"permit_expires_at")*1000;
         if(revision==permitSequence&&permitSequence!=0)wall=Math.min(wall,permitWallMillis);
         leaseId=lease;permitSequence=revision;permitDeadline=deadline;permitWallMillis=wall;
+        releasePendingUntil=Math.max(releasePendingUntil,wall/1000);rememberHold(permit,runId);
         if(running()){watchdogNanos=deadline;watchdogWallMillis=wall;}
         else {watchdogNanos=Math.min(startDeadline,deadline);watchdogWallMillis=Math.min(watchdogWallMillis,wall);}
         hostDeadline();
     }
     private synchronized void pulse(){
-        long now=System.nanoTime();
-        if(state==State.STARTING&&(now>=startDeadline||expiredSignal.get())){finish(StopReason.START_FAILED,"startup_timeout");return;}
+        long now=monotonicNanos.getAsLong();
+        if(state==State.STARTING){
+            if(waitingForSlot){if(now>=nextAcquire||wallMillis.getAsLong()>=retryWallMillis)acquire();}
+            else if(now>=startDeadline||expiredSignal.get()||entered&&expired())finish(StopReason.START_FAILED,entered?"startup_timeout":"authorization_timeout");
+            return;
+        }
         if(!running())return;
         if(expired()){finish(StopReason.PERMIT_EXPIRED,"permit_expired");return;}
         if(now>=nextReport&&!reportPending)report();
@@ -178,20 +215,23 @@ public final class Instance implements AutoCloseable {
     private void report(){
         if(!running()||reportPending)return;
         if(expired()){finish(StopReason.PERMIT_EXPIRED,"permit_expired");return;}
-        long generation=epoch;reportPending=true;nextReport=Math.max(System.nanoTime()+1000000000L,Math.min(System.nanoTime()+20000000000L,permitDeadline-10000000000L));
-        releasePendingUntil=Math.max(releasePendingUntil,System.currentTimeMillis()/1000+300);
+        long generation=epoch;reportPending=true;nextReport=Math.max(monotonicNanos.getAsLong()+1000000000L,Math.min(monotonicNanos.getAsLong()+20000000000L,permitDeadline-10000000000L));
         Map<String,Object> run=Json.map("run_id",runId,"lease_id",leaseId,"ack_sequence",permitSequence,"state","running");
         client.request("report",Json.map("sequence",++sequence,"complete",true,"runs",Collections.singletonList(run)),null).whenComplete((receipt,error)->{
             synchronized(Instance.this){
                 if(epoch!=generation||!running())return;reportPending=false;
                 if(expired()){finish(StopReason.PERMIT_EXPIRED,"permit_expired");return;}
-                if(error!=null){state=State.RECONNECTING;lastReason="authorization_unavailable";long cap=Math.min(15000L,1000L<<Math.min(retryAttempt++,4));nextReport=System.nanoTime()+ThreadLocalRandom.current().nextLong(Math.max(1,cap/2),cap+1)*1000000L;return;}
+                if(error!=null){state=State.RECONNECTING;lastReason="authorization_unavailable";long cap=Math.min(15000L,1000L<<Math.min(retryAttempt++,4));nextReport=monotonicNanos.getAsLong()+ThreadLocalRandom.current().nextLong(Math.max(1,cap/2),cap+1)*1000000L;return;}
                 try {
+                    rememberHold(receipt.result,runId);
                     if(Boolean.FALSE.equals(receipt.result.get("allowed"))){finish(StopReason.DENIED,String.valueOf(receipt.result.get("code")));return;}
+                    if(!Boolean.TRUE.equals(receipt.result.get("complete")))throw new IllegalArgumentException("incomplete_report");
                     Object runs=receipt.result.get("runs");if(!(runs instanceof List)||((List<?>)runs).size()!=1)throw new IllegalArgumentException();
                     Map<String,Object> update=Json.object(((List<?>)runs).get(0));
+                    rememberHold(update,runId);
                     if(!Boolean.TRUE.equals(update.get("allowed"))){finish(StopReason.DENIED,String.valueOf(update.get("code")));return;}
                     applyPermit(receipt,update);
+                    if(epoch!=generation||!running())return;
                     state=State.RUNNING;lastReason="";retryAttempt=0;
                 }catch(Throwable failure){finish(StopReason.DENIED,"invalid_permit");}
             }
@@ -199,13 +239,20 @@ public final class Instance implements AutoCloseable {
     }
     private synchronized void tick(int tick){if(!active())return;try{bot.tick(tick);}catch(Throwable failure){finish(StopReason.CALLBACK_FAILED,"callback_failed");}}
     private synchronized void runtimeStop(String reason){
+        if("session_changed".equals(reason)){identityEpoch++;releasePendingUntil=0;}
         finish("unloaded".equals(reason)?StopReason.UNLOADED:"session_changed".equals(reason)?StopReason.SESSION_CHANGED:StopReason.DISABLED,reason);
     }
     private void finish(StopReason reason,String detail){
         if(state==State.STOPPED||state==State.STOPPING||state==State.FAILED)return;
-        ++epoch;state=State.STOPPING;lastReason=detail;watchdogNanos=0;watchdogWallMillis=0;reportPending=false;finitePending=false;client.cancelPending(detail);
+        ++epoch;state=State.STOPPING;lastReason=detail;watchdogNanos=0;watchdogWallMillis=0;reportPending=false;finitePending=false;waitingForSlot=false;client.cancelPending(detail,true);
         stopWatchdog();
-        if(runId!=null){Map<String,Object> cancel=Json.map("run_id",runId,"sequence",++sequence);if(leaseId!=null)cancel.put("lease_id",leaseId);client.request("cancel",cancel,runId);}
+        if(runId!=null){
+            String cancelledRun=runId;long identity=identityEpoch;
+            Map<String,Object> cancel=Json.map("run_id",cancelledRun,"sequence",++sequence);if(leaseId!=null)cancel.put("lease_id",leaseId);
+            client.request("cancel",cancel,cancelledRun).whenComplete((receipt,error)->{synchronized(Instance.this){
+                if(error==null&&!closed&&identity==identityEpoch)rememberHold(receipt.result,cancelledRun);
+            }});
+        }
         client.stopTransport(); // Runs even if the user stop hook throws or blocks.
         CompletableFuture<StartResult> future=startFuture;if(future!=null&&!future.isDone())future.complete(new StartResult(false,detail));
         CompletionStage<?> finite=task;task=null;if(finite instanceof Future<?>)((Future<?>)finite).cancel(true);

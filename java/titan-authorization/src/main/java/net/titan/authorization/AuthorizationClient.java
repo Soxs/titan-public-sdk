@@ -12,17 +12,23 @@ import java.util.concurrent.*;
 final class AuthorizationClient implements AuthorizationBackend.Listener {
     private final Plugin owner;
     private final ReceiptVerifier verifier;
+    private final java.util.function.LongSupplier monotonicNanos;
     private final String pluginId;
     private final Map<Long,Pending> pending=new LinkedHashMap<>();
     private final Queue<Runnable> completions=new ConcurrentLinkedQueue<>();
     private AuthorizationBackend backend;
     private Map<String,Object> context;
+    private boolean identityInvalidated;
     private Runnable pulseHook=()->{};
     private java.util.function.IntConsumer tickHook=tick->{};
     private java.util.function.Consumer<String> stopHook=reason->{};
     AuthorizationClient(Plugin owner){this(owner,new ReceiptVerifier());}
     AuthorizationClient(Plugin owner,ReceiptVerifier verifier){
+        this(owner,verifier,System::nanoTime);
+    }
+    AuthorizationClient(Plugin owner,ReceiptVerifier verifier,java.util.function.LongSupplier monotonic){
         this.owner=Objects.requireNonNull(owner);this.verifier=verifier;
+        monotonicNanos=monotonic;
         PluginDescriptor descriptor=owner.getClass().getAnnotation(PluginDescriptor.class);
         pluginId=descriptor==null?"":descriptor.id();
     }
@@ -30,23 +36,29 @@ final class AuthorizationClient implements AuthorizationBackend.Listener {
     // Background task completion must not invoke plugin/game APIs off the owner thread.
     void dispatch(Runnable completion){completions.add(completion);}
     static String nonce(){byte[] bytes=new byte[32];new SecureRandom().nextBytes(bytes);return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);}
-    private boolean bind(){
+    private boolean bind(){return bind(false);}
+    private boolean bind(boolean terminal){
         AuthorizationBackend candidate=TitanRuntime.getAuthorizationBackend();
         if(candidate==null||!candidate.register(owner,this))return false;
         String raw=candidate.context(owner);if(raw==null||raw.isEmpty())return false;
         Map<String,Object> next=Json.object(raw);
         if(pluginId.isEmpty()||!pluginId.equals(next.get("runtime_plugin_id")))throw new IllegalArgumentException("wrong_plugin");
         boolean changed=context!=null&&!context.equals(next);
+        boolean invalidSession=Boolean.FALSE.equals(next.get("session_valid"));
         backend=candidate;context=next;
-        if(changed){cancelPending("session_changed");stopHook.accept("session_changed");}
+        if(changed||invalidSession&&!identityInvalidated){
+            identityInvalidated=invalidSession;cancelPending("session_changed");stopHook.accept("session_changed");
+            if(!terminal)throw new CancellationException("session_changed");
+        }
+        if(invalidSession&&!terminal)throw new CancellationException("session_changed");
         return true;
     }
     synchronized CompletableFuture<ReceiptVerifier.Receipt> request(String operation,Map<String,Object> payload,String runId){
         CompletableFuture<ReceiptVerifier.Receipt> future=new CompletableFuture<>();
         try {
-            if(!bind())throw new IllegalStateException("authorization_unavailable");
+            if(!bind(operation.equals("cancel")))throw new IllegalStateException("authorization_unavailable");
             if(pending.size()>=16)throw new IllegalStateException("too_many_requests");
-            String request=nonce(),challenge=nonce();long started=System.nanoTime();
+            String request=nonce(),challenge=nonce();long started=monotonicNanos.getAsLong();
             long id=backend.submit(owner,operation,Json.write(Json.map("request_id",request,"challenge",challenge,"payload",payload)));
             if(id==0)throw new IllegalStateException("authorization_unavailable");
             pending.put(id,new Pending(operation,request,challenge,runId,started,context,future));
@@ -54,18 +66,31 @@ final class AuthorizationClient implements AuthorizationBackend.Listener {
         return future;
     }
     synchronized void cancelPending(String reason){
-        List<Map.Entry<Long,Pending>> copy=new ArrayList<>(pending.entrySet());pending.clear();
-        for(Map.Entry<Long,Pending> entry:copy){if(backend!=null)backend.cancel(owner,entry.getKey());entry.getValue().future.completeExceptionally(new CancellationException(reason));}
+        cancelPending(reason,false);
+    }
+    synchronized void cancelPending(String reason,boolean keepTerminal){
+        for(Map.Entry<Long,Pending> entry:new ArrayList<>(pending.entrySet())){
+            boolean terminal=entry.getValue().operation.equals("cancel");if(keepTerminal&&terminal)continue;
+            pending.remove(entry.getKey());
+            // Terminal cancellation must remain in the host queue after SDK unload.
+            if(backend!=null&&!terminal)backend.cancel(owner,entry.getKey());
+            entry.getValue().future.completeExceptionally(new CancellationException(reason));
+        }
     }
     synchronized void stopTransport(){if(backend!=null)backend.authorizationStop(owner);}
+    synchronized boolean sessionValid(){return !identityInvalidated;}
     synchronized void deadline(long remainingMillis){try{if(bind())backend.deadline(owner,Math.max(1,remainingMillis));}catch(Throwable ignored){}}
     synchronized void close(){cancelPending("closed");if(backend!=null)backend.unregister(owner,this);}
     @Override public synchronized void pulse(){
+        try{bind();}catch(Throwable ignored){} // Local identity invalidation is independent of requests.
         for(Runnable completion;(completion=completions.poll())!=null;)completion.run();
         for(Map.Entry<Long,Pending> entry:new ArrayList<>(pending.entrySet())){
-            Pending p=entry.getValue();String response=backend.poll(owner,entry.getKey());
+            Pending p=entry.getValue();if(pending.get(entry.getKey())!=p)continue;
+            String response;
+            try{response=backend.poll(owner,entry.getKey());}
+            catch(Throwable failure){pending.remove(entry.getKey());p.future.completeExceptionally(failure);continue;}
             if(response==null||response.isEmpty()){
-                if(System.nanoTime()-p.started<(p.operation.equals("report")?5000000000L:30000000000L))continue;
+                if(monotonicNanos.getAsLong()-p.started<(p.operation.equals("report")?5000000000L:p.operation.equals("cancel")?330000000000L:30000000000L))continue;
                 pending.remove(entry.getKey());backend.cancel(owner,entry.getKey());p.future.completeExceptionally(new TimeoutException("authorization_timeout"));continue;
             }
             pending.remove(entry.getKey());

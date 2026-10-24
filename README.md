@@ -27,9 +27,12 @@ handoff headers are not needed to build plugins and are not published here.
 SDK 160 adds managed plugin instances and entitlement checks. Bind your bot once,
 then connect its Start/Stop actions to the managed run. The verifier bundled in
 each plugin checks signed admission before invoking startup. A running permit can
-survive a short gateway outage until its signed expiry, up to five minutes;
+survive a short gateway outage until its signed expiry, up to two minutes for new permits;
 starting a new run requires a valid response. Entitlement checks and cached lists
 describe access and do not reserve a concurrent instance.
+When capacity is full, Start waits and checks again at the signed retry time;
+Stop cancels waiting. This behavior uses the existing Start/Stop API. Previously
+issued five-minute permits remain valid through their original deadlines.
 See [native authorization](docs/plugin_authorization.md) and
 [Java and JavaScript authorization](docs/plugin_authorization_java_js.md) for
 lifecycle, cancellation, deployment compatibility, and examples.

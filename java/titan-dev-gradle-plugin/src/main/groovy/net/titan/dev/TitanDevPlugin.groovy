@@ -447,7 +447,7 @@ class TitanDevPlugin implements Plugin<Project> {
                 canBeConsumed = false
                 transitive = false
             }
-            def authorizationVersion = providers.gradleProperty('titanAuthorizationVersion').orElse('0.1.90').get()
+            def authorizationVersion = providers.gradleProperty('titanAuthorizationVersion').orElse('0.1.92').get()
             project.dependencies.add('titanAuthorization', "net.titan:titan-authorization:${authorizationVersion}")
             project.configurations.named('implementation') { extendsFrom authorization }
             project.tasks.named('jar') {

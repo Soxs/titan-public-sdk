@@ -35,9 +35,9 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
-## Managed instances and entitlements (0.1.90)
+## Managed instances and entitlements (0.1.92)
 
-Apply `net.titan.dev` 0.1.2 and keep `titan-plugin-api` compile-only. The convention
+Apply `net.titan.dev` 0.1.3 and keep `titan-plugin-api` compile-only. The convention
 plugin bundles and relocates `titan-authorization` into your plugin JAR, so signed
 receipts are verified independently inside each plugin. This helper is packaged;
 the shared API remains provided by the host.

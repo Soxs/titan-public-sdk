@@ -26,8 +26,14 @@ callback while waiting for its own Start future.
 
 The SDK owns request correlation, reports every 20 seconds, acknowledgement,
 permit expiry, and cleanup after disable/unload, failed startup, or tick exceptions.
-Startup has a 30-second deadline. Existing permits remain usable during a temporary
-outage only until their signed expiry, at most five minutes. New starts fail closed
+Startup has a 30-second deadline after approval. If capacity is full, an explicit
+Start stays Starting and waits until the signed server retry time to check again.
+The wait is cancellable with Stop, consumes no capacity, and does not invoke bot
+startup or count against that startup deadline. The retry time is advisory because
+another running instance may renew. Existing permits remain usable during a temporary
+outage only until their signed expiry, at most two minutes for newly issued permits.
+Previously issued five-minute permits retain their original expiry during rollout.
+Entitlement read proofs keep their separate five-minute maximum. New starts fail closed
 when transport, verification, deployment flags, or approved build identity is missing.
 Calling Start again while starting/running does not request another slot.
 
@@ -39,6 +45,11 @@ The host independently fences admission/renewal by a suspend-aware monotonic clo
 Java also uses a plugin-owned watchdog and signed wall-clock expiry cap. Watchdogs
 signal cancellation and queue cleanup on the owner thread; they never execute user
 cleanup on a background thread.
+
+Changing the signed-in Titan account stops managed work and clears entitlement
+snapshots in games opened by the previous account. Reopen those game tabs under
+the new account; switching back does not revive old Start requests. Temporary
+gateway outages do not invalidate the account's game session.
 
 For finite work use `run.run(async cancellation => { ... })` in JavaScript, or
 `run.run(cancellation -> completionStage)` in Java. Task settlement completes the
@@ -53,8 +64,12 @@ cancellation signal and must check it after each await before side effects.
 Stop retires the run before invoking user cleanup, so a thrown or blocked stop hook
 cannot keep renewing it. The server retains a reservation until its last issued
 permit expires, including a permit whose reply was lost. `releasePendingUntil`
-(a Java getter, a JavaScript property) is a conservative Unix-seconds horizon that
-includes outstanding acquire/report requests. It is not a promise of early reuse.
+(a Java getter, a JavaScript property) is the latest signed Unix-seconds reservation
+deadline observed, including a verified Stop acknowledgement. Submitting requests
+does not extend it; denied admission does not fabricate a new hold. Lost renewal
+or Stop replies can leave a later server deadline unknown, so this is the last
+confirmed reservation, not a promise of availability. A subsequent Start keeps
+the old confirmed hold visible while waiting for fresh online admission.
 The runtime does not forcibly kill arbitrary threads; code that ignores cancellation
 can continue executing, but cannot obtain new authorization through that retired run.
 

@@ -31,6 +31,12 @@ renewal before cleanup. Ignoring the Start result is safe. To implement custom
 messages, inspect its shared future after it becomes ready; never block the
 MainLoop with `get()` while a request is pending.
 
+When capacity is full, an explicit Start waits in Starting and displays when it
+will check again. It retries with fresh online approval after the server's next
+reservation deadline; another running instance may renew that reservation. Stop
+cancels this wait. Waiting consumes no slot and does not invoke bot startup or
+use its 30-second startup budget. Existing integration code stays unchanged.
+
 Ticks are forwarded only during valid authorization. Startup must finish within
 30 seconds; use ticks or a managed worker for ongoing work. A finite job can use:
 
@@ -89,10 +95,13 @@ Subscriptions are removed when the owner is stopped or unloaded.
 
 ## Outages and reservation timing
 
-Permits last at most five minutes and may end sooner for scheduled entitlement
+New run permits last at most two minutes and may end sooner for scheduled entitlement
 or capacity changes. Reports run every 20 seconds, immediately on changes, and
 earlier when a short deadline requires it. The controller batches work over its
 gateway socket. Client MainLoop liveness is independent of game ticks and rendering.
+Entitlement read proofs retain a separate five-minute maximum. Previously issued
+five-minute run permits and their reservations remain valid through their original
+deadlines during rollout; they are never shortened to free capacity early.
 
 During a short outage existing runs show Reconnecting and retain their bot state.
 A verified renewal before expiry resumes Running without repeating startup.
@@ -101,10 +110,18 @@ close and cancellation is requested. A late reply cannot restart the bot: the
 user must explicitly Start again. The watchdog uses a suspend-aware clock and
 does not depend on the plugin callback loop.
 
+Changing the signed-in Titan account closes managed authorization in games opened
+by the previous account and clears entitlement snapshots. Reopen those game tabs
+under the new account. Switching back does not revive old Start requests. A
+temporary gateway disconnect does not trigger this account-change fence.
+
 Stop works offline. Capacity can remain reserved until the highest permit already
-issued expires, including a reply lost in transit. `releasePendingUntil` is a
-conservative upper bound, not a promise of immediate reuse. The standard panel
-shows the remaining bound. A stopped plugin cannot continue renewal because of
+issued expires, including a reply lost in transit. `releasePendingUntil` is the
+latest signed reservation deadline observed by this scope. It includes a verified
+Stop acknowledgement and survives another Start; submitting requests never extends
+it. A lost renewal or Stop reply can leave a later server deadline unknown, so
+the standard panel labels this as the last confirmed reservation. Online admission
+always decides availability. A stopped plugin cannot continue renewal because of
 a cleanup exception. This policy is separate from client access continuation.
 
 ## Server and rollout contract

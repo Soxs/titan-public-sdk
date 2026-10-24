@@ -102,15 +102,30 @@ function installAuthorization(host, forge, trustedKeys) {
         return { claims, result, deadline, observedAt, observedWall };
     }
     function client(owner, hooks) {
-        const pending = new Map(); let context;
+        const pending = new Map(); let context, identityInvalidated = false;
         const pluginId = owner && owner.id;
+        function refreshContext(terminal = false) {
+            const next = object(strictJson(host._authorizationContext(owner)));
+            if (typeof pluginId !== 'string' || !pluginId || next.runtime_plugin_id !== pluginId) throw new Error('wrong_plugin');
+            const changed = context && JSON.stringify(context) !== JSON.stringify(next);
+            const invalidSession = next.session_valid === false;
+            context = next;
+            if (changed || (invalidSession && !identityInvalidated)) {
+                identityInvalidated = invalidSession; cancel('session_changed');
+                if (hooks.stop) hooks.stop('session_changed');
+                if (!terminal) throw new Error('session_changed');
+            }
+            if (invalidSession && !terminal) throw new Error('session_changed');
+        }
         const listener = {
             pulse() {
+                try { refreshContext(); } catch (ignored) { /* Transport failures do not revoke verified permits. */ }
                 for (const [id, item] of Array.from(pending.entries())) {
+                    if (pending.get(id) !== item) continue;
                     let raw;
                     try { raw = host._authorizationPoll(owner, id); } catch (error) { pending.delete(id); item.reject(error); continue; }
                     if (!raw) {
-                        if (host._authorizationNow() - item.started < (item.op === 'report' ? 5000 : 30000)) continue;
+                        if (host._authorizationNow() - item.started < (item.op === 'report' ? 5000 : item.op === 'cancel' ? 330000 : 30000)) continue;
                         host._authorizationCancel(owner, id); pending.delete(id); item.reject(new Error('authorization_timeout')); continue;
                     }
                     pending.delete(id);
@@ -121,16 +136,21 @@ function installAuthorization(host, forge, trustedKeys) {
             tick(tick) { listener.pulse(); if (hooks.tick) hooks.tick(tick); },
             stop(reason) { cancel(reason); if (hooks.stop) hooks.stop(reason); }
         };
-        function cancel(reason) { const copy = Array.from(pending.entries()); pending.clear(); for (const [id, item] of copy) { host._authorizationCancel(owner, id); item.reject(new Error(reason)); } }
+        function cancel(reason, keepTerminal = false) {
+            for (const [id, item] of Array.from(pending.entries())) {
+                if (keepTerminal && item.op === 'cancel') continue;
+                pending.delete(id);
+                // The host must still deliver terminal cancellation after SDK unload.
+                if (item.op !== 'cancel') host._authorizationCancel(owner, id);
+                item.reject(new Error(reason));
+            }
+        }
         return {
             request(op, payload, run) {
                 return new Promise((resolve, reject) => {
                     try {
                         if (!host._authorizationSubscribe || !host._authorizationSubscribe(owner, listener)) throw new Error('authorization_unavailable');
-                        const next = object(strictJson(host._authorizationContext(owner)));
-                        if (typeof pluginId !== 'string' || !pluginId || next.runtime_plugin_id !== pluginId) throw new Error('wrong_plugin');
-                        const changed = context && JSON.stringify(context) !== JSON.stringify(next); context = next;
-                        if (changed) { cancel('session_changed'); if (hooks.stop) hooks.stop('session_changed'); }
+                        refreshContext(op === 'cancel');
                         if (pending.size >= 16) throw new Error('too_many_requests');
                         const challenge = host._authorizationNonce(), request = host._authorizationNonce();
                         if (!/^[A-Za-z0-9_-]{43}$/.test(challenge) || !/^[A-Za-z0-9_-]{43}$/.test(request)) throw new Error('entropy_unavailable');
@@ -141,6 +161,7 @@ function installAuthorization(host, forge, trustedKeys) {
                     } catch (error) { reject(error); }
                 });
             }, cancel,
+            sessionValid() { return !identityInvalidated; },
             stop() { if (host._authorizationStop) host._authorizationStop(owner); },
             close() { cancel('closed'); if (host._authorizationUnsubscribe) host._authorizationUnsubscribe(owner, listener); }
         };
@@ -152,11 +173,24 @@ function installAuthorization(host, forge, trustedKeys) {
         let state = 'stopped', epoch = 0, sequence = 0, permitSequence = 0, deadline = 0, wallDeadline = 0, startDeadline = 0, nextReport = 0, retryAttempt = 0, reason = '';
         let runId, leaseId, entered = false, reportPending = false, startPromise, resolveStart, closed = false;
         let releasePendingUntil = 0;
+        let waitingForSlot = false, nextAcquire = 0, retryWall = 0, identityEpoch = 0;
         let finitePending = false;
         function running() { return state === 'running' || state === 'reconnecting'; }
         function expired() { return host._authorizationNow() >= deadline || Date.now() >= wallDeadline || (host._authorizationExpired && host._authorizationExpired(owner)); }
         function setDeadline(value) { if (host._authorizationSetDeadline) host._authorizationSetDeadline(owner, value); }
-        const transport = client(owner, { pulse, tick, stop: reason => stop(reason) });
+        const transport = client(owner, { pulse, tick, stop: reason => {
+            if (reason === 'session_changed') { identityEpoch++; releasePendingUntil = 0; }
+            stop(reason);
+        } });
+        function rememberHold(result, expectedRun) {
+            if (!transport.sessionValid() || result.run_id !== expectedRun) return;
+            const held = result.held_until;
+            if (Number.isSafeInteger(held) && held > 0) releasePendingUntil = Math.max(releasePendingUntil, held);
+        }
+        function waitingReason() {
+            const seconds = Math.max(0, Math.ceil(Math.min(nextAcquire - host._authorizationNow(), retryWall - Date.now()) / 1000));
+            return 'Waiting for an instance slot. Retrying in ' + seconds + 's.';
+        }
         function applyPermit(response, permit) {
             if (permit.run_id !== runId || typeof permit.lease_id !== 'string' || !permit.lease_id || (leaseId && permit.lease_id !== leaseId)) invalid();
             const revision = number(permit, 'permit_sequence');
@@ -167,6 +201,8 @@ function installAuthorization(host, forge, trustedKeys) {
             let nextWall = number(permit, 'permit_expires_at') * 1000;
             if (revision === permitSequence && permitSequence) nextWall = Math.min(wallDeadline, nextWall);
             permitSequence = revision; leaseId = permit.lease_id; deadline = nextDeadline; wallDeadline = nextWall;
+            releasePendingUntil = Math.max(releasePendingUntil, nextWall / 1000);
+            rememberHold(permit, runId);
             setDeadline(state === 'starting' ? Math.min(startDeadline, deadline) : deadline);
         }
         function start() {
@@ -175,34 +211,52 @@ function installAuthorization(host, forge, trustedKeys) {
             if (state === 'starting') return startPromise;
             if (running() && !expired()) return Promise.resolve({ started: true, reason: 'already_running' });
             if (running()) stop('permit_expired');
-            const generation = ++epoch; state = 'starting'; entered = false; reportPending = false; retryAttempt = 0; reason = '';
+            ++epoch; state = 'starting'; entered = false; reportPending = false; retryAttempt = 0; reason = ''; waitingForSlot = false;
             runId = host._authorizationNonce ? host._authorizationNonce() : ''; leaseId = undefined; permitSequence = 0;
-            startDeadline = host._authorizationNow ? host._authorizationNow() + 30000 : 0;
-            setDeadline(startDeadline);
             startPromise = new Promise(resolve => { resolveStart = resolve; });
-            releasePendingUntil = Math.max(releasePendingUntil, Math.floor(Date.now() / 1000) + 300);
+            acquire();
+            return startPromise;
+        }
+        function acquire() {
+            const generation = epoch;
+            waitingForSlot = false; startDeadline = host._authorizationNow() + 30000;
             transport.request('acquire', { run_id: runId, sequence: ++sequence }, runId).then(response => {
                 if (generation !== epoch || state !== 'starting') return;
-                if (!response.result.allowed) { stop(response.result.code || 'denied'); return; }
                 try {
+                    if (host._authorizationNow() >= startDeadline) { stop('authorization_timeout'); return; }
+                    if (!response.result.allowed) {
+                        rememberHold(response.result, runId);
+                        const retryAt = response.result.retry_at;
+                        if (response.result.code === 'instance-limit' && response.result.run_id === runId && Number.isSafeInteger(retryAt) && retryAt > 0) {
+                            const delay = Math.min(300, Math.max(1, retryAt - Date.now() / 1000)) * 1000 + Math.floor(Math.random() * 1001);
+                            nextAcquire = host._authorizationNow() + delay; retryWall = Date.now() + delay;
+                            waitingForSlot = true; startDeadline = 0; reason = waitingReason(); return;
+                        }
+                        stop(response.result.code || 'denied'); return;
+                    }
+                    startDeadline = host._authorizationNow() + 30000;
                     applyPermit(response, response.result);
-                    if (host._authorizationNow() >= startDeadline) throw new Error('startup_timeout');
+                    if (generation !== epoch || state !== 'starting') return;
                     entered = true;
                     const cancellation = Object.freeze({ get cancelled() { return generation !== epoch || expired(); } });
                     Promise.resolve(bot.start(cancellation)).then(ok => {
                         if (generation !== epoch || state !== 'starting') return;
                         if (ok === false || host._authorizationNow() >= startDeadline || expired()) { stop('startup_failed'); return; }
                         state = 'running'; nextReport = 0; reason = 'started'; setDeadline(deadline);
+                        if (generation !== epoch || state !== 'running') return;
                         const resolve = resolveStart; resolveStart = undefined; resolve({ started: true, reason: 'started' }); report();
                     }, () => { if (generation === epoch) stop('startup_failed'); });
                 } catch (error) { stop('startup_failed'); }
             }, () => { if (generation === epoch) stop('authorization_unavailable'); });
-            return startPromise;
         }
         function stop(detail = 'stopped') {
             if (state === 'stopped' || state === 'stopping') return;
-            ++epoch; state = 'stopping'; reason = detail; reportPending = false; finitePending = false; transport.cancel(reason);
-            if (runId) transport.request('cancel', Object.assign({ run_id: runId, sequence: ++sequence }, leaseId ? { lease_id: leaseId } : {}), runId).catch(() => {});
+            ++epoch; state = 'stopping'; reason = detail; reportPending = false; finitePending = false; waitingForSlot = false; transport.cancel(reason, true);
+            if (runId) {
+                const cancelledRun = runId, identity = identityEpoch;
+                transport.request('cancel', Object.assign({ run_id: cancelledRun, sequence: ++sequence }, leaseId ? { lease_id: leaseId } : {}), cancelledRun)
+                    .then(response => { if (!closed && identity === identityEpoch) rememberHold(response.result, cancelledRun); }, () => {});
+            }
             transport.stop(); deadline = 0;
             if (resolveStart) { resolveStart({ started: false, reason }); resolveStart = undefined; }
             const cleanup = entered; entered = false;
@@ -213,15 +267,18 @@ function installAuthorization(host, forge, trustedKeys) {
             if (!running() || reportPending) return;
             if (expired()) { stop('permit_expired'); return; }
             const generation = epoch; reportPending = true; nextReport = Math.max(host._authorizationNow() + 1000, Math.min(host._authorizationNow() + 20000, deadline - 10000));
-            releasePendingUntil = Math.max(releasePendingUntil, Math.floor(Date.now() / 1000) + 300);
             transport.request('report', { sequence: ++sequence, complete: true, runs: [{ run_id: runId, lease_id: leaseId, ack_sequence: permitSequence, state: 'running' }] }).then(response => {
                 if (generation !== epoch || !running()) return; reportPending = false;
                 if (expired()) { stop('permit_expired'); return; }
                 try {
+                    rememberHold(response.result, runId);
                     if (response.result.allowed === false) { stop(response.result.code || 'denied'); return; }
+                    if (response.result.complete !== true) invalid();
                     const runs = response.result.runs; if (!Array.isArray(runs) || runs.length !== 1) invalid();
+                    rememberHold(runs[0], runId);
                     if (!runs[0].allowed) { stop(runs[0].code || 'denied'); return; }
                     applyPermit(response, runs[0]);
+                    if (generation !== epoch || !running()) return;
                     state = 'running'; reason = ''; retryAttempt = 0;
                 } catch (error) { stop('invalid_permit'); }
             }, () => { if (generation === epoch && running()) {
@@ -234,14 +291,19 @@ function installAuthorization(host, forge, trustedKeys) {
         }
         function pulse() {
             const now = host._authorizationNow();
-            if (state === 'starting' && now >= startDeadline) { stop('startup_timeout'); return; }
+            if (state === 'starting') {
+                if (waitingForSlot) {
+                    if (now >= nextAcquire || Date.now() >= retryWall) acquire();
+                } else if (now >= startDeadline || (entered && expired())) stop(entered ? 'startup_timeout' : 'authorization_timeout');
+                return;
+            }
             if (!running()) return;
             if (expired()) { stop('permit_expired'); return; }
             if (now >= nextReport && !reportPending) report();
         }
         function tick(tick) { if (!running() || expired()) return; try { if (bot.tick) bot.tick(tick); } catch (error) { stop('callback_failed'); } }
         const run = Object.freeze({ start, stop, complete: () => stop('completed'),
-            get status() { return state; }, get reason() { return reason; }, get active() { return running() && !expired(); },
+            get status() { return state; }, get reason() { return waitingForSlot ? waitingReason() : reason; }, get active() { return running() && !expired(); },
             get releasePendingUntil() { return releasePendingUntil > Math.floor(Date.now() / 1000) ? releasePendingUntil : 0; },
             async run(task) {
                 if (finitePending) return { started: false, reason: 'task_already_running' };
@@ -257,8 +319,9 @@ function installAuthorization(host, forge, trustedKeys) {
                 return result;
             },
             controls(panel) {
-                panel.label('Status', state).label('Reason', reason).button('Start', 0x415a0001).button('Stop', 0x415a0002);
-                if (!run.active && run.releasePendingUntil) panel.wrapped('A previous permit may reserve the slot for up to five minutes.');
+                panel.label('Status', state).label('Reason', run.reason).button('Start', 0x415a0001).button('Stop', 0x415a0002);
+                if (!run.active && run.releasePendingUntil) panel.wrapped('Last confirmed reservation: ' + Math.max(0, Math.ceil(run.releasePendingUntil - Date.now() / 1000)) + 's remaining');
+                if (!run.active && (reason === 'authorization_unavailable' || reason === 'authorization_timeout')) panel.wrapped('Reservation status is unavailable. Start checks capacity online.');
             },
             control(action) { if (action === 0x415a0001) { start(); return true; } if (action === 0x415a0002) { stop(); return true; } return false; },
             panel(id = 'run', title = 'Run') { return { id, title, build: panel => run.controls(panel), onAction: action => run.control(action) }; },
