@@ -110,6 +110,31 @@ close and cancellation is requested. A late reply cannot restart the bot: the
 user must explicitly Start again. The watchdog uses a suspend-aware clock and
 does not depend on the plugin callback loop.
 
+`authorization_expired` means that no verified renewal arrived before the last
+permit deadline; it does not mean the instance limit was reached. Native SDK
+renewal diagnostics record the failure category, recovery, and remaining permit
+time without logging credentials or proofs. The terminal reason stays unchanged.
+The controller preserves recognized runtime-context errors such as
+`runtime-build-denied` so a rejected artifact identity can be distinguished from
+a transport outage. It also forwards the HTTP status without response bodies;
+native diagnostics identify service-unavailable (503), rate-limit (429), and
+authentication (401/403) failures. Unsigned errors never replace a signed
+authorization decision.
+
+Publishing a newer plugin build must not invalidate refreshes for an older loaded
+build that remains approved, published, and unretired. The website must bind the
+refreshed context to the exact matching artifact and its approved dependencies.
+This server change does not require a plugin rebuild; the additional native
+diagnostics require rebuilding the plugin with the updated SDK.
+
+Routine website maintenance must keep the signed runtime authorization routes
+available, including credential refresh and gateway verification. A maintenance
+503 can otherwise consume the entire two-minute permit window and stop active
+runs even when capacity and entitlements are valid. The website deployment
+runbook distinguishes this from a full shutdown for incompatible runtime/schema
+changes. A real backend outage or full shutdown can still expire a run; neither
+the controller nor the plugin extends a permit locally.
+
 Changing the signed-in Titan account closes managed authorization in games opened
 by the previous account and clears entitlement snapshots. Reopen those game tabs
 under the new account. Switching back does not revive old Start requests. A

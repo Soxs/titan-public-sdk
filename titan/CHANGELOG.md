@@ -16,6 +16,14 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v161 -- Plugin diagnostic capture uploads
+
+- `+` Native `<titan/diagnostics.h>` and optional `titan.plugin-diagnostics.v1`
+  host service submit, poll, cancel and release bounded gzip recordings for the
+  calling plugin. Titan authenticates the request without exposing its token.
+- `~` Owner disable/unload and account changes cancel pending work. Existing
+  Native ABI records and minimum supported SDK 154 remain unchanged.
+
 ## v160 -- Managed plugin instances and verified entitlements
 
 - `+` Owner-bound `titan::instance` and `titan::entitlements`, standard controls,

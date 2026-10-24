@@ -38,6 +38,10 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v161 -- Owner-scoped diagnostic capture uploads.
+///   + Optional titan.plugin-diagnostics.v1 host capability; native diagnostics.h facade.
+///   ~ Host retains Titan credentials and upload workers; ABI records and floor 154 unchanged.
+///
 /// v160 -- Managed plugin instances and verified, owner-scoped entitlements.
 ///   + Optional titan.plugin-authorization.v1 capability; bundled CNG verifier.
 ///   ~ Native ABI v1 records and minimum supported SDK 154 are unchanged.
@@ -1902,7 +1906,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 160;
+constexpr uint32_t kSdkVersion = 161;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together

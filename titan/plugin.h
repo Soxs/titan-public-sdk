@@ -1413,5 +1413,5 @@ public:                                                                        \
     }                                                                          \
 private:
 
-/// Preload constructor-published services even when the plugin is disabled.
+/// Compatibility hint for older clients; current clients prepare all plugins at startup.
 #define TITAN_PRELOAD_PLUGIN() public: inline static constexpr bool kCatalogPreload = true; private:

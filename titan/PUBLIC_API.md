@@ -1,4 +1,4 @@
-# Titan Plugin SDK -- public symbol inventory (v160)
+# Titan Plugin SDK -- public symbol inventory (v161)
 
 ## Managed instances and entitlements (SDK 160)
 
@@ -1633,9 +1633,9 @@ to load plugins but do not deliver the absent optional callback.
 | `Plugin::panel(id, title, build)` | Register a side panel (constructor-time). Chain `.onAction(fn)`, `.icon(spec\|glyph)`, `.iconColor(argb)`, `.image(path\|bytes,len)`. A plugin may register up to 8 panels; the controller shows one nav button per panel. Panel content can use semantic helpers such as `section`, `status`, `primaryButton`, `inputPassword`, and `beginCollapsible`/`endCollapsible`. SDK 65+ (helpers expanded in SDK 72; named/tinted icons in SDK 80). |
 | `TITAN_PLUGIN_DEPS(TypeA, TypeB, ...)` | Declare load-order dependencies by plugin TYPE (RuneLite-style). Each type's static `kPluginId` is added to the dependency graph; the host loads them first and rejects cycles / missing deps. SDK 66+. |
 | `TITAN_PLUGIN_DEP_IDS("id", ...)` | Declare load-order dependencies by id STRING. Escape hatch for cross-language deps where the C++ type is unavailable; prefer `TITAN_PLUGIN_DEPS`. SDK 66+. |
-| `TITAN_PRELOAD_PLUGIN()` | Keep a native plugin eagerly loaded while disabled, for example when its constructor publishes a service. Otherwise native plugins with static metadata may load on first enable or settings inspection. |
+| `TITAN_PRELOAD_PLUGIN()` | Compatibility hint for older clients that defer native loading. Current clients prepare all native plugins during startup, including disabled plugins; the declaration remains accepted but is unnecessary. |
 | `TITAN_REGISTER_PLUGIN(ClassName, "id")` | Single-plugin DLL. Emits `TitanPlugin_QueryNative` plus static `TitanPluginIdStr` and `TitanPluginIdList` metadata. |
-| `TITAN_REGISTER_PLUGINS(ClassA, ClassB, ...)` | Multi-plugin DLL. `TitanPlugin_QueryNative` returns a module descriptor with count, per-index requirements, and an instance factory. Emits `TitanPluginIdList` and pointer-free `TitanPluginCatalog` data for discovery without executing the DLL. Use one registration macro per DLL and `titan_add_plugin(... SLUGS a b c ...)` for staging. A bundle materializes as one unit; any preload declaration keeps the whole bundle eager. |
+| `TITAN_REGISTER_PLUGINS(ClassA, ClassB, ...)` | Multi-plugin DLL. `TitanPlugin_QueryNative` returns a module descriptor with count, per-index requirements, and an instance factory. Emits `TitanPluginIdList` and pointer-free `TitanPluginCatalog` data for discovery without executing the DLL. Use one registration macro per DLL and `titan_add_plugin(... SLUGS a b c ...)` for staging. All instances in a bundle are prepared during startup, with settings available before enable. |
 | `TITAN_REQUIRE_NATIVE_INTERFACES(...)` | Declare required `{interfaceId, majorVersion, minStructSize}` contracts. Other domains remain optional. The C++ factory always requires the instance lifetime interface. |
 | `Plugin::onUnload()` | Final unload hook, independent of UI enabled state. Signal and join load-lifetime workers. Release operation-scoped service references before teardown; admissions are already stopped, so do not submit new work. |
 | `titan::BoolSetting` / `IntSetting` / `IntInputSetting` / `ColorSetting` / `ComboSetting` / `StringSetting` / `ProtectedStringSetting` / `ButtonSetting` / `MatrixSetting` | Constructor-registered plugin settings (`IntInputSetting` is an `IntSetting` typed into a number box with -/+ buttons, for exact values such as quantities; a controller that predates it shows "unsupported control". `ButtonSetting` is a value-less action button whose `onClick` runs on the game thread, SDK 98; `MatrixSetting` is a checkbox grid whose rows name the columns they have, SDK 135). `set()` / `reset()` / `setCell()` / `toggleCell()` persist the new value to the user's config (SDK 140); `setHidden()` changes visibility only. |
@@ -2127,6 +2127,45 @@ access to them is not required to use this SDK.
 | Combat automation | `plugins/auto_fighter/` | `titan::queries::npcs().nameContains`, `nearestTo`, `interact`, instance-based Break Handler safe-pause/resume participation |
 
 ---
+
+## Diagnostic captures (native SDK 161)
+
+Include `<titan/diagnostics.h>` and construct `titan::diagnostics::Client(owner)`
+after the host binds the plugin, for example in `onEnable`. `available()` detects
+the optional permanent host service `titan.plugin-diagnostics.v1`; older clients
+report unavailable without preventing the plugin from loading. The native ABI
+payload floor remains 154.
+
+`submit(name, sha256, gzip)` copies the capture into the host and returns an opaque
+ticket, or zero when unavailable, disabled, invalid or full. Names use
+`capture-YYYYMMDD-HHMMSS-SSS-<lowercase UUID>.jsonl`, checksums are lowercase
+SHA-256 of the exact gzip bytes, and each payload is at most 16 MiB. Poll returns
+`Pending`, `Saved`, `Retry`, `Auth`, `Rejected`, `Cancelled` or `Unavailable`.
+Only a matching server checksum receipt produces `Saved`. A caller may retry
+`Retry` using the same immutable bytes/name/hash; the host does not add a
+persistent retry queue. `release(ticket)` cancels and discards the handle.
+`cancel(ticket)` cancels pending work while preserving its cancelled status until
+release. All four operations are safe from plugin worker threads.
+
+The host derives the plugin slug and load generation from the owner, uploads to
+`POST /api/v1/client/plugins/{slug}/diagnostics` on the configured Titan website,
+and adds `X-Capture-Runtime: cpp`. Plugins supply neither URLs nor credentials.
+The service uses only the current injected runtime's website-verified Titan
+session; tokens and response bodies are never exposed through the SDK. Requests
+use verified TLS, reject redirects and share a 120-second overall deadline.
+
+Collect and submit only recordings covered by the user's recording preference.
+Cancel pending tickets immediately when consent is withdrawn. The host also
+cancels the owner's requests on disable/unload and fences all requests when the
+account identity changes. Host memory is bounded to 64 MiB, 16 outstanding
+handles overall and four per owner; release completed handles promptly. No
+plugin callback or payload pointer is retained by the HTTP worker.
+
+The website accepts bounded JSONL gzip captures with a `session_start` header
+(`schema: 1`, `pluginSlug`, `runtime`, `captureId`, `build`, format metadata)
+and matching `session_end`; plugin-specific records belong between them. This
+capability transports captures and does not expose an authenticated general HTTP
+client. Java and JavaScript bindings are not supplied by this native addition.
 
 ## Error handling
 
