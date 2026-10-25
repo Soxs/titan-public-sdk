@@ -471,6 +471,16 @@ struct HostRenderV1 {
     uint8_t (*getAnimationSmoothingEnabledApplied)() = nullptr;
     uint32_t (*getAnimationSmoothingError)() = nullptr;
 
+    // SDK 162 optional tail; each returns a CameraControlResult. Getters run
+    // on any thread, setters on the game thread only.
+    uint8_t (*getCameraPitchUnlocked)(uint8_t* outUnlocked) = nullptr;
+    uint8_t (*setCameraPitchUnlocked)(uint8_t unlocked) = nullptr;
+    uint8_t (*getViewportFov)(ViewportFovState* out) = nullptr;
+    uint8_t (*setViewportFov)(const ViewportFovState* value) = nullptr;
+    uint8_t (*getViewportFovClamp)(ViewportFovClampState* out) = nullptr;
+    uint8_t (*setViewportFovClamp)(const ViewportFovClampState* value) = nullptr;
+    uint8_t (*getCameraPitchTarget)(int32_t* outPitch) = nullptr;
+    uint8_t (*setCameraPitchTarget)(int32_t pitch) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostRenderV1>);
 static_assert(offsetof(HostRenderV1, header) == 0);
@@ -779,7 +789,18 @@ static_assert(offsetof(HintArrowActorTarget, worldViewPtr) == 24);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostRenderV1) == 424);
+static_assert(sizeof(HostRenderV1) == 488);
+static_assert(offsetof(HostRenderV1, getCameraPitchUnlocked) == 424);
+static_assert(offsetof(HostRenderV1, setCameraPitchUnlocked) == 432);
+static_assert(offsetof(HostRenderV1, getViewportFov) == 440);
+static_assert(offsetof(HostRenderV1, setViewportFov) == 448);
+static_assert(offsetof(HostRenderV1, getViewportFovClamp) == 456);
+static_assert(offsetof(HostRenderV1, setViewportFovClamp) == 464);
+static_assert(offsetof(HostRenderV1, getCameraPitchTarget) == 472);
+static_assert(offsetof(HostRenderV1, setCameraPitchTarget) == 480);
+static_assert(sizeof(ViewportFovState) == 8);
+static_assert(sizeof(ViewportFovClampState) == 16);
+static_assert(offsetof(ViewportFovClampState, zoomMin) == 8);
 static_assert(offsetof(HostRenderV1, isAnimationSmoothingAvailable) == 384);
 static_assert(offsetof(HostRenderV1, setAnimationSmoothingEnabled) == 392);
 static_assert(offsetof(HostRenderV1, getAnimationSmoothingEnabledRequested) == 400);
@@ -1154,7 +1175,15 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(setAnimationSmoothingEnabled) \
     X(getAnimationSmoothingEnabledRequested) \
     X(getAnimationSmoothingEnabledApplied) \
-    X(getAnimationSmoothingError)
+    X(getAnimationSmoothingError) \
+    X(getCameraPitchUnlocked) \
+    X(setCameraPitchUnlocked) \
+    X(getViewportFov) \
+    X(setViewportFov) \
+    X(getViewportFovClamp) \
+    X(setViewportFovClamp) \
+    X(getCameraPitchTarget) \
+    X(setCameraPitchTarget)
 
 #define TITAN_NATIVE_HOSTNAVIGATIONV1_MEMBERS(X) \
     X(getCollisionFlag) \

@@ -277,6 +277,29 @@ interface ScreenPoint {
 }
 
 /**
+ * The viewport_setfov (CS2 6200) projection scales. The game stores
+ * 128 * 2^(x / 256) of the script zoom x, so larger is closer and 0x80 is twice
+ * as far out as 0x100. `smallViewport` applies at viewport heights up to 334,
+ * `largeViewport` from 434, blended between. SDK 162.
+ */
+interface ViewportFov {
+    smallViewport: number;
+    largeViewport: number;
+}
+
+/**
+ * The viewport_clampfov (CS2 6202) bounds, natively 1 / 0x7FFF. Each frame the
+ * game keeps its zoom within [zoomMin, zoomMax] by moving the scale within
+ * [fovMin, fovMax], letter- or pillarboxing past them. SDK 162.
+ */
+interface ViewportFovClamp {
+    fovMin: number;
+    fovMax: number;
+    zoomMin: number;
+    zoomMax: number;
+}
+
+/**
  * Immutable state of the visible native world map. `viewport*` coordinates
  * are physical screen pixels; `logicalViewport*` coordinates are the game's
  * widget-frame units before `interfaceScale*` and `canvasOrigin*` are applied.
@@ -3148,7 +3171,13 @@ interface PanelElement {
         };
 
         const camera: {
+            /** Compass heading in 16384ths of a turn, [0, 16384). */
             readonly yaw: number;
+            /**
+             * Vertical tilt in 16384ths of a turn: [0x400, 0xBF8] normally,
+             * [1, 0x1040] with pitchUnlocked(); 0x1000 looks straight down.
+             * Hosts before SDK 162 reported yaw and pitch the other way round.
+             */
             readonly pitch: number;
             readonly zoom: number;
             readonly isValid: boolean;
@@ -3182,6 +3211,44 @@ interface PanelElement {
             readonly interfaceScaleX: number;
             /** Vertical interface-scale factor (1.0 when unavailable). SDK 109. */
             readonly interfaceScaleY: number;
+            /**
+             * Jagex's unlockCam flag: false keeps pitch in [0x400, 0xBF8]
+             * (about 22.5-67.3 degrees), true allows [1, 0x1040] (0x1000 is
+             * straight down). null when the host or revision lacks it. SDK 162.
+             */
+            pitchUnlocked(): boolean | null;
+            /**
+             * Writes the flag; the renderer applies the range next frame and the
+             * server can also change it. Game thread only; true when written. SDK 162.
+             */
+            setPitchUnlocked(unlocked: boolean): boolean;
+            /**
+             * The tilt camera input moves, which the renderer copies into
+             * `pitch` on the next frame; null when unavailable. SDK 162.
+             */
+            pitchTarget(): number | null;
+            /**
+             * Moves the camera's tilt, clamped to the range the unlock flag
+             * allows now ([0x400, 0xBF8], or [1, 0x1040] unlocked). The game
+             * clamps the tilt only when input moves it. Game thread only; true
+             * when written. SDK 162.
+             */
+            setPitchTarget(pitch: number): boolean;
+            /** The current viewport_setfov scales; null when unavailable. SDK 162. */
+            fov(): ViewportFov | null;
+            /**
+             * Writes both scales, truncated and clamped to [1, 0x7FFF]. Scripts
+             * calling viewport_setfov (scrolling, the zoom slider, layout
+             * changes) overwrite them. Game thread only; true when written. SDK 162.
+             */
+            setFov(value: ViewportFov): boolean;
+            /** The current viewport_clampfov bounds; null when unavailable. SDK 162. */
+            fovClamp(): ViewportFovClamp | null;
+            /**
+             * Writes the four bounds, each clamped to [1, 0x7FFF], with each
+             * maximum raised to its minimum. Game thread only; true when written. SDK 162.
+             */
+            setFovClamp(value: ViewportFovClamp): boolean;
         };
 
         /** Visible native world-map display state and transforms. SDK 113+. */

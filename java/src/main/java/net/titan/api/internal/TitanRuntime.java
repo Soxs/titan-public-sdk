@@ -200,6 +200,42 @@ public final class TitanRuntime {
         return backend == null || address == null ? null : backend.widgetActions(address);
     }
 
+    /** SDK 162 camera controls live on the Client, so snapshots read them live too. */
+    public static Boolean cameraPitchUnlocked() {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null ? null : backend.cameraPitchUnlocked();
+    }
+    public static boolean setCameraPitchUnlocked(boolean unlocked) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend != null && backend.setCameraPitchUnlocked(unlocked);
+    }
+    public static Integer cameraPitchTarget() {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null ? null : backend.cameraPitchTarget();
+    }
+    public static boolean setCameraPitchTarget(int pitch) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend != null && backend.setCameraPitchTarget(pitch);
+    }
+    public static int[] viewportFov() {
+        LiveStateBackend backend = liveStateBackend;
+        int[] values = backend == null ? null : backend.viewportFov();
+        return values != null && values.length == 2 ? values : null;
+    }
+    public static boolean setViewportFov(int smallViewport, int largeViewport) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend != null && backend.setViewportFov(smallViewport, largeViewport);
+    }
+    public static int[] viewportFovClamp() {
+        LiveStateBackend backend = liveStateBackend;
+        int[] values = backend == null ? null : backend.viewportFovClamp();
+        return values != null && values.length == 4 ? values : null;
+    }
+    public static boolean setViewportFovClamp(int fovMin, int fovMax, int zoomMin, int zoomMax) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend != null && backend.setViewportFovClamp(fovMin, fovMax, zoomMin, zoomMax);
+    }
+
     public static String actorOverheadText(Actor actor) {
         LiveStateBackend backend = liveStateBackend;
         return backend == null || actor == null || isDetachedSnapshot(actor) ? null : backend.actorOverheadText(actor.entityPtr());

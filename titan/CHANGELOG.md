@@ -16,6 +16,26 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v162 -- Camera pitch unlock and viewport field of view
+
+- `+` C++ `Camera::pitchUnlocked()` / `setPitchUnlocked()`, `pitchTarget()` /
+  `setPitchTarget()`, `fov()` / `setFov()` and `fovClamp()` / `setFovClamp()`,
+  with the same methods in JS/TS and Java, read and write Jagex's unlockCam
+  flag, the tilt camera input moves (clamped on write to the range the flag
+  allows), the two `viewport_setfov` (6200) projection scales and the four
+  `viewport_clampfov` (6202) bounds. Scales are
+  clamped to [1, 0x7FFF] and each clamp maximum is raised to its minimum. Reads
+  work on any thread; writes are game-thread only and take effect next frame.
+- `~` Optional `HostRenderV1` tail functions with new `ViewportFovState` and
+  `ViewportFovClampState` records; existing payload layouts and SDK floor 154
+  are unchanged, and older hosts or revisions without the `structs.Camera`
+  keys report unavailable.
+- `~` Camera `yaw()` / `pitch()` (C++, JS/TS, Java) now report the compass
+  heading and the vertical tilt. The analyzer exports `Camera.Yaw` / `Pitch`
+  swapped and hosts before SDK 162 passed them through, so plugins saw the tilt
+  as yaw and the heading as pitch. The fix is host-side, so it applies to every
+  plugin whatever SDK it was built with; `CameraState` is unchanged.
+
 ## v161 -- Plugin diagnostic capture uploads
 
 - `+` Native `<titan/diagnostics.h>` and optional `titan.plugin-diagnostics.v1`

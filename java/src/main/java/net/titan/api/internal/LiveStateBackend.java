@@ -16,6 +16,19 @@ public interface LiveStateBackend {
      */
     default String[] widgetActions(net.titan.api.WidgetAddress address) { return null; }
     default Integer actorOverheadTextCycles(long entityPtr) { return null; }
+    /** SDK 162 unlockCam flag; null when the host or revision lacks it. */
+    default Boolean cameraPitchUnlocked() { return null; }
+    /** SDK 162 game-thread write; true only when the host wrote it. */
+    default boolean setCameraPitchUnlocked(boolean unlocked) { return false; }
+    /** SDK 162 camera-input tilt; null when the host or revision lacks it. */
+    default Integer cameraPitchTarget() { return null; }
+    default boolean setCameraPitchTarget(int pitch) { return false; }
+    /** SDK 162 {smallViewport, largeViewport}; null when unavailable. */
+    default int[] viewportFov() { return null; }
+    default boolean setViewportFov(int smallViewport, int largeViewport) { return false; }
+    /** SDK 162 {fovMin, fovMax, zoomMin, zoomMax}; null when unavailable. */
+    default int[] viewportFovClamp() { return null; }
+    default boolean setViewportFovClamp(int fovMin, int fovMax, int zoomMin, int zoomMax) { return false; }
     <T> T current(T value);
     boolean exists(Object value);
     String identity(Object value);

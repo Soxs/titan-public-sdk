@@ -467,7 +467,11 @@ struct CameraSnapshot {
     int32_t posX = 0;
     int32_t posY = 0;
     int32_t posZ = 0;
+    /// Compass heading in 16384ths of a turn, [0, 16384).
     int32_t yaw = 0;
+    /// Vertical tilt in 16384ths of a turn: [0x400, 0xBF8] normally, [1, 0x1040]
+    /// with pitchUnlocked(); 0x1000 looks straight down. Hosts before SDK 162
+    /// reported yaw and pitch the other way round.
     int32_t pitch = 0;
     int32_t viewportW = 0;
     int32_t viewportH = 0;
@@ -489,6 +493,25 @@ struct InterfaceScale {
     bool valid = false;
 };
 
+/// SDK 162. The viewport_setfov (CS2 6200) projection scales: the game stores
+/// 128 * 2^(x / 256) of the script zoom x, so larger is closer and 0x80 is
+/// twice as far out as 0x100. smallViewport applies at viewport heights up to
+/// 334, largeViewport from 434, blended between. Camera::zoom() follows them.
+struct ViewportFov {
+    int16_t smallViewport = 0;
+    int16_t largeViewport = 0;
+};
+
+/// SDK 162. The viewport_clampfov (CS2 6202) bounds, natively 1 / 0x7FFF.
+/// Each frame the game keeps its zoom within [zoomMin, zoomMax] by moving the
+/// scale within [fovMin, fovMax], letter- or pillarboxing past them.
+struct ViewportFovClamp {
+    int16_t fovMin = 0;
+    int16_t fovMax = 0;
+    int16_t zoomMin = 0;
+    int16_t zoomMax = 0;
+};
+
 class CameraFacade {
 public:
     std::optional<CameraSnapshot> snapshot() const {
@@ -503,7 +526,9 @@ public:
         out.zoom = s.zoom; out.valid = true;
         return out;
     }
+    /// Compass heading; see CameraSnapshot::yaw.
     int32_t yaw() const { return snapshot().value_or(CameraSnapshot{}).yaw; }
+    /// Vertical tilt; see CameraSnapshot::pitch.
     int32_t pitch() const { return snapshot().value_or(CameraSnapshot{}).pitch; }
     int32_t zoom() const { return snapshot().value_or(CameraSnapshot{}).zoom; }
     /// World-space camera X position (sub-tile units). Added in SDK 39.
@@ -533,6 +558,75 @@ public:
     float interfaceScaleX() const { return interfaceScale().scaleX; }
     /// Convenience: vertical interface-scale factor (1.0 when unavailable).
     float interfaceScaleY() const { return interfaceScale().scaleY; }
+
+    /// SDK 162. Jagex's unlockCam flag: false keeps pitch in [0x400, 0xBF8]
+    /// (about 22.5-67.3 degrees), true allows [1, 0x1040] (0x1000 is straight
+    /// down). nullopt when the host or revision lacks it. Any thread.
+    std::optional<bool> pitchUnlocked() const {
+        auto* b = detail::backend();
+        uint8_t unlocked = 0;
+        if (!b || b->getCameraPitchUnlocked(&unlocked) != kOk) return std::nullopt;
+        return unlocked != 0;
+    }
+    /// SDK 162. Writes the flag; the renderer applies the new range next frame.
+    /// The server can also set or clear it. Game thread only; false when
+    /// unavailable, called elsewhere or the write was rejected.
+    bool setPitchUnlocked(bool unlocked) const {
+        auto* b = detail::backend();
+        return b && b->setCameraPitchUnlocked(unlocked ? 1 : 0) == kOk;
+    }
+    /// SDK 162. The tilt camera input moves, which the renderer copies into
+    /// pitch() on the next frame. nullopt when the host or revision lacks it.
+    /// Any thread.
+    std::optional<int32_t> pitchTarget() const {
+        auto* b = detail::backend();
+        int32_t value = 0;
+        if (!b || b->getCameraPitchTarget(&value) != kOk) return std::nullopt;
+        return value;
+    }
+    /// SDK 162. Moves the camera's tilt, clamped to the range the unlock flag
+    /// allows now ([0x400, 0xBF8], or [1, 0x1040] unlocked). The game clamps
+    /// the tilt only when input moves it, so after locking a camera tilted
+    /// past the locked range this puts it back inside. Game thread only.
+    bool setPitchTarget(int32_t pitch) const {
+        auto* b = detail::backend();
+        return b && b->setCameraPitchTarget(pitch) == kOk;
+    }
+    /// SDK 162. The current viewport_setfov scales; nullopt when unavailable.
+    /// Any thread.
+    std::optional<ViewportFov> fov() const {
+        auto* b = detail::backend();
+        TitanPluginSdk::ViewportFovState s{};
+        if (!b || b->getViewportFov(&s) != kOk) return std::nullopt;
+        return ViewportFov{static_cast<int16_t>(s.smallViewport), static_cast<int16_t>(s.largeViewport)};
+    }
+    /// SDK 162. Writes both scales, each clamped to [1, 0x7FFF]; the next frame
+    /// uses them. Any script calling viewport_setfov (scrolling, the zoom
+    /// slider, layout changes) overwrites them. Game thread only.
+    bool setFov(ViewportFov value) const {
+        auto* b = detail::backend();
+        const TitanPluginSdk::ViewportFovState s{value.smallViewport, value.largeViewport};
+        return b && b->setViewportFov(&s) == kOk;
+    }
+    /// SDK 162. The current viewport_clampfov bounds; nullopt when unavailable.
+    /// Any thread.
+    std::optional<ViewportFovClamp> fovClamp() const {
+        auto* b = detail::backend();
+        TitanPluginSdk::ViewportFovClampState s{};
+        if (!b || b->getViewportFovClamp(&s) != kOk) return std::nullopt;
+        return ViewportFovClamp{static_cast<int16_t>(s.fovMin), static_cast<int16_t>(s.fovMax),
+                                static_cast<int16_t>(s.zoomMin), static_cast<int16_t>(s.zoomMax)};
+    }
+    /// SDK 162. Writes the four bounds, each clamped to [1, 0x7FFF], with each
+    /// maximum raised to its minimum as viewport_clampfov does. Game thread only.
+    bool setFovClamp(ViewportFovClamp value) const {
+        auto* b = detail::backend();
+        const TitanPluginSdk::ViewportFovClampState s{value.fovMin, value.fovMax, value.zoomMin, value.zoomMax};
+        return b && b->setViewportFovClamp(&s) == kOk;
+    }
+
+private:
+    static constexpr uint8_t kOk = static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Ok);
 };
 
 namespace state { inline ::titan::CameraFacade camera() { return ::titan::CameraFacade{}; } }

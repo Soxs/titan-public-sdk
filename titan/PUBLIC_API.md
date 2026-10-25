@@ -1,4 +1,50 @@
-# Titan Plugin SDK -- public symbol inventory (v161)
+# Titan Plugin SDK -- public symbol inventory (v162)
+
+## Camera pitch unlock and field of view (SDK 162)
+
+`titan::state::camera()`, JS/TS `titan.state.camera` and Java `Camera` expose
+`pitchUnlocked()` / `setPitchUnlocked(bool)`, `pitchTarget()` /
+`setPitchTarget(int)`, `fov()` / `setFov(ViewportFov)` and `fovClamp()` /
+`setFovClamp(ViewportFovClamp)`. Reads return `std::nullopt`,
+`null` (JS) or an empty `Optional` (Java) when the host, the revision's
+`structs.Camera` keys or the client cannot supply the value; setters return
+true only when the host wrote it.
+
+- `yaw()` / `pitch()` report the compass heading and the vertical tilt. The
+  analyzer exports `Camera.Yaw` / `Pitch` swapped and hosts before SDK 162
+  passed them through; SDK 162 hosts correct them for every plugin.
+- `pitchUnlocked` is Jagex's `unlockCam` flag. Locked keeps pitch in
+  `[0x400, 0xBF8]` (about 22.5-67.3 degrees); unlocked allows `[1, 0x1040]`,
+  where `0x1000` looks straight down. The renderer applies a change from the
+  next frame. The server can set or clear it too, so a plugin that wants it
+  held re-applies it, and restores it only if it still holds the plugin's value.
+- `pitchTarget` is the tilt camera input moves; the renderer copies it into
+  `pitch()` on the next frame. The game clamps it only when input moves it, so
+  locking leaves a tilt outside the locked range where it is, and a fast
+  down-flick past 0 wraps to the top. `setPitchTarget` clamps to the range the
+  flag allows at the time of the call, which puts such a tilt back in range.
+- `ViewportFov{smallViewport, largeViewport}` are the `viewport_setfov` (CS2
+  6200) projection scales, stored as `128 * 2^(x / 256)` of the script zoom
+  `x`: larger is closer, `0x80` is twice as far out as `0x100`. The small scale
+  applies at viewport heights up to 334, the large from 434, blended between.
+  `camera().zoom()`, world-to-screen and overlays follow from the next frame.
+  Any script calling `viewport_setfov` (scrolling, the zoom slider, layout
+  changes) overwrites them. The scroll and slider limits are script-side
+  VarClientInts 1338/1339 (fixed) and 1340/1341 (resizable), which `CAMERA_DO_ZOOM`
+  (script 42) clamps to; lower 1338/1340 to let native zoom go further out.
+- `ViewportFovClamp{fovMin, fovMax, zoomMin, zoomMax}` are the
+  `viewport_clampfov` (CS2 6202) bounds, natively `1 / 0x7FFF`. Each frame the
+  layout keeps its zoom within `[zoomMin, zoomMax]` by moving the scale within
+  `[fovMin, fovMax]`, letter- or pillarboxing past them.
+- Setters clamp every value to `[1, 0x7FFF]` and raise each clamp maximum to
+  its minimum, as `viewport_clampfov` does. Reads run on any thread and are not
+  synchronised with the game; setters run on the game thread only and fail
+  elsewhere. Nothing is saved, and nothing is restored when a plugin unloads.
+
+The eight calls are optional `HostRenderV1` tail entries with new
+`ViewportFovState` / `ViewportFovClampState` records. Older hosts import them as
+null and report unavailable; existing payloads and the SDK floor are unchanged.
+See [offsets, zoom scripts and the Camera plugin](../../docs/camera_controls.md).
 
 ## Managed instances and entitlements (SDK 160)
 
@@ -1080,7 +1126,7 @@ auto-marshalled onto the game thread where required.
 | Factory | Returns | Highlights |
 | --- | --- | --- |
 | `titan::state::client()` | `ClientFacade` | `snapshot()`, `tick()`, `gameCycle()` (native 20 ms `Client.GameCycle`, distinct from `tick()`, SDK v125+), `plane()`, `playerCount()`, `sceneSizeX()` / `sceneSizeY()` (SDK v52+), `loggedIn()`, `localPlayer()`, `runEnergy()` (0-10000, SDK v45+), `weight()` (signed kg, SDK v45+), `accountType()`, `isIronman()` / `isIronMan()`, `isGroupIronman()` / `isGroupIronMan()` (SDK v50+), `currentWorldViewId()`, `currentWorldViewPtr()`, `worldViewPtr(id)`, `topLevelWorldViewPtr()`, top-level base/plane/scene plus projected local-player tile (SDK v85+), `isInInstance()`, `instanceTemplateChunks()` (SDK v81+), `getLocalDestinationLocation()` / `getWorldDestinationLocation()` (SDK v82+), `invokeMenuAction(opcode, id, p0, p1)` / `invokeMenuAction(MenuAction::Entry)` (SDK v37+) |
-| `titan::state::camera()` | `CameraFacade` | `snapshot()`, `yaw()`, `pitch()`, `zoom()`, `posX()` / `posY()` / `posZ()` world-space camera position (SDK v39+; fields were always in `CameraState`), `interfaceScale()` -> `InterfaceScale{scaleX, scaleY, canvasOriginX, canvasOriginY, valid}` plus `interfaceScaleX()` / `interfaceScaleY()` convenience -- live UI-frame -> physical scale factor for aligning plugin-drawn pixel geometry at 150%/200% in-game interface scaling (SDK v109+; identity 1.0 when unavailable) |
+| `titan::state::camera()` | `CameraFacade` | `pitchUnlocked()` / `setPitchUnlocked(bool)`, `pitchTarget()` / `setPitchTarget(int)`, `fov()` / `setFov(ViewportFov)`, `fovClamp()` / `setFovClamp(ViewportFovClamp)` (SDK v162; see [Camera pitch unlock and field of view](#camera-pitch-unlock-and-field-of-view-sdk-162)), `snapshot()`, `yaw()` (compass heading, `[0, 16384)`), `pitch()` (vertical tilt; heading and tilt were swapped before SDK v162), `zoom()`, `posX()` / `posY()` / `posZ()` world-space camera position (SDK v39+; fields were always in `CameraState`), `interfaceScale()` -> `InterfaceScale{scaleX, scaleY, canvasOriginX, canvasOriginY, valid}` plus `interfaceScaleX()` / `interfaceScaleY()` convenience -- live UI-frame -> physical scale factor for aligning plugin-drawn pixel geometry at 150%/200% in-game interface scaling (SDK v109+; identity 1.0 when unavailable) |
 | `titan::state::worldMap()` | `WorldMapFacade` | `snapshot()` returns coherent physical/logical viewports, the logical-to-physical interface transform, global centre, distinct current/target zoom, and validated logical pixels-per-tile scale. `worldToScreen` returns physical overlay pixels; `screenToWorld` inverse-transforms them before applying RLPL/RuneLite map math; scalar pixel/tile helpers use logical units (SDK 113). Returns unavailable atomically when any generated field, scale proof, native pointer/state, viewport, or transform is missing or inconsistent. |
 | `titan::state::hider()` | `HiderFacade` | `setPlayers(v)`, `setNpcs(v)`, `setSelf(v)`, `setScene(v)`, `isPlayersHidden()`, `isNpcsHidden()`, `isSelfHidden()`, `isSceneHidden()`; SDK 151 `setOtherPlanes(v)` (render only the local player's plane; returns false when unavailable), `isOtherPlanesHidden()`, `isPlaneHidingAvailable()` |
 | `titan::state::audio()` | `AudioFacade` | `setPlaybackDisabled(v)`, `playbackDisabled()` -- global discrete sound-effect suppression. Added in SDK 69. |

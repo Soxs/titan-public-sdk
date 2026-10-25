@@ -759,6 +759,40 @@ struct IBackend {
     virtual uint8_t getAnimationSmoothingEnabledApplied() { return 0; }
     virtual uint32_t getAnimationSmoothingError() { return 1; }
 
+    // SDK 162. Camera controls; each returns a CameraControlResult.
+    virtual uint8_t getCameraPitchUnlocked(uint8_t* outUnlocked) {
+        (void)outUnlocked;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t setCameraPitchUnlocked(uint8_t unlocked) {
+        (void)unlocked;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t getViewportFov(TitanPluginSdk::ViewportFovState* out) {
+        (void)out;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t setViewportFov(const TitanPluginSdk::ViewportFovState* value) {
+        (void)value;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t getViewportFovClamp(TitanPluginSdk::ViewportFovClampState* out) {
+        (void)out;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t setViewportFovClamp(const TitanPluginSdk::ViewportFovClampState* value) {
+        (void)value;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t getCameraPitchTarget(int32_t* outPitch) {
+        (void)outPitch;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    virtual uint8_t setCameraPitchTarget(int32_t pitch) {
+        (void)pitch;
+        return static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+
     virtual uint8_t isTextureSkippingAvailable() { return 0; }
     virtual uint8_t setTexturesDisabled(uint8_t disabled) { (void)disabled; return 0; }
     virtual uint8_t getTexturesDisabledRequested() { return 0; }

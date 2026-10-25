@@ -38,6 +38,26 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v162 -- Camera pitch unlock and viewport field of view
+///   + C++ Camera pitchUnlocked()/setPitchUnlocked(), pitchTarget()/
+///     setPitchTarget(), fov()/setFov() and fovClamp()/setFovClamp(), with the
+///     same methods in JS/TS and Java, read and write Jagex's unlockCam flag
+///     (pitch range [0x400, 0xBF8] locked, [1, 0x1040] unlocked), the tilt
+///     camera input moves (clamped on write to the range the flag allows), the
+///     two viewport_setfov (6200) projection scales and the four
+///     viewport_clampfov (6202) bounds. Scales are clamped to
+///     [1, 0x7FFF] and each clamp maximum is raised to its minimum. Reads work
+///     on any thread; writes are game-thread only and take effect next frame.
+///   ~ Optional HostRenderV1 tail functions with new ViewportFovState and
+///     ViewportFovClampState records; existing payload layouts and SDK floor
+///     154 are unchanged, and older hosts or revisions without the
+///     structs.Camera keys report unavailable.
+///   ~ Camera yaw()/pitch() (C++, JS/TS, Java) now report the compass heading
+///     and the vertical tilt. The analyzer exports Camera.Yaw/Pitch swapped and
+///     hosts before SDK 162 passed them through, so plugins saw the tilt as yaw
+///     and the heading as pitch. The fix is in the host, so it applies to every
+///     plugin whatever SDK it was built with; CameraState is unchanged.
+///
 /// v161 -- Owner-scoped diagnostic capture uploads.
 ///   + Optional titan.plugin-diagnostics.v1 host capability; native diagnostics.h facade.
 ///   ~ Host retains Titan credentials and upload workers; ABI records and floor 154 unchanged.
@@ -1906,7 +1926,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 161;
+constexpr uint32_t kSdkVersion = 162;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -2761,12 +2781,42 @@ struct CameraState {
     int32_t posX = 0;
     int32_t posY = 0;
     int32_t posZ = 0;
+    /// Compass heading, [0, 16384). Before SDK 162 hosts swapped yaw and pitch.
     int32_t yaw = 0;
+    /// Vertical tilt: [0x400, 0xBF8], or [1, 0x1040] with the pitch unlock.
     int32_t pitch = 0;
     int32_t viewportW = 0;
     int32_t viewportH = 0;
     int32_t zoom = 0;
     uint8_t valid = 0;
+};
+
+/// SDK 162 camera-control result. Reads return Ok or Unavailable (the host,
+/// revision or client cannot supply the field); writes are synchronous, never
+/// merely queued.
+enum class CameraControlResult : uint8_t {
+    Unavailable = 0, Ok = 1, WrongThread = 2, InvalidArgument = 3, WriteFailed = 4
+};
+
+/// SDK 162. viewport_setfov (CS2 6200) projection scales, stored natively as
+/// int16 128 * 2^(x / 256) of the script zoom x: larger is closer, 0x100 is the
+/// native fallback. smallViewport applies at viewport heights up to 334,
+/// largeViewport from 434, blended between. Writes clamp each to [1, 0x7FFF].
+struct ViewportFovState {
+    int32_t smallViewport = 0;
+    int32_t largeViewport = 0;
+};
+
+/// SDK 162. viewport_clampfov (CS2 6202) bounds, in argument order. The
+/// per-frame layout keeps its zoom within [zoomMin, zoomMax] by changing the
+/// scale within [fovMin, fovMax], letter- or pillarboxing past them. Natively
+/// 1 / 0x7FFF; writes clamp each to [1, 0x7FFF] and raise a maximum to its
+/// minimum.
+struct ViewportFovClampState {
+    int32_t fovMin = 0;
+    int32_t fovMax = 0;
+    int32_t zoomMin = 0;
+    int32_t zoomMax = 0;
 };
 
 /// Item definition snapshot for cross-DLL transfer.
@@ -5193,6 +5243,23 @@ struct HostApi {
     uint8_t (*getAnimationSmoothingEnabledRequested)() = nullptr;
     uint8_t (*getAnimationSmoothingEnabledApplied)() = nullptr;
     uint32_t (*getAnimationSmoothingError)() = nullptr;
+
+    // SDK 162. Camera controls on the Client object; each returns a
+    // CameraControlResult. Getters run on any thread and write their output
+    // only for Ok. Setters are game-thread only (WrongThread elsewhere), act
+    // synchronously and take effect from the next frame. Nothing is saved or
+    // restored for the plugin: the server and game scripts also write these.
+    uint8_t (*getCameraPitchUnlocked)(uint8_t* outUnlocked) = nullptr;
+    uint8_t (*setCameraPitchUnlocked)(uint8_t unlocked) = nullptr;
+    uint8_t (*getViewportFov)(ViewportFovState* out) = nullptr;
+    uint8_t (*setViewportFov)(const ViewportFovState* value) = nullptr;
+    uint8_t (*getViewportFovClamp)(ViewportFovClampState* out) = nullptr;
+    uint8_t (*setViewportFovClamp)(const ViewportFovClampState* value) = nullptr;
+    // The tilt camera input moves (the renderer follows it next frame). The
+    // setter clamps to the range the unlock flag allows now, because the game
+    // re-clamps the field only when input moves it.
+    uint8_t (*getCameraPitchTarget)(int32_t* outPitch) = nullptr;
+    uint8_t (*setCameraPitchTarget)(int32_t pitch) = nullptr;
 
 };
 

@@ -421,6 +421,47 @@ public:
         return api_ && api_->getAnimationSmoothingError ? api_->getAnimationSmoothingError() : 1;
     }
 
+    uint8_t getCameraPitchUnlocked(uint8_t* outUnlocked) override {
+        return api_ && api_->getCameraPitchUnlocked
+            ? api_->getCameraPitchUnlocked(outUnlocked)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t setCameraPitchUnlocked(uint8_t unlocked) override {
+        return api_ && api_->setCameraPitchUnlocked
+            ? api_->setCameraPitchUnlocked(unlocked)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t getViewportFov(TitanPluginSdk::ViewportFovState* out) override {
+        return api_ && api_->getViewportFov
+            ? api_->getViewportFov(out)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t setViewportFov(const TitanPluginSdk::ViewportFovState* value) override {
+        return api_ && api_->setViewportFov
+            ? api_->setViewportFov(value)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t getViewportFovClamp(TitanPluginSdk::ViewportFovClampState* out) override {
+        return api_ && api_->getViewportFovClamp
+            ? api_->getViewportFovClamp(out)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t setViewportFovClamp(const TitanPluginSdk::ViewportFovClampState* value) override {
+        return api_ && api_->setViewportFovClamp
+            ? api_->setViewportFovClamp(value)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t getCameraPitchTarget(int32_t* outPitch) override {
+        return api_ && api_->getCameraPitchTarget
+            ? api_->getCameraPitchTarget(outPitch)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+    uint8_t setCameraPitchTarget(int32_t pitch) override {
+        return api_ && api_->setCameraPitchTarget
+            ? api_->setCameraPitchTarget(pitch)
+            : static_cast<uint8_t>(TitanPluginSdk::CameraControlResult::Unavailable);
+    }
+
     uint8_t isTextureSkippingAvailable() override {
         return api_ && api_->isTextureSkippingAvailable ? api_->isTextureSkippingAvailable() : 0;
     }
