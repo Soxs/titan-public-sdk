@@ -16,6 +16,28 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v165 -- Captured scene-world metadata
+
+- `+` Optional `HostSceneRendererV1` tail query supplies terrain source
+  coordinates, overlay/underlay IDs, original HSL, entity definitions and effect
+  emitters for the exact callback frame and context.
+- `+` An owner-scoped subscription copies at most 64 varbit/varp identities;
+  the producer captures their values for environment predicates.
+- `~` Existing payloads and compatibility floor 154 remain unchanged.
+
+## v164 -- Exact-frame scene environment
+
+- `+` Optional `HostSceneRendererV1` tail query returns the captured root-scene
+  camera transform only inside the matching render callback.
+- `~` Existing payloads and compatibility floor 154 remain unchanged.
+
+## v163 -- Native scene renderer
+
+- `+` Optional `HostSceneRendererV1` and `<titan/scene_renderer.h>` provide owned
+  immutable scene frames, renderer registration, status and GL resource retirement.
+- `~` Existing payloads, `HostRenderV1` and the SDK compatibility floor 154 remain
+  unchanged. Composition and native draw suppression are separate capabilities.
+
 ## v162 -- Camera pitch unlock and viewport field of view
 
 - `+` C++ `Camera::pitchUnlocked()` / `setPitchUnlocked()`, `pitchTarget()` /

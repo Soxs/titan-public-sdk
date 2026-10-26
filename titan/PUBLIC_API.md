@@ -1,4 +1,62 @@
-# Titan Plugin SDK -- public symbol inventory (v162)
+# Titan Plugin SDK -- public symbol inventory (v165)
+
+## Native scene renderer (SDK 163)
+
+`<titan/scene_renderer.h>` exposes optional `HostSceneRendererV1` (`0x1008`).
+The host owns game hooks, native memory reads and immutable frame snapshots;
+the native plugin owns its OpenGL renderer. Existing `HostRenderV1`, published
+payload records and the minimum SDK version are unchanged. Java/JavaScript
+render callbacks are not exposed by this initial native interface.
+
+| Operation | Contract |
+| --- | --- |
+| `titan::scene::available()` | The negotiated host exposes the required optional operations. |
+| `registerRenderer(owner, callbacks, token)` | One owner registers a synchronous GL callback; use the plugin instance as owner. |
+| `setEnabled(owner, token, enabled)` | Requests capture/composition; inspect status for availability and frame readiness. |
+| `status(out)` | Reports capabilities, captured counts, frame/generation, last result and diagnostic. |
+| `unregisterRenderer(owner, token)` | Revokes admission and drains callbacks before returning. Never call from the render callback. |
+| `retireResources(contextKey, ids, count)` | Copies resource IDs into a host queue for deletion on the owning context. No plugin callback is retained. |
+| `environment(frameId, contextKey, out)` | SDK 164 optional query; copies the exact active callback's captured root-scene camera transform. Fails outside that callback, for mismatched IDs, or absent/ambiguous root scene. |
+| `worldData(frameId, contextKey, out)` | SDK 165 optional query; returns owned terrain identities, source tiles including instances, entity metadata, root-scene effect emitters and subscribed variables. Views expire on callback return. |
+| `worldVariables(owner, token, values, count)` | SDK 165 optional subscription; call outside `render()`. Copies at most 64 variable kinds/IDs; the producer reads their values. Kind 1 is varbit, kind 2 is varp; value -1 means unavailable. |
+
+The render callback receives `SceneRenderFrame` on the verified GL owner before
+native UI. Views expire on return. Geometry is local to each mesh; instances
+contain column-major local-to-camera matrices, including nested WorldViews.
+Projection is a column-major camera-to-OpenGL clip matrix. RGBA words have red
+in the low byte. Texture IDs retain native identity and are not atlas layers.
+Face priority and signed depth bias retain their separate meanings.
+`SceneFrameEnvironment::cameraToScene` is column-major, converts camera-space
+positions into root scene-local coordinates (+Y up), and includes camera
+translation. These are native scene units, not global world tiles; no base tile
+origin is implied. Its `cameraPosition` is that matrix's translation. A successful
+query sets flags bit 0 and rootWorldViewId 0. The query reads only the immutable
+captured frame; it is permitted inside `render()` and performs no game API call.
+`SceneFrameWorldData` is a separate SDK 165 record; it does not extend the v1
+frame. Terrain metadata matches the emitted index-triplet order and mesh
+revision. Its original HSL precedes host RGB conversion. Terrain flag bit 1
+means source world coordinates are verified; absent mapping must not be
+interpreted as world tile (0,0). Entity orientation uses 2048 units per turn.
+Effects contain copied projectile/graphics-object positions in root scene units
+with Y up. They expose no native pointers. World flags mark a valid root origin
+(1), valid player focus (2), and an instanced root (4). World-data queries reject
+different frame/context IDs and calls outside the active renderer lease.
+Depth bias uses native signed units: +1 subtracts five from camera-space Z
+before projection, including the projection's W calculation. Texture
+`scrollU`/`scrollV` are UV velocities per second; already-scrolled decoded pixels
+use zero to avoid applying native texture animation twice.
+
+Render to a private framebuffer before composing. `Skipped` or `Failed` must
+leave the native scene colour intact. Composition does not imply native scene
+suppression; check `SceneNativeSuppression` independently. The host
+advertises this capability only when its exact-frame native scene replacement
+hook is available. Native scene drawing is skipped only after a complete,
+matching captured frame is successfully composed; otherwise native drawing
+continues. Native scene production, picking and UI remain active. The callback
+must restore GL state and must not call
+game or lifecycle APIs. Context keys identify generations and are never native
+pointers. Drain callbacks, then queue GL resource retirement during disable or
+unload; the host also revokes registrations when their owner is removed.
 
 ## Camera pitch unlock and field of view (SDK 162)
 
@@ -1676,7 +1734,7 @@ to load plugins but do not deliver the absent optional callback.
 | --- | --- |
 | `titan::Plugin` | Base class; inherit and override lifecycle + event virtuals |
 | `TITAN_PLUGIN_META(id, name, description, author, version, defaultEnabled)` | Declare all plugin metadata in one macro. Supersedes `TITAN_PLUGIN` (SDK 23). |
-| `Plugin::panel(id, title, build)` | Register a side panel (constructor-time). Chain `.onAction(fn)`, `.icon(spec\|glyph)`, `.iconColor(argb)`, `.image(path\|bytes,len)`. A plugin may register up to 8 panels; the controller shows one nav button per panel. Panel content can use semantic helpers such as `section`, `status`, `primaryButton`, `inputPassword`, and `beginCollapsible`/`endCollapsible`. SDK 65+ (helpers expanded in SDK 72; named/tinted icons in SDK 80). |
+| `Plugin::panel(id, title, build)` | Register a side panel (constructor-time). Chain `.onAction(fn)`, `.icon(spec\|glyph)`, `.iconColor(argb)`, `.image(path\|bytes,len)`. A plugin may register up to 8 panels; the controller shows one nav button per visible panel. Panels start visible; `SidePanel::setVisible(bool)` changes visibility at runtime and `isVisible()` reads it. Hidden panels are omitted from enumeration and reject new content/action/icon requests; an already-running callback may finish. This uses existing ABI callbacks and needs no host or payload change. Panel content can use semantic helpers such as `section`, `status`, `primaryButton`, `inputPassword`, and `beginCollapsible`/`endCollapsible`. SDK 65+ (helpers expanded in SDK 72; named/tinted icons in SDK 80). |
 | `TITAN_PLUGIN_DEPS(TypeA, TypeB, ...)` | Declare load-order dependencies by plugin TYPE (RuneLite-style). Each type's static `kPluginId` is added to the dependency graph; the host loads them first and rejects cycles / missing deps. SDK 66+. |
 | `TITAN_PLUGIN_DEP_IDS("id", ...)` | Declare load-order dependencies by id STRING. Escape hatch for cross-language deps where the C++ type is unavailable; prefer `TITAN_PLUGIN_DEPS`. SDK 66+. |
 | `TITAN_PRELOAD_PLUGIN()` | Compatibility hint for older clients that defer native loading. Current clients prepare all native plugins during startup, including disabled plugins; the declaration remains accepted but is unnecessary. |

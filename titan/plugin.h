@@ -830,18 +830,20 @@ inline void thunkDestroy(void* ud) {
 }
 
 inline uint32_t thunkGetPanels(void* ud, TitanNativeRecords::PanelDescriptor* out, uint32_t max) {
+    if (!out || !max) return 0;
     Plugin* p = self(ud);
     const auto& panels = p->_panels();
-    const uint32_t count = static_cast<uint32_t>(
-        (std::min)(panels.size(), static_cast<size_t>(max)));
-    for (uint32_t i = 0; i < count; ++i) {
+    uint32_t count = 0;
+    for (const auto& panel : panels) {
+        if (!panel->isVisible()) continue;
+        if (count == max) break;
         TitanNativeRecords::PanelDescriptor d = {};
-        copyFixed(d.id, sizeof(d.id), panels[i]->id());
-        copyFixed(d.title, sizeof(d.title), panels[i]->title());
-        copyFixed(d.icon, sizeof(d.icon), panels[i]->iconGlyph());
-        d.iconColor = panels[i]->iconColor();
-        d.hasImageIcon = panels[i]->hasImage() ? 1 : 0;
-        out[i] = d;
+        copyFixed(d.id, sizeof(d.id), panel->id());
+        copyFixed(d.title, sizeof(d.title), panel->title());
+        copyFixed(d.icon, sizeof(d.icon), panel->iconGlyph());
+        d.iconColor = panel->iconColor();
+        d.hasImageIcon = panel->hasImage() ? 1 : 0;
+        out[count++] = d;
     }
     return count;
 }
@@ -850,7 +852,7 @@ inline uint32_t thunkGetPanelElements(void* ud, const char* panelId,
                                       TitanNativeRecords::PanelElement* out, uint32_t max) {
     Plugin* p = self(ud);
     SidePanel* sp = p->_findPanel(panelId);
-    if (!sp) return 0;
+    if (!sp || !sp->isVisible() || !out || !max) return 0;
     Panel panel;
     sp->build(panel);
     const auto& elements = panel._elements();
@@ -864,7 +866,7 @@ inline void thunkOnPanelAction(void* ud, const char* panelId, int32_t actionId,
                                const TitanNativeRecords::Value* value) {
     Plugin* p = self(ud);
     SidePanel* sp = p->_findPanel(panelId);
-    if (!sp) return;
+    if (!sp || !sp->isVisible()) return;
     TitanNativeRecords::Value v = {};
     if (value) v = *value;
     sp->action(actionId, v);
@@ -874,7 +876,7 @@ inline uint32_t thunkGetPanelIcon(void* ud, const char* panelId,
                                   uint8_t* out, uint32_t maxBytes) {
     Plugin* p = self(ud);
     SidePanel* sp = p->_findPanel(panelId);
-    if (!sp) return 0;
+    if (!sp || !sp->isVisible()) return 0;
     return sp->iconBytes(out, maxBytes);
 }
 

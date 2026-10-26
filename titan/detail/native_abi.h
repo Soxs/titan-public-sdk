@@ -147,6 +147,7 @@ inline constexpr uint64_t kHostRenderId = 0x1004;
 inline constexpr uint64_t kHostNavigationId = 0x1005;
 inline constexpr uint64_t kHostDefinitionExtrasId = 0x1006;
 inline constexpr uint64_t kHostHtmlUiId = 0x1007;
+inline constexpr uint64_t kHostSceneRendererId = 0x1008;
 inline constexpr uint64_t kPluginCoreId = 0x2001;
 inline constexpr uint64_t kPluginUiId = 0x2002;
 inline constexpr uint64_t kPluginEventsId = 0x2003;
@@ -484,6 +485,24 @@ struct HostRenderV1 {
 };
 static_assert(std::is_standard_layout_v<HostRenderV1>);
 static_assert(offsetof(HostRenderV1, header) == 0);
+
+struct HostSceneRendererV1 {
+    InterfaceHeader header{sizeof(HostSceneRendererV1), 1};
+    uint8_t (*sceneRendererRegister)(const void*, const SceneRendererCallbacks*, uint64_t*) = nullptr;
+    uint8_t (*sceneRendererUnregister)(const void*, uint64_t) = nullptr;
+    uint8_t (*sceneRendererSetEnabled)(const void*, uint64_t, uint8_t) = nullptr;
+    uint8_t (*sceneRendererGetStatus)(SceneRendererStatus*) = nullptr;
+    uint8_t (*sceneRendererRetireResources)(uint64_t, const SceneGlResource*, uint32_t) = nullptr;
+    uint8_t (*sceneRendererGetFrameEnvironment)(uint64_t, uint64_t, SceneFrameEnvironment*) = nullptr;
+    uint8_t (*sceneRendererGetFrameWorldData)(uint64_t, uint64_t, SceneFrameWorldData*) = nullptr;
+    uint8_t (*sceneRendererSetWorldVariables)(const void*, uint64_t, const SceneWorldVariable*, uint32_t) = nullptr;
+};
+static_assert(std::is_standard_layout_v<HostSceneRendererV1>);
+static_assert(offsetof(HostSceneRendererV1, sceneRendererRegister) == 8);
+static_assert(offsetof(HostSceneRendererV1, sceneRendererGetFrameEnvironment) == 48);
+static_assert(offsetof(HostSceneRendererV1, sceneRendererGetFrameWorldData) == 56);
+static_assert(offsetof(HostSceneRendererV1, sceneRendererSetWorldVariables) == 64);
+static_assert(sizeof(HostSceneRendererV1) == 72);
 
 struct HostNavigationV1 {
     InterfaceHeader header{sizeof(HostNavigationV1), 1};
@@ -1278,6 +1297,7 @@ public:
     HostNavigationV1 navigation{};
     HostDefinitionExtrasV1 definitionExtras{};
     HostHtmlUiV1 htmlUi{};
+    HostSceneRendererV1 sceneRenderer{};
 
     explicit HostInterfaceSet(const HostApi& api,
                               const void* extensionContext = nullptr,
@@ -1306,6 +1326,14 @@ public:
         definitionExtras.copyWidgetName = api.copyWidgetName;
         definitionExtras.copyWidgetActions = api.copyWidgetActions;
         htmlUi.capabilities = api.htmlUiCapabilities;
+        sceneRenderer.sceneRendererRegister = api.sceneRendererRegister;
+        sceneRenderer.sceneRendererUnregister = api.sceneRendererUnregister;
+        sceneRenderer.sceneRendererSetEnabled = api.sceneRendererSetEnabled;
+        sceneRenderer.sceneRendererGetStatus = api.sceneRendererGetStatus;
+        sceneRenderer.sceneRendererRetireResources = api.sceneRendererRetireResources;
+        sceneRenderer.sceneRendererGetFrameEnvironment = api.sceneRendererGetFrameEnvironment;
+        sceneRenderer.sceneRendererGetFrameWorldData = api.sceneRendererGetFrameWorldData;
+        sceneRenderer.sceneRendererSetWorldVariables = api.sceneRendererSetWorldVariables;
     }
     HostInterfaceSet(const HostInterfaceSet&) = delete;
     HostInterfaceSet& operator=(const HostInterfaceSet&) = delete;
@@ -1335,6 +1363,8 @@ private:
                         || self.definitionExtras.copyWidgetActions
                     ? &self.definitionExtras.header : nullptr;
             case kHostHtmlUiId: return self.htmlUi.capabilities ? &self.htmlUi.header : nullptr;
+            case kHostSceneRendererId:
+                return self.sceneRenderer.sceneRendererRegister ? &self.sceneRenderer.header : nullptr;
             default: break;
             }
         }
@@ -1452,6 +1482,19 @@ inline bool importHostApi(const InterfaceProviderV1* provider, HostApi& out) {
     {
         const auto* table = queryInterface(provider, kHostHtmlUiId);
         out.htmlUiCapabilities = readMember<decltype(out.htmlUiCapabilities)>(table, offsetof(HostHtmlUiV1, capabilities));
+    }
+    {
+        const auto* table = queryInterface(provider, kHostSceneRendererId);
+#define TITAN_IMPORT_SCENE(name) out.name = readMember<decltype(out.name)>(table, offsetof(HostSceneRendererV1, name));
+        TITAN_IMPORT_SCENE(sceneRendererRegister)
+        TITAN_IMPORT_SCENE(sceneRendererUnregister)
+        TITAN_IMPORT_SCENE(sceneRendererSetEnabled)
+        TITAN_IMPORT_SCENE(sceneRendererGetStatus)
+        TITAN_IMPORT_SCENE(sceneRendererRetireResources)
+        TITAN_IMPORT_SCENE(sceneRendererGetFrameEnvironment)
+        TITAN_IMPORT_SCENE(sceneRendererGetFrameWorldData)
+        TITAN_IMPORT_SCENE(sceneRendererSetWorldVariables)
+#undef TITAN_IMPORT_SCENE
     }
     return true;
 }

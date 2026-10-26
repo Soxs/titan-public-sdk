@@ -38,6 +38,16 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v165 -- Optional captured scene-world metadata and variable subscriptions.
+///   + Terrain source coordinates/IDs/HSL, entity identities and effect emitters.
+///   + Bounded producer-thread variable snapshots for environment predicates.
+///   ~ Existing payloads and compatibility floor 154 remain unchanged.
+/// v164 -- Optional exact-frame root-scene environment query.
+///   + HostSceneRendererV1 tail query returns captured camera-to-scene transform.
+///   ~ Existing payloads and compatibility floor 154 remain unchanged.
+/// v163 -- Optional native SceneRenderer v1 capture and composition interface.
+///   + Owned immutable scene frames, renderer registration and GL retirement.
+///   + Existing payloads, HostRenderV1 and the compatibility floor are unchanged.
 /// v162 -- Camera pitch unlock and viewport field of view
 ///   + C++ Camera pitchUnlocked()/setPitchUnlocked(), pitchTarget()/
 ///     setPitchTarget(), fov()/setFov() and fovClamp()/setFovClamp(), with the
@@ -1919,6 +1929,7 @@
 #include "native_records.h"
 #include "actor_data_abi.h"
 #include "html_ui_abi.h"
+#include "../scene_renderer_types.h"
 
 /// Private ABI namespace. Public plugin code should use `namespace titan` instead.
 namespace TitanPluginSdk {
@@ -1926,7 +1937,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 162;
+constexpr uint32_t kSdkVersion = 165;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5260,6 +5271,18 @@ struct HostApi {
     // re-clamps the field only when input moves it.
     uint8_t (*getCameraPitchTarget)(int32_t* outPitch) = nullptr;
     uint8_t (*setCameraPitchTarget)(int32_t pitch) = nullptr;
+
+    // Optional SceneRenderer v1. New payloads/interface; existing ABI records
+    // and the SDK compatibility floor are unchanged.
+    uint8_t (*sceneRendererRegister)(const void* owner, const SceneRendererCallbacks*, uint64_t* outToken) = nullptr;
+    uint8_t (*sceneRendererUnregister)(const void* owner, uint64_t token) = nullptr;
+    uint8_t (*sceneRendererSetEnabled)(const void* owner, uint64_t token, uint8_t enabled) = nullptr;
+    uint8_t (*sceneRendererGetStatus)(SceneRendererStatus*) = nullptr;
+    uint8_t (*sceneRendererRetireResources)(uint64_t contextKey, const SceneGlResource*, uint32_t count) = nullptr;
+    /// SDK 164 optional tail. Exact active render callback only; no game-memory reads.
+    uint8_t (*sceneRendererGetFrameEnvironment)(uint64_t frameId, uint64_t contextKey, SceneFrameEnvironment*) = nullptr;
+    uint8_t (*sceneRendererGetFrameWorldData)(uint64_t frameId, uint64_t contextKey, SceneFrameWorldData*) = nullptr;
+    uint8_t (*sceneRendererSetWorldVariables)(const void*, uint64_t, const SceneWorldVariable*, uint32_t) = nullptr;
 
 };
 

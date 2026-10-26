@@ -11,6 +11,7 @@
 #include "detail/abi.h"
 #include "detail/host.h"
 
+#include <atomic>
 #include <cstdint>
 #include <cstring>
 #include <fstream>
@@ -428,6 +429,12 @@ public:
         return *this;
     }
 
+    /// Hide the panel's navigation entry and refuse new content, icon and
+    /// action requests. A callback already running may finish. Visibility is
+    /// safe to update from settings while the host enumerates panels.
+    void setVisible(bool visible) noexcept { visible_.store(visible, std::memory_order_release); }
+    bool isVisible() const noexcept { return visible_.load(std::memory_order_acquire); }
+
     const std::string& id() const { return id_; }
     const std::string& title() const { return title_; }
     const std::string& iconGlyph() const { return iconGlyph_; }
@@ -473,6 +480,7 @@ private:
     std::vector<uint8_t> imageBytes_;
     std::function<void(Panel&)> build_;
     ActionFn action_;
+    std::atomic<bool> visible_{true};
     mutable std::vector<uint8_t> loadedImage_;
 };
 
