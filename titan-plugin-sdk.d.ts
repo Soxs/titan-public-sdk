@@ -1786,9 +1786,11 @@ interface OverheadTextChangedEvent {
     readonly gameTick: number;
 }
 
-/** Delivered to `onAnimationChanged` when the native client accepts an actor
- * animation field change. Same-animation resets and rejected native requests
- * are filtered before dispatch. Added in SDK 78. */
+/** Primary sequence assignment notification, including equal-ID assignments and
+ * repeated clears. With validated ActorAnimationEvents offsets, packet writes
+ * coalesce per surviving actor and expose its final animation. Ordinary frame/loop
+ * request restarts and rejected requests stay silent. Older bundles have logged
+ * request-only coverage. Added in SDK 78; event payload layout is unchanged. */
 interface AnimationChangedEvent {
     /** Resolved actor object, or null if the actor no longer resolves. */
     readonly actor: Actor | null;
@@ -1800,9 +1802,9 @@ interface AnimationChangedEvent {
     readonly indexOrId: number;
     /** Resolved actor name, or empty when unresolved. */
     readonly actorName: string;
-    /** Previous raw Actor.Animation id. */
+    /** Raw ID before the first observed assignment (first write in a packet). */
     readonly oldAnimation: number;
-    /** New raw Actor.Animation id accepted by the native setter. */
+    /** Current raw ID when this actor's notification is captured. */
     readonly newAnimation: number;
     /** Current game tick captured at dispatch, or 0 if unavailable. */
     readonly gameTick: number;

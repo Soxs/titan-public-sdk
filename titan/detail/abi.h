@@ -3497,10 +3497,11 @@ struct ActorSpotAnimEvent {
     int32_t gameTick = 0;
 };
 
-/// Event payload delivered to plugins when the native client accepts an
-/// actor animation change through ACTOR_ANIMATION / SetAnimation. Same-value
-/// resets and rejected lower-priority native requests are filtered by comparing
-/// Actor::Animation before and after the original setter returns.
+/// Primary sequence assignment notification, including equal-ID assignments and
+/// repeated clears. With the validated ActorAnimationEvents offset contract,
+/// packet assignments coalesce per surviving actor; newAnimation is its final ID.
+/// Same-positive-ID frame/loop request restarts and rejected requests stay silent.
+/// Older offset bundles provide request-only coverage and log that limitation.
 struct AnimationChangedEvent {
     uint8_t actorType = EntityType::NONE;
     uint8_t reserved[7] = {};
@@ -5436,9 +5437,10 @@ struct PluginApi {
     /// before dispatch. This is distinct from hitsplats/damage.
     void (*onActorSpotAnim)(void* userData, const ActorSpotAnimEvent* event) = nullptr;
 
-    /// SDK 78+. Called when the native client accepts an actor animation field
-    /// change through ACTOR_ANIMATION / SetAnimation. Fires only when the
-    /// post-original Actor::Animation value differs from the pre-call value.
+    /// SDK 78+. Called for observed actor animation ID changes through
+    /// ACTOR_ANIMATION / SetAnimation or the local-player
+    /// wrapper, including repeated clears (-1 to -1). Same-positive-ID progress
+    /// resets and rejected requests do not emit; other native writers are not hooked.
     void (*onAnimationChanged)(void* userData,
                                const AnimationChangedEvent* event) = nullptr;
 

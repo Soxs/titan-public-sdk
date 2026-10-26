@@ -140,8 +140,9 @@ no meaningful frame cycle). `frame` preserves the signed native frame, including
 the `-1` sentinel. Test `active()` and `frame() == 0` in C++/Java, or `active &&
 frame === 0` in JS, to distinguish a real frame zero from missing data. Idle or
 completed sequences return `Inactive`, `animationId = frame = -1` and zero timing.
-This polling API does not change `onAnimationChanged`: equal animation IDs still
-produce no event. Sampling frequency and callback phase determine which resets
+This polling API does not change `onAnimationChanged`: same-positive-ID frame/loop
+restarts produce no event, while accepted clears emit even for `-1` to `-1`.
+Sampling frequency and callback phase determine which resets
 can be observed; live fast-attack parity must be checked in the relevant callback.
 
 C++ `frameCycle()` is `std::optional<int32_t>`. Java exposes
@@ -1643,7 +1644,7 @@ class.
 | `SoundPlayedEvent` | `void onSoundPlayed(SoundPlayedEvent&)` (`consume()` marks the event handled for handler ordering; use `state::audio()` for playback suppression). Fires when the client plays a synth sound effect or a MIDI jingle (`event.kind()`). Added in SDK 69. |
 | `HitsplatAppliedEvent` | `void onHitsplatApplied(const HitsplatAppliedEvent&)` -- applied hitsplats with `actor()` resolving to a `Player`, `Npc`, or empty actor when unresolved. Added in SDK 74; native signature corrected in SDK 76. |
 | `ActorSpotAnimEvent` | `void onActorSpotAnim(const ActorSpotAnimEvent&)` -- actor-attached spot animations with `actor()` resolving to a `Player`, `Npc`, or empty actor when unresolved. Clear/removal ids are filtered. Added in SDK 76. |
-| `AnimationChangedEvent` | `void onAnimationChanged(const AnimationChangedEvent&)` -- accepted actor animation field changes with `actor()` resolving to a `Player`, `Npc`, or empty actor when unresolved. Same-animation resets and rejected native requests are filtered. Added in SDK 78. |
+| `AnimationChangedEvent` | `void onAnimationChanged(const AnimationChangedEvent&)` -- primary sequence assignments, including natural completion, equal-ID installer calls, and repeated clears (`-1` to `-1`). With validated `ActorAnimationEvents` offsets, NPC/player packet writes coalesce once per surviving actor in active-index order and expose its final animation; other assignments emit individually. Ordinary same-positive-ID frame/loop request restarts and rejected requests stay silent. Older bundles retain logged request-only coverage. Added in SDK 78; payload layout unchanged. |
 | `ItemContainerChangedEvent` | `void onItemContainerChanged(const ItemContainerChangedEvent&)` -- tick-level diff of mapped containers. Added in SDK 26. |
 | `MouseButtonEvent` | `void onMousePressed(MouseButtonEvent&)` / `void onMouseReleased(MouseButtonEvent&)` -- real (non-synthetic) mouse button press/release with client-area `x()/y()`, `button()`, and `KeyboardMods` `modifiers()`. `consume()` on a PRESS suppresses the native click and its paired release; `consume()` on a RELEASE is handler-ordering only (never suppresses, so the game can't be stranded down-without-up). Suppression covers the game's WndProc (V1) pipeline only -- the low-level (V2) pipeline still observes real hardware input. Fires on the INPUT thread -- copy fields out, act from `onClientTick`. Added in SDK 115. |
 | -- | `void onNpcSpawned(const Npc&)` / `onNpcDespawned(const Npc&)` |
