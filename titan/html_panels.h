@@ -80,6 +80,18 @@ public:
     }
     HtmlSidePanel& onMessage(MessageFn callback) { mutableMetadata(); callback_ = std::move(callback); return *this; }
     const std::string& id() const noexcept { return descriptor_.id; }
+    // A user-initiated request to reveal this side panel in its owning client.
+    // Safe from plugin workers; true means recorded, not already displayed.
+    // Older controllers ignore the optional request; state remains available.
+    bool requestOpen() noexcept {
+        if (descriptor_.kind != TitanHtmlUi::SurfaceKind::SidePanel) return false;
+        auto value = openRequest_.load();
+        while (value != UINT64_MAX) {
+            if (openRequest_.compare_exchange_weak(value, value + 1)) return true;
+        }
+        return false;
+    }
+    uint64_t _openRequest() const noexcept { return openRequest_.load(); }
     const TitanHtmlUi::Bundle& bundle() const noexcept { return bundle_; }
     const TitanHtmlUi::SurfaceDescriptor& descriptor() const noexcept { return descriptor_; }
     TitanHtmlUi::UpdateQueue& _updates() noexcept { return queue_; }
@@ -106,6 +118,7 @@ private:
     TitanHtmlUi::UpdateQueue queue_;
     MessageFn callback_;
     std::atomic<bool> visible_{true};
+    std::atomic<uint64_t> openRequest_{0};
     std::atomic<uint64_t> dimensions_{(uint64_t{220} << 32) | 160};
     bool frozen_ = false;
 };

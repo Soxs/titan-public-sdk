@@ -24,10 +24,33 @@ page.icon("lucide:code").onMessage([this](const titan::HtmlPanelMessage& message
 });
 page.setState(R"({"count":1})");
 page.postMessage("updated", R"({"count":1})", "request-1");
+// Call only for an explicit user action, such as a custom menu lookup.
+page.requestOpen();
 auto& hud = htmlOverlayPanel("tools", bundle);
 hud.setSize(320, 200);
 hud.setVisible(true);
 ```
+
+SDK 170 lets any registered side panel request opening, whether it uses HTML or
+native controls. In C++, use `SidePanel::requestOpen()`,
+`HtmlSidePanel::requestOpen()`, or the owning plugin's `requestPanelOpen(id)`.
+Java uses `Panels.of(this).requestOpen(id)` from `net.titan.api.panel`; JS/TS
+uses `titan.sidePanels.requestOpen(owner, id)`, with the owning registered plugin
+object, or `this.requestPanelOpen(id)` in class plugins. A successful return records the
+request; it does not mean the controller has already displayed the panel.
+
+The controller reveals the requested panel in its owning client tab on the next
+plugin snapshot, including an inactive HTML surface or a collapsed sidebar.
+Requests are consumed once per client epoch and plugin load generation. Disabled
+or unloaded plugins cannot steal focus, and requests do not switch game tabs.
+Call after explicit user actions; if several panels request before one snapshot,
+the last changed panel in snapshot order wins. Unknown IDs and HTML overlay IDs
+are rejected. Hidden native panel handles reject requests.
+
+Native support is an optional append-only `PluginUiV1` callback, independent of
+HTML renderer availability. The earlier HTML interface tail remains compatible.
+Older hosts ignore requests and retain manual panel access. Native payloads and
+the minimum supported SDK 154 remain unchanged.
 
 ```java
 @PluginDescriptor(id="tools", name="Tools", description="Packaged HTML tools",
@@ -615,7 +638,7 @@ From `java`, run the runtime tests and packaged samples against this checkout's
 SDK version (the quoted dotted property is important in PowerShell):
 
 ```powershell
-./gradlew.bat --no-daemon :titan-java-runtime-core:test :titan-java-embedded:test :titan-sample-plugin:jar :titan-java-embedded:fatJar -PtitanGenerateGamevals=false '-PtitanSdkVersion=0.1.78'
+./gradlew.bat --no-daemon :titan-java-runtime-core:test :titan-java-embedded:test :titan-sample-plugin:jar :titan-java-embedded:fatJar -PtitanGenerateGamevals=false '-PtitanSdkVersion=0.1.98'
 ```
 
 The isolated real-renderer suite avoids private walker dependencies:

@@ -16,6 +16,16 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v170 -- Universal side-panel opening requests
+
+- `+` Native and HTML side panels request opening through C++
+  `SidePanel::requestOpen()`, `HtmlSidePanel::requestOpen()`, or
+  `Plugin::requestPanelOpen(id)`, Java `Panels.of(this).requestOpen(id)`, and
+  JS/TS `Plugin.requestPanelOpen(id)`.
+- `+` Optional append-only `PluginUiV1::panelOpenRequest` works without an HTML
+  renderer; the HTML-specific optional tail remains compatible.
+- `~` Existing native payloads and minimum supported SDK 154 remain unchanged.
+
 ## v169 -- JavaScript menu editing parity
 
 - `+` JavaScript generation-safe menu entries, swapping, custom opcodes and

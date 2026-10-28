@@ -326,6 +326,16 @@ public:
         return ref;
     }
 
+    /// Request any registered native or HTML side panel in this plugin.
+    /// True records the request; the controller selects it asynchronously.
+    /// Unknown IDs, hidden panels, and overlays return false.
+    bool requestPanelOpen(const char* id) noexcept {
+        if (auto* panel = _findPanel(id)) return panel->requestOpen();
+        if (auto* panel = _findHtml(TitanHtmlUi::SurfaceKind::SidePanel, id))
+            return panel->requestOpen();
+        return false;
+    }
+
     /// Register embedded HTML resources. Metadata/callbacks are configured in
     /// the constructor; state/messages may be published throughout the lifetime.
     HtmlSidePanel& htmlPanel(const char* id, const char* title, const HtmlPanelBundle& bundle) {
@@ -1013,6 +1023,14 @@ template <TitanHtmlUi::SurfaceKind Kind>
 inline uint32_t thunkHtmlIcon(void* ud, const char* id, uint32_t offset, uint8_t* out, uint32_t capacity) {
     const auto* p = self(ud)->_findHtml(Kind, id); return p ? copyHtmlBytes(p->descriptor().iconPng, offset, out, capacity) : 0;
 }
+inline uint64_t thunkHtmlPanelOpenRequest(void* ud, const char* id) {
+    auto* panel = self(ud)->_findHtml(TitanHtmlUi::SurfaceKind::SidePanel, id);
+    return panel ? panel->_openRequest() : 0;
+}
+inline uint64_t thunkPanelOpenRequest(void* ud, const char* id) {
+    if (auto* panel = self(ud)->_findPanel(id)) return panel->_openRequest();
+    return thunkHtmlPanelOpenRequest(ud, id);
+}
 template <TitanHtmlUi::SurfaceKind Kind>
 inline TitanPluginSdk::HtmlUiCallbacks htmlCallbacks() {
     return {&GuardedPluginCallback<&thunkHtmlDescriptors<Kind>>::invoke,
@@ -1029,7 +1047,11 @@ inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outAp
     outApi->userData = instance;
     if (instance) {
         instance->_freezeHtml();
-        if (!instance->_htmlPanels().empty()) outApi->htmlPanels = htmlCallbacks<TitanHtmlUi::SurfaceKind::SidePanel>();
+        outApi->panelOpenRequest = &GuardedPluginCallback<&thunkPanelOpenRequest>::invoke;
+        if (!instance->_htmlPanels().empty()) {
+            outApi->htmlPanels = htmlCallbacks<TitanHtmlUi::SurfaceKind::SidePanel>();
+            outApi->htmlPanelOpenRequest = &GuardedPluginCallback<&thunkHtmlPanelOpenRequest>::invoke;
+        }
         if (!instance->_htmlOverlays().empty()) outApi->htmlOverlays = htmlCallbacks<TitanHtmlUi::SurfaceKind::Overlay>();
     }
 

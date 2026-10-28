@@ -513,6 +513,7 @@ as a JS/TS in-source asset map. A released plugin needs no loose UI files.
 | Operation | C++ | Java | JS / TypeScript |
 | --- | --- | --- | --- |
 | Side panel | `Plugin::htmlPanel(id, title, HtmlPanelBundle)` | repeatable `@HtmlSidePanel` | `panels: [{kind: "html", id, title, bundle}]` |
+| Request native or HTML side panel (SDK 170) | `sidePanel.requestOpen()` or `Plugin::requestPanelOpen(id)` | `Panels.of(this).requestOpen(id)` | `titan.sidePanels.requestOpen(owner, id)` or `Plugin.requestPanelOpen(id)` |
 | Overlay | `Plugin::htmlOverlayPanel(id, bundle, HtmlOverlayOptions)` | repeatable `@HtmlOverlayPanel` | `this.htmlOverlayPanel({id, bundle})` or `htmlOverlays: [{kind: "html", id, bundle}]` |
 | Canonical state | `panel.setState(json)` | `HtmlPanels.of(this).setState(id, json)` | `titan.htmlPanels.setState(this, id, value)` |
 | Transient message | `panel.postMessage(type, json, correlationId)` | `HtmlPanels.of(this).postMessage(id, type, json, correlationId)` | `titan.htmlPanels.postMessage(this, id, type, value, correlationId)` |

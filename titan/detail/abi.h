@@ -38,6 +38,11 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v170 -- Universal side-panel opening requests.
+///   + Native and HTML side panels can request opening in C++, Java and JS.
+///   + SidePanel/HtmlSidePanel::requestOpen, Plugin::requestPanelOpen and an
+///     optional PluginUiV1 tail, independent of HTML renderer support.
+///   ~ Existing payloads and compatibility floor154 unchanged.
 /// v169 -- JavaScript menu editing parity.
 ///   + JS generation-safe menu entries, swaps, custom opcodes and click callbacks.
 ///   ~ Native interfaces, payloads and compatibility floor154 unchanged.
@@ -1951,7 +1956,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 169;
+constexpr uint32_t kSdkVersion = 170;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5549,9 +5554,14 @@ struct PluginApi {
     /// of the plugin's UI enabled state. No new work may be submitted.
     void (*prepareUnload)(void* userData) = nullptr;
 
-    // Local views only. Frozen PluginUiV1 and PanelDescriptor stay unchanged.
+    // Local views only. Frozen PanelDescriptor payload stays unchanged.
     HtmlUiCallbacks htmlPanels{};
     HtmlUiCallbacks htmlOverlays{};
+    // Optional native HTML panel-interface tail; not a frozen payload field.
+    uint64_t (*htmlPanelOpenRequest)(void*, const char* panelId) = nullptr;
+    // SDK 170 optional PluginUiV1 tail, shared by native and HTML side panels.
+    // Returns a monotonic per-panel counter, zero until the first request.
+    uint64_t (*panelOpenRequest)(void*, const char* panelId) = nullptr;
 
     /// SDK 157. Real key input on the synchronous input/message-pump thread.
     /// First consumer/replacer wins. See KeyInputEvent for paired lifecycle.

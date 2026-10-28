@@ -218,6 +218,16 @@ capability return `UNAVAILABLE`.
 
 ## Packaged HTML sidebars and overlays (0.1.74+)
 
+Java SDK 0.1.98 provides `net.titan.api.panel.Panels.of(this).requestOpen("tools")`
+for both `@SidePanel` and `@HtmlSidePanel`. Call it while the plugin is enabled,
+for example in a menu action. It requests selection and expansion of the owning
+client's sidebar without switching game tabs. Unknown IDs, disabled or retired
+instances and older runtimes return false; true means accepted, not yet shown.
+Keep the owner-bound facade on the plugin or pass it to worker helpers. Native
+panels do not require the HTML renderer. The embedded adapter polls only request
+counters at most once every 100 ms; delivery also depends on the next host and
+controller update. Disabling discards requests not yet handed to the host.
+
 `@HtmlSidePanel` is separate from the existing ImGui `@SidePanel`. Both kinds
 share eight sidebar slots and one ID namespace. Repeatable `@HtmlOverlayPanel`
 declarations have eight slots in a separate overlay namespace; their IDs must

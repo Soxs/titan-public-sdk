@@ -207,6 +207,7 @@ struct HostHtmlUiV1 {
 struct PluginHtmlPanelsV1 {
     InterfaceHeader header{sizeof(PluginHtmlPanelsV1), 1};
     HtmlUiCallbacks callbacks{};
+    uint64_t (*openRequest)(void*, const char* panelId) = nullptr;
 };
 struct PluginHtmlOverlaysV1 {
     InterfaceHeader header{sizeof(PluginHtmlOverlaysV1), 1};
@@ -216,7 +217,7 @@ inline HtmlUiCallbacks importHtmlCallbacks(const InterfaceProviderV1* provider, 
     const auto* table = queryInterface(provider, id);
     // This check must precede forming any reference to trailing fields: an
     // older provider may allocate only its physically short prefix.
-    if (!table || table->structSize < sizeof(PluginHtmlPanelsV1)) return {};
+    if (!table || table->structSize < offsetof(PluginHtmlPanelsV1, openRequest)) return {};
     auto callbacks = readMember<HtmlUiCallbacks>(table, offsetof(PluginHtmlPanelsV1, callbacks));
     return callbacks.complete() ? callbacks : HtmlUiCallbacks{};
 }
@@ -224,7 +225,8 @@ static_assert(std::is_standard_layout_v<HostHtmlUiV1>);
 static_assert(std::is_standard_layout_v<PluginHtmlPanelsV1>);
 static_assert(std::is_standard_layout_v<PluginHtmlOverlaysV1>);
 static_assert(sizeof(HostHtmlUiV1) == 16);
-static_assert(sizeof(PluginHtmlPanelsV1) == 88 && sizeof(PluginHtmlOverlaysV1) == 88);
+static_assert(sizeof(PluginHtmlPanelsV1) == 96 && sizeof(PluginHtmlOverlaysV1) == 88);
+static_assert(offsetof(PluginHtmlPanelsV1, openRequest) == 88);
 static_assert(offsetof(PluginHtmlPanelsV1, callbacks) == 8 && offsetof(PluginHtmlOverlaysV1, callbacks) == 8);
 
 // Separately negotiated optional data reads, added without a payload layout
@@ -606,6 +608,8 @@ struct PluginUiV1 {
     uint32_t (*getPanelElements)(void* userData, const char* panelId, TitanNativeRecords::PanelElement* outElements, uint32_t maxElements) = nullptr;
     void (*onPanelAction)(void* userData, const char* panelId, int32_t actionId, const TitanNativeRecords::Value* value) = nullptr;
     uint32_t (*getPanelIcon)(void* userData, const char* panelId, uint8_t* outBytes, uint32_t maxBytes) = nullptr;
+    // SDK 170 optional tail. Polling is read-only and must not run user code.
+    uint64_t (*panelOpenRequest)(void* userData, const char* panelId) = nullptr;
 };
 static_assert(std::is_standard_layout_v<PluginUiV1>);
 static_assert(offsetof(PluginUiV1, header) == 0);
@@ -968,12 +972,13 @@ static_assert(offsetof(PluginCoreV1, prepareUnload) == 128);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(PluginUiV1) == 48);
+static_assert(sizeof(PluginUiV1) == 56);
 static_assert(offsetof(PluginUiV1, getPanels) == 8);
 static_assert(offsetof(PluginUiV1, renderOverlay) == 16);
 static_assert(offsetof(PluginUiV1, getPanelElements) == 24);
 static_assert(offsetof(PluginUiV1, onPanelAction) == 32);
 static_assert(offsetof(PluginUiV1, getPanelIcon) == 40);
+static_assert(offsetof(PluginUiV1, panelOpenRequest) == 48);
 #endif
 
 // ABI v1 golden offsets: append only; never update an existing offset.
@@ -1293,7 +1298,8 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(renderOverlay) \
     X(getPanelElements) \
     X(onPanelAction) \
-    X(getPanelIcon)
+    X(getPanelIcon) \
+    X(panelOpenRequest)
 
 #define TITAN_NATIVE_PLUGINEVENTSV1_MEMBERS(X) \
     X(onGameTick) \
@@ -1454,6 +1460,7 @@ public:
         TITAN_NATIVE_PLUGINEVENTSV1_MEMBERS(TITAN_NATIVE_ASSIGN)
 #undef TITAN_NATIVE_ASSIGN
         htmlPanels.callbacks = api.htmlPanels;
+        htmlPanels.openRequest = api.htmlPanelOpenRequest;
         htmlOverlays.callbacks = api.htmlOverlays;
 #define TITAN_NATIVE_ASSIGN(name) menuEvents.name = api.name;
         TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS(TITAN_NATIVE_ASSIGN)
@@ -1599,6 +1606,11 @@ inline bool importPluginApi(const PluginDescriptorV1* descriptor, PluginApi& out
     }
     out.htmlPanels = importHtmlCallbacks(provider, kPluginHtmlPanelsId);
     out.htmlOverlays = importHtmlCallbacks(provider, kPluginHtmlOverlaysId);
+    if (out.htmlPanels.complete()) {
+        const auto* table = queryInterface(provider, kPluginHtmlPanelsId);
+        out.htmlPanelOpenRequest = readMember<decltype(out.htmlPanelOpenRequest)>(
+            table, offsetof(PluginHtmlPanelsV1, openRequest));
+    }
     {
         const auto* table = queryInterface(provider, kPluginMenuEventsId);
 #define TITAN_NATIVE_IMPORT(name) out.name = readMember<decltype(out.name)>(table, offsetof(PluginMenuEventsV1, name));

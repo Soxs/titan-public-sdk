@@ -2611,6 +2611,9 @@ class Plugin {
      * `buildPanel` / `onPanelAction` model.
      */
     panels?: PanelDef[];
+    /** SDK 170: reveal an own native or HTML side panel. False for disabled,
+     * unregistered/retired owners, unknown IDs, or an exhausted request counter. */
+    requestPanelOpen(id: string): boolean;
     /** Up to eight embedded HTML HUD overlays; default input is click-through. */
     htmlOverlays?: HtmlOverlayDef[];
     readonly isEnabled: boolean;
@@ -3160,6 +3163,10 @@ interface PanelElement {
     /** Short labels over this tab's thumbnail on the Home grid. SDK 142+. */
     const previewPills: PreviewPillsFacade;
     const htmlPanels: HtmlPanelsFacade;
+    /** Renderer-independent, owner-bound requests for native and HTML panels. */
+    const sidePanels: {
+        requestOpen(plugin: object, id: string): boolean;
+    };
     const htmlOverlays: HtmlOverlaysFacade;
     const HtmlInput: { readonly ClickThrough: 0; readonly Buttons: 1; readonly Scroll: 2; readonly Text: 4 };
 

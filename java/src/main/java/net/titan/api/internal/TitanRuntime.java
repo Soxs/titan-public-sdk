@@ -43,6 +43,7 @@ public final class TitanRuntime {
     private static volatile CrossTabBackend crossTabBackend;
     private static volatile PreviewPillBackend previewPillBackend;
     private static volatile HtmlUiBackend htmlUiBackend;
+    private static volatile PanelBackend panelBackend;
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -50,6 +51,16 @@ public final class TitanRuntime {
         new LinkedHashMap<>();
 
     private TitanRuntime() {}
+
+    public static PanelBackend getPanelBackend() {
+        PanelBackend value = panelBackend;
+        return value == null ? PanelBackend.UNAVAILABLE : value;
+    }
+
+    public static void setPanelBackend(PanelBackend backend) { panelBackend = backend; }
+    public static void clearPanelBackend(PanelBackend backend) {
+        if (panelBackend == backend) panelBackend = null;
+    }
 
     public static HtmlUiBackend getHtmlUiBackend() {
         HtmlUiBackend value = htmlUiBackend;

@@ -435,6 +435,20 @@ public:
     void setVisible(bool visible) noexcept { visible_.store(visible, std::memory_order_release); }
     bool isVisible() const noexcept { return visible_.load(std::memory_order_acquire); }
 
+    /// Request this panel in its owning client tab after an explicit user action.
+    /// Safe from plugin workers; true means recorded, not already displayed.
+    /// Hidden panels reject requests. Older hosts retain manual panel access.
+    bool requestOpen() noexcept {
+        if (!isVisible()) return false;
+        auto value = openRequest_.load(std::memory_order_relaxed);
+        while (value != UINT64_MAX) {
+            if (openRequest_.compare_exchange_weak(value, value + 1,
+                    std::memory_order_relaxed)) return true;
+        }
+        return false;
+    }
+    uint64_t _openRequest() const noexcept { return openRequest_.load(std::memory_order_relaxed); }
+
     const std::string& id() const { return id_; }
     const std::string& title() const { return title_; }
     const std::string& iconGlyph() const { return iconGlyph_; }
@@ -481,6 +495,7 @@ private:
     std::function<void(Panel&)> build_;
     ActionFn action_;
     std::atomic<bool> visible_{true};
+    std::atomic<uint64_t> openRequest_{0};
     mutable std::vector<uint8_t> loadedImage_;
 };
 
