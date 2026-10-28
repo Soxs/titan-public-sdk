@@ -38,6 +38,15 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v168 -- Native foreground-aware overlay layers.
+///   + AboveAll/ABOVE_ALL appends layer 2 above native menus and tooltips.
+///   ~ AboveWidgets remains layer 1, below native foreground; floor154 unchanged.
+/// v167 -- Owned item sprites and alpha-mask outlines.
+///   + Optional HostItemSpritesV1: asynchronous ARGB copy and overlay image drawing.
+///   + sprites::item/outline/draw; existing native payloads and floor154 unchanged.
+/// v166 -- Optional generation-safe menu editing and per-entry callbacks.
+///   + RuneLite-style menu entries, ordering and menu lifecycle events.
+///   + HostMenuEditingV1 and PluginMenuEventsV1; existing payloads and floor154 unchanged.
 /// v165 -- Optional captured scene-world metadata and variable subscriptions.
 ///   + Terrain source coordinates/IDs/HSL, entity identities and effect emitters.
 ///   + Bounded producer-thread variable snapshots for environment predicates.
@@ -1928,6 +1937,8 @@
 
 #include "native_records.h"
 #include "actor_data_abi.h"
+#include "menu_editing_abi.h"
+#include "item_sprite_abi.h"
 #include "html_ui_abi.h"
 #include "../scene_renderer_types.h"
 
@@ -1937,7 +1948,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 165;
+constexpr uint32_t kSdkVersion = 168;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -2002,7 +2013,10 @@ inline constexpr ProjectileActorRefAbi decodeProjectileActorRef(int32_t raw) {
 /// Render layer constants for the per-overlay renderOverlay(layer) dispatch.
 namespace RenderLayerAbi {
     constexpr uint8_t ABOVE_SCENE   = 0;
+    /// Above ordinary widgets, below native menus and tooltips.
     constexpr uint8_t ABOVE_WIDGETS = 1;
+    /// Above native menus and tooltips.
+    constexpr uint8_t ABOVE_ALL     = 2;
 }
 
 /// Anchor ordinals for OverlayPanel. Mirrored by titan::Anchor in
@@ -5020,7 +5034,7 @@ struct HostApi {
     // --- SDK 131: full-frame game screenshot -------------------------
     /// Queue one capture of the game's presented frame -- the same image the
     /// controller's /tabs command returns: the full backbuffer after the
-    /// AboveWidgets overlay pass, PNG-encoded. The pixels are read back on
+    /// AboveAll overlay pass, PNG-encoded. The pixels are read back on
     /// the next presented frame and encoded on a worker thread, so poll for
     /// ScreenshotPhase::Ready. At most kScreenshotMaxUnreleased handles may
     /// be outstanding; release each one. A request that never sees a
@@ -5285,6 +5299,40 @@ struct HostApi {
     uint8_t (*sceneRendererGetFrameWorldData)(uint64_t frameId, uint64_t contextKey, SceneFrameWorldData*) = nullptr;
     uint8_t (*sceneRendererSetWorldVariables)(const void*, uint64_t, const SceneWorldVariable*, uint32_t) = nullptr;
 
+    // SDK166: optional menu interface. Game-thread reads; edits only inside
+    // a menu lifecycle event. Host validates owner and generation on every edit.
+    uint32_t (*menuCapabilities)() = nullptr;
+    MenuEditResult (*menuGetState)(MenuState*) = nullptr;
+    MenuEditResult (*menuGetEntries)(uint64_t generation, const MenuEntryHandle* parent,
+        MenuEntryState* out, uint32_t capacity, uint32_t* outCount) = nullptr;
+    MenuEditResult (*menuGetEntry)(const MenuEntryHandle*, MenuEntryState*) = nullptr;
+    MenuEditResult (*menuCreateEntry)(const void* owner, uint64_t generation, int32_t index,
+        const MenuEntryState* initial, MenuEntryState* out) = nullptr;
+    MenuEditResult (*menuUpdateEntry)(const void* owner, const MenuEntryHandle*, uint32_t fieldMask,
+        const MenuEntryState*) = nullptr;
+    // Duplicate-free sibling subset; omitted leaves are removed atomically.
+    // Every existing group must remain. Parent is immutable; nullptr means root.
+    MenuEditResult (*menuSetEntries)(const void* owner, uint64_t generation, const MenuEntryHandle* parent,
+        const MenuEntryHandle* entries, uint32_t count) = nullptr;
+    MenuEditResult (*menuRemoveEntry)(const void* owner, const MenuEntryHandle*) = nullptr;
+    // Ownership of data/cleanup transfers at call entry, including failure.
+    // Cleanup runs exactly once after pending callbacks drain. Null callback
+    // clears this owner's registration. No callback pointer enters game memory.
+    MenuEditResult (*menuSetEntryCallback)(const void* owner, const MenuEntryHandle*,
+        MenuEntryClickFn callback, void* data, MenuEntryCleanupFn cleanup) = nullptr;
+
+    // Optional HostItemSpritesV1. Misses queue native work and return Pending;
+    // subsequent calls copy cached pixels into caller-owned storage. A ready
+    // null/zero buffer probe returns BufferTooSmall plus the complete info.
+    // BufferTooSmall never copies a partial image. Other failures clear info.
+    ItemSpriteStatus (*getItemSprite)(const ItemSpriteRequest*, SpriteImageInfo*,
+        uint32_t* pixels, uint32_t capacity) = nullptr;
+    // Overlay callback only. Pixels are 0xAARRGGBB (zero is transparent).
+    // x/y identify the logical canvas origin; offsets and scale are applied by
+    // the host. No source pointer is retained after this synchronous call.
+    uint8_t (*drawSpriteImage)(const SpriteImageInfo*, const uint32_t* pixels,
+        uint32_t count, int32_t x, int32_t y, float scale) = nullptr;
+
 };
 
 /// Consumer-local callback view, populated from the negotiated native tables.
@@ -5505,6 +5553,11 @@ struct PluginApi {
     /// SDK 157. Real key input on the synchronous input/message-pump thread.
     /// First consumer/replacer wins. See KeyInputEvent for paired lifecycle.
     void (*onKeyEvent)(void* userData, KeyInputEvent* event) = nullptr;
+
+    // Optional PluginMenuEventsV1. Synchronous game-thread edit windows.
+    void (*onPostMenuSort)(void* userData, const MenuLifecycleEvent*) = nullptr;
+    void (*onMenuOpened)(void* userData, const MenuLifecycleEvent*) = nullptr;
+    void (*onMenuEntryAdded)(void* userData, const MenuLifecycleEvent*) = nullptr;
 };
 
 /// Historical local embedding signatures. These tables must never cross a

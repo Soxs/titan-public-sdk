@@ -15,6 +15,15 @@ import net.titan.api.internal.TitanRuntime;
 import java.util.Optional;
 
 public final class OverlayDraw {
+    /** Draw owned ARGB32 pixels at the canvas origin during this overlay pass. */
+    public boolean sprite(net.titan.api.SpriteImage image, int x, int y) {
+        return net.titan.api.Titan.itemSprites().draw(image, x, y);
+    }
+
+    public boolean sprite(net.titan.api.SpriteImage image, int x, int y, float scale) {
+        return net.titan.api.Titan.itemSprites().draw(image, x, y, scale);
+    }
+
     private static final OverlayDraw INSTANCE = new OverlayDraw();
 
     private OverlayDraw() {}

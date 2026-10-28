@@ -23,7 +23,10 @@ namespace titan {
 /// style (plugin.h) can name it without including render.h from plugin.h.
 enum class Layer : uint8_t {
     AboveScene   = TitanPluginSdk::RenderLayerAbi::ABOVE_SCENE,
+    /// Above ordinary widgets, below native menus and tooltips.
     AboveWidgets = TitanPluginSdk::RenderLayerAbi::ABOVE_WIDGETS,
+    /// Above native menus and tooltips.
+    AboveAll     = TitanPluginSdk::RenderLayerAbi::ABOVE_ALL,
 };
 
 namespace detail {

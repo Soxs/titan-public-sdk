@@ -503,6 +503,58 @@ interface WebPathStep {
     readonly name: string;
 }
 
+/** Native item-icon request state. Retry Pending/NotReady on a later callback. */
+enum ItemSpriteStatus {
+    Ready = 0, Pending = 1, Unsupported = 2, Invalid = 3,
+    NotReady = 4, Failed = 5, BufferTooSmall = 6,
+}
+
+enum ItemSpriteQuantityText { Hidden = 0, Always = 1 }
+
+/** Owned row-major straight 0xAARRGGBB pixels; zero alpha is transparent.
+ * Mutating this array cannot change another image or the host cache. */
+interface SpriteImage {
+    readonly width: number;
+    readonly height: number;
+    readonly xOffset: number;
+    readonly yOffset: number;
+    readonly canvasWidth: number;
+    readonly canvasHeight: number;
+    readonly pixels: Uint32Array;
+}
+
+interface ItemSpriteOptions {
+    /** Native border treatment 0..2. Default 0. */
+    border?: number;
+    /** RGB24 native shadow colour; 0 disables it (default). */
+    shadowRgb?: number;
+    /** Default Hidden: quantities still select the native stack variant. */
+    quantityText?: ItemSpriteQuantityText;
+}
+
+interface ItemSpriteResult {
+    readonly status: ItemSpriteStatus;
+    /** Non-null only for Ready. Owned pixels require no release call. */
+    readonly image: SpriteImage | null;
+}
+
+interface ItemSpritesFacade {
+    /** Nonblocking; accepted misses queue work and return Pending. NotReady
+     * means native rendering has not yet been observed, resources are unavailable,
+     * or the queue is full; retry later. Quantity
+     * defaults to 1 and must be positive. Any plugin callback may request an icon. */
+    item(itemId: number, quantity?: number, options?: ItemSpriteOptions): ItemSpriteResult;
+    /** Pure CPU nonzero-alpha outer ring, using Manhattan distance. Thickness
+     * 1..8, default 1. Expanded bounds retain the original canvas origin through
+     * negative offsets. Null for invalid images or dimensions exceeding 512.
+     * Use a source without quantity text, native border, or shadow for silhouettes. */
+    outline(image: SpriteImage, argb: number, thickness?: number): SpriteImage | null;
+    /** Overlay callbacks only. Applies image offsets relative to x/y, then scale
+     * (default 1, finite and in (0,16]). Copies pixels before returning;
+     * false when unavailable. */
+    draw(image: SpriteImage, x: number, y: number, scale?: number): boolean;
+}
+
 /** Lifecycle state of an asynchronous screenshot request. SDK 131+. */
 enum ScreenshotPhase {
     None = 0,
@@ -529,7 +581,7 @@ interface ScreenshotStatus {
 
 /**
  * Asynchronous full-frame game screenshots: the same image the controller's
- * `/tabs` command returns (the presented backbuffer after the AboveWidgets
+ * `/tabs` command returns (the presented backbuffer after the AboveAll
  * overlay pass), PNG-encoded. Capture happens on the next presented frame
  * and encoding on a worker thread, so submit() returns a handle to poll for
  * ScreenshotPhase.Ready. At most 4 handles may be outstanding; release each
@@ -1992,12 +2044,11 @@ interface ItemComposition {
 // ---------------------------------------------------------------------------
 
 /**
- * Render-pass selector for overlays. Two values matching the host's two
- * draw passes. RuneLite's `UNDER_WIDGETS` / `ABOVE_MAP` aren't mirrored —
- * the host has no equivalent passes. Available at runtime as
- * `titan.OverlayLayer`.
+ * Render-pass selector for overlays. AboveScene is below native widgets;
+ * AboveWidgets is above ordinary widgets and below native menus and tooltips;
+ * AboveAll is above that native foreground. Available as `titan.OverlayLayer`.
  */
-type OverlayLayer = "AboveScene" | "AboveWidgets";
+type OverlayLayer = "AboveScene" | "AboveWidgets" | "AboveAll";
 
 interface OverlayInit {
     layer?: OverlayLayer;
@@ -2833,14 +2884,13 @@ interface PanelElement {
     };
 
     /**
-     * Render-pass selector for `Plugin.overlay({ layer: ... })`. Two
-     * values matching the host's draw passes (`ABOVE_SCENE` /
-     * `ABOVE_WIDGETS`). RuneLite's `UNDER_WIDGETS` / `ABOVE_MAP` are
-     * intentionally not mirrored — the host has no equivalent passes.
+     * Render-pass selector for `Plugin.overlay({ layer: ... })`.
+     * ABOVE_WIDGETS is below native menus/tooltips; ABOVE_ALL is above them.
      */
     const OverlayLayer: {
         readonly ABOVE_SCENE: "AboveScene";
         readonly ABOVE_WIDGETS: "AboveWidgets";
+        readonly ABOVE_ALL: "AboveAll";
     };
 
     const PanelTone: {
@@ -2956,6 +3006,8 @@ interface PanelElement {
 
     /** Asynchronous full-frame game screenshots, as PNG bytes. SDK 131+. */
     const screenshot: ScreenshotFacade;
+    /** Owned native item icons, CPU outline masks, and overlay images. SDK 167+. */
+    const sprites: ItemSpritesFacade;
 
     // --- Geometry helpers (SDK 39) ---
     // Mirror the inline methods on `titan::WorldPos` in C++. Operate
@@ -4424,6 +4476,8 @@ interface PanelElement {
 
     // Overlay draw API -- call from inside Overlay::render callbacks.
     const overlay: {
+        /** Draw an owned sprite at its canvas origin; alias of sprites.draw. */
+        sprite(image: SpriteImage, x: number, y: number, scale?: number): boolean;
         tileQuad(tileX: number, tileY: number, plane: number,
                  fillColor: number, outlineColor: number): void;
         tileRegion(minTileX: number, minTileY: number, maxTileX: number, maxTileY: number,

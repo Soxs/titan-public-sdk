@@ -1,4 +1,114 @@
-# Titan Plugin SDK -- public symbol inventory (v165)
+# Titan Plugin SDK -- public symbol inventory (v167)
+
+## Item sprites and alpha-mask outlines (SDK 167)
+
+`<titan/sprites.h>` exposes item sprites as owned `SpriteImage` values through
+optional `HostItemSpritesV1` (`0x100A`). `sprites::item(itemId, quantity, options)`
+returns an `ItemSpriteResult` with `status` and an optional `image`. An accepted
+cache miss returns `Pending`; poll on a later callback. Until the host observes
+a successful native item render and its resources are loaded, it returns
+`NotReady`. Temporary queue pressure also returns `NotReady` without queuing.
+The host prepares native sprites at
+its verified safe phase. Callers never invoke the native factory, retain native
+pointers, or release a native handle. Cache hits can be read from any thread.
+
+| Operation | Contract |
+| --- | --- |
+| `sprites::available()` | Reports whether the host negotiated retrieval; revision and resource readiness are reported by `item()`. |
+| `sprites::item(id, quantity = 1, options = {})` | Returns `Ready`, `Pending`, `Unsupported`, `Invalid`, `NotReady`, `Failed` or `BufferTooSmall`. Only `Ready` carries an image. |
+| `sprites::item(ItemSpriteRequest)` | Explicit request with the same validation and asynchronous behavior. |
+| `sprites::outline(image, argb, thickness = 1)` | Returns an owned outer alpha-mask outline, or an empty optional for invalid input. Pure CPU work; cache the result when reusing it. |
+| `sprites::draw(image, x, y, scale = 1)` | Copies pixels into host rendering during an overlay callback; returns false when drawing is unavailable or input is invalid. |
+
+Options are `border` (0, 1 or 2), `shadowRgb` (`0x00RRGGBB`, zero disables it)
+and `quantityText` (`Hidden` or `Always`). Quantity must be positive. The default
+has no border, shadow or quantity label, which is appropriate for a clean item
+silhouette. The native default canvas comes from the verified revision contract;
+arbitrary dimensions, special rendering and custom text are not exposed.
+
+Pixels are row-major `0xAARRGGBB` words. The returned native item image uses
+binary alpha; outline colours may use partial alpha. `width` and `height` describe
+the stored pixels, while `xOffset`, `yOffset`, `canvasWidth` and `canvasHeight`
+preserve placement within the logical canvas. Drawing interprets `x` and `y` as
+that canvas's screen origin and applies offsets and scale once. Scale must be
+finite, greater than zero, and at most 16. The draw call
+borrows its input only until return, so the image can be released afterwards.
+
+An outline dilates the nonzero alpha mask by four-neighbour distance and excludes
+the original occupied pixels. Thickness is 1–8 pixels. Its stored rectangle grows
+on every side and its offsets move outwards, preserving the original canvas
+origin; drawing the image and its outline at the same origin aligns them without
+clipping the outer edge. Images are bounded to 512 per dimension and 262144 pixels.
+
+```cpp
+std::optional<titan::SpriteImage> icon, halo;
+// In a periodic callback; retry Pending/NotReady later without blocking.
+auto result = titan::sprites::item(4151, 1);
+if (result.ready()) {
+    icon = std::move(result.image);
+    halo = titan::sprites::outline(*icon, 0xff00ff00u, 1);
+}
+// In an overlay callback, using the same canvas origin and scale for both:
+if (icon) titan::sprites::draw(*icon, 100, 100);
+if (halo) titan::sprites::draw(*halo, 100, 100);
+```
+
+For inventory highlights, obtain the live item widget's screen origin and its
+displayed scale instead of inferring positions from a slot index. `Item` supplies
+ID, quantity and slot; `Widget` supplies screen coordinates and dimensions.
+Cache the clean sprite and outline by item ID, quantity and rendering options;
+refresh placement as widgets move. Hidden widgets should not be highlighted.
+
+Native retrieval copies into caller-owned storage. A ready null-buffer probe
+returns `BufferTooSmall` with image metadata; an undersized buffer never receives
+a partial copy. The SDK performs bounded allocation and retries a changed size
+once. The interface is optional and sized independently; existing native payloads
+and the minimum supported SDK version 154 remain unchanged.
+
+## Menu entry editing (SDK 166)
+
+`<titan/menu.h>` exposes `state::menu()` and `state::client().getMenu()` through
+optional `HostMenuEditingV1` (`0x1009`). `PluginMenuEventsV1` (`0x2006`) supplies
+`onPostMenuSort`, `onMenuOpened` and `onMenuEntryAdded`. Native ABI v1's existing
+tables and payloads are unchanged; the minimum supported SDK remains 154.
+
+Entries are ordered bottom-to-top, so `back()` is the top/default entry and
+`createMenuEntry(-1)` appends. `MenuEntry` offers option/target, opcode/type,
+identifier, parameters, item ID, world-view ID, force-left-click and deprioritized
+getters and fluent setters. `onClick` receives the selected `MenuEntry`;
+`onClickEvent` additionally exposes consumption. Arbitrary custom opcodes are
+host identifiers and are never dispatched to the game solely by their number.
+
+Reads run on the game thread. Mutations run synchronously inside the menu
+lifecycle callbacks; inspect `lastResult()` for `NotEditing`, `StaleHandle`,
+`Unsupported` and other failures. Each handle binds a generation and opaque ID.
+Rebuild/reset invalidates handles, while `snapshot()` returns an owned copy.
+Callback storage belongs to its registering plugin and is cleaned up exactly
+once after replacement, expiry, disable or unload, including failed registration.
+
+`setMenuEntries` accepts a duplicate-free subset of the current siblings;
+omitted leaves are removed atomically. Existing submenus must remain, can be
+reordered within their parent, and are readable through `getSubMenu()`. Custom
+creation currently targets the root; reparenting and deleting groups are
+unsupported, as is removing the last child of an existing submenu. Existing
+native callback identities stay intact: changing their
+opcode, identifier, parameters, item ID or world-view ID returns `Unsupported`.
+Their option and target display labels remain editable. Custom entries accept
+all of these fields.
+Text must fit within 255 UTF-8 bytes plus NUL; overflow is rejected, never
+silently truncated. Deprioritization is a host ordering policy, not the native
+client's internal priority byte or a `+2000` write into it.
+
+```cpp
+void onPostMenuSort(const titan::PostMenuSortEvent& event) override {
+    auto entry = event.getMenu().createMenuEntry(-1);
+    entry.setOption("Inspect").setTarget("Example")
+        .setType(titan::MenuAction::Id::RuneLite)
+        .onClick([](titan::MenuEntry& selected) {
+            // Read selected.getIdentifier(), or perform plugin-owned work.
+        });
+}
+```
 
 ## Native scene renderer (SDK 163)
 
@@ -1035,7 +1145,7 @@ headers below; publishing native contracts does not expose private client IPC.
 | `<titan/web_walker_provider.h>` | Versioned walker provider contracts: V1 planning compatibility and V2 complete planning, payload, and execution service. The host currently selects external providers through the entitled `web_walker_provider` DEV policy. Normal consumers use `<titan/web_walker.h>`. |
 | `<titan/world_point.h>` | Lightweight public `Tile`, `WorldPos`, and `WorldPoint` coordinate contract. `<titan/actor.h>` includes it for compatibility. |
 | `<titan/world_map.h>` | Read-only `titan::state::worldMap()` snapshots and exact world/screen plus logical-pixel/tile transforms for the visible native world map, including interface scaling from logical widget units to physical overlay pixels (SDK 113). |
-| `<titan/screenshot.h>` | Asynchronous full-frame game screenshots: `titan::screenshot()` / `titan::state::screenshot()` with `submit`, `poll`, `copyPng`, and `release`. The same image the controller's `/tabs` command returns -- the presented backbuffer after the AboveWidgets pass -- as PNG bytes (SDK 131). |
+| `<titan/screenshot.h>` | Asynchronous full-frame game screenshots: `titan::screenshot()` / `titan::state::screenshot()` with `submit`, `poll`, `copyPng`, and `release`. The same image the controller's `/tabs` command returns -- the presented backbuffer after the AboveAll pass -- as PNG bytes (SDK 131). |
 | `<titan/render.h>` | `titan::Overlay`, `titan::overlay()` draw API |
 | `<titan/overlay_panel.h>` | `titan::OverlayPanel` (subclass of `titan::Overlay`), `titan::Anchor` enum, `titan::OverlayPanelStyle` struct -- structured HUD panels with anchor-based layout, Alt-drag repositioning, and full theming. The `Plugin::overlayPanel(name, anchor, [priority,] lambda)` factory in `<titan/plugin.h>` lives here too (definitions are inline in this header). Added in SDK 46. |
 | `<titan/actor.h>` | `Player`, `Npc`, `TileObject`, `GroundItem`, `Item`, `Projectile`, `GraphicsObject`, `Actor`; it transitively includes `<titan/world_point.h>` for source compatibility. |
@@ -1203,7 +1313,7 @@ auto-marshalled onto the game thread where required.
 | `titan::state::itemDef(id)` | `optional<ItemComposition>` | Runtime ItemDef (varbit/varp transforms + inventory-action positional gaps preserved). SDK 107 adds the fixed 5-by-20 live opcode-43 `subOps` matrix. Falls back to the raw cache definition when `ITEM_DEF_LOOKUP` is unmapped; check `.runtimeResolved`. Mirrors RuneLite's `Client.getItemDefinition`. Added in SDK 26; action buffer widened in SDK 60. |
 | `titan::state::collisions()` | `CollisionsFacade` | `flag(plane,x,y)` raw collision int, `isBlocked(plane,x,y,dx,dy)` one-tile step predicate (SDK v39+), `cachedRegion(regionId)` and `currentScene([expectedWidth, expectedHeight])` immutable bulk snapshots (SDK 112); supplying dimensions from `ClientSnapshot` enables one fixed-ABI copy pass. |
 | `titan::webWalker()` / `titan::state::webWalker()` | `WebWalkerFacade` | Submit a read-only route request, poll its summary, copy typed walk/transport/teleport steps, cancel, and release. Costs are integer points in C++, JS, Java, and fixed ABI/provider records: legacy authored cost `1` is `10` points and one walked tile is `5` points (the requested 0.5 weighting). Defaults enable transports, normal/equipped-item teleports, POH routes, and wilderness avoidance; minigames and charters default off (SDK 112). |
-| `titan::screenshot()` / `titan::state::screenshot()` | `ScreenshotFacade` | Queue one capture of the next presented frame, poll for `Ready` / `Failed`, copy the PNG, release. Same pixels and encoder as the controller's `/tabs` screenshot: the full backbuffer after the AboveWidgets overlay pass. At most 4 handles outstanding; a request that never sees a presented frame fails after ~5 s. Callable from any plugin callback thread. Mirrored as `titan.screenshot` in JS/TS and `Titan.screenshot()` in Java (SDK 131). |
+| `titan::screenshot()` / `titan::state::screenshot()` | `ScreenshotFacade` | Queue one capture of the next presented frame, poll for `Ready` / `Failed`, copy the PNG, release. Same pixels and encoder as the controller's `/tabs` screenshot: the full backbuffer after the AboveAll overlay pass. At most 4 handles outstanding; a request that never sees a presented frame fails after ~5 s. Callable from any plugin callback thread. Mirrored as `titan.screenshot` in JS/TS and `Titan.screenshot()` in Java (SDK 131). |
 
 The SDK 106 item cache submenu shape is identical across runtimes:
 `titan::ItemDef::subOps` in C++, `titan.ItemDef.subOps: string[][]` in
@@ -1817,6 +1927,25 @@ Java's reference-typed writes have distinct names (`setString`, `setEnum`,
 would match all three and fail to compile at the call site.
 
 ---
+
+## Overlay layers (SDK 168)
+
+| C++ layer | JS/TS and Java constant | Position |
+|---|---|---|
+| `titan::Layer::AboveScene` | `OverlayLayer.ABOVE_SCENE` | Above the scene, below native widgets |
+| `titan::Layer::AboveWidgets` | `OverlayLayer.ABOVE_WIDGETS` | Above ordinary widgets, below native menus and tooltips |
+| `titan::Layer::AboveAll` | `OverlayLayer.ABOVE_ALL` | Above native menus and tooltips |
+
+The existing layer values 0 and 1 remain unchanged; `AboveAll` appends value 2.
+Overlay panels and HTML overlays remain on `AboveWidgets`. Screenshots capture
+the presented frame after all three layers. No native payload or compatibility
+floor changes are required.
+
+Native foreground separation covers context menus and type-8 widget tooltips
+when a verified offset contract is available. Otherwise the complete native UI
+keeps its legacy rendering order. Raw ImGui windows remain interactive above
+background overlays. Foreground textures currently use nearest filtering, so
+their appearance can differ from the game's other UI upscaling filters.
 
 ## Overlay panels (SDK 46)
 

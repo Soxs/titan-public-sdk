@@ -1,10 +1,12 @@
 /// @file titan/menu_action.h
-/// @brief Menu action opcodes used by the game's DoAction dispatch.
+/// @brief Game menu action opcodes and host custom-entry logical IDs.
 ///
 /// Canonical SDK location for the `MenuAction` opcode catalog. Every
 /// right-click menu option in OSRS maps to a numeric opcode that
 /// DoAction uses to determine what to do. Opcodes >= `kDeprioritizeOffset`
 /// are de-prioritised duplicates (the base opcode + 2000).
+/// RuneLite custom-entry IDs identify host-owned callbacks; they do not grant
+/// permission to dispatch an arbitrary action through the native game handler.
 ///
 /// Numeric values align with `net.runelite.api.MenuAction` where applicable.
 /// Opcode 31 is both walk-here (deobfuscated client) and RuneLite's deprecated
@@ -110,7 +112,17 @@ enum class Id : uint32_t {
     ExamineItem = 1005,
     Cancel = 1006,
     CcOpLowPriority = 1007,
-    ExamineWorldEntity = 1013
+    ExamineWorldEntity = 1013,
+
+    // Host-side menu entries. These IDs never imply a native callback opcode.
+    RuneLiteWidget = 998,
+    RuneLiteHighPriority = 999,
+    RuneLite = 1500,
+    RuneLiteOverlay = 1501,
+    RuneLiteOverlayConfig = 1502,
+    RuneLitePlayer = 1503,
+    RuneLiteInfoBox = 1504,
+    RuneLiteLowPriority = 1506
 };
 
 /// Strip the de-prioritise offset if present, returning the base opcode.

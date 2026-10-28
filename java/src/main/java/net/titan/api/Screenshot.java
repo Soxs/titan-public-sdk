@@ -9,7 +9,7 @@ import java.util.OptionalLong;
  * SDK-v131 facade for asynchronous full-frame game screenshots.
  *
  * <p>Returns the same image the controller's {@code /tabs} command does: the
- * game's presented backbuffer after the AboveWidgets overlay pass, encoded as
+ * game's presented backbuffer after the AboveAll overlay pass, encoded as
  * PNG. Capture happens on the next presented frame and encoding on a worker
  * thread, so {@link #submit()} hands back a handle to {@link #poll(long)} for
  * {@link ScreenshotPhase#READY}, then {@link #copyPng(long)} and

@@ -16,6 +16,28 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v168 -- Native foreground-aware overlay layers
+
+- `+` `AboveAll` / `ABOVE_ALL` appends layer 2 above native menus and tooltips.
+- `~` `AboveWidgets` / `ABOVE_WIDGETS` retains layer 1 and now draws below native
+  menus and tooltips. Existing payloads and minimum supported SDK 154 remain unchanged.
+
+## v167 -- Item sprites and alpha-mask outlines
+
+- `+` Optional `HostItemSpritesV1` exposes asynchronous item sprite retrieval into
+  caller-owned ARGB pixels and overlay drawing with canvas offsets and scale.
+- `+` `sprites::item`, `sprites::outline` and `sprites::draw` provide owned images
+  and padded outer silhouettes; quantity labels are optional.
+- `~` Existing native payloads and minimum supported SDK 154 remain unchanged.
+
+## v166 -- Menu entry editing
+
+- `+` Optional `HostMenuEditingV1` and `PluginMenuEventsV1` expose live generation-safe
+  entries, same-parent ordering, root custom entries and owned click callbacks.
+- `+` `Menu`, `MenuEntry`, `state::menu()`, `Client::getMenu()` and menu lifecycle
+  callbacks use RuneLite's bottom-to-top order; `createMenuEntry(-1)` appends.
+- `~` Existing payload layouts and minimum supported SDK 154 remain unchanged.
+
 ## v165 -- Captured scene-world metadata
 
 - `+` Optional `HostSceneRendererV1` tail query supplies terrain source

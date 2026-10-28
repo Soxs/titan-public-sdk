@@ -9,6 +9,7 @@ public final class Titan {
     private static final WorldMap WORLD_MAP = new WorldMap();
     private static final Screenshot SCREENSHOT = new Screenshot();
     private static final ItemPrices ITEM_PRICES = new ItemPrices();
+    private static final ItemSprites ITEM_SPRITES = new ItemSprites();
 
     private Titan() {}
 
@@ -54,6 +55,9 @@ public final class Titan {
 
     /** Shared public Wiki price cache (SDK 137). */
     public static ItemPrices itemPrices() { return ITEM_PRICES; }
+
+    /** Owned native item icons and CPU silhouette outlines. */
+    public static ItemSprites itemSprites() { return ITEM_SPRITES; }
 
     public static void runOnClientTick(Runnable callback) {
         TitanRuntime.getSchedulerBackend().runOnClientTick(callback);

@@ -20,6 +20,7 @@
 #include "detail/backend.h"
 #include "detail/widget_ops.h"
 #include "menu_action.h"
+#include "menu.h"
 #include "prayer.h"
 #include "skill.h"
 #include "varbits.h"
@@ -134,6 +135,11 @@ struct InstanceTemplateChunks {
 
 class ClientFacade {
 public:
+    Menu getMenu() const { return Menu{}; }
+    std::vector<MenuEntry> getMenuEntries() const { return getMenu().getMenuEntries(); }
+    bool setMenuEntries(const std::vector<MenuEntry>& entries) const { return getMenu().setMenuEntries(entries); }
+    MenuEntry createMenuEntry(int32_t index = -1) const { return getMenu().createMenuEntry(index); }
+    bool swapMenuEntries(uint32_t first, uint32_t second) const { return getMenu().swapMenuEntries(first, second); }
     /// SDK 156. Thread-safe classic actor smoothing. Default off, process-wide,
     /// last request wins. Not persisted; disable it when the owning plugin stops.
     /// Applied means the smoothing path is enabled, not that every pose is supported.

@@ -9,6 +9,32 @@ import java.util.OptionalLong;
 import java.util.List;
 
 public interface Client {
+    /** Java SDK 0.1.94: whether the loaded client has validated menu editing support. */
+    default boolean isMenuEditingAvailable() { return false; }
+    /** True only within a synchronous menu edit window on the game thread. */
+    default boolean isMenuEditable() { return false; }
+    default boolean isMenuOpen() { return false; }
+    /** Current root entries in bottom-to-top order. Older hosts return an empty array. */
+    default MenuEntry[] getMenuEntries() { return new MenuEntry[0]; }
+    /** Reorder siblings and optionally remove leaves, atomically. No reparenting. */
+    default void setMenuEntries(MenuEntry[] entries) {
+        throw new IllegalStateException("Menu editing is unavailable");
+    }
+    /** Insert a custom root entry. -1 appends at the top; other negatives count from the end. */
+    default MenuEntry createMenuEntry(int index) {
+        throw new IllegalStateException("Menu editing is unavailable");
+    }
+    default void swapMenuEntries(int first, int second) {
+        MenuEntry[] entries = getMenuEntries();
+        if (first < 0 || second < 0 || first >= entries.length || second >= entries.length)
+            throw new IndexOutOfBoundsException("Menu entry index");
+        MenuEntry swap = entries[first]; entries[first] = entries[second]; entries[second] = swap;
+        setMenuEntries(entries);
+    }
+    /** Remove a leaf entry from this generation. Submenu parents cannot be removed. */
+    default void removeMenuEntry(MenuEntry entry) {
+        throw new IllegalStateException("Menu editing is unavailable");
+    }
     /** SDK 148: unavailable is empty; an available snapshot may have zero entries. Game-thread read. */
     default Optional<HintArrowSnapshot> hintArrows() { return Optional.empty(); }
     /** Set server slot zero at the tile center. The native-selected WorldView and plane must match. */

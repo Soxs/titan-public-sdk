@@ -2,7 +2,8 @@
 /// @brief Overlay registration, draw primitives, and frame-phase schedulers.
 ///
 /// A Plugin owns any number of titan::Overlay members, each targeting a
-/// specific Layer (AboveScene, AboveWidgets). The injected client DLL calls
+/// specific Layer (AboveScene, AboveWidgets, AboveAll). AboveWidgets sits below
+/// native menus and tooltips; AboveAll sits above them. The injected client DLL calls
 /// the plugin's renderOverlay(layer) thunk once per layer pass, and the
 /// thunk forwards to the subset of the plugin's overlay members whose layer
 /// matches. Draw calls inside an overlay go through titan::overlay() which

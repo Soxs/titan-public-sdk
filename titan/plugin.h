@@ -37,6 +37,7 @@
 #include "detail/registrable.h"
 #include "detail/managed_lifecycle.h"
 #include "events.h"
+#include "menu.h"
 #include "panel.h"
 #include "html_panels.h"
 
@@ -212,6 +213,9 @@ public:
 
     // --- Other events ---
     virtual void onMenuOptionClicked(MenuClickEvent&) {}
+    virtual void onPostMenuSort(const PostMenuSortEvent&) {}
+    virtual void onMenuOpened(const MenuOpenedEvent&) {}
+    virtual void onMenuEntryAdded(const MenuEntryAddedEvent&) {}
     /// Real keyboard input before the game's WndProc. Synchronous pump thread:
     /// use cached state, never query game memory or wait for game-thread work.
     /// First consumer/replacer wins. Initial down fixes repeats and paired up;
@@ -728,6 +732,15 @@ inline void thunkOnMenuOptionClicked(void* ud, TitanPluginSdk::MenuOptionClicked
     MenuClickEvent wrapper{e};
     self(ud)->onMenuOptionClicked(wrapper);
 }
+inline void thunkOnPostMenuSort(void* ud, const TitanPluginSdk::MenuLifecycleEvent* e) {
+    if (e) self(ud)->onPostMenuSort(PostMenuSortEvent{e});
+}
+inline void thunkOnMenuOpened(void* ud, const TitanPluginSdk::MenuLifecycleEvent* e) {
+    if (e) self(ud)->onMenuOpened(MenuOpenedEvent{e});
+}
+inline void thunkOnMenuEntryAdded(void* ud, const TitanPluginSdk::MenuLifecycleEvent* e) {
+    if (e) self(ud)->onMenuEntryAdded(MenuEntryAddedEvent{e});
+}
 inline void thunkOnKeyEvent(void* ud, TitanPluginSdk::KeyInputEvent* e) {
     if (!e) return;
     KeyInputEvent wrapper{e};
@@ -1058,6 +1071,9 @@ inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outAp
     outApi->onTileObjectSpawned = &GuardedPluginCallback<&thunkOnTileObjectSpawned>::invoke;
     outApi->onTileObjectDespawned = &GuardedPluginCallback<&thunkOnTileObjectDespawned>::invoke;
     outApi->onMenuOptionClicked = &GuardedPluginCallback<&thunkOnMenuOptionClicked>::invoke;
+    outApi->onPostMenuSort = &GuardedPluginCallback<&thunkOnPostMenuSort>::invoke;
+    outApi->onMenuOpened = &GuardedPluginCallback<&thunkOnMenuOpened>::invoke;
+    outApi->onMenuEntryAdded = &GuardedPluginCallback<&thunkOnMenuEntryAdded>::invoke;
     outApi->onKeyEvent = &GuardedPluginCallback<&thunkOnKeyEvent>::invoke;
     outApi->onScriptFired = &GuardedPluginCallback<&thunkOnScriptFired>::invoke;
     outApi->onVarbitChanged = &GuardedPluginCallback<&thunkOnVarbitChanged>::invoke;

@@ -39,6 +39,7 @@ public final class TitanRuntime {
     private static volatile WorldMapBackend worldMapBackend;
     private static volatile ScreenshotBackend screenshotBackend;
     private static volatile ItemPricesBackend itemPricesBackend;
+    private static volatile ItemSpritesBackend itemSpritesBackend;
     private static volatile CrossTabBackend crossTabBackend;
     private static volatile PreviewPillBackend previewPillBackend;
     private static volatile HtmlUiBackend htmlUiBackend;
@@ -159,6 +160,15 @@ public final class TitanRuntime {
     public static ItemPricesBackend getItemPricesBackend() {
         ItemPricesBackend value = itemPricesBackend;
         return value == null ? ItemPricesBackend.UNAVAILABLE : value;
+    }
+
+    public static ItemSpritesBackend getItemSpritesBackend() {
+        ItemSpritesBackend value = itemSpritesBackend;
+        return value == null ? ItemSpritesBackend.UNAVAILABLE : value;
+    }
+    public static void setItemSpritesBackend(ItemSpritesBackend backend) { itemSpritesBackend = backend; }
+    public static void clearItemSpritesBackend(ItemSpritesBackend backend) {
+        if (itemSpritesBackend == backend) itemSpritesBackend = null;
     }
     public static void setItemPricesBackend(ItemPricesBackend backend) { itemPricesBackend = backend; }
     public static void clearItemPricesBackend(ItemPricesBackend backend) {

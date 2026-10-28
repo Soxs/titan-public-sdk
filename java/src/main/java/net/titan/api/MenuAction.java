@@ -1,6 +1,14 @@
 package net.titan.api;
 
 public final class MenuAction {
+    public static final int RUNELITE_WIDGET = 998;
+    public static final int RUNELITE_HIGH_PRIORITY = 999;
+    public static final int RUNELITE = 1500;
+    public static final int RUNELITE_OVERLAY = 1501;
+    public static final int RUNELITE_OVERLAY_CONFIG = 1502;
+    public static final int RUNELITE_PLAYER = 1503;
+    public static final int RUNELITE_INFOBOX = 1504;
+    public static final int RUNELITE_LOW_PRIORITY = 1506;
     public static final int DEPRIORITIZE_OFFSET = 2000;
 
     public static final int ITEM_USE_ON_GAME_OBJECT = 1;

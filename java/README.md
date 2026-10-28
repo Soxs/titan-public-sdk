@@ -35,6 +35,105 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Overlay layers (0.1.96+)
+
+`OverlayLayer.ABOVE_SCENE` draws below native widgets. `ABOVE_WIDGETS` retains
+protocol value 1 and draws above ordinary widgets but below native menus and
+tooltips. Use `ABOVE_ALL` (protocol value 2) for overlays that must also cover
+native menus and tooltips. Structured overlay panels remain on `ABOVE_WIDGETS`.
+
+## Item sprites and outlines (0.1.95+)
+
+`Titan.itemSprites().item(itemId, quantity)` returns an owned native icon when
+ready. An accepted cache miss returns `ItemSprites.Status.PENDING`; request it
+again on a later callback. `NOT_READY` means the host has not yet observed a
+successful native item render, resources are unavailable, or the queue is full;
+retry later. Requests are safe on plugin workers. The host performs native
+rendering on its owner thread, and no native pointers reach Java.
+
+Prepare icons on a game-thread callback after login and world readiness, then
+publish an immutable list through a
+`volatile List<SpriteImage> prepared = List.of()` field.
+Clear it on game-state changes and plugin disable:
+
+```java
+// In the game-thread callback, with login/world readiness already checked:
+if (prepared.isEmpty()) {
+    ItemSprites.Result result = Titan.itemSprites().item(4151, 1);
+    if (result.ready()) {
+        SpriteImage image = result.image().orElseThrow();
+        prepared = List.of(image, image.outline(0xff00ff00, 1));
+    }
+}
+
+// In renderOverlay: use only the published images and copied positions.
+for (SpriteImage image : prepared) Overlay.draw().sprite(image, 100, 100);
+```
+
+Keep widget queries, requests, pixel copies, and outline preparation out of the
+render callback. Cache reusable images and outlines in the plugin rather than
+preparing them every tick. `SpriteImage` is immutable;
+`pixels()` returns a copy. Its ARGB32 pixels use straight alpha. Outlines are pure
+CPU outer rings, preserve the original canvas origin using negative offsets,
+and accept thickness 1..8. Default item options omit quantity text, border, and
+shadow so the outline follows the item silhouette. Quantity still selects the
+correct native stack variant. `ItemSprites.Options` can enable native border,
+RGB shadow, or `QuantityText.ALWAYS` when drawing ordinary icons.
+
+Drawing is valid only inside an overlay callback, with finite scale greater
+than zero and at most 16; unsupported hosts return
+`UNSUPPORTED` for requests and `false` for drawing. See
+[item sprites](../../docs/item-sprites.md) for an inventory outline example and
+the matching C++/JavaScript APIs.
+
+## Menu entries (0.1.94+)
+
+Use `Client.getMenuEntries()`, `setMenuEntries(...)`, `swapMenuEntries(...)`,
+`createMenuEntry(index)` and `removeMenuEntry(...)` from synchronous
+`PostMenuSort`, `MenuOpened` or `MenuEntryAdded` subscribers. Entries use
+RuneLite's bottom-to-top order; `createMenuEntry(-1)` inserts at the top.
+`isMenuEditingAvailable()` reports native support and `isMenuEditable()` reports
+whether the current callback can edit the menu.
+
+```java
+@Subscribe
+public void onPostMenuSort(PostMenuSort event) {
+    if (!client.isMenuEditable()) return;
+    client.createMenuEntry(-1)
+        .setOption("Inspect")
+        .setTarget("My plugin")
+        .setType(MenuAction.RUNELITE)
+        .onClick(entry -> logger.info("Clicked " + entry.getOption()));
+}
+```
+
+Setters are fluent and apply to the live entry. `setOpcode(int)` also accepts
+plugin-defined opcodes; `getType()`/`setType(int)` are aliases using the existing
+integer `MenuAction` constants. A custom opcode identifies a plugin action and
+does not dispatch a native game operation by its number. Existing
+`MenuOptionClicked` consume/replace subscriptions remain available. An `onClick`
+callback runs before an existing entry's normal game action and does not consume
+it. Global `MenuOptionClicked` consumption suppresses both that action and the
+entry callback. Custom entries remain host-only. A callback failure suppresses
+the action.
+
+Existing game entries retain their original native action identity. Their labels
+can be edited, but changing opcode, identifier, parameters, item ID or world-view
+ID is rejected. Custom entries support those logical fields.
+
+`setMenuEntries` atomically reorders siblings and can omit leaf entries to remove
+them. It operates on roots; use a submenu entry's `getChildren()` and
+`setChildren(...)` for its existing children. Submenu parents remain attached and
+cannot be removed or reassigned; new custom entries are roots. Entry text must fit in 255 UTF-8 bytes and contain no
+NUL. Rejected operations throw `IllegalStateException`, and invalid Java
+arguments throw `IllegalArgumentException`.
+
+Handles expire when the menu is rebuilt. Create entries and register their
+callbacks again for each menu generation. Callbacks run synchronously with the
+owning plugin's context and are removed on disable or unload. Keep all menu
+handlers short; retained entries can be read as snapshots, but stale edits are
+rejected. Older native hosts report unavailable and expose no entries.
+
 ## Managed instances and entitlements (0.1.92)
 
 Apply `net.titan.dev` 0.1.3 and keep `titan-plugin-api` compile-only. The convention

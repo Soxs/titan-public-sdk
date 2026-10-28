@@ -2,7 +2,7 @@
 /// @brief Full-frame game screenshot facade (SDK 131).
 ///
 /// The same image the controller's `/tabs` command returns: the game's
-/// presented backbuffer after the AboveWidgets overlay pass, PNG-encoded.
+/// presented backbuffer after the AboveAll overlay pass, PNG-encoded.
 /// Capture is asynchronous -- the pixels are read back on the next presented
 /// frame and encoded on a worker thread -- so the facade is a handle you
 /// submit, poll, copy from, and release, like `titan::webWalker()`.

@@ -148,11 +148,54 @@ inline constexpr uint64_t kHostNavigationId = 0x1005;
 inline constexpr uint64_t kHostDefinitionExtrasId = 0x1006;
 inline constexpr uint64_t kHostHtmlUiId = 0x1007;
 inline constexpr uint64_t kHostSceneRendererId = 0x1008;
+inline constexpr uint64_t kHostMenuEditingId = 0x1009;
+inline constexpr uint64_t kHostItemSpritesId = 0x100A;
 inline constexpr uint64_t kPluginCoreId = 0x2001;
 inline constexpr uint64_t kPluginUiId = 0x2002;
 inline constexpr uint64_t kPluginEventsId = 0x2003;
 inline constexpr uint64_t kPluginHtmlPanelsId = 0x2004;
 inline constexpr uint64_t kPluginHtmlOverlaysId = 0x2005;
+inline constexpr uint64_t kPluginMenuEventsId = 0x2006;
+
+// New optional v1 tables. Existing tables and payload layouts remain frozen.
+struct HostItemSpritesV1 {
+    InterfaceHeader header{sizeof(HostItemSpritesV1), 1};
+    ItemSpriteStatus (*getItemSprite)(const ItemSpriteRequest*, SpriteImageInfo*, uint32_t*, uint32_t) = nullptr;
+    uint8_t (*drawSpriteImage)(const SpriteImageInfo*, const uint32_t*, uint32_t, int32_t, int32_t, float) = nullptr;
+};
+static_assert(std::is_standard_layout_v<HostItemSpritesV1>);
+static_assert(sizeof(HostItemSpritesV1) == 24);
+static_assert(offsetof(HostItemSpritesV1, getItemSprite) == 8);
+static_assert(offsetof(HostItemSpritesV1, drawSpriteImage) == 16);
+
+struct HostMenuEditingV1 {
+    InterfaceHeader header{sizeof(HostMenuEditingV1), 1};
+    uint32_t (*menuCapabilities)() = nullptr;
+    MenuEditResult (*menuGetState)(MenuState*) = nullptr;
+    MenuEditResult (*menuGetEntries)(uint64_t, const MenuEntryHandle*, MenuEntryState*, uint32_t, uint32_t*) = nullptr;
+    MenuEditResult (*menuGetEntry)(const MenuEntryHandle*, MenuEntryState*) = nullptr;
+    MenuEditResult (*menuCreateEntry)(const void*, uint64_t, int32_t, const MenuEntryState*, MenuEntryState*) = nullptr;
+    MenuEditResult (*menuUpdateEntry)(const void*, const MenuEntryHandle*, uint32_t, const MenuEntryState*) = nullptr;
+    MenuEditResult (*menuSetEntries)(const void*, uint64_t, const MenuEntryHandle*, const MenuEntryHandle*, uint32_t) = nullptr;
+    MenuEditResult (*menuRemoveEntry)(const void*, const MenuEntryHandle*) = nullptr;
+    MenuEditResult (*menuSetEntryCallback)(const void*, const MenuEntryHandle*, MenuEntryClickFn, void*, MenuEntryCleanupFn) = nullptr;
+};
+struct PluginMenuEventsV1 {
+    InterfaceHeader header{sizeof(PluginMenuEventsV1), 1};
+    void (*onPostMenuSort)(void*, const MenuLifecycleEvent*) = nullptr;
+    void (*onMenuOpened)(void*, const MenuLifecycleEvent*) = nullptr;
+    void (*onMenuEntryAdded)(void*, const MenuLifecycleEvent*) = nullptr;
+};
+static_assert(std::is_standard_layout_v<HostMenuEditingV1>);
+static_assert(std::is_standard_layout_v<PluginMenuEventsV1>);
+static_assert(sizeof(HostMenuEditingV1) == 80 && offsetof(HostMenuEditingV1, menuSetEntryCallback) == 72);
+static_assert(sizeof(PluginMenuEventsV1) == 32 && offsetof(PluginMenuEventsV1, onMenuEntryAdded) == 24);
+
+#define TITAN_NATIVE_HOSTMENUEDITINGV1_MEMBERS(X) \
+    X(menuCapabilities) X(menuGetState) X(menuGetEntries) X(menuGetEntry) \
+    X(menuCreateEntry) X(menuUpdateEntry) X(menuSetEntries) X(menuRemoveEntry) X(menuSetEntryCallback)
+#define TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS(X) \
+    X(onPostMenuSort) X(onMenuOpened) X(onMenuEntryAdded)
 
 // HTML is additive. Absence of either optional side never rejects a plugin.
 // Each interface has one required prefix, imported atomically. Future tail
@@ -1298,6 +1341,8 @@ public:
     HostDefinitionExtrasV1 definitionExtras{};
     HostHtmlUiV1 htmlUi{};
     HostSceneRendererV1 sceneRenderer{};
+    HostMenuEditingV1 menuEditing{};
+    HostItemSpritesV1 itemSprites{};
 
     explicit HostInterfaceSet(const HostApi& api,
                               const void* extensionContext = nullptr,
@@ -1334,6 +1379,11 @@ public:
         sceneRenderer.sceneRendererGetFrameEnvironment = api.sceneRendererGetFrameEnvironment;
         sceneRenderer.sceneRendererGetFrameWorldData = api.sceneRendererGetFrameWorldData;
         sceneRenderer.sceneRendererSetWorldVariables = api.sceneRendererSetWorldVariables;
+#define TITAN_NATIVE_ASSIGN(name) menuEditing.name = api.name;
+        TITAN_NATIVE_HOSTMENUEDITINGV1_MEMBERS(TITAN_NATIVE_ASSIGN)
+#undef TITAN_NATIVE_ASSIGN
+        itemSprites.getItemSprite = api.getItemSprite;
+        itemSprites.drawSpriteImage = api.drawSpriteImage;
     }
     HostInterfaceSet(const HostInterfaceSet&) = delete;
     HostInterfaceSet& operator=(const HostInterfaceSet&) = delete;
@@ -1365,6 +1415,11 @@ private:
             case kHostHtmlUiId: return self.htmlUi.capabilities ? &self.htmlUi.header : nullptr;
             case kHostSceneRendererId:
                 return self.sceneRenderer.sceneRendererRegister ? &self.sceneRenderer.header : nullptr;
+            case kHostMenuEditingId:
+                return self.menuEditing.menuCapabilities ? &self.menuEditing.header : nullptr;
+            case kHostItemSpritesId:
+                return self.itemSprites.getItemSprite || self.itemSprites.drawSpriteImage
+                    ? &self.itemSprites.header : nullptr;
             default: break;
             }
         }
@@ -1386,6 +1441,7 @@ public:
     PluginEventsV1 events{};
     PluginHtmlPanelsV1 htmlPanels{};
     PluginHtmlOverlaysV1 htmlOverlays{};
+    PluginMenuEventsV1 menuEvents{};
 
     explicit PluginInterfaceSet(const PluginApi& api) {
 #define TITAN_NATIVE_ASSIGN(name) core.name = api.name;
@@ -1399,6 +1455,9 @@ public:
 #undef TITAN_NATIVE_ASSIGN
         htmlPanels.callbacks = api.htmlPanels;
         htmlOverlays.callbacks = api.htmlOverlays;
+#define TITAN_NATIVE_ASSIGN(name) menuEvents.name = api.name;
+        TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS(TITAN_NATIVE_ASSIGN)
+#undef TITAN_NATIVE_ASSIGN
     }
     PluginInterfaceSet(const PluginInterfaceSet&) = delete;
     PluginInterfaceSet& operator=(const PluginInterfaceSet&) = delete;
@@ -1419,6 +1478,9 @@ private:
             case kPluginEventsId: return &self.events.header;
             case kPluginHtmlPanelsId: return self.htmlPanels.callbacks.complete() ? &self.htmlPanels.header : nullptr;
             case kPluginHtmlOverlaysId: return self.htmlOverlays.callbacks.complete() ? &self.htmlOverlays.header : nullptr;
+            case kPluginMenuEventsId:
+                return self.menuEvents.onPostMenuSort || self.menuEvents.onMenuOpened || self.menuEvents.onMenuEntryAdded
+                    ? &self.menuEvents.header : nullptr;
             default: break;
             }
         }
@@ -1496,6 +1558,17 @@ inline bool importHostApi(const InterfaceProviderV1* provider, HostApi& out) {
         TITAN_IMPORT_SCENE(sceneRendererSetWorldVariables)
 #undef TITAN_IMPORT_SCENE
     }
+    {
+        const auto* table = queryInterface(provider, kHostMenuEditingId);
+#define TITAN_NATIVE_IMPORT(name) out.name = readMember<decltype(out.name)>(table, offsetof(HostMenuEditingV1, name));
+        TITAN_NATIVE_HOSTMENUEDITINGV1_MEMBERS(TITAN_NATIVE_IMPORT)
+#undef TITAN_NATIVE_IMPORT
+    }
+    {
+        const auto* table = queryInterface(provider, kHostItemSpritesId);
+        out.getItemSprite = readMember<decltype(out.getItemSprite)>(table, offsetof(HostItemSpritesV1, getItemSprite));
+        out.drawSpriteImage = readMember<decltype(out.drawSpriteImage)>(table, offsetof(HostItemSpritesV1, drawSpriteImage));
+    }
     return true;
 }
 
@@ -1526,6 +1599,12 @@ inline bool importPluginApi(const PluginDescriptorV1* descriptor, PluginApi& out
     }
     out.htmlPanels = importHtmlCallbacks(provider, kPluginHtmlPanelsId);
     out.htmlOverlays = importHtmlCallbacks(provider, kPluginHtmlOverlaysId);
+    {
+        const auto* table = queryInterface(provider, kPluginMenuEventsId);
+#define TITAN_NATIVE_IMPORT(name) out.name = readMember<decltype(out.name)>(table, offsetof(PluginMenuEventsV1, name));
+        TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS(TITAN_NATIVE_IMPORT)
+#undef TITAN_NATIVE_IMPORT
+    }
     return out.getId && out.getName;
 }
 
@@ -1537,6 +1616,8 @@ inline bool importPluginApi(const PluginDescriptorV1* descriptor, PluginApi& out
 #undef TITAN_NATIVE_PLUGINCOREV1_MEMBERS
 #undef TITAN_NATIVE_PLUGINUIV1_MEMBERS
 #undef TITAN_NATIVE_PLUGINEVENTSV1_MEMBERS
+#undef TITAN_NATIVE_HOSTMENUEDITINGV1_MEMBERS
+#undef TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS
 
 static_assert(std::is_standard_layout_v<InterfaceHeader>);
 static_assert(std::is_standard_layout_v<InterfaceProviderV1>);
