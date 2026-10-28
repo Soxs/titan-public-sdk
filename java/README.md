@@ -117,6 +117,11 @@ it. Global `MenuOptionClicked` consumption suppresses both that action and the
 entry callback. Custom entries remain host-only. A callback failure suppresses
 the action.
 
+Java SDK 0.1.97 preserves all 32 bits of custom opcodes, including negative Java
+`int` values such as `0xffffffff` (`-1`). The native protocol receives their
+unsigned representation. World-view IDs must fit the native signed 32-bit field;
+out-of-range `long` values are rejected before crossing JNI.
+
 Existing game entries retain their original native action identity. Their labels
 can be edited, but changing opcode, identifier, parameters, item ID or world-view
 ID is rejected. Custom entries support those logical fields.

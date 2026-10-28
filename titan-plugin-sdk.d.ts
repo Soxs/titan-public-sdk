@@ -1642,6 +1642,121 @@ interface MatrixSetting extends Setting<number> {
 // Events (typed wrappers)
 // ---------------------------------------------------------------------------
 
+/** Live menu entry, bound to the plugin and menu generation that obtained it.
+ * Mutations throw outside a synchronous menu edit event or after expiry.
+ * Retained scalar getters remain readable. Native action tuples are immutable;
+ * custom entries may use any unsigned 32-bit opcode. Text is limited to 255
+ * UTF-8 bytes, with no NUL or unpaired UTF-16 surrogates. */
+interface MenuEntry {
+    option: string;
+    target: string;
+    opcode: number;
+    /** Alias for opcode. */
+    type: number;
+    identifier: number;
+    param0: number;
+    param1: number;
+    itemId: number;
+    /** Signed 32-bit WorldView id; -1 retains the default world. */
+    worldViewId: number;
+    forceLeftClick: boolean;
+    deprioritized: boolean;
+    readonly parent: MenuEntry | null;
+    children: MenuEntry[];
+    getOption(): string;
+    setOption(value: string): this;
+    getTarget(): string;
+    setTarget(value: string): this;
+    getOpcode(): number;
+    setOpcode(value: number): this;
+    getType(): number;
+    setType(value: number): this;
+    getIdentifier(): number;
+    setIdentifier(value: number): this;
+    getParam0(): number;
+    setParam0(value: number): this;
+    getParam1(): number;
+    setParam1(value: number): this;
+    getItemId(): number;
+    setItemId(value: number): this;
+    getWorldViewId(): number;
+    setWorldViewId(value: number): this;
+    isForceLeftClick(): boolean;
+    setForceLeftClick(value: boolean): this;
+    isDeprioritized(): boolean;
+    setDeprioritized(value: boolean): this;
+    isCustom(): boolean;
+    isSubmenu(): boolean;
+    isValid(): boolean;
+    getParent(): MenuEntry | null;
+    getChildren(): MenuEntry[];
+    setChildren(entries: readonly MenuEntry[]): this;
+    getSubMenu(): Menu;
+    remove(): void;
+    /** Synchronous and owner-scoped. Native actions continue after a successful
+     * callback; custom opcodes never reach native DoAction. Global
+     * onMenuOptionClicked consumption skips this callback. null unregisters it. */
+    onClick(callback: ((entry: MenuEntry) => void) | null): this;
+    getOnClick(): ((entry: MenuEntry) => void) | null;
+}
+
+interface MenuState {
+    readonly available: boolean;
+    readonly editable: boolean;
+    readonly open: boolean;
+    /** Bitmask: Read=1, Edit=2, Insert=4, Callbacks=8, Submenus=16, EventTransactions=32. */
+    readonly capabilities: number;
+}
+
+/** Bottom-to-top order: the last root entry is the default/top entry.
+ * Changes require onPostMenuSort, onMenuOpened or onMenuEntryAdded. */
+interface Menu {
+    readonly available: boolean;
+    readonly editable: boolean;
+    readonly open: boolean;
+    readonly capabilities: number;
+    entries: MenuEntry[];
+    state(): MenuState;
+    isAvailable(): boolean;
+    isEditable(): boolean;
+    isOpen(): boolean;
+    getMenuEntries(): MenuEntry[];
+    /** Root-only. -1 appends, 0 inserts at the bottom; negative indices count from the end. */
+    createMenuEntry(index?: number): MenuEntry;
+    /** Reorder siblings; omitted leaves are removed. Submenus must remain,
+     * cannot be emptied, and entries cannot move between parents. */
+    setMenuEntries(entries: readonly MenuEntry[]): void;
+    swapMenuEntries(first: number, second: number): void;
+    removeMenuEntry(entry: MenuEntry): void;
+}
+
+interface PostMenuSort {
+    readonly menu: Menu;
+    readonly available: boolean;
+    readonly editable: boolean;
+    readonly open: boolean;
+    getMenu(): Menu;
+}
+interface MenuOpened extends PostMenuSort {
+    readonly entries: readonly MenuEntry[];
+    getMenuEntries(): MenuEntry[];
+}
+interface MenuEntryAdded extends PostMenuSort {
+    readonly entry: MenuEntry;
+    readonly index: number;
+    getMenuEntry(): MenuEntry;
+    getIndex(): number;
+    getOption(): string;
+    getTarget(): string;
+    getOpcode(): number;
+    getIdentifier(): number;
+    getActionParam0(): number;
+    getActionParam1(): number;
+}
+
+/** RuneLite-style live menu editing; also available through state.client.menu. */
+const menu: Menu;
+
 interface MenuOptionClicked {
     readonly opcode: number;
     /** Menu-entry identifier: entity id or CC_OP sub-action index. */
@@ -2567,6 +2682,12 @@ class Plugin {
     onSettingChanged?(key: string): void;
 
     onMenuOptionClicked?(event: MenuOptionClicked): void;
+    /** Edit the menu synchronously after native building/sorting. */
+    onPostMenuSort?(event: PostMenuSort): void;
+    /** Edit the menu synchronously as the popup opens. */
+    onMenuOpened?(event: MenuOpened): void;
+    /** Edit a newly inserted native entry synchronously. */
+    onMenuEntryAdded?(event: MenuEntryAdded): void;
     /** Synchronous input interception; see KeyInputEvent for threading and key-pair rules. SDK 157+. */
     onKeyEvent?(event: KeyInputEvent): void;
     onScriptFired?(event: ScriptEvent): void;
@@ -3078,6 +3199,16 @@ interface PanelElement {
      */
     namespace state {
         const client: {
+            readonly menu: Menu;
+            getMenu(): Menu;
+            getMenuEntries(): MenuEntry[];
+            createMenuEntry(index?: number): MenuEntry;
+            setMenuEntries(entries: readonly MenuEntry[]): void;
+            swapMenuEntries(first: number, second: number): void;
+            removeMenuEntry(entry: MenuEntry): void;
+            isMenuAvailable(): boolean;
+            isMenuEditable(): boolean;
+            isMenuOpen(): boolean;
             /** SDK 156: thread-safe classic actor smoothing. Default off; unsupported poses render natively. */
             isAnimationSmoothingAvailable(): boolean;
             /** Process-wide, last request wins, not saved. Disable when the plugin stops. */
@@ -4930,6 +5061,15 @@ interface PanelElement {
      * `titan::MenuAction::Id` in `shared/titan/menu_action.h`.
      */
     const MenuAction: {
+        readonly RUNELITE_WIDGET: 998;
+        readonly RUNELITE_HIGH_PRIORITY: 999;
+        readonly RUNELITE: 1500;
+        readonly RUNELITE_OVERLAY: 1501;
+        readonly RUNELITE_OVERLAY_CONFIG: 1502;
+        readonly RUNELITE_PLAYER: 1503;
+        readonly RUNELITE_INFOBOX: 1504;
+        readonly RUNELITE_LOW_PRIORITY: 1506;
+        readonly DEPRIORITIZE_OFFSET: 2000;
         readonly ITEM_USE_ON_GAME_OBJECT: 1;
         readonly WIDGET_TARGET_ON_GAME_OBJECT: 2;
         readonly ITEM_USE_ON_NPC: 7;

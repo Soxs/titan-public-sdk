@@ -38,6 +38,9 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v169 -- JavaScript menu editing parity.
+///   + JS generation-safe menu entries, swaps, custom opcodes and click callbacks.
+///   ~ Native interfaces, payloads and compatibility floor154 unchanged.
 /// v168 -- Native foreground-aware overlay layers.
 ///   + AboveAll/ABOVE_ALL appends layer 2 above native menus and tooltips.
 ///   ~ AboveWidgets remains layer 1, below native foreground; floor154 unchanged.
@@ -1948,7 +1951,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 168;
+constexpr uint32_t kSdkVersion = 169;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together

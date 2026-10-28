@@ -19,7 +19,9 @@ public interface MenuEntry {
     MenuEntry setOption(String option);
     String getTarget();
     MenuEntry setTarget(String target);
+    /** Raw 32-bit opcode bits; values with the high bit set appear negative in Java. */
     int getOpcode();
+    /** Accepts all 32-bit opcode patterns, including negative Java ints. */
     MenuEntry setOpcode(int opcode);
     /** Alias matching RuneLite-style menu code; unknown opcodes stay intact. */
     default int getType() { return getOpcode(); }
@@ -33,6 +35,7 @@ public interface MenuEntry {
     int getItemId();
     MenuEntry setItemId(int itemId);
     long getWorldViewId();
+    /** The native world-view field is signed 32-bit; -1 is the default context. */
     MenuEntry setWorldViewId(long worldViewId);
     boolean isForceLeftClick();
     MenuEntry setForceLeftClick(boolean forceLeftClick);

@@ -16,6 +16,12 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v169 -- JavaScript menu editing parity
+
+- `+` JavaScript generation-safe menu entries, swapping, custom opcodes and
+  click callbacks share the native menu editor with C++ and Java.
+- `~` Native interfaces, payloads and minimum supported SDK 154 remain unchanged.
+
 ## v168 -- Native foreground-aware overlay layers
 
 - `+` `AboveAll` / `ABOVE_ALL` appends layer 2 above native menus and tooltips.
