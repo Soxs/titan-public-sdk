@@ -77,7 +77,7 @@ function sign(claims) {
 }
 function harness(options = {}) {
     let now = 1000, next = 0n, stopped = 0, issued = 0;
-    const listeners = new Set(), requests = new Map(), operations = [], deadlines = new WeakMap(), holds = new Map();
+    const listeners = new Set(), requests = new Map(), operations = [], submissions = [], deadlines = new WeakMap(), holds = new Map();
     const context = { ...fixture.context };
     const wallNow = () => fixture.now + (options.advanceWall ? (now - 1000) / 1000 : 0);
     const host = {
@@ -91,7 +91,7 @@ function harness(options = {}) {
         _authorizationContext: () => JSON.stringify(context),
         _authorizationSubscribe: (owner, listener) => { listeners.add(listener); return true; },
         _authorizationUnsubscribe: (owner, listener) => listeners.delete(listener),
-        _authorizationSubmit(owner, op, body) { const id = ++next; requests.set(id, { op, body: JSON.parse(body), issuedAt: now }); operations.push(op); return id; },
+        _authorizationSubmit(owner, op, body) { const id = ++next; const item = { op, body: JSON.parse(body), issuedAt: now }; requests.set(id, item); submissions.push(item); operations.push(op); return id; },
         _authorizationCancel(owner, id) { requests.delete(id); },
         _authorizationStop(owner) { stopped++; deadlines.delete(owner); for (const [id, item] of requests) if (item.op !== 'cancel') requests.delete(id); },
         _authorizationPoll(owner, id) {
@@ -110,6 +110,7 @@ function harness(options = {}) {
                     runs: body.payload.runs.map(run => ({ ...JSON.parse(fixture.cases.acquire.result_json), run_id: run.run_id, state: 'running', permit_sequence: run.ack_sequence + 1, permit_expires_at: issuedAt + 120 })) };
             } else if (op === 'list' || op === 'check') result = JSON.parse(fixture.cases[op].result_json);
             else result = { operation: op, allowed: false, code: 'run-retired', run_id: body.payload.run_id, held_until: options.cancelHeldUntil ?? holds.get(body.payload.run_id) ?? 0 };
+            if (op === 'cancel' && body.payload.completed && options.completionRelease) { result.released = true; result.held_until = 0; }
             if (options.topDeny && (op === 'report' || op === 'acquire')) result = { operation: op, allowed: false, code: 'feature-disabled' };
             if (options.checkDenied && op === 'check') result = { ...result, allowed: false, code: 'not-entitled', entitlement: { ...result.entitlement, entitled: false } };
             if (options.duplicatePage && op === 'list') result = { ...result, entries: [...result.entries, ...result.entries], total_entries: 2 };
@@ -137,13 +138,116 @@ function harness(options = {}) {
             return JSON.stringify(response);
         }
     };
-    return { api: sdk(host, testKeys, false, wallNow), requests, context,
+    return { host, api: sdk(host, testKeys, false, wallNow), requests, context, submissions,
         options, operations, get stopped() { return stopped; }, get issued() { return issued; }, deadline: owner => deadlines.get(owner),
         stopOwner(reason) { for (const listener of [...listeners]) listener.stop(reason); },
         advance(ms) { now += ms; }, pulse() { for (const listener of [...listeners]) listener.pulse(); }, tick() { for (const listener of [...listeners]) listener.tick(1); } };
 }
 const flush = async () => { await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); };
+// Execute the production host gate and lifecycle ordering, not permissive test doubles.
+function realHost(h, owner) {
+    const source = fs.readFileSync(path.join(root, '../../../client/plugins/script_engine.cpp'), 'utf8');
+    const section = (from, to) => source.slice(source.indexOf(from), source.indexOf(to, source.indexOf(from)));
+    const entry = { id: owner.id, _owner: owner, enabled: true, _enabledInitialized: true, settingValues: {} };
+    const registry = new Map([[owner.id, entry]]);
+    const scope = vm.createContext({ _titan: h.host, _registry: registry,
+        _withPluginCallback: (_id, callback) => callback(), _rebuildEnabledList() {},
+        _markPluginStateDirty() {}, _breakHandlerAutoUnregister() {} });
+    vm.runInContext(section('const _authorizationRetired = new Map();', 'function _crossTabPluginId(plugin) {') +
+        section('function _crossTabPluginId(plugin) {', 'Object.defineProperty(globalThis, "_crossTabResolvePluginId"') +
+        section('function _setRuntimePluginEnabled(plugin, enabled, markDirty) {', 'function _prepareRuntimeSetting') +
+        section('function _applyPluginEnabled(plugin, enabled) {', 'function _autoDisablePlugin') +
+        section('function _unregisterPlugin(id) {', 'function _unregisterPluginToJson'), scope);
+    return { pulse: () => { scope._authorizationDispatch(entry, 'pulse'); scope._authorizationPulseRetired(); },
+        disable: () => scope._applyPluginEnabled(entry, false), unload: () => scope._unregisterPlugin(entry.id),
+        identity: () => scope._authorizationTerminalIdentity(owner), registry };
+}
+let completedTests = false;
+process.once('beforeExit', () => { assert.equal(completedTests, true, 'Authorization suite left an unresolved test Promise'); });
 (async () => {
+    for (const end of ['disable', 'unload']) {
+        const h = harness({ completionRelease: true }), owner = { id: fixture.context.runtime_plugin_id }, bridge = realHost(h, owner);
+        let finishCleanup;
+        const run = h.api.instance(owner, { start() {}, stop() { return new Promise(resolve => { finishCleanup = resolve; }); } });
+        const start = run.start(); bridge.pulse(); await flush(); assert.equal((await start).started, true);
+        bridge[end](); await flush();
+        assert.equal(run.status, 'stopping'); assert.equal((await run.start()).reason, 'stopping');
+        assert.equal(h.submissions.filter(item => item.op === 'cancel').length, 1);
+        assert.equal(h.submissions.some(item => item.body.payload.completed), false);
+        assert.equal(bridge.identity().generation, String(fixture.context.runtime_generation));
+        finishCleanup(); await flush();
+        assert.equal(run.status, 'stopped'); assert.equal(h.submissions.filter(item => item.body.payload.completed).length, 1);
+        bridge.pulse(); await flush(); assert.equal(run.releasePendingUntil, 0);
+        h.advance(330001); bridge.pulse(); assert.equal(bridge.identity(), undefined);
+    }
+    {
+        const h = harness({ completionRelease: true }); let settleStartup, settleTask;
+        const run = h.api.instance({ id: fixture.context.runtime_plugin_id }, {
+            start() { return new Promise(resolve => { settleStartup = resolve; }); }, stop() {}
+        });
+        const first = run.start(); h.pulse(); await flush(); run.stop();
+        assert.equal((await first).started, false); assert.equal(run.status, 'stopping');
+        assert.equal(h.submissions.some(item => item.body.payload.completed), false);
+        settleStartup(true); await flush(); assert.equal(run.status, 'stopped');
+        assert.equal(h.submissions.filter(item => item.body.payload.completed).length, 1);
+        const second = run.run(() => new Promise(resolve => { settleTask = resolve; }));
+        h.pulse(); await flush(); settleStartup(true); await flush(); run.stop();
+        assert.equal(run.status, 'stopping'); assert.equal((await run.start()).reason, 'stopping');
+        settleTask(); await second; assert.equal(run.status, 'stopped');
+        assert.equal(h.submissions.filter(item => item.body.payload.completed).length, 2);
+    }
+    {
+        const h = harness(), events = []; let settle, cancellation;
+        const run = h.api.instance({ id: fixture.context.runtime_plugin_id }, {
+            async start(token) { cancellation = token; await new Promise(resolve => { settle = resolve; }); events.push('startup-final'); },
+            stop() { events.push('cleanup'); assert.equal(h.submissions.some(item => item.body.payload.completed), false); }
+        });
+        const start = run.start(); h.pulse(); await flush(); run.stop();
+        assert.equal(cancellation.cancelled, true); assert.deepEqual(events, []); assert.equal((await start).started, false);
+        settle(); await flush(); await flush();
+        assert.deepEqual(events, ['startup-final', 'cleanup']); assert.equal(run.status, 'stopped');
+        assert.equal(h.submissions.filter(item => item.body.payload.completed).length, 1);
+    }
+    {
+        const h = harness({ completionRelease: true });
+        const run = h.api.instance({ id: fixture.context.runtime_plugin_id }, { start() {}, stop() {} });
+        let start = run.start(); h.pulse(); await flush(); await start; run.stop();
+        // A delayed completion of run A must not erase run B's reservation.
+        start = run.start(); h.pulse(); await flush(); await start;
+        assert.equal(run.releasePendingUntil, fixture.now + 120);
+        run.stop(); h.pulse(); await flush(); assert.equal(run.releasePendingUntil, 0);
+    }
+    {
+        const h = harness(); let attempts = 0; const submit = h.host._authorizationSubmit;
+        h.host._authorizationSubmit = (...args) => args[1] === 'acquire' && attempts++ === 0 ? 0n : submit(...args);
+        const run = h.api.instance({ id: fixture.context.runtime_plugin_id }, { start() {}, stop() {} });
+        const start = run.start(); await flush(); assert.equal(run.status, 'starting');
+        h.advance(500); h.pulse(); await flush(); h.pulse(); await flush();
+        assert.equal((await start).started, true); assert.equal(attempts, 2); run.stop();
+    }
+    for (const forged of [false, true]) {
+        const h = harness(), owner = { id: fixture.context.runtime_plugin_id };
+        const run = h.api.instance(owner, { start() {}, stop() {} });
+        const start = run.start(); h.pulse(); await flush(); await start;
+        run.stop(); h.options.tamper = forged; h.pulse(); await flush();
+        const first = h.submissions.find(item => item.body.payload.completed);
+        assert.ok(run.releasePendingUntil); run.close();
+        h.options.tamper = false; h.options.completionRelease = true;
+        h.advance(1000); h.pulse(); await flush(); h.pulse(); await flush();
+        const terminal = h.submissions.filter(item => item.body.payload.completed);
+        assert.equal(terminal.length, 2, 'Completion survives signed refusal/verification failure and close');
+        assert.notEqual(terminal[1].body.request_id, first.body.request_id);
+        assert.equal(run.releasePendingUntil, 0);
+    }
+    {
+        const h = harness(); let fail = true;
+        const run = h.api.instance({ id: fixture.context.runtime_plugin_id }, { start() {}, stop() { if (fail) throw Error('cleanup'); } });
+        const start = run.start(); h.pulse(); await flush(); await start; run.stop();
+        assert.equal(run.status, 'stopping'); assert.equal(run.reason, 'cleanup_failed');
+        assert.equal(h.submissions.some(item => item.body.payload.completed), false);
+        fail = false; run.stop(); assert.equal(run.status, 'stopped');
+        assert.equal(h.submissions.filter(item => item.body.payload.completed).length, 1);
+    }
     for (const incompleteReport of ['missing', 'false', 'wrong-type']) {
         const h = harness({ incompleteReport }); let cleanup = 0;
         const run = h.api.instance({ id: fixture.context.runtime_plugin_id }, { start() {}, stop() { cleanup++; } });
@@ -213,8 +317,8 @@ const flush = async () => { await Promise.resolve(); await Promise.resolve(); aw
         const start = run.start(); h.pulse(); await flush(); h.options.denied = false;
         h.advance(61000); h.pulse(); await flush(); h.pulse(); await flush();
         h.advance(29000); h.pulse(); await flush(); assert.equal(run.status, 'starting');
-        h.advance(1001); h.pulse(); await flush(); assert.equal((await start).started, false); assert.equal(cleanup, 1);
-        finishStartup(true); await flush(); assert.equal(run.active, false); assert.equal(run.reason, 'startup_timeout');
+        h.advance(1001); h.pulse(); await flush(); assert.equal((await start).started, false); assert.equal(cleanup, 0);
+        finishStartup(true); await flush(); assert.equal(cleanup, 1); assert.equal(run.active, false); assert.equal(run.reason, 'startup_timeout');
     }
     {
         const h = harness({ advanceWall: true, denied: true, retryAt: fixture.now - 1 });
@@ -349,4 +453,5 @@ const flush = async () => { await Promise.resolve(); await Promise.resolve(); aw
         assert.equal(run.active, false);assert.equal(cleanup, 1);
     }
     console.log('Authorization: server fixtures, signature/session binding, denial, cancellation, cleanup, outage and listing tests passed.');
+    completedTests = true;
 })().catch(error => { console.error(error); process.exitCode = 1; });

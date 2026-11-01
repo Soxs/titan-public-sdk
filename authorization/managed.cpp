@@ -36,6 +36,7 @@ template<class T> std::shared_future<T> ready(T value) {
 struct Request {
     std::uint64_t ticket = 0;
     Expected expected;
+    bool completion = false;
 };
 class Transport {
 public:
@@ -130,6 +131,20 @@ std::string diagnosticPluginId(const char* value) {
             (character >= '0' && character <= '9') || character == '_' || character == '-' || character == '.')) character = '_';
     return id;
 }
+std::string startupFailure(const std::exception& error) {
+    std::string detail = error.what();
+    detail.resize(std::min<std::size_t>(detail.size(), 256));
+    for (auto& character : detail)
+        if (static_cast<unsigned char>(character) < 32 || character == 127) character = ' ';
+    return detail.empty() ? "startup_failed" : "startup_failed: " + detail;
+}
+bool transientAcquireFailure(const std::string& reason) {
+    return reason == "transport_unavailable" || reason == "request_timeout" ||
+        reason == "gateway_queue_timeout" || reason == "gateway_unavailable" ||
+        reason == "runtime_context_unavailable" || reason == "runtime_context_http_503" ||
+        reason == "runtime_context_http_429" || reason == "plugin_authorization_unavailable" ||
+        reason == "plugin-authorization-temporarily-unavailable";
+}
 Entitlement entitlement(const Json& row) {
     Entitlement out;
     out.key = row.value("key", ""); out.pluginId = identifier(row, "plugin_id"); out.canonicalPluginId = identifier(row, "canonical_plugin_id");
@@ -165,6 +180,7 @@ public:
         if (!transport_.sessionValid()) return ready(StartResult{false, "account_changed"});
         if (status_.state == RunState::Starting || status_.active()) return startFuture_;
         if (status_.state == RunState::Stopping || worker_ || joiningWorker_) return ready(StartResult{false, "stopping"});
+        startFuture_ = {};
         try {
             // The plugin is bound before Start; its constructor can create this
             // scope earlier. Never read the owner's backend on the watchdog.
@@ -174,14 +190,17 @@ public:
             lastPermitObserved_ = 0; lastRenewalFailure_.clear(); lastRenewalOperation_.clear();
             task_ = std::move(task); cancellation_ = std::stop_source{};
             startupEntered_ = false; cleanupPending_ = false; stopped_ = false; cancellationPending_ = false;
+            cleanupSucceeded_ = true; completionQueued_ = false; capacityWait_ = false; retryAttempt_ = 0;
             status_.state = RunState::Starting; status_.reason.clear(); status_.validUntil = 0;
             nextAcquire_ = 0;
             startPromise_ = std::make_shared<std::promise<StartResult>>(); startFuture_ = startPromise_->get_future().share();
-            acquire();
+            acquire(true);
             if (!request_.ticket) {
+                stopped_ = true; completionQueued_ = true;
                 status_.state = RunState::Stopped; status_.reason = transport_.sessionValid() ? "unsupported_host" : "account_changed"; resolveStart(false, status_.reason);
             }
-        } catch (...) { status_.state = RunState::Stopped; status_.reason = "startup_failed"; resolveStart(false, status_.reason); }
+        } catch (const std::exception& error) { requestStop(startupFailure(error)); }
+        catch (...) { requestStop("startup_failed"); }
         return startFuture_.valid() ? startFuture_ : ready(StartResult{false, "unavailable"});
     }
     void stop() override {
@@ -192,13 +211,14 @@ public:
         { std::lock_guard lock(mutex_); closed_ = true; requestStop("owner_unloaded"); }
         cleanup();
     }
+    bool stopping() const override { std::lock_guard lock(mutex_); return status_.state == RunState::Stopping; }
     Status status() const {
         std::lock_guard lock(mutex_);
         auto result = status_;
         if (nextAcquire_ && result.state == RunState::Starting) {
             const auto now = managedNow();
             const auto remaining = nextAcquire_ > now ? (nextAcquire_ - now + 999) / 1000 : 0;
-            result.reason = "Waiting for an instance. Checking again in " + std::to_string(remaining) + " seconds; Stop cancels.";
+            result.reason = (capacityWait_ ? "Waiting for an instance. Checking again in " : "Reconnecting to instance service. Checking again in ") + std::to_string(remaining) + " seconds; Stop cancels.";
         }
         return result;
     }
@@ -208,14 +228,14 @@ public:
         {
             std::lock_guard lock(mutex_);
             if (!transport_.sessionValid()) requestStop("account_changed");
-            else pollCancellations();
+            else { pollCancellations(); submitCompletions(); }
             if (status_.state == RunState::Starting && startingDeadline_ && managedNow() >= startingDeadline_) requestStop("startup_timeout");
             if ((status_.active() || status_.state == RunState::Starting) && permitDeadline_ && managedNow() >= permitDeadline_)
                 requestStop("authorization_expired");
             if (status_.state == RunState::Starting || status_.active()) {
                 if (nextAcquire_ && managedNow() >= nextAcquire_) {
-                    acquire();
-                    if (!request_.ticket) requestStop("authorization_unavailable");
+                    acquire(capacityWait_);
+                    if (!request_.ticket) retryAcquire("transport_unavailable");
                 }
                 if (request_.ticket) {
                     const auto reply = transport_.poll(request_);
@@ -227,9 +247,10 @@ public:
                             requestStop(permitDeadline_ ? "authorization_expired" : "startup_timeout");
                         } else if (!proof.verified) {
                             if (status_.active()) reconnect(renewalFailure(reply), expected);
+                            else if (transientAcquireFailure(renewalFailure(reply))) retryAcquire(renewalFailure(reply));
                             else requestStop("authorization_unavailable");
                         } else if (proof.result.contains("allowed") && proof.result["allowed"] == false) {
-                            if (proof.result.value("run_id", "") == runId_) rememberHold(proof.result);
+                            if (proof.result.value("run_id", "") == runId_) rememberHold(proof.result, runId_);
                             if (!waitForCapacity(proof, expected)) requestStop(textValue(proof.result, "reason", "not_entitled"));
                         } else {
                             Json grant = proof.result;
@@ -242,7 +263,7 @@ public:
                                 if (status_.active()) reconnect("invalid_receipt", expected);
                                 else requestStop("invalid_receipt");
                             } else if (grant.value("decision", "") != "allow" || !grant.value("allowed", false)) {
-                                rememberHold(grant);
+                                rememberHold(grant, runId_);
                                 requestStop(textValue(grant, "reason", "not_entitled"));
                             } else {
                                 const auto expiry = grant.value("valid_until", std::int64_t{0});
@@ -257,7 +278,7 @@ public:
                                     // A retry of the same permit cannot reset its monotonic lifetime.
                                     if (revision == permitSequence_ && permitDeadline_) deadline = std::min(deadline, permitDeadline_);
                                     permitSequence_ = revision; leaseId_ = lease; permitDeadline_ = deadline;
-                                    status_.validUntil = expiry; rememberHold(grant);
+                                    status_.validUntil = expiry; rememberHold(grant, runId_);
                                     if (!lastRenewalFailure_.empty()) diagnostic("renewal_recovered", lastRenewalFailure_, expected);
                                     lastRenewalFailure_.clear(); lastRenewalOperation_.clear(); lastPermitObserved_ = managedNow();
                                     status_.reason.clear(); retryAttempt_ = 0;
@@ -273,21 +294,24 @@ public:
                         }
                     }
                 }
-                if (status_.active() && request_.ticket && managedNow() - request_.expected.requestedAt >= 15000) {
+                if ((status_.active() || status_.state == RunState::Starting) && request_.ticket && managedNow() - request_.expected.requestedAt >= 15000) {
                     const auto expected = request_.expected;
                     transport_.cancel(request_); request_ = {};
-                    reconnect("request_timeout", expected);
+                    if (status_.active()) reconnect("request_timeout", expected);
+                    else retryAcquire("request_timeout");
                 }
                 if (status_.active() && !request_.ticket && managedNow() >= nextReport_) report();
             }
         }
         if (startup) {
-            bool failed = false;
-            try { if (bot_.start) bot_.start(); } catch (...) { failed = true; }
+            std::string failure;
+            try { if (bot_.start) bot_.start(); }
+            catch (const std::exception& error) { failure = startupFailure(error); }
+            catch (...) { failure = "startup_failed"; }
             {
                 std::lock_guard lock(mutex_);
                 callbackActive_ = false;
-                if (failed) requestStop("startup_failed");
+                if (!failure.empty()) requestStop(failure);
                 if (!stopped_ && managedNow() < startingDeadline_ && managedNow() < permitDeadline_) {
                     status_.state = RunState::Running;
                     if (task_) {
@@ -329,11 +353,20 @@ public:
         cleanup();
     }
 private:
-    void acquire() {
+    void acquire(bool newBudget) {
         nextAcquire_ = 0;
-        startingDeadline_ = managedNow() + 30000;
+        if (newBudget) startingDeadline_ = managedNow() + 30000;
+        capacityWait_ = false;
         status_.reason = "Checking instance availability";
         request_ = transport_.send("acquire", {{"run_id", runId_}, {"sequence", ++sequence_}}, runId_);
+    }
+    void retryAcquire(const std::string& reason) {
+        const auto now = managedNow();
+        if (!startingDeadline_ || now >= startingDeadline_) { requestStop("startup_timeout"); return; }
+        status_.reason = "reconnecting: " + reason;
+        capacityWait_ = false;
+        const auto delay = std::min<std::uint64_t>(4000, 500ULL << std::min(retryAttempt_++, 3U));
+        nextAcquire_ = std::min(startingDeadline_, now + delay);
     }
     bool waitForCapacity(const Verified& proof, const Expected& expected) {
         if (expected.operation != "acquire" || startupEntered_ || stopped_ || status_.state != RunState::Starting ||
@@ -345,16 +378,45 @@ private:
         const auto seconds = std::clamp<std::int64_t>(*retry - unixSeconds(), 1, 300);
         const auto jitter = std::hash<std::string>{}(runId_ + std::to_string(sequence_)) % 1001;
         nextAcquire_ = managedNow() + static_cast<std::uint64_t>(seconds * 1000) + jitter;
+        capacityWait_ = true; retryAttempt_ = 0;
         startingDeadline_ = 0;
         return true;
     }
-    void rememberHold(const Json& receipt) {
+    void refreshHold() {
+        status_.releasePendingUntil = 0;
+        const auto now = unixSeconds();
+        for (auto it = holds_.begin(); it != holds_.end();) {
+            if (it->second.forgetAfter <= now) it = holds_.erase(it);
+            else { if (!it->second.released) status_.releasePendingUntil = std::max(status_.releasePendingUntil, it->second.until); ++it; }
+        }
+    }
+    void rememberHold(const Json& receipt, const std::string& run) {
+        auto& hold = holds_[run];
+        if (hold.released) return;
         const auto held = timeValue(receipt, "held_until");
         const auto expiry = timeValue(receipt, "valid_until");
         // On a denial valid_until describes response freshness, not ownership
         // of capacity. Only an actual grant can supply the expiry fallback.
-        status_.releasePendingUntil = std::max(status_.releasePendingUntil,
+        hold.until = std::max(hold.until,
             std::max(held.value_or(0), receipt.value("allowed", false) ? expiry.value_or(0) : std::int64_t{0}));
+        hold.forgetAfter = hold.until;
+        refreshHold();
+    }
+    void rememberRelease(const std::string& run) {
+        // Keep the release fence through the maximum lifetime of an older
+        // cancellation observer. Its delayed reply must not restore this hold.
+        holds_[run] = {0, unixSeconds() + 300, true};
+        std::erase_if(completions_, [&](const auto& pending) { return pending.runId == run; });
+        refreshHold();
+    }
+    void retryCompletion(const Request& request) {
+        const auto pending = std::find_if(completions_.begin(), completions_.end(), [&](const auto& completion) {
+            return completion.runId == request.expected.runId && completion.ticket == request.ticket;
+        });
+        if (pending == completions_.end()) return;
+        pending->ticket = 0;
+        const auto delay = std::min<std::uint64_t>(5000, 500ULL << std::min(pending->attempts++, 4U));
+        pending->retryAt = managedNow() + delay;
     }
     void pollCancellations() {
         for (auto it = cancellations_.begin(); it != cancellations_.end();) {
@@ -362,15 +424,48 @@ private:
             if (!reply.empty()) {
                 try {
                     const auto proof = verifyManagedReceipt(reply, it->expected);
-                    if (proof.verified && proof.result.value("run_id", "") == it->expected.runId) rememberHold(proof.result);
+                    if (proof.verified && proof.result.value("run_id", "") == it->expected.runId) {
+                        if (proof.result.value("released", false)) rememberRelease(it->expected.runId);
+                        else rememberHold(proof.result, it->expected.runId);
+                    }
                 } catch (...) {}
+                if (it->completion) retryCompletion(*it);
                 it = cancellations_.erase(it);
-            } else if (managedNow() - it->expected.requestedAt >= 300000) {
+            } else if (managedNow() - it->expected.requestedAt >= (it->completion ? 15000 : 300000)) {
                 // The host owns delivery of cancellation; dropping the SDK
                 // observer cannot cancel its durable retirement request.
+                if (it->completion) retryCompletion(*it);
                 it = cancellations_.erase(it);
             } else ++it;
         }
+    }
+    void submitCompletions() {
+        const auto now = managedNow();
+        for (auto it = completions_.begin(); it != completions_.end();) {
+            if (now >= it->deadline) { it = completions_.erase(it); continue; }
+            if (it->ticket || now < it->retryAt) { ++it; continue; }
+            try {
+                Json payload{{"run_id", it->runId}, {"sequence", ++sequence_}, {"completed", true}};
+                if (!it->leaseId.empty()) payload["lease_id"] = it->leaseId;
+                auto request = transport_.send("cancel", std::move(payload), it->runId);
+                if (request.ticket) {
+                    request.completion = true; it->ticket = request.ticket;
+                    cancellations_.push_back(std::move(request)); ++it; continue;
+                }
+            } catch (...) {}
+            it->retryAt = now + 1000; ++it;
+        }
+    }
+    void finishStop() {
+        if (!stopped_ || callbackActive_ || cleanupPending_ || worker_ || joiningWorker_) return;
+        if (cleanupSucceeded_ && !completionQueued_) {
+            // A terminal response can arrive without proving release (for
+            // example an expired connection binding). Keep a bounded observer
+            // and retry with a fresh request rather than silently losing it.
+            completions_.push_back({runId_, leaseId_, 0, managedNow() + 330000}); completionQueued_ = true;
+            submitCompletions();
+        }
+        status_.state = RunState::Stopped;
     }
     void diagnostic(const char* event, const std::string& reason, const Expected& expected = {}) {
         const auto now = managedNow();
@@ -414,7 +509,7 @@ private:
         if (!request_.ticket) reconnect("transport_unavailable", request_.expected);
     }
     void requestStop(const std::string& reason) {
-        if (reason == "account_changed") { status_.validUntil = 0; status_.releasePendingUntil = 0; }
+        if (reason == "account_changed") { status_.validUntil = 0; status_.releasePendingUntil = 0; holds_.clear(); }
         if (stopped_ || status_.state == RunState::Stopped) return;
         if (reason == "authorization_expired") diagnostic("authorization_expired",
             lastRenewalFailure_.empty() ? "renewal_not_observed" : lastRenewalFailure_, request_.expected);
@@ -428,8 +523,8 @@ private:
             auto request = transport_.send("cancel", std::move(cancel), runId_);
             if (request.ticket) cancellations_.push_back(std::move(request));
         } catch (...) {}
-        cleanupPending_ = startupEntered_; resolveStart(false, reason);
-        if (!cleanupPending_ && !worker_ && !joiningWorker_) status_.state = RunState::Stopped;
+        cleanupPending_ = startupEntered_ && static_cast<bool>(bot_.stop); resolveStart(false, reason);
+        if (!cleanupPending_) finishStop();
     }
     void cleanup() {
         signalCancellation();
@@ -440,10 +535,14 @@ private:
             if (cleanupPending_ && !callbackActive_ && !worker_ && !joiningWorker_) { cleanupPending_ = false; callbackActive_ = true; call = true; }
         }
         if (call) {
-            try { if (bot_.stop) bot_.stop(); } catch (...) {}
+            bool succeeded = true;
+            try { if (bot_.stop) bot_.stop(); } catch (...) { succeeded = false; }
             std::lock_guard lock(mutex_); callbackActive_ = false;
-            if (!worker_ && !joiningWorker_) status_.state = RunState::Stopped;
+            cleanupSucceeded_ = succeeded;
+            if (!succeeded) diagnostic("cleanup_failed", "reservation_retained");
+            finishStop();
         }
+        else { std::lock_guard lock(mutex_); finishStop(); }
     }
     void signalCancellation() {
         std::optional<std::stop_source> signal;
@@ -455,6 +554,19 @@ private:
         // or before closing renewal and queuing the durable cancellation.
         if (signal) signal->request_stop();
     }
+    void finishWithoutCallback() noexcept {
+        // The caller holds mutex_. A worker-only run owns its teardown inside
+        // the task, so its actual join is sufficient even if MainLoop has ended.
+        // Never move a developer's Bot.stop callback onto this watchdog.
+        if (bot_.stop || !stopped_) return;
+        try {
+            finishStop();
+            pollCancellations();
+            submitCompletions();
+        } catch (...) {
+            // Keep terminal intent retryable after a transient local failure.
+        }
+    }
     void watch(std::stop_token stop) {
         while (!stop.stop_requested()) {
             std::shared_ptr<PluginWorker> finished;
@@ -465,17 +577,30 @@ private:
                 else if (status_.state == RunState::Starting && startingDeadline_ && now >= startingDeadline_) requestStop("startup_timeout");
                 else if ((status_.active() || status_.state == RunState::Starting) && permitDeadline_ && now >= permitDeadline_) requestStop("authorization_expired");
                 if (worker_ && taskDone_.load(std::memory_order_acquire)) { joiningWorker_ = true; finished = std::move(worker_); }
-                if (stopped_ && !callbackActive_ && !cleanupPending_ && !worker_ && !joiningWorker_) status_.state = RunState::Stopped;
+                finishWithoutCallback();
             }
             signalCancellation();
             flushDiagnostics();
-            if (finished) { finished->join(); std::lock_guard lock(mutex_); joiningWorker_ = false; }
+            if (finished) {
+                finished->join();
+                std::lock_guard lock(mutex_);
+                joiningWorker_ = false;
+                finishWithoutCallback();
+            }
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
     }
     Plugin& owner_; Transport transport_; Bot bot_;
     mutable std::mutex mutex_;
     Status status_; Request request_;
+    struct Hold { std::int64_t until = 0, forgetAfter = 0; bool released = false; };
+    struct Completion {
+        std::string runId, leaseId;
+        std::uint64_t retryAt = 0, deadline = 0, ticket = 0;
+        unsigned attempts = 0;
+    };
+    std::map<std::string, Hold> holds_;
+    std::vector<Completion> completions_;
     std::vector<Request> cancellations_;
     std::string runId_, leaseId_;
     const std::string diagnosticPluginId_;
@@ -485,6 +610,7 @@ private:
     std::uint64_t lastPermitObserved_ = 0;
     std::uint64_t sequence_ = 0, permitSequence_ = 0, permitDeadline_ = 0, startingDeadline_ = 0, nextReport_ = 0, nextAcquire_ = 0;
     bool startupEntered_ = false, callbackActive_ = false, stopped_ = true, cleanupPending_ = false, cancellationPending_ = false;
+    bool cleanupSucceeded_ = true, completionQueued_ = true, capacityWait_ = false;
     bool joiningWorker_ = false;
     unsigned retryAttempt_ = 0;
     bool closed_ = false;

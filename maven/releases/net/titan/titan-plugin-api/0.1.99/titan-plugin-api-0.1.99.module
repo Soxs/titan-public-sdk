@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.titan",
+    "module": "titan-plugin-api",
+    "version": "0.1.99",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.inject",
+          "module": "guice",
+          "version": {
+            "requires": "7.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "titan-plugin-api-0.1.99.jar",
+          "url": "titan-plugin-api-0.1.99.jar",
+          "size": 9326868,
+          "sha512": "9bb3d833174864d8c37c64294a8b19c80c45537898c8102563404529f9d297f77c1551ad8fd5d101437cef5245ce1387cb2db0e13747de5b8dff4d753a36006d",
+          "sha256": "39bcb2d0945bea457e6633efb78084e6bd452bfc50e38da3262eaf7c3e9ee4ca",
+          "sha1": "e74604597deac755525bb926c7661ccc6ff86eb4",
+          "md5": "0e6f14f8f98ce8d2fccb1ba52bed6415"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.inject",
+          "module": "guice",
+          "version": {
+            "requires": "7.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "titan-plugin-api-0.1.99.jar",
+          "url": "titan-plugin-api-0.1.99.jar",
+          "size": 9326868,
+          "sha512": "9bb3d833174864d8c37c64294a8b19c80c45537898c8102563404529f9d297f77c1551ad8fd5d101437cef5245ce1387cb2db0e13747de5b8dff4d753a36006d",
+          "sha256": "39bcb2d0945bea457e6633efb78084e6bd452bfc50e38da3262eaf7c3e9ee4ca",
+          "sha1": "e74604597deac755525bb926c7661ccc6ff86eb4",
+          "md5": "0e6f14f8f98ce8d2fccb1ba52bed6415"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-plugin-api-0.1.99-sources.jar",
+          "url": "titan-plugin-api-0.1.99-sources.jar",
+          "size": 4855324,
+          "sha512": "16f1c375b0ed9fc1b0a191808c64f6454baa3f1764b242eb494c852620ea71f080fadc9a754c2c2a6305cd168700094ac61c5cd70c8be04016aa744f41f09ca5",
+          "sha256": "7046bcdd711b9f90f76481a9e5c7e68a5a872965e5add53ab34bfe338a192049",
+          "sha1": "d7e266df696a0d0b11d0b0f557958cd609894a40",
+          "md5": "daa9b0a1bc4cdf97581bc0b883a55838"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-plugin-api-0.1.99-javadoc.jar",
+          "url": "titan-plugin-api-0.1.99-javadoc.jar",
+          "size": 22937320,
+          "sha512": "d92ecda477ac2e9c13fe272bd984a74308f21e5f960d6f5648b606fbc6883ef9fc95097dd5f6760b6c42c92622c520be57a4bb495b4fd3b1babf4bd5f6d84c38",
+          "sha256": "e43e63a8c4e088295e159020eebfdc3625880471f77238caa96a4f57c09dd707",
+          "sha1": "3ea3ff35d46e6bc4682a4fcd7796311634d59157",
+          "md5": "cb911857027412d7cfc5ec67b1308fa9"
+        }
+      ]
+    }
+  ]
+}

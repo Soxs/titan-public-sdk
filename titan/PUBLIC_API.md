@@ -1,4 +1,4 @@
-# Titan Plugin SDK -- public symbol inventory (v167)
+# Titan Plugin SDK -- public symbol inventory (v171)
 
 ## Item sprites and alpha-mask outlines (SDK 167)
 
@@ -71,6 +71,16 @@ and the minimum supported SDK version 154 remain unchanged.
 optional `HostMenuEditingV1` (`0x1009`). `PluginMenuEventsV1` (`0x2006`) supplies
 `onPostMenuSort`, `onMenuOpened` and `onMenuEntryAdded`. Native ABI v1's existing
 tables and payloads are unchanged; the minimum supported SDK remains 154.
+
+SDK 169 exposes the same menu editor to JavaScript through `titan.menu` and
+`titan.state.client.getMenu()`. `Menu` supplies `getMenuEntries`,
+`createMenuEntry`, `setMenuEntries`, `swapMenuEntries` and `removeMenuEntry`;
+`MenuEntry` supplies fluent field setters and `onClick`. Both class plugins and
+object definitions receive `onPostMenuSort`, `onMenuOpened` and
+`onMenuEntryAdded`. Entries belong to the original plugin registration and menu
+generation; stale or out-of-callback mutations throw. Custom opcodes accept the
+full unsigned 32-bit range. See [menu callback support](../../docs/menu-callback-support.md)
+for callback consumption and ownership rules across runtimes.
 
 Entries are ordered bottom-to-top, so `back()` is the top/default entry and
 `createMenuEntry(-1)` appends. `MenuEntry` offers option/target, opcode/type,
@@ -220,6 +230,27 @@ See [offsets, zoom scripts and the Camera plugin](../../docs/camera_controls.md)
 obtains signed authorization before startup; `stop()` is idempotent. `controls()`
 adds standard Start/Stop/status controls. `run(task)` executes a finite worker with
 a cancellation token and stops on completion or failure. Binding consumes no slot.
+
+SDK 171 keeps a run in `Stopping` until admitted startup, callbacks and finite
+work settle and cleanup returns. Stop immediately fences local renewal and
+requests server retirement; confirmed completion releases only that run's
+reservation. Cleanup failure does not confirm release. Transport retries retain
+the original admission deadline, and completion retries use bounded backoff.
+
+The optional native `PluginManagedLifecycleV1` (`0x2007`, major 1) provides
+`pump` and `isStopping`. The host uses it to service managed cleanup while a
+plugin is disabled or unloading, without invoking author MainLoop/gameplay
+callbacks. Re-enable waits for stopping to finish, and author `onUnload` follows
+managed cleanup. Existing capability tables, payloads and SDK floor 154 remain
+unchanged.
+
+For a native `run(task)` that owns all resource cleanup, leave `Bot::stop` empty.
+The task must cancel and join its own dependent work before returning. The SDK
+confirms completion only after joining the task and destroying its captures;
+this path does not need another MainLoop callback. A supplied `Bot::stop` still
+uses normal lifecycle cleanup after the task joins. Game callbacks must not
+wait for a worker that may call host APIs: request cancellation and let the
+worker finish cleanup, keeping the instance in `Stopping` until it settles.
 
 `titan::entitlements(owner)` exposes `check()`, `check(key)`, `list()`, `snapshot()`
 and `onChanged(callback)`. Reads cover the calling publisher, approved dependencies
@@ -519,6 +550,12 @@ as a JS/TS in-source asset map. A released plugin needs no loose UI files.
 | Transient message | `panel.postMessage(type, json, correlationId)` | `HtmlPanels.of(this).postMessage(id, type, json, correlationId)` | `titan.htmlPanels.postMessage(this, id, type, value, correlationId)` |
 | Incoming message | `panel.onMessage(callback)` | `Plugin.onHtmlPanelMessage(id, message)` / `onHtmlOverlayMessage(id, message)` | HTML definition or factory handle `onMessage(message)` |
 | Overlay updates | `overlay.setVisible(bool)`, `setSize(width, height)` | `HtmlOverlays` facade | Factory handle `setVisible(bool)`, `setSize(width, height)` or `titan.htmlOverlays` facade |
+
+`SidePanel::requestOpen()`, `HtmlSidePanel::requestOpen()` and
+`Plugin::requestPanelOpen(id)` record an asynchronous opening request after a
+user action; `true` means accepted, not already displayed. Native panel requests
+work without an HTML renderer. Unknown IDs, hidden native panels and overlays
+reject requests; older hosts retain manual panel access.
 
 The JS/TS class factory `Plugin.htmlOverlayPanel(options: HtmlOverlayPanelOptions)`
 returns an owner-bound `HtmlOverlayPanelInstance` with `id`, `setState(value)`,
@@ -2146,7 +2183,12 @@ native plugin instance tests.
 Each plugin HTML table contains `InterfaceHeader` and the complete
 `HtmlUiCallbacks` block. All ten callbacks must be present. Missing tables,
 physically short allocations, partial final pointers, null required callbacks,
-and unknown majors import atomically as absent. A future tail is ignored.
+and unknown majors import atomically as absent. Unknown tails are ignored.
+SDK 170 adds an optional `PluginHtmlPanelsV1::openRequest` pointer at byte 88;
+the required callback prefix remains 88 bytes. Universal native/HTML opening
+uses the optional `PluginUiV1::panelOpenRequest` tail at byte 48. Both return
+the panel's request sequence without invoking author code; absent tails leave
+manual panel selection available.
 The host capability returns support bits `kHtmlUiSidePanels` (1) and
 `kHtmlUiOverlays` (2), with `kHtmlUiRuntimeAvailable` (`1u << 31`) independently
 describing renderer availability. The new interfaces are not default required

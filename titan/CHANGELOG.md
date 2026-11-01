@@ -16,6 +16,19 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v171 -- Confirmed managed-instance completion
+
+- `+` Optional `PluginManagedLifecycleV1` pumps disabled/unloading cleanup and
+  reports stopping before re-enable; author `onUnload` follows managed cleanup.
+- `~` Stop fences renewal first, then confirms completion after callbacks,
+  workers and successful cleanup settle. Failed cleanup retains the reservation.
+- `~` Native tasks with no separate stop callback confirm completion after their
+  worker joins, without requiring another MainLoop callback.
+- `~` Completion retries use fresh requests with bounded backoff for up to
+  330 seconds; acquisition retries preserve the admission deadline and startup
+  failures retain useful detail. Confirmed release clears only that run's hold.
+- `~` Existing native payloads and minimum supported SDK 154 remain unchanged.
+
 ## v170 -- Universal side-panel opening requests
 
 - `+` Native and HTML side panels request opening through C++

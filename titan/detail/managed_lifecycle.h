@@ -8,6 +8,7 @@ public:
     virtual void pump() = 0;
     virtual void tick() {}
     virtual void stop() = 0;
+    virtual bool stopping() const { return false; }
     virtual void close() { stop(); }
 };
 }

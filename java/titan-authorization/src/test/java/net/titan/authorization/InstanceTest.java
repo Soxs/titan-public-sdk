@@ -46,11 +46,11 @@ class InstanceTest {
     static String hash(String value){try{byte[] bytes=MessageDigest.getInstance("SHA-256").digest(value.getBytes(StandardCharsets.UTF_8));StringBuilder s=new StringBuilder();for(byte b:bytes)s.append(String.format("%02x",b));return s.toString();}catch(Exception e){throw new AssertionError(e);}}
     class Backend implements AuthorizationBackend {
         Set<Listener> listeners=new LinkedHashSet<>();Map<Long,Map<String,Object>> requests=new LinkedHashMap<>();
-        List<String> operations=new ArrayList<>();Map<String,Long> holds=new HashMap<>();long next,retryAt,cancelHeldUntil;boolean delay,denied,tamper,stopOnDeadline;int stops;String incompleteReport;
+        List<String> operations=new ArrayList<>();List<Map<String,Object>> submissions=new ArrayList<>();Map<String,Long> holds=new HashMap<>();long next,retryAt,cancelHeldUntil;boolean delay,denied,tamper,stopOnDeadline,completionRelease;int stops,failAcquires;String incompleteReport;
         public boolean register(Plugin owner,Listener listener){listeners.add(listener);return true;}
         public void unregister(Plugin owner,Listener listener){listeners.remove(listener);}
         public String context(Plugin owner){return Json.write(context);}
-        public long submit(Plugin owner,String operation,String raw){Map<String,Object> item=new LinkedHashMap<>(Json.object(raw));item.put("operation",operation);requests.put(++next,item);operations.add(operation);return next;}
+        public long submit(Plugin owner,String operation,String raw){if(operation.equals("acquire")&&failAcquires-->0)return 0;Map<String,Object> item=new LinkedHashMap<>(Json.object(raw));item.put("operation",operation);requests.put(++next,item);submissions.add(item);operations.add(operation);return next;}
         public void cancel(Plugin owner,long ticket){requests.remove(ticket);}
         public void authorizationStop(Plugin owner){stops++;requests.entrySet().removeIf(entry->!"cancel".equals(entry.getValue().get("operation")));}
         public void deadline(Plugin owner,long remainingMillis){if(stopOnDeadline){stopOnDeadline=false;context.put("session_valid",false);stopOwner("session_changed");}}
@@ -67,6 +67,7 @@ class InstanceTest {
             if(operation.equals("report")){Map<String,Object> run=Json.object(((List<?>)payload.get("runs")).get(0));permit.put("run_id",run.get("run_id"));permit.put("permit_sequence",Json.number(run,"ack_sequence")+1);result.put("complete",true);result.put("runs",Collections.singletonList(permit));holds.put(Json.string(run,"run_id"),now+120);}
             if(operation.equals("report")&&incompleteReport!=null){if(incompleteReport.equals("missing"))result.remove("complete");else result.put("complete",incompleteReport.equals("false")?Boolean.FALSE:"true");}
             if(operation.equals("cancel"))result=Json.map("operation","cancel","allowed",false,"run_id",payload.get("run_id"),"held_until",cancelHeldUntil>0?cancelHeldUntil:holds.getOrDefault(Json.string(payload,"run_id"),0L));
+            if(operation.equals("cancel")&&completionRelease&&Boolean.TRUE.equals(payload.get("completed"))){result.put("released",true);result.put("held_until",0L);}
             String body=Json.write(result);Map<String,Object> claims=new LinkedHashMap<>(context);
             claims.putAll(Json.map("iat",now,"nbf",now,"exp",now+300,"purpose","plugin_run","operation",operation,"request_id",request.get("request_id"),"challenge",request.get("challenge"),"caller_context_sha256",hash(certificate),"result_sha256",hash(body)));
             if(payload.containsKey("run_id"))claims.put("run_id",payload.get("run_id"));
@@ -74,6 +75,78 @@ class InstanceTest {
         }
         void pulse(){for(Listener listener:new ArrayList<>(listeners))listener.pulse();}
         void stopOwner(String reason){for(Listener listener:new ArrayList<>(listeners))listener.stopped(reason);}
+    }
+    long completions(){return backend.submissions.stream().filter(item->Boolean.TRUE.equals(Json.object(item.get("payload")).get("completed"))).count();}
+    @Test void completionReleasesOnlyItsRunAndRapidRestartKeepsNewHold(){
+        backend.completionRelease=true;Instance run=timed(new Bot());
+        run.start();backend.pulse();run.stop();assertEquals(1,completions());
+        run.start();backend.pulse();assertTrue(run.active());assertEquals(fakeMillis/1000+120,run.releasePendingUntil());
+        run.stop();backend.pulse();assertEquals(0,run.releasePendingUntil());assertEquals(2,completions());run.close();
+    }
+    @Test void failedStartupCompletesOnlyAfterCleanupReturned(){
+        Bot bot=new Bot(){@Override public void stop(Instance.StopReason reason){assertEquals(0,completions());super.stop(reason);}};
+        bot.accept=false;Instance run=timed(bot);run.start();backend.pulse();
+        assertEquals(Instance.State.FAILED,run.status());assertEquals(1,completions());run.close();
+    }
+    @Test void stopInsideStartupWaitsForStartupCallbackToReturn(){
+        Instance[] ref=new Instance[1];List<String> events=new ArrayList<>();
+        Bot bot=new Bot(){
+            @Override public boolean start(){ref[0].stop();assertEquals(0,completions());assertEquals(0,stops);assertEquals(Instance.State.STOPPING,ref[0].status());events.add("startup-final");return true;}
+            @Override public void stop(Instance.StopReason reason){events.add("cleanup");assertEquals(0,completions());super.stop(reason);}
+        };
+        ref[0]=timed(bot);CompletionStage<Instance.StartResult> result=ref[0].start();backend.pulse();
+        assertFalse(result.toCompletableFuture().join().started);assertEquals(Arrays.asList("startup-final","cleanup"),events);assertEquals(1,completions());assertEquals(Instance.State.STOPPED,ref[0].status());ref[0].close();
+    }
+    @Test void finiteWorkMustActuallySettleAfterStopEvenOnUnload() throws Exception {
+        Bot bot=new Bot();Instance run=timed(bot);CompletableFuture<Void> task=new CompletableFuture<>();Instance.Cancellation[] token=new Instance.Cancellation[1];
+        run.run(cancel->{token[0]=cancel;return task;});backend.pulse();backend.stopOwner("unloaded");
+        assertTrue(token[0].cancelled());assertFalse(task.isCancelled());assertEquals(Instance.State.STOPPING,run.status());assertEquals(0,completions());
+        assertEquals("stopping",run.start().toCompletableFuture().join().reason);
+        backend.listeners.clear();Thread worker=new Thread(()->task.complete(null));worker.start();worker.join();
+        assertEquals(Instance.State.STOPPED,run.status());assertEquals(1,completions());assertEquals(1,bot.stops);run.close();
+    }
+    @Test void cancelledFutureIsNotProofWorkExited(){
+        Instance run=timed(new Bot());CompletableFuture<Void> task=new CompletableFuture<>();run.run(cancel->task);backend.pulse();
+        task.cancel(true);backend.pulse();assertEquals(0,completions());assertEquals(Instance.State.STOPPING,run.status());assertEquals("work_exit_unconfirmed",run.reason());run.close();
+    }
+    @Test void queuedFiniteCompletionIsDrainedDuringCloseWithoutAnotherOwnerPulse(){
+        Instance run=timed(new Bot());CompletableFuture<Void> task=new CompletableFuture<>();run.run(cancel->task);backend.pulse();
+        task.complete(null);run.close();assertEquals(Instance.State.STOPPED,run.status());assertEquals(1,completions());
+    }
+    @Test void retiredWatchdogCannotExpireTheNextRun() throws Exception {
+        Instance run=timed(new Bot());run.start();backend.pulse();
+        java.lang.reflect.Field epoch=Instance.class.getDeclaredField("epoch"),signal=Instance.class.getDeclaredField("expiredSignal");epoch.setAccessible(true);signal.setAccessible(true);
+        long previousEpoch=epoch.getLong(run);Object previousSignal=signal.get(run);run.stop();run.start();backend.pulse();
+        java.lang.reflect.Method watchdog=Instance.class.getDeclaredMethod("watchdog",long.class,java.util.concurrent.atomic.AtomicBoolean.class);watchdog.setAccessible(true);
+        watchdog.invoke(run,previousEpoch,previousSignal);backend.pulse();assertTrue(run.active());assertNotSame(previousSignal,signal.get(run));run.close();
+    }
+    @Test void terminalRetryCannotHideSessionInvalidationFromActiveSuccessor() throws Exception {
+        Instance run=timed(new Bot());run.start();backend.pulse();assertTrue(run.active());
+        context.put("session_valid",false);
+        java.lang.reflect.Field transport=Instance.class.getDeclaredField("client");transport.setAccessible(true);
+        ((AuthorizationClient)transport.get(run)).request("cancel",Json.map("run_id","old-run","sequence",99L,"completed",true),"old-run");
+        backend.pulse();assertFalse(run.active());assertEquals("session_changed",run.reason());run.close();
+    }
+    @Test void cleanupFailureCanBeRetriedWithoutPrematureCompletion(){
+        Bot bot=new Bot();bot.throwStop=true;Instance run=timed(bot);run.start();backend.pulse();run.stop();
+        assertEquals(0,completions());assertEquals("cleanup_failed",run.reason());assertEquals(Instance.State.STOPPING,run.status());
+        bot.throwStop=false;run.stop();assertEquals(1,completions());assertEquals(Instance.State.STOPPED,run.status());run.close();
+    }
+    @Test void transientAdmissionFailureRetriesWithinOriginalBudget(){
+        backend.failAcquires=1;Instance run=timed(new Bot());CompletionStage<Instance.StartResult> result=run.start();
+        assertEquals(Instance.State.STARTING,run.status());advance(500);backend.pulse();backend.pulse();assertTrue(result.toCompletableFuture().join().started);run.close();
+        backend.failAcquires=100;run=timed(new Bot());result=run.start();advance(30001);backend.pulse();assertFalse(result.toCompletableFuture().join().started);run.close();
+    }
+    @Test void completedCancellationRetriesSignedRefusalAndInvalidProofWithFreshRequest(){
+        for(boolean tamper:Arrays.asList(false,true)){
+            backend=new Backend();TitanRuntime.setAuthorizationBackend(backend);
+            Instance run=timed(new Bot());run.start();backend.pulse();run.stop();backend.tamper=tamper;backend.pulse();
+            String first=Json.string(backend.submissions.stream().filter(item->Boolean.TRUE.equals(Json.object(item.get("payload")).get("completed"))).findFirst().get(),"request_id");
+            assertTrue(run.releasePendingUntil()>0);backend.tamper=false;backend.completionRelease=true;advance(1000);backend.pulse();
+            assertEquals(2,completions());assertEquals(0,run.releasePendingUntil());
+            String last=Json.string(backend.submissions.stream().filter(item->Boolean.TRUE.equals(Json.object(item.get("payload")).get("completed"))).reduce((a,b)->b).get(),"request_id");
+            assertNotEquals(first,last);run.close();
+        }
     }
     @Test void partialOrMalformedSignedReportCannotRenew(){
         for(String incomplete:Arrays.asList("missing","false","wrong-type")){
@@ -162,7 +235,7 @@ class InstanceTest {
         Bot bot=new Bot();bot.throwStop=true;Instance run=new Instance(new Owner(),bot,verifier);
         CompletionStage<Instance.StartResult> start=run.start();assertSame(start,run.start());assertEquals(0,bot.starts);
         backend.pulse();assertTrue(start.toCompletableFuture().join().started);assertEquals(1,bot.starts);
-        run.stop();assertEquals(1,bot.stops);assertEquals(1,backend.stops);assertEquals(Instance.State.STOPPED,run.status());
+        run.stop();assertEquals(1,bot.stops);assertEquals(1,backend.stops);assertEquals(Instance.State.STOPPING,run.status());
         assertTrue(run.releasePendingUntil()>0);assertEquals(1,Collections.frequency(backend.operations,"acquire"));
     }
     @Test void deniedOrForgedResponseNeverEntersStartup(){

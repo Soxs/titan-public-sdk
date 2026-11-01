@@ -1,9 +1,11 @@
 # Managed plugin instances and entitlements
 
 SDK 160 introduces managed native instances through an optional host capability.
-Java SDK 0.1.90 and the bundled JavaScript helper provide equivalent interfaces;
+Java SDK 0.1.99 and the bundled JavaScript helper provide equivalent interfaces;
 see [their examples and packaging instructions](plugin_authorization_java_js.md).
 Existing native ABI records and the supported SDK floor (154) do not change.
+SDK 171 adds confirmed completion and an optional managed-lifecycle interface
+so disabled native plugins can finish cleanup without receiving ordinary callbacks.
 
 ## Bind once, start and stop
 
@@ -32,8 +34,8 @@ messages, inspect its shared future after it becomes ready; never block the
 MainLoop with `get()` while a request is pending.
 
 When capacity is full, an explicit Start waits in Starting and displays when it
-will check again. It retries with fresh online approval after the server's next
-reservation deadline; another running instance may renew that reservation. Stop
+will check again. It retries with fresh online approval at the server's advisory
+retry time (at most two seconds plus SDK jitter on the updated server). Stop
 cancels this wait. Waiting consumes no slot and does not invoke bot startup or
 use its 30-second startup budget. Existing integration code stays unchanged.
 
@@ -97,8 +99,9 @@ Subscriptions are removed when the owner is stopped or unloaded.
 
 New run permits last at most two minutes and may end sooner for scheduled entitlement
 or capacity changes. Reports run every 20 seconds, immediately on changes, and
-earlier when a short deadline requires it. The controller batches work over its
-gateway socket. Client MainLoop liveness is independent of game ticks and rendering.
+earlier when a short deadline requires it. The controller multiplexes bounded work
+over its gateway socket and reserves a worker for terminal cancellations.
+Client MainLoop liveness is independent of game ticks and rendering.
 Entitlement read proofs retain a separate five-minute maximum. Previously issued
 five-minute run permits and their reservations remain valid through their original
 deadlines during rollout; they are never shortened to free capacity early.
@@ -140,26 +143,49 @@ by the previous account and clears entitlement snapshots. Reopen those game tabs
 under the new account. Switching back does not revive old Start requests. A
 temporary gateway disconnect does not trigger this account-change fence.
 
-Stop works offline. Capacity can remain reserved until the highest permit already
-issued expires, including a reply lost in transit. `releasePendingUntil` is the
-latest signed reservation deadline observed by this scope. It includes a verified
-Stop acknowledgement and survives another Start; submitting requests never extends
-it. A lost renewal or Stop reply can leave a later server deadline unknown, so
-the standard panel labels this as the last confirmed reservation. Online admission
-always decides availability. A stopped plugin cannot continue renewal because of
-a cleanup exception. This policy is separate from client access continuation.
+Stop works offline: it immediately stops local renewal and requests server
+retirement. The server fences further issuance when it receives that request;
+an offline stop cannot immediately fence requests already in transit.
+After startup callbacks, managed workers and successful cleanup have all finished,
+the SDK sends a separate `cancel` with `payload.completed: true`. The server frees
+capacity immediately in that transaction and retains the run's tombstone so a
+delayed acquire or report cannot revive it. A signed `released: true` receipt with
+`held_until: 0` clears only that run's displayed hold. Late older receipts cannot
+restore a released hold or clear a newer run's reservation.
+
+A cleanup exception, unfinished worker, uncertain disconnect or lost completion
+keeps the bounded reservation until confirmation or the highest permit already
+issued expires. Terminal delivery retries for at most 330 seconds, including
+after disable/unload, without enabling new work. A plain socket/IPC timeout never
+asserts completion. The controller can confirm completion when the retained OS
+process handle is signalled, and drains those requests before stopping its gateway
+or discarding sign-in credentials. Routine credential refresh can rebind completion
+to the same verified account/device; a different sign-in cannot adopt it.
+
+`releasePendingUntil` is the latest signed reservation deadline still observed for
+unreleased runs; submitting requests never extends it. A lost renewal can leave a
+later server deadline unknown. Online admission always decides availability.
 
 ## Server and rollout contract
 
 The website owns durable account/canonical-plugin reservations and capacity
-contributions. The gateway forwards authenticated, ordered requests; it does not
+contributions. The gateway forwards authenticated, correlated requests; it does not
 own an in-memory counter. Complete reports reconcile existing runs and never
 allocate unknown runs. Cancellation tombstones fence delayed admissions. One
 unacknowledged successor is allowed per acknowledged permit. Expired reservations
 stop consuming capacity by timestamp, without waiting for a cleanup job.
 
-Website changes ship with plugin authorization disabled. Deploy migrations and
-website support, then gateway, controller/client, and SDK artifacts. Only approved
+For an existing installation, deploy the additive `completed_at` migration and
+website first, then the gateway. Existing clients/SDKs remain accepted: legacy
+`cancel` without `completed: true`, stopping reports, omitted runs and socket loss
+retain their existing expiry behavior. No SDK floor, client minimum version or
+feature-flag change is required for this server rollout. Then deploy the updated
+controller/client and rebuild managed plugins with the updated SDKs to opt into
+immediate completion release. Old SDKs cannot confirm settled cleanup; their
+ordinary Stop continues to use expiry until rebuilt. The updated controller can
+confirm a terminated process even when its loaded plugin used an older SDK.
+
+Fresh installations ship with plugin authorization disabled. Only approved
 builds marked compatible may enable finite listing limits. Run the website's
 real SQL concurrency test against the production database engine before enabling
 limits; SQLite tests do not establish row-lock behavior across workers.

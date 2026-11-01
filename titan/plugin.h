@@ -109,8 +109,10 @@ public:
     void _pumpManaged() {
         if (_managedEntitlements) _managedEntitlements->pump();
         if (_managedInstance) _managedInstance->pump();
+        _finishManagedUnload();
     }
     void _tickManaged() { if (_managedInstance) _managedInstance->tick(); }
+    bool _managedStopping() const { return _managedInstance && _managedInstance->stopping(); }
     void _stopManaged() {
         if (_managedInstance) _managedInstance->stop();
         if (_managedEntitlements) _managedEntitlements->stop();
@@ -118,6 +120,13 @@ public:
     void _closeManaged() {
         if (_managedInstance) _managedInstance->close();
         if (_managedEntitlements) _managedEntitlements->close();
+    }
+    void _prepareManagedUnload() {
+        if (managedUnloadPrepared_) return;
+        managedUnloadPrepared_ = true;
+        managedUnloadPending_ = true;
+        _closeManaged();
+        _finishManagedUnload();
     }
 
     // --- Identity (supplied by TITAN_PLUGIN) ---
@@ -492,6 +501,12 @@ public:
     }
 
 private:
+    void _finishManagedUnload() {
+        if (!managedUnloadPending_ || _managedStopping()) return;
+        managedUnloadPending_ = false;
+        onUnload();
+    }
+    bool managedUnloadPrepared_ = false, managedUnloadPending_ = false;
     void _requireHtmlRegistrationOpen() const {
         if (htmlRegistrationFrozen_)
             throw std::logic_error("HTML surfaces must be registered in the plugin constructor before interface publication");
@@ -569,7 +584,7 @@ inline uint8_t thunkGetDefaultEnabled(void* ud) { return self(ud)->isDefaultEnab
 
 inline uint8_t thunkGetEnabled(void* ud) { return self(ud)->isEnabled() ? 1 : 0; }
 inline void thunkSetEnabled(void* ud, uint8_t v) { self(ud)->_setEnabledFromHost(v != 0); }
-inline void thunkPrepareUnload(void* ud) { self(ud)->_closeManaged(); self(ud)->onUnload(); }
+inline void thunkPrepareUnload(void* ud) { self(ud)->_prepareManagedUnload(); }
 
 /// Per-thread owner of the strings a getSettings / getSections result points
 /// at (SDK 154). serialize() lends a record each member's own std::string,
@@ -692,6 +707,8 @@ inline uint8_t thunkSetSetting(void* ud, const char* key,
 
 inline void thunkOnClientTick(void* ud) { self(ud)->onClientTick(); }
 inline void thunkOnMainLoop(void* ud) { self(ud)->_pumpManaged(); self(ud)->onMainLoop(); }
+inline void thunkPumpManagedLifecycle(void* ud) { self(ud)->_pumpManaged(); }
+inline uint8_t thunkManagedLifecycleStopping(void* ud) { return self(ud)->_managedStopping() ? 1 : 0; }
 inline void thunkOnGameTick(void* ud, int32_t tick) { self(ud)->_tickManaged(); self(ud)->onGameTick(tick); }
 
 inline void thunkRenderOverlay(void* ud, uint8_t layer) {
@@ -1112,6 +1129,8 @@ inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outAp
     outApi->onMouseReleased = &GuardedPluginCallback<&thunkOnMouseReleased>::invoke;
     outApi->getDependencies = &GuardedPluginCallback<&thunkGetDependencies>::invoke;
     outApi->onMainLoop = &GuardedPluginCallback<&thunkOnMainLoop>::invoke;
+    outApi->pumpManagedLifecycle = &GuardedPluginCallback<&thunkPumpManagedLifecycle>::invoke;
+    outApi->managedLifecycleStopping = &GuardedPluginCallback<&thunkManagedLifecycleStopping>::invoke;
     outApi->onCrossTabChanged = &GuardedPluginCallback<&thunkOnCrossTabChanged>::invoke;
 }
 

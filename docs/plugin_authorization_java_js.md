@@ -36,6 +36,9 @@ Previously issued five-minute permits retain their original expiry during rollou
 Entitlement read proofs keep their separate five-minute maximum. New starts fail closed
 when transport, verification, deployment flags, or approved build identity is missing.
 Calling Start again while starting/running does not request another slot.
+Transient admission transport failures retry within the original 30-second
+admission budget, using the same run ID. Signed denials and invalid proofs never
+invoke startup.
 
 During a renewal outage the status becomes `reconnecting`, while the existing
 verified permit still allows work. A five-second report timeout and bounded jitter
@@ -55,15 +58,38 @@ For finite work use `run.run(async cancellation => { ... })` in JavaScript, or
 `run.run(cancellation -> completionStage)` in Java. Task settlement completes the
 run. Java's returned stage reports startup; the worker's stage defines its lifetime.
 JavaScript's returned Promise also awaits the task. Owned workers must observe the
-cancellation signal and finish promptly; stop also cancels Java tasks implementing
-`Future`. An event-driven worker whose lifetime cannot be inferred calls
+cancellation signal and finish promptly. Java does not call `Future.cancel`:
+a cancelled future can report completion while its worker is still executing.
+Return a stage that settles only after the owned work has actually exited. An
+externally cancelled stage leaves the run Stopping with `work_exit_unconfirmed`;
+its reservation falls back to expiry. An event-driven worker whose lifetime cannot be inferred calls
 `run.complete()` when finished. Signal worker shutdown in `bot.stop` and avoid
 starting unrelated detached work. JavaScript async startup receives the same
 cancellation signal and must check it after each await before side effects.
 
 Stop retires the run before invoking user cleanup, so a thrown or blocked stop hook
-cannot keep renewing it. The server retains a reservation until its last issued
-permit expires, including a permit whose reply was lost. `releasePendingUntil`
+cannot keep renewing it. A successful cleanup return must mean the worker has
+stopped. JavaScript may return a Promise from `bot.stop`; the SDK waits for it,
+pending async startup, and finite work before completing retirement. Cancellation
+is signalled immediately; startup must settle before `bot.stop` runs, so startup's
+last side effect always precedes cleanup. For already-running finite work the stop
+hook runs immediately to help that work exit. Start stays
+blocked in Stopping during that wait. A thrown/rejected cleanup leaves
+`cleanup_failed`; another Stop retries cleanup without restarting the worker.
+
+After all owned work has exited and cleanup succeeds, the SDK sends a separate
+`cancel` request with `completed: true`. New servers immediately free that run's
+reservation, including after partial startup or cancellation of pending admission.
+The signed acknowledgement must identify the same run with `released: true` and
+`held_until: 0`. An older run's reply cannot clear a newer run's reservation.
+Completion requests survive disable/unload through an exact-owner terminal channel;
+they cannot admit or renew work after teardown. A bounded outbox retries with fresh
+request IDs after transport failures or signed nonrelease responses for up to
+330 seconds. Java's terminal polling never invokes plugin or game callbacks.
+
+Offline stops, unconfirmed worker exit, failed cleanup, and older servers retain
+the reservation until its last issued permit expires, including a permit whose
+reply was lost. `releasePendingUntil`
 (a Java getter, a JavaScript property) is the latest signed Unix-seconds reservation
 deadline observed, including a verified Stop acknowledgement. Submitting requests
 does not extend it; denied admission does not fabricate a new hold. Lost renewal
@@ -111,7 +137,7 @@ Reading any entitlement never grants a concurrent run or consumes a slot.
 
 ## Packaging
 
-Java SDK 0.1.90 and `net.titan.dev` 0.1.2 bundle `net.titan:titan-authorization`
+Java SDK 0.1.99 and `net.titan.dev` 0.1.3 bundle `net.titan:titan-authorization`
 into each plugin and relocate its classes to a namespace derived from the artifact.
 This avoids sharing another plugin's verifier through the embedded class loader.
 Keep the API dependency compile-only, and apply the convention plugin's normal JAR

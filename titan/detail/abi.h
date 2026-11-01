@@ -38,6 +38,16 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v171 -- Confirmed managed-instance completion.
+///   + Optional PluginManagedLifecycleV1 pumps disabled/unloading cleanup and
+///     reports stopping before re-enable; author onUnload follows managed cleanup.
+///   ~ Stop fences renewal first, then confirms completion after callbacks,
+///     workers and successful cleanup settle. Failed cleanup retains the hold.
+///   ~ Native tasks with no separate stop callback confirm completion after their
+///     worker joins, without requiring another MainLoop callback.
+///   ~ Completion retries use fresh requests with bounded backoff; acquisition
+///     retries preserve its deadline and startup failures retain useful detail.
+///   ~ Existing payloads and compatibility floor154 unchanged.
 /// v170 -- Universal side-panel opening requests.
 ///   + Native and HTML side panels can request opening in C++, Java and JS.
 ///   + SidePanel/HtmlSidePanel::requestOpen, Plugin::requestPanelOpen and an
@@ -1956,7 +1966,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 170;
+constexpr uint32_t kSdkVersion = 171;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5571,6 +5581,11 @@ struct PluginApi {
     void (*onPostMenuSort)(void* userData, const MenuLifecycleEvent*) = nullptr;
     void (*onMenuOpened)(void* userData, const MenuLifecycleEvent*) = nullptr;
     void (*onMenuEntryAdded)(void* userData, const MenuLifecycleEvent*) = nullptr;
+
+    // SDK 171 optional PluginManagedLifecycleV1. Owner-thread housekeeping only;
+    // may run while disabled, without invoking the plugin's onMainLoop.
+    void (*pumpManagedLifecycle)(void* userData) = nullptr;
+    uint8_t (*managedLifecycleStopping)(void* userData) = nullptr;
 };
 
 /// Historical local embedding signatures. These tables must never cross a

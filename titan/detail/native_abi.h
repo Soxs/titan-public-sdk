@@ -156,6 +156,7 @@ inline constexpr uint64_t kPluginEventsId = 0x2003;
 inline constexpr uint64_t kPluginHtmlPanelsId = 0x2004;
 inline constexpr uint64_t kPluginHtmlOverlaysId = 0x2005;
 inline constexpr uint64_t kPluginMenuEventsId = 0x2006;
+inline constexpr uint64_t kPluginManagedLifecycleId = 0x2007;
 
 // New optional v1 tables. Existing tables and payload layouts remain frozen.
 struct HostItemSpritesV1 {
@@ -600,6 +601,16 @@ struct PluginCoreV1 {
 };
 static_assert(std::is_standard_layout_v<PluginCoreV1>);
 static_assert(offsetof(PluginCoreV1, header) == 0);
+
+// Optional owner-thread cleanup pump. Safe while the UI is disabled; it does
+// not dispatch the author's gameplay/MainLoop callbacks. No existing table or
+// payload layout is changed by publishing this capability.
+struct PluginManagedLifecycleV1 {
+    InterfaceHeader header{sizeof(PluginManagedLifecycleV1), 1};
+    void (*pump)(void* userData) = nullptr;
+    uint8_t (*isStopping)(void* userData) = nullptr;
+};
+static_assert(std::is_standard_layout_v<PluginManagedLifecycleV1>);
 
 struct PluginUiV1 {
     InterfaceHeader header{sizeof(PluginUiV1), 1};
@@ -1448,6 +1459,7 @@ public:
     PluginHtmlPanelsV1 htmlPanels{};
     PluginHtmlOverlaysV1 htmlOverlays{};
     PluginMenuEventsV1 menuEvents{};
+    PluginManagedLifecycleV1 managedLifecycle{};
 
     explicit PluginInterfaceSet(const PluginApi& api) {
 #define TITAN_NATIVE_ASSIGN(name) core.name = api.name;
@@ -1462,6 +1474,8 @@ public:
         htmlPanels.callbacks = api.htmlPanels;
         htmlPanels.openRequest = api.htmlPanelOpenRequest;
         htmlOverlays.callbacks = api.htmlOverlays;
+        managedLifecycle.pump = api.pumpManagedLifecycle;
+        managedLifecycle.isStopping = api.managedLifecycleStopping;
 #define TITAN_NATIVE_ASSIGN(name) menuEvents.name = api.name;
         TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS(TITAN_NATIVE_ASSIGN)
 #undef TITAN_NATIVE_ASSIGN
@@ -1488,6 +1502,8 @@ private:
             case kPluginMenuEventsId:
                 return self.menuEvents.onPostMenuSort || self.menuEvents.onMenuOpened || self.menuEvents.onMenuEntryAdded
                     ? &self.menuEvents.header : nullptr;
+            case kPluginManagedLifecycleId:
+                return self.managedLifecycle.pump ? &self.managedLifecycle.header : nullptr;
             default: break;
             }
         }
@@ -1616,6 +1632,13 @@ inline bool importPluginApi(const PluginDescriptorV1* descriptor, PluginApi& out
 #define TITAN_NATIVE_IMPORT(name) out.name = readMember<decltype(out.name)>(table, offsetof(PluginMenuEventsV1, name));
         TITAN_NATIVE_PLUGINMENUEVENTSV1_MEMBERS(TITAN_NATIVE_IMPORT)
 #undef TITAN_NATIVE_IMPORT
+    }
+    {
+        const auto* table = queryInterface(provider, kPluginManagedLifecycleId);
+        out.pumpManagedLifecycle = readMember<decltype(out.pumpManagedLifecycle)>(
+            table, offsetof(PluginManagedLifecycleV1, pump));
+        out.managedLifecycleStopping = readMember<decltype(out.managedLifecycleStopping)>(
+            table, offsetof(PluginManagedLifecycleV1, isStopping));
     }
     return out.getId && out.getName;
 }
