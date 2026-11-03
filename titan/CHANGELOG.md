@@ -16,6 +16,27 @@ in `PUBLIC_API.md`.
 
 ---
 
+## Unreleased -- Equal action labels win
+
+- `~` `interact(action)` on NPCs, tile objects and inventory items (C++, JS/TS, Java) prefers a label equal to `action`, ignoring case, over an earlier label that only contains it: with `Hello`, `Hell` and `Hello world`, `interact("Hell")` now picks `Hell` instead of `Hello`. Requests that no label equals keep the first containing label (`"Talk"` still reaches `Talk-to`). Inventory items search ordinary actions before opcode-43 submenu labels within each pass, so an equal submenu label now beats a containing ordinary one; an equal label also beats the Examine abbreviation it is part of (`"Mine"`). Ground items already matched whole labels. Behaviour only, no ABI or SDK bump.
+
+## Unreleased -- RuneLite's health bar and its width
+
+- `~` `healthRatio` / `healthScale` (C++, JS/TS, Java) read the actor's oldest health bar, the one RuneLite's `Actor.getHealthRatio` reads, instead of the native list's first bar. The native client inserts each new bar before the list's last node; the host learns creation order from an observe-only detour on the headbar adder (`HEADBAR_ADDER`) and reads the last bar on revisions without it. `healthScale` reports that bar's definition width (`structs.HeadbarDefinition`) instead of a fixed 30: standard bars stay 30, Doom of Mokhaiotl's HP and shield bars are 120, so `healthPercent()` stays within [0, 1]. Behaviour only, no ABI or SDK bump.
+
+## v172 -- Host-packed target tags
+
+- `+` Optional `HostRenderV1` tail `packTargetTag(tileX, tileY, plane, kind,
+  index, worldViewId)` builds the engine's target tag (the scene, menu-builder
+  and mouse-picker key) with the running revision's layout. 242.1 widened the
+  index to 24 bits and moved the WorldView id from bit 36 to bit 44.
+- `~` C++ `OverlayDraw::buildActorTypecode` / `buildLocTypecode`, Java
+  `OverlayDraw.buildActorTypecode` / `buildLocTypecode` and the JS overlay
+  actor/loc helpers have the host pack the tag instead of compiling a layout
+  in. The C++ builders are no longer `constexpr`. Hosts older than SDK 172
+  keep the pre-242.1 layout.
+- `~` Existing native payloads and minimum supported SDK 154 remain unchanged.
+
 ## v171 -- Confirmed managed-instance completion
 
 - `+` Optional `PluginManagedLifecycleV1` pumps disabled/unloading cleanup and

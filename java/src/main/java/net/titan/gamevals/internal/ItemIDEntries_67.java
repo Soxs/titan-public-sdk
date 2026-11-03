@@ -438,6 +438,22 @@ final class ItemIDEntries_67 {
             new GamevalEntry(34729, "TFA_MIDRAID_SUPPLIES_NOTE", "Alliance log", "objtypes"),
             new GamevalEntry(34730, "TFA_MIDRAID_SUPPLIES_LEFTOVERS", "Leftovers", "objtypes"),
             new GamevalEntry(34731, "FLETCHING_BOLT_SHAFT_FLIGHTED_ASCENSION", "fletching_bolt_shaft_flighted_ascension", "objtypes"),
+            new GamevalEntry(34732, "HW26_CANDY_ONION", "Candy onion", "objtypes"),
+            new GamevalEntry(34733, "PLACEHOLDER_HW26_CANDY_ONION", "placeholder_hw26_candy_onion", "objtypes"),
+            new GamevalEntry(34734, "HW26_SUGAR", "Sugar", "objtypes"),
+            new GamevalEntry(34735, "PLACEHOLDER_HW26_SUGAR", "placeholder_hw26_sugar", "objtypes"),
+            new GamevalEntry(34736, "HW26_MOLTEN_SUGAR", "Molten sugar", "objtypes"),
+            new GamevalEntry(34737, "PLACEHOLDER_HW26_MOLTEN_SUGAR", "placeholder_hw26_molten_sugar", "objtypes"),
+            new GamevalEntry(34738, "HW26_ONION", "Old onion", "objtypes"),
+            new GamevalEntry(34739, "PLACEHOLDER_HW26_ONION", "placeholder_hw26_onion", "objtypes"),
+            new GamevalEntry(34740, "HW26_REWARD_HEAD", "Vampyre monocle", "objtypes"),
+            new GamevalEntry(34741, "PLACEHOLDER_HW26_REWARD_HEAD", "placeholder_hw26_reward_head", "objtypes"),
+            new GamevalEntry(34742, "HW26_REWARD_TOP", "Vampyre costume top", "objtypes"),
+            new GamevalEntry(34743, "PLACEHOLDER_HW26_REWARD_TOP", "placeholder_hw26_reward_top", "objtypes"),
+            new GamevalEntry(34744, "HW26_REWARD_LEGS", "Vampyre costume bottom", "objtypes"),
+            new GamevalEntry(34745, "PLACEHOLDER_HW26_REWARD_LEGS", "placeholder_hw26_reward_legs", "objtypes"),
+            new GamevalEntry(34746, "HW26_REWARD_CAPE", "Vampyre costume cape", "objtypes"),
+            new GamevalEntry(34747, "PLACEHOLDER_HW26_REWARD_CAPE", "placeholder_hw26_reward_cape", "objtypes"),
         };
     }
 

@@ -4456,6 +4456,9 @@ struct SpotanimID final {
     static constexpr int32_t CURSE_IMPACT_SHORT = 4441;
     static constexpr int32_t GARGBOSS_DEBRIS_SHADOW_120_SMALL = 4442;
     static constexpr int32_t GARBOSS_DEBRIS_SHADOW_RED_60 = 4443;
+    static constexpr int32_t HW26_TUMBLEWEED = 4444;
+    static constexpr int32_t VFX_TFA_TELEPORT_START = 4445;
+    static constexpr int32_t VFX_TFA_TELEPORT_END = 4446;
 
     template <typename Self = SpotanimID>
     static constexpr std::span<const Entry> entries() {

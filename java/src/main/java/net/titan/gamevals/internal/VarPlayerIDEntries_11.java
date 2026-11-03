@@ -142,6 +142,8 @@ final class VarPlayerIDEntries_11 {
             new GamevalEntry(5991, "HPBAR_HUD_SHOW_EXTRA_BAR", "hpbar_hud_show_extra_bar", "varptypes"),
             new GamevalEntry(5994, "PRAYER_ALLACTIVE_ALTERNATE_0", "prayer_allactive_alternate_0", "varptypes"),
             new GamevalEntry(5995, "PRAYER_ALTERNATE_UNLOCK_0", "prayer_alternate_unlock_0", "varptypes"),
+            new GamevalEntry(5996, "HW26", "hw26", "varptypes"),
+            new GamevalEntry(5997, "HW26_2", "hw26_2", "varptypes"),
         };
     }
 

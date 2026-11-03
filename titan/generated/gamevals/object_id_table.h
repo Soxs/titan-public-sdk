@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 63188> kObjectIDEntries = {{
+inline constexpr std::array<Entry, 63200> kObjectIDEntries = {{
     {0, "MCANNONREMAINS_MULTILOC", "mcannonremains_multiloc", "loctypes"},
     {1, "MCANNONCRATEBOY", "Crate", "loctypes"},
     {2, "MCANNONCAVE", "Cave Entrance", "loctypes"},
@@ -50682,6 +50682,7 @@ inline constexpr std::array<Entry, 63188> kObjectIDEntries = {{
     {50739, "HH_ELITE_VM01", "hh_elite_vm01", "loctypes"},
     {50740, "HH_MASTER_VM01", "hh_master_vm01", "loctypes"},
     {50741, "COLOSSEUM_REWARD", "Rewards Chest", "loctypes"},
+    {50742, "HW26_JACKOLANTERN_1", "hw26_jackolantern_1", "loctypes"},
     {50743, "COLOSSEUM_MOLTEN_POOL_1", "colosseum_molten_pool_1", "loctypes"},
     {50744, "COLOSSEUM_MOLTEN_POOL_2", "colosseum_molten_pool_2", "loctypes"},
     {50745, "COLOSSEUM_MOLTEN_POOL_3", "colosseum_molten_pool_3", "loctypes"},
@@ -50709,6 +50710,17 @@ inline constexpr std::array<Entry, 63188> kObjectIDEntries = {{
     {50767, "WALLKIT_COLOSSEUM10_ARCH02_M", "wallkit_colosseum10_arch02_m", "loctypes"},
     {50768, "WALLKIT_COLOSSEUM10_WALLTOP01", "wallkit_colosseum10_walltop01", "loctypes"},
     {50769, "WALLKIT_COLOSSEUM10_WALLTOP02", "wallkit_colosseum10_walltop02", "loctypes"},
+    {50770, "HW26_JACKOLANTERN_2", "hw26_jackolantern_2", "loctypes"},
+    {50771, "HW26_JACKOLANTERN_3", "hw26_jackolantern_3", "loctypes"},
+    {50772, "HW26_JACKOLANTERN_4", "hw26_jackolantern_4", "loctypes"},
+    {50773, "HW26_JACKOLANTERN_5", "hw26_jackolantern_5", "loctypes"},
+    {50774, "HW26_JACKOLANTERN_6", "hw26_jackolantern_6", "loctypes"},
+    {50775, "HW26_JACKOLANTERN_7", "hw26_jackolantern_7", "loctypes"},
+    {50776, "HW26_JACKOLANTERN_8", "hw26_jackolantern_8", "loctypes"},
+    {50777, "HW26_JACKOLANTERN_WHOLE", "Jack-O-Lantern", "loctypes"},
+    {50778, "HW26_JACKOLANTERN_SMASHED", "Jack-O-Lantern", "loctypes"},
+    {50779, "HW26_ONION_CRATE", "Crate of onions", "loctypes"},
+    {50780, "HW26_VOMIT_PUDDLE", "hw26_vomit_puddle", "loctypes"},
     {50820, "WAVES_ROCKS_FLOOR_HARD_01", "waves_rocks_floor_hard_01", "loctypes"},
     {50821, "WAVES_ROCKS_FLOOR_HARD_02", "waves_rocks_floor_hard_02", "loctypes"},
     {50822, "WAVES_ROCKS_FLOOR_HARD_03", "waves_rocks_floor_hard_03", "loctypes"},

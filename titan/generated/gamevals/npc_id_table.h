@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 16770> kNpcIDEntries = {{
+inline constexpr std::array<Entry, 16802> kNpcIDEntries = {{
     {0, "FARMING_TOOLS_LEPRECHAUN", "Tool Leprechaun", "npctypes"},
     {1, "MOLANISK", "Molanisk", "npctypes"},
     {2, "SLAYER_ABBERANT_SPECTRE_1", "Aberrant spectre", "npctypes"},
@@ -16777,6 +16777,38 @@ inline constexpr std::array<Entry, 16770> kNpcIDEntries = {{
     {16769, "POH_EZEKIEL_PET", "Zeke", "npctypes"},
     {16770, "POH_MOIA_PET", "Mimi", "npctypes"},
     {16771, "POH_BORK_PET", "Dork", "npctypes"},
+    {16772, "HW26_TRICKORTREATER_CHILD_1_MULTI", "hw26_trickortreater_child_1_multi", "npctypes"},
+    {16773, "HW26_TRICKORTREATER_CHILD_2_MULTI", "hw26_trickortreater_child_2_multi", "npctypes"},
+    {16774, "HW26_TRICKORTREATER_CHILD_3_MULTI", "hw26_trickortreater_child_3_multi", "npctypes"},
+    {16775, "HW26_TRICKORTREATER_CHILD_4_MULTI", "hw26_trickortreater_child_4_multi", "npctypes"},
+    {16776, "HW26_TRICKORTREATER_CHILD_5_MULTI", "hw26_trickortreater_child_5_multi", "npctypes"},
+    {16777, "HW26_TRICKORTREATER_CHILD_INVISIBLE", "none", "npctypes"},
+    {16778, "HW26_TRICKORTREATER_CHILD_VISIBLE01", "Trick or treater", "npctypes"},
+    {16779, "HW26_TRICKORTREATER_CHILD_VISIBLE02", "Trick or treater", "npctypes"},
+    {16780, "HW26_TRICKORTREATER_CHILD_VISIBLE03", "Trick or treater", "npctypes"},
+    {16781, "HW26_TRICKORTREATER_CHILD_VISIBLE04", "Trick or treater", "npctypes"},
+    {16782, "HW26_TRICKORTREATER_CHILD_VISIBLE05", "Trick or treater", "npctypes"},
+    {16783, "HW26_TRICKORTREATER_CHILD_1_RUNNING", "hw26_trickortreater_child_1_running", "npctypes"},
+    {16784, "HW26_TRICKORTREATER_CHILD_2_RUNNING", "hw26_trickortreater_child_2_running", "npctypes"},
+    {16785, "HW26_TRICKORTREATER_CHILD_3_RUNNING", "hw26_trickortreater_child_3_running", "npctypes"},
+    {16786, "HW26_TRICKORTREATER_CHILD_4_RUNNING", "hw26_trickortreater_child_4_running", "npctypes"},
+    {16787, "HW26_TRICKORTREATER_CHILD_5_RUNNING", "hw26_trickortreater_child_5_running", "npctypes"},
+    {16788, "HW26_TRICKORTREATER_ADULT_1_MULTI", "hw26_trickortreater_adult_1_multi", "npctypes"},
+    {16789, "HW26_TRICKORTREATER_ADULT_2_MULTI", "hw26_trickortreater_adult_2_multi", "npctypes"},
+    {16790, "HW26_TRICKORTREATER_ADULT_3_MULTI", "hw26_trickortreater_adult_3_multi", "npctypes"},
+    {16791, "HW26_TRICKORTREATER_ADULT_4_MULTI", "hw26_trickortreater_adult_4_multi", "npctypes"},
+    {16792, "HW26_TRICKORTREATER_ADULT_5_MULTI", "hw26_trickortreater_adult_5_multi", "npctypes"},
+    {16793, "HW26_TRICKORTREATER_ADULT_INVISIBLE", "none", "npctypes"},
+    {16794, "HW26_TRICKORTREATER_ADULT_VISIBLE", "Trick or treater", "npctypes"},
+    {16795, "HW26_TRICKORTREATER_ADULT_VISIBLE_02", "Trick or treater", "npctypes"},
+    {16796, "HW26_TRICKORTREATER_ADULT_VISIBLE_03", "Trick or treater", "npctypes"},
+    {16797, "HW26_TRICKORTREATER_ADULT_VISIBLE_04", "Trick or treater", "npctypes"},
+    {16798, "HW26_TRICKORTREATER_ADULT_VISIBLE_05", "Trick or treater", "npctypes"},
+    {16799, "HW26_TRICKORTREATER_ADULT_1_VOMIT", "hw26_trickortreater_adult_1_vomit", "npctypes"},
+    {16800, "HW26_TRICKORTREATER_ADULT_2_VOMIT", "Trick or treater", "npctypes"},
+    {16801, "HW26_TRICKORTREATER_ADULT_3_VOMIT", "Trick or treater", "npctypes"},
+    {16802, "HW26_TRICKORTREATER_ADULT_4_VOMIT", "Trick or treater", "npctypes"},
+    {16803, "HW26_TRICKORTREATER_ADULT_5_VOMIT", "Trick or treater", "npctypes"},
 }};
 
 template <>

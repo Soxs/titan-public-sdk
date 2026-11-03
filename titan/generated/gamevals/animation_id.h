@@ -15163,6 +15163,10 @@ struct AnimationID final {
     static constexpr int32_t CURSE_IMPACT_SHORT = 15160;
     static constexpr int32_t JELLY_RANGE = 15161;
     static constexpr int32_t JELLY_SPAWN = 15162;
+    static constexpr int32_t TFA_HUMAN_FOLIO_TELEPORT = 15163;
+    static constexpr int32_t VFX_TFA_TELEPORT_START = 15164;
+    static constexpr int32_t VFX_TFA_TELEPORT_END = 15165;
+    static constexpr int32_t TFA_HUMAN_FOLIO_TELEPORT_END = 15166;
 
     template <typename Self = AnimationID>
     static constexpr std::span<const Entry> entries() {

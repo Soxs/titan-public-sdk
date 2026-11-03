@@ -897,9 +897,9 @@ interface Player extends ActorBase {
     isOverheadActive(icon?: number): boolean;
     /** True when `skullIcon >= 0`. SDK 35+. */
     isSkulled(): boolean;
-    /** Current headbar fill [0, healthScale], or -1 when no bar. SDK 48+. */
+    /** Current headbar fill [0, healthScale] of the oldest bar (the one RuneLite's getHealthRatio reads), or -1 when no bar. SDK 48+. */
     readonly healthRatio: number;
-    /** Max bar width, or -1 when no bar. SDK 48+. */
+    /** Width of that bar's definition (30 for standard bars), or -1 when no bar. SDK 48+. */
     readonly healthScale: number;
     /** True when any health bar is active. SDK 48+. */
     readonly hasHealthBar: boolean;
@@ -930,13 +930,13 @@ interface Npc extends ActorBase {
     /** Footprint area anchored at this NPC's south-west world point. */
     toWorldArea(): titan.WorldArea;
     hasAction(action: string): boolean;
-    /** Dispatch a named action via this NPC's hash index; returns false when actions does not contain it. */
+    /** Dispatch a named action via this NPC's hash index, ignoring case: a label equal to `action` wins, else the first label containing it. Returns false when no label contains it. */
     interact(action: string): boolean;
     /** True when this NPC is currently displaying any overhead icon. SDK 35+. */
     isOverheadActive(icon?: number): boolean;
-    /** Current headbar fill [0, healthScale], or -1 when no bar. SDK 48+. */
+    /** Current headbar fill [0, healthScale] of the oldest bar (the one RuneLite's getHealthRatio reads), or -1 when no bar. SDK 48+. */
     readonly healthRatio: number;
-    /** Max bar width, or -1 when no bar. SDK 48+. */
+    /** Width of that bar's definition (30 for standard bars), or -1 when no bar. SDK 48+. */
     readonly healthScale: number;
     /** True when any health bar is active. SDK 48+. */
     readonly hasHealthBar: boolean;
@@ -1005,7 +1005,7 @@ interface TileObject extends InstanceConvertible {
     isInMeleeDistance(other: SpatialTarget): boolean;
     /** RuneLite-style dynamic scenery animation id lookup. SDK 71+. */
     getAnimation(): number;
-    /** Dispatch against the loc currently occupying this slot; re-resolves first (live handle), so a despawned object is a safe no-op. Returns false when actions does not contain it. */
+    /** Dispatch against the loc currently occupying this slot; re-resolves first (live handle), so a despawned object is a safe no-op. Matches ignoring case: a label equal to `action` wins, else the first label containing it. Returns false when no label contains it. */
     interact(action: string): boolean;
     /** Cast `spell` on this object. */
     castOn(spell: MagicSpell): boolean;
@@ -1063,8 +1063,9 @@ interface Item {
 
     /**
      * Dispatch an inventory action (e.g. "Eat", "Bury", "Drop") or a live
-     * opcode-43 submenu label. Ordinary actions take precedence when labels
-     * collide.
+     * opcode-43 submenu label, ignoring case. A label equal to `action` wins
+     * over one that only contains it; within each, ordinary actions take
+     * precedence over submenu labels.
      * Returns true when the action was accepted / queued; inventory or
      * equipment state changes are confirmed later via `onItemContainerChanged`.
      */

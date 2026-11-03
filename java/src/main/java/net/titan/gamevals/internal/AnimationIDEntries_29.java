@@ -325,6 +325,10 @@ final class AnimationIDEntries_29 {
             new GamevalEntry(15160, "CURSE_IMPACT_SHORT", "curse_impact_short", "seqtypes"),
             new GamevalEntry(15161, "JELLY_RANGE", "jelly_range", "seqtypes"),
             new GamevalEntry(15162, "JELLY_SPAWN", "jelly_spawn", "seqtypes"),
+            new GamevalEntry(15163, "TFA_HUMAN_FOLIO_TELEPORT", "tfa_human_folio_teleport", "seqtypes"),
+            new GamevalEntry(15164, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "seqtypes"),
+            new GamevalEntry(15165, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "seqtypes"),
+            new GamevalEntry(15166, "TFA_HUMAN_FOLIO_TELEPORT_END", "tfa_human_folio_teleport_end", "seqtypes"),
         };
     }
 

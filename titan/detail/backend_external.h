@@ -867,6 +867,15 @@ public:
             api_->drawTileObjectOutline(locPtr, typecode, outline, fill, mode);
     }
 
+    // --- Target tags (SDK 172) ---
+    bool packTargetTag(int32_t tileX, int32_t tileY, int32_t plane,
+                       int32_t kind, int32_t index, int32_t worldViewId,
+                       uint64_t* outTag) override {
+        if (!api_ || !api_->packTargetTag || !outTag) return false;
+        *outTag = api_->packTargetTag(tileX, tileY, plane, kind, index, worldViewId);
+        return true;
+    }
+
     // --- Generic widget interaction (SDK 36) ---
     uint8_t widgetInteract(uint32_t opcode, int32_t identifier,
                            int32_t param0, int32_t param1) override {

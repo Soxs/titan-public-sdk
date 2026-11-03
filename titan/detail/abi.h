@@ -38,6 +38,23 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// Unreleased -- Equal action labels win.
+///   ~ NPC, tile-object and inventory interact(action) prefer a label equal
+///     to action (ignoring case) over an earlier one that only contains it;
+///     otherwise the first containing label still wins. No ABI or SDK bump.
+///
+/// Unreleased -- RuneLite's health bar and its width.
+///   ~ healthRatio/healthScale read the actor's oldest bar, the one RuneLite's
+///     Actor.getHealthRatio reads, ordered by a HEADBAR_ADDER detour;
+///     healthScale is that bar's definition width instead of a fixed 30.
+///     No ABI or SDK bump.
+///
+/// v172 -- Host-packed target tags.
+///   + Optional HostRenderV1 tail packTargetTag builds the scene/menu/picker
+///     target tag with the running revision's layout (242.1 moved WorldView).
+///   ~ C++/Java buildActorTypecode/buildLocTypecode and the JS overlay helpers
+///     use it; C++ builders are no longer constexpr. Older hosts keep the
+///     pre-242.1 layout. Existing payloads and compatibility floor154 unchanged.
 /// v171 -- Confirmed managed-instance completion.
 ///   + Optional PluginManagedLifecycleV1 pumps disabled/unloading cleanup and
 ///     reports stopping before re-enable; author onUnload follows managed cleanup.
@@ -1966,7 +1983,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 171;
+constexpr uint32_t kSdkVersion = 172;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5304,6 +5321,15 @@ struct HostApi {
     // re-clamps the field only when input moves it.
     uint8_t (*getCameraPitchTarget)(int32_t* outPitch) = nullptr;
     uint8_t (*setCameraPitchTarget)(int32_t pitch) = nullptr;
+
+    // SDK 172. Packs the engine's 64-bit target tag (the scene, menu-builder
+    // and mouse-picker key) from its fields with the layout of the revision
+    // the host is running; the layout changes between revisions (242.1 moved
+    // the WorldView id and widened the index). @p kind: 0 player, 1 NPC,
+    // 2 loc. @p index: actor index or loc id; negative returns 0. A negative
+    // @p worldViewId is the top level. Any thread.
+    uint64_t (*packTargetTag)(int32_t tileX, int32_t tileY, int32_t plane, int32_t kind,
+                              int32_t index, int32_t worldViewId) = nullptr;
 
     // Optional SceneRenderer v1. New payloads/interface; existing ABI records
     // and the SDK compatibility floor are unchanged.

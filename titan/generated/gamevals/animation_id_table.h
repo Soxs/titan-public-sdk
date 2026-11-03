@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 15151> kAnimationIDEntries = {{
+inline constexpr std::array<Entry, 15155> kAnimationIDEntries = {{
     {0, "SWARM_WALK", "swarm_walk", "seqtypes"},
     {1, "SWARM_ATTACK", "swarm_attack", "seqtypes"},
     {2, "SWARM_BLOCK", "swarm_block", "seqtypes"},
@@ -15158,6 +15158,10 @@ inline constexpr std::array<Entry, 15151> kAnimationIDEntries = {{
     {15160, "CURSE_IMPACT_SHORT", "curse_impact_short", "seqtypes"},
     {15161, "JELLY_RANGE", "jelly_range", "seqtypes"},
     {15162, "JELLY_SPAWN", "jelly_spawn", "seqtypes"},
+    {15163, "TFA_HUMAN_FOLIO_TELEPORT", "tfa_human_folio_teleport", "seqtypes"},
+    {15164, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "seqtypes"},
+    {15165, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "seqtypes"},
+    {15166, "TFA_HUMAN_FOLIO_TELEPORT_END", "tfa_human_folio_teleport_end", "seqtypes"},
 }};
 
 template <>

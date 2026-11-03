@@ -604,11 +604,17 @@ public:
     bool isIdle() const { return isStationary() && !isAnimating(); }
     bool isHidden() const { return state().hidden != 0; }
     /// Current headbar fill value in [0, healthScale()], or `-1` when no
-    /// health bar is active. Populated from the entity's headbar vector.
-    /// SDK v48+.
+    /// health bar is active. With several bars shown this is the oldest, the
+    /// bar RuneLite's Actor.getHealthRatio reads. On a revision whose
+    /// offsets lack the headbar adder, the host reads the native list's last
+    /// bar: the oldest, except after three bars coexisted and the oldest
+    /// went. SDK v48+.
     int32_t healthRatio() const { return state().healthRatio; }
-    /// Maximum headbar width (from HeadbarType config), or `-1` when no
-    /// health bar is active. SDK v48+.
+    /// Width of the bar healthRatio() reads, from its health bar definition
+    /// (RuneLite's Actor.getHealthScale): 30 for standard bars; some NPC bars
+    /// are wider, such as Doom of Mokhaiotl's 120-wide HP bar. 30 when the
+    /// revision's offsets lack the definition layout; `-1` when no health bar
+    /// is active. SDK v48+.
     int32_t healthScale() const { return state().healthScale; }
     /// Health as a percentage [0.0, 1.0], or `-1.0f` when no bar is
     /// active. Computed as `healthRatio / healthScale`. SDK v48+.
@@ -830,9 +836,10 @@ public:
     bool hasAction(const char* action) const { return state().hasAction(action); }
     bool hasAction(const std::string& action) const { return state().hasAction(action.c_str()); }
 
-    /// Dispatch a named action (case-insensitive substring match) against
-    /// this exact NPC by its hash index. Returns true if the action was queued,
-    /// or false when this snapshot does not expose the requested action.
+    /// Dispatch a named action against this exact NPC by its hash index.
+    /// Labels compare ignoring case: one equal to @p action wins, else the
+    /// first label containing it. Returns true if the action was queued, or
+    /// false when this snapshot does not expose the requested action.
     bool interact(const char* action) const {
         auto* b = detail::backend();
         if (!b || !action) return false;
@@ -925,7 +932,8 @@ public:
 
     /// Dispatch a named action against the loc currently occupying this slot.
     /// Re-resolves first (live handle), so a despawned object is a safe no-op
-    /// rather than an action into stale scene memory.
+    /// rather than an action into stale scene memory. Labels compare ignoring
+    /// case: one equal to @p action wins, else the first label containing it.
     bool interact(const char* action) const {
         auto* b = detail::backend();
         if (!b || !action) return false;
@@ -1065,10 +1073,11 @@ public:
     int32_t slot() const { return state_.slot; }
 
     /// Dispatch a named inventory action (e.g. "Eat", "Drop", "Bury") or a
-    /// live opcode-43 submenu label. Ordinary actions take precedence over
-    /// same-named sub-operations. Returns true when the action was accepted /
-    /// queued; observe onItemContainerChanged to confirm inventory or
-    /// equipment state changes.
+    /// live opcode-43 submenu label, ignoring case. A label equal to
+    /// @p action wins over one that only contains it; within each, ordinary
+    /// actions take precedence over sub-operations. Returns true when the
+    /// action was accepted / queued; observe onItemContainerChanged to
+    /// confirm inventory or equipment state changes.
     bool interact(const char* action) const {
         auto* b = detail::backend();
         if (!b || !action) return false;

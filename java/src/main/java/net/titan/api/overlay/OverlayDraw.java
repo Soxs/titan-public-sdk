@@ -13,6 +13,7 @@ import net.titan.api.Titan;
 import net.titan.api.internal.TitanRuntime;
 
 import java.util.Optional;
+import java.util.OptionalLong;
 
 public final class OverlayDraw {
     /** Draw owned ARGB32 pixels at the canvas origin during this overlay pass. */
@@ -442,15 +443,17 @@ public final class OverlayDraw {
             (worldTileX - baseX) * 128, (worldTileY - baseY) * 128, plane);
     }
 
+    /**
+     * Build the engine's target tag (the key the scene, menu builders and
+     * mouse picker share) for an actor: {@code entityType} 0 player, 1 NPC.
+     * The host packs it with the layout of the revision it runs -- 242.1
+     * widened the index and moved the WorldView id -- and hosts older than
+     * SDK 172 get the pre-242.1 layout. 0 when {@code hashIndex} is negative.
+     */
     public static long buildActorTypecode(int entityType, int hashIndex,
                                           int tileX, int tileY, int plane) {
         if (hashIndex < 0) return 0L;
-        long tx = tileX & 0x7FL;
-        long tileYBits = tileY & 0x7FL;
-        long pl = plane & 0x3L;
-        long typeBits = entityType & 0x7L;
-        long id = hashIndex & 0xFFFFFFFFL;
-        return tx | (tileYBits << 7) | (pl << 14) | (typeBits << 16) | (id << 20);
+        return packTargetTag(tileX, tileY, plane, entityType, hashIndex, WorldView.TOP_LEVEL);
     }
 
     public static long buildLocTypecode(int locId, int layer,
@@ -458,18 +461,56 @@ public final class OverlayDraw {
         return buildLocTypecode(locId, layer, tileX, tileY, plane, WorldView.TOP_LEVEL);
     }
 
+    /**
+     * Build a loc's target tag, packed by the host like
+     * {@link #buildActorTypecode}. Prefer {@link TileObject#packedId()}, the
+     * native tag itself, when you have the object.
+     */
     public static long buildLocTypecode(int locId, int layer,
                                         int tileX, int tileY, int plane,
                                         int worldViewId) {
         // Native loc picking uses the raw scene tag; layer is kept in
         // the signature for source compatibility.
         if (locId < 0) return 0L;
-        long tx = tileX & 0x7FL;
-        long tileYBits = tileY & 0x7FL;
-        long pl = plane & 0x3L;
-        long id = locId & 0xFFFFL;
-        long wv = worldViewId < 0 ? 0L : worldViewId & 0xFFFFL;
-        return tx | (tileYBits << 7) | (pl << 14) | (2L << 16)
-            | (id << 20) | (wv << 36);
+        return packTargetTag(tileX, tileY, plane, TARGET_TAG_LOC_KIND, locId, worldViewId);
+    }
+
+    /** Kind-field value of a loc in a target tag (0 player, 1 NPC). */
+    private static final int TARGET_TAG_LOC_KIND = 2;
+
+    /**
+     * One field of the pre-242.1 target-tag layout. Only hosts older than
+     * SDK 172, which cannot pack tags, still use it.
+     */
+    private static final class LegacyTargetTagField {
+        private final int shift;
+        private final long mask;
+
+        LegacyTargetTagField(int shift, long mask) {
+            this.shift = shift;
+            this.mask = mask;
+        }
+
+        long put(int value) {
+            return (value & mask) << shift;
+        }
+    }
+
+    private static final LegacyTargetTagField LEGACY_TAG_X = new LegacyTargetTagField(0, 0x7FL);
+    private static final LegacyTargetTagField LEGACY_TAG_Y = new LegacyTargetTagField(7, 0x7FL);
+    private static final LegacyTargetTagField LEGACY_TAG_PLANE = new LegacyTargetTagField(14, 0x3L);
+    private static final LegacyTargetTagField LEGACY_TAG_KIND = new LegacyTargetTagField(16, 0x7L);
+    private static final LegacyTargetTagField LEGACY_TAG_INDEX = new LegacyTargetTagField(20, 0xFFFFL);
+    private static final LegacyTargetTagField LEGACY_TAG_WORLD_VIEW = new LegacyTargetTagField(36, 0xFFFFL);
+
+    private static long packTargetTag(int tileX, int tileY, int plane, int kind,
+                                      int index, int worldViewId) {
+        OptionalLong packed = TitanRuntime.packTargetTag(
+            tileX, tileY, plane, kind, index, worldViewId);
+        if (packed.isPresent()) return packed.getAsLong();
+        return LEGACY_TAG_X.put(tileX) | LEGACY_TAG_Y.put(tileY)
+            | LEGACY_TAG_PLANE.put(plane) | LEGACY_TAG_KIND.put(kind)
+            | LEGACY_TAG_INDEX.put(index)
+            | LEGACY_TAG_WORLD_VIEW.put(worldViewId < 0 ? 0 : worldViewId);
     }
 }

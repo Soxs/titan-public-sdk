@@ -316,4 +316,8 @@ public interface AnimationIDConstants_29 {
     int CURSE_IMPACT_SHORT = 15160;
     int JELLY_RANGE = 15161;
     int JELLY_SPAWN = 15162;
+    int TFA_HUMAN_FOLIO_TELEPORT = 15163;
+    int VFX_TFA_TELEPORT_START = 15164;
+    int VFX_TFA_TELEPORT_END = 15165;
+    int TFA_HUMAN_FOLIO_TELEPORT_END = 15166;
 }

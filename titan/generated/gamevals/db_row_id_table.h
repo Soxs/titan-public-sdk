@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 17061> kDbRowIDEntries = {{
+inline constexpr std::array<Entry, 17077> kDbRowIDEntries = {{
     {0, "QUEST_ANIMALMAGNETISM", "quest_animalmagnetism", "rowtypes"},
     {1, "QUEST_ANOTHERSLICEOFHAM", "quest_anothersliceofham", "rowtypes"},
     {2, "MUSIC_RAT_BOSS", "music_rat_boss", "rowtypes"},
@@ -17068,6 +17068,22 @@ inline constexpr std::array<Entry, 17061> kDbRowIDEntries = {{
     {17175, "HISCORES_BOSSES_FRACTURED_ARCHIVE", "hiscores_bosses_fractured_archive", "rowtypes"},
     {17176, "UI_HIGHLIGHTING_STYLE_PING_TFA", "ui_highlighting_style_ping_tfa", "rowtypes"},
     {17177, "UI_HIGHLIGHTING_FX_PULSE_PING_TFA", "ui_highlighting_fx_pulse_ping_tfa", "rowtypes"},
+    {17178, "HALLOWEEN_2026", "halloween_2026", "rowtypes"},
+    {17179, "SKILL_GUIDE_SUBSECTION_STRENGTH_PRAYERS", "skill_guide_subsection_strength_prayers", "rowtypes"},
+    {17180, "DIDYOUKNOW_CROSSPLATPROMO_GENERAL", "didyouknow_crossplatpromo_general", "rowtypes"},
+    {17181, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT1", "didyouknow_crossplatpromo_mobile_benefit1", "rowtypes"},
+    {17182, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT2", "didyouknow_crossplatpromo_mobile_benefit2", "rowtypes"},
+    {17183, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT3", "didyouknow_crossplatpromo_mobile_benefit3", "rowtypes"},
+    {17184, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT4", "didyouknow_crossplatpromo_mobile_benefit4", "rowtypes"},
+    {17185, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT5", "didyouknow_crossplatpromo_mobile_benefit5", "rowtypes"},
+    {17186, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT6", "didyouknow_crossplatpromo_mobile_benefit6", "rowtypes"},
+    {17187, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT7", "didyouknow_crossplatpromo_mobile_benefit7", "rowtypes"},
+    {17188, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT8", "didyouknow_crossplatpromo_mobile_benefit8", "rowtypes"},
+    {17189, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT9", "didyouknow_crossplatpromo_mobile_benefit9", "rowtypes"},
+    {17190, "DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT10", "didyouknow_crossplatpromo_mobile_benefit10", "rowtypes"},
+    {17191, "DIDYOUKNOW_CROSSPLATPROMO_DESKTOP_BENEFIT1", "didyouknow_crossplatpromo_desktop_benefit1", "rowtypes"},
+    {17192, "DIDYOUKNOW_CROSSPLATPROMO_DESKTOP_BENEFIT2", "didyouknow_crossplatpromo_desktop_benefit2", "rowtypes"},
+    {17193, "DIDYOUKNOW_CROSSPLATPROMO_DESKTOP_BENEFIT3", "didyouknow_crossplatpromo_desktop_benefit3", "rowtypes"},
 }};
 
 template <>

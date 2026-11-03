@@ -140,6 +140,28 @@ Foreground ImGui windows take input priority over HTML rendered behind them.
 Overlay visibility follows the target game window and world-ready state,
 independently of the selected controller tab.
 
+A hidden client's overlays also appear, live, in its Home-grid preview. While
+the card is on screen, the controller renders that client's visible overlays
+for the preview only: the game draws them into the frames the grid captures,
+and the page publishes at the grid's refresh rate (its JavaScript timers and
+animations keep running). A previewed page receives canonical state, theme and
+size changes, but no input, focus, IME, hover, transient messages or page
+actions, and it does not count toward `htmlUiAvailable()`. Previews use at most
+six helpers, and only while presented overlays, the sidebar's slot and
+previews stay within twelve helpers and within half of the 192 MiB allocation
+budget described below, so they never delay a presented overlay or the
+sidebar. Pages already rendering keep their helper, then cards follow grid
+order; any other card silently shows the game alone. A preview that fails, or
+that the renderer or client declines, closes quietly and retries after 5 s,
+doubling up to 80 s; it never shows a diagnostic or fails the overlay you open
+next. Leaving the Home tab, or scrolling a card away, closes its preview pages
+at once, and showing the tab again always uses a fresh activation. The overlays
+of the tab you left keep rendering into its card without a restart. When the
+grid returns after more than 750 ms, the client discards readbacks queued
+before it left, so the first frame it publishes is fresh. Until that frame
+arrives, the card keeps its previous image, labelled Stale once it is older
+than two seconds.
+
 Editable fields support Windows IME preedit, clause underlining, commits and
 cancellation. The helper reports the composition/caret rectangle in CSS pixels;
 the owning HWND thread positions the native candidate window after applying DPI
@@ -258,7 +280,14 @@ synchronous multi-second client pipe request.
 
 Routine HTML polling, resource copies and activation bookkeeping retain the
 plugin's lifetime without suppressing scene or panel rendering. Only message
-delivery executes user code and uses the existing callback exclusion. Native
+delivery executes user code and uses the existing callback exclusion. Before
+each overlay pass the render thread waits, outside the ImGui lock, up to 8 ms
+once per gated run (a message callback, or a script setting, panel action,
+managed-runtime call or lifecycle change) for it to finish, instead of drawing a
+frame without overlays. A run that lasts longer, or starts after the wait, still
+skips those passes. Keep message handlers short: record the change, do slow
+work (such as file I/O) on a plugin worker, and publish canonical state from
+MainLoop, as World Hopper does. Native
 HTML copy/read/reset callbacks must operate on synchronized framework data;
 they must not invoke plugin handlers or HostApi. The SDK-provided callbacks
 already follow this contract. No native ABI layout or SDK floor change is needed.
@@ -277,8 +306,9 @@ Replacement and retirement invalidate that exact mapping, even when a resize
 reuses the activation nonce.
 
 The Debug renderer diagnostics include `htmlDispatch`: admitted request count,
-maximum request duration, admission deferrals, and per-layer skips attributable
-to HTML user callbacks versus other lifecycle work. Ordinary polling must not
+maximum request duration, admission deferrals, render passes that waited for a
+gated run (`lifecycleWaits`), and per-layer skips attributable to HTML user
+callbacks versus other lifecycle work. Ordinary polling must not
 increment either skip counter when no lifecycle operation or callback is active.
 
 Controller input admission counts commands across the producer queue, transport
@@ -326,9 +356,9 @@ and removed from the resolver before any view exists. Page resource requests
 can then resolve only that view's bundle and the fixed bridge. The smoke tests
 also verify lazy locale/font behavior after removing the bootstrap namespace.
 
-Helpers start only for visible views. A view hidden for ten seconds retires its
-helper; showing it again uses a fresh activation that replays canonical state
-and the page's saved view state.
+Helpers start only for visible or previewed views. A view hidden for ten
+seconds retires its helper; showing it again uses a fresh activation that
+replays canonical state and the page's saved view state.
 Leaving the sidebar destroys its helper. Page view state travels through a
 separate coalesced transport slot that the host reads until the helper exits,
 so a save made just before the switch is kept. A return within ten seconds can show
@@ -749,6 +779,30 @@ handle counts after host destruction were 176, 177, 179, 179 and 179, with the
 final three handle inventories identical. These are automated lifecycle and
 correctness checks, not a long-session game FPS measurement.
 
+### Home preview validation (2026-11-02)
+
+`html_panel_policy_tests` covers presented versus preview-only rendering: a
+hidden document keeps rendering only with a preview renderer, a preview
+activation is fenced from presentation, and showing the tab again needs a fresh
+activation. It also covers the helper budget and ceiling, the allocation
+ceiling (two 600×600 overlays at 175% DPI fill it before six helpers would),
+admission of live documents before grid order, closing in the same frame, and
+the bounded retry backoff. `html_overlay_snapshot_tests` checks that
+capture-only passes draw preview pixels without changing visibility,
+ownership or focus, and that a preview-only channel never becomes visible or
+interactive in a shown window. `html_ui_wire_tests` covers the `previewable`
+reply and `presented` request fields, including the defaults for older peers.
+Seven deliberate mutations of these rules each made the matching test fail.
+
+The real-renderer `preview` case keeps an animated page preview-only at a
+500 ms interval. In two seconds it published 3 frames while its 100 ms timer
+ran 19 times, and it accepted no input, transient messages, editor feedback or
+page actions. Once presented it published over 100 frames and dispatched page
+actions; after demotion it returned to its paced, actionless state. The Debug
+production suite passed 20/20 and the security matrix with the cross-view
+negative control 35/35. The Debug controller and client sources compiled, but
+neither was linked or run against a game client.
+
 ### Interactive acceptance still required
 
 No world-ready game client was available during this validation. Consequently,
@@ -763,6 +817,10 @@ the helper smoke/soak cannot establish the following end-to-end results:
   themes and plugin hot reloads, with actual controller HWND/COM/GL resources.
 - Native-only versus HTML-enabled game frame times, texture-upload cost,
   end-to-end input latency, total helper CPU and controller responsiveness.
+- Home-grid previews of hidden tabs: HTML overlays live in their cards without
+  a one-frame flash on entering Home; more previewed overlays than the budget;
+  scrolling cards away and back; returning to a tab (fresh activation, input
+  works) and input never reaching a hidden tab.
 
 Run those checks with a world-ready test client and representative plugins.
 Record at least one hour and 1,000 real UI transitions, including shutdown,

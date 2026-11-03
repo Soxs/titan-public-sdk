@@ -101,6 +101,53 @@ struct ScreenPoint {
 };
 
 // ---------------------------------------------------------------------------
+// Target tags
+// ---------------------------------------------------------------------------
+
+namespace detail {
+
+/// Kind-field value of a loc in a target tag (0 player, 1 NPC).
+inline constexpr int32_t kTargetTagLocKind = 2;
+
+/// One field of the pre-242.1 target-tag layout. Only hosts older than
+/// SDK 172, which cannot pack tags, still use it; everything newer gets the
+/// running revision's layout from the host.
+struct LegacyTargetTagField {
+    uint32_t shift;
+    uint64_t mask;
+};
+inline constexpr LegacyTargetTagField kLegacyTargetTagX{0, 0x7F};
+inline constexpr LegacyTargetTagField kLegacyTargetTagY{7, 0x7F};
+inline constexpr LegacyTargetTagField kLegacyTargetTagPlane{14, 0x3};
+inline constexpr LegacyTargetTagField kLegacyTargetTagKind{16, 0x7};
+inline constexpr LegacyTargetTagField kLegacyTargetTagIndex{20, 0xFFFF};
+inline constexpr LegacyTargetTagField kLegacyTargetTagWorldView{36, 0xFFFF};
+
+inline uint64_t legacyTargetTagField(LegacyTargetTagField field, int32_t value) {
+    return (static_cast<uint64_t>(static_cast<uint32_t>(value)) & field.mask) << field.shift;
+}
+
+/// Pack a target tag with the host's layout for the running revision, or
+/// with the pre-242.1 layout on hosts older than SDK 172. A negative
+/// @p worldViewId is the top level.
+inline uint64_t packTargetTag(int32_t tileX, int32_t tileY, int32_t plane,
+                              int32_t kind, int32_t index, int32_t worldViewId) {
+    uint64_t packed = 0;
+    if (auto* b = backend();
+        b && b->packTargetTag(tileX, tileY, plane, kind, index, worldViewId, &packed)) {
+        return packed;
+    }
+    return legacyTargetTagField(kLegacyTargetTagX, tileX)
+         | legacyTargetTagField(kLegacyTargetTagY, tileY)
+         | legacyTargetTagField(kLegacyTargetTagPlane, plane)
+         | legacyTargetTagField(kLegacyTargetTagKind, kind)
+         | legacyTargetTagField(kLegacyTargetTagIndex, index)
+         | legacyTargetTagField(kLegacyTargetTagWorldView, worldViewId < 0 ? 0 : worldViewId);
+}
+
+}  // namespace detail
+
+// ---------------------------------------------------------------------------
 // Draw primitives -- callable from inside Overlay::render()
 // ---------------------------------------------------------------------------
 
@@ -228,30 +275,22 @@ public:
                              p.plane(), 1, height, color);
     }
 
-    /// Build the engine's `ModelTypecodeType` for an actor from its
-    /// (entityType, hashIndex, tile, plane). Layout:
-    ///
-    ///   bits [0..6]   sceneTileX  (& 0x7F)
-    ///   bits [7..13]  sceneTileY  (& 0x7F)
-    ///   bits [14..15] plane       (& 0x3)
-    ///   bits [16..18] entityType  (& 0x7)  -- 0=Player 1=NPC 2=Loc 3=Obj
-    ///   bits [20..]   entity id
-    ///
-    /// This matches `jag::oldscape::dash3d::MousePickingHelper`'s
-    /// encoding on mac; 237.5 uses the same layout.
-    static constexpr uint64_t buildActorTypecode(int32_t entityType,
-                                                 int32_t hashIndex,
-                                                 int32_t tileX, int32_t tileY,
-                                                 int32_t plane) {
+    /// Build the engine's target tag (`ModelTypecodeType`, the key the
+    /// scene, menu builders and mouse picker share) for an actor from its
+    /// (entityType, hashIndex, scene tile, plane). @p entityType: 0 player,
+    /// 1 NPC. The host packs it with the layout of the revision it runs --
+    /// 242.1 widened the index and moved the WorldView id -- so nothing here
+    /// is compiled in. Hosts older than SDK 172 get the pre-242.1 layout.
+    /// Not constexpr since SDK 172.
+    static uint64_t buildActorTypecode(int32_t entityType,
+                                       int32_t hashIndex,
+                                       int32_t tileX, int32_t tileY,
+                                       int32_t plane) {
         // An actor with hashIndex < 0 (unresolved) has no well-defined
         // typecode; fall back to 0 so the host skips typecode lookup.
         if (hashIndex < 0) return 0;
-        const uint64_t tx = static_cast<uint64_t>(tileX) & 0x7F;
-        const uint64_t tileYBits = static_cast<uint64_t>(tileY) & 0x7F;
-        const uint64_t pl = static_cast<uint64_t>(plane) & 0x3;
-        const uint64_t typeBits = static_cast<uint64_t>(entityType) & 0x7;
-        const uint64_t id = static_cast<uint64_t>(hashIndex) & 0xFFFFFFFFull;
-        return tx | (tileYBits << 7) | (pl << 14) | (typeBits << 16) | (id << 20);
+        return detail::packTargetTag(tileX, tileY, plane, entityType, hashIndex,
+                                     WorldView::TOP_LEVEL);
     }
 
     /// Build the native loc picking key from the scene-tag fields.
@@ -259,24 +298,18 @@ public:
     /// Older SDK docs described loc-layer bits in the picker key. Win
     /// 238.5 research confirmed native loc picking uses the raw scene tag:
     /// tile, plane, entity type, loc id, and WorldView id. @p layer is kept
-    /// for source compatibility and is intentionally ignored.
-    static constexpr uint64_t buildLocTypecode(int32_t locId,
-                                               int32_t layer,
-                                               int32_t tileX, int32_t tileY,
-                                               int32_t plane,
-                                               int32_t worldViewId = WorldView::TOP_LEVEL) {
+    /// for source compatibility and is intentionally ignored. Packed by the
+    /// host like buildActorTypecode; prefer `TileObject::packedId()`, the
+    /// native tag itself, when you have the object.
+    static uint64_t buildLocTypecode(int32_t locId,
+                                     int32_t layer,
+                                     int32_t tileX, int32_t tileY,
+                                     int32_t plane,
+                                     int32_t worldViewId = WorldView::TOP_LEVEL) {
         (void)layer;
         if (locId < 0) return 0;
-        const uint64_t tx = static_cast<uint64_t>(tileX) & 0x7F;
-        const uint64_t tileYBits = static_cast<uint64_t>(tileY) & 0x7F;
-        const uint64_t pl = static_cast<uint64_t>(plane) & 0x3;
-        const uint64_t typeBits = 2ull;  // Loc
-        const uint64_t id = static_cast<uint64_t>(locId) & 0xFFFFull;
-        const uint64_t wv = worldViewId < 0
-            ? 0ull
-            : (static_cast<uint64_t>(static_cast<uint32_t>(worldViewId)) & 0xFFFFull);
-        return tx | (tileYBits << 7) | (pl << 14) | (typeBits << 16) | (id << 20)
-             | (wv << 36);
+        return detail::packTargetTag(tileX, tileY, plane, detail::kTargetTagLocKind,
+                                     locId, worldViewId);
     }
 
     /// Draw the accurate world-space AABB clickbox around @p npc. Reads

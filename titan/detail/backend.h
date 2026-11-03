@@ -447,6 +447,18 @@ struct IBackend {
                                        uint32_t outline, uint32_t fill,
                                        uint32_t mode) = 0;
 
+    // --- Target tags (SDK 172) ---
+    /// Pack a target tag with the host's layout for the running revision.
+    /// Returns false, leaving @p outTag untouched, when the host predates
+    /// SDK 172.
+    virtual bool packTargetTag(int32_t tileX, int32_t tileY, int32_t plane,
+                               int32_t kind, int32_t index, int32_t worldViewId,
+                               uint64_t* outTag) {
+        (void)tileX; (void)tileY; (void)plane; (void)kind;
+        (void)index; (void)worldViewId; (void)outTag;
+        return false;
+    }
+
     // --- Generic widget interaction (SDK 36) ---
     virtual uint8_t widgetInteract(uint32_t opcode, int32_t identifier,
                                    int32_t param0, int32_t param1) = 0;

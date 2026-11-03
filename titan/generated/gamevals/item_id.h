@@ -34262,6 +34262,22 @@ struct ItemID final {
     static constexpr int32_t TFA_MIDRAID_SUPPLIES_NOTE = 34729;
     static constexpr int32_t TFA_MIDRAID_SUPPLIES_LEFTOVERS = 34730;
     static constexpr int32_t FLETCHING_BOLT_SHAFT_FLIGHTED_ASCENSION = 34731;
+    static constexpr int32_t HW26_CANDY_ONION = 34732;
+    static constexpr int32_t PLACEHOLDER_HW26_CANDY_ONION = 34733;
+    static constexpr int32_t HW26_SUGAR = 34734;
+    static constexpr int32_t PLACEHOLDER_HW26_SUGAR = 34735;
+    static constexpr int32_t HW26_MOLTEN_SUGAR = 34736;
+    static constexpr int32_t PLACEHOLDER_HW26_MOLTEN_SUGAR = 34737;
+    static constexpr int32_t HW26_ONION = 34738;
+    static constexpr int32_t PLACEHOLDER_HW26_ONION = 34739;
+    static constexpr int32_t HW26_REWARD_HEAD = 34740;
+    static constexpr int32_t PLACEHOLDER_HW26_REWARD_HEAD = 34741;
+    static constexpr int32_t HW26_REWARD_TOP = 34742;
+    static constexpr int32_t PLACEHOLDER_HW26_REWARD_TOP = 34743;
+    static constexpr int32_t HW26_REWARD_LEGS = 34744;
+    static constexpr int32_t PLACEHOLDER_HW26_REWARD_LEGS = 34745;
+    static constexpr int32_t HW26_REWARD_CAPE = 34746;
+    static constexpr int32_t PLACEHOLDER_HW26_REWARD_CAPE = 34747;
 
     template <typename Self = ItemID>
     static constexpr std::span<const Entry> entries() {

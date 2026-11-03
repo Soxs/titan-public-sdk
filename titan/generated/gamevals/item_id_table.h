@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 34250> kItemIDEntries = {{
+inline constexpr std::array<Entry, 34266> kItemIDEntries = {{
     {0, "MCANNONREMAINS", "Dwarf remains", "objtypes"},
     {1, "MCANNONTOOLKIT", "Toolkit", "objtypes"},
     {2, "MCANNONBALL", "Steel cannonball", "objtypes"},
@@ -34257,6 +34257,22 @@ inline constexpr std::array<Entry, 34250> kItemIDEntries = {{
     {34729, "TFA_MIDRAID_SUPPLIES_NOTE", "Alliance log", "objtypes"},
     {34730, "TFA_MIDRAID_SUPPLIES_LEFTOVERS", "Leftovers", "objtypes"},
     {34731, "FLETCHING_BOLT_SHAFT_FLIGHTED_ASCENSION", "fletching_bolt_shaft_flighted_ascension", "objtypes"},
+    {34732, "HW26_CANDY_ONION", "Candy onion", "objtypes"},
+    {34733, "PLACEHOLDER_HW26_CANDY_ONION", "placeholder_hw26_candy_onion", "objtypes"},
+    {34734, "HW26_SUGAR", "Sugar", "objtypes"},
+    {34735, "PLACEHOLDER_HW26_SUGAR", "placeholder_hw26_sugar", "objtypes"},
+    {34736, "HW26_MOLTEN_SUGAR", "Molten sugar", "objtypes"},
+    {34737, "PLACEHOLDER_HW26_MOLTEN_SUGAR", "placeholder_hw26_molten_sugar", "objtypes"},
+    {34738, "HW26_ONION", "Old onion", "objtypes"},
+    {34739, "PLACEHOLDER_HW26_ONION", "placeholder_hw26_onion", "objtypes"},
+    {34740, "HW26_REWARD_HEAD", "Vampyre monocle", "objtypes"},
+    {34741, "PLACEHOLDER_HW26_REWARD_HEAD", "placeholder_hw26_reward_head", "objtypes"},
+    {34742, "HW26_REWARD_TOP", "Vampyre costume top", "objtypes"},
+    {34743, "PLACEHOLDER_HW26_REWARD_TOP", "placeholder_hw26_reward_top", "objtypes"},
+    {34744, "HW26_REWARD_LEGS", "Vampyre costume bottom", "objtypes"},
+    {34745, "PLACEHOLDER_HW26_REWARD_LEGS", "placeholder_hw26_reward_legs", "objtypes"},
+    {34746, "HW26_REWARD_CAPE", "Vampyre costume cape", "objtypes"},
+    {34747, "PLACEHOLDER_HW26_REWARD_CAPE", "placeholder_hw26_reward_cape", "objtypes"},
 }};
 
 template <>

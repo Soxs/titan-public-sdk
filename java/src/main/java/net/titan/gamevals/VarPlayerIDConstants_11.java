@@ -133,4 +133,6 @@ public interface VarPlayerIDConstants_11 {
     int HPBAR_HUD_SHOW_EXTRA_BAR = 5991;
     int PRAYER_ALLACTIVE_ALTERNATE_0 = 5994;
     int PRAYER_ALTERNATE_UNLOCK_0 = 5995;
+    int HW26 = 5996;
+    int HW26_2 = 5997;
 }

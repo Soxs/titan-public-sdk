@@ -1287,6 +1287,13 @@ now freezes that layout independently of SDK release numbers.
 | `GraphicsObject` | `spotAnimId`, `startCycle`, `plane`, `height`, `preciseX/Y`, `sceneX/Y`, `worldX/Y`, `basePtr`, `worldViewPtr`, `seqPtr`, `animationId`, `currentFrame`, `frameCycle`, `loopCount`, `totalCycle`, `animation`, `tile`, `worldPoint`, `localPoint`, `hasLineOfSight`, `isInMeleeDistance` |
 | `Actor` | `isPlayer`, `isNpc`, `isEmpty`, `asPlayer`, `asNpc`, `name`, `tile`, `worldPoint`, `localPoint`, `pathQueue`, `interact` (forwards for NPCs), `isInteracting`, `isOverheadActive` / `isOverheadActive(HeadIcon)` |
 
+`interact(action)` compares action labels ignoring case. On NPCs, tile objects
+and inventory items a label equal to `action` wins; otherwise the first label
+containing it does. `interact("Hell")` therefore picks `Hell` over an earlier
+`Hello`, and `interact("Talk")` still reaches `Talk-to`. Inventory items search
+ordinary actions before opcode-43 submenu labels within each of the two passes.
+Ground items match whole labels only.
+
 Ground item ownership values are exposed as `titan::GroundItemOwnership`
 and `titan.GroundItemOwnership`: `None`/`NONE` = 0,
 `SelfPlayer`/`SELF_PLAYER` = 1, `OtherPlayer`/`OTHER_PLAYER` = 2,

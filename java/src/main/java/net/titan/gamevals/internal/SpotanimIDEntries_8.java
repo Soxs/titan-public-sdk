@@ -358,6 +358,9 @@ final class SpotanimIDEntries_8 {
             new GamevalEntry(4441, "CURSE_IMPACT_SHORT", "curse_impact_short", "spottypes"),
             new GamevalEntry(4442, "GARGBOSS_DEBRIS_SHADOW_120_SMALL", "gargboss_debris_shadow_120_small", "spottypes"),
             new GamevalEntry(4443, "GARBOSS_DEBRIS_SHADOW_RED_60", "garboss_debris_shadow_red_60", "spottypes"),
+            new GamevalEntry(4444, "HW26_TUMBLEWEED", "hw26_tumbleweed", "spottypes"),
+            new GamevalEntry(4445, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "spottypes"),
+            new GamevalEntry(4446, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "spottypes"),
         };
     }
 

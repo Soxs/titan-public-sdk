@@ -3041,6 +3041,8 @@ struct VarPlayerID final {
     static constexpr int32_t HPBAR_HUD_SHOW_EXTRA_BAR = 5991;
     static constexpr int32_t PRAYER_ALLACTIVE_ALTERNATE_0 = 5994;
     static constexpr int32_t PRAYER_ALTERNATE_UNLOCK_0 = 5995;
+    static constexpr int32_t HW26 = 5996;
+    static constexpr int32_t HW26_2 = 5997;
 
     template <typename Self = VarPlayerID>
     static constexpr std::span<const Entry> entries() {

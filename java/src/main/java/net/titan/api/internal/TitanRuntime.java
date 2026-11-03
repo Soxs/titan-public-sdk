@@ -15,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalLong;
 
 public final class TitanRuntime {
     private static volatile AuthorizationBackend authorizationBackend;
@@ -108,6 +109,16 @@ public final class TitanRuntime {
         if (overlayBackend == backend) {
             overlayBackend = null;
         }
+    }
+
+    /** The host-packed target tag, or empty without an overlay backend that can pack. */
+    public static OptionalLong packTargetTag(int tileX, int tileY, int plane, int kind,
+                                             int index, int worldViewId) {
+        OverlayBackend backend = overlayBackend;
+        OptionalLong packed = backend == null
+            ? null
+            : backend.packTargetTag(tileX, tileY, plane, kind, index, worldViewId);
+        return packed == null ? OptionalLong.empty() : packed;
     }
 
     public static void setActorResolver(ActorResolver resolver) {

@@ -528,6 +528,11 @@ struct HostRenderV1 {
     uint8_t (*setViewportFovClamp)(const ViewportFovClampState* value) = nullptr;
     uint8_t (*getCameraPitchTarget)(int32_t* outPitch) = nullptr;
     uint8_t (*setCameraPitchTarget)(int32_t pitch) = nullptr;
+
+    // SDK 172 optional tail. Packs a target tag with the running revision's
+    // layout; a negative index returns 0. Any thread.
+    uint64_t (*packTargetTag)(int32_t tileX, int32_t tileY, int32_t plane, int32_t kind,
+                              int32_t index, int32_t worldViewId) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostRenderV1>);
 static_assert(offsetof(HostRenderV1, header) == 0);
@@ -866,7 +871,7 @@ static_assert(offsetof(HintArrowActorTarget, worldViewPtr) == 24);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostRenderV1) == 488);
+static_assert(sizeof(HostRenderV1) == 496);
 static_assert(offsetof(HostRenderV1, getCameraPitchUnlocked) == 424);
 static_assert(offsetof(HostRenderV1, setCameraPitchUnlocked) == 432);
 static_assert(offsetof(HostRenderV1, getViewportFov) == 440);
@@ -875,6 +880,7 @@ static_assert(offsetof(HostRenderV1, getViewportFovClamp) == 456);
 static_assert(offsetof(HostRenderV1, setViewportFovClamp) == 464);
 static_assert(offsetof(HostRenderV1, getCameraPitchTarget) == 472);
 static_assert(offsetof(HostRenderV1, setCameraPitchTarget) == 480);
+static_assert(offsetof(HostRenderV1, packTargetTag) == 488);
 static_assert(sizeof(ViewportFovState) == 8);
 static_assert(sizeof(ViewportFovClampState) == 16);
 static_assert(offsetof(ViewportFovClampState, zoomMin) == 8);
@@ -1261,7 +1267,8 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(getViewportFovClamp) \
     X(setViewportFovClamp) \
     X(getCameraPitchTarget) \
-    X(setCameraPitchTarget)
+    X(setCameraPitchTarget) \
+    X(packTargetTag)
 
 #define TITAN_NATIVE_HOSTNAVIGATIONV1_MEMBERS(X) \
     X(getCollisionFlag) \

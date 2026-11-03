@@ -4,6 +4,7 @@ import net.titan.api.ScreenPoint;
 import net.titan.api.overlay.OverlayPanelStyle;
 
 import java.util.Optional;
+import java.util.OptionalLong;
 
 public interface OverlayBackend {
     void tileQuad(int tileX, int tileY, int plane, int fillColor, int outlineColor);
@@ -37,6 +38,15 @@ public interface OverlayBackend {
     Optional<ScreenPoint> tileToScreen(int tileX, int tileY, int plane, int heightOffset);
     int tileHeight(int preciseX, int preciseY, int plane);
     int tileHeightInWorldView(int worldViewId, int preciseX, int preciseY, int plane);
+
+    /**
+     * Pack a target tag with the host's layout for the running revision
+     * (SDK 172). Empty when the host or runtime cannot.
+     */
+    default OptionalLong packTargetTag(int tileX, int tileY, int plane, int kind,
+                                       int index, int worldViewId) {
+        return OptionalLong.empty();
+    }
 
     int overlayPanelRegister(String pluginId, String panelName,
                              int defaultAnchor, int defaultPriority);
