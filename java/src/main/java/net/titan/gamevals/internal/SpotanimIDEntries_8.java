@@ -361,6 +361,7 @@ final class SpotanimIDEntries_8 {
             new GamevalEntry(4444, "HW26_TUMBLEWEED", "hw26_tumbleweed", "spottypes"),
             new GamevalEntry(4445, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "spottypes"),
             new GamevalEntry(4446, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "spottypes"),
+            new GamevalEntry(4447, "THROWN_ROCK", "thrown_rock", "spottypes"),
         };
     }
 

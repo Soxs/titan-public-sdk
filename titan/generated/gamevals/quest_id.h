@@ -170,7 +170,7 @@ struct QuestID final {
     static constexpr int32_t QUEST_SONGOFTHEELVES = 156;
     static constexpr int32_t QUEST_FREMENNIKEXILES = 157;
     static constexpr int32_t QUEST_SINSOFTHEFATHER = 158;
-    static constexpr int32_t MINIQUEST_DADDYSHOME = 159;
+    static constexpr int32_t QUEST_DADDYSHOME = 159;
     static constexpr int32_t QUEST_PORCINEOFINTEREST = 160;
     static constexpr int32_t QUEST_GETTINGAHEAD = 161;
     static constexpr int32_t QUEST_BELOWICEMOUNTAIN = 162;
@@ -229,6 +229,8 @@ struct QuestID final {
     static constexpr int32_t QUEST_RUFFSITUATION = 215;
     static constexpr int32_t QUEST_CRABQUEST = 216;
     static constexpr int32_t MINIQUEST_FRACTUREDARCHIVE = 217;
+    static constexpr int32_t QUEST_MUDFOOTSBIGADVENTURE = 218;
+    static constexpr int32_t QUEST_WRITINGSONTHEWALL = 219;
 
     template <typename Self = QuestID>
     static constexpr std::span<const QuestEntry> entries() {

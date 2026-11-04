@@ -22,6 +22,7 @@ public final class VarPlayerIDEntries {
             VarPlayerIDEntries_9.entries(),
             VarPlayerIDEntries_10.entries(),
             VarPlayerIDEntries_11.entries(),
+            VarPlayerIDEntries_12.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -59,6 +60,8 @@ public final class VarPlayerIDEntries {
         hit = VarPlayerIDEntries_10.byId(id);
         if (hit.isPresent()) return hit;
         hit = VarPlayerIDEntries_11.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = VarPlayerIDEntries_12.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

@@ -479,7 +479,7 @@ final class ObjectIDEntries_102 {
             new GamevalEntry(52690, "CIVITAS_CRANE01_FISHING03", "Crane", "loctypes"),
             new GamevalEntry(52691, "CIVITAS_MUSEUM_DISPLAY_EMPTY_1X1", "Empty display", "loctypes"),
             new GamevalEntry(52692, "CIVITAS_MUSEUM_DISPLAY_EMPTY_2X2", "Empty display", "loctypes"),
-            new GamevalEntry(52693, "AMOXLIATL_SCOREBOARD", "\\+m??? J? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?", "loctypes"),
+            new GamevalEntry(52693, "AMOXLIATL_SCOREBOARD", "b+m??", "loctypes"),
             new GamevalEntry(52694, "CIVITAS_MUSEUM_DISPLAY_QUIVER", "Dizana's Quiver", "loctypes"),
             new GamevalEntry(52695, "CIVITAS_MUSEUM_DISPLAY_CROWN", "Crown of Ralos", "loctypes"),
             new GamevalEntry(52696, "CIVITAS_MUSEUM_DISPLAY_CAPE", "Cloak of Ranul", "loctypes"),

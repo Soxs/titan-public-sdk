@@ -10,8 +10,8 @@ final class ObjectIDEntries_45 {
 
     static GamevalEntry[] entries() {
         return new GamevalEntry[] {
-            new GamevalEntry(23040, "DORGESH_LAMP_62", "?M ??? Y?Y?", "loctypes"),
-            new GamevalEntry(23041, "DORGESH_LAMP_63", "?M ??? Y?Y?", "loctypes"),
+            new GamevalEntry(23040, "DORGESH_LAMP_62", "?a ???", "loctypes"),
+            new GamevalEntry(23041, "DORGESH_LAMP_63", "?a ???", "loctypes"),
             new GamevalEntry(23042, "DORGESH_BLACKSMITH_HAMMER_TONG", "Tools", "loctypes"),
             new GamevalEntry(23043, "DORGESH_BLACKSMITH_HAMMER_AXE", "Tools", "loctypes"),
             new GamevalEntry(23044, "DORGESH_BLACKSMITH_IRON_PILE", "Metal", "loctypes"),

@@ -328,7 +328,7 @@ final class ObjectIDEntries_85 {
             new GamevalEntry(43835, "BGSOUND_GOTR_GUARDIAN_UNDER_WATER_LOOP_01", "bgsound_gotr_guardian_under_water_loop_01", "loctypes"),
             new GamevalEntry(43836, "BGSOUND_GOTR_DUNGEON_WATER_ATMOS", "bgsound_gotr_dungeon_water_atmos", "loctypes"),
             new GamevalEntry(43837, "BGSOUND_GOTR_GUARDIAN_UNDER_WATER_LOOP_02", "bgsound_gotr_guardian_under_water_loop_02", "loctypes"),
-            new GamevalEntry(43838, "WGS_RICH_SNAPDRAGON_PATCH", "M* ?? ?*?+?,", "loctypes"),
+            new GamevalEntry(43838, "WGS_RICH_SNAPDRAGON_PATCH", "a* ??", "loctypes"),
             new GamevalEntry(43839, "BGSOUND_GOTR_GUARDIAN_UNDER_WATER_LOOP_03", "bgsound_gotr_guardian_under_water_loop_03", "loctypes"),
             new GamevalEntry(43840, "MYQ5_WALL_CAVE_SHORTCUT_6_PARENT", "myq5_wall_cave_shortcut_6_parent", "loctypes"),
             new GamevalEntry(43841, "TOTE_PORTAL_TO_GOTR_PARENT", "tote_portal_to_gotr_parent", "loctypes"),

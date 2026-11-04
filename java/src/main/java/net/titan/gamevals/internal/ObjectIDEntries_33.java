@@ -394,7 +394,7 @@ final class ObjectIDEntries_33 {
             new GamevalEntry(17277, "EYEGLO_SILVER_SPIRIT_TREE_SPLIT", "Argento", "loctypes"),
             new GamevalEntry(17278, "EYEGLO_SILVER_SPIRIT_TREE_SPLIT_PRELOAD", "Argento", "loctypes"),
             new GamevalEntry(17279, "EYEGLO_SILVER_SPIRIT_TREE_SHADOW", "Argento", "loctypes"),
-            new GamevalEntry(17280, "EYEGLO_GNOME_MACHINE_01_MULTILOC", "CYCXCY", "loctypes"),
+            new GamevalEntry(17280, "EYEGLO_GNOME_MACHINE_01_MULTILOC", "eyeglo_gnome_machine_01_multiloc", "loctypes"),
             new GamevalEntry(17281, "EYEGLO_GNOME_COGS_MULTILOC", "eyeglo_gnome_cogs_multiloc", "loctypes"),
             new GamevalEntry(17282, "EYEGLO_GNOME_MACHINE_02_MULTILOC", "eyeglo_gnome_machine_02_multiloc", "loctypes"),
             new GamevalEntry(17283, "EYEGLO_CHANGE_MACHINE_MULTILOC", "eyeglo_change_machine_multiloc", "loctypes"),

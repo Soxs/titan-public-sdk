@@ -168,7 +168,7 @@ final class QuestIDEntries_0 {
             new QuestEntry(137, 156, "QUEST_SONGOFTHEELVES", "Song of the Elves", "Song of the Elves", "", "questtypes"),
             new QuestEntry(55, 157, "QUEST_FREMENNIKEXILES", "The Fremennik Exiles", "Fremennik Exiles, The", "", "questtypes"),
             new QuestEntry(134, 158, "QUEST_SINSOFTHEFATHER", "Sins of the Father", "Sins of the Father", "", "questtypes"),
-            new QuestEntry(21, 159, "MINIQUEST_DADDYSHOME", "Daddy's Home", "Daddy's Home", "", "questtypes"),
+            new QuestEntry(17229, 159, "QUEST_DADDYSHOME", "Daddy's Home", "Daddy's Home", "", "questtypes"),
             new QuestEntry(110, 160, "QUEST_PORCINEOFINTEREST", "A Porcine of Interest", "Porcine of Interest, A", "", "questtypes"),
             new QuestEntry(61, 161, "QUEST_GETTINGAHEAD", "Getting Ahead", "Getting Ahead", "", "questtypes"),
             new QuestEntry(6, 162, "QUEST_BELOWICEMOUNTAIN", "Below Ice Mountain", "Below Ice Mountain", "", "questtypes"),
@@ -227,6 +227,8 @@ final class QuestIDEntries_0 {
             new QuestEntry(16971, 215, "QUEST_RUFFSITUATION", "A Ruff Situation", "Ruff Situation, A", "", "questtypes"),
             new QuestEntry(16972, 216, "QUEST_CRABQUEST", "Crab Quest", "Crab Quest", "", "questtypes"),
             new QuestEntry(17027, 217, "MINIQUEST_FRACTUREDARCHIVE", "The Fractured Archive", "Fractured Archive, The", "", "questtypes"),
+            new QuestEntry(17230, 218, "QUEST_MUDFOOTSBIGADVENTURE", "Mudfoot's Big Adventure", "Mudfoot's Big Adventure", "", "questtypes"),
+            new QuestEntry(17231, 219, "QUEST_WRITINGSONTHEWALL", "The Writing's on the Wall", "Writing's on the Wall, The", "", "questtypes"),
         };
     }
 

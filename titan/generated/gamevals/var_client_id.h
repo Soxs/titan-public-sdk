@@ -1600,6 +1600,14 @@ struct VarClientID final {
     static constexpr int32_t TFA_STATS_PARTY_STATS_TABLE_ID = 1585;
     static constexpr int32_t TFA_STATS_TARGET_WIDTH = 1586;
     static constexpr int32_t TFA_STATS_TARGET_HEIGHT = 1587;
+    static constexpr int32_t DISPLAYNAME_MENU_INPUT = 1588;
+    static constexpr int32_t DISPLAYNAME_MENU_EDITTIME = 1589;
+    static constexpr int32_t DISPLAYNAME_MENU_LOOKUPTIME = 1590;
+    static constexpr int32_t DISPLAYNAME_MENU_CHANGETIME = 1591;
+    static constexpr int32_t DISPLAYNAME_MENU_REMAININGCHECKS = 1592;
+    static constexpr int32_t DISPLAYNAME_MENU_COUNTCHECKS = 1593;
+    static constexpr int32_t DISPLAYNAME_MENU_KICKOUTTIME = 1594;
+    static constexpr int32_t DISPLAYNAME_MENU_CHANGEDNAME = 1595;
 
     template <typename Self = VarClientID>
     static constexpr std::span<const Entry> entries() {

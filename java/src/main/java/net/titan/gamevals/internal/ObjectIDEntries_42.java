@@ -449,7 +449,7 @@ final class ObjectIDEntries_42 {
             new GamevalEntry(21940, "TOL_SMALL_CRATES", "Crate", "loctypes"),
             new GamevalEntry(21941, "TOL_CAGE_MULTI", "tol_cage_multi", "loctypes"),
             new GamevalEntry(21942, "TOL_FURNACE_GLOW01", "tol_furnace_glow01", "loctypes"),
-            new GamevalEntry(21943, "TOL_PIPE_MACHINE_MULTI", "UxUxUy", "loctypes"),
+            new GamevalEntry(21943, "TOL_PIPE_MACHINE_MULTI", "tol_pipe_machine_multi", "loctypes"),
             new GamevalEntry(21944, "TOL_TRAPDOOR_MULTI", "tol_trapdoor_multi", "loctypes"),
             new GamevalEntry(21945, "HORROR_LIGHTHOUSE_WINDPOWER_COG_M", "Lighting mechanism", "loctypes"),
             new GamevalEntry(21946, "WALL_OF_SOULS_07", "wall_of_souls_07", "loctypes"),

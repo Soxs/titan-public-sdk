@@ -239,7 +239,7 @@ final class ObjectIDEntries_11 {
             new GamevalEntry(5858, "MDAUGHTER_CAVEEXIT", "Cave exit", "loctypes"),
             new GamevalEntry(5859, "MDAUGHTER_CAVEEXIT_FAKE", "Cave exit", "loctypes"),
             new GamevalEntry(5860, "MDAUGHTER_SPEARWALL_STRAIGHT", "Standing spears", "loctypes"),
-            new GamevalEntry(5861, "MDAUGHTER_MULTIMOUND", "M ?? ?? ? ?", "loctypes"),
+            new GamevalEntry(5861, "MDAUGHTER_MULTIMOUND", "a ?? ???", "loctypes"),
             new GamevalEntry(5862, "MDAUGHTER_BURIALMOUND", "Burial mound", "loctypes"),
             new GamevalEntry(5863, "MDAUGHTER_BURIALCAIRN", "Burial cairn", "loctypes"),
             new GamevalEntry(5864, "MDAUGHTER_TENT", "mdaughter_tent", "loctypes"),

@@ -517,7 +517,7 @@ final class ItemIDEntries_14 {
             new GamevalEntry(7672, "CERT_POH_BOXING_GLOVES_RED", "cert_poh_boxing_gloves_red", "objtypes"),
             new GamevalEntry(7673, "POH_BOXING_GLOVES_BLUE", "Boxing gloves", "objtypes"),
             new GamevalEntry(7674, "CERT_POH_BOXING_GLOVES_BLUE", "cert_poh_boxing_gloves_blue", "objtypes"),
-            new GamevalEntry(7675, "POH_WOODEN_SWORD", "Wooden sword", "objtypes"),
+            new GamevalEntry(7675, "POH_WOODEN_SWORD", "Wooden shortsword", "objtypes"),
             new GamevalEntry(7676, "POH_WOODEN_SHIELD", "Wooden shield", "objtypes"),
             new GamevalEntry(7677, "POH_TREASURE_HUNT_STONE", "Treasure stone", "objtypes"),
             new GamevalEntry(7678, "POH_PRIZE_KEY", "Prize key", "objtypes"),

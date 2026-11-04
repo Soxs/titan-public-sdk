@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 15155> kAnimationIDEntries = {{
+inline constexpr std::array<Entry, 15162> kAnimationIDEntries = {{
     {0, "SWARM_WALK", "swarm_walk", "seqtypes"},
     {1, "SWARM_ATTACK", "swarm_attack", "seqtypes"},
     {2, "SWARM_BLOCK", "swarm_block", "seqtypes"},
@@ -15162,6 +15162,13 @@ inline constexpr std::array<Entry, 15155> kAnimationIDEntries = {{
     {15164, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "seqtypes"},
     {15165, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "seqtypes"},
     {15166, "TFA_HUMAN_FOLIO_TELEPORT_END", "tfa_human_folio_teleport_end", "seqtypes"},
+    {15167, "VYRELORD_TRANSFORM_PT1_LOOP", "vyrelord_transform_pt1_loop", "seqtypes"},
+    {15168, "PEST_REPAIR_QUICK", "pest_repair_quick", "seqtypes"},
+    {15169, "PEST_REPAIR_QUICK_IMCANDO_HAMMER", "pest_repair_quick_imcando_hammer", "seqtypes"},
+    {15170, "SLICE_SURFACE_GOBLIN_SQUAT_RUN_SPEAR", "slice_surface_goblin_squat_run_spear", "seqtypes"},
+    {15171, "WOTW_HUMAN_SEPPUKU", "wotw_human_seppuku", "seqtypes"},
+    {15172, "WOTW_HUMAN_SEPPUKU_IDLE", "wotw_human_seppuku_idle", "seqtypes"},
+    {15173, "CHEST_GUTHIXIAN02_REVEAL", "chest_guthixian02_reveal", "seqtypes"},
 }};
 
 template <>

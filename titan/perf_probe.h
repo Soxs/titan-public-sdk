@@ -63,6 +63,8 @@ enum class Metric : uint32_t {
     DistancePlayerPlane, DistanceTargetExact, DistanceTargetFallback,
     DistanceTargetUnavailable, DistanceImmunityActive, DistanceObstacleOnPlayer,
     DistanceCrossesMoving, DistanceImmunityFallbackEntered, DistanceNearestFallbackEntered,
+    // EventsRecord is nested beneath EventsTargets for target-change rows.
+    EventsRecord, EventsTargets,
     Count
 };
 
@@ -114,7 +116,8 @@ constexpr const char* metricName(Metric metric) noexcept {
         "DistanceTargetX", "DistanceTargetY", "DistanceTargetPlane",
         "DistancePlayerPlane", "DistanceTargetExact", "DistanceTargetFallback",
         "DistanceTargetUnavailable", "DistanceImmunityActive", "DistanceObstacleOnPlayer",
-        "DistanceCrossesMoving", "DistanceImmunityFallbackEntered", "DistanceNearestFallbackEntered"
+        "DistanceCrossesMoving", "DistanceImmunityFallbackEntered", "DistanceNearestFallbackEntered",
+        "EventsRecord", "EventsTargets"
     };
     static_assert(sizeof(names) / sizeof(names[0]) == metricCount);
     const auto index = static_cast<size_t>(metric);

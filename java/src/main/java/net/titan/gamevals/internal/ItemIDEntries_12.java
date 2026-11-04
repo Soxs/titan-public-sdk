@@ -467,7 +467,7 @@ final class ItemIDEntries_12 {
             new GamevalEntry(6602, "CERT_WHITE_MACE", "cert_white_mace", "objtypes"),
             new GamevalEntry(6603, "WHITE_MAGIC_STAFF", "White magic staff", "objtypes"),
             new GamevalEntry(6604, "CERT_WHITE_MAGIC_STAFF", "cert_white_magic_staff", "objtypes"),
-            new GamevalEntry(6605, "WHITE_SWORD", "White sword", "objtypes"),
+            new GamevalEntry(6605, "WHITE_SWORD", "White shortsword", "objtypes"),
             new GamevalEntry(6606, "CERT_WHITE_SWORD", "cert_white_sword", "objtypes"),
             new GamevalEntry(6607, "WHITE_LONGSWORD", "White longsword", "objtypes"),
             new GamevalEntry(6608, "CERT_WHITE_LONGSWORD", "cert_white_longsword", "objtypes"),

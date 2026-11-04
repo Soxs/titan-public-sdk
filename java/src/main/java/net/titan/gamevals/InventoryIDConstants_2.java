@@ -9,4 +9,7 @@ public interface InventoryIDConstants_2 {
     int TFA_CHESTS = 1029;
     int TFA_MIDRAID_SUPPLIES_SHOP = 1030;
     int TFA_SUPPLIES_SNAPSHOT_INV = 1031;
+    int LUMBRIDGE_BLACKSMITH = 1032;
+    int RENDER_WORN = 1033;
+    int PUB_LUMBRIDGE = 1034;
 }

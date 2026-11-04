@@ -315,7 +315,7 @@ final class ObjectIDEntries_48 {
             new GamevalEntry(24878, "GRIM_SHRINKING_GLYPHE_HIDDEN", "Witch Glyph", "loctypes"),
             new GamevalEntry(24879, "GRIM_SHRINKING_GLYPHE_MULTI", "grim_shrinking_glyphe_multi", "loctypes"),
             new GamevalEntry(24880, "GRIM_WALL_JUMP_INVISIBLE", "Crumbling wall", "loctypes"),
-            new GamevalEntry(24881, "GRIM_GRANDPIANO", "M r?? `?`?", "loctypes"),
+            new GamevalEntry(24881, "GRIM_GRANDPIANO", "a r??", "loctypes"),
             new GamevalEntry(24882, "GRIM_GRAMMAPHONE", "grim_grammaphone", "loctypes"),
             new GamevalEntry(24883, "GRIM_MUSIC_STAND_MULTI", "grim_music_stand_multi", "loctypes"),
             new GamevalEntry(24884, "GRIM_BEANSTALK_MULTI", "grim_beanstalk_multi", "loctypes"),

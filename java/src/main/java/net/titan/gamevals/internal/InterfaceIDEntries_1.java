@@ -478,6 +478,19 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(977, "TFA_PARTYLIST", "tfa_partylist", "iftypes"),
             new GamevalEntry(978, "TFA_SPECTATE_HUD_INV", "tfa_spectate_hud_inv", "iftypes"),
             new GamevalEntry(979, "TFA_STATS", "tfa_stats", "iftypes"),
+            new GamevalEntry(980, "DISPLAYNAME_MENU", "displayname_menu", "iftypes"),
+            new GamevalEntry(981, "HC_SUMMARY", "hc_summary", "iftypes"),
+            new GamevalEntry(982, "HC_DEATH_CHOICE", "hc_death_choice", "iftypes"),
+            new GamevalEntry(983, "QUEST_RATING", "quest_rating", "iftypes"),
+            new GamevalEntry(984, "WOTW_CERTIFICATE_HOSIDIUS", "wotw_certificate_hosidius", "iftypes"),
+            new GamevalEntry(985, "WOTW_DRAWERS_PISCARILIUS", "wotw_drawers_piscarilius", "iftypes"),
+            new GamevalEntry(986, "WOTW_LETTER_HOSIDIUS", "wotw_letter_hosidius", "iftypes"),
+            new GamevalEntry(987, "WOTW_LETTER_LANDS_END", "wotw_letter_lands_end", "iftypes"),
+            new GamevalEntry(988, "WOTW_NEWS_LANDS_END", "wotw_news_lands_end", "iftypes"),
+            new GamevalEntry(989, "WOTW_WALL_HIDEOUT", "wotw_wall_hideout", "iftypes"),
+            new GamevalEntry(990, "WOTW_WALL_LANDS_END", "wotw_wall_lands_end", "iftypes"),
+            new GamevalEntry(991, "WOTW_WALL_PISCARILIUS", "wotw_wall_piscarilius", "iftypes"),
+            new GamevalEntry(992, "WOTW_WALL_SHAYZIEN", "wotw_wall_shayzien", "iftypes"),
         };
     }
 

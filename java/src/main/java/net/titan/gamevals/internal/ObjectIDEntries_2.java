@@ -278,7 +278,7 @@ final class ObjectIDEntries_2 {
             new GamevalEntry(1290, "DEADTREE3", "Dead tree", "loctypes"),
             new GamevalEntry(1291, "DEADTREE2_SNOWY", "Dead tree", "loctypes"),
             new GamevalEntry(1292, "DRAMENTREE", "Dramen tree", "loctypes"),
-            new GamevalEntry(1293, "ENT", "V?? f?f?f?f?", "loctypes"),
+            new GamevalEntry(1293, "ENT", "V??", "loctypes"),
             new GamevalEntry(1294, "STRONGHOLD_ENT", "stronghold_ent", "loctypes"),
             new GamevalEntry(1295, "SPIRITTREE_SMALL", "spirittree_small", "loctypes"),
             new GamevalEntry(1296, "FALLENTREE", "Fallen tree", "loctypes"),

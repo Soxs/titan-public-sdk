@@ -465,7 +465,7 @@ final class ObjectIDEntries_84 {
             new GamevalEntry(43460, "GOBLIN_OUTPOST_POORDOOR_DOUBLER_INNER_NOOP", "Large door", "loctypes"),
             new GamevalEntry(43461, "QUEST_START_ICON_LANDOFTHEGOBLINS", "quest_start_icon_landofthegoblins", "loctypes"),
             new GamevalEntry(43462, "XMAS20_GOBLIN_CAVE_ENTRANCE_NOOP", "Cave entrance", "loctypes"),
-            new GamevalEntry(43463, "LOTG_FAIRY_RING_MACHINE_SETUP", "$xM5 ??8?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?_?]???^?^?^?^?^", "loctypes"),
+            new GamevalEntry(43463, "LOTG_FAIRY_RING_MACHINE_SETUP", "$xa5 ??8", "loctypes"),
             new GamevalEntry(43464, "LOTG_FAIRY_RING_PORTAL_WIRES_STRAIGHT", "lotg_fairy_ring_portal_wires_straight", "loctypes"),
             new GamevalEntry(43465, "LOTG_FAIRY_RING_PORTAL_WIRES_CORNER", "lotg_fairy_ring_portal_wires_corner", "loctypes"),
             new GamevalEntry(43466, "LOTG_WIRED_FAIRY_MUSHROOM_RING", "lotg_wired_fairy_mushroom_ring", "loctypes"),

@@ -303,7 +303,7 @@ final class ObjectIDEntries_36 {
             new GamevalEntry(18722, "ELEM2_WIND_PIN_HIGH_MULTI", "elem2_wind_pin_high_multi", "loctypes"),
             new GamevalEntry(18723, "ELEM_WINDTUNNEL_FANBLADE", "elem_windtunnel_fanblade", "loctypes"),
             new GamevalEntry(18724, "ELEM_WINDTUNNEL_FANBLADE_SOUND", "elem_windtunnel_fanblade_sound", "loctypes"),
-            new GamevalEntry(18725, "ELEM_EXTRACTOR_GUN", "I I I", "loctypes"),
+            new GamevalEntry(18725, "ELEM_EXTRACTOR_GUN", "elem_extractor_gun", "loctypes"),
             new GamevalEntry(18726, "ELEMENTAL_PIPING_BLUE_FLOAT", "Piping", "loctypes"),
             new GamevalEntry(18727, "ELEMENTAL_PIPING_LIGHTBROWN", "elemental_piping_lightbrown", "loctypes"),
             new GamevalEntry(18728, "ELEMENTAL_PIPING_LIGHTBROWN_FLOAT", "elemental_piping_lightbrown_float", "loctypes"),

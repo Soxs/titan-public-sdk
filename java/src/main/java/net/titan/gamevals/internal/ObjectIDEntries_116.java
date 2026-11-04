@@ -15,7 +15,7 @@ final class ObjectIDEntries_116 {
             new GamevalEntry(59394, "SAILING_CHARTING_RAPIDS_FORTIS_BAY", "sailing_charting_rapids_fortis_bay", "loctypes"),
             new GamevalEntry(59395, "SAILING_CHARTING_RAPIDS_ARROW_PASSAGE", "sailing_charting_rapids_arrow_passage", "loctypes"),
             new GamevalEntry(59396, "SAILING_CHARTING_RAPIDS_AUREUM_COAST", "sailing_charting_rapids_aureum_coast", "loctypes"),
-            new GamevalEntry(59397, "SAILING_CHARTING_RAPIDS_MENAPHITE_SEA", "sailing_charting_rapids_menaphite_sea", "loctypes"),
+            new GamevalEntry(59397, "SAILING_CHARTING_RAPIDS_MENAPHITE_SEA", "?? ???", "loctypes"),
             new GamevalEntry(59398, "SAILING_CHARTING_RAPIDS_TURTLE_BELT", "sailing_charting_rapids_turtle_belt", "loctypes"),
             new GamevalEntry(59399, "SAILING_CHARTING_RAPIDS_WYRMS_WATERS", "sailing_charting_rapids_wyrms_waters", "loctypes"),
             new GamevalEntry(59400, "SAILING_CHARTING_RAPIDS_THE_SIMIAN_SEA", "sailing_charting_rapids_the_simian_sea", "loctypes"),

@@ -4459,6 +4459,7 @@ struct SpotanimID final {
     static constexpr int32_t HW26_TUMBLEWEED = 4444;
     static constexpr int32_t VFX_TFA_TELEPORT_START = 4445;
     static constexpr int32_t VFX_TFA_TELEPORT_END = 4446;
+    static constexpr int32_t THROWN_ROCK = 4447;
 
     template <typename Self = SpotanimID>
     static constexpr std::span<const Entry> entries() {

@@ -1044,6 +1044,9 @@ struct InventoryID final {
     static constexpr int32_t TFA_CHESTS = 1029;
     static constexpr int32_t TFA_MIDRAID_SUPPLIES_SHOP = 1030;
     static constexpr int32_t TFA_SUPPLIES_SNAPSHOT_INV = 1031;
+    static constexpr int32_t LUMBRIDGE_BLACKSMITH = 1032;
+    static constexpr int32_t RENDER_WORN = 1033;
+    static constexpr int32_t PUB_LUMBRIDGE = 1034;
 
     template <typename Self = InventoryID>
     static constexpr std::span<const Entry> entries() {

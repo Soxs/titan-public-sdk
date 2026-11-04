@@ -321,7 +321,7 @@ final class NpcIDEntries_14 {
             new GamevalEntry(7476, "KW_ARTIST", "Robert Boss", "npctypes"),
             new GamevalEntry(7477, "VARLAMORE_SUN_KNIGHT", "Knight of Varlamore", "npctypes"),
             new GamevalEntry(7478, "KW_HUGOR", "Hugor", "npctypes"),
-            new GamevalEntry(7479, "KW_BUTCHER_LAN", "Lan the Butcher", "npctypes"),
+            new GamevalEntry(7479, "KW_BUTCHER_LAN", "kw_butcher_lan", "npctypes"),
             new GamevalEntry(7480, "FH_RAKKAR", "Rakkar", "npctypes"),
             new GamevalEntry(7481, "ZEAH_DEFENCE_PURE", "Hopleez", "npctypes"),
             new GamevalEntry(7482, "ZEAH_RAIDS_CAPTAIN", "Captain Sdiar", "npctypes"),

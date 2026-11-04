@@ -138,7 +138,7 @@ final class ObjectIDEntries_24 {
             new GamevalEntry(12413, "_100_GOBLIN_ROLLING_PIN_BLASTED", "Rolling pin", "loctypes"),
             new GamevalEntry(12414, "_100_GOBLIN_BIG_SPORK", "Spork", "loctypes"),
             new GamevalEntry(12415, "_100_GOBLIN_BIG_SPORK_BLASTED", "Spork", "loctypes"),
-            new GamevalEntry(12416, "_100_GOBLIN_LARGE_TABLE_MULTI", "0b0c0c", "loctypes"),
+            new GamevalEntry(12416, "_100_GOBLIN_LARGE_TABLE_MULTI", "100_goblin_large_table_multi", "loctypes"),
             new GamevalEntry(12417, "_100_GOBLIN_ROOF_MULTI", "100_goblin_roof_multi", "loctypes"),
             new GamevalEntry(12418, "GOBLIN_OUTPOST_WALL", "goblin_outpost_wall", "loctypes"),
             new GamevalEntry(12419, "GOBLIN_OUTPOST_FORT_WALL", "goblin_outpost_fort_wall", "loctypes"),

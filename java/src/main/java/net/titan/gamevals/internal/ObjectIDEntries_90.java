@@ -21,7 +21,7 @@ final class ObjectIDEntries_90 {
             new GamevalEntry(46088, "TOA_LOBBY_EXIT_NOOP", "Exit", "loctypes"),
             new GamevalEntry(46089, "TOA_LOBBY_RAID_ENTRY", "Entry", "loctypes"),
             new GamevalEntry(46090, "TOA_LOBBY_RAID_ENTRY_NOOP", "Entry", "loctypes"),
-            new GamevalEntry(46091, "DUKE_SUCELLUS_SCOREBOARD", "M;G?? ??????", "loctypes"),
+            new GamevalEntry(46091, "DUKE_SUCELLUS_SCOREBOARD", "a;G?? ???", "loctypes"),
             new GamevalEntry(46092, "WHISPERER_SCOREBOARD", "whisperer_scoreboard", "loctypes"),
             new GamevalEntry(46093, "TOA_WALL_LOBBY01", "toa_wall_lobby01", "loctypes"),
             new GamevalEntry(46094, "TOA_WALL_LOBBY01_DAMAGED01", "toa_wall_lobby01_damaged01", "loctypes"),

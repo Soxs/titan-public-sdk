@@ -33,7 +33,7 @@ final class ObjectIDEntries_34 {
             new GamevalEntry(17428, "QIP_DS_SILVERLIGHT_CASE", "qip_ds_silverlight_case", "loctypes"),
             new GamevalEntry(17429, "QIP_DS_RUSTYKEY_MUD", "Rusty key", "loctypes"),
             new GamevalEntry(17430, "QIP_DS_RUSTYKEY_MUDONLY", "Mud", "loctypes"),
-            new GamevalEntry(17431, "QIP_DS_SEWER_KEY", "D D D", "loctypes"),
+            new GamevalEntry(17431, "QIP_DS_SEWER_KEY", "qip_ds_sewer_key", "loctypes"),
             new GamevalEntry(17432, "QIP_DS_KEYPIPE", "Sewer pipe", "loctypes"),
             new GamevalEntry(17433, "QIP_DS_WIZARDS_KEY_WARDROBE", "Wardrobe", "loctypes"),
             new GamevalEntry(17434, "QIP_DS_WIZARDS_KEY_WARDROBE_MAGIC", "Wardrobe", "loctypes"),

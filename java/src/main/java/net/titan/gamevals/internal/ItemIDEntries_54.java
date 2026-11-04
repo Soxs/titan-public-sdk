@@ -383,7 +383,7 @@ final class ItemIDEntries_54 {
             new GamevalEntry(28022, "PLACEHOLDER_BH_DRAGON_DAGGER_P_CORRUPTED", "placeholder_bh_dragon_dagger_p_corrupted", "objtypes"),
             new GamevalEntry(28027, "BH_DRAGON_MACE_CORRUPTED", "Dragon mace (cr)", "objtypes"),
             new GamevalEntry(28028, "PLACEHOLDER_BH_DRAGON_MACE_CORRUPTED", "placeholder_bh_dragon_mace_corrupted", "objtypes"),
-            new GamevalEntry(28029, "BH_DRAGON_SHORTSWORD_CORRUPTED", "Dragon sword (cr)", "objtypes"),
+            new GamevalEntry(28029, "BH_DRAGON_SHORTSWORD_CORRUPTED", "Dragon shortsword (cr)", "objtypes"),
             new GamevalEntry(28030, "PLACEHOLDER_BH_DRAGON_SHORTSWORD_CORRUPTED", "placeholder_bh_dragon_shortsword_corrupted", "objtypes"),
             new GamevalEntry(28031, "BH_DRAGON_SCIMITAR_CORRUPTED", "Dragon scimitar (cr)", "objtypes"),
             new GamevalEntry(28032, "PLACEHOLDER_BH_DRAGON_SCIMITAR_CORRUPTED", "placeholder_bh_dragon_scimitar_corrupted", "objtypes"),

@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<QuestEntry, 217> kQuestIDEntries = {{
+inline constexpr std::array<QuestEntry, 219> kQuestIDEntries = {{
     {17, 1, "QUEST_COOKSASSISTANT", "Cook's Assistant", "Cook's Assistant", "", "questtypes"},
     {25, 2, "QUEST_DEMONSLAYER", "Demon Slayer", "Demon Slayer", "", "questtypes"},
     {120, 3, "QUEST_RESTLESSGHOST", "The Restless Ghost", "Restless Ghost, The", "", "questtypes"},
@@ -165,7 +165,7 @@ inline constexpr std::array<QuestEntry, 217> kQuestIDEntries = {{
     {137, 156, "QUEST_SONGOFTHEELVES", "Song of the Elves", "Song of the Elves", "", "questtypes"},
     {55, 157, "QUEST_FREMENNIKEXILES", "The Fremennik Exiles", "Fremennik Exiles, The", "", "questtypes"},
     {134, 158, "QUEST_SINSOFTHEFATHER", "Sins of the Father", "Sins of the Father", "", "questtypes"},
-    {21, 159, "MINIQUEST_DADDYSHOME", "Daddy's Home", "Daddy's Home", "", "questtypes"},
+    {17229, 159, "QUEST_DADDYSHOME", "Daddy's Home", "Daddy's Home", "", "questtypes"},
     {110, 160, "QUEST_PORCINEOFINTEREST", "A Porcine of Interest", "Porcine of Interest, A", "", "questtypes"},
     {61, 161, "QUEST_GETTINGAHEAD", "Getting Ahead", "Getting Ahead", "", "questtypes"},
     {6, 162, "QUEST_BELOWICEMOUNTAIN", "Below Ice Mountain", "Below Ice Mountain", "", "questtypes"},
@@ -224,6 +224,8 @@ inline constexpr std::array<QuestEntry, 217> kQuestIDEntries = {{
     {16971, 215, "QUEST_RUFFSITUATION", "A Ruff Situation", "Ruff Situation, A", "", "questtypes"},
     {16972, 216, "QUEST_CRABQUEST", "Crab Quest", "Crab Quest", "", "questtypes"},
     {17027, 217, "MINIQUEST_FRACTUREDARCHIVE", "The Fractured Archive", "Fractured Archive, The", "", "questtypes"},
+    {17230, 218, "QUEST_MUDFOOTSBIGADVENTURE", "Mudfoot's Big Adventure", "Mudfoot's Big Adventure", "", "questtypes"},
+    {17231, 219, "QUEST_WRITINGSONTHEWALL", "The Writing's on the Wall", "Writing's on the Wall, The", "", "questtypes"},
 }};
 
 template <>

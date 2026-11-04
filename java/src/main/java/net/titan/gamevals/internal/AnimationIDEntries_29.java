@@ -329,6 +329,13 @@ final class AnimationIDEntries_29 {
             new GamevalEntry(15164, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "seqtypes"),
             new GamevalEntry(15165, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "seqtypes"),
             new GamevalEntry(15166, "TFA_HUMAN_FOLIO_TELEPORT_END", "tfa_human_folio_teleport_end", "seqtypes"),
+            new GamevalEntry(15167, "VYRELORD_TRANSFORM_PT1_LOOP", "vyrelord_transform_pt1_loop", "seqtypes"),
+            new GamevalEntry(15168, "PEST_REPAIR_QUICK", "pest_repair_quick", "seqtypes"),
+            new GamevalEntry(15169, "PEST_REPAIR_QUICK_IMCANDO_HAMMER", "pest_repair_quick_imcando_hammer", "seqtypes"),
+            new GamevalEntry(15170, "SLICE_SURFACE_GOBLIN_SQUAT_RUN_SPEAR", "slice_surface_goblin_squat_run_spear", "seqtypes"),
+            new GamevalEntry(15171, "WOTW_HUMAN_SEPPUKU", "wotw_human_seppuku", "seqtypes"),
+            new GamevalEntry(15172, "WOTW_HUMAN_SEPPUKU_IDLE", "wotw_human_seppuku_idle", "seqtypes"),
+            new GamevalEntry(15173, "CHEST_GUTHIXIAN02_REVEAL", "chest_guthixian02_reveal", "seqtypes"),
         };
     }
 

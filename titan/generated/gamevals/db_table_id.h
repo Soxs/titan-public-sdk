@@ -304,7 +304,7 @@ struct DBTableID final {
         static constexpr int32_t COL_STARTNPC = 14;
         static constexpr int32_t COL_STARTLOC = 15;
         static constexpr int32_t COL_MAPELEMENT = 16;
-        static constexpr int32_t COL_QUESTPOINTS = 17;
+        static constexpr int32_t COL_QUESTPOINTS_OVERRIDE = 17;
         static constexpr int32_t COL_UNSTARTEDSTATE = 18;
         static constexpr int32_t COL_ENDSTATE = 19;
         static constexpr int32_t COL_VERSION = 20;
@@ -324,18 +324,19 @@ struct DBTableID final {
         static constexpr int32_t COL_PREREQUISITE_DIRECT = 34;
         static constexpr int32_t COL_PREREQUISITE_INDIRECT = 35;
         static constexpr int32_t COL_FTUE_STARTER = 36;
-        static constexpr int32_t COL_CR_CAN_RECOMMEND = 37;
-        static constexpr int32_t COL_CR_EXPERIENCE_PROFILE = 38;
-        static constexpr int32_t COL_CR_RECOMMENDATION_REASON = 39;
-        static constexpr int32_t COL_CR_RECOMMENDATION_REASON_IS_PRIMARY = 40;
-        static constexpr int32_t COL_CR_POINTS_SKILL = 41;
-        static constexpr int32_t COL_CR_POINTS_TRANSPORT = 42;
-        static constexpr int32_t COL_CR_POINTS_EQUIPMENT = 43;
-        static constexpr int32_t COL_CR_POINTS_AREA = 44;
-        static constexpr int32_t COL_CR_POINTS_XP_TYPE = 45;
-        static constexpr int32_t COL_CR_STARTER = 46;
-        static constexpr int32_t COL_FSW_WORLD_FIRST_ID = 47;
-        static constexpr int32_t COL_RESTRICTED_CONTENT = 48;
+        static constexpr int32_t COL_STARTER_ORDER = 37;
+        static constexpr int32_t COL_CR_CAN_RECOMMEND = 38;
+        static constexpr int32_t COL_CR_EXPERIENCE_PROFILE = 39;
+        static constexpr int32_t COL_CR_RECOMMENDATION_REASON = 40;
+        static constexpr int32_t COL_CR_RECOMMENDATION_REASON_IS_PRIMARY = 41;
+        static constexpr int32_t COL_CR_POINTS_SKILL = 42;
+        static constexpr int32_t COL_CR_POINTS_TRANSPORT = 43;
+        static constexpr int32_t COL_CR_POINTS_EQUIPMENT = 44;
+        static constexpr int32_t COL_CR_POINTS_AREA = 45;
+        static constexpr int32_t COL_CR_POINTS_XP_TYPE = 46;
+        static constexpr int32_t COL_CR_STARTER = 47;
+        static constexpr int32_t COL_FSW_WORLD_FIRST_ID = 48;
+        static constexpr int32_t COL_RESTRICTED_CONTENT = 49;
 
         struct Row final {
             Row() = delete;
@@ -359,7 +360,6 @@ struct DBTableID final {
             static constexpr int32_t QUEST_CORSAIRCURSE = 18;
             static constexpr int32_t QUEST_CREATUREOFFENKENSTRAIN = 19;
             static constexpr int32_t MINIQUEST_CURSEOFTHEEMPTYLORD = 20;
-            static constexpr int32_t MINIQUEST_DADDYSHOME = 21;
             static constexpr int32_t QUEST_DARKNESSOFHALLOWVALE = 22;
             static constexpr int32_t QUEST_DEATHPLATEAU = 23;
             static constexpr int32_t QUEST_DEATHTOTHEDORGESHUUN = 24;
@@ -556,6 +556,9 @@ struct DBTableID final {
             static constexpr int32_t QUEST_RUFFSITUATION = 16971;
             static constexpr int32_t QUEST_CRABQUEST = 16972;
             static constexpr int32_t MINIQUEST_FRACTUREDARCHIVE = 17027;
+            static constexpr int32_t QUEST_DADDYSHOME = 17229;
+            static constexpr int32_t QUEST_MUDFOOTSBIGADVENTURE = 17230;
+            static constexpr int32_t QUEST_WRITINGSONTHEWALL = 17231;
         };
     };
 
@@ -1154,7 +1157,6 @@ struct DBTableID final {
             static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_DRAWERS2_0_47_52_31_14 = 1324;
             static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_DRAWERS1_1_40_51_14_62 = 1325;
             static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_DRAWERS2_0_48_51_25_13 = 1326;
-            static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_BOXES2_1_50_50_9_18 = 1327;
             static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_CHESTCLOSED = 1328;
             static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_CHESTCLOSED_1_51_49_37_33 = 1329;
             static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_BOXES3_0_41_51_30_35 = 1330;
@@ -1349,6 +1351,7 @@ struct DBTableID final {
             static constexpr int32_t CLUEHELPER_CRYPTIC_ELITE_EARTH_NAGUA = 5180;
             static constexpr int32_t CLUEHELPER_CRYPTIC_HARD_0_36_43_20_20 = 7045;
             static constexpr int32_t CLUEHELPER_CRYPTIC_ELITE_GRYPHON_BOSS = 7046;
+            static constexpr int32_t CLUEHELPER_CRYPTIC_EASY_BOXES2_0_45_53_6_57 = 17195;
         };
     };
 
@@ -2034,7 +2037,6 @@ struct DBTableID final {
             static constexpr int32_t CLUEHELPER_TARGET_NPC_KANGAI_MAU = 1023;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_HAJEDY = 1024;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_ROAVAR = 1025;
-            static constexpr int32_t CLUEHELPER_TARGET_NPC_IRON_MAN_TUTOR = 1029;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_DREZEL = 1032;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_GRACKLEBONE = 1033;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_TRAIBORN = 1034;
@@ -2057,6 +2059,7 @@ struct DBTableID final {
             static constexpr int32_t CLUEHELPER_TARGET_NPC_SULISAL = 5186;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_TORGAN = 7071;
             static constexpr int32_t CLUEHELPER_TARGET_NPC_LEAGUE_TUTOR = 13322;
+            static constexpr int32_t CLUEHELPER_TARGET_NPC_CAPTAIN_HARLAN = 17197;
         };
     };
 
@@ -2130,7 +2133,6 @@ struct DBTableID final {
             static constexpr int32_t CLUEHELPER_TARGET_LOC_DRAWERS1_1_40_51_14_62 = 1097;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_DRAWERS2_0_48_51_25_13 = 1098;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_BOXES2_0_45_53_6_57 = 1099;
-            static constexpr int32_t CLUEHELPER_TARGET_LOC_CHESTCLOSED_1_50_50_9_18 = 1100;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_CHESTCLOSED_1_51_49_37_33 = 1101;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_BOXES3_0_41_51_30_35 = 1102;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_DRAWERS2_0_27_54_18_34 = 1103;
@@ -2177,6 +2179,7 @@ struct DBTableID final {
             static constexpr int32_t CLUEHELPER_TARGET_LOC_HOS_BASKET_APPLE = 1144;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_HUNTERGUILD_SHELF = 3494;
             static constexpr int32_t CLUEHELPER_TARGET_LOC_AUBURN_CRATE = 5174;
+            static constexpr int32_t CLUEHELPER_TARGET_LOC_CHESTCLOSED_1_50_50_8_18 = 17196;
         };
     };
 
@@ -4709,6 +4712,7 @@ struct DBTableID final {
             static constexpr int32_t MUSIC_TFA_BOSS_XARTH = 17008;
             static constexpr int32_t MUSIC_TFA_BOSS_OCELLUS = 17009;
             static constexpr int32_t MUSIC_TFA_BOSS_OCELLUS_2 = 17010;
+            static constexpr int32_t MUSIC_ELEMENTARY = 17194;
         };
     };
 
@@ -6411,7 +6415,6 @@ struct DBTableID final {
             static constexpr int32_t DIDYOUKNOW_SAILING_REPAIR_KITS = 7102;
             static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_GENERAL = 17180;
             static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT1 = 17181;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT2 = 17182;
             static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT3 = 17183;
             static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT4 = 17184;
             static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT5 = 17185;
@@ -8351,6 +8354,8 @@ struct DBTableID final {
         static constexpr int32_t COL_IN_CURRENT_LEAGUE = 34;
         static constexpr int32_t COL_CATEGORY = 35;
         static constexpr int32_t COL_TASK_AREA = 36;
+        static constexpr int32_t COL_WORLDFIRST_FLAGS_BROADCAST = 37;
+        static constexpr int32_t COL_WORLDFLAGS_BROADCAST = 38;
 
         struct Row final {
             Row() = delete;
@@ -9782,7 +9787,6 @@ struct DBTableID final {
             static constexpr int32_t LEAGUE_TASK_FEED_A_GHAST_SOME_SWEETS = 14654;
             static constexpr int32_t LEAGUE_TASK_READ_A_PRAYER_BOOK_NEAR_A_LECTERN = 14655;
             static constexpr int32_t LEAGUE_TASK_WEAR_MULTIPLE_SNELMS = 14656;
-            static constexpr int32_t LEAGUE_TASK_HIS_FAITHFUL_SERVANTS = 14657;
             static constexpr int32_t LEAGUE_TASK_FEED_A_DOG_SOME_BONES = 14658;
             static constexpr int32_t LEAGUE_TASK_GET_A_HAIRCUT = 14659;
             static constexpr int32_t LEAGUE_TASK_MAKE_SOME_FLOUR = 14660;
@@ -9820,7 +9824,6 @@ struct DBTableID final {
             static constexpr int32_t LEAGUE_TASK_COMPLETE_ENAKHRAS_LAMENT = 14692;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_GERTRUDES_CAT = 14693;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_GHOSTS_AHOY = 14694;
-            static constexpr int32_t LEAGUE_TASK_COMPLETE_HAUNTED_MINE = 14695;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_ROMEO_JULIET = 14696;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_RUNE_MYSTERIES = 14697;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_SHADOW_OF_THE_STORM = 14698;
@@ -9837,7 +9840,6 @@ struct DBTableID final {
             static constexpr int32_t LEAGUE_TASK_COMPLETE_DEATH_TO_THE_DORGESHUUN = 14709;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_THE_LOST_TRIBE = 14710;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_DEPTHS_OF_DESPAIR = 14711;
-            static constexpr int32_t LEAGUE_TASK_COMPLETE_A_RIBBITING_TALE = 14712;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_MEAT_AND_GREET = 14713;
             static constexpr int32_t ACTION_COMPLETE_AT_FIRST_LIGHT_QUEST = 14714;
             static constexpr int32_t LEAGUE_TASK_COMPLETE_GETTING_AHEAD = 14715;
@@ -10528,6 +10530,37 @@ struct DBTableID final {
             static constexpr int32_t LEAGUE_TASK_CROSS_PILLAR_SHORTCUT_REVENANT_CAVES = 15401;
             static constexpr int32_t LEAGUE_TASK_MINE_RUNITE_DRAGON_PICKAXE_IN_WILDERNESS = 15402;
             static constexpr int32_t LEAGUE_TASK_CRAFT_100_AETHER_RUNES = 15403;
+            static constexpr int32_t ACTION_REACH_EASY_COMBAT_TIER = 17198;
+            static constexpr int32_t ACTION_REACH_MEDIUM_COMBAT_TIER = 17199;
+            static constexpr int32_t ACTION_REACH_HARD_COMBAT_TIER = 17200;
+            static constexpr int32_t ACTION_REACH_ELITE_COMBAT_TIER = 17201;
+            static constexpr int32_t ACTION_REACH_MASTER_COMBAT_TIER = 17202;
+            static constexpr int32_t ACTION_REACH_GRANDMASTER_COMBAT_TIER = 17203;
+            static constexpr int32_t ACTION_BOSS_KILL_ZUK = 17204;
+            static constexpr int32_t ACTION_BOSS_KILL_BRUTUS = 17205;
+            static constexpr int32_t ACTION_OBTAIN_DIARY_CAPE = 17206;
+            static constexpr int32_t ACTION_OBTAIN_QUEST_CAPE = 17207;
+            static constexpr int32_t ACTION_OBTAIN_MAX_CAPE = 17208;
+            static constexpr int32_t ACTION_BEGINNER_CLUE_SCROLL = 17209;
+            static constexpr int32_t ACTION_EASY_CLUE_SCROLL = 17210;
+            static constexpr int32_t ACTION_MEDIUM_CLUE_SCROLL = 17211;
+            static constexpr int32_t ACTION_HARD_CLUE_SCROLL = 17212;
+            static constexpr int32_t ACTION_ELITE_CLUE_SCROLL = 17213;
+            static constexpr int32_t ACTION_MASTER_CLUE_SCROLL = 17214;
+            static constexpr int32_t ACTION_HARDCORE_MAIN_DEATH = 17215;
+            static constexpr int32_t ACTION_OBTAIN_ARDOUGNE_CLOAK_1 = 17216;
+            static constexpr int32_t ACTION_OBTAIN_ANY_REV_WEAPON = 17217;
+            static constexpr int32_t ACTION_COMPLETE_COOKS_ASSISTANT = 17218;
+            static constexpr int32_t ACTION_COMPLETE_UNDERGROUND_PASS = 17219;
+            static constexpr int32_t ACTION_COMPLETE_WATERFALL = 17220;
+            static constexpr int32_t ACTION_COMPLETE_DRAGON_SLAYER = 17221;
+            static constexpr int32_t ACTION_COMPLETE_MONKEY_MADNESS = 17222;
+            static constexpr int32_t ACTION_COMPLETE_HAUNTED_MINE = 17223;
+            static constexpr int32_t ACTION_COMPLETE_RIBBITING_TALE = 17224;
+            static constexpr int32_t ACTION_COMPLETE_SCRAMBLED = 17225;
+            static constexpr int32_t ACTION_COMPLETE_FAITHFUL_SERVANTS = 17226;
+            static constexpr int32_t ACTION_COMPLETE_GRIMHANDS_BARCRAWL = 17227;
+            static constexpr int32_t ACTION_REACH_LEVEL_99_ANY = 17228;
         };
     };
 

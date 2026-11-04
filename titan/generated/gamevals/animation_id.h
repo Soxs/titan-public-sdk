@@ -15167,6 +15167,13 @@ struct AnimationID final {
     static constexpr int32_t VFX_TFA_TELEPORT_START = 15164;
     static constexpr int32_t VFX_TFA_TELEPORT_END = 15165;
     static constexpr int32_t TFA_HUMAN_FOLIO_TELEPORT_END = 15166;
+    static constexpr int32_t VYRELORD_TRANSFORM_PT1_LOOP = 15167;
+    static constexpr int32_t PEST_REPAIR_QUICK = 15168;
+    static constexpr int32_t PEST_REPAIR_QUICK_IMCANDO_HAMMER = 15169;
+    static constexpr int32_t SLICE_SURFACE_GOBLIN_SQUAT_RUN_SPEAR = 15170;
+    static constexpr int32_t WOTW_HUMAN_SEPPUKU = 15171;
+    static constexpr int32_t WOTW_HUMAN_SEPPUKU_IDLE = 15172;
+    static constexpr int32_t CHEST_GUTHIXIAN02_REVEAL = 15173;
 
     template <typename Self = AnimationID>
     static constexpr std::span<const Entry> entries() {

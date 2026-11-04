@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 1588> kVarClientIDEntries = {{
+inline constexpr std::array<Entry, 1596> kVarClientIDEntries = {{
     {0, "FAIRYRINGS_SCROLLPOS", "fairyrings_scrollpos", "varctypes"},
     {1, "TOOLTIP_TIME", "tooltip_time", "varctypes"},
     {2, "TOOLTIP_BUILT", "tooltip_built", "varctypes"},
@@ -1595,6 +1595,14 @@ inline constexpr std::array<Entry, 1588> kVarClientIDEntries = {{
     {1585, "TFA_STATS_PARTY_STATS_TABLE_ID", "tfa_stats_party_stats_table_id", "varctypes"},
     {1586, "TFA_STATS_TARGET_WIDTH", "tfa_stats_target_width", "varctypes"},
     {1587, "TFA_STATS_TARGET_HEIGHT", "tfa_stats_target_height", "varctypes"},
+    {1588, "DISPLAYNAME_MENU_INPUT", "displayname_menu_input", "varctypes"},
+    {1589, "DISPLAYNAME_MENU_EDITTIME", "displayname_menu_edittime", "varctypes"},
+    {1590, "DISPLAYNAME_MENU_LOOKUPTIME", "displayname_menu_lookuptime", "varctypes"},
+    {1591, "DISPLAYNAME_MENU_CHANGETIME", "displayname_menu_changetime", "varctypes"},
+    {1592, "DISPLAYNAME_MENU_REMAININGCHECKS", "displayname_menu_remainingchecks", "varctypes"},
+    {1593, "DISPLAYNAME_MENU_COUNTCHECKS", "displayname_menu_countchecks", "varctypes"},
+    {1594, "DISPLAYNAME_MENU_KICKOUTTIME", "displayname_menu_kickouttime", "varctypes"},
+    {1595, "DISPLAYNAME_MENU_CHANGEDNAME", "displayname_menu_changedname", "varctypes"},
 }};
 
 template <>

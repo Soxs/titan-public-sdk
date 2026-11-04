@@ -18,6 +18,9 @@ final class InventoryIDEntries_2 {
             new GamevalEntry(1029, "TFA_CHESTS", "tfa_chests", "invtypes"),
             new GamevalEntry(1030, "TFA_MIDRAID_SUPPLIES_SHOP", "tfa_midraid_supplies_shop", "invtypes"),
             new GamevalEntry(1031, "TFA_SUPPLIES_SNAPSHOT_INV", "tfa_supplies_snapshot_inv", "invtypes"),
+            new GamevalEntry(1032, "LUMBRIDGE_BLACKSMITH", "lumbridge_blacksmith", "invtypes"),
+            new GamevalEntry(1033, "RENDER_WORN", "render_worn", "invtypes"),
+            new GamevalEntry(1034, "PUB_LUMBRIDGE", "pub_lumbridge", "invtypes"),
         };
     }
 

@@ -154,7 +154,7 @@ final class ObjectIDEntries_25 {
             new GamevalEntry(12941, "_100_OSMAN_FOUNTAIN", "Fountain", "loctypes"),
             new GamevalEntry(12942, "_100_OSMAN_HEDGE", "100_osman_hedge", "loctypes"),
             new GamevalEntry(12943, "_100_OSMAN_POMY_TREE_SUMMER", "Sq'irk tree", "loctypes"),
-            new GamevalEntry(12944, "SANG_BOAT_BROKEN_MULTILOC", "E M", "loctypes"),
+            new GamevalEntry(12944, "SANG_BOAT_BROKEN_MULTILOC", "E a", "loctypes"),
             new GamevalEntry(12945, "SANG_BOAT_WATER_MULTILOC", "sang_boat_water_multiloc", "loctypes"),
             new GamevalEntry(12946, "SANG_BOATHOUSE_CHUTE", "sang_boathouse_chute", "loctypes"),
             new GamevalEntry(12947, "SANG_BOATHOUSE_CHUTE_BROKEN_MULTILOC", "sang_boathouse_chute_broken_multiloc", "loctypes"),

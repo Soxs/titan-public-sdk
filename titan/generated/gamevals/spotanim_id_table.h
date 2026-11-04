@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 4447> kSpotanimIDEntries = {{
+inline constexpr std::array<Entry, 4448> kSpotanimIDEntries = {{
     {0, "SOUL_WARS_IMMUNE", "soul_wars_immune", "spottypes"},
     {1, "FIREBREATH_ATTACK", "firebreath_attack", "spottypes"},
     {2, "OSB8_SKILLCAPE_BANANA_SPOTANIM", "osb8_skillcape_banana_spotanim", "spottypes"},
@@ -4454,6 +4454,7 @@ inline constexpr std::array<Entry, 4447> kSpotanimIDEntries = {{
     {4444, "HW26_TUMBLEWEED", "hw26_tumbleweed", "spottypes"},
     {4445, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "spottypes"},
     {4446, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "spottypes"},
+    {4447, "THROWN_ROCK", "thrown_rock", "spottypes"},
 }};
 
 template <>

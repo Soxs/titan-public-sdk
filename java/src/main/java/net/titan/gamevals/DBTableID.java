@@ -33,7 +33,7 @@ public final class DBTableID
         public static final int COL_STARTNPC = 14;
         public static final int COL_STARTLOC = 15;
         public static final int COL_MAPELEMENT = 16;
-        public static final int COL_QUESTPOINTS = 17;
+        public static final int COL_QUESTPOINTS_OVERRIDE = 17;
         public static final int COL_UNSTARTEDSTATE = 18;
         public static final int COL_ENDSTATE = 19;
         public static final int COL_VERSION = 20;
@@ -53,18 +53,19 @@ public final class DBTableID
         public static final int COL_PREREQUISITE_DIRECT = 34;
         public static final int COL_PREREQUISITE_INDIRECT = 35;
         public static final int COL_FTUE_STARTER = 36;
-        public static final int COL_CR_CAN_RECOMMEND = 37;
-        public static final int COL_CR_EXPERIENCE_PROFILE = 38;
-        public static final int COL_CR_RECOMMENDATION_REASON = 39;
-        public static final int COL_CR_RECOMMENDATION_REASON_IS_PRIMARY = 40;
-        public static final int COL_CR_POINTS_SKILL = 41;
-        public static final int COL_CR_POINTS_TRANSPORT = 42;
-        public static final int COL_CR_POINTS_EQUIPMENT = 43;
-        public static final int COL_CR_POINTS_AREA = 44;
-        public static final int COL_CR_POINTS_XP_TYPE = 45;
-        public static final int COL_CR_STARTER = 46;
-        public static final int COL_FSW_WORLD_FIRST_ID = 47;
-        public static final int COL_RESTRICTED_CONTENT = 48;
+        public static final int COL_STARTER_ORDER = 37;
+        public static final int COL_CR_CAN_RECOMMEND = 38;
+        public static final int COL_CR_EXPERIENCE_PROFILE = 39;
+        public static final int COL_CR_RECOMMENDATION_REASON = 40;
+        public static final int COL_CR_RECOMMENDATION_REASON_IS_PRIMARY = 41;
+        public static final int COL_CR_POINTS_SKILL = 42;
+        public static final int COL_CR_POINTS_TRANSPORT = 43;
+        public static final int COL_CR_POINTS_EQUIPMENT = 44;
+        public static final int COL_CR_POINTS_AREA = 45;
+        public static final int COL_CR_POINTS_XP_TYPE = 46;
+        public static final int COL_CR_STARTER = 47;
+        public static final int COL_FSW_WORLD_FIRST_ID = 48;
+        public static final int COL_RESTRICTED_CONTENT = 49;
 
         public static final class Row {
             private Row() {}
@@ -89,7 +90,6 @@ public final class DBTableID
             public static final int QUEST_CORSAIRCURSE = 18;
             public static final int QUEST_CREATUREOFFENKENSTRAIN = 19;
             public static final int MINIQUEST_CURSEOFTHEEMPTYLORD = 20;
-            public static final int MINIQUEST_DADDYSHOME = 21;
             public static final int QUEST_DARKNESSOFHALLOWVALE = 22;
             public static final int QUEST_DEATHPLATEAU = 23;
             public static final int QUEST_DEATHTOTHEDORGESHUUN = 24;
@@ -286,6 +286,9 @@ public final class DBTableID
             public static final int QUEST_RUFFSITUATION = 16971;
             public static final int QUEST_CRABQUEST = 16972;
             public static final int MINIQUEST_FRACTUREDARCHIVE = 17027;
+            public static final int QUEST_DADDYSHOME = 17229;
+            public static final int QUEST_MUDFOOTSBIGADVENTURE = 17230;
+            public static final int QUEST_WRITINGSONTHEWALL = 17231;
         }
     }
 
@@ -900,7 +903,6 @@ public final class DBTableID
             public static final int CLUEHELPER_CRYPTIC_EASY_DRAWERS2_0_47_52_31_14 = 1324;
             public static final int CLUEHELPER_CRYPTIC_EASY_DRAWERS1_1_40_51_14_62 = 1325;
             public static final int CLUEHELPER_CRYPTIC_EASY_DRAWERS2_0_48_51_25_13 = 1326;
-            public static final int CLUEHELPER_CRYPTIC_EASY_BOXES2_1_50_50_9_18 = 1327;
             public static final int CLUEHELPER_CRYPTIC_EASY_CHESTCLOSED = 1328;
             public static final int CLUEHELPER_CRYPTIC_EASY_CHESTCLOSED_1_51_49_37_33 = 1329;
             public static final int CLUEHELPER_CRYPTIC_EASY_BOXES3_0_41_51_30_35 = 1330;
@@ -1095,6 +1097,7 @@ public final class DBTableID
             public static final int CLUEHELPER_CRYPTIC_ELITE_EARTH_NAGUA = 5180;
             public static final int CLUEHELPER_CRYPTIC_HARD_0_36_43_20_20 = 7045;
             public static final int CLUEHELPER_CRYPTIC_ELITE_GRYPHON_BOSS = 7046;
+            public static final int CLUEHELPER_CRYPTIC_EASY_BOXES2_0_45_53_6_57 = 17195;
         }
     }
 
@@ -1794,7 +1797,6 @@ public final class DBTableID
             public static final int CLUEHELPER_TARGET_NPC_KANGAI_MAU = 1023;
             public static final int CLUEHELPER_TARGET_NPC_HAJEDY = 1024;
             public static final int CLUEHELPER_TARGET_NPC_ROAVAR = 1025;
-            public static final int CLUEHELPER_TARGET_NPC_IRON_MAN_TUTOR = 1029;
             public static final int CLUEHELPER_TARGET_NPC_DREZEL = 1032;
             public static final int CLUEHELPER_TARGET_NPC_GRACKLEBONE = 1033;
             public static final int CLUEHELPER_TARGET_NPC_TRAIBORN = 1034;
@@ -1817,6 +1819,7 @@ public final class DBTableID
             public static final int CLUEHELPER_TARGET_NPC_SULISAL = 5186;
             public static final int CLUEHELPER_TARGET_NPC_TORGAN = 7071;
             public static final int CLUEHELPER_TARGET_NPC_LEAGUE_TUTOR = 13322;
+            public static final int CLUEHELPER_TARGET_NPC_CAPTAIN_HARLAN = 17197;
         }
     }
 
@@ -1892,7 +1895,6 @@ public final class DBTableID
             public static final int CLUEHELPER_TARGET_LOC_DRAWERS1_1_40_51_14_62 = 1097;
             public static final int CLUEHELPER_TARGET_LOC_DRAWERS2_0_48_51_25_13 = 1098;
             public static final int CLUEHELPER_TARGET_LOC_BOXES2_0_45_53_6_57 = 1099;
-            public static final int CLUEHELPER_TARGET_LOC_CHESTCLOSED_1_50_50_9_18 = 1100;
             public static final int CLUEHELPER_TARGET_LOC_CHESTCLOSED_1_51_49_37_33 = 1101;
             public static final int CLUEHELPER_TARGET_LOC_BOXES3_0_41_51_30_35 = 1102;
             public static final int CLUEHELPER_TARGET_LOC_DRAWERS2_0_27_54_18_34 = 1103;
@@ -1939,6 +1941,7 @@ public final class DBTableID
             public static final int CLUEHELPER_TARGET_LOC_HOS_BASKET_APPLE = 1144;
             public static final int CLUEHELPER_TARGET_LOC_HUNTERGUILD_SHELF = 3494;
             public static final int CLUEHELPER_TARGET_LOC_AUBURN_CRATE = 5174;
+            public static final int CLUEHELPER_TARGET_LOC_CHESTCLOSED_1_50_50_8_18 = 17196;
         }
     }
 
@@ -4515,6 +4518,7 @@ public final class DBTableID
             public static final int MUSIC_TFA_BOSS_XARTH = 17008;
             public static final int MUSIC_TFA_BOSS_OCELLUS = 17009;
             public static final int MUSIC_TFA_BOSS_OCELLUS_2 = 17010;
+            public static final int MUSIC_ELEMENTARY = 17194;
         }
     }
 
@@ -6294,7 +6298,6 @@ public final class DBTableID
             public static final int DIDYOUKNOW_SAILING_REPAIR_KITS = 7102;
             public static final int DIDYOUKNOW_CROSSPLATPROMO_GENERAL = 17180;
             public static final int DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT1 = 17181;
-            public static final int DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT2 = 17182;
             public static final int DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT3 = 17183;
             public static final int DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT4 = 17184;
             public static final int DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT5 = 17185;
@@ -8288,6 +8291,8 @@ public final class DBTableID
         public static final int COL_IN_CURRENT_LEAGUE = 34;
         public static final int COL_CATEGORY = 35;
         public static final int COL_TASK_AREA = 36;
+        public static final int COL_WORLDFIRST_FLAGS_BROADCAST = 37;
+        public static final int COL_WORLDFLAGS_BROADCAST = 38;
 
         public static final class Row {
             private Row() {}
@@ -9720,7 +9725,6 @@ public final class DBTableID
             public static final int LEAGUE_TASK_FEED_A_GHAST_SOME_SWEETS = 14654;
             public static final int LEAGUE_TASK_READ_A_PRAYER_BOOK_NEAR_A_LECTERN = 14655;
             public static final int LEAGUE_TASK_WEAR_MULTIPLE_SNELMS = 14656;
-            public static final int LEAGUE_TASK_HIS_FAITHFUL_SERVANTS = 14657;
             public static final int LEAGUE_TASK_FEED_A_DOG_SOME_BONES = 14658;
             public static final int LEAGUE_TASK_GET_A_HAIRCUT = 14659;
             public static final int LEAGUE_TASK_MAKE_SOME_FLOUR = 14660;
@@ -9758,7 +9762,6 @@ public final class DBTableID
             public static final int LEAGUE_TASK_COMPLETE_ENAKHRAS_LAMENT = 14692;
             public static final int LEAGUE_TASK_COMPLETE_GERTRUDES_CAT = 14693;
             public static final int LEAGUE_TASK_COMPLETE_GHOSTS_AHOY = 14694;
-            public static final int LEAGUE_TASK_COMPLETE_HAUNTED_MINE = 14695;
             public static final int LEAGUE_TASK_COMPLETE_ROMEO_JULIET = 14696;
             public static final int LEAGUE_TASK_COMPLETE_RUNE_MYSTERIES = 14697;
             public static final int LEAGUE_TASK_COMPLETE_SHADOW_OF_THE_STORM = 14698;
@@ -9775,7 +9778,6 @@ public final class DBTableID
             public static final int LEAGUE_TASK_COMPLETE_DEATH_TO_THE_DORGESHUUN = 14709;
             public static final int LEAGUE_TASK_COMPLETE_THE_LOST_TRIBE = 14710;
             public static final int LEAGUE_TASK_COMPLETE_DEPTHS_OF_DESPAIR = 14711;
-            public static final int LEAGUE_TASK_COMPLETE_A_RIBBITING_TALE = 14712;
             public static final int LEAGUE_TASK_COMPLETE_MEAT_AND_GREET = 14713;
             public static final int ACTION_COMPLETE_AT_FIRST_LIGHT_QUEST = 14714;
             public static final int LEAGUE_TASK_COMPLETE_GETTING_AHEAD = 14715;
@@ -10466,6 +10468,37 @@ public final class DBTableID
             public static final int LEAGUE_TASK_CROSS_PILLAR_SHORTCUT_REVENANT_CAVES = 15401;
             public static final int LEAGUE_TASK_MINE_RUNITE_DRAGON_PICKAXE_IN_WILDERNESS = 15402;
             public static final int LEAGUE_TASK_CRAFT_100_AETHER_RUNES = 15403;
+            public static final int ACTION_REACH_EASY_COMBAT_TIER = 17198;
+            public static final int ACTION_REACH_MEDIUM_COMBAT_TIER = 17199;
+            public static final int ACTION_REACH_HARD_COMBAT_TIER = 17200;
+            public static final int ACTION_REACH_ELITE_COMBAT_TIER = 17201;
+            public static final int ACTION_REACH_MASTER_COMBAT_TIER = 17202;
+            public static final int ACTION_REACH_GRANDMASTER_COMBAT_TIER = 17203;
+            public static final int ACTION_BOSS_KILL_ZUK = 17204;
+            public static final int ACTION_BOSS_KILL_BRUTUS = 17205;
+            public static final int ACTION_OBTAIN_DIARY_CAPE = 17206;
+            public static final int ACTION_OBTAIN_QUEST_CAPE = 17207;
+            public static final int ACTION_OBTAIN_MAX_CAPE = 17208;
+            public static final int ACTION_BEGINNER_CLUE_SCROLL = 17209;
+            public static final int ACTION_EASY_CLUE_SCROLL = 17210;
+            public static final int ACTION_MEDIUM_CLUE_SCROLL = 17211;
+            public static final int ACTION_HARD_CLUE_SCROLL = 17212;
+            public static final int ACTION_ELITE_CLUE_SCROLL = 17213;
+            public static final int ACTION_MASTER_CLUE_SCROLL = 17214;
+            public static final int ACTION_HARDCORE_MAIN_DEATH = 17215;
+            public static final int ACTION_OBTAIN_ARDOUGNE_CLOAK_1 = 17216;
+            public static final int ACTION_OBTAIN_ANY_REV_WEAPON = 17217;
+            public static final int ACTION_COMPLETE_COOKS_ASSISTANT = 17218;
+            public static final int ACTION_COMPLETE_UNDERGROUND_PASS = 17219;
+            public static final int ACTION_COMPLETE_WATERFALL = 17220;
+            public static final int ACTION_COMPLETE_DRAGON_SLAYER = 17221;
+            public static final int ACTION_COMPLETE_MONKEY_MADNESS = 17222;
+            public static final int ACTION_COMPLETE_HAUNTED_MINE = 17223;
+            public static final int ACTION_COMPLETE_RIBBITING_TALE = 17224;
+            public static final int ACTION_COMPLETE_SCRAMBLED = 17225;
+            public static final int ACTION_COMPLETE_FAITHFUL_SERVANTS = 17226;
+            public static final int ACTION_COMPLETE_GRIMHANDS_BARCRAWL = 17227;
+            public static final int ACTION_REACH_LEVEL_99_ANY = 17228;
         }
     }
 

@@ -243,7 +243,7 @@ final class ObjectIDEntries_121 {
             new GamevalEntry(62182, "GREYBOX_STAIRS_TALL_3X4", "Stairs", "loctypes"),
             new GamevalEntry(62183, "DEBUG_WALL_TALL", "Debug Wall", "loctypes"),
             new GamevalEntry(62184, "POORBED3_NOBLOCKWALK", "Bed", "loctypes"),
-            new GamevalEntry(62185, "AMENITY_BANKCHEST_SANGVESTI", "M= ?? ????", "loctypes"),
+            new GamevalEntry(62185, "AMENITY_BANKCHEST_SANGVESTI", "a= ??", "loctypes"),
             new GamevalEntry(62186, "AMENITY_BANKCHEST_SANGVESTI_UNBUILT", "Bank chest space", "loctypes"),
             new GamevalEntry(62187, "AMENITY_BANKCHEST_SANGVESTI_BUILT", "Bank chest", "loctypes"),
             new GamevalEntry(62188, "BREWING_BARREL_4", "brewing_barrel_4", "loctypes"),

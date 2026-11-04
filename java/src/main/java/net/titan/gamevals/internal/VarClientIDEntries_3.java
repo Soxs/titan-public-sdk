@@ -62,6 +62,14 @@ final class VarClientIDEntries_3 {
             new GamevalEntry(1585, "TFA_STATS_PARTY_STATS_TABLE_ID", "tfa_stats_party_stats_table_id", "varctypes"),
             new GamevalEntry(1586, "TFA_STATS_TARGET_WIDTH", "tfa_stats_target_width", "varctypes"),
             new GamevalEntry(1587, "TFA_STATS_TARGET_HEIGHT", "tfa_stats_target_height", "varctypes"),
+            new GamevalEntry(1588, "DISPLAYNAME_MENU_INPUT", "displayname_menu_input", "varctypes"),
+            new GamevalEntry(1589, "DISPLAYNAME_MENU_EDITTIME", "displayname_menu_edittime", "varctypes"),
+            new GamevalEntry(1590, "DISPLAYNAME_MENU_LOOKUPTIME", "displayname_menu_lookuptime", "varctypes"),
+            new GamevalEntry(1591, "DISPLAYNAME_MENU_CHANGETIME", "displayname_menu_changetime", "varctypes"),
+            new GamevalEntry(1592, "DISPLAYNAME_MENU_REMAININGCHECKS", "displayname_menu_remainingchecks", "varctypes"),
+            new GamevalEntry(1593, "DISPLAYNAME_MENU_COUNTCHECKS", "displayname_menu_countchecks", "varctypes"),
+            new GamevalEntry(1594, "DISPLAYNAME_MENU_KICKOUTTIME", "displayname_menu_kickouttime", "varctypes"),
+            new GamevalEntry(1595, "DISPLAYNAME_MENU_CHANGEDNAME", "displayname_menu_changedname", "varctypes"),
         };
     }
 

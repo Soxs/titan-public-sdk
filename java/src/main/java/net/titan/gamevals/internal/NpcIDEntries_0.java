@@ -321,7 +321,7 @@ final class NpcIDEntries_0 {
             new GamevalEntry(308, "EMBLEM_TRADER", "Emblem Trader", "npctypes"),
             new GamevalEntry(309, "TEST_SILLYCHICKEN", "Reacher", "npctypes"),
             new GamevalEntry(310, "FARMING_GARDENER_CACTUS", "Ayesha", "npctypes"),
-            new GamevalEntry(311, "IRONMAN_TUTOR_1", "Ironman tutor", "npctypes"),
+            new GamevalEntry(311, "IRONMAN_TUTOR_1", "ironman_tutor_1", "npctypes"),
             new GamevalEntry(312, "MACRO_FROG_NOHAT", "Frog", "npctypes"),
             new GamevalEntry(313, "TEST_SILLYRAT", "Reacher", "npctypes"),
             new GamevalEntry(314, "MACRO_JEKYLL_UNDERWATER", "Dr Jekyll", "npctypes"),

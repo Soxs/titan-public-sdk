@@ -237,7 +237,7 @@ final class ObjectIDEntries_30 {
             new GamevalEntry(15584, "_100_ILM_HOTCOAL_07", "100_ilm_hotcoal_07", "loctypes"),
             new GamevalEntry(15585, "LUNAR_DREAM_LOGNPC_MULTI", "lunar_dream_lognpc_multi", "loctypes"),
             new GamevalEntry(15586, "LUNAR_DREAM_LOGPLAY_MULTI", "lunar_dream_logplay_multi", "loctypes"),
-            new GamevalEntry(15587, "QUEST_LUNAR_SUPPORT_SYMBOL_MULTI", "B7B8B7", "loctypes"),
+            new GamevalEntry(15587, "QUEST_LUNAR_SUPPORT_SYMBOL_MULTI", "quest_lunar_support_symbol_multi", "loctypes"),
             new GamevalEntry(15588, "PLAGUESHEEP_GATEL_OPEN", "plaguesheep_gatel_open", "loctypes"),
             new GamevalEntry(15589, "PLAGUESHEEP_GATER_OPEN", "plaguesheep_gater_open", "loctypes"),
             new GamevalEntry(15590, "MCANNON_RAILING1_MULTILOC", "mcannon_railing1_multiloc", "loctypes"),

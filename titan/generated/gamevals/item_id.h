@@ -34278,6 +34278,24 @@ struct ItemID final {
     static constexpr int32_t PLACEHOLDER_HW26_REWARD_LEGS = 34745;
     static constexpr int32_t HW26_REWARD_CAPE = 34746;
     static constexpr int32_t PLACEHOLDER_HW26_REWARD_CAPE = 34747;
+    static constexpr int32_t BKF_LAMP = 34748;
+    static constexpr int32_t DEMON_SLAYER_LAMP = 34749;
+    static constexpr int32_t ERNEST_CHICKEN_LAMP = 34750;
+    static constexpr int32_t MBA_LAMP = 34751;
+    static constexpr int32_t MBA_MUDFOOT_FOLLOWER_OBJ = 34752;
+    static constexpr int32_t MBA_MUDFOOT_FOLLOWER_SPEAR_OBJ = 34753;
+    static constexpr int32_t RANDJ_LAMP = 34754;
+    static constexpr int32_t SOA_LAMP = 34755;
+    static constexpr int32_t WOTW_LETTER_LANDS_END = 34756;
+    static constexpr int32_t WOTW_NEWS_LANDS_END = 34757;
+    static constexpr int32_t WOTW_KNIFE_LANDS_END = 34758;
+    static constexpr int32_t WOTW_HEAD_HOSIDIUS = 34759;
+    static constexpr int32_t WOTW_LETTER_HOSIDIUS = 34760;
+    static constexpr int32_t WOTW_CERTIFICATE_HOSIDIUS = 34761;
+    static constexpr int32_t AMULET_OF_SIGHT = 34762;
+    static constexpr int32_t CERT_AMULET_OF_SIGHT = 34763;
+    static constexpr int32_t PLACEHOLDER_AMULET_OF_SIGHT = 34764;
+    static constexpr int32_t SPINNING_WHEEL_ICON_DUMMY = 34765;
 
     template <typename Self = ItemID>
     static constexpr std::span<const Entry> entries() {

@@ -223,7 +223,7 @@ final class ObjectIDEntries_74 {
             new GamevalEntry(38098, "MYQ3_LAB_DOOR_LOCKED_L_OPEN", "myq3_lab_door_locked_l_open", "loctypes"),
             new GamevalEntry(38099, "MYQ3_LAB_DOOR_LOCKED_R_OPEN", "myq3_lab_door_locked_r_open", "loctypes"),
             new GamevalEntry(38100, "MINING_SITE_ICON_MORY_ESSENCE_SOUNDS", "mining_site_icon_mory_essence_sounds", "loctypes"),
-            new GamevalEntry(38101, "POLLBOOTH_SANGUINE_DARKM", "?M ??? \" #", "loctypes"),
+            new GamevalEntry(38101, "POLLBOOTH_SANGUINE_DARKM", "?a ???", "loctypes"),
             new GamevalEntry(38102, "HS_LOBBY_STAR_CENTER", "hs_lobby_star_center", "loctypes"),
             new GamevalEntry(38103, "HS_LOBBY_STAR_EDGE", "hs_lobby_star_edge", "loctypes"),
             new GamevalEntry(38104, "HS_LOBBY_STAR_CORNER", "hs_lobby_star_corner", "loctypes"),

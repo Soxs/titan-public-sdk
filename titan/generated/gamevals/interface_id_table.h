@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 980> kInterfaceIDEntries = {{
+inline constexpr std::array<Entry, 993> kInterfaceIDEntries = {{
     {0, "_100GUIDE_EGGS_OVERLAY", "100guide_eggs_overlay", "iftypes"},
     {1, "_100GUIDE_FLOUR_OVERLAY", "100guide_flour_overlay", "iftypes"},
     {2, "RANGINGGUILD_TICKETEXCHANGE", "rangingguild_ticketexchange", "iftypes"},
@@ -987,6 +987,19 @@ inline constexpr std::array<Entry, 980> kInterfaceIDEntries = {{
     {977, "TFA_PARTYLIST", "tfa_partylist", "iftypes"},
     {978, "TFA_SPECTATE_HUD_INV", "tfa_spectate_hud_inv", "iftypes"},
     {979, "TFA_STATS", "tfa_stats", "iftypes"},
+    {980, "DISPLAYNAME_MENU", "displayname_menu", "iftypes"},
+    {981, "HC_SUMMARY", "hc_summary", "iftypes"},
+    {982, "HC_DEATH_CHOICE", "hc_death_choice", "iftypes"},
+    {983, "QUEST_RATING", "quest_rating", "iftypes"},
+    {984, "WOTW_CERTIFICATE_HOSIDIUS", "wotw_certificate_hosidius", "iftypes"},
+    {985, "WOTW_DRAWERS_PISCARILIUS", "wotw_drawers_piscarilius", "iftypes"},
+    {986, "WOTW_LETTER_HOSIDIUS", "wotw_letter_hosidius", "iftypes"},
+    {987, "WOTW_LETTER_LANDS_END", "wotw_letter_lands_end", "iftypes"},
+    {988, "WOTW_NEWS_LANDS_END", "wotw_news_lands_end", "iftypes"},
+    {989, "WOTW_WALL_HIDEOUT", "wotw_wall_hideout", "iftypes"},
+    {990, "WOTW_WALL_LANDS_END", "wotw_wall_lands_end", "iftypes"},
+    {991, "WOTW_WALL_PISCARILIUS", "wotw_wall_piscarilius", "iftypes"},
+    {992, "WOTW_WALL_SHAYZIEN", "wotw_wall_shayzien", "iftypes"},
 }};
 
 template <>

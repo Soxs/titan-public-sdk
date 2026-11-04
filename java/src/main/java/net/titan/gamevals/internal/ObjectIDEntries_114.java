@@ -476,7 +476,7 @@ final class ObjectIDEntries_114 {
             new GamevalEntry(58832, "ROSEWOOD_TREE_7_DISEASED_TOP", "rosewood_tree_7_diseased_top", "loctypes"),
             new GamevalEntry(58833, "ROSEWOOD_TREE_8_DISEASED_TOP", "rosewood_tree_8_diseased_top", "loctypes"),
             new GamevalEntry(58834, "FARMING_HARDWOOD_TREE_PATCH_5", "farming_hardwood_tree_patch_5", "loctypes"),
-            new GamevalEntry(58835, "FARMING_HARDWOOD_TREE_PATCH_5_CANOPY", "w w", "loctypes"),
+            new GamevalEntry(58835, "FARMING_HARDWOOD_TREE_PATCH_5_CANOPY", "farming_hardwood_tree_patch_5_canopy", "loctypes"),
             new GamevalEntry(58836, "FLAX_SEED", "Flax", "loctypes"),
             new GamevalEntry(58837, "FLAX_1", "Flax", "loctypes"),
             new GamevalEntry(58838, "FLAX_2", "Flax", "loctypes"),

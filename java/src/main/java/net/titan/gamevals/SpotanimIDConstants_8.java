@@ -352,4 +352,5 @@ public interface SpotanimIDConstants_8 {
     int HW26_TUMBLEWEED = 4444;
     int VFX_TFA_TELEPORT_START = 4445;
     int VFX_TFA_TELEPORT_END = 4446;
+    int THROWN_ROCK = 4447;
 }

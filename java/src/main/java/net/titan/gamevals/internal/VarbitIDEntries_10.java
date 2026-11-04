@@ -268,8 +268,6 @@ final class VarbitIDEntries_10 {
             new GamevalEntry(5602, "TOG_XP_BILLIONS", "tog_xp_billions", "varbittypes"),
             new GamevalEntry(5604, "BOUNTY_TELEPORT_QUOTA", "bounty_teleport_quota", "varbittypes"),
             new GamevalEntry(5605, "DISPLAYNAME_STATUS", "displayname_status", "varbittypes"),
-            new GamevalEntry(5606, "DISPLAYNAME_PERMITCHANGE", "displayname_permitchange", "varbittypes"),
-            new GamevalEntry(5607, "DISPLAYNAME_CHANGEDTHISSESSION", "displayname_changedthissession", "varbittypes"),
             new GamevalEntry(5611, "EASTER17_MAIN", "easter17_main", "varbittypes"),
             new GamevalEntry(5612, "EASTER17_EGGS_CREATED", "easter17_eggs_created", "varbittypes"),
             new GamevalEntry(5613, "EASTER17_EGG_1", "easter17_egg_1", "varbittypes"),

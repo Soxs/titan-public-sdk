@@ -31,7 +31,6 @@ final class DbRowIDEntries_0 {
             new GamevalEntry(18, "QUEST_CORSAIRCURSE", "quest_corsaircurse", "rowtypes"),
             new GamevalEntry(19, "QUEST_CREATUREOFFENKENSTRAIN", "quest_creatureoffenkenstrain", "rowtypes"),
             new GamevalEntry(20, "MINIQUEST_CURSEOFTHEEMPTYLORD", "miniquest_curseoftheemptylord", "rowtypes"),
-            new GamevalEntry(21, "MINIQUEST_DADDYSHOME", "miniquest_daddyshome", "rowtypes"),
             new GamevalEntry(22, "QUEST_DARKNESSOFHALLOWVALE", "quest_darknessofhallowvale", "rowtypes"),
             new GamevalEntry(23, "QUEST_DEATHPLATEAU", "quest_deathplateau", "rowtypes"),
             new GamevalEntry(24, "QUEST_DEATHTOTHEDORGESHUUN", "quest_deathtothedorgeshuun", "rowtypes"),
