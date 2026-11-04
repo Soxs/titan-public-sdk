@@ -1384,6 +1384,15 @@ Instance template chunks are exposed as a fixed `4 x 13 x 13` table. Native ABI
 storage is flattened plane-major, and invalid cells are `-1` because packed
 chunk value `0` can represent a valid source chunk.
 
+Unavailable instance data returns an empty optional (`null` in JS) from the
+chunk getter and both instance-coordinate conversions. A successfully read
+non-instanced scene still converts a point to itself. `isInInstance()` returns
+false for both unavailable data and a known non-instanced scene; use the chunk
+getter when that distinction matters. `collisions().currentScene()` returns
+`Unavailable` if instance templates cannot be captured, even when collision
+flags are readable, so consumers do not navigate with an unknown coordinate
+space.
+
 ### Client destination location (SDK v82)
 
 | Surface | Symbols |
