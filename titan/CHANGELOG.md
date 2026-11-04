@@ -16,6 +16,10 @@ in `PUBLIC_API.md`.
 
 ---
 
+## Unreleased -- Java projectile coordinates
+
+- `~` Java binary snapshots populate projectile `startY`, `targetY`, `height` and `sceneY` using the current SDK field names. Horizontal Y was discarded under the old Z names, and height was incorrectly assigned to `sceneY`. Graphics-object snapshots also preserve `preciseY` and `sceneY`. The fix applies to queries and live-handle refreshes; wire layouts, public APIs and native ABI remain unchanged.
+
 ## Unreleased -- Equal action labels win
 
 - `~` `interact(action)` on NPCs, tile objects and inventory items (C++, JS/TS, Java) prefers a label equal to `action`, ignoring case, over an earlier label that only contains it: with `Hello`, `Hell` and `Hello world`, `interact("Hell")` now picks `Hell` instead of `Hello`. Requests that no label equals keep the first containing label (`"Talk"` still reaches `Talk-to`). Inventory items search ordinary actions before opcode-43 submenu labels within each pass, so an equal submenu label now beats a containing ordinary one; an equal label also beats the Examine abbreviation it is part of (`"Mine"`). Ground items already matched whole labels. Behaviour only, no ABI or SDK bump.

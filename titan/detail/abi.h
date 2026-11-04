@@ -38,6 +38,12 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// Unreleased -- Java projectile coordinates.
+///   ~ Java binary snapshots populate projectile startY/targetY and keep
+///     height separate from sceneY; graphics objects preserve preciseY/sceneY.
+///     Queries and live refreshes no longer lose Y under obsolete Z names.
+///     No wire-layout, public API or native ABI change.
+///
 /// Unreleased -- Equal action labels win.
 ///   ~ NPC, tile-object and inventory interact(action) prefer a label equal
 ///     to action (ignoring case) over an earlier one that only contains it;
