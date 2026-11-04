@@ -35,6 +35,15 @@ import com.google.inject.Inject;
 
 TitanClient's embedded runtime provides the Guice runtime.
 
+## Selected widgets (0.2.02+)
+
+`Client.isWidgetSelected()` reports whether a spell or an item selected with
+Use is selected for targeting. `Client.getSelectedWidget()` returns that live
+`Widget`, or `null` when selection is inactive, unsupported, or its widget no
+longer resolves, matching RuneLite. The boolean can still be true when the
+widget is absent. Dynamic selections retain their child address for later
+reads and interactions; a selection without a child returns the base widget.
+
 ## Overlay layers (0.1.96+)
 
 `OverlayLayer.ABOVE_SCENE` draws below native widgets. `ABOVE_WIDGETS` retains

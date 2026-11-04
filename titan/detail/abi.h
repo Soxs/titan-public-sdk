@@ -38,6 +38,12 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v173 -- Selected widget queries with RuneLite behavior.
+///   + Client getSelectedWidget/isWidgetSelected across C++, Java and JS.
+///   + Optional HostGameV1 tail returns the current spell or Use-item widget
+///     with its retained dynamic-child address. Existing payloads and the
+///     compatibility floor154 are unchanged.
+///
 /// Unreleased -- Java projectile coordinates.
 ///   ~ Java binary snapshots populate projectile startY/targetY and keep
 ///     height separate from sceneY; graphics objects preserve preciseY/sceneY.
@@ -1989,7 +1995,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 172;
+constexpr uint32_t kSdkVersion = 173;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5382,6 +5388,13 @@ struct HostApi {
     // the host. No source pointer is retained after this synchronous call.
     uint8_t (*drawSpriteImage)(const SpriteImageInfo*, const uint32_t* pixels,
         uint32_t count, int32_t x, int32_t y, float scale) = nullptr;
+
+    // SDK 173. Current spell/Use-item source selection, not menu highlight or
+    // widget focus. Active selection can outlive its resolvable widget.
+    uint8_t (*isWidgetSelected)() = nullptr;
+    // Returns 0 and clears out when inactive, unavailable or unresolved.
+    // Retains the packed root and optional dynamic-child slot for live reads.
+    uint8_t (*getSelectedWidget)(WidgetQueryState* out) = nullptr;
 
 };
 

@@ -1,4 +1,21 @@
-# Titan Plugin SDK -- public symbol inventory (v171)
+# Titan Plugin SDK -- public symbol inventory (v173)
+
+## Selected widget (SDK 173)
+
+`state::client().isWidgetSelected()` reports the current spell or item selected
+with **Use**, matching RuneLite's target-mode selection flag.
+`state::client().getSelectedWidget()` returns an `optional<Widget>` for that
+source, or `nullopt` when selection is inactive, unavailable or the widget no
+longer exists. The flag can remain true while widget resolution fails.
+
+The selected packed widget ID resolves the base widget when its child index is
+`-1`; a nonnegative index resolves that exact dynamic child. Returned widgets
+retain this address for later reads and interactions. Java and JavaScript expose
+the same two Client methods, returning `null` for an absent widget.
+
+The getters use the existing offset-derived source state and append optional
+operations to `HostGameV1`. Older hosts return false/absent through negotiation;
+existing payload layouts and the minimum supported SDK version 154 are unchanged.
 
 ## Item sprites and alpha-mask outlines (SDK 167)
 

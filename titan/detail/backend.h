@@ -354,6 +354,11 @@ struct IBackend {
 
     // --- Widget queries ---
     virtual uint8_t getWidget(uint32_t packedId, TitanPluginSdk::WidgetState* outState) = 0;
+    virtual uint8_t isWidgetSelected() { return 0; }
+    virtual uint8_t getSelectedWidget(TitanPluginSdk::WidgetQueryState* out) {
+        if (out) *out = {};
+        return 0;
+    }
 
     // --- Plugin manager ---
     virtual uint32_t listPlugins(TitanPluginSdk::PluginInfo* out, uint32_t max) = 0;

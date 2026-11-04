@@ -681,6 +681,14 @@ public:
     uint8_t getWidget(uint32_t packedId, TitanPluginSdk::WidgetState* out) override {
         return (api_ && api_->getWidget) ? api_->getWidget(packedId, out) : 0;
     }
+    uint8_t isWidgetSelected() override {
+        return api_ && api_->isWidgetSelected ? api_->isWidgetSelected() : 0;
+    }
+    uint8_t getSelectedWidget(TitanPluginSdk::WidgetQueryState* out) override {
+        if (!out) return 0;
+        *out = {};
+        return api_ && api_->getSelectedWidget ? api_->getSelectedWidget(out) : 0;
+    }
 
     // --- Plugin manager ---
     uint32_t getPluginCount() override {

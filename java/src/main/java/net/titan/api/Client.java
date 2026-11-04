@@ -375,6 +375,23 @@ public interface Client {
     Optional<ItemContainer> itemContainer(int containerId);
     Optional<ItemComposition> itemComposition(int itemId);
 
+    /**
+     * Whether a spell or an item selected with Use is currently selected for
+     * targeting, matching RuneLite's selection flag. This can remain true
+     * even when the selected widget no longer resolves. False on older hosts
+     * or when selection state is unavailable.
+     */
+    default boolean isWidgetSelected() { return false; }
+
+    /**
+     * The selected spell or Use-item widget, or null when selection is
+     * inactive, unavailable, or its widget no longer resolves. Matches
+     * RuneLite's nullable result: child index -1 returns the base widget;
+     * nonnegative indices return the exact dynamic child. The returned live
+     * widget retains that address for later reads and interactions.
+     */
+    default Widget getSelectedWidget() { return null; }
+
     Optional<Widget> widget(int packedId);
     List<Widget> widgets(int groupId);
     default List<Widget> widgets() { return widgets(-1); }

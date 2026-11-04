@@ -133,8 +133,21 @@ struct InstanceTemplateChunks {
     bool instanced = false;
 };
 
+class Widget;
+
 class ClientFacade {
 public:
+    /// Whether a spell or an item selected with Use is currently targeting.
+    /// This may remain true when the selected widget is no longer resolvable.
+    /// False when selection state is unavailable on this host.
+    bool isWidgetSelected() const {
+        auto* b = detail::backend();
+        return b && b->isWidgetSelected() != 0;
+    }
+    /// RuneLite-style current source widget, with its exact dynamic address.
+    /// Nullopt when inactive, unavailable or the selected widget is gone.
+    std::optional<Widget> getSelectedWidget() const;
+
     Menu getMenu() const { return Menu{}; }
     std::vector<MenuEntry> getMenuEntries() const { return getMenu().getMenuEntries(); }
     bool setMenuEntries(const std::vector<MenuEntry>& entries) const { return getMenu().setMenuEntries(entries); }
@@ -1342,6 +1355,13 @@ private:
     mutable bool exists_ = true;
     bool live_ = true;
 };
+
+inline std::optional<Widget> ClientFacade::getSelectedWidget() const {
+    auto* b = detail::backend();
+    TitanPluginSdk::WidgetQueryState state{};
+    if (!b || !b->getSelectedWidget(&state)) return std::nullopt;
+    return Widget{detail::widgetSnapshotFromQueryState(state)};
+}
 
 class WidgetsFacade {
 public:

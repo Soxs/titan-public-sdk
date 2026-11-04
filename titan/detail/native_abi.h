@@ -372,6 +372,9 @@ struct HostGameV1 {
     // SDK 155 optional tail. Existing actor payloads retain their layout.
     uint8_t (*getActorAnimationProgress)(const ActorDataIdentity*, ActorAnimationProgressState*) = nullptr;
     uint8_t (*getNpcModelOverrides)(const ActorDataIdentity*, NpcModelOverridesState*, int32_t*, uint32_t) = nullptr;
+    // SDK 173 optional tail. Reuses the existing widget query payload.
+    uint8_t (*isWidgetSelected)() = nullptr;
+    uint8_t (*getSelectedWidget)(WidgetQueryState* out) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostGameV1>);
 static_assert(offsetof(HostGameV1, header) == 0);
@@ -710,7 +713,7 @@ static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostGameV1) == 584);
+static_assert(sizeof(HostGameV1) == 600);
 static_assert(offsetof(HostGameV1, isPrayerActive) == 8);
 static_assert(offsetof(HostGameV1, findNearestNpc) == 16);
 static_assert(offsetof(HostGameV1, findNearestObject) == 24);
@@ -783,6 +786,8 @@ static_assert(offsetof(HostGameV1, getServerHintArrow) == 552);
 static_assert(offsetof(HostGameV1, getHintArrowWorldPoint) == 560);
 static_assert(offsetof(HostGameV1, getActorAnimationProgress) == 568);
 static_assert(offsetof(HostGameV1, getNpcModelOverrides) == 576);
+static_assert(offsetof(HostGameV1, isWidgetSelected) == 584);
+static_assert(offsetof(HostGameV1, getSelectedWidget) == 592);
 static_assert(sizeof(HintArrowState) == 72);
 static_assert(offsetof(HintArrowState, actorWorldViewId) == 48);
 static_assert(offsetof(HintArrowState, actorEntityPtr) == 56);
@@ -1132,7 +1137,9 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(getServerHintArrow) \
     X(getHintArrowWorldPoint) \
     X(getActorAnimationProgress) \
-    X(getNpcModelOverrides)
+    X(getNpcModelOverrides) \
+    X(isWidgetSelected) \
+    X(getSelectedWidget)
 
 #define TITAN_NATIVE_HOSTACTIONSV1_MEMBERS(X) \
     X(executeSyntheticAction) \

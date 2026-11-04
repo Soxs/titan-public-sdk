@@ -3207,6 +3207,10 @@ interface PanelElement {
      */
     namespace state {
         const client: {
+            /** SDK 173: whether a spell or item is selected for targeting, even if its widget no longer resolves. False when unavailable. */
+            isWidgetSelected(): boolean;
+            /** Selected spell or Use-item widget, retaining its exact dynamic-child address. Null when inactive, unavailable or unresolved. */
+            getSelectedWidget(): WidgetState | null;
             readonly menu: Menu;
             getMenu(): Menu;
             getMenuEntries(): MenuEntry[];
@@ -4434,6 +4438,10 @@ interface PanelElement {
     namespace state {
         const widgets: {
             find(packedId: number): WidgetState | null;
+            /** Same selected spell/Use-item widget as state.client.getSelectedWidget(). SDK 173. */
+            getSelectedWidget(): WidgetState | null;
+            /** Same active targeting flag as state.client.isWidgetSelected(). SDK 173. */
+            isWidgetSelected(): boolean;
             /**
              * Enumerate dynamic children of the widget at
              * `parentPackedId` (SDK v38+). Returns one `WidgetState`
