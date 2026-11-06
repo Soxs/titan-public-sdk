@@ -331,6 +331,25 @@ Use them in packaged styles; theme changes update the active document.
 
 ## Isolation and runtime delivery
 
+The Windows helper described below remains the native Windows backend. The Mac
+Wine profile uses the same plugin HTML interfaces and page implementation with a
+native ARM64 renderer, authenticated HtmlBridgeV1 transport, and an App Sandboxed
+supervisor that creates a fresh renderer process for each activation. The
+controller republishes native BGRA frames into its existing Wine-side mappings;
+game rendering and plugin ABI records are unchanged. The native runtime is
+required by the Mac wrapper and travels with its signed wrapper updates. See
+[native HTML setup and validation](../macos/html/README.md) for the separately
+audited macOS Free2 beta2 SDK pin, signing and release checks. App Sandbox grants
+baseline system/container access and is not the Windows AppContainer primitive.
+
+The native transport preserves activation, load-generation, resize-token and
+sequence checks, bounds MessagePack packets, and rejects duplicate map keys and
+excessive nesting. It adds buffered pixel copies, which the Mac host charges
+conservatively against admission limits. Input remains captured by Wine's HWNDs;
+the native renderer adapts standard editing chords for macOS while preserving
+the existing text/composition protocol. Mac IME and Cmd/Ctrl behavior require
+interactive acceptance on the pinned Wine runtime.
+
 Page code receives no game SDK objects, native pointers, or arbitrary host
 script execution. CSP is combined with a memory-only resource resolver,
 capability-free low-integrity AppContainer, restricted helper process/job,

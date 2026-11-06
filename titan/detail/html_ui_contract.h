@@ -15,6 +15,11 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#ifdef __APPLE__
+#include <cerrno>
+#include <cstdlib>
+#include <xlocale.h>
+#endif
 
 namespace TitanHtmlUi {
 inline constexpr uint32_t kVersion = 1;
@@ -114,6 +119,19 @@ inline bool validateBundle(const Bundle& b, std::string& error) {
 
 namespace detail {
 inline bool finiteJsonNumber(std::string_view token) {
+#ifdef __APPLE__
+    // Apple's libc++ does not provide floating-point from_chars on supported
+    // Xcode versions. JsonReader already checked the complete JSON number
+    // grammar; use a private fixed locale, never the process's current locale.
+    if (token.empty() || token.size() > kMaxJsonBytes) return false;
+    static locale_t numericLocale = newlocale(LC_NUMERIC_MASK, "C", nullptr);
+    if (!numericLocale) return false;
+    const std::string terminated(token);
+    char* end = nullptr; errno = 0;
+    const double value = strtod_l(terminated.c_str(), &end, numericLocale);
+    return end == terminated.c_str() + terminated.size() && std::isfinite(value)
+        && (errno == 0 || errno == ERANGE); // finite subnormal/zero underflow is valid
+#else
     double value = 0;
     const auto parsed = std::from_chars(token.data(), token.data() + token.size(), value);
     if (parsed.ec == std::errc{}) return std::isfinite(value);
@@ -138,6 +156,7 @@ inline bool finiteJsonNumber(std::string_view token) {
         if (negative) exponent = -exponent;
     }
     return beforeDecimal - firstNonzero - 1 + exponent < 0;
+#endif
 }
 // Strict bounded JSON recognizer, including duplicate object keys, Unicode
 // surrogate pairing and numeric grammar. No evaluation or numeric conversion.
