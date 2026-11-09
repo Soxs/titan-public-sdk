@@ -38,6 +38,14 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v174 -- Cached world-view scene access.
+///   + Optional HostGameV1 scene snapshot/generation functions expose all
+///     planes, real occupied tiles and exact multi-tile object membership.
+///   + Java and JS WorldView/Scene/Tile facades provide RuneLite-shaped reads;
+///     C++ exposes complete owned snapshots. Stale/partial captures fail closed.
+///   ~ Java live handles use a cheap epoch; freshly enumerated handles avoid
+///     redundant tile refresh. Existing payloads and floor154 are unchanged.
+///
 /// v173 -- Selected widget queries with RuneLite behavior.
 ///   + Client getSelectedWidget/isWidgetSelected across C++, Java and JS.
 ///   + Optional HostGameV1 tail returns the current spell or Use-item widget
@@ -1986,6 +1994,7 @@
 #include "actor_data_abi.h"
 #include "menu_editing_abi.h"
 #include "item_sprite_abi.h"
+#include "scene_snapshot_abi.h"
 #include "html_ui_abi.h"
 #include "../scene_renderer_types.h"
 
@@ -1995,7 +2004,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 173;
+constexpr uint32_t kSdkVersion = 174;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5395,6 +5404,20 @@ struct HostApi {
     // Returns 0 and clears out when inactive, unavailable or unresolved.
     // Retains the packed root and optional dynamic-child slot for live reads.
     uint8_t (*getSelectedWidget)(WidgetQueryState* out) = nullptr;
+
+    // SDK 174. Monotonic publication generation, independent of resettable
+    // server ticks. Zero means unavailable. Any thread, no game-memory read.
+    uint64_t (*getSceneSnapshotGeneration)() = nullptr;
+    // Complete, owned scene data. Null/short buffers return BufferTooSmall
+    // with counts and copy no rows. Nonzero expectedGeneration pins a prior
+    // sizing result; Stale copies no rows. Off-thread reads request a refresh
+    // and only return a completed matching current-generation scene; otherwise
+    // Unavailable. No previous-generation snapshot is returned as current.
+    SceneSnapshotStatus (*getSceneSnapshot)(int32_t worldViewId,
+        uint64_t expectedGeneration, SceneSnapshotInfo* outInfo,
+        SceneTileState* tiles, uint32_t tileCapacity,
+        TileObjectState* objects, uint32_t objectCapacity,
+        uint32_t* objectIndices, uint32_t indexCapacity) = nullptr;
 
 };
 

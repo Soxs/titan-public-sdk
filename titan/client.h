@@ -25,6 +25,7 @@
 #include "skill.h"
 #include "varbits.h"
 #include "world_view.h"
+#include "scene.h"
 #include "grand_exchange.h"
 #include "item_prices.h"
 #include "hint_arrow.h"
@@ -298,6 +299,13 @@ public:
         uint64_t ptr = 0;
         if (!b->getTopLevelWorldView(&ptr) || ptr == 0) return std::nullopt;
         return ptr;
+    }
+
+    /// Complete current-generation capture of all four planes, actual square
+    /// occupancy and exact object membership. Null means unavailable; render
+    /// and worker callers request game-thread publication without waiting.
+    std::shared_ptr<const SceneSnapshot> sceneSnapshot(int32_t worldViewId = WorldView::CURRENT) const {
+        return SceneSnapshot::current(worldViewId);
     }
 
     std::optional<InstanceTemplateChunks> instanceTemplateChunks() const {

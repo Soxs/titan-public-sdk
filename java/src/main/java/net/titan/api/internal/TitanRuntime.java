@@ -1,6 +1,7 @@
 package net.titan.api.internal;
 
 import com.google.inject.Injector;
+import com.google.inject.Provider;
 import net.titan.api.Actor;
 import net.titan.api.overlay.OverlayPanel;
 
@@ -9,6 +10,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
@@ -28,7 +30,17 @@ public final class TitanRuntime {
     public static void clearAuthorizationBackend(AuthorizationBackend backend) {
         if (authorizationBackend == backend) authorizationBackend = null;
     }
-    private static volatile Injector injector;
+    private static volatile InjectorState injectorState;
+
+    private static final class InjectorState {
+        final Injector root;
+        final Map<String, Provider<Injector>> plugins;
+
+        InjectorState(Injector root, Map<String, Provider<Injector>> plugins) {
+            this.root = root;
+            this.plugins = Collections.unmodifiableMap(new LinkedHashMap<>(plugins));
+        }
+    }
     private static volatile OverlayBackend overlayBackend;
     private static volatile ActorResolver actorResolver;
     private static volatile InteractionBackend interactionBackend;
@@ -74,21 +86,32 @@ public final class TitanRuntime {
     }
 
     public static Injector getInjector() {
-        Injector value = injector;
+        InjectorState value = injectorState;
         if (value == null) {
             throw new IllegalStateException(
                 "Titan Java plugin injector is not available for this client tab yet.");
         }
-        return value;
+        String owner = CURRENT_PLUGIN_IDS.get().peek();
+        Provider<Injector> scoped = owner == null ? null : value.plugins.get(owner);
+        if (owner != null && scoped == null && value.plugins.containsKey(owner)) {
+            throw new IllegalStateException("Plugin injector is not ready during module construction/configuration: " + owner);
+        }
+        return scoped == null ? value.root : scoped.get();
     }
 
     public static void setInjector(Injector injector) {
-        TitanRuntime.injector = injector;
+        setInjector(injector, Collections.emptyMap());
     }
 
-    public static void clearInjector(Injector injector) {
-        if (TitanRuntime.injector == injector) {
-            TitanRuntime.injector = null;
+    /** Publish the aggregate bindings and stable plugin scopes together. */
+    public static synchronized void setInjector(Injector injector, Map<String, Provider<Injector>> plugins) {
+        injectorState = injector == null ? null : new InjectorState(injector, plugins);
+    }
+
+    public static synchronized void clearInjector(Injector injector) {
+        InjectorState current = injectorState;
+        if (current != null && current.root == injector) {
+            injectorState = null;
         }
     }
 

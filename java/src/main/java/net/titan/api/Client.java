@@ -92,6 +92,19 @@ public interface Client {
     OptionalLong currentWorldViewPtr();
     OptionalLong worldViewPtr(int worldViewId);
     OptionalLong topLevelWorldViewPtr();
+    /** Complete captured scene, including all four planes. Empty when unavailable. */
+    default Optional<SceneSnapshot> sceneSnapshot(int worldViewId) { return Optional.empty(); }
+    /** Borrowed live scene grid. Runtime implementations validate retained tile/object handles. */
+    default Tile[][][] sceneTiles(int worldViewId) { throw new SceneUnavailableException(worldViewId); }
+    /** RuneLite-shaped facade; CURRENT resolves to the actual current view. */
+    default WorldView getWorldView(int worldViewId) {
+        return sceneSnapshot(worldViewId).map(SceneSnapshot::getWorldView).orElse(null);
+    }
+    default WorldView getTopLevelWorldView() { return getWorldView(WorldView.TOP_LEVEL); }
+    default Scene getScene() {
+        WorldView worldView = getTopLevelWorldView();
+        return worldView == null ? null : worldView.getScene();
+    }
     boolean isInInstance();
     Optional<int[][][]> instanceTemplateChunks();
     Optional<WorldPoint> fromLocalInstance(WorldPoint point);
@@ -99,20 +112,28 @@ public interface Client {
     Optional<LocalPoint> getLocalDestinationLocation();
     Optional<WorldPoint> getWorldDestinationLocation();
     Optional<Player> localPlayer();
+    default Player getLocalPlayer() { return localPlayer().orElse(null); }
     List<Player> players();
     List<NPC> npcs();
     List<TileObject> tileObjects(int radius);
     default List<TileObject> tileObjects() { return tileObjects(10); }
     List<TileObject> tileObjectsOnTile(int plane, int tileX, int tileY);
+    /** Exact-world-view lookup. Older hosts return empty rather than query another view. */
+    default List<TileObject> tileObjectsOnTile(int worldViewId, int plane, int tileX, int tileY) {
+        if (worldViewId == WorldView.CURRENT || worldViewId == currentWorldViewId()) {
+            return tileObjectsOnTile(plane, tileX, tileY);
+        }
+        return java.util.Collections.emptyList();
+    }
     default List<TileObject> tileObjectsOnTile(Tile tile) {
         return tile == null
             ? java.util.Collections.emptyList()
-            : tileObjectsOnTile(tile.plane(), tile.x(), tile.y());
+            : tileObjectsOnTile(tile.worldViewId(), tile.plane(), tile.x(), tile.y());
     }
     default List<TileObject> tileObjectsOnTile(Locatable<?> locatable) {
         return locatable == null
             ? java.util.Collections.emptyList()
-            : tileObjectsOnTile(locatable.plane(), locatable.tileX(), locatable.tileY());
+            : tileObjectsOnTile(locatable.worldViewId(), locatable.plane(), locatable.tileX(), locatable.tileY());
     }
     List<GroundItem> groundItems(int radius);
     default List<GroundItem> groundItems() { return groundItems(10); }

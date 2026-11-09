@@ -16,6 +16,18 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v174 -- Cached world-view scene access
+
+- `+` Optional append-only `HostGameV1::getSceneSnapshotGeneration` and
+  `getSceneSnapshot` expose complete world-view scenes: all four planes, actual
+  non-null squares, unique objects and exact per-tile membership. New records
+  do not resize any existing native payload; minimum SDK remains 154.
+- `+` Java/JS provide RuneLite-shaped WorldView/Scene/Tile access; C++ provides
+  owned `Client::sceneSnapshot(worldViewId)` captures. Results are generation
+  checked, bounded and never silently truncated at the Java list cap.
+- `~` Java freshness checks and stamped enumeration avoid redundant client
+  state copies and object reads. See [scene API](../../docs/scene_api.md).
+
 ## Unreleased -- Java projectile coordinates
 
 - `~` Java binary snapshots populate projectile `startY`, `targetY`, `height` and `sceneY` using the current SDK field names. Horizontal Y was discarded under the old Z names, and height was incorrectly assigned to `sceneY`. Graphics-object snapshots also preserve `preciseY` and `sceneY`. The fix applies to queries and live-handle refreshes; wire layouts, public APIs and native ABI remain unchanged.

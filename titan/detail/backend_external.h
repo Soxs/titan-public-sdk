@@ -1189,6 +1189,20 @@ public:
     bool supportsCurrentSceneTileObjects() const override {
         return api_ && api_->getCurrentSceneTileObjects;
     }
+    uint64_t getSceneSnapshotGeneration() override {
+        return api_ && api_->getSceneSnapshotGeneration ? api_->getSceneSnapshotGeneration() : 0;
+    }
+    TitanPluginSdk::SceneSnapshotStatus getSceneSnapshot(int32_t worldViewId,
+            uint64_t expectedGeneration, TitanPluginSdk::SceneSnapshotInfo* outInfo,
+            TitanPluginSdk::SceneTileState* tiles, uint32_t tileCapacity,
+            TitanPluginSdk::TileObjectState* objects, uint32_t objectCapacity,
+            uint32_t* objectIndices, uint32_t indexCapacity) override {
+        if (outInfo) *outInfo = {};
+        return api_ && api_->getSceneSnapshot
+            ? api_->getSceneSnapshot(worldViewId, expectedGeneration, outInfo,
+                  tiles, tileCapacity, objects, objectCapacity, objectIndices, indexCapacity)
+            : TitanPluginSdk::SceneSnapshotStatus::Unavailable;
+    }
     uint32_t getCurrentSceneTileObjects(
             TitanPluginSdk::TileObjectState* out, uint32_t capacity) override {
         return api_ && api_->getCurrentSceneTileObjects

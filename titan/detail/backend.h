@@ -115,6 +115,14 @@ struct IBackend {
         TitanPluginSdk::ClientState st{};
         return getClientState(&st) ? st.tickCount : 0;
     }
+    virtual uint64_t getSceneSnapshotGeneration() { return 0; }
+    virtual TitanPluginSdk::SceneSnapshotStatus getSceneSnapshot(int32_t,
+            uint64_t, TitanPluginSdk::SceneSnapshotInfo* outInfo,
+            TitanPluginSdk::SceneTileState*, uint32_t,
+            TitanPluginSdk::TileObjectState*, uint32_t, uint32_t*, uint32_t) {
+        if (outInfo) *outInfo = {};
+        return TitanPluginSdk::SceneSnapshotStatus::Unavailable;
+    }
     virtual uint32_t getPlayers(TitanPluginSdk::PlayerState* outPlayers, uint32_t maxPlayers) = 0;
     virtual uint8_t getPlayerComposition(uint64_t playerEntityPtr,
                                          TitanPluginSdk::PlayerCompositionState* out) = 0;

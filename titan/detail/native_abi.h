@@ -375,6 +375,13 @@ struct HostGameV1 {
     // SDK 173 optional tail. Reuses the existing widget query payload.
     uint8_t (*isWidgetSelected)() = nullptr;
     uint8_t (*getSelectedWidget)(WidgetQueryState* out) = nullptr;
+    // SDK 174 optional scene snapshot tail; existing payloads are unchanged.
+    uint64_t (*getSceneSnapshotGeneration)() = nullptr;
+    SceneSnapshotStatus (*getSceneSnapshot)(int32_t worldViewId,
+        uint64_t expectedGeneration, SceneSnapshotInfo* outInfo,
+        SceneTileState* tiles, uint32_t tileCapacity,
+        TileObjectState* objects, uint32_t objectCapacity,
+        uint32_t* objectIndices, uint32_t indexCapacity) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostGameV1>);
 static_assert(offsetof(HostGameV1, header) == 0);
@@ -713,7 +720,7 @@ static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostGameV1) == 600);
+static_assert(sizeof(HostGameV1) == 616);
 static_assert(offsetof(HostGameV1, isPrayerActive) == 8);
 static_assert(offsetof(HostGameV1, findNearestNpc) == 16);
 static_assert(offsetof(HostGameV1, findNearestObject) == 24);
@@ -788,6 +795,8 @@ static_assert(offsetof(HostGameV1, getActorAnimationProgress) == 568);
 static_assert(offsetof(HostGameV1, getNpcModelOverrides) == 576);
 static_assert(offsetof(HostGameV1, isWidgetSelected) == 584);
 static_assert(offsetof(HostGameV1, getSelectedWidget) == 592);
+static_assert(offsetof(HostGameV1, getSceneSnapshotGeneration) == 600);
+static_assert(offsetof(HostGameV1, getSceneSnapshot) == 608);
 static_assert(sizeof(HintArrowState) == 72);
 static_assert(offsetof(HintArrowState, actorWorldViewId) == 48);
 static_assert(offsetof(HintArrowState, actorEntityPtr) == 56);
@@ -1139,7 +1148,9 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(getActorAnimationProgress) \
     X(getNpcModelOverrides) \
     X(isWidgetSelected) \
-    X(getSelectedWidget)
+    X(getSelectedWidget) \
+    X(getSceneSnapshotGeneration) \
+    X(getSceneSnapshot)
 
 #define TITAN_NATIVE_HOSTACTIONSV1_MEMBERS(X) \
     X(executeSyntheticAction) \

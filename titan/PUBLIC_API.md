@@ -1,4 +1,25 @@
-# Titan Plugin SDK -- public symbol inventory (v173)
+# Titan Plugin SDK -- public symbol inventory (v174)
+
+## World-view scene access (SDK 174)
+
+`state::client().sceneSnapshot(worldViewId)` returns an owned, immutable
+`shared_ptr<const SceneSnapshot>` or an empty pointer when a complete current
+capture is unavailable. The optional world view defaults to `WorldView::CURRENT`.
+`info()` supplies the generation, scene incarnation and per-view coordinates;
+`tiles()`, `objects()` and `objectIndices()` preserve actual occupied squares,
+unique scene objects and exact multi-tile membership across all four planes.
+`tile(plane, x, y)` returns null for a genuinely absent square; a present square
+can have zero objects. Repeated calls reuse the capture within its generation.
+
+Java and JavaScript additionally expose `WorldView -> Scene -> Tile[][][]`
+facades for adapters. Native snapshots are captured on the game thread;
+off-thread requests can use a current completed capture or request preparation.
+No stale or incomplete capture is returned as current. See
+[scene API and adapter migration](../../docs/scene_api.md) for live versus
+captured behavior and unavailable-read handling.
+
+`HostGameV1` appends two optional operations. Its new snapshot records do not
+change existing payload layouts or the minimum supported SDK version 154.
 
 ## Selected widget (SDK 173)
 

@@ -2,6 +2,11 @@
 
 Public Java SDK for TitanClient plugins.
 
+For `WorldView -> Scene -> Tile[][][]` access, live-handle freshness and RuneLite
+adapter migration, see the [scene API guide](../../docs/scene_api.md) (SDK 174 /
+Java 0.2.03). Repeated tile reads use complete cached scene captures instead of
+one native object query per tile.
+
 For a runnable standalone starter that plugin authors can copy or fork, see
 [`Soxs/titan-java-sample-plugin`](https://github.com/Soxs/titan-java-sample-plugin).
 
@@ -34,6 +39,64 @@ import com.google.inject.Inject;
 ```
 
 TitanClient's embedded runtime provides the Guice runtime.
+
+## Plugin injection (0.2.04+)
+
+Each loaded plugin has a stable Guice injector for its lifetime. The plugin's
+concrete class resolves to the same instance that receives lifecycle callbacks,
+including self-references injected into helpers. Loading or unloading another
+plugin does not recreate its injector, singleton helpers or injected members.
+Unloading and reloading the plugin creates a fresh scope.
+
+`Titan.getInjector()` and `Titan.getInstance(...)` use the current plugin's scope
+inside its construction, injection and callbacks. For work outside those
+callbacks, inject and retain `com.google.inject.Injector` in the plugin or pass
+the required dependencies to the worker. Discard that injector on unload. The
+injected EventBus retains the plugin's owner even when used from a worker.
+Lookups outside a plugin context use the aggregate host injector and are not a
+way to retrieve plugin-private singleton helpers.
+
+Ordinary `Plugin` implementations keep constructor injection. To opt into
+RuneLite-style `configure()` and `@Provides` support, also implement Guice's
+`Module` interface (or extend `AbstractModule`):
+
+```java
+public final class ExamplePlugin implements Plugin, com.google.inject.Module {
+    @Inject private com.google.inject.Injector injector;
+    @Inject private Helper helper;
+
+    @Override
+    public void configure(com.google.inject.Binder binder) {
+        binder.bind(Helper.class).in(com.google.inject.Scopes.SINGLETON);
+    }
+
+    @com.google.inject.Provides
+    @com.google.inject.Singleton
+    PluginState provideState() {
+        return new PluginState();
+    }
+}
+```
+
+A module plugin must have a no-argument constructor. Titan constructs it, binds
+that exact instance, installs the module and lets Guice inject its members once.
+Constructors and `configure()` on module plugins define bindings; use injected
+parameters in providers and `onLoad()` for service-dependent initialization.
+The injector is not usable during module construction/configuration. Helpers
+only persist when explicitly scoped, for example with `@Singleton` or the
+binding above; unscoped bindings retain normal Guice behavior.
+
+Module bindings are private to that plugin. Declare plugin dependencies so
+their instances are loaded before the dependent scope is constructed. A scope
+cannot silently construct another unmanaged Titan plugin. Existing foreign
+plugin/config bindings become unavailable when their owner unloads and cannot
+attach to its replacement. Descriptor-declared config interfaces are already
+bound by Titan; do not also provide the same config key in the module.
+
+These rules apply to the Titan-managed plugin entry point. If an adapter creates
+a separate RuneLite plugin object, it must bind that exact object in its own
+retained injector, install its module and inject it once. Do not bundle another
+Guice runtime or create a fresh injector for each helper lookup.
 
 ## Selected widgets (0.2.02+)
 

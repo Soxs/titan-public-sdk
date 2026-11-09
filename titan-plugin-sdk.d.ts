@@ -227,6 +227,85 @@ interface Tile {
     /** Owning WorldView id. `-1` means the current WorldView sentinel. SDK 85+. */
     worldViewId?: number;
 }
+
+/** SDK 174: scene-local tile coordinates. */
+interface ScenePoint {
+    readonly x: number;
+    readonly y: number;
+    getX(): number;
+    getY(): number;
+    equals(other: {x: number; y: number} | null): boolean;
+}
+
+/** SDK 174: view facade. Metadata follows the current complete scene generation. */
+interface WorldView {
+    getId(): number;
+    getPlane(): number;
+    getBaseX(): number;
+    getBaseY(): number;
+    getSizeX(): number;
+    getSizeY(): number;
+    getScene(): Scene;
+}
+
+/** SDK 174: current scene access; unavailable current data is never replaced by an older capture. */
+interface Scene {
+    getWorldView(): WorldView;
+    getWorldViewId(): number;
+    /** Generation for adapter wrapper caches; throws SceneUnavailableError when unavailable. */
+    getGeneration(): bigint;
+    /** Cached [plane][x][y] arrays. Null means no native tile.
+     * Borrowed read-only arrays. Retained tile facades resolve through the current bulk snapshot.
+     * Throws an Error named SceneUnavailableError when a current complete capture is unavailable. */
+    getTiles(): readonly (readonly (readonly (SceneTile | null)[])[])[];
+    /** Explicit immutable capture. Retaining this object intentionally retains that generation. */
+    snapshot(): SceneSnapshot | null;
+}
+
+/** SDK 174: live scene object facade, or a fixed object when obtained from an explicit SceneSnapshot.
+ * Live access uses the shared bulk capture, never a per-tile native query. Missing objects have
+ * exists=false, unavailable numeric fields (-1/0), empty strings/actions and null derived points.
+ * A missing/incomplete current capture throws SceneUnavailableError; it does not prove despawn. */
+interface SceneTileObject extends Omit<TileObject, "tile" | "worldPoint" | "localPoint"> {
+    readonly tile: Tile | null;
+    readonly worldPoint: WorldPoint | null;
+    readonly localPoint: LocalPoint | null;
+    getId(): number;
+    getPlane(): number;
+    getWorldView(): WorldView;
+    getSceneMinLocation(): ScenePoint;
+    getSceneMaxLocation(): ScenePoint;
+}
+
+/** SDK 174: scene tile. Object buckets share canonical references for multi-tile objects.
+ * Current-state getters throw SceneUnavailableError if the current complete capture is unavailable. */
+interface SceneTile extends Tile {
+    getPlane(): number;
+    getSceneGeneration(): bigint;
+    getWorldView(): WorldView;
+    getSceneLocation(): ScenePoint;
+    getWorldLocation(): WorldPoint | null;
+    getLocalLocation(): LocalPoint | null;
+    getGameObjects(): readonly SceneTileObject[];
+    getWallObject(): SceneTileObject | null;
+    getDecorativeObject(): SceneTileObject | null;
+    getGroundObject(): SceneTileObject | null;
+}
+
+/** SDK 174: complete all-plane capture with actual tile occupancy and exact object membership. */
+interface SceneSnapshot {
+    getGeneration(): bigint;
+    getWorldView(): WorldView;
+    getPlane(): number;
+    getBaseX(): number;
+    getBaseY(): number;
+    getSizeX(): number;
+    getSizeY(): number;
+    getTiles(): readonly (readonly (readonly (SceneTile | null)[])[])[];
+    getTile(plane: number, x: number, y: number): SceneTile | null;
+    /** Unique objects across all four planes; no radius or 4096-object truncation. */
+    getObjects(): readonly SceneTileObject[];
+}
 /** RuneLite-style world-space tile coordinate (x, y, plane = z). */
 interface WorldPoint {
     x: number;
@@ -808,6 +887,8 @@ interface PlayerComposition {
 }
 
 interface ActorBase extends InstanceConvertible {
+    /** SDK 174: current owning view, or null while its complete scene is unavailable. */
+    getWorldView(): WorldView | null;
     readonly hashIndex: number;
     readonly tileX: number;
     readonly tileY: number;
@@ -3006,6 +3087,7 @@ interface PanelElement {
     const WorldView: {
         readonly CURRENT: -1;
         readonly TOP_LEVEL: 0;
+        readonly TOPLEVEL: 0;
     };
 
     /**
@@ -3093,6 +3175,7 @@ interface PanelElement {
     namespace worldView {
         const CURRENT: -1;
         const TOP_LEVEL: 0;
+        const TOPLEVEL: 0;
         /** Active/current WorldView pointer, or null when unavailable. SDK 81+. */
         function current(): bigint | null;
         /** WorldView pointer for a specific WorldView id, or null when unavailable. SDK 81+. */
@@ -3207,6 +3290,12 @@ interface PanelElement {
      */
     namespace state {
         const client: {
+            /** SDK 174: -1 selects current, 0 selects top-level. Null when unavailable. */
+            getWorldView(id: number): WorldView | null;
+            getTopLevelWorldView(): WorldView | null;
+            /** Top-level scene, mirroring RuneLite Client.getScene(). */
+            getScene(): Scene | null;
+            getLocalPlayer(): Player | null;
             /** SDK 173: whether a spell or item is selected for targeting, even if its widget no longer resolves. False when unavailable. */
             isWidgetSelected(): boolean;
             /** Selected spell or Use-item widget, retaining its exact dynamic-child address. Null when inactive, unavailable or unresolved. */

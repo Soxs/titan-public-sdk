@@ -772,7 +772,7 @@ public final class Magic {
     }
 
     private static TargetAction targetAction(TileObject target) {
-        if (target == null || target.id() < 0) return null;
+        if (target == null || !target.exists() || target.id() < 0) return null;
         return new TargetAction(
             MenuAction.WIDGET_TARGET_ON_GAME_OBJECT, target.id(), target.tileX(), target.tileY())
             .worldViewId(target.worldViewId())

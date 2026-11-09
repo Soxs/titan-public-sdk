@@ -17,6 +17,7 @@ public interface Actor extends Locatable<Actor> {
     int worldY();
     default int worldViewId() { return WorldView.CURRENT; }
     default long worldViewPtr() { return 0L; }
+    default WorldView getWorldView() { return Titan.client().getWorldView(worldViewId()); }
     int preciseX();
     int preciseY();
     int orientation();

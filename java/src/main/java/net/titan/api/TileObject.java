@@ -4,6 +4,7 @@ import net.titan.api.internal.TitanRuntime;
 import net.titan.api.utils.Magic;
 
 import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,8 +31,50 @@ public final class TileObject implements Locatable<TileObject> {
     private int sceneObjectType = -1;
     private int orientation = -1;
     private int animation = -1;
+    private WorldView capturedWorldView;
+    private ScenePoint sceneMinLocation, sceneMaxLocation;
 
     private TileObject live() { return TitanRuntime.currentLive(this); }
+    int capturedLayer() { return layer; }
+
+    /** Copy captured fields without performing a live refresh. SceneSnapshot owns the result. */
+    TileObject capturedCopy(WorldView worldView) {
+        TileObject copy = new TileObject();
+        copy.liveHandle = false;
+        copy.worldViewId = worldViewId;
+        copy.worldViewPtr = worldViewPtr;
+        copy.tileX = tileX; copy.tileY = tileY; copy.plane = plane;
+        copy.id = id; copy.sizeX = sizeX; copy.sizeY = sizeY;
+        copy.packedId = packedId; copy.entityPtr = entityPtr; copy.definitionPtr = definitionPtr;
+        copy.type = type; copy.name = name;
+        copy.actions = actions == null ? Collections.emptyList()
+            : Collections.unmodifiableList(new ArrayList<>(actions));
+        copy.layer = layer; copy.worldX = worldX; copy.worldY = worldY;
+        copy.sceneTypecode = sceneTypecode; copy.sceneObjectType = sceneObjectType;
+        copy.orientation = orientation; copy.animation = animation;
+        copy.capturedWorldView = worldView;
+        return copy;
+    }
+
+    public int getId() { return id(); }
+    public int getPlane() { return plane(); }
+    public WorldView getWorldView() {
+        return capturedWorldView != null ? capturedWorldView : Titan.client().getWorldView(worldViewId());
+    }
+    public ScenePoint getSceneMinLocation() {
+        TileObject state = live();
+        if (sceneMinLocation == null || sceneMinLocation.x() != state.tileX || sceneMinLocation.y() != state.tileY)
+            sceneMinLocation = new ScenePoint(state.tileX, state.tileY);
+        return sceneMinLocation;
+    }
+    public ScenePoint getSceneMaxLocation() {
+        TileObject state = live();
+        int x = state.tileX + Math.max(1, state.sizeX) - 1;
+        int y = state.tileY + Math.max(1, state.sizeY) - 1;
+        if (sceneMaxLocation == null || sceneMaxLocation.x() != x || sceneMaxLocation.y() != y)
+            sceneMaxLocation = new ScenePoint(x, y);
+        return sceneMaxLocation;
+    }
 
     @Override
     public int tileX() { return live().tileX; }
@@ -91,6 +134,7 @@ public final class TileObject implements Locatable<TileObject> {
 
     public boolean interact(String action) {
         if (action == null || action.isEmpty()) return false;
+        if (!exists()) return false;
         if (!hasAction(action)) return false;
         return TitanRuntime.getInteractionBackend().interactTileObject(action, this);
     }
