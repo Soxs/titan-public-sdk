@@ -16,12 +16,22 @@ inline bool isComplete(const RequestState& r) {
 inline uint64_t addBuyToQueue(const BuyOptions& options) {
     auto* b = titan::detail::backend(); return b ? b->geSubmitBuy(&options) : 0;
 }
+/// Apply 0..100 +5% button presses before the first offer (4 matches Java
+/// ExchangeRequest.setAttempts(4)). Retries add one step without spending the
+/// attempt budget on the initial increases. Nonzero steps require SDK 175's capability.
+inline uint64_t addBuyToQueue(const BuyOptions& options, int32_t initialPriceSteps) {
+    if (initialPriceSteps < 0 || initialPriceSteps > 100) return 0;
+    if (!initialPriceSteps) return addBuyToQueue(options);
+    auto* b = titan::detail::backend();
+    return b ? b->geSubmitBuyWithPriceSteps(&options, initialPriceSteps) : 0;
+}
 inline uint64_t addBuyToQueue(int32_t itemId, int32_t quantity, bool toInventory,
                               bool webWalkToAndOpenGe, bool noted = true,
-                              int32_t maxAttempts = 3, int32_t waitPerAttemptMs = 10000) {
+                              int32_t maxAttempts = 3, int32_t waitPerAttemptMs = 10000,
+                              int32_t initialPriceSteps = 0) {
     BuyOptions o; o.itemId = itemId; o.quantity = quantity; o.toInventory = toInventory;
     o.autoOpen = webWalkToAndOpenGe; o.noted = noted; o.maxAttempts = maxAttempts; o.waitPerAttemptMs = waitPerAttemptMs;
-    return addBuyToQueue(o);
+    return addBuyToQueue(o, initialPriceSteps);
 }
 inline uint64_t addBuyToQueue(int32_t itemId, int32_t quantity, bool autoOpen = false) {
     return addBuyToQueue(itemId, quantity, true, autoOpen);

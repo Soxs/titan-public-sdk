@@ -38,6 +38,11 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v175 -- GE starting-price increases.
+///   + Optional HostActionsV1 tail submits buys with initial +5% price steps,
+///     independent of the retry budget, across C++, Java and JS.
+///   ~ Existing payloads and minimum supported SDK 154 are unchanged.
+///
 /// v174 -- Cached world-view scene access.
 ///   + Optional HostGameV1 scene snapshot/generation functions expose all
 ///     planes, real occupied tiles and exact multi-tile object membership.
@@ -2004,7 +2009,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 174;
+constexpr uint32_t kSdkVersion = 175;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -5418,6 +5423,10 @@ struct HostApi {
         SceneTileState* tiles, uint32_t tileCapacity,
         TileObjectState* objects, uint32_t objectCapacity,
         uint32_t* objectIndices, uint32_t indexCapacity) = nullptr;
+
+    // SDK 175. 0..100 initial +5% button presses, independent of maxAttempts.
+    // Separate scalar preserves the existing GeBuyOptions payload layout.
+    uint64_t (*geSubmitBuyWithPriceSteps)(const GeBuyOptions* options, int32_t initialPriceSteps) = nullptr;
 
 };
 

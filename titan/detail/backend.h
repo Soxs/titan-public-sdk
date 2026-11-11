@@ -708,6 +708,7 @@ struct IBackend {
     virtual int32_t getItemPriceItemIds(int32_t*, int32_t) { return 0; }
     virtual bool getItemPrice(int32_t, TitanPluginSdk::ItemPrice*) { return false; }
     virtual uint64_t geSubmitBuy(const TitanPluginSdk::GeBuyOptions*) { return 0; }
+    virtual uint64_t geSubmitBuyWithPriceSteps(const TitanPluginSdk::GeBuyOptions*, int32_t) { return 0; }
     virtual bool geGetRequest(uint64_t, TitanPluginSdk::GeRequestState*) { return false; }
     virtual int32_t geGetRequests(TitanPluginSdk::GeRequestState*, int32_t) { return 0; }
     virtual bool geCancelRequest(uint64_t) { return false; }

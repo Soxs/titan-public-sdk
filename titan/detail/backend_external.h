@@ -1383,6 +1383,9 @@ public:
     uint64_t geSubmitBuy(const TitanPluginSdk::GeBuyOptions* options) override {
         return api_ && api_->sdkVersion >= 139 && api_->geSubmitBuy ? api_->geSubmitBuy(nullptr, options) : 0;
     }
+    uint64_t geSubmitBuyWithPriceSteps(const TitanPluginSdk::GeBuyOptions* options, int32_t steps) override {
+        return api_ && api_->geSubmitBuyWithPriceSteps ? api_->geSubmitBuyWithPriceSteps(options, steps) : 0;
+    }
     bool geGetRequest(uint64_t id, TitanPluginSdk::GeRequestState* out) override {
         return api_ && api_->sdkVersion >= 139 && api_->geGetRequest && api_->geGetRequest(nullptr, id, out);
     }

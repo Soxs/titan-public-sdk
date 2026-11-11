@@ -822,8 +822,19 @@ the queue waits for the interface. Any request opting in can open GE for the
 queue. The three-argument `(itemId, quantity, bool)` overload means auto-open
 in all SDKs.
 
-Prices come from the in-game offer setup. Attempt one uses its guide price;
-later attempts apply one additional +5% button press per previous attempt.
+Prices come from the in-game offer setup. By default, attempt one uses its guide
+price; later attempts apply one additional +5% button press per previous attempt.
+SDK 175 adds `initialPriceSteps` (0–100, default 0): the number of +5% button
+presses to apply before the first offer. C++ passes it as the second argument
+to `addBuyToQueue(options, steps)` (or the final argument of the full positional
+overload); JS/TS supplies it in the options object; Java uses
+`options.withInitialPriceSteps(steps)` or the extended constructor.
+For example, 4 reproduces the original Java `ExchangeRequest.setAttempts(4)`
+starting price. The game applies its own rounding and repeated +5% increases;
+this is not a flat 20% multiplier. Each retry adds one more press to that initial
+count, while `maxAttempts` and the reported `attempts` count actual offers only.
+Nonzero initial steps require the new optional host capability; older hosts
+reject the request rather than silently starting at the guide price.
 `maxUnitPrice` optionally caps the actual setup price before confirmation
 (0 means no ceiling). The setup price reader currently supports positive signed
 32-bit unit prices; unsupported/unreadable prices fail. Monetary snapshots and
@@ -883,7 +894,7 @@ titan::utils::Ge::BuyOptions options;
 options.itemId = 4151;
 options.quantity = 1;
 options.maxUnitPrice = 5000000;
-auto handle = titan::utils::Ge::addBuyToQueue(options); // submit once
+auto handle = titan::utils::Ge::addBuyToQueue(options, 4); // submit once, four initial +5% presses
 // On later ticks:
 if (auto r = titan::utils::Ge::request(handle); r && titan::utils::Ge::isComplete(*r)) {
     // Inspect r->phase, filled and message before releasing.
@@ -893,7 +904,7 @@ if (auto r = titan::utils::Ge::request(handle); r && titan::utils::Ge::isComplet
 
 ```ts
 const handle = titan.utils.ge.addBuyToQueue({
-    itemId: 4151, quantity: 1, maxUnitPrice: 5000000n
+    itemId: 4151, quantity: 1, maxUnitPrice: 5000000n, initialPriceSteps: 4
 });
 // On later ticks:
 const progress = handle === null ? null : titan.utils.ge.request(handle);
@@ -915,7 +926,7 @@ return JSON.stringify(titan.utils.ge.request(globalThis.geBuyId),
 
 ```java
 long handle = Ge.addBuyToQueue(new GeBuyOptions(
-    4151, 1, true, false, true, 3, 10000, 180000, 5000000L));
+    4151, 1, true, false, true, 3, 10000, 180000, 5000000L).withInitialPriceSteps(4));
 // On later ticks:
 Ge.request(handle).ifPresent(r -> {
     if (r.isComplete()) {

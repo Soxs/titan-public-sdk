@@ -94,6 +94,16 @@ can declare `htmlOverlays` entries with `kind: "html"` and use
 and limits. Registration and callback configuration close at `titan.register`;
 handles from a retired plugin cannot operate a replacement.
 
+Publish state where it runs in every client state. `onClientTick` and
+`onGameTick` run only while logged in, so a panel that republishes only there
+freezes at the title and login screens: a page's message still reaches the
+plugin, but no page hears the result, and a page that reopens shows the old
+value. Set state from the message handler, which runs on the game thread, or
+from `onMainLoop` (every MAIN_LOOP iteration, login screen included). Treat
+the published state as the only truth. A page's control is a request, drawn
+again from the next state, and every page showing the panel (the sidebar and
+any Web Panel viewer) draws the same state. Keep unsaved drafts in the page.
+
 C++ payloads and state are validated JSON strings, without a third-party JSON
 header dependency. Java uses JSON strings. JS/TS accepts JSON values and rejects
 undefined, functions, cycles, malformed Unicode, nonfinite numbers, and nesting
@@ -328,6 +338,53 @@ This avoids one render-cycle delay per individual pointer/key event.
 Theme values are CSS custom properties: `--titan-bg`, `--titan-text`,
 `--titan-muted`, `--titan-accent`, `--titan-border`, and `--titan-font-size`.
 Use them in packaged styles; theme changes update the active document.
+
+## Titan Web Panel
+
+The titan.lc Web Panel can open a plugin's HTML side panel in the owner's
+browser. The page is the same bundle, run there instead of in a renderer:
+
+- **One activation.** The client keeps one activation per side panel, so the
+  controller's `HtmlPanelHost` gives a viewer the sidebar's activation when the
+  sidebar shows that panel, and otherwise runs one of its own without a
+  renderer (`setWebPanels`). Both pages receive canonical state and the
+  plugin's transient messages; page messages from both reach the plugin in
+  one ordered stream, re-sequenced per activation. Opening the panel in the
+  sidebar starts a fresh activation as always, so the viewer's page reloads.
+  While a viewer has the page, `htmlUiAvailable()` reports true.
+- **Delivery.** The bundle travels once as JSON text (resources in base64),
+  in 192 KiB chunks the browser asks for in windows of eight, paced on the
+  controller's UI thread. The browser checks the text against its SHA-256 and
+  keeps it by hash (IndexedDB, 64 MiB). State and messages travel as
+  `panel_html` frames (`panel_views.h`). A state is JSON text of up to
+  440 KiB in the frame's top-level `state`, so the gateway checks it with the
+  frame's normalizer rather than its 256-character limit on `tab_update`'s
+  login state.
+- **Icons.** The plugin list gives every panel, native or HTML, the icon the
+  side panel's nav button draws (`panel_views::panelIcon`): the plugin's PNG
+  (up to 32 KiB, and 192 KiB per list), else its icon spec resolved to a
+  glyph and font, tinted by its icon colour. The site draws glyphs in copies
+  of the controller's icon fonts, and falls back to the title's first letter.
+- **Isolation.** The page runs in a `srcdoc` frame with `sandbox="allow-scripts
+  allow-forms"`: an opaque origin with no access to the Web Panel's page,
+  cookies or storage, no popups and no navigation of the Web Panel. Its policy
+  is the renderer's (`kPolicy` in `html_ui/helper_main.cpp`) with `data:` in
+  place of `'self'`, since its files become data: URLs: no network, no inline
+  script, `form-action 'none'`. A page that
+  navigates its frame starts again from its bundle, and links do nothing.
+- **Bridge.** A stand-in `titanHtml` gives the page what the renderer's
+  bridge does: `getState`/`onState` (the page hears state once its scripts
+  have run), `onMessage`, `postMessage`, `resource`, `getViewState` and
+  `saveViewState`, scroll restore and the theme properties. A script that
+  points an image at a bundle path gets the packaged image.
+- **Control.** Page messages leave the browser only under Full control, and
+  the gateway and controller check the level again. The controller queues
+  them under the sidebar's limits (64 messages, 1 MiB) but refuses overflow
+  instead of failing the shared activation. The gateway audits them at most
+  once per ten seconds per viewer and panel, with a count, never a payload.
+- **Not shown.** The panels of plugins `panel_plugins::exposed()` hides
+  (Account Profiles) and those `panelsExposed()` keeps on the PC (Auto Bank
+  Pin) stay there, HTML ones included.
 
 ## Isolation and runtime delivery
 

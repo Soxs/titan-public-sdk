@@ -16,6 +16,17 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v175 -- GE starting-price increases
+
+- `+` C++ `Ge::addBuyToQueue(options, initialPriceSteps)`, Java
+  `GeBuyOptions.withInitialPriceSteps`, and JS/TS `initialPriceSteps` apply
+  initial +5% button presses before the first offer, independently of the retry
+  budget. The default remains zero; retries add one further press and respect
+  the unit-price ceiling.
+- `+` Optional append-only `HostActionsV1::geSubmitBuyWithPriceSteps` preserves
+  all existing native payload layouts and minimum supported SDK 154. Hosts
+  without this capability reject nonzero steps instead of ignoring them.
+
 ## v174 -- Cached world-view scene access
 
 - `+` Optional append-only `HostGameV1::getSceneSnapshotGeneration` and

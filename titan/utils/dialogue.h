@@ -73,7 +73,7 @@ struct ContinueCandidate {
     int32_t dynamicSlot = -1;
 };
 
-inline constexpr std::array<ContinueCandidate, 14> kContinueCandidates = {{
+inline constexpr std::array<ContinueCandidate, 15> kContinueCandidates = {{
     {gamevals::InterfaceID::LevelupDisplay::CONTINUE_, false},
     {gamevals::InterfaceID::Messagebox::CONTINUE_,     false},
     {gamevals::InterfaceID::Messagebox::CONTENT,        false},
@@ -89,6 +89,9 @@ inline constexpr std::array<ContinueCandidate, 14> kContinueCandidates = {{
     {gamevals::InterfaceID::Messagebox::SAFEZONE,       false},
     {gamevals::InterfaceID::Chatbox::CLOSE_ICON,        true},
     {gamevals::InterfaceID::Chatbox::MES_TEXT,          true},
+    // Game messages such as "I can't reach that!" put the message in MES_TEXT
+    // and the prompt in the second line.
+    {gamevals::InterfaceID::Chatbox::MES_TEXT2,         true},
     // Objectbox has no fixed continue component: its prompt is dynamic child 2.
     {gamevals::InterfaceID::Objectbox::UNIVERSE,        true, 2},
 }};

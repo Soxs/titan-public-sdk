@@ -426,7 +426,12 @@ does not cancel purchases. Cancel explicitly with `Ge.abortRequest(handle)`;
 Defaults are noted collection to inventory, no auto-opening, three attempts,
 10 seconds per offer and a three-minute overall deadline. The three-argument
 boolean overload enables auto-opening. Options also expose collection mode,
-attempt/deadline limits and an optional unit-price ceiling. The user supplies
+attempt/deadline limits and an optional unit-price ceiling. With SDK 175 hosts,
+`new GeBuyOptions(itemId, quantity).withInitialPriceSteps(4)` starts with four
++5% button presses, matching the old `ExchangeRequest.setAttempts(4)` price.
+The initial steps (0–100, default 0) do not consume the attempt budget; retries
+add another step and still respect the ceiling. Nonzero steps are rejected on
+hosts without the optional capability. The user supplies
 coins in inventory/bank; Java owns no workflow or cache. Selling is a stub.
 See the [cross-SDK contract and examples](../titan/PUBLIC_API.md#queued-ge-buying-sdk-v139--java-0164)
 for retries, cancellation, collection and lifecycle behavior.

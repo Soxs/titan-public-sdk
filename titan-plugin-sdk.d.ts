@@ -2111,6 +2111,9 @@ interface GeBuyOptions {
     toInventory?: boolean;
     noted?: boolean;
     autoOpen?: boolean;
+    /** SDK 175: 0..100 initial +5% button presses (default 0); independent of maxAttempts.
+     * Each retry adds one more press. Uses the game's rounding, not a flat percentage. */
+    initialPriceSteps?: number;
     /** 0n (default) means no ceiling; each retry adds another +5% guide-price step. */
     maxUnitPrice?: bigint;
 }
