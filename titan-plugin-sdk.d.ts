@@ -4527,7 +4527,10 @@ interface PanelElement {
         /**
          * Queue a native menu lookup by action name or `Op/Subop`. Tries all
          * names in order on this widget, then on each visible direct child in
-         * slot order. An active spell or item can match its native target entry
+         * slot order. Each name matches case-insensitively, preferring an exact
+         * label before a substring match. Both parts of a submenu request must
+         * match the same path, with an exact match on both parts preferred.
+         * An active spell or item can match its native target entry
          * regardless of the supplied label. True means the request was queued.
          * Matching and dispatch happen later on the game thread. SDK v176+.
          */

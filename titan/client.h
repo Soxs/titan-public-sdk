@@ -1119,8 +1119,10 @@ struct WidgetSnapshot {
     /// dynamic snapshots emit their retained immediate-parent slot.
     bool interact(uint32_t opcode, int32_t identifier) const;
 
-    /// Queue the first available native action in preference order. True means
-    /// queued. The game thread resolves the menu and dispatches a match later.
+    /// Queue the first available native action in preference order. Each name
+    /// matches case-insensitively, preferring an exact label before a substring
+    /// match. For Op/Subop, both parts must match the same submenu path, and an
+    /// exact match on both parts wins. True means queued for game-thread resolution.
     template <detail::WidgetActionRange Range>
     bool interact(const Range& actions) const;
     bool interact(std::initializer_list<std::string_view> actions = {}) const {

@@ -11,10 +11,15 @@ available in `titan-plugin-api` 0.2.06.
 
 The host tries every label on the addressed widget first. If none matches,
 it searches visible direct children in native slot order, using the same label
-preferences on each child. Matching is case-sensitive after removing formatting
-tags, normalizing nonbreaking spaces, and trimming surrounding ASCII whitespace. An
-active spell or item can target an eligible widget even if the supplied label
-differs from its targeting verb.
+preferences on each child. For each requested label, matching ignores case and
+prefers an exact match before trying menu labels that contain the requested
+text. Among containing operations, the first matching action slot wins, then
+the first matching sub-op slot. For `Op/Subop`, both parts must match their
+respective labels on the same submenu path. An exact match on both parts
+takes priority. The host strips
+formatting tags, normalizes nonbreaking spaces, and trims surrounding ASCII
+whitespace before comparing. An active spell or item can target an eligible
+widget even if the supplied label differs from its targeting verb.
 
 `true` acknowledges that the host queued the request. The game thread resolves
 the native callback menu and rechecks the widget, item and selection before

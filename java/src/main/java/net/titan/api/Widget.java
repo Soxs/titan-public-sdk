@@ -118,8 +118,10 @@ public final class Widget {
 
     /**
      * Queues a native menu interaction. The host tries the action names in order
-     * on this widget, then on each visible direct child in slot order. Use
-     * {@code "Op/Subop"} to select a submenu entry. When a spell or item is
+     * on this widget, then on each visible direct child in slot order. Each name
+     * matches case-insensitively, preferring an exact label before a substring
+     * match. For {@code "Op/Subop"}, both parts must match the same submenu path,
+     * with an exact match on both parts preferred. When a spell or item is
      * already selected, an eligible widget receives that selection even if
      * its targeting verb differs from the supplied names.
      *
