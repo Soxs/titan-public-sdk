@@ -34,14 +34,19 @@
 
 #include <algorithm>
 #include <array>
+#include <concepts>
 #include <cstdarg>
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <functional>
+#include <initializer_list>
 #include <limits>
 #include <optional>
+#include <ranges>
+#include <span>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace titan {
@@ -1052,6 +1057,18 @@ namespace state { inline ::titan::ScriptFacade script() { return ::titan::Script
 class WidgetQuery;
 class Widget;
 
+namespace detail {
+template <typename Range>
+concept WidgetActionRange = std::ranges::contiguous_range<const Range&> &&
+    std::ranges::sized_range<const Range&> &&
+    std::convertible_to<std::ranges::range_reference_t<const Range&>, std::string_view>;
+
+inline std::string_view widgetActionText(std::string_view text) { return text; }
+inline std::string_view widgetActionText(const char* text) {
+    return text ? std::string_view{text} : std::string_view{};
+}
+} // namespace detail
+
 /// Explicit frozen widget value. Use `Widget::snapshot()` when a plugin needs
 /// a stable copy instead of a live handle.
 struct WidgetSnapshot {
@@ -1101,6 +1118,19 @@ struct WidgetSnapshot {
     /// Dispatch against this exact snapshot. Flat widgets emit param0=-1;
     /// dynamic snapshots emit their retained immediate-parent slot.
     bool interact(uint32_t opcode, int32_t identifier) const;
+
+    /// Queue the first available native action in preference order. True means
+    /// queued. The game thread resolves the menu and dispatches a match later.
+    template <detail::WidgetActionRange Range>
+    bool interact(const Range& actions) const;
+    bool interact(std::initializer_list<std::string_view> actions = {}) const {
+        return interact(std::span<const std::string_view>{actions.begin(), actions.size()});
+    }
+    template <typename... Labels>
+        requires (sizeof...(Labels) > 0 && (std::convertible_to<const Labels&, std::string_view> && ...))
+    bool interact(const Labels&... labels) const {
+        return interact({detail::widgetActionText(labels)...});
+    }
 
     /// Replace this widget's live display text. Dynamic snapshots returned by
     /// `children(parentPackedId)` route through their remembered parent and
@@ -1333,6 +1363,20 @@ public:
         return state().interact(opcode, identifier);
     }
 
+    /// See WidgetSnapshot::interact. True means queued for game-thread resolution.
+    template <detail::WidgetActionRange Range>
+    bool interact(const Range& actions) const {
+        return state_.interact(actions);
+    }
+    bool interact(std::initializer_list<std::string_view> actions = {}) const {
+        return state_.interact(actions);
+    }
+    template <typename... Labels>
+        requires (sizeof...(Labels) > 0 && (std::convertible_to<const Labels&, std::string_view> && ...))
+    bool interact(const Labels&... labels) const {
+        return state_.interact(labels...);
+    }
+
     bool setText(const char* text) const {
         const bool ok = state().setText(text);
         if (ok) {
@@ -1501,6 +1545,35 @@ private:
 };
 
 namespace state { inline ::titan::WidgetsFacade widgets() { return ::titan::WidgetsFacade{}; } }
+
+template <detail::WidgetActionRange Range>
+inline bool WidgetSnapshot::interact(const Range& actions) const {
+    auto* b = detail::backend();
+    constexpr auto maxLength = (std::numeric_limits<uint32_t>::max)();
+    const auto count = std::ranges::size(actions);
+    if (!b || count == 0 || count > maxLength ||
+            dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth) return false;
+
+    auto address = addressState();
+    if (dynamicChildSlot >= 0) {
+        if (address.depth == 0 && dynamicParentPackedId != 0) {
+            address.rootPackedId = static_cast<uint32_t>(dynamicParentPackedId);
+            address.slots[0] = dynamicChildSlot;
+            address.depth = 1;
+        } else if (address.depth == 0 || address.slots[address.depth - 1] != dynamicChildSlot) {
+            return false;
+        }
+    }
+
+    std::vector<TitanPluginSdk::WidgetActionLabel> labels;
+    labels.reserve(count);
+    for (const auto& label : actions) {
+        const auto action = detail::widgetActionText(label);
+        if (action.size() > maxLength) return false;
+        labels.push_back({action.data(), static_cast<uint32_t>(action.size())});
+    }
+    return b->widgetInteractByActions(&address, labels.data(), static_cast<uint32_t>(labels.size())) != 0;
+}
 
 inline bool WidgetSnapshot::interact(uint32_t opcode, int32_t identifier,
                                      int32_t param0) const {

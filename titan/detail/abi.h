@@ -38,6 +38,10 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v176 -- Named widget interactions.
+///   + Optional HostActionsV1 tail queues ordered UTF-8 action labels for
+///     resolution by the native widget menu builder.
+///
 /// v175 -- GE starting-price increases.
 ///   + Optional HostActionsV1 tail submits buys with initial +5% price steps,
 ///     independent of the retry budget, across C++, Java and JS.
@@ -2009,7 +2013,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 175;
+constexpr uint32_t kSdkVersion = 176;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -3100,6 +3104,13 @@ struct WidgetAddressState {
     uint32_t rootPackedId = 0;
     uint32_t depth = 0;
     int32_t slots[kMaxWidgetAddressDepth] = {};
+};
+
+/// SDK 176. UTF-8 bytes borrowed for the duration of widgetInteractByActions.
+/// An empty label may have a null pointer. No NUL terminator is required.
+struct WidgetActionLabel {
+    const char* utf8 = nullptr;
+    uint32_t length = 0;
 };
 
 /// Widget query snapshot: normal widget fields plus an exact retained address.
@@ -5427,6 +5438,10 @@ struct HostApi {
     // SDK 175. 0..100 initial +5% button presses, independent of maxAttempts.
     // Separate scalar preserves the existing GeBuyOptions payload layout.
     uint64_t (*geSubmitBuyWithPriceSteps)(const GeBuyOptions* options, int32_t initialPriceSteps) = nullptr;
+    /// SDK 176. Copies ordered labels and the retained address before returning.
+    /// Nonzero means the named interaction was queued for game-thread resolution.
+    uint8_t (*widgetInteractByActions)(const WidgetAddressState* address,
+        const WidgetActionLabel* labels, uint32_t count) = nullptr;
 
 };
 

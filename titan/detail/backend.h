@@ -543,6 +543,8 @@ struct IBackend {
     virtual uint8_t widgetInteractAtPath(
         const TitanPluginSdk::WidgetAddressState* address,
         uint32_t opcode, int32_t identifier, int32_t childSlot) = 0;
+    virtual uint8_t widgetInteractByActions(const TitanPluginSdk::WidgetAddressState*,
+        const TitanPluginSdk::WidgetActionLabel*, uint32_t) { return 0; }
 
     // --- Direct identity resolvers for live handles (SDK 89) ---
     virtual uint8_t getPlayerByIndexInWorldView(int32_t hashIndex,

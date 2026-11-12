@@ -110,6 +110,25 @@ class InteractionBackendTest {
     }
 
     @Test
+    void namedWidgetActionsQueueTheAddressAndOrderedLabels() {
+        useBackend(new RecordingBackend());
+        Widget widget = widget(2000, 7, 1000);
+        setObject(widget, "dynamicPath", java.util.List.of(3, 7));
+        String[] requested = { "Quantity/All", null, " ", "\u2003", "Withdraw" };
+
+        assertTrue(widget.interact(requested));
+        assertEquals("widgetInteractByActions", backend.call);
+        WidgetAddress address = (WidgetAddress) backend.args[0];
+        assertEquals(1000, address.rootPackedId());
+        assertEquals(java.util.List.of(3, 7), address.dynamicPath());
+        requested[0] = "Changed";
+        assertArrayEquals(new String[] { "Quantity/All", "\u2003", "Withdraw" }, (String[]) backend.args[1]);
+
+        backend.widgetQueueAccepted = false;
+        assertFalse(widget.interact("Withdraw"));
+    }
+
+    @Test
     void emptyActionsDoNotReachBackend() {
         useBackend(new RecordingBackend());
 
@@ -117,6 +136,10 @@ class InteractionBackendTest {
         assertFalse(tileObject(2, 3, 4).interact(null));
         assertFalse(groundItem(5, 6, 7).interact(""));
         assertFalse(inventoryItem(8, 9).interact(null));
+        Widget widget = widget(1234, -1, 0);
+        assertFalse(widget.interact());
+        assertFalse(widget.interact((String[]) null));
+        assertFalse(widget.interact(null, "", " \t\n\u000b\f\r\u00a0"));
         assertEquals(null, backend.call);
     }
 
@@ -198,6 +221,7 @@ class InteractionBackendTest {
         Object[] args;
         boolean slotResult = true;
         boolean itemResult = true;
+        boolean widgetQueueAccepted = true;
 
         private boolean record(String name, Object... values) {
             call = name;
@@ -258,6 +282,12 @@ class InteractionBackendTest {
         public boolean widgetInteractAtPath(WidgetAddress address, int opcode,
                                             int identifier, int childSlot) {
             return record("widgetInteractAtPath", address, opcode, identifier, childSlot);
+        }
+
+        @Override
+        public boolean widgetInteractByActions(WidgetAddress address, String[] actions) {
+            record("widgetInteractByActions", address, actions);
+            return widgetQueueAccepted;
         }
 
         @Override

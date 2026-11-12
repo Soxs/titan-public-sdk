@@ -1,4 +1,27 @@
-# Titan Plugin SDK -- public symbol inventory (v174)
+# Titan Plugin SDK -- public symbol inventory (v176)
+
+## Named widget interaction (SDK 176)
+
+C++, Java and JavaScript/TypeScript widget handles accept action names in preference
+order. For example, `widget.interact("Quantity/All", "Withdraw")` tries the
+`All` submenu entry under `Quantity` before the ordinary `Withdraw` action.
+C++ also accepts an initializer list or a `std::span<const std::string_view>`
+for labels chosen at runtime. The Java overload is `interact(String... actions)`,
+available in `titan-plugin-api` 0.2.06.
+
+The host tries every label on the addressed widget first. If none matches,
+it searches visible direct children in native slot order, using the same label
+preferences on each child. Matching is case-sensitive after removing formatting
+tags, normalizing nonbreaking spaces, and trimming surrounding ASCII whitespace. An
+active spell or item can target an eligible widget even if the supplied label
+differs from its targeting verb.
+
+`true` acknowledges that the host queued the request. The game thread resolves
+the native callback menu and rechecks the widget, item and selection before
+dispatch. A queued request can finish without an eligible entry.
+Native ABI v1 exposes this through the optional `HostActionsV1::widgetInteractByActions`
+tail. Older hosts that omit the function return `false`. The minimum supported
+native SDK version remains 154.
 
 ## World-view scene access (SDK 174)
 
@@ -1398,7 +1421,7 @@ auto-marshalled onto the game thread where required.
 | `titan::state::skills()` | `SkillsFacade` | `boosted(int\|Skill)`, `real(int\|Skill)`, `experience(int\|Skill)` (SDK v37+). |
 | `titan::state::prayers()` | `PrayersFacade` | `isActive(int\|Prayer)` (SDK v37+). |
 | `titan::state::script()` | `ScriptFacade` | `run(id, args)`, `runAndGetInt(id, args)`, `questState(id)` |
-| `titan::state::widgets()` | `WidgetsFacade` | Compatibility facade: `find(packedId)`, `children(parentPackedId)` (SDK v38+; preserves empty native slots; sized to the true child count via the SDK 124 sizing probe, up to 2,048 per call), `findByText(query)` (SDK v39+; primary-text substring match, case-sensitive), `setText(packedId, text)` (SDK v51+), `setText(parentPackedId, slot, text)` (SDK v63+), `WidgetsFacade::pack(group, child)`, `interact(opcode, identifier, param0, param1)`. `identifier` is the menu-entry identifier, not a widget packed id; `interact` returns action accepted / queued, not state already changed. Returned `Widget` handles expose accessor methods such as `packedId()`, `dynamicParentPackedId()`, `dynamicChildSlot()`, `rootPackedId()`, `dynamicPath()`, `spriteId()` (SDK v110+, primary native sprite id or `-1`), `modelType()` and `modelId()` (SDK v146+; the client's model source kind, matching RuneLite's `WidgetModelType` from 0 none to 6 NPC chathead by index, and the model, NPC or item id it selects, each `-1` when unavailable), `text()`, `name()` and `actions()` (SDK v159; live reads at the retained address of the op base and op strings behind RuneLite's `Widget.getName()` / `getActions()`, for flat widgets and dynamic children: `std::optional<std::string>` and `std::optional<std::vector<std::string>>`, `nullopt` when the host cannot read them, an empty name when unset, empty strings for unset slots and an empty vector when the widget has no op array; Java `name()` / `actions()` / `opsAvailable()` and JS/TS `name()` / `actions()` / `opsAvailable()` use `null` for unset slots and a missing op array, as RuneLite does), `exists()`, `snapshot()`, `setText(text)`, and `interact(opcode, identifier[, childSlot])`. Accessor reads resolve the retained live path through the host's internal widget resolver; `WidgetSnapshot` is the explicit frozen value returned by `snapshot()`. Operations re-resolve the retained path and fail closed for stale segments. Current offset bundles use native EASTL range assignment for widget text up to 256 UTF-8 bytes; older bundles retain the 22-byte inline fallback. |
+| `titan::state::widgets()` | `WidgetsFacade` | Compatibility facade: `find(packedId)`, `children(parentPackedId)` (SDK v38+; preserves empty native slots; sized to the true child count via the SDK 124 sizing probe, up to 2,048 per call), `findByText(query)` (SDK v39+; primary-text substring match, case-sensitive), `setText(packedId, text)` (SDK v51+), `setText(parentPackedId, slot, text)` (SDK v63+), `WidgetsFacade::pack(group, child)`, `interact(opcode, identifier, param0, param1)`. `identifier` is the menu-entry identifier, not a widget packed id; `interact` returns action accepted / queued, not state already changed. Returned `Widget` handles expose accessor methods such as `packedId()`, `dynamicParentPackedId()`, `dynamicChildSlot()`, `rootPackedId()`, `dynamicPath()`, `spriteId()` (SDK v110+, primary native sprite id or `-1`), `modelType()` and `modelId()` (SDK v146+; the client's model source kind, matching RuneLite's `WidgetModelType` from 0 none to 6 NPC chathead by index, and the model, NPC or item id it selects, each `-1` when unavailable), `text()`, `name()` and `actions()` (SDK v159; live reads at the retained address of the op base and op strings behind RuneLite's `Widget.getName()` / `getActions()`, for flat widgets and dynamic children: `std::optional<std::string>` and `std::optional<std::vector<std::string>>`, `nullopt` when the host cannot read them, an empty name when unset, empty strings for unset slots and an empty vector when the widget has no op array; Java `name()` / `actions()` / `opsAvailable()` and JS/TS `name()` / `actions()` / `opsAvailable()` use `null` for unset slots and a missing op array, as RuneLite does), `exists()`, `snapshot()`, `setText(text)`, and `interact(opcode, identifier[, childSlot])`. SDK 176 also provides [named widget interaction](#named-widget-interaction-sdk-176). Accessor reads resolve the retained live path through the host's internal widget resolver; `WidgetSnapshot` is the explicit frozen value returned by `snapshot()`. Operations re-resolve the retained path and fail closed for stale segments. Current offset bundles use native EASTL range assignment for widget text up to 256 UTF-8 bytes; older bundles retain the 22-byte inline fallback. |
 | `titan::state::idle()` | `IdleFacade` | `remaining()` (ms), `reset()` |
 | `titan::state::proxy()` | `ProxyFacade` | `list()` returns only stable proxy id/label; `setRoute(id)` selects a proxy (`""` means Direct); `status()` reports route generation/kind, sanitized failure stage/code, and whether the current generation's egress probe is ready. The measured egress address, endpoints, and credentials are never exposed. SDK 97. |
 | `titan::state::login()` | `LoginFacade` | `snapshot()`, `state()` (including native `LoginGameState::Loading` = 25 in SDK v126+), `isLoggedIn()` (native `LoginGameState::LoggedIn`), `isWorldReady()` (local player / world view / scene ready), `setUsername/setPassword/...`, `setCharacter(...)`, `resetCharacter()`, and SDK 97 `submitLauncherCredentials()`. For a staged Jagex profile, the submit call holds Enter through a login-screen update and releases it on the next poll or cancellation. It is guarded to the exact login screen and Jagex launcher index and reports operation acceptance, not completed authentication. The later post-authentication `advanceClickToPlay()` action remains separate. |

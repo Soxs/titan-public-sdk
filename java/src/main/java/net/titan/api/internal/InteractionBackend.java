@@ -36,6 +36,9 @@ public interface InteractionBackend {
     boolean widgetInteract(int opcode, int identifier, int param0, int param1);
     boolean widgetInteractAtPath(WidgetAddress address, int opcode,
                                  int identifier, int childSlot);
+    default boolean widgetInteractByActions(WidgetAddress address, String[] actions) {
+        return false;
+    }
     boolean setWidgetText(int packedId, String text);
     boolean setWidgetTextAtPath(WidgetAddress address, String text);
 }

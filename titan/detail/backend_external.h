@@ -1030,6 +1030,11 @@ public:
         return (api_ && api_->widgetInteractAtPath)
             ? api_->widgetInteractAtPath(address, opcode, identifier, childSlot) : 0;
     }
+    uint8_t widgetInteractByActions(const TitanPluginSdk::WidgetAddressState* address,
+            const TitanPluginSdk::WidgetActionLabel* labels, uint32_t count) override {
+        return api_ && api_->widgetInteractByActions
+            ? api_->widgetInteractByActions(address, labels, count) : 0;
+    }
 
     // --- Direct identity resolvers for live handles (SDK 89) ---
     uint8_t getPlayerByIndexInWorldView(int32_t hashIndex,

@@ -16,6 +16,15 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v176 -- Named widget interactions
+
+- `+` C++, Java, and JS/TS widgets accept ordered action names and
+  `Op/Subop` labels. The native menu resolves the addressed widget first,
+  then its visible direct children. A true return acknowledges queue acceptance.
+- `+` Native plugins can request the optional
+  `HostActionsV1::widgetInteractByActions` entry. The minimum supported SDK
+  version remains 154.
+
 ## v175 -- GE starting-price increases
 
 - `+` C++ `Ge::addBuyToQueue(options, initialPriceSteps)`, Java

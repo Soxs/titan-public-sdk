@@ -5,6 +5,7 @@ import net.titan.api.internal.TitanRuntime;
 import net.titan.api.utils.Magic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -113,6 +114,36 @@ public final class Widget {
 
     public boolean isDynamic() {
         return dynamicChildSlot() >= 0 || !dynamicPath().isEmpty();
+    }
+
+    /**
+     * Queues a native menu interaction. The host tries the action names in order
+     * on this widget, then on each visible direct child in slot order. Use
+     * {@code "Op/Subop"} to select a submenu entry. When a spell or item is
+     * already selected, an eligible widget receives that selection even if
+     * its targeting verb differs from the supplied names.
+     *
+     * @param actions action names in preference order, ignoring null and blank names
+     * @return true when the host queued the request. Matching and dispatch happen
+     *         later on the game thread, so a queued request can find no eligible entry.
+     */
+    public boolean interact(String... actions) {
+        if (actions == null || actions.length == 0) return false;
+        String[] labels = Arrays.stream(actions)
+            .filter(Widget::hasActionText)
+            .toArray(String[]::new);
+        return labels.length != 0
+            && TitanRuntime.getInteractionBackend().widgetInteractByActions(address(), labels);
+    }
+
+    private static boolean hasActionText(String label) {
+        if (label == null) return false;
+        // The native menu normalizes NBSP and trims ASCII whitespace.
+        for (int i = 0; i < label.length(); i++) {
+            char c = label.charAt(i);
+            if (c != ' ' && c != '\u00a0' && (c < '\t' || c > '\r')) return true;
+        }
+        return false;
     }
 
     public boolean interact(int opcode, int identifier, int param0, int param1) {

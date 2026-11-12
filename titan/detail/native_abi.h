@@ -464,6 +464,9 @@ struct HostActionsV1 {
     uint8_t (*clearHintArrow)() = nullptr;
     // SDK 175 optional tail. Existing GE payloads retain their layout.
     uint64_t (*geSubmitBuyWithPriceSteps)(const GeBuyOptions* options, int32_t initialPriceSteps) = nullptr;
+    // SDK 176 optional tail. Inputs are borrowed only for the call.
+    uint8_t (*widgetInteractByActions)(const WidgetAddressState* address,
+        const WidgetActionLabel* labels, uint32_t count) = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostActionsV1>);
 static_assert(offsetof(HostActionsV1, header) == 0);
@@ -807,7 +810,7 @@ static_assert(offsetof(HintArrowState, actorWorldViewPtr) == 64);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostActionsV1) == 584);
+static_assert(sizeof(HostActionsV1) == 592);
 static_assert(offsetof(HostActionsV1, executeSyntheticAction) == 8);
 static_assert(offsetof(HostActionsV1, executeSyntheticEntry) == 16);
 static_assert(offsetof(HostActionsV1, interactNpc) == 24);
@@ -880,6 +883,11 @@ static_assert(offsetof(HostActionsV1, setHintArrowCoordinate) == 552);
 static_assert(offsetof(HostActionsV1, setHintArrowActor) == 560);
 static_assert(offsetof(HostActionsV1, clearHintArrow) == 568);
 static_assert(offsetof(HostActionsV1, geSubmitBuyWithPriceSteps) == 576);
+static_assert(offsetof(HostActionsV1, widgetInteractByActions) == 584);
+static_assert(std::is_standard_layout_v<WidgetActionLabel>);
+static_assert(sizeof(WidgetActionLabel) == 16);
+static_assert(offsetof(WidgetActionLabel, utf8) == 0);
+static_assert(offsetof(WidgetActionLabel, length) == 8);
 static_assert(sizeof(HintArrowCoordinateTarget) == 28);
 static_assert(sizeof(HintArrowActorTarget) == 32);
 static_assert(offsetof(HintArrowActorTarget, entityPtr) == 16);
@@ -1227,7 +1235,8 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(setHintArrowCoordinate) \
     X(setHintArrowActor) \
     X(clearHintArrow) \
-    X(geSubmitBuyWithPriceSteps)
+    X(geSubmitBuyWithPriceSteps) \
+    X(widgetInteractByActions)
 
 #define TITAN_NATIVE_HOSTRENDERV1_MEMBERS(X) \
     X(setImGuiContext) \
