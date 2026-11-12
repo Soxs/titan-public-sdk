@@ -272,4 +272,5 @@ public interface DBTableIDConstants_0 {
     int COMBAT_ANIM = 269;
     int ALTERNATE_PRAYERS = 270;
     int UI_HIGHLIGHTING_FX_SINGLE_PULSE = 271;
+    int SNAILQUEST_OBJECTS = 272;
 }

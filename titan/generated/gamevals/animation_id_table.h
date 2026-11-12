@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 15162> kAnimationIDEntries = {{
+inline constexpr std::array<Entry, 15166> kAnimationIDEntries = {{
     {0, "SWARM_WALK", "swarm_walk", "seqtypes"},
     {1, "SWARM_ATTACK", "swarm_attack", "seqtypes"},
     {2, "SWARM_BLOCK", "swarm_block", "seqtypes"},
@@ -15169,6 +15169,10 @@ inline constexpr std::array<Entry, 15162> kAnimationIDEntries = {{
     {15171, "WOTW_HUMAN_SEPPUKU", "wotw_human_seppuku", "seqtypes"},
     {15172, "WOTW_HUMAN_SEPPUKU_IDLE", "wotw_human_seppuku_idle", "seqtypes"},
     {15173, "CHEST_GUTHIXIAN02_REVEAL", "chest_guthixian02_reveal", "seqtypes"},
+    {15174, "HUMAN_SPOT_JUMP_MERGE", "human_spot_jump_merge", "seqtypes"},
+    {15175, "HUMAN_JUMP_STONES_MERGE", "human_jump_stones_merge", "seqtypes"},
+    {15176, "HUMAN_FLETCHING_ADD_DART_FEATHERS_WASP", "human_fletching_add_dart_feathers_wasp", "seqtypes"},
+    {15177, "HUMAN_FLETCHING_ADD_DART_FEATHERS_KILLER_WASP", "human_fletching_add_dart_feathers_killer_wasp", "seqtypes"},
 }};
 
 template <>

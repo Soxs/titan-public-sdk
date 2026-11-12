@@ -4460,6 +4460,10 @@ struct SpotanimID final {
     static constexpr int32_t VFX_TFA_TELEPORT_START = 4445;
     static constexpr int32_t VFX_TFA_TELEPORT_END = 4446;
     static constexpr int32_t THROWN_ROCK = 4447;
+    static constexpr int32_t WASP_DART_TRAVEL = 4448;
+    static constexpr int32_t KILLER_WASP_DART_TRAVEL = 4449;
+    static constexpr int32_t WASP_DART_LAUNCH = 4450;
+    static constexpr int32_t KILLER_WASP_DART_LAUNCH = 4451;
 
     template <typename Self = SpotanimID>
     static constexpr std::span<const Entry> entries() {

@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<QuestEntry, 219> kQuestIDEntries = {{
+inline constexpr std::array<QuestEntry, 221> kQuestIDEntries = {{
     {17, 1, "QUEST_COOKSASSISTANT", "Cook's Assistant", "Cook's Assistant", "", "questtypes"},
     {25, 2, "QUEST_DEMONSLAYER", "Demon Slayer", "Demon Slayer", "", "questtypes"},
     {120, 3, "QUEST_RESTLESSGHOST", "The Restless Ghost", "Restless Ghost, The", "", "questtypes"},
@@ -226,6 +226,8 @@ inline constexpr std::array<QuestEntry, 219> kQuestIDEntries = {{
     {17027, 217, "MINIQUEST_FRACTUREDARCHIVE", "The Fractured Archive", "Fractured Archive, The", "", "questtypes"},
     {17230, 218, "QUEST_MUDFOOTSBIGADVENTURE", "Mudfoot's Big Adventure", "Mudfoot's Big Adventure", "", "questtypes"},
     {17231, 219, "QUEST_WRITINGSONTHEWALL", "The Writing's on the Wall", "Writing's on the Wall, The", "", "questtypes"},
+    {17315, 220, "QUEST_SHELLOFAFRIEND", "A Shell of a Friend", "Shell of a Friend, A", "", "questtypes"},
+    {17316, 221, "QUEST_BIRDSANDTHEWASPS", "The Birds and the Wasps", "Birds and the Wasps, The", "", "questtypes"},
 }};
 
 template <>

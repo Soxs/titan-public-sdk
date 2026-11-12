@@ -146,6 +146,8 @@ final class ObjectIDEntries_51 {
             new GamevalEntry(26245, "ROUTE_SWAMPBRIDGE_1", "route_swampbridge_1", "loctypes"),
             new GamevalEntry(26246, "ROUTE_SWAMPBRIDGE_2", "route_swampbridge_2", "loctypes"),
             new GamevalEntry(26247, "ROUTE_SWAMPBRIDGE_3", "route_swampbridge_3", "loctypes"),
+            new GamevalEntry(26248, "QUEST_START_ICON_BIRDSANDTHEWASPS", "quest_start_icon_birdsandthewasps", "loctypes"),
+            new GamevalEntry(26249, "BAW_EQUIPMENT_CRATE", "baw_equipment_crate", "loctypes"),
             new GamevalEntry(26250, "RCU_OUTER_MULTI8", "q??", "loctypes"),
             new GamevalEntry(26251, "RCU_OUTER_MULTI9", "q??", "loctypes"),
             new GamevalEntry(26252, "RCU_OUTER_MULTI10", "q??", "loctypes"),

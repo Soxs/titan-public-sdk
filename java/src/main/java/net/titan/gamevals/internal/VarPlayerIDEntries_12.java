@@ -106,6 +106,10 @@ final class VarPlayerIDEntries_12 {
             new GamevalEntry(6242, "WOTW_PRIMARY", "wotw_primary", "varptypes"),
             new GamevalEntry(6243, "WOTW_SECONDARY", "wotw_secondary", "varptypes"),
             new GamevalEntry(6245, "AIDE_NOPROTECT", "aide_noprotect", "varptypes"),
+            new GamevalEntry(6246, "SETTINGS_VARP_7", "settings_varp_7", "varptypes"),
+            new GamevalEntry(6247, "HC_TRACKING_5", "hc_tracking_5", "varptypes"),
+            new GamevalEntry(6248, "BAW_PRIMARY", "baw_primary", "varptypes"),
+            new GamevalEntry(6250, "SNAILQUEST_PRIMARY", "snailquest_primary", "varptypes"),
         };
     }
 

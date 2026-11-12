@@ -281,6 +281,7 @@ final class DBTableIDEntries_0 {
             new GamevalEntry(269, "COMBAT_ANIM", "combat_anim", "tabletypes"),
             new GamevalEntry(270, "ALTERNATE_PRAYERS", "alternate_prayers", "tabletypes"),
             new GamevalEntry(271, "UI_HIGHLIGHTING_FX_SINGLE_PULSE", "ui_highlighting_fx_single_pulse", "tabletypes"),
+            new GamevalEntry(272, "SNAILQUEST_OBJECTS", "snailquest_objects", "tabletypes"),
         };
     }
 

@@ -1608,6 +1608,7 @@ struct VarClientID final {
     static constexpr int32_t DISPLAYNAME_MENU_COUNTCHECKS = 1593;
     static constexpr int32_t DISPLAYNAME_MENU_KICKOUTTIME = 1594;
     static constexpr int32_t DISPLAYNAME_MENU_CHANGEDNAME = 1595;
+    static constexpr int32_t TUTORIAL_NAME_INPUT_LISTENING = 1596;
 
     template <typename Self = VarClientID>
     static constexpr std::span<const Entry> entries() {

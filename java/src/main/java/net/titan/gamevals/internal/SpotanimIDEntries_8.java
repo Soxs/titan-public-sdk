@@ -362,6 +362,10 @@ final class SpotanimIDEntries_8 {
             new GamevalEntry(4445, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "spottypes"),
             new GamevalEntry(4446, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "spottypes"),
             new GamevalEntry(4447, "THROWN_ROCK", "thrown_rock", "spottypes"),
+            new GamevalEntry(4448, "WASP_DART_TRAVEL", "wasp_dart_travel", "spottypes"),
+            new GamevalEntry(4449, "KILLER_WASP_DART_TRAVEL", "killer_wasp_dart_travel", "spottypes"),
+            new GamevalEntry(4450, "WASP_DART_LAUNCH", "wasp_dart_launch", "spottypes"),
+            new GamevalEntry(4451, "KILLER_WASP_DART_LAUNCH", "killer_wasp_dart_launch", "spottypes"),
         };
     }
 

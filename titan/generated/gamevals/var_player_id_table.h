@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 3260> kVarPlayerIDEntries = {{
+inline constexpr std::array<Entry, 3264> kVarPlayerIDEntries = {{
     {0, "MCANNON", "mcannon", "varptypes"},
     {1, "MCANNONMULTI", "mcannonmulti", "varptypes"},
     {2, "DROPCANNON", "dropcannon", "varptypes"},
@@ -3267,6 +3267,10 @@ inline constexpr std::array<Entry, 3260> kVarPlayerIDEntries = {{
     {6242, "WOTW_PRIMARY", "wotw_primary", "varptypes"},
     {6243, "WOTW_SECONDARY", "wotw_secondary", "varptypes"},
     {6245, "AIDE_NOPROTECT", "aide_noprotect", "varptypes"},
+    {6246, "SETTINGS_VARP_7", "settings_varp_7", "varptypes"},
+    {6247, "HC_TRACKING_5", "hc_tracking_5", "varptypes"},
+    {6248, "BAW_PRIMARY", "baw_primary", "varptypes"},
+    {6250, "SNAILQUEST_PRIMARY", "snailquest_primary", "varptypes"},
 }};
 
 template <>

@@ -155,7 +155,7 @@ final class NpcIDEntries_9 {
             new GamevalEntry(4750, "ELID_VILLAGER4", "Habibah", "npctypes"),
             new GamevalEntry(4751, "ELID_VILLAGER5", "Meskhenet", "npctypes"),
             new GamevalEntry(4752, "ELID_VILLAGER6", "Zahra", "npctypes"),
-            new GamevalEntry(4753, "ELID_HERBALIST", "Zahur", "npctypes"),
+            new GamevalEntry(4753, "ELID_HERBALIST", "Decant-coconut-milk", "npctypes"),
             new GamevalEntry(4754, "ELID_SHIELD_SELLER", "Seddu", "npctypes"),
             new GamevalEntry(4755, "ELID_GENERAL_SELLER", "Kazemde", "npctypes"),
             new GamevalEntry(4756, "ELID_MAYOR", "Awusah the Mayor", "npctypes"),

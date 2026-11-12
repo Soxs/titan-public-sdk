@@ -292,7 +292,7 @@ final class ItemIDEntries_19 {
             new GamevalEntry(10007, "CERT_HUNTING_OJIBWAY_BIRD_SNARE", "Null", "objtypes"),
             new GamevalEntry(10008, "HUNTING_BOX_TRAP", "Box trap", "objtypes"),
             new GamevalEntry(10009, "CERT_HUNTING_BOX_TRAP", "Null", "objtypes"),
-            new GamevalEntry(10010, "HUNTING_BUTTERFLY_NET", "Butterfly net", "objtypes"),
+            new GamevalEntry(10010, "HUNTING_BUTTERFLY_NET", "Insect net", "objtypes"),
             new GamevalEntry(10011, "CERT_HUNTING_BUTTERFLY_NET", "cert_hunting_butterfly_net", "objtypes"),
             new GamevalEntry(10012, "BUTTERFLY_JAR", "Butterfly jar", "objtypes"),
             new GamevalEntry(10013, "CERT_BUTTERFLY_JAR", "cert_butterfly_jar", "objtypes"),

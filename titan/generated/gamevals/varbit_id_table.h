@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 13788> kVarbitIDEntries = {{
+inline constexpr std::array<Entry, 13806> kVarbitIDEntries = {{
     {0, "TROLL_FREED_EADGAR", "troll_freed_eadgar", "varbittypes"},
     {1, "TROLL_OPENED_BACK_EXIT", "troll_opened_back_exit", "varbittypes"},
     {2, "TROLL_ENTERED_STRONGHOLD", "troll_entered_stronghold", "varbittypes"},
@@ -3915,6 +3915,7 @@ inline constexpr std::array<Entry, 13788> kVarbitIDEntries = {{
     {5602, "TOG_XP_BILLIONS", "tog_xp_billions", "varbittypes"},
     {5604, "BOUNTY_TELEPORT_QUOTA", "bounty_teleport_quota", "varbittypes"},
     {5605, "DISPLAYNAME_STATUS", "displayname_status", "varbittypes"},
+    {5606, "FOSSIL_DRIFTNET_CONFIRM_SKIP", "fossil_driftnet_confirm_skip", "varbittypes"},
     {5611, "EASTER17_MAIN", "easter17_main", "varbittypes"},
     {5612, "EASTER17_EGGS_CREATED", "easter17_eggs_created", "varbittypes"},
     {5613, "EASTER17_EGG_1", "easter17_egg_1", "varbittypes"},
@@ -6672,6 +6673,8 @@ inline constexpr std::array<Entry, 13788> kVarbitIDEntries = {{
     {10987, "DEATH_WAIVECOSMETICSPROTECTION", "death_waivecosmeticsprotection", "varbittypes"},
     {10988, "SETTINGS_TRANSMIT_PRONOUNS", "settings_transmit_pronouns", "varbittypes"},
     {10989, "MAKEOVER_BODYTYPE", "makeover_bodytype", "varbittypes"},
+    {10991, "HC_LAST_RESET_RUNEDAY", "hc_last_reset_runeday", "varbittypes"},
+    {10992, "BAW", "baw", "varbittypes"},
     {10993, "SLAYER_TASK_IS_PARTNER", "slayer_task_is_partner", "varbittypes"},
     {10994, "SLAYER_TASK_IS_PARTNER_STORED", "slayer_task_is_partner_stored", "varbittypes"},
     {10995, "BOOKOFSCROLLS_SPIDERCAVE", "bookofscrolls_spidercave", "varbittypes"},
@@ -11177,6 +11180,21 @@ inline constexpr std::array<Entry, 13788> kVarbitIDEntries = {{
     {16838, "STAFF_EQUIP_HINT", "staff_equip_hint", "varbittypes"},
     {16839, "LUMBRIDGE_GUIDE_MET", "lumbridge_guide_met", "varbittypes"},
     {16840, "MBA_RECOMMENDED", "mba_recommended", "varbittypes"},
+    {16841, "BAW_WASP_1_STATE", "baw_wasp_1_state", "varbittypes"},
+    {16842, "BAW_WASP_2_STATE", "baw_wasp_2_state", "varbittypes"},
+    {16843, "BAW_WASP_3_STATE", "baw_wasp_3_state", "varbittypes"},
+    {16844, "BAW_KILLER_WASP_1_STATE", "baw_killer_wasp_1_state", "varbittypes"},
+    {16845, "BAW_KILLER_WASP_2_STATE", "baw_killer_wasp_2_state", "varbittypes"},
+    {16846, "BAW_KILLER_WASP_3_STATE", "baw_killer_wasp_3_state", "varbittypes"},
+    {16847, "BAW_BIRDS_CAUGHT", "baw_birds_caught", "varbittypes"},
+    {16848, "BAW_HAD_CIDER", "baw_had_cider", "varbittypes"},
+    {16849, "BAW_SPOKEN_ABOUT_WASPS", "baw_spoken_about_wasps", "varbittypes"},
+    {16850, "BAW_WASPS_CAUGHT_NOTIFICATION", "baw_wasps_caught_notification", "varbittypes"},
+    {16851, "BAW_SPOKEN_ABOUT_BIRDS", "baw_spoken_about_birds", "varbittypes"},
+    {16852, "BAW_BIRDS_CAUGHT_NOTIFICATION", "baw_birds_caught_notification", "varbittypes"},
+    {16853, "BAW_SPOKEN_ABOUT_DARTS", "baw_spoken_about_darts", "varbittypes"},
+    {16854, "SNAILQUEST", "snailquest", "varbittypes"},
+    {16855, "SNAILQUEST_SNAIL_NAME", "snailquest_snail_name", "varbittypes"},
     {16994, "SCRAMBLED_EGG_VIS", "scrambled_egg_vis", "varbittypes"},
     {16995, "SCRAMBLED_NAILS_GIVEN", "scrambled_nails_given", "varbittypes"},
     {17219, "SLAYER_LONGER_CUSTODIANS", "slayer_longer_custodians", "varbittypes"},

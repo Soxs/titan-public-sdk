@@ -404,6 +404,7 @@ public interface NpcIDConstants_10 {
     int JARR_DESERT_DIARY = 5520;
     int LESABRE_MORT_DIARY = 5521;
     int DIARY_FLAX_KEEPER = 5522;
+    int BAW_KILLER_WASP_SWARM = 5523;
     int WHITE_KNIGHT_DIARY = 5524;
     int TOBY_VARROCK_DIARY = 5525;
     int VIKING_FREM_DIARY = 5526;

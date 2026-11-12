@@ -101,6 +101,10 @@ final class NpcIDEntries_32 {
             new GamevalEntry(16472, "CRAB_MAINCRAB_BLUSHING", "Crab", "npctypes"),
             new GamevalEntry(16473, "CRAB_MAINCRAB_START_NOMOVE", "Crab", "npctypes"),
             new GamevalEntry(16474, "CRAB_MAINCRAB_END", "Crab", "npctypes"),
+            new GamevalEntry(16475, "BAW_WASP_1_MULTI", "baw_wasp_1_multi", "npctypes"),
+            new GamevalEntry(16476, "BAW_WASP_2_MULTI", "baw_wasp_2_multi", "npctypes"),
+            new GamevalEntry(16477, "BAW_WASP_3_MULTI", "baw_wasp_3_multi", "npctypes"),
+            new GamevalEntry(16478, "BAW_KILLER_WASP_1_MULTI", "baw_killer_wasp_1_multi", "npctypes"),
             new GamevalEntry(16479, "CRAB_MAINCRAB_CUTSCENE", "Crab", "npctypes"),
             new GamevalEntry(16480, "CRAB_CRAB_CUTSCENE", "Crab", "npctypes"),
             new GamevalEntry(16481, "CRAB_CRAB_CUTSCENE_ENDCRAB", "Crab", "npctypes"),
@@ -498,6 +502,16 @@ final class NpcIDEntries_32 {
             new GamevalEntry(16873, "WOTW_MONK", "Monk", "npctypes"),
             new GamevalEntry(16874, "WOTW_FARMER", "Joyce", "npctypes"),
             new GamevalEntry(16875, "WOTW_FORESTER", "Kyle", "npctypes"),
+            new GamevalEntry(16876, "BAW_KILLER_WASP_2_MULTI", "baw_killer_wasp_2_multi", "npctypes"),
+            new GamevalEntry(16877, "BAW_KILLER_WASP_3_MULTI", "baw_killer_wasp_3_multi", "npctypes"),
+            new GamevalEntry(16878, "BAW_HONEY_BUZZARD_MULTI", "?_", "npctypes"),
+            new GamevalEntry(16879, "BAW_HONEY_BUZZARD", "Honey Buzzard", "npctypes"),
+            new GamevalEntry(16880, "BAW_BLACK_HONEY_BUZZARD_MULTI", "?_", "npctypes"),
+            new GamevalEntry(16881, "BAW_BLACK_HONEY_BUZZARD", "Black Honey Buzzard", "npctypes"),
+            new GamevalEntry(16882, "SNAILQUEST_SNAIL", "Juvenile Snail", "npctypes"),
+            new GamevalEntry(16883, "SNAILQUEST_LEECH", "Leech", "npctypes"),
+            new GamevalEntry(16884, "SNAILQUEST_SNELMLOVER", "SnelmLover500", "npctypes"),
+            new GamevalEntry(16885, "SNAILQUEST_SNELMLOVER_COMBAT", "SnelmLover500", "npctypes"),
         };
     }
 

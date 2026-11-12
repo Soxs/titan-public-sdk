@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 1596> kVarClientIDEntries = {{
+inline constexpr std::array<Entry, 1597> kVarClientIDEntries = {{
     {0, "FAIRYRINGS_SCROLLPOS", "fairyrings_scrollpos", "varctypes"},
     {1, "TOOLTIP_TIME", "tooltip_time", "varctypes"},
     {2, "TOOLTIP_BUILT", "tooltip_built", "varctypes"},
@@ -1603,6 +1603,7 @@ inline constexpr std::array<Entry, 1596> kVarClientIDEntries = {{
     {1593, "DISPLAYNAME_MENU_COUNTCHECKS", "displayname_menu_countchecks", "varctypes"},
     {1594, "DISPLAYNAME_MENU_KICKOUTTIME", "displayname_menu_kickouttime", "varctypes"},
     {1595, "DISPLAYNAME_MENU_CHANGEDNAME", "displayname_menu_changedname", "varctypes"},
+    {1596, "TUTORIAL_NAME_INPUT_LISTENING", "tutorial_name_input_listening", "varctypes"},
 }};
 
 template <>

@@ -353,4 +353,8 @@ public interface SpotanimIDConstants_8 {
     int VFX_TFA_TELEPORT_START = 4445;
     int VFX_TFA_TELEPORT_END = 4446;
     int THROWN_ROCK = 4447;
+    int WASP_DART_TRAVEL = 4448;
+    int KILLER_WASP_DART_TRAVEL = 4449;
+    int WASP_DART_LAUNCH = 4450;
+    int KILLER_WASP_DART_LAUNCH = 4451;
 }

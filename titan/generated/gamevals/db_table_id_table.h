@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 271> kDBTableIDEntries = {{
+inline constexpr std::array<Entry, 272> kDBTableIDEntries = {{
     {0, "QUEST", "quest", "tabletypes"},
     {1, "EVENTS", "events", "tabletypes"},
     {2, "CR_MODULE", "cr_module", "tabletypes"},
@@ -278,6 +278,7 @@ inline constexpr std::array<Entry, 271> kDBTableIDEntries = {{
     {269, "COMBAT_ANIM", "combat_anim", "tabletypes"},
     {270, "ALTERNATE_PRAYERS", "alternate_prayers", "tabletypes"},
     {271, "UI_HIGHLIGHTING_FX_SINGLE_PULSE", "ui_highlighting_fx_single_pulse", "tabletypes"},
+    {272, "SNAILQUEST_OBJECTS", "snailquest_objects", "tabletypes"},
 }};
 
 template <>

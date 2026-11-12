@@ -234,6 +234,8 @@ final class VarbitIDEntries_21 {
             new GamevalEntry(10987, "DEATH_WAIVECOSMETICSPROTECTION", "death_waivecosmeticsprotection", "varbittypes"),
             new GamevalEntry(10988, "SETTINGS_TRANSMIT_PRONOUNS", "settings_transmit_pronouns", "varbittypes"),
             new GamevalEntry(10989, "MAKEOVER_BODYTYPE", "makeover_bodytype", "varbittypes"),
+            new GamevalEntry(10991, "HC_LAST_RESET_RUNEDAY", "hc_last_reset_runeday", "varbittypes"),
+            new GamevalEntry(10992, "BAW", "baw", "varbittypes"),
             new GamevalEntry(10993, "SLAYER_TASK_IS_PARTNER", "slayer_task_is_partner", "varbittypes"),
             new GamevalEntry(10994, "SLAYER_TASK_IS_PARTNER_STORED", "slayer_task_is_partner_stored", "varbittypes"),
             new GamevalEntry(10995, "BOOKOFSCROLLS_SPIDERCAVE", "bookofscrolls_spidercave", "varbittypes"),

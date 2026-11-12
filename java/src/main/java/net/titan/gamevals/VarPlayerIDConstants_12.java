@@ -97,4 +97,8 @@ public interface VarPlayerIDConstants_12 {
     int WOTW_PRIMARY = 6242;
     int WOTW_SECONDARY = 6243;
     int AIDE_NOPROTECT = 6245;
+    int SETTINGS_VARP_7 = 6246;
+    int HC_TRACKING_5 = 6247;
+    int BAW_PRIMARY = 6248;
+    int SNAILQUEST_PRIMARY = 6250;
 }

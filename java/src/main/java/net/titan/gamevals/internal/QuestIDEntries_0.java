@@ -229,6 +229,8 @@ final class QuestIDEntries_0 {
             new QuestEntry(17027, 217, "MINIQUEST_FRACTUREDARCHIVE", "The Fractured Archive", "Fractured Archive, The", "", "questtypes"),
             new QuestEntry(17230, 218, "QUEST_MUDFOOTSBIGADVENTURE", "Mudfoot's Big Adventure", "Mudfoot's Big Adventure", "", "questtypes"),
             new QuestEntry(17231, 219, "QUEST_WRITINGSONTHEWALL", "The Writing's on the Wall", "Writing's on the Wall, The", "", "questtypes"),
+            new QuestEntry(17315, 220, "QUEST_SHELLOFAFRIEND", "A Shell of a Friend", "Shell of a Friend, A", "", "questtypes"),
+            new QuestEntry(17316, 221, "QUEST_BIRDSANDTHEWASPS", "The Birds and the Wasps", "Birds and the Wasps, The", "", "questtypes"),
         };
     }
 

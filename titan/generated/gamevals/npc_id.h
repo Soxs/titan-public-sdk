@@ -3226,6 +3226,18 @@ struct NpcID final {
     static constexpr int32_t HARRY = 3213;
     static constexpr int32_t CASSIE = 3214;
     static constexpr int32_t FRINCOS = 3215;
+    static constexpr int32_t BAW_BEA_MULTI = 3216;
+    static constexpr int32_t BAW_BEA = 3217;
+    static constexpr int32_t BAW_BEA_3OPS = 3218;
+    static constexpr int32_t BAW_BEE_DEALER_MULTI = 3219;
+    static constexpr int32_t BAW_BEE_DEALER = 3220;
+    static constexpr int32_t BAW_BEA_CUTSCENE = 3221;
+    static constexpr int32_t BAW_WASP_SWARM_CUTSCENE = 3222;
+    static constexpr int32_t BAW_KILLER_WASP_SWARM_CUTSCENE = 3223;
+    static constexpr int32_t BAW_HONEY_BUZZARD_CUTSCENE = 3224;
+    static constexpr int32_t BAW_BLACK_HONEY_BUZZARD_CUTSCENE = 3225;
+    static constexpr int32_t BAW_WASP_SWARM = 3226;
+    static constexpr int32_t BAW_WASP_SWARM_FURIOUS = 3227;
     static constexpr int32_t RCU_ZAMMY_MAGE1 = 3228;
     static constexpr int32_t RCU_ZAMMY_MAGE1_EDGE = 3229;
     static constexpr int32_t MULTI_SKIPPY = 3230;
@@ -5521,6 +5533,7 @@ struct NpcID final {
     static constexpr int32_t JARR_DESERT_DIARY = 5520;
     static constexpr int32_t LESABRE_MORT_DIARY = 5521;
     static constexpr int32_t DIARY_FLAX_KEEPER = 5522;
+    static constexpr int32_t BAW_KILLER_WASP_SWARM = 5523;
     static constexpr int32_t WHITE_KNIGHT_DIARY = 5524;
     static constexpr int32_t TOBY_VARROCK_DIARY = 5525;
     static constexpr int32_t VIKING_FREM_DIARY = 5526;
@@ -8662,6 +8675,7 @@ struct NpcID final {
     static constexpr int32_t _3RD_AGE_DRUID_STAFF_TRANSMOG = 8662;
     static constexpr int32_t _3RD_AGE_DRUID_CLOAK_TRANSMOG = 8663;
     static constexpr int32_t _3RD_AGE_RING_TRANSMOG = 8664;
+    static constexpr int32_t BAW_KILLER_WASP_SWARM_FURIOUS = 8665;
     static constexpr int32_t VARROCK_BANK_DOORGUARD = 8666;
     static constexpr int32_t FOSSIL_PUFFER_FISH_MODEL = 8667;
     static constexpr int32_t FOSSIL_PUFFER_FISH_1 = 8668;
@@ -16471,6 +16485,10 @@ struct NpcID final {
     static constexpr int32_t CRAB_MAINCRAB_BLUSHING = 16472;
     static constexpr int32_t CRAB_MAINCRAB_START_NOMOVE = 16473;
     static constexpr int32_t CRAB_MAINCRAB_END = 16474;
+    static constexpr int32_t BAW_WASP_1_MULTI = 16475;
+    static constexpr int32_t BAW_WASP_2_MULTI = 16476;
+    static constexpr int32_t BAW_WASP_3_MULTI = 16477;
+    static constexpr int32_t BAW_KILLER_WASP_1_MULTI = 16478;
     static constexpr int32_t CRAB_MAINCRAB_CUTSCENE = 16479;
     static constexpr int32_t CRAB_CRAB_CUTSCENE = 16480;
     static constexpr int32_t CRAB_CRAB_CUTSCENE_ENDCRAB = 16481;
@@ -16868,6 +16886,16 @@ struct NpcID final {
     static constexpr int32_t WOTW_MONK = 16873;
     static constexpr int32_t WOTW_FARMER = 16874;
     static constexpr int32_t WOTW_FORESTER = 16875;
+    static constexpr int32_t BAW_KILLER_WASP_2_MULTI = 16876;
+    static constexpr int32_t BAW_KILLER_WASP_3_MULTI = 16877;
+    static constexpr int32_t BAW_HONEY_BUZZARD_MULTI = 16878;
+    static constexpr int32_t BAW_HONEY_BUZZARD = 16879;
+    static constexpr int32_t BAW_BLACK_HONEY_BUZZARD_MULTI = 16880;
+    static constexpr int32_t BAW_BLACK_HONEY_BUZZARD = 16881;
+    static constexpr int32_t SNAILQUEST_SNAIL = 16882;
+    static constexpr int32_t SNAILQUEST_LEECH = 16883;
+    static constexpr int32_t SNAILQUEST_SNELMLOVER = 16884;
+    static constexpr int32_t SNAILQUEST_SNELMLOVER_COMBAT = 16885;
 
     template <typename Self = NpcID>
     static constexpr std::span<const Entry> entries() {

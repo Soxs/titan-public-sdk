@@ -191,6 +191,7 @@ public interface ObjectIDConstants_4 {
     int ZQDOLMEN = 2235;
     int ZQHANDHOLDS = 2236;
     int ZQQUEST_HIDYTREE = 2237;
+    int QUEST_START_ICON_ASHELLOFAFRIEND = 2238;
     int MIMIC_WALL_WOOD_01 = 2239;
     int HILLSIDECLOSEDL = 2240;
     int HILLSIDECLOSEDR = 2241;

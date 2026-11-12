@@ -231,6 +231,8 @@ struct QuestID final {
     static constexpr int32_t MINIQUEST_FRACTUREDARCHIVE = 217;
     static constexpr int32_t QUEST_MUDFOOTSBIGADVENTURE = 218;
     static constexpr int32_t QUEST_WRITINGSONTHEWALL = 219;
+    static constexpr int32_t QUEST_SHELLOFAFRIEND = 220;
+    static constexpr int32_t QUEST_BIRDSANDTHEWASPS = 221;
 
     template <typename Self = QuestID>
     static constexpr std::span<const QuestEntry> entries() {

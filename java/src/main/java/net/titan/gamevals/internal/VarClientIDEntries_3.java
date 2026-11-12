@@ -70,6 +70,7 @@ final class VarClientIDEntries_3 {
             new GamevalEntry(1593, "DISPLAYNAME_MENU_COUNTCHECKS", "displayname_menu_countchecks", "varctypes"),
             new GamevalEntry(1594, "DISPLAYNAME_MENU_KICKOUTTIME", "displayname_menu_kickouttime", "varctypes"),
             new GamevalEntry(1595, "DISPLAYNAME_MENU_CHANGEDNAME", "displayname_menu_changedname", "varctypes"),
+            new GamevalEntry(1596, "TUTORIAL_NAME_INPUT_LISTENING", "tutorial_name_input_listening", "varctypes"),
         };
     }
 

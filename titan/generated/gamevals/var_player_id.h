@@ -3272,6 +3272,10 @@ struct VarPlayerID final {
     static constexpr int32_t WOTW_PRIMARY = 6242;
     static constexpr int32_t WOTW_SECONDARY = 6243;
     static constexpr int32_t AIDE_NOPROTECT = 6245;
+    static constexpr int32_t SETTINGS_VARP_7 = 6246;
+    static constexpr int32_t HC_TRACKING_5 = 6247;
+    static constexpr int32_t BAW_PRIMARY = 6248;
+    static constexpr int32_t SNAILQUEST_PRIMARY = 6250;
 
     template <typename Self = VarPlayerID>
     static constexpr std::span<const Entry> entries() {

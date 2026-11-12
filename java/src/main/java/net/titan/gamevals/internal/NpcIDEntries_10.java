@@ -413,6 +413,7 @@ final class NpcIDEntries_10 {
             new GamevalEntry(5520, "JARR_DESERT_DIARY", "Jarr", "npctypes"),
             new GamevalEntry(5521, "LESABRE_MORT_DIARY", "Le-sabr?", "npctypes"),
             new GamevalEntry(5522, "DIARY_FLAX_KEEPER", "Flax keeper", "npctypes"),
+            new GamevalEntry(5523, "BAW_KILLER_WASP_SWARM", "Swarm of killer wasps", "npctypes"),
             new GamevalEntry(5524, "WHITE_KNIGHT_DIARY", "Sir Rebral", "npctypes"),
             new GamevalEntry(5525, "TOBY_VARROCK_DIARY", "Toby", "npctypes"),
             new GamevalEntry(5526, "VIKING_FREM_DIARY", "Thorodin", "npctypes"),

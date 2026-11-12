@@ -336,6 +336,10 @@ final class AnimationIDEntries_29 {
             new GamevalEntry(15171, "WOTW_HUMAN_SEPPUKU", "wotw_human_seppuku", "seqtypes"),
             new GamevalEntry(15172, "WOTW_HUMAN_SEPPUKU_IDLE", "wotw_human_seppuku_idle", "seqtypes"),
             new GamevalEntry(15173, "CHEST_GUTHIXIAN02_REVEAL", "chest_guthixian02_reveal", "seqtypes"),
+            new GamevalEntry(15174, "HUMAN_SPOT_JUMP_MERGE", "human_spot_jump_merge", "seqtypes"),
+            new GamevalEntry(15175, "HUMAN_JUMP_STONES_MERGE", "human_jump_stones_merge", "seqtypes"),
+            new GamevalEntry(15176, "HUMAN_FLETCHING_ADD_DART_FEATHERS_WASP", "human_fletching_add_dart_feathers_wasp", "seqtypes"),
+            new GamevalEntry(15177, "HUMAN_FLETCHING_ADD_DART_FEATHERS_KILLER_WASP", "human_fletching_add_dart_feathers_killer_wasp", "seqtypes"),
         };
     }
 

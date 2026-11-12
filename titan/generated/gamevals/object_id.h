@@ -2239,6 +2239,7 @@ struct ObjectID final {
     static constexpr int32_t ZQDOLMEN = 2235;
     static constexpr int32_t ZQHANDHOLDS = 2236;
     static constexpr int32_t ZQQUEST_HIDYTREE = 2237;
+    static constexpr int32_t QUEST_START_ICON_ASHELLOFAFRIEND = 2238;
     static constexpr int32_t MIMIC_WALL_WOOD_01 = 2239;
     static constexpr int32_t HILLSIDECLOSEDL = 2240;
     static constexpr int32_t HILLSIDECLOSEDR = 2241;
@@ -26194,6 +26195,8 @@ struct ObjectID final {
     static constexpr int32_t ROUTE_SWAMPBRIDGE_1 = 26245;
     static constexpr int32_t ROUTE_SWAMPBRIDGE_2 = 26246;
     static constexpr int32_t ROUTE_SWAMPBRIDGE_3 = 26247;
+    static constexpr int32_t QUEST_START_ICON_BIRDSANDTHEWASPS = 26248;
+    static constexpr int32_t BAW_EQUIPMENT_CRATE = 26249;
     static constexpr int32_t RCU_OUTER_MULTI8 = 26250;
     static constexpr int32_t RCU_OUTER_MULTI9 = 26251;
     static constexpr int32_t RCU_OUTER_MULTI10 = 26252;
@@ -33094,6 +33097,17 @@ struct ObjectID final {
     static constexpr int32_t DEADMAN_CRYSTAL_SHADOW = 33148;
     static constexpr int32_t DEADMAN_CRYSTAL_SMOKE = 33149;
     static constexpr int32_t TUTOR_MAIN_ICON = 33150;
+    static constexpr int32_t BAW_EQUIPMENT_CRATE_PRE_QUEST = 33151;
+    static constexpr int32_t BAW_EQUIPMENT_CRATE_QUEST = 33152;
+    static constexpr int32_t BAW_BEEHIVE_1 = 33153;
+    static constexpr int32_t BAW_BEEHIVE_2 = 33154;
+    static constexpr int32_t BAW_FENCEGATE_L = 33155;
+    static constexpr int32_t BAW_FENCEGATE_R = 33156;
+    static constexpr int32_t BAW_FENCING_INVISIBLE_WALL = 33157;
+    static constexpr int32_t SNAILQUEST_STEPPING_STONE = 33158;
+    static constexpr int32_t SNAILQUEST_TREE_MULTI = 33159;
+    static constexpr int32_t SNAILQUEST_TREE_DEFAULT = 33160;
+    static constexpr int32_t SNAILQUEST_TREE_BUILDABLE = 33161;
     static constexpr int32_t TUTOR_DANGER_ICON = 33162;
     static constexpr int32_t TUTOR_IRONMAN_ICON = 33163;
     static constexpr int32_t TUTOR_DEADMAN_ICON = 33164;
@@ -63264,6 +63278,11 @@ struct ObjectID final {
     static constexpr int32_t DEATH_OFFICE_WALL_ALCOVE03 = 63331;
     static constexpr int32_t GE_EVENTS_STALL01 = 63332;
     static constexpr int32_t GE_EVENTS_STALL02 = 63333;
+    static constexpr int32_t SNAILQUEST_TREE_SHELTER_BUILT = 63334;
+    static constexpr int32_t HUNTING_OJIBWAY_TRAP_TRAPPING_HONEY_BUZZARD = 63335;
+    static constexpr int32_t HUNTING_OJIBWAY_TRAP_FULL_HONEY_BUZZARD = 63336;
+    static constexpr int32_t HUNTING_OJIBWAY_TRAP_TRAPPING_BLACK_HONEY_BUZZARD = 63337;
+    static constexpr int32_t HUNTING_OJIBWAY_TRAP_FULL_BLACK_HONEY_BUZZARD = 63338;
 
     template <typename Self = ObjectID>
     static constexpr std::span<const Entry> entries() {

@@ -301,6 +301,21 @@ final class VarbitIDEntries_32 {
             new GamevalEntry(16838, "STAFF_EQUIP_HINT", "staff_equip_hint", "varbittypes"),
             new GamevalEntry(16839, "LUMBRIDGE_GUIDE_MET", "lumbridge_guide_met", "varbittypes"),
             new GamevalEntry(16840, "MBA_RECOMMENDED", "mba_recommended", "varbittypes"),
+            new GamevalEntry(16841, "BAW_WASP_1_STATE", "baw_wasp_1_state", "varbittypes"),
+            new GamevalEntry(16842, "BAW_WASP_2_STATE", "baw_wasp_2_state", "varbittypes"),
+            new GamevalEntry(16843, "BAW_WASP_3_STATE", "baw_wasp_3_state", "varbittypes"),
+            new GamevalEntry(16844, "BAW_KILLER_WASP_1_STATE", "baw_killer_wasp_1_state", "varbittypes"),
+            new GamevalEntry(16845, "BAW_KILLER_WASP_2_STATE", "baw_killer_wasp_2_state", "varbittypes"),
+            new GamevalEntry(16846, "BAW_KILLER_WASP_3_STATE", "baw_killer_wasp_3_state", "varbittypes"),
+            new GamevalEntry(16847, "BAW_BIRDS_CAUGHT", "baw_birds_caught", "varbittypes"),
+            new GamevalEntry(16848, "BAW_HAD_CIDER", "baw_had_cider", "varbittypes"),
+            new GamevalEntry(16849, "BAW_SPOKEN_ABOUT_WASPS", "baw_spoken_about_wasps", "varbittypes"),
+            new GamevalEntry(16850, "BAW_WASPS_CAUGHT_NOTIFICATION", "baw_wasps_caught_notification", "varbittypes"),
+            new GamevalEntry(16851, "BAW_SPOKEN_ABOUT_BIRDS", "baw_spoken_about_birds", "varbittypes"),
+            new GamevalEntry(16852, "BAW_BIRDS_CAUGHT_NOTIFICATION", "baw_birds_caught_notification", "varbittypes"),
+            new GamevalEntry(16853, "BAW_SPOKEN_ABOUT_DARTS", "baw_spoken_about_darts", "varbittypes"),
+            new GamevalEntry(16854, "SNAILQUEST", "snailquest", "varbittypes"),
+            new GamevalEntry(16855, "SNAILQUEST_SNAIL_NAME", "snailquest_snail_name", "varbittypes"),
         };
     }
 

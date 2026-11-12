@@ -15174,6 +15174,10 @@ struct AnimationID final {
     static constexpr int32_t WOTW_HUMAN_SEPPUKU = 15171;
     static constexpr int32_t WOTW_HUMAN_SEPPUKU_IDLE = 15172;
     static constexpr int32_t CHEST_GUTHIXIAN02_REVEAL = 15173;
+    static constexpr int32_t HUMAN_SPOT_JUMP_MERGE = 15174;
+    static constexpr int32_t HUMAN_JUMP_STONES_MERGE = 15175;
+    static constexpr int32_t HUMAN_FLETCHING_ADD_DART_FEATHERS_WASP = 15176;
+    static constexpr int32_t HUMAN_FLETCHING_ADD_DART_FEATHERS_KILLER_WASP = 15177;
 
     template <typename Self = AnimationID>
     static constexpr std::span<const Entry> entries() {

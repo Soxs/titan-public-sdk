@@ -513,7 +513,7 @@ final class ItemIDEntries_21 {
             new GamevalEntry(11256, "II_CAPTURED_IMPLING_10", "Dragon impling jar", "objtypes"),
             new GamevalEntry(11257, "CERT_II_CAPTURED_IMPLING_10", "cert_ii_captured_impling_10", "objtypes"),
             new GamevalEntry(11258, "II_JAR_GENERATOR", "Jar generator", "objtypes"),
-            new GamevalEntry(11259, "II_MAGIC_BUTTERFLY_NET", "Magic butterfly net", "objtypes"),
+            new GamevalEntry(11259, "II_MAGIC_BUTTERFLY_NET", "Magic insect net", "objtypes"),
             new GamevalEntry(11260, "II_IMPLING_JAR", "Impling jar", "objtypes"),
             new GamevalEntry(11261, "CERT_II_IMPLING_JAR", "cert_ii_impling_jar", "objtypes"),
             new GamevalEntry(11262, "II_IMP_REPELLENT", "Imp repellent", "objtypes"),

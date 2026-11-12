@@ -368,6 +368,11 @@ final class ObjectIDEntries_123 {
             new GamevalEntry(63331, "DEATH_OFFICE_WALL_ALCOVE03", "death_office_wall_alcove03", "loctypes"),
             new GamevalEntry(63332, "GE_EVENTS_STALL01", "Market stall", "loctypes"),
             new GamevalEntry(63333, "GE_EVENTS_STALL02", "Market stall", "loctypes"),
+            new GamevalEntry(63334, "SNAILQUEST_TREE_SHELTER_BUILT", "Shelter", "loctypes"),
+            new GamevalEntry(63335, "HUNTING_OJIBWAY_TRAP_TRAPPING_HONEY_BUZZARD", "Bird snare", "loctypes"),
+            new GamevalEntry(63336, "HUNTING_OJIBWAY_TRAP_FULL_HONEY_BUZZARD", "Bird snare", "loctypes"),
+            new GamevalEntry(63337, "HUNTING_OJIBWAY_TRAP_TRAPPING_BLACK_HONEY_BUZZARD", "Bird snare", "loctypes"),
+            new GamevalEntry(63338, "HUNTING_OJIBWAY_TRAP_FULL_BLACK_HONEY_BUZZARD", "Bird snare", "loctypes"),
         };
     }
 

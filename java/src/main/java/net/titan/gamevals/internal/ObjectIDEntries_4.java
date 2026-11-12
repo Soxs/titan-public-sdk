@@ -200,6 +200,7 @@ final class ObjectIDEntries_4 {
             new GamevalEntry(2235, "ZQDOLMEN", "Tomb dolmen", "loctypes"),
             new GamevalEntry(2236, "ZQHANDHOLDS", "Climbing rocks", "loctypes"),
             new GamevalEntry(2237, "ZQQUEST_HIDYTREE", "Palm tree", "loctypes"),
+            new GamevalEntry(2238, "QUEST_START_ICON_ASHELLOFAFRIEND", "quest_start_icon_ashellofafriend", "loctypes"),
             new GamevalEntry(2239, "MIMIC_WALL_WOOD_01", "mimic_wall_wood_01", "loctypes"),
             new GamevalEntry(2240, "HILLSIDECLOSEDL", "Carved doors", "loctypes"),
             new GamevalEntry(2241, "HILLSIDECLOSEDR", "Carved doors", "loctypes"),

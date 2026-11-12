@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 63252> kObjectIDEntries = {{
+inline constexpr std::array<Entry, 63271> kObjectIDEntries = {{
     {0, "MCANNONREMAINS_MULTILOC", "mcannonremains_multiloc", "loctypes"},
     {1, "MCANNONCRATEBOY", "Crate", "loctypes"},
     {2, "MCANNONCAVE", "Cave Entrance", "loctypes"},
@@ -2234,6 +2234,7 @@ inline constexpr std::array<Entry, 63252> kObjectIDEntries = {{
     {2235, "ZQDOLMEN", "Tomb dolmen", "loctypes"},
     {2236, "ZQHANDHOLDS", "Climbing rocks", "loctypes"},
     {2237, "ZQQUEST_HIDYTREE", "Palm tree", "loctypes"},
+    {2238, "QUEST_START_ICON_ASHELLOFAFRIEND", "quest_start_icon_ashellofafriend", "loctypes"},
     {2239, "MIMIC_WALL_WOOD_01", "mimic_wall_wood_01", "loctypes"},
     {2240, "HILLSIDECLOSEDL", "Carved doors", "loctypes"},
     {2241, "HILLSIDECLOSEDR", "Carved doors", "loctypes"},
@@ -26189,6 +26190,8 @@ inline constexpr std::array<Entry, 63252> kObjectIDEntries = {{
     {26245, "ROUTE_SWAMPBRIDGE_1", "route_swampbridge_1", "loctypes"},
     {26246, "ROUTE_SWAMPBRIDGE_2", "route_swampbridge_2", "loctypes"},
     {26247, "ROUTE_SWAMPBRIDGE_3", "route_swampbridge_3", "loctypes"},
+    {26248, "QUEST_START_ICON_BIRDSANDTHEWASPS", "quest_start_icon_birdsandthewasps", "loctypes"},
+    {26249, "BAW_EQUIPMENT_CRATE", "baw_equipment_crate", "loctypes"},
     {26250, "RCU_OUTER_MULTI8", "q??", "loctypes"},
     {26251, "RCU_OUTER_MULTI9", "q??", "loctypes"},
     {26252, "RCU_OUTER_MULTI10", "q??", "loctypes"},
@@ -33089,6 +33092,17 @@ inline constexpr std::array<Entry, 63252> kObjectIDEntries = {{
     {33148, "DEADMAN_CRYSTAL_SHADOW", "Shadow crystal", "loctypes"},
     {33149, "DEADMAN_CRYSTAL_SMOKE", "Smoke Crystal", "loctypes"},
     {33150, "TUTOR_MAIN_ICON", "tutor_main_icon", "loctypes"},
+    {33151, "BAW_EQUIPMENT_CRATE_PRE_QUEST", "Crate", "loctypes"},
+    {33152, "BAW_EQUIPMENT_CRATE_QUEST", "Equipment crate", "loctypes"},
+    {33153, "BAW_BEEHIVE_1", "Beehive", "loctypes"},
+    {33154, "BAW_BEEHIVE_2", "Beehive", "loctypes"},
+    {33155, "BAW_FENCEGATE_L", "Gate", "loctypes"},
+    {33156, "BAW_FENCEGATE_R", "Gate", "loctypes"},
+    {33157, "BAW_FENCING_INVISIBLE_WALL", "Gap", "loctypes"},
+    {33158, "SNAILQUEST_STEPPING_STONE", "Stepping stone", "loctypes"},
+    {33159, "SNAILQUEST_TREE_MULTI", "snailquest_tree_multi", "loctypes"},
+    {33160, "SNAILQUEST_TREE_DEFAULT", "Tree", "loctypes"},
+    {33161, "SNAILQUEST_TREE_BUILDABLE", "Tree", "loctypes"},
     {33162, "TUTOR_DANGER_ICON", "tutor_danger_icon", "loctypes"},
     {33163, "TUTOR_IRONMAN_ICON", "tutor_ironman_icon", "loctypes"},
     {33164, "TUTOR_DEADMAN_ICON", "tutor_deadman_icon", "loctypes"},
@@ -63259,6 +63273,11 @@ inline constexpr std::array<Entry, 63252> kObjectIDEntries = {{
     {63331, "DEATH_OFFICE_WALL_ALCOVE03", "death_office_wall_alcove03", "loctypes"},
     {63332, "GE_EVENTS_STALL01", "Market stall", "loctypes"},
     {63333, "GE_EVENTS_STALL02", "Market stall", "loctypes"},
+    {63334, "SNAILQUEST_TREE_SHELTER_BUILT", "Shelter", "loctypes"},
+    {63335, "HUNTING_OJIBWAY_TRAP_TRAPPING_HONEY_BUZZARD", "Bird snare", "loctypes"},
+    {63336, "HUNTING_OJIBWAY_TRAP_FULL_HONEY_BUZZARD", "Bird snare", "loctypes"},
+    {63337, "HUNTING_OJIBWAY_TRAP_TRAPPING_BLACK_HONEY_BUZZARD", "Bird snare", "loctypes"},
+    {63338, "HUNTING_OJIBWAY_TRAP_FULL_BLACK_HONEY_BUZZARD", "Bird snare", "loctypes"},
 }};
 
 template <>

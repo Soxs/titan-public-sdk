@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 1035> kInventoryIDEntries = {{
+inline constexpr std::array<Entry, 1036> kInventoryIDEntries = {{
     {0, "TRAWLER_REWARDINV", "trawler_rewardinv", "invtypes"},
     {1, "AXESHOP", "axeshop", "invtypes"},
     {2, "ARMOURSHOP", "armourshop", "invtypes"},
@@ -1042,6 +1042,7 @@ inline constexpr std::array<Entry, 1035> kInventoryIDEntries = {{
     {1032, "LUMBRIDGE_BLACKSMITH", "lumbridge_blacksmith", "invtypes"},
     {1033, "RENDER_WORN", "render_worn", "invtypes"},
     {1034, "PUB_LUMBRIDGE", "pub_lumbridge", "invtypes"},
+    {1035, "BAW_BEA_POST_QUEST_SHOP", "baw_bea_post_quest_shop", "invtypes"},
 }};
 
 template <>

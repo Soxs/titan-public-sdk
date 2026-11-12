@@ -483,6 +483,7 @@ final class NpcIDEntries_16 {
             new GamevalEntry(8662, "_3RD_AGE_DRUID_STAFF_TRANSMOG", "3rd_age_druid_staff_transmog", "npctypes"),
             new GamevalEntry(8663, "_3RD_AGE_DRUID_CLOAK_TRANSMOG", "3rd_age_druid_cloak_transmog", "npctypes"),
             new GamevalEntry(8664, "_3RD_AGE_RING_TRANSMOG", "3rd_age_ring_transmog", "npctypes"),
+            new GamevalEntry(8665, "BAW_KILLER_WASP_SWARM_FURIOUS", "Swarm of killer wasps (furious)", "npctypes"),
             new GamevalEntry(8666, "VARROCK_BANK_DOORGUARD", "Banker", "npctypes"),
             new GamevalEntry(8667, "FOSSIL_PUFFER_FISH_MODEL", "Puffer Fish", "npctypes"),
             new GamevalEntry(8668, "FOSSIL_PUFFER_FISH_1", "fossil_puffer_fish_1", "npctypes"),
