@@ -18,6 +18,12 @@ in `PUBLIC_API.md`.
 
 ## v176 -- Named widget interactions
 
+- `+` Header-only `<titan/web_walker_via.h>`: the POD contract of the
+  WebWalker Engine's optional `titan.web_walker.via.v1` plugin service (the
+  cheapest trip through one of several via points, in one request). No
+  HostApi, PluginApi or payload change and no SDK version change; an engine
+  without it simply does not publish the service.
+
 - `+` C++, Java, and JS/TS widgets accept ordered action names and
   `Op/Subop` labels. The native menu resolves the addressed widget first,
   then its visible direct children. A true return acknowledges queue acceptance.
