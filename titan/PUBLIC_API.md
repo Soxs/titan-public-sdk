@@ -1259,6 +1259,7 @@ headers below; publishing native contracts does not expose private client IPC.
 | `<titan/web_walker.h>` | Read-only asynchronous `titan::webWalker()` path generation: `submit`, `poll`, `copySteps`, `cancel`, and `release` (SDK 112). |
 | `<titan/web_walker_provider.h>` | Versioned walker provider contracts: V1 planning compatibility and V2 complete planning, payload, and execution service. The host currently selects external providers through the entitled `web_walker_provider` DEV policy. Normal consumers use `<titan/web_walker.h>`. |
 | `<titan/web_walker_via.h>` | Versioned POD `titan.web_walker.via.v1` service contract, published by the WebWalker Engine: "which of these via points makes the cheapest trip to the destination?" in one request (`submit`, `poll`, `cancel`, `release`). Optional: resolve it with `titan::service<WebWalkerViaV1>(kWebWalkerViaServiceId)`, check `validWebWalkerViaV1`, and price the legs with `<titan/web_walker.h>` when it is absent. Header-only; no HostApi, payload or SDK version change. |
+| `<titan/activity.h>` | Versioned POD `titan.activity.v1/<plugin id>` service contract: an activity one plugin can run for another (Wintertodt as a Firemaking method for Account Maker). See "Activities" below. |
 | `<titan/world_point.h>` | Lightweight public `Tile`, `WorldPos`, and `WorldPoint` coordinate contract. `<titan/actor.h>` includes it for compatibility. |
 | `<titan/world_map.h>` | Read-only `titan::state::worldMap()` snapshots and exact world/screen plus logical-pixel/tile transforms for the visible native world map, including interface scaling from logical widget units to physical overlay pixels (SDK 113). |
 | `<titan/screenshot.h>` | Asynchronous full-frame game screenshots: `titan::screenshot()` / `titan::state::screenshot()` with `submit`, `poll`, `copyPng`, and `release`. The same image the controller's `/tabs` command returns -- the presented backbuffer after the AboveAll pass -- as PNG bytes (SDK 131). |
@@ -1585,6 +1586,43 @@ Load-lifetime services in SDK 97 code should use
 entries to the owner's exact load generation and removes them automatically.
 The ownerless SDK 66-96 overload remains only for binary compatibility and is
 cleared at final host shutdown; current in-tree publishers do not use it.
+
+### Activities: one plugin's work as another's method
+
+`<titan/activity.h>` is a plugin-to-plugin contract built on the service
+registry above; it adds nothing to the host ABI. A plugin that already knows
+how to do something on its own (play Wintertodt) offers it so that an
+orchestrating plugin (Account Maker) can use it as a way to reach a larger
+goal ("Firemaking from 50").
+
+- **Publish.** Fill a `titan::ActivityProviderV1` and register it as
+  `titan::activityServiceId(pluginId)`, that is `titan.activity.v1/<plugin id>`.
+  That is the whole registration: orchestrators find providers by asking for
+  that id for every plugin the host lists, so load order does not matter and
+  nothing is registered with the orchestrator.
+- **Describe.** `count` / `describe(index, ActivityInfo*)`: a stable upper-case
+  `id` a plan can name, the skills trained with `[minLevel, maxLevel)` ranges
+  (flag `Secondary` for skills only trained on the side), skill levels needed,
+  item sets ("`count` of these, best first, at most one per slot group",
+  inventory or equipped, optionally `Optional`), free inventory slots wanted,
+  a start point, and the box the activity takes place in.
+- **Drive.** `acquire(activity, owner)` claims it and fails while the provider
+  runs it for itself or for someone else; while claimed, the provider refuses
+  its own Start. `tick(activity, owner, request, gameTick, ActivityStatus*)`
+  does one game tick of work on the game thread, from the owner's own tick,
+  and reports a state, a message, a progress counter and flags: `Inside`
+  (only the activity leaves properly), `SafeToStop` (between rounds), `Away`
+  (the owner should bring the account to the start point; the provider did
+  nothing), and, after `ActivityRequest::Finish`, `Finished`. `release` gives
+  it back; a provider also drops an owner that has stopped ticking.
+- **Lifetime.** Take a `titan::service<ActivityProviderV1>` lease for each
+  call and let it go; never keep the pointer. Validate with
+  `titan::validActivityProviderV1`. Every struct is plain data with its size
+  and version first; text fields are fixed, NUL-terminated and truncated.
+
+`plugins/wintertodt_runner` is the reference provider and
+`plugins/account_maker/src/activities/external_activity.cpp` the reference
+owner. Only native plugins can publish services today.
 
 ### Account Profiles service (native SDK v97)
 
