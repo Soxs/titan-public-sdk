@@ -69,6 +69,14 @@ inline constexpr std::array kBooths = {
     36559, // BANK_BOOTH_36559
     37959, // BANK_BOOTH_37959
     39238, // BANK_BOOTH_39238
+    // From the game cache, 2026-11-14: every object named "Bank booth" whose
+    // actions are Bank and Collect and that was missing above.
+    8139,
+    8140,
+    10583,
+    50901, // Varlamore
+    57330,
+    57892,
 };
 
 // --- Bank chests / boxes / misc ------------------------------------------
@@ -101,6 +109,29 @@ inline constexpr std::array kChests = {
     41315, // BANK_CHEST_41315
     41493, // BANK_CHEST_41493
     47420,
+    // From the game cache, 2026-11-14: the objects with Bank and Collect
+    // actions missing above. Without Varlamore's a plugin standing at
+    // Aldarin's bank tables was not "near a bank" and never opened one.
+    20127, // Bank counter
+    30390, // Grand Exchange booth
+    31582, // Bank counter
+    46075, // Bank Camel
+    46231, // Cam the Camel
+    51515, // Bank table (Varlamore)
+    51516, // Bank table (Varlamore)
+    52396, // TABLE_BANK01_CIVITAS01 (Aldarin)
+    52397, // Bank table (Aldarin)
+    53014, // Bank chest
+    53015, // Bank chest (Hunter Guild)
+    55199, // Bank buffalo
+    57958, // Bank chest
+    58094, // Bank Crab
+    58128, // Bank chest
+    58129, // Bank chest
+    58663, // Bank chest
+    60434, // Bank boat
+    60435, // Bank Crab
+    62187, // Bank chest
 };
 
 // --- Deposit boxes / pots (deferred from runtime; kept for future use) ---
