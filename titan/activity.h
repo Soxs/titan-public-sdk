@@ -39,7 +39,10 @@
 /// - `tick` does one game tick of work for the owner and reports. It is called
 ///   on the game thread, from the owner's own tick. With ActivityRequest::Finish
 ///   the provider winds down to a point the account can walk away from and
-///   then reports ActivityStatusFlags::Finished.
+///   then reports ActivityStatusFlags::Finished; with ActivityRequest::Leave
+///   it does so at once. An account must never be left standing inside an
+///   arena that harms it with nothing driving it: an owner that is stopped
+///   asks to Leave first.
 /// - `release` gives the activity back. A provider also releases an owner that
 ///   has not ticked it for a while (the owner was stopped or unloaded).
 ///
@@ -63,6 +66,7 @@ inline constexpr uint32_t kActivityMaxSkills = 8;
 inline constexpr uint32_t kActivityMaxSkillRequirements = 8;
 inline constexpr uint32_t kActivityMaxItemSets = 8;
 inline constexpr uint32_t kActivityMaxSetItems = 32;
+inline constexpr uint32_t kActivityMaxWorlds = 8;
 
 /// The service id a plugin publishes its activities under.
 inline std::string activityServiceId(std::string_view pluginId) {
@@ -83,6 +87,9 @@ namespace ActivityItemFlags {
 enum : uint32_t {
     /// Taken when the account owns it; never a reason to stop or to go and get one.
     Optional = 1u << 0,
+    /// A tool that can also be wielded (an axe): worn when the account has
+    /// the levels to, which frees an inventory slot; carried otherwise.
+    Wield = 1u << 1,
 };
 }
 namespace ActivityState { enum : uint32_t { Working = 1, Waiting = 2, Blocked = 3 }; }
@@ -100,7 +107,17 @@ enum : uint32_t {
     Away = 1u << 3,
 };
 }
-namespace ActivityRequest { enum : uint32_t { Run = 0, Finish = 1 }; }
+namespace ActivityRequest {
+enum : uint32_t {
+    Run = 0,
+    /// Wind down: finish what is under way if that is quick (the round), then
+    /// get the account out, and report Finished.
+    Finish = 1,
+    /// Get the account out now, whatever is under way, and report Finished.
+    /// The owner is stopping, or the account should not be here (wrong world).
+    Leave = 2,
+};
+}
 
 /// A skill the activity trains while the account's level is in [minLevel, maxLevel).
 struct ActivitySkill {
@@ -150,6 +167,11 @@ struct ActivityInfo {
     /// has none. While the account stands in it the owner neither prepares
     /// supplies nor walks it elsewhere: only the activity leaves it properly.
     int32_t areaMinX = 0, areaMinY = 0, areaMaxX = 0, areaMaxY = 0;
+    /// Worlds the activity is meant to be played on (a minigame's official
+    /// worlds, where the other players are), 0 ending the list; all zero when
+    /// any world will do. The owner hops to the busiest of them at the start
+    /// point, before the activity begins.
+    int32_t worlds[kActivityMaxWorlds] = {};
     uint32_t reserved[4] = {};
     ActivitySkill skills[kActivityMaxSkills] = {};
     ActivitySkillRequirement requirements[kActivityMaxSkillRequirements] = {};
@@ -188,7 +210,7 @@ static_assert(std::is_standard_layout_v<ActivityProviderV1> && std::is_trivially
 static_assert(sizeof(ActivitySkill) == 40);
 static_assert(sizeof(ActivitySkillRequirement) == 32);
 static_assert(sizeof(ActivityItemSet) == 32 + 16 + 4 * kActivityMaxSetItems + kActivityMaxSetItems);
-static_assert(offsetof(ActivityInfo, skills) == 8 + 32 + 64 + 16 + 8 + 16 + 32);
+static_assert(offsetof(ActivityInfo, skills) == 8 + 32 + 64 + 16 + 8 + 16 + 32 + 4 * kActivityMaxWorlds);
 static_assert(sizeof(ActivityStatus) == 24 + 160);
 static_assert(sizeof(ActivityProviderV1) == 16 + 5 * sizeof(void*));
 
