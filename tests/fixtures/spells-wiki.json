@@ -1,0 +1,2277 @@
+[
+  {
+    "page": "Adept Reanimation",
+    "revision": 15333753,
+    "url": "https://oldschool.runescape.wiki/w/Adept_Reanimation",
+    "level": 41,
+    "members": true,
+    "runes": {
+      "BODY": 4,
+      "NATURE": 3,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Annakarl Teleport",
+    "revision": 15356670,
+    "url": "https://oldschool.runescape.wiki/w/Annakarl_Teleport",
+    "level": 90,
+    "members": true,
+    "runes": {
+      "BLOOD": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Ape Atoll Teleport (Arceuus)",
+    "revision": 15356664,
+    "url": "https://oldschool.runescape.wiki/w/Ape_Atoll_Teleport_%28Arceuus%29",
+    "level": 90,
+    "members": true,
+    "runes": {
+      "BLOOD": 2,
+      "LAW": 2,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Ape Atoll Teleport (standard)",
+    "revision": 14906055,
+    "url": "https://oldschool.runescape.wiki/w/Ape_Atoll_Teleport_%28standard%29",
+    "level": 64,
+    "members": true,
+    "runes": {
+      "FIRE": 2,
+      "WATER": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Arceuus Home Teleport",
+    "revision": 15362013,
+    "url": "https://oldschool.runescape.wiki/w/Arceuus_Home_Teleport",
+    "level": 1,
+    "members": true,
+    "runes": {}
+  },
+  {
+    "page": "Arceuus Library Teleport",
+    "revision": 15356654,
+    "url": "https://oldschool.runescape.wiki/w/Arceuus_Library_Teleport",
+    "level": 6,
+    "members": true,
+    "runes": {
+      "EARTH": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Ardougne Teleport",
+    "revision": 14918399,
+    "url": "https://oldschool.runescape.wiki/w/Ardougne_Teleport",
+    "level": 51,
+    "members": true,
+    "runes": {
+      "WATER": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Astral Contact",
+    "revision": 15372023,
+    "url": "https://oldschool.runescape.wiki/w/Astral_Contact",
+    "level": 67,
+    "members": true,
+    "runes": {
+      "AIR": 2,
+      "ASTRAL": 1,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Bake Pie",
+    "revision": 15360396,
+    "url": "https://oldschool.runescape.wiki/w/Bake_Pie",
+    "level": 65,
+    "members": true,
+    "runes": {
+      "FIRE": 5,
+      "WATER": 4,
+      "ASTRAL": 1
+    }
+  },
+  {
+    "page": "Barbarian Teleport",
+    "revision": 15356649,
+    "url": "https://oldschool.runescape.wiki/w/Barbarian_Teleport",
+    "level": 75,
+    "members": true,
+    "runes": {
+      "FIRE": 3,
+      "ASTRAL": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Barrows Teleport",
+    "revision": 15363218,
+    "url": "https://oldschool.runescape.wiki/w/Barrows_Teleport",
+    "level": 83,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "LAW": 2,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Basic Reanimation",
+    "revision": 15333744,
+    "url": "https://oldschool.runescape.wiki/w/Basic_Reanimation",
+    "level": 16,
+    "members": true,
+    "runes": {
+      "BODY": 4,
+      "NATURE": 2
+    }
+  },
+  {
+    "page": "Battlefront Teleport",
+    "revision": 15356656,
+    "url": "https://oldschool.runescape.wiki/w/Battlefront_Teleport",
+    "level": 23,
+    "members": true,
+    "runes": {
+      "EARTH": 1,
+      "FIRE": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Bind",
+    "revision": 15165009,
+    "url": "https://oldschool.runescape.wiki/w/Bind",
+    "level": 20,
+    "members": false,
+    "runes": {
+      "EARTH": 3,
+      "WATER": 3,
+      "NATURE": 2
+    }
+  },
+  {
+    "page": "Blood Barrage",
+    "revision": 15020225,
+    "url": "https://oldschool.runescape.wiki/w/Blood_Barrage",
+    "level": 92,
+    "members": true,
+    "runes": {
+      "BLOOD": 4,
+      "DEATH": 4,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Blood Blitz",
+    "revision": 14779887,
+    "url": "https://oldschool.runescape.wiki/w/Blood_Blitz",
+    "level": 80,
+    "members": true,
+    "runes": {
+      "BLOOD": 4,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Blood Burst",
+    "revision": 15102375,
+    "url": "https://oldschool.runescape.wiki/w/Blood_Burst",
+    "level": 68,
+    "members": true,
+    "runes": {
+      "BLOOD": 2,
+      "CHAOS": 4,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Blood Rush",
+    "revision": 14779879,
+    "url": "https://oldschool.runescape.wiki/w/Blood_Rush",
+    "level": 56,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "CHAOS": 2,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Bones to Bananas",
+    "revision": 15363067,
+    "url": "https://oldschool.runescape.wiki/w/Bones_to_Bananas",
+    "level": 15,
+    "members": false,
+    "runes": {
+      "EARTH": 2,
+      "WATER": 2,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Bones to Peaches",
+    "revision": 15363068,
+    "url": "https://oldschool.runescape.wiki/w/Bones_to_Peaches",
+    "level": 60,
+    "members": true,
+    "runes": {
+      "EARTH": 4,
+      "WATER": 4,
+      "NATURE": 2
+    }
+  },
+  {
+    "page": "Boost Potion Share",
+    "revision": 15360725,
+    "url": "https://oldschool.runescape.wiki/w/Boost_Potion_Share",
+    "level": 84,
+    "members": true,
+    "runes": {
+      "EARTH": 12,
+      "WATER": 10,
+      "ASTRAL": 3
+    }
+  },
+  {
+    "page": "Camelot Teleport",
+    "revision": 15356635,
+    "url": "https://oldschool.runescape.wiki/w/Camelot_Teleport",
+    "level": 45,
+    "members": true,
+    "runes": {
+      "AIR": 5,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Carrallanger Teleport",
+    "revision": 15356669,
+    "url": "https://oldschool.runescape.wiki/w/Carrallanger_Teleport",
+    "level": 84,
+    "members": true,
+    "runes": {
+      "LAW": 2,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Catherby Teleport",
+    "revision": 15356652,
+    "url": "https://oldschool.runescape.wiki/w/Catherby_Teleport",
+    "level": 87,
+    "members": true,
+    "runes": {
+      "WATER": 10,
+      "ASTRAL": 3,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "Cemetery Teleport",
+    "revision": 15356662,
+    "url": "https://oldschool.runescape.wiki/w/Cemetery_Teleport",
+    "level": 71,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "LAW": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Charge",
+    "revision": 15364440,
+    "url": "https://oldschool.runescape.wiki/w/Charge",
+    "level": 80,
+    "members": true,
+    "runes": {
+      "AIR": 3,
+      "FIRE": 3,
+      "BLOOD": 3
+    }
+  },
+  {
+    "page": "Charge Air Orb",
+    "revision": 15252695,
+    "url": "https://oldschool.runescape.wiki/w/Charge_Air_Orb",
+    "level": 66,
+    "members": true,
+    "runes": {
+      "AIR": 30,
+      "COSMIC": 3
+    }
+  },
+  {
+    "page": "Charge Earth Orb",
+    "revision": 14904459,
+    "url": "https://oldschool.runescape.wiki/w/Charge_Earth_Orb",
+    "level": 60,
+    "members": true,
+    "runes": {
+      "EARTH": 30,
+      "COSMIC": 3
+    }
+  },
+  {
+    "page": "Charge Fire Orb",
+    "revision": 14904462,
+    "url": "https://oldschool.runescape.wiki/w/Charge_Fire_Orb",
+    "level": 63,
+    "members": true,
+    "runes": {
+      "FIRE": 30,
+      "COSMIC": 3
+    }
+  },
+  {
+    "page": "Charge Water Orb",
+    "revision": 14906060,
+    "url": "https://oldschool.runescape.wiki/w/Charge_Water_Orb",
+    "level": 56,
+    "members": true,
+    "runes": {
+      "WATER": 30,
+      "COSMIC": 3
+    }
+  },
+  {
+    "page": "Civitas illa Fortis Teleport",
+    "revision": 15356637,
+    "url": "https://oldschool.runescape.wiki/w/Civitas_illa_Fortis_Teleport",
+    "level": 54,
+    "members": true,
+    "runes": {
+      "EARTH": 1,
+      "FIRE": 1,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Claws of Guthix",
+    "revision": 15366111,
+    "url": "https://oldschool.runescape.wiki/w/Claws_of_Guthix",
+    "level": 60,
+    "members": true,
+    "runes": {
+      "AIR": 4,
+      "FIRE": 1,
+      "BLOOD": 2
+    }
+  },
+  {
+    "page": "Confuse",
+    "revision": 14922747,
+    "url": "https://oldschool.runescape.wiki/w/Confuse",
+    "level": 3,
+    "members": false,
+    "runes": {
+      "EARTH": 2,
+      "WATER": 3,
+      "BODY": 1
+    }
+  },
+  {
+    "page": "Crumble Undead",
+    "revision": 15327729,
+    "url": "https://oldschool.runescape.wiki/w/Crumble_Undead",
+    "level": 39,
+    "members": false,
+    "runes": {
+      "AIR": 2,
+      "EARTH": 2,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Cure Group",
+    "revision": 15252718,
+    "url": "https://oldschool.runescape.wiki/w/Cure_Group",
+    "level": 74,
+    "members": true,
+    "runes": {
+      "ASTRAL": 2,
+      "COSMIC": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Cure Me",
+    "revision": 15353211,
+    "url": "https://oldschool.runescape.wiki/w/Cure_Me",
+    "level": 71,
+    "members": true,
+    "runes": {
+      "ASTRAL": 2,
+      "COSMIC": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Cure Other",
+    "revision": 15364403,
+    "url": "https://oldschool.runescape.wiki/w/Cure_Other",
+    "level": 68,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "ASTRAL": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Cure Plant",
+    "revision": 15252716,
+    "url": "https://oldschool.runescape.wiki/w/Cure_Plant",
+    "level": 66,
+    "members": true,
+    "runes": {
+      "EARTH": 8,
+      "ASTRAL": 1
+    }
+  },
+  {
+    "page": "Curse",
+    "revision": 14797456,
+    "url": "https://oldschool.runescape.wiki/w/Curse",
+    "level": 19,
+    "members": false,
+    "runes": {
+      "EARTH": 3,
+      "WATER": 2,
+      "BODY": 1
+    }
+  },
+  {
+    "page": "Dareeyak Teleport",
+    "revision": 15356668,
+    "url": "https://oldschool.runescape.wiki/w/Dareeyak_Teleport",
+    "level": 78,
+    "members": true,
+    "runes": {
+      "AIR": 2,
+      "FIRE": 3,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Dark Demonbane",
+    "revision": 15353558,
+    "url": "https://oldschool.runescape.wiki/w/Dark_Demonbane",
+    "level": 82,
+    "members": true,
+    "runes": {
+      "FIRE": 7,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Dark Lure",
+    "revision": 15341545,
+    "url": "https://oldschool.runescape.wiki/w/Dark_Lure",
+    "level": 50,
+    "members": true,
+    "runes": {
+      "DEATH": 1,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Death Charge",
+    "revision": 15355351,
+    "url": "https://oldschool.runescape.wiki/w/Death_Charge",
+    "level": 80,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "DEATH": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Degrime",
+    "revision": 15321578,
+    "url": "https://oldschool.runescape.wiki/w/Degrime",
+    "level": 70,
+    "members": true,
+    "runes": {
+      "EARTH": 4,
+      "NATURE": 2
+    }
+  },
+  {
+    "page": "Demonic Offering",
+    "revision": 15371446,
+    "url": "https://oldschool.runescape.wiki/w/Demonic_Offering",
+    "level": 84,
+    "members": true,
+    "runes": {
+      "SOUL": 1,
+      "WRATH": 1
+    }
+  },
+  {
+    "page": "Draynor Manor Teleport",
+    "revision": 15356655,
+    "url": "https://oldschool.runescape.wiki/w/Draynor_Manor_Teleport",
+    "level": 17,
+    "members": true,
+    "runes": {
+      "EARTH": 1,
+      "WATER": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Dream",
+    "revision": 15351512,
+    "url": "https://oldschool.runescape.wiki/w/Dream",
+    "level": 79,
+    "members": true,
+    "runes": {
+      "ASTRAL": 2,
+      "BODY": 5,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Earth Blast",
+    "revision": 15356454,
+    "url": "https://oldschool.runescape.wiki/w/Earth_Blast",
+    "level": 53,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "EARTH": 4,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Earth Bolt",
+    "revision": 15341521,
+    "url": "https://oldschool.runescape.wiki/w/Earth_Bolt",
+    "level": 29,
+    "members": false,
+    "runes": {
+      "AIR": 2,
+      "EARTH": 3,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Earth Strike",
+    "revision": 15341516,
+    "url": "https://oldschool.runescape.wiki/w/Earth_Strike",
+    "level": 9,
+    "members": false,
+    "runes": {
+      "AIR": 1,
+      "EARTH": 2,
+      "MIND": 1
+    }
+  },
+  {
+    "page": "Earth Surge",
+    "revision": 15341532,
+    "url": "https://oldschool.runescape.wiki/w/Earth_Surge",
+    "level": 90,
+    "members": true,
+    "runes": {
+      "AIR": 7,
+      "EARTH": 10,
+      "WRATH": 1
+    }
+  },
+  {
+    "page": "Earth Wave",
+    "revision": 15341528,
+    "url": "https://oldschool.runescape.wiki/w/Earth_Wave",
+    "level": 70,
+    "members": true,
+    "runes": {
+      "AIR": 5,
+      "EARTH": 7,
+      "BLOOD": 1
+    }
+  },
+  {
+    "page": "Edgeville Home Teleport",
+    "revision": 15362016,
+    "url": "https://oldschool.runescape.wiki/w/Edgeville_Home_Teleport",
+    "level": 1,
+    "members": false,
+    "runes": {}
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Diamond)",
+    "revision": 15364868,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Diamond%29",
+    "level": 57,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "COSMIC": 1,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Dragonstone)",
+    "revision": 15276330,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Dragonstone%29",
+    "level": 68,
+    "members": true,
+    "runes": {
+      "EARTH": 15,
+      "COSMIC": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Emerald)",
+    "revision": 15364866,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Emerald%29",
+    "level": 27,
+    "members": true,
+    "runes": {
+      "AIR": 3,
+      "COSMIC": 1,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Jade)",
+    "revision": 15364864,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Jade%29",
+    "level": 14,
+    "members": true,
+    "runes": {
+      "EARTH": 2,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Onyx)",
+    "revision": 15364869,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Onyx%29",
+    "level": 87,
+    "members": true,
+    "runes": {
+      "FIRE": 20,
+      "COSMIC": 1,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Opal)",
+    "revision": 15364861,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Opal%29",
+    "level": 4,
+    "members": true,
+    "runes": {
+      "AIR": 2,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Pearl)",
+    "revision": 15364865,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Pearl%29",
+    "level": 24,
+    "members": true,
+    "runes": {
+      "WATER": 2,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Red Topaz)",
+    "revision": 15364867,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Red_Topaz%29",
+    "level": 29,
+    "members": true,
+    "runes": {
+      "FIRE": 2,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Ruby)",
+    "revision": 15364860,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Ruby%29",
+    "level": 49,
+    "members": true,
+    "runes": {
+      "FIRE": 5,
+      "BLOOD": 1,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Enchant Crossbow Bolt (Sapphire)",
+    "revision": 15364863,
+    "url": "https://oldschool.runescape.wiki/w/Enchant_Crossbow_Bolt_%28Sapphire%29",
+    "level": 7,
+    "members": true,
+    "runes": {
+      "WATER": 1,
+      "COSMIC": 1,
+      "MIND": 1
+    }
+  },
+  {
+    "page": "Energy Transfer",
+    "revision": 15364402,
+    "url": "https://oldschool.runescape.wiki/w/Energy_Transfer",
+    "level": 91,
+    "members": true,
+    "runes": {
+      "ASTRAL": 3,
+      "LAW": 2,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Enfeeble",
+    "revision": 14964310,
+    "url": "https://oldschool.runescape.wiki/w/Enfeeble",
+    "level": 73,
+    "members": true,
+    "runes": {
+      "EARTH": 8,
+      "WATER": 8,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Entangle",
+    "revision": 15364849,
+    "url": "https://oldschool.runescape.wiki/w/Entangle",
+    "level": 79,
+    "members": true,
+    "runes": {
+      "EARTH": 5,
+      "WATER": 5,
+      "NATURE": 4
+    }
+  },
+  {
+    "page": "Expert Reanimation",
+    "revision": 15333745,
+    "url": "https://oldschool.runescape.wiki/w/Expert_Reanimation",
+    "level": 72,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "NATURE": 3,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Falador Teleport",
+    "revision": 14918402,
+    "url": "https://oldschool.runescape.wiki/w/Falador_Teleport",
+    "level": 37,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "WATER": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Fenkenstrain's Castle Teleport",
+    "revision": 15356659,
+    "url": "https://oldschool.runescape.wiki/w/Fenkenstrain%27s_Castle_Teleport",
+    "level": 48,
+    "members": true,
+    "runes": {
+      "EARTH": 1,
+      "LAW": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Fertile Soil",
+    "revision": 15364793,
+    "url": "https://oldschool.runescape.wiki/w/Fertile_Soil",
+    "level": 83,
+    "members": true,
+    "runes": {
+      "EARTH": 15,
+      "ASTRAL": 3,
+      "NATURE": 2
+    }
+  },
+  {
+    "page": "Fire Blast",
+    "revision": 15341525,
+    "url": "https://oldschool.runescape.wiki/w/Fire_Blast",
+    "level": 59,
+    "members": false,
+    "runes": {
+      "AIR": 4,
+      "FIRE": 5,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Fire Bolt",
+    "revision": 15341476,
+    "url": "https://oldschool.runescape.wiki/w/Fire_Bolt",
+    "level": 35,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "FIRE": 4,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Fire Strike",
+    "revision": 15341518,
+    "url": "https://oldschool.runescape.wiki/w/Fire_Strike",
+    "level": 13,
+    "members": false,
+    "runes": {
+      "AIR": 2,
+      "FIRE": 3,
+      "MIND": 1
+    }
+  },
+  {
+    "page": "Fire Surge",
+    "revision": 15341513,
+    "url": "https://oldschool.runescape.wiki/w/Fire_Surge",
+    "level": 95,
+    "members": true,
+    "runes": {
+      "AIR": 7,
+      "FIRE": 10,
+      "WRATH": 1
+    }
+  },
+  {
+    "page": "Fire Wave",
+    "revision": 15341529,
+    "url": "https://oldschool.runescape.wiki/w/Fire_Wave",
+    "level": 75,
+    "members": true,
+    "runes": {
+      "AIR": 5,
+      "FIRE": 7,
+      "BLOOD": 1
+    }
+  },
+  {
+    "page": "Fishing Guild Teleport",
+    "revision": 15356651,
+    "url": "https://oldschool.runescape.wiki/w/Fishing_Guild_Teleport",
+    "level": 85,
+    "members": true,
+    "runes": {
+      "WATER": 10,
+      "ASTRAL": 3,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "Flames of Zamorak",
+    "revision": 15366096,
+    "url": "https://oldschool.runescape.wiki/w/Flames_of_Zamorak",
+    "level": 60,
+    "members": true,
+    "runes": {
+      "AIR": 1,
+      "FIRE": 4,
+      "BLOOD": 2
+    }
+  },
+  {
+    "page": "Geomancy",
+    "revision": 15371147,
+    "url": "https://oldschool.runescape.wiki/w/Geomancy",
+    "level": 65,
+    "members": true,
+    "runes": {
+      "EARTH": 8,
+      "ASTRAL": 3,
+      "NATURE": 3
+    }
+  },
+  {
+    "page": "Ghorrock Teleport",
+    "revision": 15356667,
+    "url": "https://oldschool.runescape.wiki/w/Ghorrock_Teleport",
+    "level": 96,
+    "members": true,
+    "runes": {
+      "WATER": 8,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Ghostly Grasp",
+    "revision": 15252749,
+    "url": "https://oldschool.runescape.wiki/w/Ghostly_Grasp",
+    "level": 35,
+    "members": true,
+    "runes": {
+      "AIR": 4,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Greater Corruption",
+    "revision": 15292407,
+    "url": "https://oldschool.runescape.wiki/w/Greater_Corruption",
+    "level": 85,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "SOUL": 3
+    }
+  },
+  {
+    "page": "Harmony Island Teleport",
+    "revision": 15356661,
+    "url": "https://oldschool.runescape.wiki/w/Harmony_Island_Teleport",
+    "level": 65,
+    "members": true,
+    "runes": {
+      "LAW": 1,
+      "NATURE": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Heal Group",
+    "revision": 14407925,
+    "url": "https://oldschool.runescape.wiki/w/Heal_Group",
+    "level": 95,
+    "members": true,
+    "runes": {
+      "ASTRAL": 4,
+      "BLOOD": 3,
+      "LAW": 6
+    }
+  },
+  {
+    "page": "Heal Other",
+    "revision": 15364400,
+    "url": "https://oldschool.runescape.wiki/w/Heal_Other",
+    "level": 92,
+    "members": true,
+    "runes": {
+      "ASTRAL": 3,
+      "BLOOD": 1,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "High Level Alchemy",
+    "revision": 15362543,
+    "url": "https://oldschool.runescape.wiki/w/High_Level_Alchemy",
+    "level": 55,
+    "members": false,
+    "runes": {
+      "FIRE": 5,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Humidify",
+    "revision": 15342692,
+    "url": "https://oldschool.runescape.wiki/w/Humidify",
+    "level": 68,
+    "members": true,
+    "runes": {
+      "FIRE": 1,
+      "WATER": 3,
+      "ASTRAL": 1
+    }
+  },
+  {
+    "page": "Hunter Kit (spell)",
+    "revision": 14838556,
+    "url": "https://oldschool.runescape.wiki/w/Hunter_Kit_%28spell%29",
+    "level": 71,
+    "members": true,
+    "runes": {
+      "EARTH": 2,
+      "ASTRAL": 2
+    }
+  },
+  {
+    "page": "Iban Blast",
+    "revision": 15252693,
+    "url": "https://oldschool.runescape.wiki/w/Iban_Blast",
+    "level": 50,
+    "members": true,
+    "runes": {
+      "FIRE": 5,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Ice Barrage",
+    "revision": 15351509,
+    "url": "https://oldschool.runescape.wiki/w/Ice_Barrage",
+    "level": 94,
+    "members": true,
+    "runes": {
+      "WATER": 6,
+      "BLOOD": 2,
+      "DEATH": 4
+    }
+  },
+  {
+    "page": "Ice Blitz",
+    "revision": 15304591,
+    "url": "https://oldschool.runescape.wiki/w/Ice_Blitz",
+    "level": 82,
+    "members": true,
+    "runes": {
+      "WATER": 3,
+      "BLOOD": 2,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Ice Burst",
+    "revision": 15304594,
+    "url": "https://oldschool.runescape.wiki/w/Ice_Burst",
+    "level": 70,
+    "members": true,
+    "runes": {
+      "WATER": 4,
+      "CHAOS": 4,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Ice Plateau Teleport",
+    "revision": 15356653,
+    "url": "https://oldschool.runescape.wiki/w/Ice_Plateau_Teleport",
+    "level": 89,
+    "members": true,
+    "runes": {
+      "WATER": 8,
+      "ASTRAL": 3,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "Ice Rush",
+    "revision": 15304585,
+    "url": "https://oldschool.runescape.wiki/w/Ice_Rush",
+    "level": 58,
+    "members": true,
+    "runes": {
+      "WATER": 2,
+      "CHAOS": 2,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Inferior Demonbane",
+    "revision": 15353560,
+    "url": "https://oldschool.runescape.wiki/w/Inferior_Demonbane",
+    "level": 44,
+    "members": true,
+    "runes": {
+      "FIRE": 3,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Kharyrll Teleport",
+    "revision": 15356666,
+    "url": "https://oldschool.runescape.wiki/w/Kharyrll_Teleport",
+    "level": 66,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Khazard Teleport",
+    "revision": 15356650,
+    "url": "https://oldschool.runescape.wiki/w/Khazard_Teleport",
+    "level": 78,
+    "members": true,
+    "runes": {
+      "WATER": 4,
+      "ASTRAL": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Kourend Castle Teleport",
+    "revision": 15311656,
+    "url": "https://oldschool.runescape.wiki/w/Kourend_Castle_Teleport",
+    "level": 48,
+    "members": true,
+    "runes": {
+      "FIRE": 1,
+      "WATER": 1,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Lassar Teleport",
+    "revision": 15356665,
+    "url": "https://oldschool.runescape.wiki/w/Lassar_Teleport",
+    "level": 72,
+    "members": true,
+    "runes": {
+      "WATER": 4,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Lesser Corruption",
+    "revision": 15292406,
+    "url": "https://oldschool.runescape.wiki/w/Lesser_Corruption",
+    "level": 64,
+    "members": true,
+    "runes": {
+      "DEATH": 1,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Low Level Alchemy",
+    "revision": 15352334,
+    "url": "https://oldschool.runescape.wiki/w/Low_Level_Alchemy",
+    "level": 21,
+    "members": false,
+    "runes": {
+      "FIRE": 3,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Lumbridge Home Teleport",
+    "revision": 15362019,
+    "url": "https://oldschool.runescape.wiki/w/Lumbridge_Home_Teleport",
+    "level": 0,
+    "members": false,
+    "runes": {}
+  },
+  {
+    "page": "Lumbridge Teleport",
+    "revision": 14918404,
+    "url": "https://oldschool.runescape.wiki/w/Lumbridge_Teleport",
+    "level": 31,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "EARTH": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Lunar Home Teleport",
+    "revision": 15362024,
+    "url": "https://oldschool.runescape.wiki/w/Lunar_Home_Teleport",
+    "level": 1,
+    "members": true,
+    "runes": {}
+  },
+  {
+    "page": "Lvl-1 Enchant",
+    "revision": 15366073,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-1_Enchant",
+    "level": 7,
+    "members": false,
+    "runes": {
+      "WATER": 1,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Lvl-2 Enchant",
+    "revision": 15366074,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-2_Enchant",
+    "level": 27,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Lvl-3 Enchant",
+    "revision": 15366075,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-3_Enchant",
+    "level": 49,
+    "members": false,
+    "runes": {
+      "FIRE": 5,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Lvl-4 Enchant",
+    "revision": 15366076,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-4_Enchant",
+    "level": 57,
+    "members": false,
+    "runes": {
+      "EARTH": 10,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Lvl-5 Enchant",
+    "revision": 15366077,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-5_Enchant",
+    "level": 68,
+    "members": true,
+    "runes": {
+      "EARTH": 15,
+      "WATER": 15,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Lvl-6 Enchant",
+    "revision": 15366078,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-6_Enchant",
+    "level": 87,
+    "members": true,
+    "runes": {
+      "EARTH": 20,
+      "FIRE": 20,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Lvl-7 Enchant",
+    "revision": 15366079,
+    "url": "https://oldschool.runescape.wiki/w/Lvl-7_Enchant",
+    "level": 93,
+    "members": true,
+    "runes": {
+      "BLOOD": 20,
+      "COSMIC": 1,
+      "SOUL": 20
+    }
+  },
+  {
+    "page": "Magic Dart",
+    "revision": 15299008,
+    "url": "https://oldschool.runescape.wiki/w/Magic_Dart",
+    "level": 50,
+    "members": true,
+    "runes": {
+      "DEATH": 1,
+      "MIND": 4
+    }
+  },
+  {
+    "page": "Magic Imbue",
+    "revision": 15362171,
+    "url": "https://oldschool.runescape.wiki/w/Magic_Imbue",
+    "level": 82,
+    "members": true,
+    "runes": {
+      "FIRE": 7,
+      "WATER": 7,
+      "ASTRAL": 2
+    }
+  },
+  {
+    "page": "Mark of Darkness",
+    "revision": 15365047,
+    "url": "https://oldschool.runescape.wiki/w/Mark_of_Darkness",
+    "level": 59,
+    "members": true,
+    "runes": {
+      "COSMIC": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Master Reanimation",
+    "revision": 15333754,
+    "url": "https://oldschool.runescape.wiki/w/Master_Reanimation",
+    "level": 90,
+    "members": true,
+    "runes": {
+      "BLOOD": 2,
+      "NATURE": 4,
+      "SOUL": 4
+    }
+  },
+  {
+    "page": "Mind Altar Teleport",
+    "revision": 15356657,
+    "url": "https://oldschool.runescape.wiki/w/Mind_Altar_Teleport",
+    "level": 28,
+    "members": true,
+    "runes": {
+      "LAW": 1,
+      "MIND": 2
+    }
+  },
+  {
+    "page": "Monster Examine",
+    "revision": 15355326,
+    "url": "https://oldschool.runescape.wiki/w/Monster_Examine",
+    "level": 66,
+    "members": true,
+    "runes": {
+      "ASTRAL": 1,
+      "COSMIC": 1,
+      "MIND": 1
+    }
+  },
+  {
+    "page": "Moonclan Teleport",
+    "revision": 15356646,
+    "url": "https://oldschool.runescape.wiki/w/Moonclan_Teleport",
+    "level": 69,
+    "members": true,
+    "runes": {
+      "EARTH": 2,
+      "ASTRAL": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Ourania Teleport",
+    "revision": 15356647,
+    "url": "https://oldschool.runescape.wiki/w/Ourania_Teleport",
+    "level": 71,
+    "members": true,
+    "runes": {
+      "EARTH": 6,
+      "ASTRAL": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Paddewwa Teleport",
+    "revision": 15356672,
+    "url": "https://oldschool.runescape.wiki/w/Paddewwa_Teleport",
+    "level": 54,
+    "members": true,
+    "runes": {
+      "AIR": 1,
+      "FIRE": 1,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Plank Make",
+    "revision": 15367694,
+    "url": "https://oldschool.runescape.wiki/w/Plank_Make",
+    "level": 86,
+    "members": true,
+    "runes": {
+      "EARTH": 15,
+      "ASTRAL": 2,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Recharge Dragonstone",
+    "revision": 15252722,
+    "url": "https://oldschool.runescape.wiki/w/Recharge_Dragonstone",
+    "level": 89,
+    "members": true,
+    "runes": {
+      "WATER": 4,
+      "ASTRAL": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Respawn Teleport",
+    "revision": 15134844,
+    "url": "https://oldschool.runescape.wiki/w/Respawn_Teleport",
+    "level": 34,
+    "members": true,
+    "runes": {
+      "LAW": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Resurrect Crops",
+    "revision": 15353219,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Crops",
+    "level": 78,
+    "members": true,
+    "runes": {
+      "EARTH": 25,
+      "BLOOD": 8,
+      "NATURE": 12,
+      "SOUL": 8
+    }
+  },
+  {
+    "page": "Resurrect Greater Ghost",
+    "revision": 15300140,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Greater_Ghost",
+    "level": 76,
+    "members": true,
+    "runes": {
+      "FIRE": 10,
+      "BLOOD": 5,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Resurrect Greater Skeleton",
+    "revision": 15327964,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Greater_Skeleton",
+    "level": 76,
+    "members": true,
+    "runes": {
+      "FIRE": 10,
+      "BLOOD": 5,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Resurrect Greater Zombie",
+    "revision": 15300142,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Greater_Zombie",
+    "level": 76,
+    "members": true,
+    "runes": {
+      "FIRE": 10,
+      "BLOOD": 5,
+      "COSMIC": 1
+    }
+  },
+  {
+    "page": "Resurrect Lesser Ghost",
+    "revision": 15300128,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Lesser_Ghost",
+    "level": 38,
+    "members": true,
+    "runes": {
+      "AIR": 10,
+      "COSMIC": 1,
+      "MIND": 5
+    }
+  },
+  {
+    "page": "Resurrect Lesser Skeleton",
+    "revision": 15300133,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Lesser_Skeleton",
+    "level": 38,
+    "members": true,
+    "runes": {
+      "AIR": 10,
+      "COSMIC": 1,
+      "MIND": 5
+    }
+  },
+  {
+    "page": "Resurrect Lesser Zombie",
+    "revision": 15300134,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Lesser_Zombie",
+    "level": 38,
+    "members": true,
+    "runes": {
+      "AIR": 10,
+      "COSMIC": 1,
+      "MIND": 5
+    }
+  },
+  {
+    "page": "Resurrect Superior Ghost",
+    "revision": 15300136,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Superior_Ghost",
+    "level": 57,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "COSMIC": 1,
+      "DEATH": 5
+    }
+  },
+  {
+    "page": "Resurrect Superior Skeleton",
+    "revision": 15300138,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Superior_Skeleton",
+    "level": 57,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "COSMIC": 1,
+      "DEATH": 5
+    }
+  },
+  {
+    "page": "Resurrect Superior Zombie",
+    "revision": 15300139,
+    "url": "https://oldschool.runescape.wiki/w/Resurrect_Superior_Zombie",
+    "level": 57,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "COSMIC": 1,
+      "DEATH": 5
+    }
+  },
+  {
+    "page": "Salve Graveyard Teleport",
+    "revision": 15356658,
+    "url": "https://oldschool.runescape.wiki/w/Salve_Graveyard_Teleport",
+    "level": 40,
+    "members": true,
+    "runes": {
+      "LAW": 1,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Saradomin Strike",
+    "revision": 15366110,
+    "url": "https://oldschool.runescape.wiki/w/Saradomin_Strike",
+    "level": 60,
+    "members": true,
+    "runes": {
+      "AIR": 4,
+      "FIRE": 2,
+      "BLOOD": 2
+    }
+  },
+  {
+    "page": "Senntisten Teleport",
+    "revision": 15356671,
+    "url": "https://oldschool.runescape.wiki/w/Senntisten_Teleport",
+    "level": 60,
+    "members": true,
+    "runes": {
+      "LAW": 2,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Shadow Barrage",
+    "revision": 15358570,
+    "url": "https://oldschool.runescape.wiki/w/Shadow_Barrage",
+    "level": 88,
+    "members": true,
+    "runes": {
+      "AIR": 4,
+      "BLOOD": 2,
+      "DEATH": 4,
+      "SOUL": 3
+    }
+  },
+  {
+    "page": "Shadow Blitz",
+    "revision": 14779886,
+    "url": "https://oldschool.runescape.wiki/w/Shadow_Blitz",
+    "level": 76,
+    "members": true,
+    "runes": {
+      "AIR": 2,
+      "BLOOD": 2,
+      "DEATH": 2,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Shadow Burst",
+    "revision": 15252682,
+    "url": "https://oldschool.runescape.wiki/w/Shadow_Burst",
+    "level": 64,
+    "members": true,
+    "runes": {
+      "AIR": 1,
+      "CHAOS": 4,
+      "DEATH": 2,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Shadow Rush",
+    "revision": 15368093,
+    "url": "https://oldschool.runescape.wiki/w/Shadow_Rush",
+    "level": 52,
+    "members": true,
+    "runes": {
+      "AIR": 1,
+      "CHAOS": 2,
+      "DEATH": 2,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Shadow Veil",
+    "revision": 15352294,
+    "url": "https://oldschool.runescape.wiki/w/Shadow_Veil",
+    "level": 47,
+    "members": true,
+    "runes": {
+      "EARTH": 5,
+      "FIRE": 5,
+      "COSMIC": 5
+    }
+  },
+  {
+    "page": "Sinister Offering",
+    "revision": 15291796,
+    "url": "https://oldschool.runescape.wiki/w/Sinister_Offering",
+    "level": 92,
+    "members": true,
+    "runes": {
+      "BLOOD": 1,
+      "WRATH": 1
+    }
+  },
+  {
+    "page": "Skeletal Grasp",
+    "revision": 14779872,
+    "url": "https://oldschool.runescape.wiki/w/Skeletal_Grasp",
+    "level": 56,
+    "members": true,
+    "runes": {
+      "EARTH": 8,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Smoke Barrage",
+    "revision": 15132555,
+    "url": "https://oldschool.runescape.wiki/w/Smoke_Barrage",
+    "level": 86,
+    "members": true,
+    "runes": {
+      "AIR": 4,
+      "FIRE": 4,
+      "BLOOD": 2,
+      "DEATH": 4
+    }
+  },
+  {
+    "page": "Smoke Blitz",
+    "revision": 14938735,
+    "url": "https://oldschool.runescape.wiki/w/Smoke_Blitz",
+    "level": 74,
+    "members": true,
+    "runes": {
+      "AIR": 2,
+      "FIRE": 2,
+      "BLOOD": 2,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Smoke Burst",
+    "revision": 14938742,
+    "url": "https://oldschool.runescape.wiki/w/Smoke_Burst",
+    "level": 62,
+    "members": true,
+    "runes": {
+      "AIR": 2,
+      "FIRE": 2,
+      "CHAOS": 4,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Smoke Rush",
+    "revision": 14938734,
+    "url": "https://oldschool.runescape.wiki/w/Smoke_Rush",
+    "level": 50,
+    "members": true,
+    "runes": {
+      "AIR": 1,
+      "FIRE": 1,
+      "CHAOS": 2,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Snare",
+    "revision": 15175486,
+    "url": "https://oldschool.runescape.wiki/w/Snare",
+    "level": 50,
+    "members": false,
+    "runes": {
+      "EARTH": 4,
+      "WATER": 4,
+      "NATURE": 3
+    }
+  },
+  {
+    "page": "Spellbook Swap",
+    "revision": 15361397,
+    "url": "https://oldschool.runescape.wiki/w/Spellbook_Swap",
+    "level": 96,
+    "members": true,
+    "runes": {
+      "ASTRAL": 3,
+      "COSMIC": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Spin Flax",
+    "revision": 15371331,
+    "url": "https://oldschool.runescape.wiki/w/Spin_Flax",
+    "level": 76,
+    "members": true,
+    "runes": {
+      "AIR": 5,
+      "ASTRAL": 1,
+      "NATURE": 2
+    }
+  },
+  {
+    "page": "Stat Restore Pot Share",
+    "revision": 15360726,
+    "url": "https://oldschool.runescape.wiki/w/Stat_Restore_Pot_Share",
+    "level": 81,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "WATER": 10,
+      "ASTRAL": 2
+    }
+  },
+  {
+    "page": "Stat Spy",
+    "revision": 15368098,
+    "url": "https://oldschool.runescape.wiki/w/Stat_Spy",
+    "level": 75,
+    "members": true,
+    "runes": {
+      "ASTRAL": 2,
+      "BODY": 5,
+      "COSMIC": 2
+    }
+  },
+  {
+    "page": "String Jewellery",
+    "revision": 15355268,
+    "url": "https://oldschool.runescape.wiki/w/String_Jewellery",
+    "level": 80,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "WATER": 5,
+      "ASTRAL": 2
+    }
+  },
+  {
+    "page": "Stun",
+    "revision": 14797453,
+    "url": "https://oldschool.runescape.wiki/w/Stun",
+    "level": 80,
+    "members": true,
+    "runes": {
+      "EARTH": 12,
+      "WATER": 12,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Superglass Make",
+    "revision": 15241733,
+    "url": "https://oldschool.runescape.wiki/w/Superglass_Make",
+    "level": 77,
+    "members": true,
+    "runes": {
+      "AIR": 10,
+      "FIRE": 6,
+      "ASTRAL": 2
+    }
+  },
+  {
+    "page": "Superheat Item",
+    "revision": 15252270,
+    "url": "https://oldschool.runescape.wiki/w/Superheat_Item",
+    "level": 43,
+    "members": false,
+    "runes": {
+      "FIRE": 4,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Superior Demonbane",
+    "revision": 15353559,
+    "url": "https://oldschool.runescape.wiki/w/Superior_Demonbane",
+    "level": 62,
+    "members": true,
+    "runes": {
+      "FIRE": 5,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Tan Leather",
+    "revision": 15289108,
+    "url": "https://oldschool.runescape.wiki/w/Tan_Leather",
+    "level": 78,
+    "members": true,
+    "runes": {
+      "FIRE": 5,
+      "ASTRAL": 2,
+      "NATURE": 1
+    }
+  },
+  {
+    "page": "Tele Block",
+    "revision": 15355379,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Block",
+    "level": 85,
+    "members": false,
+    "runes": {
+      "CHAOS": 1,
+      "DEATH": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Tele Group Barbarian",
+    "revision": 15362975,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Barbarian",
+    "level": 76,
+    "members": true,
+    "runes": {
+      "FIRE": 6,
+      "ASTRAL": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Tele Group Catherby",
+    "revision": 15362978,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Catherby",
+    "level": 88,
+    "members": true,
+    "runes": {
+      "WATER": 15,
+      "ASTRAL": 3,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "Tele Group Fishing Guild",
+    "revision": 15362977,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Fishing_Guild",
+    "level": 86,
+    "members": true,
+    "runes": {
+      "WATER": 14,
+      "ASTRAL": 3,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "Tele Group Ice Plateau",
+    "revision": 15362979,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Ice_Plateau",
+    "level": 90,
+    "members": true,
+    "runes": {
+      "WATER": 16,
+      "ASTRAL": 3,
+      "LAW": 3
+    }
+  },
+  {
+    "page": "Tele Group Khazard",
+    "revision": 15362976,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Khazard",
+    "level": 79,
+    "members": true,
+    "runes": {
+      "WATER": 8,
+      "ASTRAL": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Tele Group Moonclan",
+    "revision": 15362973,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Moonclan",
+    "level": 70,
+    "members": true,
+    "runes": {
+      "EARTH": 4,
+      "ASTRAL": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Tele Group Waterbirth",
+    "revision": 15362974,
+    "url": "https://oldschool.runescape.wiki/w/Tele_Group_Waterbirth",
+    "level": 73,
+    "members": true,
+    "runes": {
+      "WATER": 5,
+      "ASTRAL": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Telekinetic Grab",
+    "revision": 15341544,
+    "url": "https://oldschool.runescape.wiki/w/Telekinetic_Grab",
+    "level": 33,
+    "members": false,
+    "runes": {
+      "AIR": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Teleother Camelot",
+    "revision": 15362972,
+    "url": "https://oldschool.runescape.wiki/w/Teleother_Camelot",
+    "level": 90,
+    "members": true,
+    "runes": {
+      "LAW": 1,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Teleother Falador",
+    "revision": 15362971,
+    "url": "https://oldschool.runescape.wiki/w/Teleother_Falador",
+    "level": 82,
+    "members": true,
+    "runes": {
+      "WATER": 1,
+      "LAW": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Teleother Lumbridge",
+    "revision": 15362968,
+    "url": "https://oldschool.runescape.wiki/w/Teleother_Lumbridge",
+    "level": 74,
+    "members": true,
+    "runes": {
+      "EARTH": 1,
+      "LAW": 1,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Teleport to Boat",
+    "revision": 15356681,
+    "url": "https://oldschool.runescape.wiki/w/Teleport_to_Boat",
+    "level": 67,
+    "members": true,
+    "runes": {
+      "EARTH": 2,
+      "WATER": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Teleport to House",
+    "revision": 15365995,
+    "url": "https://oldschool.runescape.wiki/w/Teleport_to_House",
+    "level": 40,
+    "members": true,
+    "runes": {
+      "AIR": 1,
+      "EARTH": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Teleport to Target",
+    "revision": 15367148,
+    "url": "https://oldschool.runescape.wiki/w/Teleport_to_Target",
+    "level": 85,
+    "members": true,
+    "runes": {
+      "CHAOS": 1,
+      "DEATH": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Trollheim Teleport",
+    "revision": 15134848,
+    "url": "https://oldschool.runescape.wiki/w/Trollheim_Teleport",
+    "level": 61,
+    "members": true,
+    "runes": {
+      "FIRE": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Undead Grasp",
+    "revision": 15303961,
+    "url": "https://oldschool.runescape.wiki/w/Undead_Grasp",
+    "level": 79,
+    "members": true,
+    "runes": {
+      "FIRE": 12,
+      "BLOOD": 1
+    }
+  },
+  {
+    "page": "Varrock Teleport",
+    "revision": 15372072,
+    "url": "https://oldschool.runescape.wiki/w/Varrock_Teleport",
+    "level": 25,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "FIRE": 1,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Vengeance",
+    "revision": 15359389,
+    "url": "https://oldschool.runescape.wiki/w/Vengeance",
+    "level": 94,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "ASTRAL": 4,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Vengeance Other",
+    "revision": 15364401,
+    "url": "https://oldschool.runescape.wiki/w/Vengeance_Other",
+    "level": 93,
+    "members": true,
+    "runes": {
+      "EARTH": 10,
+      "ASTRAL": 3,
+      "DEATH": 2
+    }
+  },
+  {
+    "page": "Vile Vigour",
+    "revision": 15100461,
+    "url": "https://oldschool.runescape.wiki/w/Vile_Vigour",
+    "level": 66,
+    "members": true,
+    "runes": {
+      "AIR": 3,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Vulnerability",
+    "revision": 14968444,
+    "url": "https://oldschool.runescape.wiki/w/Vulnerability",
+    "level": 66,
+    "members": true,
+    "runes": {
+      "EARTH": 5,
+      "WATER": 5,
+      "SOUL": 1
+    }
+  },
+  {
+    "page": "Ward of Arceuus",
+    "revision": 15168373,
+    "url": "https://oldschool.runescape.wiki/w/Ward_of_Arceuus",
+    "level": 73,
+    "members": true,
+    "runes": {
+      "COSMIC": 1,
+      "NATURE": 2,
+      "SOUL": 4
+    }
+  },
+  {
+    "page": "Watchtower Teleport",
+    "revision": 15356641,
+    "url": "https://oldschool.runescape.wiki/w/Watchtower_Teleport",
+    "level": 58,
+    "members": true,
+    "runes": {
+      "EARTH": 2,
+      "LAW": 2
+    }
+  },
+  {
+    "page": "Water Blast",
+    "revision": 15341523,
+    "url": "https://oldschool.runescape.wiki/w/Water_Blast",
+    "level": 47,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "WATER": 3,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Water Bolt",
+    "revision": 15341520,
+    "url": "https://oldschool.runescape.wiki/w/Water_Bolt",
+    "level": 23,
+    "members": false,
+    "runes": {
+      "AIR": 2,
+      "WATER": 2,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Water Strike",
+    "revision": 15341515,
+    "url": "https://oldschool.runescape.wiki/w/Water_Strike",
+    "level": 5,
+    "members": false,
+    "runes": {
+      "AIR": 1,
+      "WATER": 1,
+      "MIND": 1
+    }
+  },
+  {
+    "page": "Water Surge",
+    "revision": 15341531,
+    "url": "https://oldschool.runescape.wiki/w/Water_Surge",
+    "level": 85,
+    "members": true,
+    "runes": {
+      "AIR": 7,
+      "WATER": 10,
+      "WRATH": 1
+    }
+  },
+  {
+    "page": "Water Wave",
+    "revision": 15341527,
+    "url": "https://oldschool.runescape.wiki/w/Water_Wave",
+    "level": 65,
+    "members": true,
+    "runes": {
+      "AIR": 5,
+      "WATER": 7,
+      "BLOOD": 1
+    }
+  },
+  {
+    "page": "Waterbirth Teleport",
+    "revision": 15363075,
+    "url": "https://oldschool.runescape.wiki/w/Waterbirth_Teleport",
+    "level": 72,
+    "members": true,
+    "runes": {
+      "WATER": 1,
+      "ASTRAL": 2,
+      "LAW": 1
+    }
+  },
+  {
+    "page": "Weaken",
+    "revision": 15159508,
+    "url": "https://oldschool.runescape.wiki/w/Weaken",
+    "level": 11,
+    "members": false,
+    "runes": {
+      "EARTH": 2,
+      "WATER": 3,
+      "BODY": 1
+    }
+  },
+  {
+    "page": "West Ardougne Teleport",
+    "revision": 15356660,
+    "url": "https://oldschool.runescape.wiki/w/West_Ardougne_Teleport",
+    "level": 61,
+    "members": true,
+    "runes": {
+      "LAW": 2,
+      "SOUL": 2
+    }
+  },
+  {
+    "page": "Wind Blast",
+    "revision": 15341522,
+    "url": "https://oldschool.runescape.wiki/w/Wind_Blast",
+    "level": 41,
+    "members": false,
+    "runes": {
+      "AIR": 3,
+      "DEATH": 1
+    }
+  },
+  {
+    "page": "Wind Bolt",
+    "revision": 15341519,
+    "url": "https://oldschool.runescape.wiki/w/Wind_Bolt",
+    "level": 17,
+    "members": false,
+    "runes": {
+      "AIR": 2,
+      "CHAOS": 1
+    }
+  },
+  {
+    "page": "Wind Strike",
+    "revision": 15341514,
+    "url": "https://oldschool.runescape.wiki/w/Wind_Strike",
+    "level": 1,
+    "members": false,
+    "runes": {
+      "AIR": 1,
+      "MIND": 1
+    }
+  },
+  {
+    "page": "Wind Surge",
+    "revision": 15341530,
+    "url": "https://oldschool.runescape.wiki/w/Wind_Surge",
+    "level": 81,
+    "members": true,
+    "runes": {
+      "AIR": 7,
+      "WRATH": 1
+    }
+  },
+  {
+    "page": "Wind Wave",
+    "revision": 15341526,
+    "url": "https://oldschool.runescape.wiki/w/Wind_Wave",
+    "level": 62,
+    "members": true,
+    "runes": {
+      "AIR": 5,
+      "BLOOD": 1
+    }
+  },
+  {
+    "page": "Monster Inspect",
+    "revision": 15355327,
+    "url": "https://oldschool.runescape.wiki/w/Monster_Inspect",
+    "level": 42,
+    "members": false,
+    "runes": {
+      "BODY": 2,
+      "MIND": 2
+    }
+  }
+]

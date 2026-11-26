@@ -1,11 +1,12 @@
 /// @file titan/utils/magic.h
 /// @brief Spellbook metadata and magic action helpers for plugins.
 ///
-/// This header ports the TP_RL magic API catalog shape into Titan. Spell
+/// This header retains the TP_RL magic API catalog shape in Titan. Spell
 /// metadata and state predicates are live; spell selection/casts dispatch
 /// through the widget interaction backend. Targeted casts queue spell
 /// selection and the follow-up target action together as one ordered input
-/// sequence; the backend provides the required frame spacing.
+/// sequence; the backend provides the required frame spacing. Requirement checks
+/// use the Wiki-audited catalogue documented in titan/PUBLIC_API.md.
 
 #pragma once
 
@@ -15,6 +16,7 @@
 #include "../skill.h"
 #include "../var_player.h"
 #include "../varbits.h"
+#include "magic/spell_catalog.h"
 
 #include <chrono>
 #include <cstdint>
@@ -65,13 +67,6 @@ inline MenuAction::Entry targetEntry(MenuAction::Id opcode, int32_t identifier,
 
 }
 
-enum class SpellBook : int32_t {
-    Standard = 0,
-    Ancient = 1,
-    Lunar = 2,
-    Necromancy = 3
-};
-
 struct SpellInfo {
     const char* name;
     int level;
@@ -79,6 +74,7 @@ struct SpellInfo {
     SpellBook book;
     bool members;
     int menuEntryId;
+    int32_t boltEnchantment = -1; ///< Distinguishes rune costs for variants sharing the enchant-bolts widget.
 };
 
 struct WidgetTarget {
@@ -156,7 +152,11 @@ enum class Standard : int32_t {
     LVL_5_ENCHANT,
     LVL_6_ENCHANT,
     LVL_7_ENCHANT,
-    TELEKINETIC_GRAB
+    TELEKINETIC_GRAB,
+    CIVITAS_ILLA_FORTIS_TELEPORT,
+    TELEPORT_TO_BOAT,
+    MONSTER_INSPECT,
+    COUNT
 };
 
 enum class Ancient : int32_t {
@@ -185,7 +185,8 @@ enum class Ancient : int32_t {
     SMOKE_BARRAGE,
     SHADOW_BARRAGE,
     BLOOD_BARRAGE,
-    ICE_BARRAGE
+    ICE_BARRAGE,
+    COUNT
 };
 
 enum class Lunar : int32_t {
@@ -232,7 +233,9 @@ enum class Lunar : int32_t {
     FERTILE_SOIL,
     PLANK_MAKE,
     RECHARGE_DRAGONSTONE,
-    SPELLBOOK_SWAP
+    SPELLBOOK_SWAP,
+    TELEPORT_TO_TARGET,
+    COUNT
 };
 
 enum class Necromancy : int32_t {
@@ -279,12 +282,28 @@ enum class Necromancy : int32_t {
     VILE_VIGOUR,
     DEGRIME,
     RESURRECT_CROPS,
-    DEATH_CHARGE
+    DEATH_CHARGE,
+    TELEPORT_TO_TARGET,
+    COUNT
 };
 
 template <typename T>
 concept SpellEnum = std::is_same_v<T, Standard> || std::is_same_v<T, Ancient> ||
-                    std::is_same_v<T, Lunar> || std::is_same_v<T, Necromancy>;
+                    std::is_same_v<T, Lunar> || std::is_same_v<T, Necromancy> ||
+                    std::is_same_v<T, BoltEnchantment>;
+
+/// All bolt variants open the same dialog; the consumer selects the bolt type there.
+inline constexpr SpellInfo info(BoltEnchantment spell) {
+    constexpr const char* names[] = {"ENCHANT_BOLTS_OPAL", "ENCHANT_BOLTS_SAPPHIRE", "ENCHANT_BOLTS_JADE",
+        "ENCHANT_BOLTS_PEARL", "ENCHANT_BOLTS_EMERALD", "ENCHANT_BOLTS_RED_TOPAZ", "ENCHANT_BOLTS_RUBY",
+        "ENCHANT_BOLTS_DIAMOND", "ENCHANT_BOLTS_DRAGONSTONE", "ENCHANT_BOLTS_ONYX"};
+    constexpr int levels[] = {4, 7, 14, 24, 27, 29, 49, 57, 68, 87};
+    static_assert(std::size(names) == static_cast<size_t>(BoltEnchantment::COUNT));
+    static_assert(std::size(levels) == std::size(names));
+    const auto index = static_cast<int32_t>(spell);
+    if (index < 0 || index >= static_cast<int32_t>(std::size(names))) return {"", 0, 0, SpellBook::Standard, true, 0};
+    return {names[index], levels[index], gamevals::InterfaceID::MagicSpellbook::XBOWS_ENCHANT, SpellBook::Standard, true, 0, index};
+}
 
 inline constexpr SpellInfo info(Standard spell) {
     switch (spell) {
@@ -298,7 +317,7 @@ inline constexpr SpellInfo info(Standard spell) {
         case Standard::WATCHTOWER_TELEPORT: return {"WATCHTOWER_TELEPORT", 58, gamevals::InterfaceID::MagicSpellbook::WATCHTOWER_TELEPORT, SpellBook::Standard, true, 0};
         case Standard::TROLLHEIM_TELEPORT: return {"TROLLHEIM_TELEPORT", 61, gamevals::InterfaceID::MagicSpellbook::TROLLHEIM_TELEPORT, SpellBook::Standard, true, 0};
         case Standard::TELEPORT_TO_APE_ATOLL: return {"TELEPORT_TO_APE_ATOLL", 64, gamevals::InterfaceID::MagicSpellbook::APE_TELEPORT, SpellBook::Standard, true, 0};
-        case Standard::TELEPORT_TO_KOUREND: return {"TELEPORT_TO_KOUREND", 69, gamevals::InterfaceID::MagicSpellbook::KOUREND_TELEPORT, SpellBook::Standard, true, 0};
+        case Standard::TELEPORT_TO_KOUREND: return {"TELEPORT_TO_KOUREND", 48, gamevals::InterfaceID::MagicSpellbook::KOUREND_TELEPORT, SpellBook::Standard, true, 0};
         case Standard::TELEOTHER_LUMBRIDGE: return {"TELEOTHER_LUMBRIDGE", 74, gamevals::InterfaceID::MagicSpellbook::TELEOTHER_LUMBRIDGE, SpellBook::Standard, true, 0};
         case Standard::TELEOTHER_FALADOR: return {"TELEOTHER_FALADOR", 82, gamevals::InterfaceID::MagicSpellbook::TELEOTHER_FALADOR, SpellBook::Standard, true, 0};
         case Standard::TELEPORT_TO_BOUNTY_TARGET: return {"TELEPORT_TO_BOUNTY_TARGET", 85, gamevals::InterfaceID::MagicSpellbook::BOUNTY_TARGET, SpellBook::Standard, true, 0};
@@ -356,14 +375,17 @@ inline constexpr SpellInfo info(Standard spell) {
         case Standard::LVL_5_ENCHANT: return {"LVL_5_ENCHANT", 68, gamevals::InterfaceID::MagicSpellbook::ENCHANT_5, SpellBook::Standard, true, 0};
         case Standard::LVL_6_ENCHANT: return {"LVL_6_ENCHANT", 87, gamevals::InterfaceID::MagicSpellbook::ENCHANT_6, SpellBook::Standard, true, 0};
         case Standard::LVL_7_ENCHANT: return {"LVL_7_ENCHANT", 93, gamevals::InterfaceID::MagicSpellbook::ENCHANT_7, SpellBook::Standard, true, 0};
-        case Standard::TELEKINETIC_GRAB: return {"TELEKINETIC_GRAB", 31, gamevals::InterfaceID::MagicSpellbook::TELEGRAB, SpellBook::Standard, false, 0};
+        case Standard::TELEKINETIC_GRAB: return {"TELEKINETIC_GRAB", 33, gamevals::InterfaceID::MagicSpellbook::TELEGRAB, SpellBook::Standard, false, 0};
+        case Standard::CIVITAS_ILLA_FORTIS_TELEPORT: return {"CIVITAS_ILLA_FORTIS_TELEPORT", 54, gamevals::InterfaceID::MagicSpellbook::FORTIS_TELEPORT, SpellBook::Standard, true, 0};
+        case Standard::TELEPORT_TO_BOAT: return {"TELEPORT_TO_BOAT", 67, gamevals::InterfaceID::MagicSpellbook::TELEPORT_ME_TO_BOAT, SpellBook::Standard, true, 0};
+        case Standard::MONSTER_INSPECT: return {"MONSTER_INSPECT", 42, gamevals::InterfaceID::MagicSpellbook::MONSTER_INSPECT, SpellBook::Standard, false, 0};
     }
     return {"", 0, 0u, SpellBook::Standard, false, 0};
 }
 
 inline constexpr SpellInfo info(Ancient spell) {
     switch (spell) {
-        case Ancient::EDGEVILLE_HOME_TELEPORT: return {"EDGEVILLE_HOME_TELEPORT", 0, gamevals::InterfaceID::MagicSpellbook::TELEPORT_HOME_ZAROS, SpellBook::Ancient, true, 0};
+        case Ancient::EDGEVILLE_HOME_TELEPORT: return {"EDGEVILLE_HOME_TELEPORT", 1, gamevals::InterfaceID::MagicSpellbook::TELEPORT_HOME_ZAROS, SpellBook::Ancient, false, 0};
         case Ancient::PADDEWWA_TELEPORT: return {"PADDEWWA_TELEPORT", 54, gamevals::InterfaceID::MagicSpellbook::ZAROSTELEPORT1, SpellBook::Ancient, true, 0};
         case Ancient::SENNTISTEN_TELEPORT: return {"SENNTISTEN_TELEPORT", 60, gamevals::InterfaceID::MagicSpellbook::ZAROSTELEPORT2, SpellBook::Ancient, true, 0};
         case Ancient::KHARYRLL_TELEPORT: return {"KHARYRLL_TELEPORT", 66, gamevals::InterfaceID::MagicSpellbook::ZAROSTELEPORT3, SpellBook::Ancient, true, 0};
@@ -395,7 +417,7 @@ inline constexpr SpellInfo info(Ancient spell) {
 
 inline constexpr SpellInfo info(Lunar spell) {
     switch (spell) {
-        case Lunar::LUNAR_HOME_TELEPORT: return {"LUNAR_HOME_TELEPORT", 0, gamevals::InterfaceID::MagicSpellbook::TELEPORT_HOME_LUNAR, SpellBook::Lunar, true, 0};
+        case Lunar::LUNAR_HOME_TELEPORT: return {"LUNAR_HOME_TELEPORT", 1, gamevals::InterfaceID::MagicSpellbook::TELEPORT_HOME_LUNAR, SpellBook::Lunar, true, 0};
         case Lunar::MOONCLAN_TELEPORT: return {"MOONCLAN_TELEPORT", 69, gamevals::InterfaceID::MagicSpellbook::TELE_MOONCLAN, SpellBook::Lunar, true, 0};
         case Lunar::TELE_GROUP_MOONCLAN: return {"TELE_GROUP_MOONCLAN", 70, gamevals::InterfaceID::MagicSpellbook::TELE_GROUP_MOONCLAN, SpellBook::Lunar, true, 0};
         case Lunar::OURANIA_TELEPORT: return {"OURANIA_TELEPORT", 71, gamevals::InterfaceID::MagicSpellbook::OURANIA_TELEPORT, SpellBook::Lunar, true, 0};
@@ -412,33 +434,34 @@ inline constexpr SpellInfo info(Lunar spell) {
         case Lunar::ICE_PLATEAU_TELEPORT: return {"ICE_PLATEAU_TELEPORT", 89, gamevals::InterfaceID::MagicSpellbook::TELE_GHORROCK, SpellBook::Lunar, true, 0};
         case Lunar::TELE_GROUP_ICE_PLATEAU: return {"TELE_GROUP_ICE_PLATEAU", 90, gamevals::InterfaceID::MagicSpellbook::TELE_GROUP_GHORROCK, SpellBook::Lunar, true, 0};
         case Lunar::MONSTER_EXAMINE: return {"MONSTER_EXAMINE", 66, gamevals::InterfaceID::MagicSpellbook::MONSTER_EXAMINE, SpellBook::Lunar, true, 0};
-        case Lunar::CURE_OTHER: return {"CURE_OTHER", 66, gamevals::InterfaceID::MagicSpellbook::CURE_OTHER, SpellBook::Lunar, true, 0};
-        case Lunar::CURE_ME: return {"CURE_ME", 66, gamevals::InterfaceID::MagicSpellbook::CURE_ME, SpellBook::Lunar, true, 0};
-        case Lunar::CURE_GROUP: return {"CURE_GROUP", 66, gamevals::InterfaceID::MagicSpellbook::CURE_GROUP, SpellBook::Lunar, true, 0};
-        case Lunar::STAT_SPY: return {"STAT_SPY", 66, gamevals::InterfaceID::MagicSpellbook::STAT_SPY, SpellBook::Lunar, true, 0};
-        case Lunar::DREAM: return {"DREAM", 66, gamevals::InterfaceID::MagicSpellbook::DREAM, SpellBook::Lunar, true, 0};
-        case Lunar::STAT_RESTORE_POT_SHARE: return {"STAT_RESTORE_POT_SHARE", 66, gamevals::InterfaceID::MagicSpellbook::REST_POT_SHARE, SpellBook::Lunar, true, 0};
-        case Lunar::BOOST_POTION_SHARE: return {"BOOST_POTION_SHARE", 66, gamevals::InterfaceID::MagicSpellbook::STREN_POT_SHARE, SpellBook::Lunar, true, 0};
-        case Lunar::ENERGY_TRANSFER: return {"ENERGY_TRANSFER", 66, gamevals::InterfaceID::MagicSpellbook::ENERGY_TRANS, SpellBook::Lunar, true, 0};
-        case Lunar::HEAL_OTHER: return {"HEAL_OTHER", 66, gamevals::InterfaceID::MagicSpellbook::HEAL_OTHER, SpellBook::Lunar, true, 0};
-        case Lunar::VENGEANCE_OTHER: return {"VENGEANCE_OTHER", 66, gamevals::InterfaceID::MagicSpellbook::VENGEANCE_OTHER, SpellBook::Lunar, true, 0};
-        case Lunar::VENGEANCE: return {"VENGEANCE", 66, gamevals::InterfaceID::MagicSpellbook::VENGEANCE, SpellBook::Lunar, true, 0};
-        case Lunar::HEAL_GROUP: return {"HEAL_GROUP", 66, gamevals::InterfaceID::MagicSpellbook::HEAL_GROUP, SpellBook::Lunar, true, 0};
-        case Lunar::BAKE_PIE: return {"BAKE_PIE", 66, gamevals::InterfaceID::MagicSpellbook::BAKE_PIE, SpellBook::Lunar, true, 0};
-        case Lunar::GEOMANCY: return {"GEOMANCY", 66, gamevals::InterfaceID::MagicSpellbook::GEOMANCY, SpellBook::Lunar, true, 0};
+        case Lunar::CURE_OTHER: return {"CURE_OTHER", 68, gamevals::InterfaceID::MagicSpellbook::CURE_OTHER, SpellBook::Lunar, true, 0};
+        case Lunar::CURE_ME: return {"CURE_ME", 71, gamevals::InterfaceID::MagicSpellbook::CURE_ME, SpellBook::Lunar, true, 0};
+        case Lunar::CURE_GROUP: return {"CURE_GROUP", 74, gamevals::InterfaceID::MagicSpellbook::CURE_GROUP, SpellBook::Lunar, true, 0};
+        case Lunar::STAT_SPY: return {"STAT_SPY", 75, gamevals::InterfaceID::MagicSpellbook::STAT_SPY, SpellBook::Lunar, true, 0};
+        case Lunar::DREAM: return {"DREAM", 79, gamevals::InterfaceID::MagicSpellbook::DREAM, SpellBook::Lunar, true, 0};
+        case Lunar::STAT_RESTORE_POT_SHARE: return {"STAT_RESTORE_POT_SHARE", 81, gamevals::InterfaceID::MagicSpellbook::REST_POT_SHARE, SpellBook::Lunar, true, 0};
+        case Lunar::BOOST_POTION_SHARE: return {"BOOST_POTION_SHARE", 84, gamevals::InterfaceID::MagicSpellbook::STREN_POT_SHARE, SpellBook::Lunar, true, 0};
+        case Lunar::ENERGY_TRANSFER: return {"ENERGY_TRANSFER", 91, gamevals::InterfaceID::MagicSpellbook::ENERGY_TRANS, SpellBook::Lunar, true, 0};
+        case Lunar::HEAL_OTHER: return {"HEAL_OTHER", 92, gamevals::InterfaceID::MagicSpellbook::HEAL_OTHER, SpellBook::Lunar, true, 0};
+        case Lunar::VENGEANCE_OTHER: return {"VENGEANCE_OTHER", 93, gamevals::InterfaceID::MagicSpellbook::VENGEANCE_OTHER, SpellBook::Lunar, true, 0};
+        case Lunar::VENGEANCE: return {"VENGEANCE", 94, gamevals::InterfaceID::MagicSpellbook::VENGEANCE, SpellBook::Lunar, true, 0};
+        case Lunar::HEAL_GROUP: return {"HEAL_GROUP", 95, gamevals::InterfaceID::MagicSpellbook::HEAL_GROUP, SpellBook::Lunar, true, 0};
+        case Lunar::BAKE_PIE: return {"BAKE_PIE", 65, gamevals::InterfaceID::MagicSpellbook::BAKE_PIE, SpellBook::Lunar, true, 0};
+        case Lunar::GEOMANCY: return {"GEOMANCY", 65, gamevals::InterfaceID::MagicSpellbook::GEOMANCY, SpellBook::Lunar, true, 0};
         case Lunar::CURE_PLANT: return {"CURE_PLANT", 66, gamevals::InterfaceID::MagicSpellbook::CURE_PLANT, SpellBook::Lunar, true, 0};
-        case Lunar::NPC_CONTACT: return {"NPC_CONTACT", 66, gamevals::InterfaceID::MagicSpellbook::NPC_CONTACT, SpellBook::Lunar, true, 0};
-        case Lunar::HUMIDIFY: return {"HUMIDIFY", 66, gamevals::InterfaceID::MagicSpellbook::HUMIDIFY, SpellBook::Lunar, true, 0};
-        case Lunar::HUNTER_KIT: return {"HUNTER_KIT", 66, gamevals::InterfaceID::MagicSpellbook::HUNTER_KIT, SpellBook::Lunar, true, 0};
-        case Lunar::SPIN_FLAX: return {"SPIN_FLAX", 66, gamevals::InterfaceID::MagicSpellbook::SPIN_FLAX, SpellBook::Lunar, true, 0};
-        case Lunar::SUPERGLASS_MAKE: return {"SUPERGLASS_MAKE", 66, gamevals::InterfaceID::MagicSpellbook::SUPERGLASS, SpellBook::Lunar, true, 0};
-        case Lunar::TAN_LEATHER: return {"TAN_LEATHER", 66, gamevals::InterfaceID::MagicSpellbook::TAN_LEATHER, SpellBook::Lunar, true, 0};
-        case Lunar::STRING_JEWELLERY: return {"STRING_JEWELLERY", 66, gamevals::InterfaceID::MagicSpellbook::STRING_JEWEL, SpellBook::Lunar, true, 0};
-        case Lunar::MAGIC_IMBUE: return {"MAGIC_IMBUE", 66, gamevals::InterfaceID::MagicSpellbook::MAGIC_IMBUE, SpellBook::Lunar, true, 0};
-        case Lunar::FERTILE_SOIL: return {"FERTILE_SOIL", 66, gamevals::InterfaceID::MagicSpellbook::FERTILE_SOIL, SpellBook::Lunar, true, 0};
-        case Lunar::PLANK_MAKE: return {"PLANK_MAKE", 66, gamevals::InterfaceID::MagicSpellbook::PLANK_MAKE, SpellBook::Lunar, true, 0};
-        case Lunar::RECHARGE_DRAGONSTONE: return {"RECHARGE_DRAGONSTONE", 66, gamevals::InterfaceID::MagicSpellbook::RECHARGE_DRAGONSTONE, SpellBook::Lunar, true, 0};
-        case Lunar::SPELLBOOK_SWAP: return {"SPELLBOOK_SWAP", 66, gamevals::InterfaceID::MagicSpellbook::SPELLBOOK_SWAP, SpellBook::Lunar, true, 0};
+        case Lunar::NPC_CONTACT: return {"NPC_CONTACT", 67, gamevals::InterfaceID::MagicSpellbook::NPC_CONTACT, SpellBook::Lunar, true, 0};
+        case Lunar::HUMIDIFY: return {"HUMIDIFY", 68, gamevals::InterfaceID::MagicSpellbook::HUMIDIFY, SpellBook::Lunar, true, 0};
+        case Lunar::HUNTER_KIT: return {"HUNTER_KIT", 71, gamevals::InterfaceID::MagicSpellbook::HUNTER_KIT, SpellBook::Lunar, true, 0};
+        case Lunar::SPIN_FLAX: return {"SPIN_FLAX", 76, gamevals::InterfaceID::MagicSpellbook::SPIN_FLAX, SpellBook::Lunar, true, 0};
+        case Lunar::SUPERGLASS_MAKE: return {"SUPERGLASS_MAKE", 77, gamevals::InterfaceID::MagicSpellbook::SUPERGLASS, SpellBook::Lunar, true, 0};
+        case Lunar::TAN_LEATHER: return {"TAN_LEATHER", 78, gamevals::InterfaceID::MagicSpellbook::TAN_LEATHER, SpellBook::Lunar, true, 0};
+        case Lunar::STRING_JEWELLERY: return {"STRING_JEWELLERY", 80, gamevals::InterfaceID::MagicSpellbook::STRING_JEWEL, SpellBook::Lunar, true, 0};
+        case Lunar::MAGIC_IMBUE: return {"MAGIC_IMBUE", 82, gamevals::InterfaceID::MagicSpellbook::MAGIC_IMBUE, SpellBook::Lunar, true, 0};
+        case Lunar::FERTILE_SOIL: return {"FERTILE_SOIL", 83, gamevals::InterfaceID::MagicSpellbook::FERTILE_SOIL, SpellBook::Lunar, true, 0};
+        case Lunar::PLANK_MAKE: return {"PLANK_MAKE", 86, gamevals::InterfaceID::MagicSpellbook::PLANK_MAKE, SpellBook::Lunar, true, 0};
+        case Lunar::RECHARGE_DRAGONSTONE: return {"RECHARGE_DRAGONSTONE", 89, gamevals::InterfaceID::MagicSpellbook::RECHARGE_DRAGONSTONE, SpellBook::Lunar, true, 0};
+        case Lunar::SPELLBOOK_SWAP: return {"SPELLBOOK_SWAP", 96, gamevals::InterfaceID::MagicSpellbook::SPELLBOOK_SWAP, SpellBook::Lunar, true, 0};
+        case Lunar::TELEPORT_TO_TARGET: return {"TELEPORT_TO_TARGET", 85, gamevals::InterfaceID::MagicSpellbook::BOUNTY_TARGET, SpellBook::Lunar, true, 0};
     }
     return {"", 0, 0u, SpellBook::Lunar, false, 0};
 }
@@ -489,6 +512,7 @@ inline constexpr SpellInfo info(Necromancy spell) {
         case Necromancy::DEGRIME: return {"DEGRIME", 70, gamevals::InterfaceID::MagicSpellbook::DEGRIME, SpellBook::Necromancy, true, 0};
         case Necromancy::RESURRECT_CROPS: return {"RESURRECT_CROPS", 78, gamevals::InterfaceID::MagicSpellbook::RESURRECT_CROPS, SpellBook::Necromancy, true, 0};
         case Necromancy::DEATH_CHARGE: return {"DEATH_CHARGE", 80, gamevals::InterfaceID::MagicSpellbook::DEATH_CHARGE, SpellBook::Necromancy, true, 0};
+        case Necromancy::TELEPORT_TO_TARGET: return {"TELEPORT_TO_TARGET", 85, gamevals::InterfaceID::MagicSpellbook::BOUNTY_TARGET, SpellBook::Necromancy, true, 0};
     }
     return {"", 0, 0u, SpellBook::Necromancy, false, 0};
 }
@@ -517,31 +541,75 @@ inline bool isHomeTeleportOnCooldown() {
     return lastHomeTeleportUsage() + std::chrono::minutes{30} > std::chrono::system_clock::now();
 }
 
-inline bool canCast(const SpellInfo& spell) {
-    if (!spell.name || spell.name[0] == '\0' || spell.widget == 0u) return false;
-    if (spell.book != currentSpellBook()) return false;
-    const int magic = static_cast<int>(Skill::MAGIC);
-    if (spell.level > titan::state::skills().real(magic) ||
-        spell.level > titan::state::skills().boosted(magic)) {
-        return false;
+inline constexpr SpellRequirements requirements(const SpellInfo& spell) {
+    if (!spell.name || !spell.name[0]) return {};
+    if (spell.boltEnchantment >= 0) {
+        return spell.book == SpellBook::Standard && spell.widget == gamevals::InterfaceID::MagicSpellbook::XBOWS_ENCHANT
+            ? requirements(static_cast<BoltEnchantment>(spell.boltEnchantment)) : SpellRequirements{};
     }
-    if (spell.book == SpellBook::Standard) {
-        if (spell.widget == gamevals::InterfaceID::MagicSpellbook::ARDOUGNE_TELEPORT &&
-            titan::state::vars().varp(165) < 30) {
-            return false;
-        }
-        if (spell.widget == gamevals::InterfaceID::MagicSpellbook::TROLLHEIM_TELEPORT &&
-            titan::state::vars().varp(335) < 110) {
-            return false;
-        }
-    }
-    return true;
+    return requirements(spell.book, spell.widget);
 }
 
 template <SpellEnum SpellT>
-inline bool canCast(SpellT spell) {
-    return canCast(info(spell));
+inline constexpr SpellRequirements requirements(SpellT spell) { return requirements(info(spell)); }
+
+/// Resource eligibility only; book, level, and unlocks are checked by canCast.
+inline bool haveRunesForSpell(const SpellInfo& spell, const SpellCastState& state) {
+    const auto needed = requirements(spell);
+    if (detail::hasSpellSack(needed, detail::SnapshotSpellState{state})) return true;
+    return state.runeAmounts ? detail::enoughRunes(needed, *state.runeAmounts) : detail::enoughRunes(needed, {});
 }
+
+inline bool haveRunesForSpell(const SpellInfo& spell) {
+    const auto needed = requirements(spell);
+    if (!needed.known || !::titan::detail::backend()) return false;
+    if (detail::hasSpellSack(needed, detail::LiveSpellState{})) return true;
+    if (detail::enoughRunes(needed, {})) return true;
+    const auto amounts = RuneElement::getCarriedRuneElementAmounts();
+    return amounts && detail::enoughRunes(needed, *amounts);
+}
+
+/// Player prerequisites only; target, ingredients being processed, and location restrictions are caller-owned.
+inline bool additionalRequirementsSatisfied(const SpellInfo& spell, const SpellCastState& state) {
+    return detail::additionalSatisfied(spell.book, requirements(spell), detail::SnapshotSpellState{state});
+}
+
+inline bool additionalRequirementsSatisfied(const SpellInfo& spell) {
+    return ::titan::detail::backend()
+        && detail::additionalSatisfied(spell.book, requirements(spell), detail::LiveSpellState{});
+}
+
+/// Checks the current book, membership, current Magic level, resources, and player prerequisites.
+/// Detectably missing required state fails closed. Raw live var reads inherit the SDK's lack of a success flag.
+/// Passing does not guarantee server acceptance of a cast.
+inline bool canCast(const SpellInfo& spell, const SpellCastState& state) {
+    return requirements(spell).known && state.spellBook == spell.book
+        && (!spell.members || state.membersWorld.value_or(false))
+        && detail::valueOrUnknown(state.boostedLevels, Skill::MAGIC) >= spell.level
+        && haveRunesForSpell(spell, state) && additionalRequirementsSatisfied(spell, state);
+}
+
+inline bool canCast(const SpellInfo& spell) {
+    if (!requirements(spell).known || !::titan::detail::backend()) return false;
+    // Read the raw book here: currentSpellBook's compatibility fallback hides unavailable/invalid values.
+    if (titan::state::vars().varbit(Varbits::SPELLBOOK) != static_cast<int32_t>(spell.book)) return false;
+    if (spell.members && !RuneElement::detail::currentWorldIsMembers().value_or(false)) return false;
+    return titan::state::skills().boosted(static_cast<int32_t>(Skill::MAGIC)) >= spell.level
+        && haveRunesForSpell(spell) && additionalRequirementsSatisfied(spell);
+}
+
+template <SpellEnum SpellT>
+inline bool haveRunesForSpell(SpellT spell) { return haveRunesForSpell(info(spell)); }
+template <SpellEnum SpellT>
+inline bool haveRunesForSpell(SpellT spell, const SpellCastState& state) { return haveRunesForSpell(info(spell), state); }
+template <SpellEnum SpellT>
+inline bool additionalRequirementsSatisfied(SpellT spell) { return additionalRequirementsSatisfied(info(spell)); }
+template <SpellEnum SpellT>
+inline bool additionalRequirementsSatisfied(SpellT spell, const SpellCastState& state) { return additionalRequirementsSatisfied(info(spell), state); }
+template <SpellEnum SpellT>
+inline bool canCast(SpellT spell) { return canCast(info(spell)); }
+template <SpellEnum SpellT>
+inline bool canCast(SpellT spell, const SpellCastState& state) { return canCast(info(spell), state); }
 
 /// Perform the spell's own Cast option: CC_OP against the catalog's menu
 /// entry. This is the plain "click the spell" action, and it is what a

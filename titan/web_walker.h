@@ -196,6 +196,85 @@ inline std::string fixedWebString(const char (&value)[N]) {
     while (length < N && value[length] != '\0') ++length;
     return std::string(value, length);
 }
+
+// The host and the walker provider's services return the same records, so
+// each conversion takes the call that fills them.
+
+/// `poll(TitanPluginSdk::WebPathSummaryState*)` returns nonzero on success.
+template <typename Poll>
+std::optional<WebPathSummary> pollWebPath(Poll poll) {
+    TitanPluginSdk::WebPathSummaryState state{};
+    if (!poll(&state)) return std::nullopt;
+    if (state.stepCount > TitanPluginSdk::kWebPathMaxSteps) {
+        return std::nullopt;
+    }
+
+    WebPathSummary result;
+    result.requestId = state.requestId;
+    result.phase = static_cast<WebPathPhase>(state.phase);
+    result.result = static_cast<WebPathResult>(state.result);
+    result.totalCost = state.totalCost;
+    result.stepCount = state.stepCount;
+    result.exploredNodes = state.exploredNodes;
+    result.elapsed = std::chrono::milliseconds(state.elapsedMs);
+    result.start = fromWebPointState(state.start);
+    result.requestedDestination = fromWebPointState(state.requestedDestination);
+    result.reachedDestination = fromWebPointState(state.reachedDestination);
+    result.message = fixedWebString(state.message);
+    return result;
+}
+
+/// `copy(TitanPluginSdk::WebPathStepState* out, uint32_t capacity,
+/// uint32_t* outCount)` returns nonzero on success; a null output is a size
+/// query.
+template <typename Copy>
+std::optional<std::vector<WebPathStep>> copyWebPathSteps(Copy copy) {
+    uint32_t required = 0;
+    if (!copy(nullptr, 0, &required)) return std::nullopt;
+    if (required > TitanPluginSdk::kWebPathMaxSteps) return std::nullopt;
+    std::vector<TitanPluginSdk::WebPathStepState> states(required);
+    uint32_t copied = required;
+    if (required != 0 && !copy(states.data(), required, &copied)) {
+        return std::nullopt;
+    }
+    if (copied > required || copied > TitanPluginSdk::kWebPathMaxSteps) {
+        return std::nullopt;
+    }
+    states.resize(copied);
+
+    std::vector<WebPathStep> result;
+    result.reserve(states.size());
+    for (const auto& state : states) {
+        result.push_back(WebPathStep{
+            state.edgeId,
+            static_cast<WebPathStepKind>(state.kind),
+            state.subtype,
+            static_cast<WebPathRouteSpace>(state.fromRouteSpace),
+            static_cast<WebPathRouteSpace>(state.toRouteSpace),
+            state.edgeCost,
+            state.accumulatedCost,
+            TitanPluginSdk::webPathAbiInstanceCopyId(
+                state.fromRouteSpace, state.fromInstanceCopyId),
+            TitanPluginSdk::webPathAbiInstanceCopyId(
+                state.toRouteSpace, state.toInstanceCopyId),
+            fromWebPointState(state.from),
+            fromWebPointState(state.to),
+            fixedWebString(state.name),
+        });
+    }
+    return result;
+}
+
+/// `copy(char* out, uint32_t capacity, uint32_t* outRequired)` returns
+/// nonzero on success; a null output is a size query.
+template <typename Copy>
+std::optional<std::string> copyWebPathStepPayload(Copy copy) {
+    uint32_t required = 0;
+    if (!copy(nullptr, 0, &required) || required == 0) return std::nullopt;
+    std::string payload(required - 1, '\0');
+    if (!copy(payload.data(), required, &required)) return std::nullopt;
+    return payload;
+}
 }  // namespace detail
 
 class WebWalkerFacade {
@@ -233,72 +312,21 @@ public:
     std::optional<WebPathSummary> poll(WebPathHandle handle) const {
         auto* backend = detail::backend();
         if (!backend || handle == 0) return std::nullopt;
-        TitanPluginSdk::WebPathSummaryState state{};
-        if (!backend->webPathPoll(handle, &state)) return std::nullopt;
-        if (state.stepCount > TitanPluginSdk::kWebPathMaxSteps) {
-            return std::nullopt;
-        }
-
-        WebPathSummary result;
-        result.requestId = state.requestId;
-        result.phase = static_cast<WebPathPhase>(state.phase);
-        result.result = static_cast<WebPathResult>(state.result);
-        result.totalCost = state.totalCost;
-        result.stepCount = state.stepCount;
-        result.exploredNodes = state.exploredNodes;
-        result.elapsed = std::chrono::milliseconds(state.elapsedMs);
-        result.start = detail::fromWebPointState(state.start);
-        result.requestedDestination =
-            detail::fromWebPointState(state.requestedDestination);
-        result.reachedDestination =
-            detail::fromWebPointState(state.reachedDestination);
-        result.message = detail::fixedWebString(state.message);
-        return result;
+        return detail::pollWebPath([&](auto* out) {
+            return backend->webPathPoll(handle, out);
+        });
     }
 
     std::optional<std::vector<WebPathStep>> copySteps(
             WebPathHandle handle) const {
         auto* backend = detail::backend();
         if (!backend || handle == 0) return std::nullopt;
-        uint32_t required = 0;
-        if (!backend->webPathCopySteps(handle, nullptr, 0, &required)) {
-            return std::nullopt;
-        }
-        if (required > TitanPluginSdk::kWebPathMaxSteps) {
-            return std::nullopt;
-        }
-        std::vector<TitanPluginSdk::WebPathStepState> states(required);
-        uint32_t copied = required;
-        if (required != 0 && !backend->webPathCopySteps(
-                handle, states.data(), required, &copied)) {
-            return std::nullopt;
-        }
-        if (copied > required || copied > TitanPluginSdk::kWebPathMaxSteps) {
-            return std::nullopt;
-        }
-        states.resize(copied);
-
-        std::vector<WebPathStep> result;
-        result.reserve(states.size());
-        for (const auto& state : states) {
-            result.push_back(WebPathStep{
-                state.edgeId,
-                static_cast<WebPathStepKind>(state.kind),
-                state.subtype,
-                static_cast<WebPathRouteSpace>(state.fromRouteSpace),
-                static_cast<WebPathRouteSpace>(state.toRouteSpace),
-                state.edgeCost,
-                state.accumulatedCost,
-                TitanPluginSdk::webPathAbiInstanceCopyId(
-                    state.fromRouteSpace, state.fromInstanceCopyId),
-                TitanPluginSdk::webPathAbiInstanceCopyId(
-                    state.toRouteSpace, state.toInstanceCopyId),
-                detail::fromWebPointState(state.from),
-                detail::fromWebPointState(state.to),
-                detail::fixedWebString(state.name),
+        return detail::copyWebPathSteps(
+            [&](TitanPluginSdk::WebPathStepState* out, uint32_t capacity,
+                uint32_t* outCount) {
+                return backend->webPathCopySteps(
+                    handle, out, capacity, outCount);
             });
-        }
-        return result;
     }
 
     bool cancel(WebPathHandle handle) const {
@@ -320,19 +348,11 @@ public:
                                            uint32_t stepIndex) const {
         auto* backend = detail::backend();
         if (!backend || handle == 0) return std::nullopt;
-        uint32_t required = 0;
-        if (backend->webPathCopyStepPayload(
-                handle, stepIndex, nullptr, 0, &required) == 0
-            || required == 0) {
-            return std::nullopt;
-        }
-        std::string payload(required - 1, '\0');
-        if (backend->webPathCopyStepPayload(
-                handle, stepIndex, payload.data(), required, &required)
-            == 0) {
-            return std::nullopt;
-        }
-        return payload;
+        return detail::copyWebPathStepPayload(
+            [&](char* out, uint32_t capacity, uint32_t* outRequired) {
+                return backend->webPathCopyStepPayload(
+                    handle, stepIndex, out, capacity, outRequired);
+            });
     }
 };
 
@@ -392,6 +412,30 @@ struct WebWalkStatus {
     std::string message;
 };
 
+namespace detail {
+/// `status(TitanPluginSdk::WebWalkStatusState*)` returns nonzero on success.
+template <typename Status>
+std::optional<WebWalkStatus> webWalkStatus(Status status) {
+    TitanPluginSdk::WebWalkStatusState state{};
+    state.structSize = sizeof(state);
+    state.apiVersion = TitanPluginSdk::kWebWalkApiVersion;
+    if (!status(&state)) return std::nullopt;
+    WebWalkStatus result;
+    result.walkId = state.walkId;
+    result.phase = static_cast<WebWalkPhase>(state.phase);
+    result.pathResult = static_cast<WebPathResult>(state.pathResult);
+    result.currentStepIndex = state.currentStepIndex;
+    result.stepCount = state.stepCount;
+    result.ticksActive = state.ticksActive;
+    result.replanCount = state.replanCount;
+    result.lastDecision = state.lastDecision;
+    result.destination = fromWebPointState(state.destination);
+    result.currentStepName = fixedWebString(state.currentStepName);
+    result.message = fixedWebString(state.message);
+    return result;
+}
+}  // namespace detail
+
 /// Autonomous path following: the client walks the local player to the
 /// destination, using the same route engine as submit(), and (as executor
 /// milestones land) its transports and teleports. One session per client; a
@@ -441,23 +485,9 @@ public:
     std::optional<WebWalkStatus> status(WebWalkHandle handle) const {
         auto* backend = detail::backend();
         if (!backend || handle == 0) return std::nullopt;
-        TitanPluginSdk::WebWalkStatusState state{};
-        state.structSize = sizeof(state);
-        state.apiVersion = TitanPluginSdk::kWebWalkApiVersion;
-        if (backend->webWalkStatus(handle, &state) == 0) return std::nullopt;
-        WebWalkStatus result;
-        result.walkId = state.walkId;
-        result.phase = static_cast<WebWalkPhase>(state.phase);
-        result.pathResult = static_cast<WebPathResult>(state.pathResult);
-        result.currentStepIndex = state.currentStepIndex;
-        result.stepCount = state.stepCount;
-        result.ticksActive = state.ticksActive;
-        result.replanCount = state.replanCount;
-        result.lastDecision = state.lastDecision;
-        result.destination = detail::fromWebPointState(state.destination);
-        result.currentStepName = detail::fixedWebString(state.currentStepName);
-        result.message = detail::fixedWebString(state.message);
-        return result;
+        return detail::webWalkStatus([&](auto* out) {
+            return backend->webWalkStatus(handle, out);
+        });
     }
 
     bool cancel(WebWalkHandle handle) const {

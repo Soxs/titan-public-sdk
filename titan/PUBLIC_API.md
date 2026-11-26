@@ -1515,7 +1515,8 @@ headers below; publishing native contracts does not expose private client IPC.
 | `<titan/definition_extras.h>` | Optional `titan::definitions` reads: `widgetModelId(address)`, `npcBaseId(worldViewId, hashIndex)`, `itemWornActions(itemId)`, and (SDK 158) `itemIntParam(itemId, paramId)` / `itemIntParamsAvailable(itemId)`, which return a cached item definition's integer param without applying the ParamComposition default. Live reads require the game thread; worn labels come from immutable cache definitions. Missing capability/data returns `nullopt`. Negotiated separately from native records; since SDK v146 every widget read also carries the model id as `Widget::modelId()`. |
 | `<titan/web_walker.h>` | Read-only asynchronous `titan::webWalker()` path generation: `submit`, `poll`, `copySteps`, `cancel`, and `release` (SDK 112). Requests and walks take `forbiddenTiles` and `forbiddenAreas` (`titan::WorldArea`): an area is every one of its tiles, so no step, transport or teleport of the route may end inside it; leave out an area the trip starts or ends in. |
 | `<titan/web_walker_areas.h>` | The wire convention behind `forbiddenAreas`, for walker engines and callers that fill the ABI arrays by hand: an area is two tagged `WorldPointState` entries in the existing forbidden array (`appendWebPathForbiddenArea`, `appendWebPathForbiddenOutline`, `decodeWebPathForbidden`). No HostApi or payload change; an engine that predates it does not avoid areas, which is why `<titan/web_walker.h>` also sends outlines by default. |
-| `<titan/web_walker_provider.h>` | Versioned walker provider contracts: V1 planning compatibility and V2 complete planning, payload, and execution service. The host currently selects external providers through the entitled `web_walker_provider` DEV policy. Normal consumers use `<titan/web_walker.h>`. |
+| `<titan/web_walker_provider.h>` | Versioned walker provider contracts: V1 planning compatibility, V2 complete planning, payload, and execution service, and V3 with every route family, banking, several destinations or starts, soft or hard Wilderness avoidance, cost zones the route pays extra to cross or must not enter, and a run energy reserve. The host currently selects external providers through the entitled `web_walker_provider` DEV policy and routes V1/V2 only; native plugins call V3 directly through the service registry. Normal consumers use `<titan/web_walker.h>`, or `<titan/web_walker_v3.h>` for V3. |
+| `<titan/web_walker_v3.h>` | Typed V3 calls for native plugins: `titan::webWalkerV3()` path planning to one or several destinations, optionally from explicit starts, and `titan::webWalkV3()` walks with `walkTo`, `walkToNearestBank`, `status`, `copySteps` (the route a walk follows), `cancel`, `release` and `advance`; walk handle 0 addresses the walker's latest or active walk, whichever plugin started it. Option structs default to the raw V3 request's defaults. Each call leases the provider service for its duration and returns `nullopt` or `false` when no V3 provider is live. |
 | `<titan/web_walker_via.h>` | Versioned POD `titan.web_walker.via.v1` service contract, published by the WebWalker Engine: "which of these via points makes the cheapest trip to the destination?" in one request (`submit`, `poll`, `cancel`, `release`). Optional: resolve it with `titan::service<WebWalkerViaV1>(kWebWalkerViaServiceId)`, check `validWebWalkerViaV1`, and price the legs with `<titan/web_walker.h>` when it is absent. Header-only; no HostApi, payload or SDK version change. |
 | `<titan/activity.h>` | Versioned POD `titan.activity.v1/<plugin id>` service contract: an activity one plugin can run for another (Wintertodt as a Firemaking method for Account Maker). See "Activities" below. |
 | `<titan/world_point.h>` | Lightweight public `Tile`, `WorldPos`, and `WorldPoint` coordinate contract. `<titan/actor.h>` includes it for compatibility. |
@@ -1546,6 +1547,11 @@ headers below; publishing native contracts does not expose private client IPC.
 | `<titan/utils/deposit_box.h>` | Header-only inline `titan::utils::DepositBox::*` -- bank deposit box state reads (`isOpen`, `isDepositAllSelected`) and component-operation actions (`close`, `depositInventory`, `depositWorn`, `depositLootingBag`, `selectDepositAll`) built on `titan::state::widgets()` / `titan::state::vars()`. Composition only. Added in SDK 133. |
 | `<titan/keyboard.h>` | Inline `titan::keyboard::*` facade -- `sendString`, `sendKey`, `typeString`, `cancelTypeString`, `isTyping`. Routes through `IBackend` keyboard virtuals. Added in SDK 44. |
 | `<titan/bank_sets.h>` | `titan::BankSets::kBooths`, `kChests`, `kDepositBoxes`, `kAllBanksAndChests` constexpr arrays + `isBankObject(id)` helper. Added in SDK 44. |
+| `<titan/runescape_bank.h>` | C++-only `titan::RunescapeBank` destination enum and `RunescapeBankInfo::{kBanks, getLocation, canUse, getUsableBanks}`. Coordinates and live eligibility predicates ported from PaistiUtils; eligibility is not a complete access or route check. See [bank destinations](../docs/runescape-bank.md). |
+| `<titan/utils/tools/pickaxe.h>` | Header-only `titan::utils::Pickaxe::canUse(itemId)` checks real Mining level, world membership, and quest requirements; `hasUsablePickaxe()` checks inventory and equipment possession. Supported unnoted variants follow PaistiUtils Pickaxe. |
+| `<titan/utils/tools/axe.h>` | Header-only `titan::utils::Axe::canUse(itemId)` checks real Woodcutting level, world membership, and the crystal-axe quest requirement; `hasUsableAxe()` checks inventory and equipment possession. Supported unnoted variants follow PaistiUtils Axe, including felling axes and excluding uncharged infernal axes. Eligibility does not check wielding levels or felling bonuses. |
+| `<titan/utils/runes/rune_pouch.h>` | `titan::{RunePouchType, RunePouchContents}` and `titan::utils::RunePouch::{capacity, isValidSlot, getCarriedRunePouchType, accountOwnsRunePouch, getRunePouchContents}`. Pouch ownership is a bool accepting positive inventory, open-bank, or remembered-bank evidence; pouch contents are rune item IDs and quantities. See [rune utilities](../docs/rune-pouch.md). |
+| `<titan/utils/runes/rune_element.h>` | `titan::RuneElement` and `titan::utils::RuneElement`: `RuneDefinition`, `ElementDefinition`, `EquipmentDefinition`, `kRunes`, `kElements`, `kEquipment`; `isRune`, `getRuneElementsProvidedByRune`, `getPrimaryRuneForElement`, `getAllRunesProvidingElement`, `getRuneElementsProvidedByEquipment`; `RuneElementAmounts`, `kInfiniteRuneAmount`, `getAvailableRuneElementAmountsFromInventoryRunes`, `getAvailableRuneElementAmountsFromEquippedItems`, `getAvailableRuneElementAmountsFromCarriedRunePouch`, `getCarriedRuneElementAmounts`. Snapshot calculations and live overloads combine loose runes, carried pouch contents, and equipped providers. See [rune utilities](../docs/rune-pouch.md). |
 | `<titan/equipment_slot.h>` | `titan::EquipmentSlot` enum + `EquipmentSlotInfo::{name, slotWidgetPackedId, isValid, fromOrdinal}` helpers. Added in SDK 40. |
 | `<titan-plugin-sdk.d.ts>` | TypeScript types for JS plugins (mirrors the same three-shape layout: `titan.queries`, `titan.state`, `titan.utils`) |
 
@@ -2032,24 +2038,39 @@ TypeScript expose it as `titan.utils.prayers`.
 
 ### `titan::utils::Magic` (SDK 49+)
 
-Header-only spellbook metadata helpers in `<titan/utils/magic.h>`. The
-spell catalogs mirror TP_RL names and levels; widget ids mirror RuneLite
-`InterfaceID.MagicSpellbook`. Bare spell selection/casts use the widget
-interaction backend for the spell widget's `WIDGET_TARGET` action.
+Header-only spellbook metadata and requirement helpers in `<titan/utils/magic.h>`.
+The native catalogue's rune costs, levels and membership flags are checked against
+OSRS Wiki spell pages; widget IDs use generated `InterfaceID::MagicSpellbook`.
+The saved Wiki evidence is in `tests/fixtures/spells-wiki.json`; the
+`magic_wiki_audit` test verifies every entry's rune cost, level and membership.
 
 | Function / type | Summary |
 | --- | --- |
 | `SpellBook`, `Standard`, `Ancient`, `Lunar`, `Necromancy` | Typed spellbook and spell enums. |
 | `SpellInfo`, `info(spell)` | Name, level, widget, book, members flag, and menu-entry id metadata. |
+| `SpellRequirements`, `requirements(spell)` | Per-cast rune costs, quest/unlock/cooldown IDs, named additional requirements and eligible spell-sack alternative. |
+| `BoltEnchantment` | Ten individually costed enchant-bolts variants; `cast` opens the shared dialog, and the consumer handles bolt selection. |
 | `currentSpellBook()`, `isAutoCasting()` | Live varbit/varp state reads. |
 | `lastHomeTeleportUsage()`, `isHomeTeleportOnCooldown()` | Home-teleport timing from varp 892. |
-| `canCast(spell)` | Current-book and Magic-level check, plus TP_RL's active Standard Ardy/Trollheim gates. |
-| `select(spell)`, `cast(spell)` | Dispatch widget interact `WIDGET_TARGET` with `identifier=0`, `param0=-1`, `param1=<spell packed widget id>`. `select` delegates to `cast`. |
+| `haveRunesForSpell(spell)` | Loose runes, carried pouch and equipped providers, or an eligible blighted spell sack. |
+| `additionalRequirementsSatisfied(spell)` | Player unlocks, required items/equipment, secondary skills, resources and cooldowns; excludes location/target restrictions. |
+| `canCast(spell)` | Current book, current Magic level, membership, rune supply and additional prerequisites. Each check also accepts a supplied `SpellCastState`. |
+| `select(spell)` | Select the spell for targeting using `WIDGET_TARGET`; does not cast by itself. |
+| `cast(spell)` | Click the spell's own option using `CC_OP`. Bolt enchantments open the shared dialog. Does not enforce `canCast`. |
 | `cast(spell, actionIndex)`, `cast(spell, actionIndex, opcode)` | Dispatch widget interact with `identifier=1+actionIndex`; the two-arg overload uses `CC_OP`. |
 | `castOn` | Selects the spell, then schedules the target action on the next client tick for NPC, player, inventory item, tile object, ground item, and widget targets. Entity/world target entries resolve a target click point through the native clickbox/projected-footprint path before dispatch; inventory/widget targets use widget interact. Target action text is `Cast`; target text is blank for now. |
 
+`SpellCastState` overloads perform no SDK reads. Quest-map keys use native
+`gamevals::QuestID` values; live checks translate them to script DB row IDs.
+Compute supplied rune amounts from the same inventory/equipment/pouch snapshot.
+Location, target validity and processing ingredients remain caller-owned.
+Iban staff charges, Charge's recast timer and boat-focus ownership are deliberately
+not checked; their known quest/equipment requirements still apply. Live var reads
+inherit the SDK's lack of a success flag, and sequential reads are not atomic.
+
 JS/TS mirrors live at `titan.utils.magic` with spell catalog objects and
-the same bare, indexed, and targeted spell dispatch behavior.
+the same bare, indexed, and targeted spell dispatch behavior. The expanded native
+requirements catalogue and checks are not yet mirrored to Java or QuickJS.
 
 ### `titan::utils::Mouse` (SDK 94+)
 

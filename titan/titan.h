@@ -31,6 +31,8 @@
 #include "preview_pills.h"
 #include "query.h"
 #include "render.h"
+#include "utils/runes/rune_element.h"
+#include "utils/runes/rune_pouch.h"
 #include "screenshot.h"
 #include "sprites.h"
 #include "ui_assets.h"
