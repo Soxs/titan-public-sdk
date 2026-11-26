@@ -9,6 +9,14 @@ import java.util.OptionalLong;
 import java.util.List;
 
 public interface Client {
+    /**
+     * Any-thread snapshot of whether this game is selected and its controller,
+     * game window or owned sidebar has foreground focus. This is distinct from
+     * Canvas focus. Empty on older/unqualified or detached hosts, Wine, and
+     * changing window associations. It grants no input or activation authority.
+     */
+    default Optional<Boolean> frameFocused() { return Optional.empty(); }
+
     /** Java SDK 0.1.94: whether the loaded client has validated menu editing support. */
     default boolean isMenuEditingAvailable() { return false; }
     /** True only within a synchronous menu edit window on the game thread. */
@@ -47,6 +55,8 @@ public interface Client {
     }
     /** Set server slot zero to an existing NPC/player, revalidating the full actor identity. */
     default HintArrowUpdateResult setHintArrow(Actor actor) { return HintArrowUpdateResult.UNAVAILABLE; }
+    /** Retarget server slot zero on the game thread, preserving its display and blink settings. */
+    default HintArrowUpdateResult setHintArrowTarget(Actor actor) { return HintArrowUpdateResult.UNAVAILABLE; }
     /** Clear server slot zero. Subsequent server updates can replace locally written state. */
     default HintArrowUpdateResult clearHintArrow() { return HintArrowUpdateResult.UNAVAILABLE; }
     int tick();
@@ -101,6 +111,18 @@ public interface Client {
         return sceneSnapshot(worldViewId).map(SceneSnapshot::getWorldView).orElse(null);
     }
     default WorldView getTopLevelWorldView() { return getWorldView(WorldView.TOP_LEVEL); }
+    /** Game-thread lookup in the top-level world. Zero tokens request a fresh observation. */
+    default WorldEntityLookup lookupWorldEntity(int index, long expectedParent, long expectedEntity) {
+        return WorldEntityLookup.unavailable(index);
+    }
+    default WorldEntityLookup lookupWorldEntity(int index) { return lookupWorldEntity(index, 0, 0); }
+    /** Game-thread read of the definition shared by observed world entities. Zero guards request a fresh observation. */
+    default WorldEntityDefinitionLookup lookupWorldEntityDefinition(int index, long parent, long entity, long definition) {
+        return WorldEntityDefinitionLookup.unavailable(index);
+    }
+    default WorldEntityDefinitionLookup lookupWorldEntityDefinition(int index) {
+        return lookupWorldEntityDefinition(index, 0, 0, 0);
+    }
     default Scene getScene() {
         WorldView worldView = getTopLevelWorldView();
         return worldView == null ? null : worldView.getScene();
@@ -479,6 +501,8 @@ public interface Client {
     Optional<ItemDefinition> itemDefinition(int itemId);
     Optional<NPCDefinition> npcDefinition(int npcId);
     Optional<ObjectDefinition> objectDefinition(int objectId);
+    /** Game-thread read of the live base definition's action slots, including empty slots. Zero is valid. */
+    default OptionalInt objectActionSlotCount(int objectId) { return OptionalInt.empty(); }
     Optional<VarbitDefinition> varbitDefinition(int varbitId);
 
     // --- Plugin manager ---
@@ -503,6 +527,24 @@ public interface Client {
     boolean submitLoginCredentials();
 
     boolean addChatMessage(int type, String name, String message, String sender);
+    /** Adds a line to this client's chat on the game thread and returns its UID, or empty when the game did not
+     * take it. Nothing is sent. Unlike {@link #addChatMessage}, the line exists when this returns. A character
+     * which the game cannot show becomes a question mark. With notify false, plugin chat callbacks do not hear
+     * of it. SDK 186. */
+    default java.util.OptionalInt insertChatMessage(int type, String name, String message, String sender, boolean notify) {
+        return java.util.OptionalInt.empty();
+    }
+
+    /** Names the game's scripts which this plugin's {@link net.titan.api.events.ScriptMoment} subscribers hear of,
+     * before they run and before they return, those called by other scripts included, in place of those named before.
+     * Ids are 0 to 65535, at most 1024 of each. While the plugin is enabled, so in onEnable at the earliest; disabling
+     * forgets them. The game runs tens of thousands of scripts in a frame and only named ones cost anything. False
+     * when this game's scripts cannot be followed, or the plugin is not the runtime's own instance. SDK 187. */
+    default boolean watchScripts(net.titan.api.plugins.Plugin plugin, int[] before, int[] after) {
+        return false;
+    }
+    /** Synchronously refresh local chat on the game thread. Returns false when unavailable. */
+    default boolean refreshChat() { return false; }
     boolean sendKeyboardString(String text);
     boolean sendKeyboardKey(int key, int modifiers);
     default boolean sendKeyboardKey(int key) { return sendKeyboardKey(key, 0); }

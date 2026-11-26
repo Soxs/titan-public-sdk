@@ -1,0 +1,92 @@
+import java.security.MessageDigest
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'net.titan'
+version = '1.13.6-titan.3'
+def baseline = '1.13.6'
+def extendedTypes = ['net/runelite/api/NPC', 'net/runelite/api/Player', 'net/runelite/api/widgets/Widget']
+
+repositories {
+    exclusiveContent {
+        forRepository { maven { url = uri('https://repo.runelite.net') } }
+        filter { includeGroup 'net.runelite' }
+    }
+    mavenCentral()
+}
+configurations {
+    upstreamBinary { canBeConsumed = false; transitive = false }
+    upstreamSources { canBeConsumed = false; transitive = false }
+    compileOnly.extendsFrom upstreamBinary
+}
+dependencies {
+    upstreamBinary "net.runelite:runelite-api:${baseline}@jar"
+    upstreamSources "net.runelite:runelite-api:${baseline}:sources@jar"
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly 'org.jetbrains:annotations:23.0.0'
+    runtimeOnly 'org.slf4j:slf4j-api:1.7.25'
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+}
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 11
+}
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+def checkedArchive = { configuration, sha ->
+    File archive = configuration.singleFile
+    def actual = MessageDigest.getInstance('SHA-256').digest(archive.bytes).encodeHex().toString()
+    if (actual != sha) throw new GradleException("Unexpected RuneLite ${baseline} input: ${archive.name}")
+    archive
+}
+def binary = providers.provider {
+    checkedArchive(configurations.upstreamBinary, '2c3899c109fe3ceea33baa96f277914ef869e387981a9c2d49c46cc78bea8be4')
+}
+def sources = providers.provider {
+    checkedArchive(configurations.upstreamSources, '6faef55d9ddb56cc0f8ef56144b1b833654e5754f8550745d000b92e345753be')
+}
+tasks.named('jar') {
+    from({ zipTree(binary.get()) }) {
+        exclude extendedTypes.collect { "${it}.class" }
+        exclude 'META-INF/MANIFEST.MF'
+    }
+    from('RuneLite-BSD-2-Clause.txt') { into 'META-INF/licenses' }
+}
+tasks.named('sourcesJar') {
+    from({ zipTree(sources.get()) }) {
+        exclude extendedTypes.collect { "${it}.java" }
+        exclude 'META-INF/MANIFEST.MF'
+    }
+    from('RuneLite-BSD-2-Clause.txt') { into 'META-INF/licenses' }
+}
+
+// A local project or composite dependency must see every RuneLite class too.
+// The Java plugin's classes-directory shortcut only contains our overrides.
+configurations.apiElements.outgoing.variants.removeIf { it.name == 'classes' }
+configurations.runtimeElements.outgoing.variants.removeIf { it.name in ['classes', 'resources'] }
+
+publishing {
+    publications { mavenJava(MavenPublication) { from components.java } }
+    repositories {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL').orNull
+        if (repositoryUrl) {
+            maven {
+                name = 'titan'
+                url = uri(repositoryUrl)
+                def user = providers.environmentVariable('TITAN_MAVEN_USERNAME').orNull
+                def passwordValue = providers.environmentVariable('TITAN_MAVEN_PASSWORD').orNull
+                if (user != null || passwordValue != null) credentials { username = user; password = passwordValue }
+            }
+        }
+    }
+}

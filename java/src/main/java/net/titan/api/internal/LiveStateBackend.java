@@ -10,11 +10,21 @@ public interface LiveStateBackend {
     default String actorOverheadText(long entityPtr) { return null; }
     /** SDK 159 op base at {@code address}; null when the host cannot read it. */
     default String widgetName(net.titan.api.WidgetAddress address) { return null; }
+    default String widgetPrimaryText(net.titan.api.WidgetAddress address) { return null; }
     /**
      * SDK 159 op slots at {@code address}, null where empty; an empty array when
      * the widget has no op array; null when the host cannot read them.
      */
     default String[] widgetActions(net.titan.api.WidgetAddress address) { return null; }
+    default java.util.OptionalInt widgetScrollHeight(net.titan.api.WidgetAddress address) {
+        return java.util.OptionalInt.empty();
+    }
+    default Object[] widgetInventoryTransmitListener(net.titan.api.WidgetAddress address) {
+        throw new UnsupportedOperationException("This host cannot read widget inventory-transmit listeners");
+    }
+    default Object[] widgetKeyListener(net.titan.api.WidgetAddress address) {
+        throw new UnsupportedOperationException("This host cannot read widget key listeners");
+    }
     default Integer actorOverheadTextCycles(long entityPtr) { return null; }
     /** SDK 162 unlockCam flag; null when the host or revision lacks it. */
     default Boolean cameraPitchUnlocked() { return null; }

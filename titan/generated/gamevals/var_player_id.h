@@ -2406,14 +2406,6 @@ struct VarPlayerID final {
     static constexpr int32_t CORROSION = 4966;
     static constexpr int32_t AMENITY_VARP_0 = 4968;
     static constexpr int32_t FLETCHING_TABLE_GENERAL = 4970;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_1 = 4973;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_2 = 4974;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_3 = 4975;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_4 = 4976;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_5 = 4977;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_6 = 4978;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_7 = 4979;
-    static constexpr int32_t FLETCHING_TABLE_FAVE_8 = 4980;
     static constexpr int32_t CRAB_TRAPS_1 = 4981;
     static constexpr int32_t CRAB_TRAPS_2 = 4982;
     static constexpr int32_t SAILING_BT_TRIAL_DATA_IF = 4985;
@@ -3276,6 +3268,21 @@ struct VarPlayerID final {
     static constexpr int32_t HC_TRACKING_5 = 6247;
     static constexpr int32_t BAW_PRIMARY = 6248;
     static constexpr int32_t SNAILQUEST_PRIMARY = 6250;
+    static constexpr int32_t ANL_PRIMARY = 6251;
+    static constexpr int32_t ANL_FIGHTERS_KILLED = 6252;
+    static constexpr int32_t RAG_QUEST_2_PRIMARY = 6253;
+    static constexpr int32_t RAG_QUEST_3_PRIMARY = 6254;
+    static constexpr int32_t RAG_QUEST_3_SECONDARY = 6255;
+    static constexpr int32_t POR_GENERAL_TRANSMIT = 6258;
+    static constexpr int32_t TOTAL_POR_COMPLETIONS = 6260;
+    static constexpr int32_t POR_ADVANCED_STEPPINGSTONES_1 = 6262;
+    static constexpr int32_t POR_ADVANCED_STEPPINGSTONES_2 = 6263;
+    static constexpr int32_t RAEUN_PLAYER_CHAINED = 6265;
+    static constexpr int32_t RAEUN_CHAIN_DAMAGE_1 = 6266;
+    static constexpr int32_t RAEUN_CHAIN_DAMAGE_2 = 6267;
+    static constexpr int32_t GRAVEYARD_PRIMARY = 6268;
+    static constexpr int32_t GRAVEYARD_SECONDARY = 6269;
+    static constexpr int32_t ROOFTOP_GENERAL = 6270;
 
     template <typename Self = VarPlayerID>
     static constexpr std::span<const Entry> entries() {

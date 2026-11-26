@@ -52,6 +52,8 @@ inline constexpr uint32_t All = (1u << 10) - 1;
 
 // IDs are opaque host identities, never native pointers or array offsets.
 // A reset/rebuild invalidates the generation. An all-zero parent means root.
+// From SDK 194 an entry can be created with an ordinary root entry as its
+// parent. Such a submenu is drawn right under its heading, in the menu itself.
 struct MenuEntryHandle {
     uint64_t generation = 0;
     uint64_t id = 0;

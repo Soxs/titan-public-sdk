@@ -200,7 +200,7 @@ rejected. No decoding or filesystem extraction occurs during bundle resolution.
 The entrypoint must exist and be nonempty `text/html`. All text must be valid
 UTF-8. Supported MIME types are `text/html`, `text/css`, `text/javascript`,
 `application/javascript`, `application/json`, `text/plain`, `image/png`,
-`image/jpeg`, `image/webp`, `font/woff`, and `font/woff2`. SVG, GIF, AVIF, TTF,
+`image/jpeg`, `image/webp`, `font/woff`, `font/woff2`, and `font/ttf`. SVG, GIF, AVIF,
 OTF, executable/object formats, and arbitrary binary MIME types are excluded
 from bundle v1. At most 128 resources are allowed, with 2 MiB per resource and
 8 MiB total raw bytes. Marketplace/released plugins need no loose UI files.

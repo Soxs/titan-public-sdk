@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 3264> kVarPlayerIDEntries = {{
+inline constexpr std::array<Entry, 3271> kVarPlayerIDEntries = {{
     {0, "MCANNON", "mcannon", "varptypes"},
     {1, "MCANNONMULTI", "mcannonmulti", "varptypes"},
     {2, "DROPCANNON", "dropcannon", "varptypes"},
@@ -2401,14 +2401,6 @@ inline constexpr std::array<Entry, 3264> kVarPlayerIDEntries = {{
     {4966, "CORROSION", "corrosion", "varptypes"},
     {4968, "AMENITY_VARP_0", "amenity_varp_0", "varptypes"},
     {4970, "FLETCHING_TABLE_GENERAL", "fletching_table_general", "varptypes"},
-    {4973, "FLETCHING_TABLE_FAVE_1", "fletching_table_fave_1", "varptypes"},
-    {4974, "FLETCHING_TABLE_FAVE_2", "fletching_table_fave_2", "varptypes"},
-    {4975, "FLETCHING_TABLE_FAVE_3", "fletching_table_fave_3", "varptypes"},
-    {4976, "FLETCHING_TABLE_FAVE_4", "fletching_table_fave_4", "varptypes"},
-    {4977, "FLETCHING_TABLE_FAVE_5", "fletching_table_fave_5", "varptypes"},
-    {4978, "FLETCHING_TABLE_FAVE_6", "fletching_table_fave_6", "varptypes"},
-    {4979, "FLETCHING_TABLE_FAVE_7", "fletching_table_fave_7", "varptypes"},
-    {4980, "FLETCHING_TABLE_FAVE_8", "fletching_table_fave_8", "varptypes"},
     {4981, "CRAB_TRAPS_1", "crab_traps_1", "varptypes"},
     {4982, "CRAB_TRAPS_2", "crab_traps_2", "varptypes"},
     {4985, "SAILING_BT_TRIAL_DATA_IF", "sailing_bt_trial_data_if", "varptypes"},
@@ -3271,6 +3263,21 @@ inline constexpr std::array<Entry, 3264> kVarPlayerIDEntries = {{
     {6247, "HC_TRACKING_5", "hc_tracking_5", "varptypes"},
     {6248, "BAW_PRIMARY", "baw_primary", "varptypes"},
     {6250, "SNAILQUEST_PRIMARY", "snailquest_primary", "varptypes"},
+    {6251, "ANL_PRIMARY", "anl_primary", "varptypes"},
+    {6252, "ANL_FIGHTERS_KILLED", "anl_fighters_killed", "varptypes"},
+    {6253, "RAG_QUEST_2_PRIMARY", "rag_quest_2_primary", "varptypes"},
+    {6254, "RAG_QUEST_3_PRIMARY", "rag_quest_3_primary", "varptypes"},
+    {6255, "RAG_QUEST_3_SECONDARY", "rag_quest_3_secondary", "varptypes"},
+    {6258, "POR_GENERAL_TRANSMIT", "por_general_transmit", "varptypes"},
+    {6260, "TOTAL_POR_COMPLETIONS", "total_por_completions", "varptypes"},
+    {6262, "POR_ADVANCED_STEPPINGSTONES_1", "por_advanced_steppingstones_1", "varptypes"},
+    {6263, "POR_ADVANCED_STEPPINGSTONES_2", "por_advanced_steppingstones_2", "varptypes"},
+    {6265, "RAEUN_PLAYER_CHAINED", "raeun_player_chained", "varptypes"},
+    {6266, "RAEUN_CHAIN_DAMAGE_1", "raeun_chain_damage_1", "varptypes"},
+    {6267, "RAEUN_CHAIN_DAMAGE_2", "raeun_chain_damage_2", "varptypes"},
+    {6268, "GRAVEYARD_PRIMARY", "graveyard_primary", "varptypes"},
+    {6269, "GRAVEYARD_SECONDARY", "graveyard_secondary", "varptypes"},
+    {6270, "ROOFTOP_GENERAL", "rooftop_general", "varptypes"},
 }};
 
 template <>

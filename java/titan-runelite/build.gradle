@@ -1,0 +1,104 @@
+import java.security.MessageDigest
+
+// Everything a RuneLite-style Titan plugin compiles against, in one artifact: RuneLite's plugin framework
+// and HTTP types, its game API through titan-runelite-api, and the libraries they use from Maven Central.
+// Titan supplies all of it at run time, so a plugin declares it compileOnly. No RuneLite repository is needed.
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'net.titan'
+version = '1.13.6-titan.1'
+def baseline = '1.13.6'
+def httpBaseline = '1.2.26'
+
+repositories {
+    exclusiveContent {
+        forRepository { maven { url = uri('https://repo.runelite.net') } }
+        filter { includeGroupByRegex('net[.]runelite([.].*)?') }
+    }
+    mavenCentral()
+}
+configurations {
+    ['upstreamClient', 'upstreamSources', 'upstreamHttp'].each { create(it) { canBeConsumed = false; transitive = false } }
+}
+dependencies {
+    upstreamClient "net.runelite:client:${baseline}@jar"
+    upstreamSources "net.runelite:client:${baseline}:sources@jar"
+    upstreamHttp "net.runelite.arn:http-api:${httpBaseline}@jar"
+
+    api project(':titan-runelite-api')
+    // The versions Titan's RuneLite runtime carries.
+    api 'com.google.inject:guice:4.1.0:no_aop'
+    api 'javax.inject:javax.inject:1'
+    api 'aopalliance:aopalliance:1.0'
+    api 'com.google.guava:guava:23.2-jre'
+    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.squareup.okhttp3:okhttp:3.14.9'
+    api 'org.slf4j:slf4j-api:1.7.25'
+    api 'org.apache.commons:commons-text:1.2'
+    api 'com.google.protobuf:protobuf-javalite:3.21.12'
+    api 'net.java.dev.jna:jna:5.9.0'
+    api 'net.java.dev.jna:jna-platform:5.9.0'
+    api 'com.formdev:flatlaf:3.2.5'
+    api 'com.google.code.findbugs:jsr305:3.0.2'
+    api 'org.jetbrains:annotations:23.0.0'
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+}
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+
+def checkedArchive = { configuration, sha ->
+    File archive = configuration.singleFile
+    def actual = MessageDigest.getInstance('SHA-256').digest(archive.bytes).encodeHex().toString()
+    if (actual != sha) throw new GradleException("Unexpected RuneLite ${baseline} input: ${archive.name}")
+    archive
+}
+def client = providers.provider {
+    checkedArchive(configurations.upstreamClient, 'a1384091c034f14b74a1ac7a22261b03ae9915f95b75f21071236f27c55fb3fe')
+}
+def clientSources = providers.provider {
+    checkedArchive(configurations.upstreamSources, '7ebaf0f61719a32c8065d527cfc0c8f6880a5515e45bae4c02fea4034fab8b03')
+}
+def http = providers.provider {
+    checkedArchive(configurations.upstreamHttp, 'a8ad877104af13cc27857e6ca1db63c34ce742a81513aeeae21bcd97ffe5721b')
+}
+tasks.named('jar') {
+    // Classes to compile against. RuneLite's images, sounds and data stay out of it.
+    from({ [zipTree(client.get()), zipTree(http.get())] }) {
+        include 'net/runelite/**/*.class'
+        // Not in Titan's runtime.
+        exclude 'net/runelite/client/Notifier$1.class', 'net/runelite/client/game/ItemManager$*.class'
+    }
+    from([rootProject.file('titan-runelite-api/RuneLite-BSD-2-Clause.txt'), 'RuneLite-client-source-notices.txt']) { into 'META-INF/licenses' }
+}
+tasks.named('sourcesJar') {
+    from({ zipTree(clientSources.get()) }) { include 'net/runelite/**/*.java' }
+    from([rootProject.file('titan-runelite-api/RuneLite-BSD-2-Clause.txt'), 'RuneLite-client-source-notices.txt']) { into 'META-INF/licenses' }
+}
+// As in titan-runelite-api, a local consumer needs the JAR: there are no sources of its own here.
+configurations.apiElements.outgoing.variants.removeIf { it.name == 'classes' }
+configurations.runtimeElements.outgoing.variants.removeIf { it.name in ['classes', 'resources'] }
+
+publishing {
+    publications { mavenJava(MavenPublication) { from components.java } }
+    repositories {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL').orNull
+        if (repositoryUrl) {
+            maven {
+                name = 'titan'
+                url = uri(repositoryUrl)
+                def user = providers.environmentVariable('TITAN_MAVEN_USERNAME').orNull
+                def passwordValue = providers.environmentVariable('TITAN_MAVEN_PASSWORD').orNull
+                if (user != null || passwordValue != null) credentials { username = user; password = passwordValue }
+            }
+        }
+    }
+}

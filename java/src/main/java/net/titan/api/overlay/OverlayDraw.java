@@ -288,6 +288,44 @@ public final class OverlayDraw {
             (mode == null ? OutlineMode.CONVEX : mode).value());
     }
 
+    /**
+     * The convex outline of an object on the canvas, in order, for a plugin which tests or draws it by itself
+     * (SDK 190). Asking makes the host capture the model: the first answers are its bounding box's, or empty.
+     * Empty too for an object which is gone or out of view.
+     */
+    public java.util.List<ScreenPoint> tileObjectOutlinePoints(TileObject object) {
+        if (object == null) return java.util.Collections.emptyList();
+        return screenPoints(TitanRuntime.getOverlayBackend().tileObjectOutlinePoints(object.entityPtr(), object.packedId()));
+    }
+
+    /**
+     * The convex outline of an NPC on the canvas, in order, as {@link #tileObjectOutlinePoints} gives an object's
+     * (SDK 191). Empty for one which is out of view, and for the first frame in which it is asked for.
+     */
+    public java.util.List<ScreenPoint> entityOutlinePoints(NPC npc) {
+        return npc == null ? java.util.Collections.emptyList()
+            : screenPoints(TitanRuntime.getOverlayBackend().entityOutlinePoints(npc.entityPtr()));
+    }
+    /** The same of a player. */
+    public java.util.List<ScreenPoint> entityOutlinePoints(Player player) {
+        return player == null ? java.util.Collections.emptyList()
+            : screenPoints(TitanRuntime.getOverlayBackend().entityOutlinePoints(player.entityPtr()));
+    }
+
+    /**
+     * How far an NPC's model rises above the ground it stands on, in the units of its precise position, for a text
+     * above its head (SDK 191). -1 when the game has not drawn it lately.
+     */
+    public int entityModelHeight(NPC npc) { return npc == null ? -1 : TitanRuntime.getOverlayBackend().entityModelHeight(npc.entityPtr()); }
+    /** The same of a player. */
+    public int entityModelHeight(Player player) { return player == null ? -1 : TitanRuntime.getOverlayBackend().entityModelHeight(player.entityPtr()); }
+
+    private static java.util.List<ScreenPoint> screenPoints(int[] points) {
+        java.util.List<ScreenPoint> out = new java.util.ArrayList<>(points.length / 2);
+        for (int i = 0; i + 1 < points.length; i += 2) out.add(new ScreenPoint(points[i], points[i + 1]));
+        return java.util.Collections.unmodifiableList(out);
+    }
+
     public void textAtWorld(int worldX, int worldY, int worldZ,
                             String text, int color) {
         textAtWorld(worldX, worldY, worldZ, text, color, true);

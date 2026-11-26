@@ -58,6 +58,21 @@ public interface ConfigManager {
     <T extends Config> boolean setEnum(Class<T> configType, String keyName,
                                        Enum<?> value);
 
+    /// Exact signed 64-bit value, encoded as decimal text for persistence.
+    default <T extends Config> boolean setLong(Class<T> configType, String keyName, long value) { return false; }
+    /// Finite double value, preserving signed zero. NaN/infinity return false.
+    default <T extends Config> boolean setDouble(Class<T> configType, String keyName, double value) { return false; }
+    /// Enum selections use the declaration's enum type and ordinal option IDs.
+    default <T extends Config> boolean setEnumSet(Class<T> configType, String keyName, java.util.Set<? extends Enum<?>> value) { return false; }
+    /// Nonnegative dimensions, copied before storage, or null for the plugin's default sizing.
+    default <T extends Config> boolean setDimension(Class<T> configType, String keyName, java.awt.Dimension value) { return false; }
+    /// A copied point, or null to select the original/default placement.
+    default <T extends Config> boolean setPoint(Class<T> configType, String keyName, java.awt.Point value) { return false; }
+    /// Family, integer point size, bold and italic. Other Font attributes are unsupported.
+    default <T extends Config> boolean setFont(Class<T> configType, String keyName, java.awt.Font value) { return false; }
+    /// A typed AWT binding; ModifierlessKeybind is required for that control.
+    default <T extends Config> boolean setKeybind(Class<T> configType, String keyName, Keybind value) { return false; }
+
     /// Write a checkbox grid from a row-major grid. Cells outside the declared
     /// shape, and cells the plugin marked unavailable, are dropped.
     <T extends Config> boolean setGrid(Class<T> configType, String keyName,

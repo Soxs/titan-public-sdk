@@ -24,6 +24,15 @@ dependencies {
 }
 tasks.named('test') { useJUnitPlatform() }
 
+// What a project which applies net.titan.runelite compiles against: what was published with this plugin.
+evaluationDependsOn(':titan-runelite')
+tasks.named('processResources') {
+    def values = [sdk: providers.gradleProperty('titanJavaSdkVersion').get(),
+                  runelite: project(':titan-runelite').version.toString(), lombok: '1.18.42']
+    inputs.properties(values)
+    filesMatching('net/titan/dev/versions.properties') { expand(values) }
+}
+
 gradlePlugin {
     plugins {
         titanDev {
@@ -33,6 +42,13 @@ gradlePlugin {
             description = 'Stages a plugin JAR into a TitanClient dev session ' +
                 'and launches/recycles a DEV tab so edits hot-reload via the ' +
                 'in-tab refresh button.'
+        }
+        titanRuneLite {
+            id = 'net.titan.runelite'
+            implementationClass = 'net.titan.dev.TitanRuneLitePlugin'
+            displayName = 'Titan plugins with the RuneLite API'
+            description = 'Everything a Titan plugin written with the RuneLite API needs: RuneLite, ' +
+                'Titan\'s SDK, Lombok and the Titan dev loop.'
         }
     }
 }

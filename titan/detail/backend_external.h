@@ -60,6 +60,10 @@ public:
         return api_ && api_->setHintArrowActor ? api_->setHintArrowActor(target)
             : static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
     }
+    uint8_t setHintArrowTarget(const TitanPluginSdk::HintArrowActorTarget* target) override {
+        return api_ && api_->sdkVersion >= 181 && api_->setHintArrowTarget ? api_->setHintArrowTarget(target)
+            : static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
     uint8_t clearHintArrow() override {
         return api_ && api_->clearHintArrow ? api_->clearHintArrow()
             : static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
@@ -100,6 +104,14 @@ public:
         return api_ && api_->copyWidgetName
             ? api_->copyWidgetName(address, outUtf8, capacity, outRequired)
             : static_cast<uint8_t>(TitanPluginSdk::WidgetOpsStatus::Unavailable);
+    }
+    int32_t copyWidgetInventoryListener(const TitanPluginSdk::WidgetAddressState* address, void* context,
+            TitanPluginSdk::WidgetListenerArgSink sink) override {
+        return api_ && api_->copyWidgetInventoryListener ? api_->copyWidgetInventoryListener(address, context, sink) : -1;
+    }
+    int32_t copyWidgetKeyListener(const TitanPluginSdk::WidgetAddressState* address, void* context,
+            TitanPluginSdk::WidgetListenerArgSink sink) override {
+        return api_ && api_->copyWidgetKeyListener ? api_->copyWidgetKeyListener(address, context, sink) : -1;
     }
     uint8_t copyWidgetActions(const TitanPluginSdk::WidgetAddressState* address, char* outUtf8,
                               uint32_t capacity, uint32_t* outRequired, uint32_t* outCount) override {
@@ -594,6 +606,28 @@ public:
     uint8_t getObjDef(int32_t id, TitanPluginSdk::ObjDefSnapshot* out) override {
         return (api_ && api_->getObjDef) ? api_->getObjDef(id, out) : 0;
     }
+    int32_t getObjectActionSlotCount(int32_t id) override {
+        return api_ && api_->getObjectActionSlotCount ? api_->getObjectActionSlotCount(id) : -1;
+    }
+    uint8_t getWidgetScrollHeight(const TitanPluginSdk::WidgetAddressState* address, int32_t* out) override {
+        return api_ && api_->getWidgetScrollHeight ? api_->getWidgetScrollHeight(address, out) : 0;
+    }
+    TitanPluginSdk::WorldEntityLookupStatus lookupWorldEntity(int32_t index, uint64_t parent, uint64_t entity,
+        TitanPluginSdk::WorldEntityLookupState* out) override {
+        return api_ && api_->sdkVersion >= 183 && api_->lookupWorldEntity
+            ? api_->lookupWorldEntity(index, parent, entity, out) : TitanPluginSdk::WorldEntityLookupStatus::Unavailable;
+    }
+    TitanPluginSdk::WorldEntityLookupStatus lookupWorldEntityDefinition(int32_t index, uint64_t parent, uint64_t entity,
+        uint64_t definition, TitanPluginSdk::WorldEntityDefinitionState* out) override {
+        return api_ && api_->sdkVersion >= 184 && api_->lookupWorldEntityDefinition
+            ? api_->lookupWorldEntityDefinition(index, parent, entity, definition, out)
+            : TitanPluginSdk::WorldEntityLookupStatus::Unavailable;
+    }
+    uint8_t copyWidgetPrimaryText(const TitanPluginSdk::WidgetAddressState* address, char* out,
+                                  uint32_t capacity, uint32_t* required) override {
+        return api_ && api_->sdkVersion >= 182 && api_->copyWidgetPrimaryText
+            ? api_->copyWidgetPrimaryText(address, out, capacity, required) : 0;
+    }
     uint8_t getVarbitDef(int32_t id, TitanPluginSdk::VarbitDefSnapshot* out) override {
         return (api_ && api_->getVarbitDef) ? api_->getVarbitDef(id, out) : 0;
     }
@@ -806,6 +840,25 @@ public:
     }
 
     // --- Chat injection ---
+    uint8_t refreshChat() override { return api_ && api_->refreshChat && api_->refreshChat(); }
+    int32_t insertChatMessage(int32_t type, const char* name, const char* message, const char* sender, bool notify) override {
+        return api_ && api_->insertChatMessage ? api_->insertChatMessage(type, name, message, sender, notify ? 1 : 0) : -1;
+    }
+    uint8_t watchScripts(const void* pluginInstance, const char* pluginId, const TitanPluginSdk::ScriptWatch* watch) override {
+        return api_ && api_->watchScripts ? api_->watchScripts(pluginInstance, pluginId, watch) : 0;
+    }
+    int32_t scriptMomentValues(bool arguments, int32_t* out, uint32_t capacity) override {
+        const auto read = !api_ ? nullptr : arguments ? api_->scriptMomentArguments : api_->scriptMomentIntegers;
+        return read ? read(out, capacity) : -1;
+    }
+    uint8_t setScriptMomentValue(bool argument, int32_t index, int32_t value) override {
+        const auto set = !api_ ? nullptr : argument ? api_->setScriptMomentArgument : api_->setScriptMomentInteger;
+        return set ? set(index, value) : 0;
+    }
+    int32_t writeWidget(const TitanPluginSdk::WidgetAddressState* address, int32_t write, const int32_t* integers,
+                        uint32_t integerCount, const char* text, uint32_t textLength) override {
+        return api_ && api_->writeWidget ? api_->writeWidget(address, write, integers, integerCount, text, textLength) : -1;
+    }
     void addChatMessage(int32_t type, const char* name,
                         const char* message, const char* sender) override {
         if (api_ && api_->addChatMessage) api_->addChatMessage(type, name, message, sender);
@@ -873,6 +926,15 @@ public:
                                uint32_t mode) override {
         if (api_ && api_->drawTileObjectOutline)
             api_->drawTileObjectOutline(locPtr, typecode, outline, fill, mode);
+    }
+    uint32_t getTileObjectOutline(uint64_t locPtr, uint64_t typecode, int32_t* points, uint32_t capacity) override {
+        return api_ && api_->getTileObjectOutline ? api_->getTileObjectOutline(locPtr, typecode, points, capacity) : 0;
+    }
+    uint32_t getEntityOutline(uint64_t entityPtr, int32_t* points, uint32_t capacity) override {
+        return api_ && api_->getEntityOutline ? api_->getEntityOutline(entityPtr, points, capacity) : 0;
+    }
+    int32_t getEntityModelHeight(uint64_t entityPtr) override {
+        return api_ && api_->getEntityModelHeight ? api_->getEntityModelHeight(entityPtr) : -1;
     }
 
     // --- Target tags (SDK 172) ---

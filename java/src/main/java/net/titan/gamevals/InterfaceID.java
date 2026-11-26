@@ -20515,30 +20515,13 @@ public final class InterfaceID
         public static final int KR_KEY_3 = 38535234;
     }
 
-    public static final class Displayname {
-        private Displayname() {}
+    public static final class Rag3BossOverlay {
+        private Rag3BossOverlay() {}
 
         public static final int UNIVERSE = 38600704;
-        public static final int COM_1 = 38600705;
-        public static final int CLOSE = 38600706;
-        public static final int FRAME = 38600707;
-        public static final int COM_4 = 38600708;
-        public static final int CONTENT = 38600709;
-        public static final int COOLDOWNTYPE = 38600710;
-        public static final int COOLDOWNTIME = 38600711;
-        public static final int EXTRACHANGES = 38600712;
-        public static final int WARNING_RELOAD = 38600713;
-        public static final int COM_10 = 38600714;
-        public static final int STATUS_CONTAINER = 38600715;
-        public static final int COM_12 = 38600716;
-        public static final int COM_13 = 38600717;
-        public static final int COM_14 = 38600718;
-        public static final int STATUS = 38600719;
-        public static final int WARNING_RESERVATIONS = 38600720;
-        public static final int BOTTOM_BUTTONS = 38600721;
-        public static final int CHECK = 38600722;
-        public static final int CHANGE = 38600723;
-        public static final int BONDS = 38600724;
+        public static final int CONTENTS = 38600705;
+        public static final int TINT_BOX = 38600706;
+        public static final int FADER = 38600707;
     }
 
     public static final class PohJewelleryBox {
@@ -31790,7 +31773,10 @@ public final class InterfaceID
         public static final int _3 = 64421896;
         public static final int _4 = 64421897;
         public static final int _5 = 64421898;
-        public static final int CLOSE = 64421899;
+        public static final int TOGGLE = 64421899;
+        public static final int TOGGLE_TEXT = 64421900;
+        public static final int TOGGLE_ICON = 64421901;
+        public static final int CLOSE = 64421902;
     }
 
     public static final class WotwCertificateHosidius {
@@ -32195,6 +32181,26 @@ public final class InterfaceID
         public static final int COM_11 = 65011723;
         public static final int COM_12 = 65011724;
         public static final int COM_13 = 65011725;
+    }
+
+    public static final class PorStatistics {
+        private PorStatistics() {}
+
+        public static final int COM_0 = 65077248;
+        public static final int CLOSE = 65077249;
+        public static final int MESSAGESCROLL2_CLOSE = 65077250;
+        public static final int CONTENT = 65077251;
+        public static final int TITLE = 65077252;
+        public static final int TITLE_TEXT = 65077253;
+        public static final int STATS = 65077254;
+        public static final int MS1 = 65077255;
+        public static final int MS2 = 65077256;
+        public static final int MS3 = 65077257;
+        public static final int MS4 = 65077258;
+        public static final int MS5 = 65077259;
+        public static final int MS6 = 65077260;
+        public static final int MS7 = 65077261;
+        public static final int MS8 = 65077262;
     }
 
     public static GamevalEntry[] entries() { return InterfaceIDEntries.entries(); }

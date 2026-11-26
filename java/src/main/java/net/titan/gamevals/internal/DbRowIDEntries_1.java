@@ -170,7 +170,6 @@ final class DbRowIDEntries_1 {
             new GamevalEntry(669, "CLUEHELPER_TARGET_COORD_0_47_61_61_31", "cluehelper_target_coord_0_47_61_61_31", "rowtypes"),
             new GamevalEntry(670, "CLUEHELPER_TARGET_COORD_0_45_58_47_49", "cluehelper_target_coord_0_45_58_47_49", "rowtypes"),
             new GamevalEntry(671, "CLUEHELPER_TARGET_COORD_0_51_95_39_12", "cluehelper_target_coord_0_51_95_39_12", "rowtypes"),
-            new GamevalEntry(672, "DBG_DUMMY_ROW1", "dbg_dummy_row1", "rowtypes"),
             new GamevalEntry(673, "CLUEHELPER_TARGET_COORD_0_48_50_5_60", "cluehelper_target_coord_0_48_50_5_60", "rowtypes"),
             new GamevalEntry(674, "CLUEHELPER_TARGET_COORD_0_42_50_14_46", "cluehelper_target_coord_0_42_50_14_46", "rowtypes"),
             new GamevalEntry(675, "CLUEHELPER_TARGET_COORD_0_46_48_56_38", "cluehelper_target_coord_0_46_48_56_38", "rowtypes"),

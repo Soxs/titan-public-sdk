@@ -1,0 +1,100 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.titan",
+    "module": "titan-runtime-spi",
+    "version": "0.2.20",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "titan-runtime-spi-0.2.20.jar",
+          "url": "titan-runtime-spi-0.2.20.jar",
+          "size": 19764,
+          "sha512": "eb9a5dc5b739a527b3afd7ec1ddbecc27d768f146f2dd231c8926c8c84b828e78085cb64afdb89c55a02e421db3471148cd597be6f448c8445b715494bf81730",
+          "sha256": "f51a8910bbd0c3d7b3a7c9cdd192eb24c71e2726e361dee2146fe88b7a8553b8",
+          "sha1": "e6333cc202b58ea8ec304c4c9e01febde712f665",
+          "md5": "b146c31dd61ab41bd0af2114924e4a4a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-runtime-spi-0.2.20.jar",
+          "url": "titan-runtime-spi-0.2.20.jar",
+          "size": 19764,
+          "sha512": "eb9a5dc5b739a527b3afd7ec1ddbecc27d768f146f2dd231c8926c8c84b828e78085cb64afdb89c55a02e421db3471148cd597be6f448c8445b715494bf81730",
+          "sha256": "f51a8910bbd0c3d7b3a7c9cdd192eb24c71e2726e361dee2146fe88b7a8553b8",
+          "sha1": "e6333cc202b58ea8ec304c4c9e01febde712f665",
+          "md5": "b146c31dd61ab41bd0af2114924e4a4a"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-runtime-spi-0.2.20-sources.jar",
+          "url": "titan-runtime-spi-0.2.20-sources.jar",
+          "size": 19623,
+          "sha512": "62fac22b9a39182a7ec7593539667f883255206db4a2d04e963df72120d09f6deba38463c2726ed025d479e96b3b75d07c559494bb63662196132d4ba4c6ca97",
+          "sha256": "424bbec132ea62d52dd473da08817025181ba64cf7a1853085ca47c311bc8695",
+          "sha1": "30b7616eaa55ea96be38ab418b8a958497d9d789",
+          "md5": "ea6197fb820c48b22e6d54a57156dd38"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-runtime-spi-0.2.20-javadoc.jar",
+          "url": "titan-runtime-spi-0.2.20-javadoc.jar",
+          "size": 373641,
+          "sha512": "9eb6751683336d0b312bb3e8bf82b386efcdcf940ef2598197a2360e1a3aa697150d0933e07794488468f14874e742ae714d9ee8f5839890df6be0ce7dc4dd56",
+          "sha256": "20cd1a9270570701bb0da35170c0c2877e2966c46152e1452b488cde1d516554",
+          "sha1": "1551ad58d75e8b339c95dc5ced37d165b60a8b37",
+          "md5": "24469884578baac73210371e6bb5cc9b"
+        }
+      ]
+    }
+  ]
+}

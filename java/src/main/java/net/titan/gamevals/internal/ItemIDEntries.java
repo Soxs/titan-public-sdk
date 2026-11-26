@@ -78,6 +78,7 @@ public final class ItemIDEntries {
             ItemIDEntries_65.entries(),
             ItemIDEntries_66.entries(),
             ItemIDEntries_67.entries(),
+            ItemIDEntries_68.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -227,6 +228,8 @@ public final class ItemIDEntries {
         hit = ItemIDEntries_66.byId(id);
         if (hit.isPresent()) return hit;
         hit = ItemIDEntries_67.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = ItemIDEntries_68.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

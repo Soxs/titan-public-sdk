@@ -5,3 +5,6 @@ rootProject.name = 'titan-plugin-api'
 include 'titan-dev-gradle-plugin'
 
 include 'titan-authorization'
+include 'titan-runtime-spi'
+include 'titan-runelite-api'
+include 'titan-runelite'

@@ -231,6 +231,9 @@ final class QuestIDEntries_0 {
             new QuestEntry(17231, 219, "QUEST_WRITINGSONTHEWALL", "The Writing's on the Wall", "Writing's on the Wall, The", "", "questtypes"),
             new QuestEntry(17315, 220, "QUEST_SHELLOFAFRIEND", "A Shell of a Friend", "Shell of a Friend, A", "", "questtypes"),
             new QuestEntry(17316, 221, "QUEST_BIRDSANDTHEWASPS", "The Birds and the Wasps", "Birds and the Wasps, The", "", "questtypes"),
+            new QuestEntry(13708, 222, "QUEST_NEWLEAF", "A New Leaf", "New Leaf, A", "", "questtypes"),
+            new QuestEntry(13730, 223, "QUEST_RAGANDBONEMAN3", "Rag and Bone Man III", "Rag and Bone Man III", "", "questtypes"),
+            new QuestEntry(17328, 224, "QUEST_GRAVEYARD", "The Graveyard", "Graveyard, The", "", "questtypes"),
         };
     }
 

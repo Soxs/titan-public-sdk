@@ -671,7 +671,17 @@ TITAN_NATIVE_VALUE(KeyInputType::KEYDOWN, 0);
 TITAN_NATIVE_VALUE(KeyInputType::KEYUP, 1);
 TITAN_NATIVE_VALUE(KeyInputType::CHAR, 2);
 
+TITAN_NATIVE_RECORD(ChatMessageInsertion, 32, 8);
+TITAN_NATIVE_FIELD(ChatMessageInsertion, name, 0, const char*);
+TITAN_NATIVE_FIELD(ChatMessageInsertion, message, 8, const char*);
+TITAN_NATIVE_FIELD(ChatMessageInsertion, sender, 16, const char*);
+TITAN_NATIVE_FIELD(ChatMessageInsertion, timestamp, 24, int32_t);
+
 TITAN_NATIVE_RECORD(HitsplatAppliedEvent, 720, 8);
+TITAN_NATIVE_RECORD(HitsplatOutcome, 12, 4);
+TITAN_NATIVE_FIELD(HitsplatOutcome, type, 0, int32_t);
+TITAN_NATIVE_FIELD(HitsplatOutcome, amount, 4, int32_t);
+TITAN_NATIVE_FIELD(HitsplatOutcome, disappearsOnGameCycle, 8, int32_t);
 TITAN_NATIVE_FIELD(HitsplatAppliedEvent, actorType, 0, uint8_t);
 TITAN_NATIVE_FIELD(HitsplatAppliedEvent, reserved, 1, uint8_t[7]);
 TITAN_NATIVE_FIELD(HitsplatAppliedEvent, player, 8, PlayerState);
@@ -941,6 +951,24 @@ TITAN_NATIVE_FIELD(CrossTabChangeEvent, reserved, 73, uint8_t[7]);
 TITAN_NATIVE_FIELD(CrossTabChangeEvent, version, 80, uint64_t);
 TITAN_NATIVE_FIELD(CrossTabChangeEvent, writeId, 88, uint64_t);
 
+TITAN_NATIVE_RECORD(ScriptWatch, 32, 8);
+TITAN_NATIVE_FIELD(ScriptWatch, structSize, 0, uint32_t);
+TITAN_NATIVE_FIELD(ScriptWatch, beforeCount, 4, uint32_t);
+TITAN_NATIVE_FIELD(ScriptWatch, before, 8, const int32_t *);
+TITAN_NATIVE_FIELD(ScriptWatch, after, 16, const int32_t *);
+TITAN_NATIVE_FIELD(ScriptWatch, afterCount, 24, uint32_t);
+TITAN_NATIVE_FIELD(ScriptWatch, reserved, 28, uint32_t);
+TITAN_NATIVE_RECORD(WidgetLoadedEvent, 4, 4);
+TITAN_NATIVE_FIELD(WidgetLoadedEvent, groupId, 0, int32_t);
+TITAN_NATIVE_RECORD(WidgetClosedEvent, 12, 4);
+TITAN_NATIVE_FIELD(WidgetClosedEvent, groupId, 0, int32_t);
+TITAN_NATIVE_FIELD(WidgetClosedEvent, modalMode, 4, int32_t);
+TITAN_NATIVE_FIELD(WidgetClosedEvent, unload, 8, int32_t);
+TITAN_NATIVE_RECORD(LootReceivedEvent, 4, 4);
+TITAN_NATIVE_FIELD(LootReceivedEvent, number, 0, int32_t);
+TITAN_NATIVE_RECORD(ScriptMomentEvent, 8, 4);
+TITAN_NATIVE_FIELD(ScriptMomentEvent, scriptId, 0, int32_t);
+TITAN_NATIVE_FIELD(ScriptMomentEvent, flags, 4, uint32_t);
 TITAN_NATIVE_RECORD(PreviewPillWrite, 40, 8);
 TITAN_NATIVE_FIELD(PreviewPillWrite, structSize, 0, uint32_t);
 TITAN_NATIVE_FIELD(PreviewPillWrite, flags, 4, uint32_t);
@@ -1033,6 +1061,15 @@ TITAN_NATIVE_VALUE(CrossTabChangeCauseAbi::CROSS_TAB_CAUSE_CONFLICT, 3);
 TITAN_NATIVE_VALUE(CrossTabChangeCauseAbi::CROSS_TAB_CAUSE_NOT_PERMITTED, 4);
 
 TITAN_NATIVE_ENUM(PreviewPillFlagAbi, uint32_t);
+TITAN_NATIVE_ENUM(WidgetWrite, int32_t);
+TITAN_NATIVE_VALUE(WidgetWrite::Hidden, 1003);
+TITAN_NATIVE_VALUE(WidgetWrite::ClearActions, 1307);
+TITAN_NATIVE_VALUE(WidgetWrite::OriginalX, 10000);
+TITAN_NATIVE_VALUE(WidgetWrite::ScrollY, 10021);
+TITAN_NATIVE_VALUE(WidgetWrite::DeleteChildren, 20003);
+TITAN_NATIVE_VALUE(ScriptMomentFlagAbi::SCRIPT_MOMENT_AFTER, 1);
+TITAN_NATIVE_VALUE(ScriptMomentFlagAbi::SCRIPT_MOMENT_NESTED, 2);
+TITAN_NATIVE_VALUE(ScriptMomentFlagAbi::SCRIPT_MOMENT_ARGUMENTS, 4);
 TITAN_NATIVE_VALUE(PreviewPillFlagAbi::PREVIEW_PILL_CLEAR, 1);
 TITAN_NATIVE_VALUE(PreviewPillFlagAbi::PREVIEW_PILL_COUNTDOWN, 2);
 

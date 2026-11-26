@@ -3,9 +3,11 @@ package net.titan.api.events;
 import net.titan.api.Actor;
 import net.titan.api.NPC;
 import net.titan.api.Player;
+import java.util.Optional;
 
 /**
- * Fired when the native client applies a visible hitsplat to a player or NPC.
+ * Fired after the native hitsplat adder returns. The values describe its
+ * arguments. Visibility and the final expiry cycle require the resolved hitmark.
  * Added in SDK 74; native signature corrected in SDK 76.
  */
 public final class HitsplatApplied {
@@ -20,11 +22,33 @@ public final class HitsplatApplied {
     private final int delay;
     private final int cycle;
     private final int gameTick;
+    private final Outcome outcome;
+
+    /** The written or detached hitsplat from the native game-thread observation. */
+    public static final class Outcome {
+        private final int type, amount, disappearsOnGameCycle;
+        public Outcome(int type, int amount, int disappearsOnGameCycle) {
+            this.type = type;
+            this.amount = amount;
+            this.disappearsOnGameCycle = disappearsOnGameCycle;
+        }
+        public int type() { return type; }
+        public int amount() { return amount; }
+        public int disappearsOnGameCycle() { return disappearsOnGameCycle; }
+    }
 
     public HitsplatApplied(Actor actor, int actorType, String kind,
                            int indexOrId, String actorName, int type,
                            int value, int limit, int delay, int cycle,
                            int gameTick) {
+        this(actor, actorType, kind, indexOrId, actorName, type, value, limit, delay, cycle, gameTick, null);
+    }
+
+    public HitsplatApplied(Actor actor, int actorType, String kind,
+                           int indexOrId, String actorName, int type,
+                           int value, int limit, int delay, int cycle,
+                           int gameTick, Outcome outcome) {
+        this.outcome = outcome;
         this.actor = actor;
         this.actorType = actorType;
         this.kind = kind == null ? "none" : kind;
@@ -69,4 +93,5 @@ public final class HitsplatApplied {
     public int cycle() { return cycle; }
     /** Current game tick captured at dispatch, or 0 if unavailable. */
     public int gameTick() { return gameTick; }
+    public Optional<Outcome> outcome() { return Optional.ofNullable(outcome); }
 }

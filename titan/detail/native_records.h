@@ -53,7 +53,16 @@ enum class ControlType : uint8_t {
     color = 6,
     button = 7,
     checkboxMatrix = 8,
-    numberInput = 9
+    numberInput = 9,
+    colorAlpha = 10,
+    integer64 = 11,
+    real64 = 12,
+    multiSelect = 13,
+    keybind = 14,
+    modifierlessKeybind = 15,
+    dimension = 16,
+    point = 17,
+    font = 18
 };
 
 /// A borrowed UTF-8 string (SDK 154): `length` bytes at `data`, followed by

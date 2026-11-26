@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 4452> kSpotanimIDEntries = {{
+inline constexpr std::array<Entry, 4479> kSpotanimIDEntries = {{
     {0, "SOUL_WARS_IMMUNE", "soul_wars_immune", "spottypes"},
     {1, "FIREBREATH_ATTACK", "firebreath_attack", "spottypes"},
     {2, "OSB8_SKILLCAPE_BANANA_SPOTANIM", "osb8_skillcape_banana_spotanim", "spottypes"},
@@ -4451,7 +4451,7 @@ inline constexpr std::array<Entry, 4452> kSpotanimIDEntries = {{
     {4441, "CURSE_IMPACT_SHORT", "curse_impact_short", "spottypes"},
     {4442, "GARGBOSS_DEBRIS_SHADOW_120_SMALL", "gargboss_debris_shadow_120_small", "spottypes"},
     {4443, "GARBOSS_DEBRIS_SHADOW_RED_60", "garboss_debris_shadow_red_60", "spottypes"},
-    {4444, "HW26_TUMBLEWEED", "hw26_tumbleweed", "spottypes"},
+    {4444, "SKELETON_TAXE_TRAVEL01", "skeleton_taxe_travel01", "spottypes"},
     {4445, "VFX_TFA_TELEPORT_START", "vfx_tfa_teleport_start", "spottypes"},
     {4446, "VFX_TFA_TELEPORT_END", "vfx_tfa_teleport_end", "spottypes"},
     {4447, "THROWN_ROCK", "thrown_rock", "spottypes"},
@@ -4459,6 +4459,33 @@ inline constexpr std::array<Entry, 4452> kSpotanimIDEntries = {{
     {4449, "KILLER_WASP_DART_TRAVEL", "killer_wasp_dart_travel", "spottypes"},
     {4450, "WASP_DART_LAUNCH", "wasp_dart_launch", "spottypes"},
     {4451, "KILLER_WASP_DART_LAUNCH", "killer_wasp_dart_launch", "spottypes"},
+    {4452, "RAG2_TELEPORT_SPOTANIM", "rag2_teleport_spotanim", "spottypes"},
+    {4453, "RAG2_APPEAR_SPOTANIM", "rag2_appear_spotanim", "spottypes"},
+    {4454, "RAG2_SKELETAL_BEAST_MAGIC_ATTACK_SPOTANIM_A", "rag2_skeletal_beast_magic_attack_spotanim_a", "spottypes"},
+    {4455, "RAG2_SKELETAL_BEAST_MAGIC_ATTACK_SPOTANIM_B", "rag2_skeletal_beast_magic_attack_spotanim_b", "spottypes"},
+    {4456, "RAG2_SKELETAL_BEAST_MAGIC_ATTACK_PROJANIM_A", "rag2_skeletal_beast_magic_attack_projanim_a", "spottypes"},
+    {4457, "RAG2_SKELETAL_BEAST_MAGIC_ATTACK_PROJANIM_B", "rag2_skeletal_beast_magic_attack_projanim_b", "spottypes"},
+    {4458, "RAG2_SKELETAL_BEAST_MAGIC_ATTACK_IMPACT_A", "rag2_skeletal_beast_magic_attack_impact_a", "spottypes"},
+    {4459, "RAG2_RIGHT_HAND_PROJ", "rag2_right_hand_proj", "spottypes"},
+    {4460, "RAG2_LEFT_HAND_PROJ", "rag2_left_hand_proj", "spottypes"},
+    {4461, "RAG2_TAIL_PROJ", "rag2_tail_proj", "spottypes"},
+    {4462, "SKELETON_TAXE_TRAVEL02", "skeleton_taxe_travel02", "spottypes"},
+    {4463, "SKELETON_TAXE_LAUNCH01", "skeleton_taxe_launch01", "spottypes"},
+    {4464, "SKELETON_TAXE_LAUNCH02", "skeleton_taxe_launch02", "spottypes"},
+    {4465, "SKELETON_BAS_ARROW_SPOTANIM", "skeleton_bas_arrow_spotanim", "spottypes"},
+    {4466, "SKELETON_BAS_ARROW_PROJECTILE", "skeleton_bas_arrow_projectile", "spottypes"},
+    {4467, "VFX_RAEUN_SPAWN", "vfx_raeun_spawn", "spottypes"},
+    {4468, "VFX_RAEUN_SPECIAL_ATTACK_MAGIC", "vfx_raeun_special_attack_magic", "spottypes"},
+    {4469, "VFX_RAEUN_SPECIAL_ATTACK_MAGIC_CHAIN_HITANIM_01", "vfx_raeun_special_attack_magic_chain_hitanim_01", "spottypes"},
+    {4470, "VFX_RAEUN_CHAIN_ATTACK_HITANIM_02", "vfx_raeun_chain_attack_hitanim_02", "spottypes"},
+    {4471, "VFX_RAEUN_CHAIN_ATTACK_HITANIM_03", "vfx_raeun_chain_attack_hitanim_03", "spottypes"},
+    {4472, "VFX_RAEUN_SOUL_PRISON_SPAWN_01", "vfx_raeun_soul_prison_spawn_01", "spottypes"},
+    {4473, "VFX_RAEUN_SOUL_PRISON_CHAIN_DESPAWN_01", "vfx_raeun_soul_prison_chain_despawn_01", "spottypes"},
+    {4474, "VFX_RAEUN_SOUL_PRISON_CHAIN_RESPAWN_01", "vfx_raeun_soul_prison_chain_respawn_01", "spottypes"},
+    {4475, "VFX_RAEUN_SOUL_PRISON_DESPAWN_01", "vfx_raeun_soul_prison_despawn_01", "spottypes"},
+    {4476, "VFX_RAEUN_SOUL_PRISON_CHAIN_IDLE_01", "vfx_raeun_soul_prison_chain_idle_01", "spottypes"},
+    {4477, "VFX_RAEUN_SOUL_PRISON_DEATH_01", "vfx_raeun_soul_prison_death_01", "spottypes"},
+    {4478, "VFX_RAEUN_DEATH_WIND", "vfx_raeun_death_wind", "spottypes"},
 }};
 
 template <>

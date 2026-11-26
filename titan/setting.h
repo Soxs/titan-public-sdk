@@ -12,12 +12,15 @@
 
 #include "detail/abi.h"
 #include "detail/registrable.h"
+#include "detail/setting_values.h"
+#include "detail/setting_units.h"
 #include "plugin.h"
 
 #include <algorithm>
 #include <cstring>
 #include <functional>
 #include <string>
+#include <stdexcept>
 #include <utility>
 #include <vector>
 
@@ -105,6 +108,9 @@ struct SettingMeta {
     bool hidden = false;
     /// Hover tooltip text shown in the controller UI.
     std::string tooltip;
+    /// Numeric suffix (for example "ms" or "%"). Native ABI metadata allows
+    /// at most 63 UTF-8 bytes; invalid text is rejected, never truncated.
+    std::string units;
 };
 
 namespace detail {
@@ -150,12 +156,15 @@ template <typename Derived, typename T>
 class SettingCommon : public SettingBase {
 public:
     SettingCommon(Plugin* owner, const char* key, const char* name,
-                  T defaultValue, SettingMeta meta)
+                  T defaultValue, SettingMeta meta, bool numericUnits = false)
         : key_(key ? key : ""),
           name_(name ? name : ""),
           value_(defaultValue),
           defaultValue_(std::move(defaultValue)),
           meta_(std::move(meta)) {
+        if (!settingUnits::valid(meta_.units, TitanNativeRecords::kMaxNameLen - 1)
+            || (!numericUnits && !meta_.units.empty()))
+            throw std::invalid_argument("Units require a numeric setting and at most 63 valid UTF-8 bytes");
         owner_ = owner;
         if (owner) owner->_registerSetting(this);
     }
@@ -176,6 +185,7 @@ public:
     }
     int32_t position() const override { return meta_.position; }
     const std::string& tooltip() const { return meta_.tooltip; }
+    const std::string& units() const { return meta_.units; }
     Section* section() const { return meta_.section; }
     const char* key() const override { return key_.c_str(); }
     const char* name() const { return name_.c_str(); }
@@ -270,7 +280,7 @@ public:
     IntSetting(Plugin* owner, const char* key, const char* name,
                int32_t defaultValue, int32_t minValue, int32_t maxValue,
                SettingMeta meta = {})
-        : SettingCommon(owner, key, name, defaultValue, std::move(meta)),
+        : SettingCommon(owner, key, name, defaultValue, std::move(meta), true),
           min_(minValue), max_(maxValue) {}
 
     int32_t min() const { return min_; }
@@ -302,6 +312,7 @@ public:
         out.controlType = TitanNativeRecords::ControlType::slider;
         out.minValue = min_;
         out.maxValue = max_;
+        settingUnits::encodeNative(out, meta_.units);
     }
 
     std::string apply(const TitanNativeRecords::Value& v) override {
@@ -965,6 +976,139 @@ private:
     std::string configError_;
     size_t errorCount_ = 0;
     mutable bool reported_ = false;
+};
+
+// Extended controls retain the ABI's existing bool/int32/string storage.
+// Exact numbers and composite values have one canonical, owned string encoding.
+namespace detail {
+inline void validateSettingIdentity(const char* key, const char* name, const SettingMeta& meta) {
+    const std::string_view k = key ? key : "", n = name ? name : "";
+    if (k.empty() || k.size() >= TitanNativeRecords::kMaxIdLen || n.size() >= TitanNativeRecords::kMaxNameLen
+        || !settingValues::utf8(k) || !settingValues::utf8(n))
+        throw std::invalid_argument("Setting key/name exceeds its UTF-8 wire field");
+    if (meta.section) {
+        const std::string_view section = meta.section->key();
+        if (section.size() >= TitanNativeRecords::kMaxIdLen || !settingValues::utf8(section))
+            throw std::invalid_argument("Setting section key exceeds its UTF-8 wire field");
+    }
+}
+template<class T, TitanNativeRecords::ControlType Control>
+class EncodedSetting : public SettingCommon<EncodedSetting<T, Control>, T> {
+    using Base = SettingCommon<EncodedSetting<T, Control>, T>;
+    mutable std::string currentText_, defaultText_;
+    static bool validValue(const T& value) {
+        if (!settingValues::valid(value)) return false;
+        if constexpr (Control == TitanNativeRecords::ControlType::modifierlessKeybind) return value.keyCode == 0 || value.modifiers == 0;
+        return true;
+    }
+    static T checked(const char* key, const char* name, T value, const SettingMeta& meta) {
+        validateSettingIdentity(key, name, meta);
+        value = settingValues::normalize(std::move(value));
+        if (!validValue(value)) throw std::invalid_argument("Invalid typed setting value");
+        return value;
+    }
+public:
+    EncodedSetting(Plugin* owner, const char* key, const char* name, T value, SettingMeta meta = {})
+        : Base(owner, key, name, checked(key, name, std::move(value), meta), meta, settingUnits::numeric(Control)) {}
+    void set(T value) {
+        value = settingValues::normalize(std::move(value));
+        if (!validValue(value)) throw std::invalid_argument("Invalid typed setting value");
+        if constexpr (std::is_same_v<T, double>) {
+            if (value == 0 && this->value_ == 0 && std::signbit(value) != std::signbit(this->value_)) {
+                this->value_ = value;
+                notifySettingChanged(this->owner_, this->key_, this, nullptr);
+                if (this->owner_) this->owner_->onSettingChanged(this->key_);
+                return;
+            }
+        }
+        Base::set(std::move(value));
+    }
+    void reset() override { set(this->defaultValue_); }
+    void buildValue(TitanNativeRecords::Value& out) const override {
+        out = {}; out.type = TitanNativeRecords::ValueType::string;
+        currentText_ = settingValues::write(this->value_); TitanNativeRecords::lendText(out.stringValue, currentText_);
+    }
+    void serialize(TitanNativeRecords::Setting& out) const override {
+        out = {}; this->fillMeta(out); buildValue(out.value); out.controlType = Control;
+        out.defaultValue.type = TitanNativeRecords::ValueType::string;
+        defaultText_ = settingValues::write(this->defaultValue_); TitanNativeRecords::lendText(out.defaultValue.stringValue, defaultText_);
+        settingUnits::encodeNative(out, this->meta_.units);
+    }
+    std::string apply(const TitanNativeRecords::Value& value) override {
+        T next{};
+        if (value.type != TitanNativeRecords::ValueType::string || !settingValues::read(value.stringValue.view(), next) || !validValue(next))
+            return "Invalid typed setting value";
+        this->value_ = std::move(next); return {};
+    }
+};
+} // namespace detail
+
+using Int64Setting = detail::EncodedSetting<int64_t, TitanNativeRecords::ControlType::integer64>;
+using DoubleSetting = detail::EncodedSetting<double, TitanNativeRecords::ControlType::real64>;
+using KeybindSetting = detail::EncodedSetting<SettingKeybind, TitanNativeRecords::ControlType::keybind>;
+using ModifierlessKeybindSetting = detail::EncodedSetting<SettingKeybind, TitanNativeRecords::ControlType::modifierlessKeybind>;
+using DimensionSetting = detail::EncodedSetting<SettingDimension, TitanNativeRecords::ControlType::dimension>;
+/// Opt-in absence of an explicit size; reset restores the declared default.
+/// DimensionSetting remains nonnullable. Both use the existing dimension control.
+using NullableDimensionSetting = detail::EncodedSetting<std::optional<SettingDimension>, TitanNativeRecords::ControlType::dimension>;
+using PointSetting = detail::EncodedSetting<std::optional<SettingPoint>, TitanNativeRecords::ControlType::point>;
+using FontSetting = detail::EncodedSetting<SettingFont, TitanNativeRecords::ControlType::font>;
+
+/// An exact signed ARGB bit pattern, including alpha. ColorSetting stays RGB.
+class ColorAlphaSetting : public detail::SettingCommon<ColorAlphaSetting, int32_t> {
+    static int32_t checked(const char* key, const char* name, int32_t value, const SettingMeta& meta) { detail::validateSettingIdentity(key, name, meta); return value; }
+public:
+    ColorAlphaSetting(Plugin* owner, const char* key, const char* name, int32_t value, SettingMeta meta = {})
+        : SettingCommon(owner, key, name, checked(key, name, value, meta), meta) {}
+    void buildValue(TitanNativeRecords::Value& out) const override { out = {}; out.type = TitanNativeRecords::ValueType::integer; out.intValue = value_; }
+    void serialize(TitanNativeRecords::Setting& out) const override {
+        out = {}; fillMeta(out); buildValue(out.value); out.defaultValue.type = TitanNativeRecords::ValueType::integer;
+        out.defaultValue.intValue = defaultValue_; out.controlType = TitanNativeRecords::ControlType::colorAlpha;
+    }
+    std::string apply(const TitanNativeRecords::Value& value) override {
+        if (value.type != TitanNativeRecords::ValueType::integer) return "Expected signed ARGB integer";
+        value_ = value.intValue; return {};
+    }
+};
+
+/// The selected values are stable ComboChoice::value IDs, never option offsets.
+class MultiSelectSetting : public detail::EncodedSetting<std::vector<int32_t>, TitanNativeRecords::ControlType::multiSelect> {
+    using Base = detail::EncodedSetting<std::vector<int32_t>, TitanNativeRecords::ControlType::multiSelect>;
+    std::vector<ComboChoice> choices_;
+    static bool selection(const std::vector<int32_t>& value, const std::vector<ComboChoice>& choices) {
+        return settingValues::valid(value) && std::all_of(value.begin(), value.end(), [&](int32_t n) {
+            return std::any_of(choices.begin(), choices.end(), [&](const ComboChoice& c) { return c.value == n; });
+        });
+    }
+    static std::vector<int32_t> checked(std::vector<int32_t> value, const std::vector<ComboChoice>& choices) {
+        if (choices.size() > TitanNativeRecords::kMaxSettingOptions) throw std::invalid_argument("At most 32 multi-select choices are supported");
+        for (size_t i = 0; i < choices.size(); ++i) {
+            if (choices[i].label.size() >= TitanNativeRecords::kMaxNameLen || !settingValues::utf8(choices[i].label))
+                throw std::invalid_argument("Choice label exceeds its UTF-8 wire field");
+            for (size_t j = 0; j < i; ++j) if (choices[i].value == choices[j].value) throw std::invalid_argument("Duplicate multi-select choice ID");
+        }
+        if (!selection(value, choices)) throw std::invalid_argument("Unknown or duplicate multi-select choice ID");
+        return value;
+    }
+public:
+    MultiSelectSetting(Plugin* owner, const char* key, const char* name, std::vector<int32_t> value,
+                       std::vector<ComboChoice> choices, SettingMeta meta = {})
+        : Base(owner, key, name, checked(std::move(value), choices), std::move(meta)), choices_(std::move(choices)) {}
+    const std::vector<ComboChoice>& choices() const { return choices_; }
+    void set(std::vector<int32_t> value) {
+        if (!selection(value, choices_)) throw std::invalid_argument("Unknown or duplicate multi-select choice ID");
+        Base::set(std::move(value));
+    }
+    void serialize(TitanNativeRecords::Setting& out) const override {
+        Base::serialize(out); out.optionCount = static_cast<uint8_t>(choices_.size());
+        for (size_t i = 0; i < choices_.size(); ++i) { out.options[i].intValue = choices_[i].value; detail::copyFixed(out.options[i].label, sizeof(out.options[i].label), choices_[i].label); }
+    }
+    std::string apply(const TitanNativeRecords::Value& value) override {
+        std::vector<int32_t> next;
+        if (value.type != TitanNativeRecords::ValueType::string || !settingValues::read(value.stringValue.view(), next) || !selection(next, choices_))
+            return "Unknown or duplicate multi-select choice ID";
+        this->value_ = std::move(next); return {};
+    }
 };
 
 }  // namespace titan

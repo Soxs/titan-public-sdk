@@ -1,5 +1,13 @@
 # Third-party notices
 
+The `net.titan:titan-runelite` artifact includes the classes of the official RuneLite 1.13.6
+client and its HTTP API, without their resources, for compiling. Their notices are in the artifact and in
+[titan-runelite](java/titan-runelite/RuneLite-client-source-notices.txt).
+
+The `net.titan:titan-runelite-api` artifact includes the official RuneLite 1.13.6
+API classes and an extended NPC interface. The sources artifact includes the
+upstream notices. [RuneLite license](java/titan-runelite-api/RuneLite-BSD-2-Clause.txt).
+
 The following notices apply to the identified third-party material included
 in the SDK. They do not change the licensing terms of other Titan SDK
 code.

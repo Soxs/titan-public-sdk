@@ -378,6 +378,8 @@ final class DbRowIDEntries_29 {
             new GamevalEntry(15227, "LEAGUE_TASK_TELEPORT_TO_CAM_TORUM_USING_A_CALCIFIED_MOTH", "league_task_teleport_to_cam_torum_using_a_calcified_moth", "rowtypes"),
             new GamevalEntry(15228, "LEAGUE_TASK_STEAL_A_CHISEL", "league_task_steal_a_chisel", "rowtypes"),
             new GamevalEntry(15232, "LEAGUE_TASK_SMITH_A_STEEL_PLATEBODY", "league_task_smith_a_steel_platebody", "rowtypes"),
+            new GamevalEntry(15238, "MUSIC_THE_GRAVEYARD_AREA", "music_the_graveyard_area", "rowtypes"),
+            new GamevalEntry(15239, "MUSIC_GRAVEYARD_OLAF_BARD_SONG", "music_graveyard_olaf_bard_song", "rowtypes"),
             new GamevalEntry(15240, "LEAGUE_TASK_REACH_TOTAL_LEVEL_100", "league_task_reach_total_level_100", "rowtypes"),
             new GamevalEntry(15241, "LEAGUE_TASK_STEAL_1_ARTEFACT", "league_task_steal_1_artefact", "rowtypes"),
             new GamevalEntry(15242, "LEAGUE_TASK_STEAL_15_ARTEFACTS", "league_task_steal_15_artefacts", "rowtypes"),

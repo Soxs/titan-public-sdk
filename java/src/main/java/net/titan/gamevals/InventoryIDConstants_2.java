@@ -13,4 +13,5 @@ public interface InventoryIDConstants_2 {
     int RENDER_WORN = 1033;
     int PUB_LUMBRIDGE = 1034;
     int BAW_BEA_POST_QUEST_SHOP = 1035;
+    int BONESACK_INV = 1036;
 }

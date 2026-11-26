@@ -222,4 +222,7 @@ public interface QuestIDConstants_0 {
     int QUEST_WRITINGSONTHEWALL = 219;
     int QUEST_SHELLOFAFRIEND = 220;
     int QUEST_BIRDSANDTHEWASPS = 221;
+    int QUEST_NEWLEAF = 222;
+    int QUEST_RAGANDBONEMAN3 = 223;
+    int QUEST_GRAVEYARD = 224;
 }

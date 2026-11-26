@@ -104,6 +104,7 @@ class HintArrowApiTest {
         assertArrayEquals(new Object[]{point, 64, 64, 0}, captured[0]);
         assertEquals(HintArrowUpdateResult.UNAVAILABLE, client.clearHintArrow());
         assertEquals(HintArrowUpdateResult.UNAVAILABLE, client.setHintArrow((Actor) npc(0x1234L)));
+        assertEquals(HintArrowUpdateResult.UNAVAILABLE, client.setHintArrowTarget(npc(0x1234L)));
     }
     @Test void mutationResultsAreExactAndUnknownCodesFailClosed() {
         for (HintArrowUpdateResult result : HintArrowUpdateResult.values())

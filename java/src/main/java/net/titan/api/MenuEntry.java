@@ -42,13 +42,34 @@ public interface MenuEntry {
     boolean isDeprioritized();
     MenuEntry setDeprioritized(boolean deprioritized);
     boolean isCustom();
+    /** One of the game's own submenus. */
     boolean isSubmenu();
     /** Parent submenu entry, or null for a root entry. Parents cannot be changed. */
     MenuEntry getParent();
-    /** Existing submenu children, in bottom-to-top order; empty for a leaf. */
+    /** The entries of its submenu, in bottom-to-top order; empty without one. */
     MenuEntry[] getChildren();
     /** Reorder/remove existing leaf children atomically; cannot create or reparent groups. */
     MenuEntry setChildren(MenuEntry[] children);
+    /** Whether it is one of the game's own submenus, or has plugins' entries under it. SDK 194. */
+    default boolean hasSubMenu() { return isSubmenu() || getChildren().length != 0; }
+    /**
+     * Creates an entry in this one's submenu, at a place which counts as {@link Client#createMenuEntry(int)}'s does. A submenu
+     * of a plugin's own is under an ordinary entry of the menu itself, and no other has one. The game draws it in the menu,
+     * right under its heading, with the heading's option before each, and it goes with its heading. SDK 194.
+     */
+    default MenuEntry createSubMenuEntry(int index) {
+        throw new IllegalStateException("Menu editing is unavailable");
+    }
+    /** Removes every plugin's entries under it. The game's own submenus stay. SDK 194. */
+    default void deleteSubMenu() {
+        if (isSubmenu()) throw new IllegalArgumentException("The game's own submenus stay");
+        setChildren(new MenuEntry[0]);
+    }
+    /**
+     * Where the game draws its own submenu under this entry, in the pixels which widgets have. A plugin's submenu has no
+     * place of its own: {@link GameData#menuBounds()} has that of the menu. SDK 194.
+     */
+    default java.util.Optional<GameData.MenuBounds> getSubMenuBounds() { return java.util.Optional.empty(); }
     boolean isValid();
     /**
      * Register a synchronous callback owned by the calling plugin; null clears

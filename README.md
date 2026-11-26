@@ -2,6 +2,15 @@
 
 Public C++, Java, and JavaScript/TypeScript SDK for TitanClient plugins.
 
+The [Swing and Java2D guide](docs/java_swing_and_graphics.md) includes a Java
+plugin with a real sidebar button and an Alt-draggable HUD.
+
+Use Titan's [built-in fonts and skill icons](docs/sdk_ui_assets.md) in plugin
+panels and overlays. The guide lists the equivalent calls for all three SDKs.
+The [experience helpers](docs/sdk_experience.md) convert between XP and real
+or virtual skill levels. Use [game-text tag removal](docs/sdk_game_text.md) to
+obtain plain display text from formatted game strings.
+
 This repository is auto-mirrored from the canonical TitanClient source tree.
 Direct commits to `main` may be overwritten by the next outbound sync.
 
@@ -95,10 +104,57 @@ Missing optional capabilities remain unavailable. Legacy `TitanCreatePlugin`
 DLLs need a one-time rebuild to use `TitanPlugin_QueryNative`. Pin an SDK commit
 for reproducible builds; see [version compatibility](titan/PUBLIC_API.md#version-compatibility).
 
+## RuneLite Plugins
+
+Start with **[titan-runelite-plugin-template](https://github.com/Soxs/titan-runelite-plugin-template)** for a
+plugin written with the RuneLite API, or copy the same files from [examples/runelite-plugin](examples/runelite-plugin). Its
+`build.gradle` is one line, `id 'net.titan.runelite' version '0.2.0'`, and `gradlew run` opens Titan with it.
+[What it brings](java/README.md#runelite-plugins)
+
+### RuneLite support
+
+<!-- runelite-support: written by scripts/runelite_support_chart.py -->
+
+**94% of what RuneLite's own plugins use: 89% fully and 5% within limits.** RuneLite 1.13.6.
+
+🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨🟥🟥
+
+🟩 answered as RuneLite does &nbsp; 🟨 answered within limits &nbsp; 🟥 not yet: the call throws `UnsupportedOperationException`, or the event never comes
+
+| | | Full | Limited | Not yet |
+|---|---|--:|--:|--:|
+| Items and containers | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨 | 97% | 3% | 0% |
+| Menus | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟨 | 92% | 8% | 0% |
+| Scripts and game data | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 | 100% | 0% | 0% |
+| Players and NPCs | 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟥 | 97% | 2% | 1% |
+| Plugin services | 🟩🟩🟩🟩🟩🟩🟩🟨🟨🟥 | 80% | 18% | 2% |
+| Game events | 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟥 | 95% | 1% | 4% |
+| Chat, friends and clans | 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟥 | 93% | 3% | 4% |
+| Widgets | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟥 | 95% | 0% | 5% |
+| World, scene and objects | 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟥 | 92% | 2% | 6% |
+| Client | 🟩🟩🟩🟩🟩🟩🟩🟩🟨🟥 | 88% | 4% | 8% |
+| Models, textures and drawing | 🟩🟩🟨🟨🟥🟥🟥🟥🟥🟥 | 18% | 22% | 60% |
+
+Most wanted and not there yet, with how many of those plugins use it: `Client.getDraggedWidget` (4), `Widget.getClickMask` (4), `Widget.setClickMask` (4), `Client.getDraggedOnWidget` (3), `WidgetDrag` (3), `ChatLineBuffer.removeMessageNode` (2), `Client.getComponentTable` (2), `Client.getTextureProvider` (2), `Client.setDraggedOnWidget` (2), `Client.setGeSearchResultCount` (2).
+
+These count the game calls, game events and injected services of RuneLite's 129 own plugins, each once per plugin, against what Titan's runtime answers. They are read from code: they say what a plugin can ask for, and not that one was tried. 92 of the 129 use nothing that is missing. Where a handler reaches a missing call, the log names it and the rest of the plugin goes on. RuneLite's own code, such as coordinates, constants and overlay components, runs unchanged and is not counted.
+
+`gradlew titanReport` gives the same answer for your plugin.
+
+<!-- runelite-support: end -->
+
 ## Java Plugins
 
 Use the API as a `compileOnly` dependency. TitanClient's embedded Java runtime
 supplies the API and Guice classes at runtime.
+
+For RuneLite game types, add
+`compileOnly 'net.titan:titan-runelite-api:1.13.6-titan.3'` alongside the
+Titan plugin API. An ordinary Titan plugin can inject `net.runelite.api.Client`
+and call `npc.interact("Talk-to")`, `widget.interact("Activate")` or
+`player.interact(option)` in its game-thread callback. Player options are
+one-based slots (1–8) in the current native menu for that top-level player.
+See [Using the RuneLite game API from a Titan plugin](java/README.md#using-the-runelite-game-api-from-a-titan-plugin).
 
 Authorization uses a separate library bundled into each plugin. With Java SDK
 `0.1.90` and `net.titan.dev` `0.1.2`, the convention plugin automatically includes
@@ -129,9 +185,9 @@ For a runnable project to copy or fork, start from
 
 The `net.titan.dev` Gradle plugin wires up the TitanClient dev loop: it stages
 your built JAR into a versioned dev session, writes the `session.json` manifest
-the controller reads, and launches (or recycles) a dedicated DEV tab. After the
-first launch, a plain `build` re-stages the next generation so the in-tab
-refresh button hot-reloads it — no client restart.
+the controller reads, and opens a dedicated DEV tab. Running it again, `reloadViaTitan`, or the
+in-tab refresh button after a plain `build` hot-reloads the plugin there — no client restart.
+A debug run still restarts the game, because a JVM takes its debug port only when it starts.
 
 Add it alongside the `java`/`java-library` plugin. It resolves from the same
 published repo as the API, declared in `settings.gradle`:

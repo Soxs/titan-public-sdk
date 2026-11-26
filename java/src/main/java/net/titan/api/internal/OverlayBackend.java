@@ -23,6 +23,12 @@ public interface OverlayBackend {
     void tileObjectHull(long locPtr, long typecode, int outline, int fill);
     void entityOutline(long entityPtr, long typecode, int outline, int fill, int mode);
     void tileObjectOutline(long locPtr, long typecode, int outline, int fill, int mode);
+    /** The convex outline as x, y pairs. Empty on an older host. */
+    default int[] tileObjectOutlinePoints(long locPtr, long typecode) { return new int[0]; }
+    /** The same of a player or NPC. Empty on an older host. */
+    default int[] entityOutlinePoints(long entityPtr) { return new int[0]; }
+    /** -1 for one which has not been drawn lately, and on an older host. */
+    default int entityModelHeight(long entityPtr) { return -1; }
     void textAtWorld(int worldX, int worldY, int worldZ,
                      String text, int color, boolean centered);
     void textAtWorldInWorldView(int worldViewId, int preciseX, int worldY,
@@ -53,6 +59,12 @@ public interface OverlayBackend {
     void overlayPanelUnregister(int handle);
     void overlayPanelBegin(int handle, int preferredWidth);
     void overlayPanelEnd(int handle);
+    default boolean infoBoxSetIcon(String owner, int panel, int key, int width, int height, int[] argb) {
+        throw new UnsupportedOperationException("This Titan host does not provide HUD infoboxes");
+    }
+    default boolean infoBoxPresent(String owner, int panel, boolean vertical, int size, java.util.List<net.titan.api.overlay.InfoBoxTile> tiles) {
+        throw new UnsupportedOperationException("This Titan host does not provide HUD infoboxes");
+    }
     void overlayPanelSetStyle(int handle, OverlayPanelStyle style);
     void overlayPanelTitle(int handle, String text, int color);
     void overlayPanelLine(int handle, String left, String right,

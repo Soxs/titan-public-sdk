@@ -1,0 +1,100 @@
+RuneLite API 1.13.6
+BSD 2-Clause source notices grouped by their redistribution terms.
+Source archive SHA-256: 6faef55d9ddb56cc0f8ef56144b1b833654e5754f8550745d000b92e345753be
+
+Copyright (c) 2016-2017, Abel Briggs
+Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+Copyright (c) 2016-2018, Adam <Adam@sigterm.info>
+Copyright (c) 2017, Adam <Adam@sigterm.info>
+Copyright (c) 2017, Robin <robin.weymans@gmail.com>
+Copyright (c) 2017, Seth <Sethtroll3@gmail.com>
+Copyright (c) 2017, Steve <steve.rs.dev@gmail.com>
+Copyright (c) 2017, Tyler <https://github.com/tylerthardy>
+Copyright (c) 2017-2019, Adam <Adam@sigterm.info>
+Copyright (c) 2017. l2-
+Copyright (c) 2018 Abex
+Copyright (c) 2018 Charlie Waters
+Copyright (c) 2018 Tomas Slusny <slusnucky@gmail.com>
+Copyright (c) 2018, Adam <Adam@sigterm.info>
+Copyright (c) 2018, Hydrox6 <ikada@protonmail.ch>
+Copyright (c) 2018, Infinitay <https://github.com/Infinitay>
+Copyright (c) 2018, Joshua Filby <joshua@filby.me>
+Copyright (c) 2018, Kamiel
+Copyright (c) 2018, Lotto <https://github.com/devLotto>
+Copyright (c) 2018, Magic fTail
+Copyright (c) 2018, Matthew Steglinski <https://github.com/sainttx>
+Copyright (c) 2018, Ron Young <https://github.com/raiyni>
+Copyright (c) 2018, SomeoneWithAnInternetConnection
+Copyright (c) 2018, SoyChai <https://github.com/SoyChai>
+Copyright (c) 2018, Tomas Slusny <slusnucky@gmail.com>
+Copyright (c) 2018, Woox <https://github.com/wooxsolo>
+Copyright (c) 2018, WooxSolo <https://github.com/WooxSolo>
+Copyright (c) 2018, trimbe <github.com/trimbe>
+Copyright (c) 2019 Abex
+Copyright (c) 2019, Adam <Adam@sigterm.info>
+Copyright (c) 2019, Ron Young <https://github.com/raiyni>
+Copyright (c) 2019, Shaun Dreclin <https://github.com/ShaunDreclin>
+Copyright (c) 2019, Trevor <https://github.com/Trevor159>
+Copyright (c) 2020 Abex
+Copyright (c) 2020, Adam <Adam@sigterm.info>
+Copyright (c) 2020, Jordan <nightfirecat@protonmail.com>
+Copyright (c) 2020, Trevor <https://github.com/Trevor159>
+Copyright (c) 2021 Abex
+Copyright (c) 2021, Adam <Adam@sigterm.info>
+Copyright (c) 2021, Trevor <https://github.com/Trevor159>
+Copyright (c) 2022 Abex
+Copyright (c) 2022, Adam <Adam@sigterm.info>
+Copyright (c) 2023 Abex
+Copyright (c) 2023, Adam <Adam@sigterm.info>
+Copyright (c) 2024 Abex
+Copyright (c) 2024, Adam <Adam@sigterm.info>
+Copyright (c) 2024, LlemonDuck <napkinorton@gmail.com>
+Copyright (c) 2025 Abex
+Copyright (c) 2025, Adam <Adam@sigterm.info>
+Copyright (c) 2026 Abex
+Copyright (c) 2026, Adam <Adam@sigterm.info>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Copyright (c) 2018, Lotto <https://github.com/devLotto>
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

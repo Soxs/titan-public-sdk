@@ -16,6 +16,134 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v195 -- A container's children in one read
+
+- Added `gameData.widgetSlots` to C++, Java (`GameData.widgetSlots`) and JavaScript: every slot of a flat widget's
+  script-made children, the empty ones too, with each child's incarnation and the scalar fields a read of it has.
+  The bank's items are one read instead of one for each.
+
+## v194 -- Loot, submenus and where the menu is
+
+- Added `onLootReceived` and `gameData.loot` to C++, Java (`LootReceived`) and JavaScript: what monsters and
+  players leave for the account, with whose it was.
+- An ordinary menu entry can have a submenu of plugins' own: `createSubMenu`, `hasSubMenu` and `deleteSubMenu`,
+  in Java `createSubMenuEntry`. Its entries are drawn right under their heading.
+- Added `Menu.bounds` and `gameData.menuBounds`: where the game draws its open menu and its own submenus.
+
+## v193 -- More of the game's data and changes
+
+- `gameData` in C++, Java and JavaScript also has the tile under the mouse, the minimap's heading and zoom,
+  where a boat stands, the world map's area, chat lines and changes of them, a widget's modes, alignments and
+  transparency, its static and nested children, its listeners and setting them, the interpreter's stacks and
+  components inside `onScriptMoment`, `setOverheadText`, `openWorldSwitcher`, `reloadScene` and `dropConnection`.
+
+## v192 -- Friends, clans, ground items, held keys and sounds
+
+- Added `gameData` to C++, Java and JavaScript: friends and ignored players, the friends chat, clan
+  channels and settings, every item on the ground with its ticks and owner, which keys and mouse button
+  are down, and sound effects. `gameData.run` reaches any named operation of the client.
+
+## v191 -- Outlines and heights of actors
+
+- Added `entityOutlinePoints` and `entityModelHeight` to C++, Java and JavaScript: the convex outline
+  of a player or NPC on the canvas, and how far its model rises above the ground.
+
+## v190 -- Outlines of tile objects as points
+
+- Added `tileObjectOutlinePoints` to C++, Java and JavaScript: the convex outline of an object on the
+  canvas, for a plugin which tests or draws it by itself.
+
+## v189 -- Interfaces which load and close
+
+- Added `onWidgetLoaded` and `onWidgetClosed` to C++, Java and JavaScript.
+- `onMenuEntryAdded` tells of the game's own entries in the order in which the game inserted them.
+
+## v188 -- Widget edits
+
+- Added `edit()` to widgets in C++, Java and JavaScript: changes of one exact widget's own fields,
+  made at once on the game thread, and children of a layer.
+
+## v187 -- The game's scripts
+
+- Added `watchScripts` and `onScriptMoment` to C++, Java and JavaScript: the game's scripts by id,
+  before they run and before they return, those called by other scripts included. The event reads
+  and replaces a starting script's integer arguments and the interpreter's integers.
+
+## v186 -- Chat insertion
+
+- Added the optional game-thread `insertChatMessage` to C++, Java and JavaScript. It adds
+  a local chat line and returns its UID before it returns.
+
+## v185 -- Cache files
+
+- Added the optional `HostCacheFilesV1` to C++, Java and JavaScript. It copies
+  files of the game's own local cache, each checked against its reference table.
+
+## v184 -- World entity definition identity
+
+- Added the optional game-thread `lookupWorldEntityDefinition` lookup to C++,
+  Java and JavaScript. It reads a definition through a current entity and
+  distinguishes shared definition objects from different objects with equal IDs.
+
+## v183 -- Top-level world entity lookup
+
+- Added game-thread `lookupWorldEntity` in the C++, Java and JavaScript SDKs. An
+  observed empty slot, an unreadable table and a stale retained identity have
+  distinct results. The optional child is checked against the registered world.
+
+## v182 -- Widget primary text
+
+- `+` Added `Widget.primaryText()` to the C++, Java and JavaScript SDKs through the optional `HostGameV1.copyWidgetPrimaryText` read.
+
+## v181 -- Retargeting actor hint arrows
+
+- `+` Added `setHintArrowTarget(actor)` in C++, Java and JavaScript. It edits the existing server slot's actor target on the game thread and preserves visibility and blink timing.
+
+## v180 -- Widget scroll height
+
+- `+` Added the optional `HostGameV1.getWidgetScrollHeight` read and exposed `scrollHeight()` on C++, Java and JavaScript widgets.
+
+## v179 -- Live object definition action slots
+
+- `+` C++, Java and JavaScript expose the current base definition's action slot count through `objectActionSlotCount(id)`. The optional `HostGameV1` tail uses a game-thread observation and preserves a valid zero.
+
+## v178 -- Widget key listeners
+
+- `+` The optional `HostWidgetListenersV1.copyWidgetKeyListener` tail exposes the current key-listener script and arguments to C++, Java and JavaScript plugins.
+
+## v177 -- Built-in UI assets, experience and game text
+
+- C++, Java and JS expose a synchronous local chat refresh. The optional
+  `HostActionsV1.refreshChat` tail is available on hosts with a qualified
+  chat history export.
+
+- `+` C++, Java and JavaScript hitsplat callbacks include the optional resolved type, amount and disappearance cycle.
+
+- `+` C++, Java and JavaScript chat callbacks expose optional insertion details with complete strings and the Unix insertion second.
+
+- `+` Optional world, canvas size and client int/string variable events in C++, Java and JavaScript.
+
+- `+` Optional `PluginEventsV1::onStatChanged`, Java `StatChanged` and
+  JavaScript `onStatChanged` report XP, real and boosted level changes per client tick.
+
+- `+` Optional `HostInfoBoxesV1` adds panel-owned icon and text groups to
+  C++, Java and JavaScript overlay panels. Titan draws the tiles and their
+  hover tooltips, caches artwork and saves Alt-drag placement.
+- `+` Common typed settings: ARGB color, exact int64, finite double, multi-select,
+  keybind/modifierless keybind, dimension, optional point and font. C++ members
+  and matching JavaScript/TypeScript helpers use the existing setting callbacks,
+  persistence and reset path. Control IDs 10–18 are appended; record layouts and
+  minimum SDK 154 are unchanged. Exact/composite values use the string slot.
+- `+` Optional `HostUiAssetsV1` copies bundled skill-icon ARGB and exact font
+  files into caller-owned storage. `<titan/ui_assets.h>` exposes
+  `skillIcons::get(Skill/int32_t, bool small)` and `fonts::data(Face)`;
+  unsupported hosts return `std::nullopt`. Assets stay in the host, not SDK
+  headers. No game, cache or JVM state is required, and this adds no overlay
+  font renderer. Existing payloads and minimum SDK 154 remain unchanged.
+- `experience::xpForLevel` and `levelForXp` cover all 126 real and virtual
+  thresholds. `text::removeTags` removes game formatting. These pure helpers
+  can also be used offline.
+
 ## v176 -- Named widget interactions
 
 - `+` Web walker requests can name whole areas to avoid:

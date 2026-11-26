@@ -6,7 +6,7 @@
 
 namespace titan::gamevals {
 namespace detail {
-inline constexpr std::array<Entry, 993> kInterfaceIDEntries = {{
+inline constexpr std::array<Entry, 994> kInterfaceIDEntries = {{
     {0, "_100GUIDE_EGGS_OVERLAY", "100guide_eggs_overlay", "iftypes"},
     {1, "_100GUIDE_FLOUR_OVERLAY", "100guide_flour_overlay", "iftypes"},
     {2, "RANGINGGUILD_TICKETEXCHANGE", "rangingguild_ticketexchange", "iftypes"},
@@ -596,7 +596,7 @@ inline constexpr std::array<Entry, 993> kInterfaceIDEntries = {{
     {586, "KR_ADDRESS_FORM", "kr_address_form", "iftypes"},
     {587, "KR_SCRAP_PAPER", "kr_scrap_paper", "iftypes"},
     {588, "KR_PICKLOCK", "kr_picklock", "iftypes"},
-    {589, "DISPLAYNAME", "displayname", "iftypes"},
+    {589, "RAG3_BOSS_OVERLAY", "rag3_boss_overlay", "iftypes"},
     {590, "POH_JEWELLERY_BOX", "poh_jewellery_box", "iftypes"},
     {591, "ARAXXOR_SCOREBOARD", "araxxor_scoreboard", "iftypes"},
     {592, "DIZANAS_QUIVER", "dizanas_quiver", "iftypes"},
@@ -1000,6 +1000,7 @@ inline constexpr std::array<Entry, 993> kInterfaceIDEntries = {{
     {990, "WOTW_WALL_LANDS_END", "wotw_wall_lands_end", "iftypes"},
     {991, "WOTW_WALL_PISCARILIUS", "wotw_wall_piscarilius", "iftypes"},
     {992, "WOTW_WALL_SHAYZIEN", "wotw_wall_shayzien", "iftypes"},
+    {993, "POR_STATISTICS", "por_statistics", "iftypes"},
 }};
 
 template <>

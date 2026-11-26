@@ -17,13 +17,17 @@ public interface ConfigSetting {
         BUTTON,
         /// Checkbox grid ({@link MatrixSetting}). The value is a cell bitmask,
         /// {@code bit = row * columnCount + column}.
-        MATRIX
+        MATRIX,
+        LONG, DOUBLE, ENUM_SET, KEYBIND, MODIFIERLESS_KEYBIND, DIMENSION, POINT, FONT
     }
 
     String key();
     String name();
     String section();
     String description();
+    /// Optional display-only numeric suffix. Older setting implementations
+    /// retain their original presentation without supplying this metadata.
+    default String units() { return ""; }
     int position();
     boolean hidden();
 

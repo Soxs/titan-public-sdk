@@ -453,6 +453,46 @@ public:
             b->drawTileObjectOutline(locPtr, typecode, outline, fill,
                                      static_cast<uint32_t>(mode));
     }
+    /// The convex outline of @p obj on the canvas, in order, for a plugin which
+    /// tests or draws it by itself (SDK 190). Asking makes the host capture the
+    /// model: the first answers are its bounding box's, or empty. Empty too for
+    /// an object which is gone or out of view.
+    std::vector<ScreenPoint> tileObjectOutlinePoints(const TileObject& obj) const {
+        std::vector<ScreenPoint> out;
+        if (auto* b = detail::backend()) {
+            int32_t points[2 * 256];
+            const uint32_t count = b->getTileObjectOutline(obj.entityPtr(), obj.packedId(), points, 256);
+            out.reserve(count);
+            for (uint32_t i = 0; i < count; ++i) out.push_back({points[2 * i], points[2 * i + 1]});
+        }
+        return out;
+    }
+
+    /// The convex outline of a player or NPC on the canvas, in order, as
+    /// tileObjectOutlinePoints gives an object's (SDK 191). Empty for one which
+    /// is out of view, and for the first frame in which it is asked for.
+    std::vector<ScreenPoint> entityOutlinePoints(const Npc& npc) const { return entityOutlinePoints(npc.entityPtr()); }
+    std::vector<ScreenPoint> entityOutlinePoints(const Player& player) const { return entityOutlinePoints(player.entityPtr()); }
+    std::vector<ScreenPoint> entityOutlinePoints(uint64_t entityPtr) const {
+        std::vector<ScreenPoint> out;
+        auto* b = detail::backend();
+        if (!b || !entityPtr) return out;
+        int32_t points[2 * 256];
+        const uint32_t count = b->getEntityOutline(entityPtr, points, 256);
+        out.reserve(count);
+        for (uint32_t i = 0; i < count; ++i) out.push_back({points[2 * i], points[2 * i + 1]});
+        return out;
+    }
+
+    /// How far a player's or NPC's model rises above the ground it stands on, in
+    /// the units of preciseX, for a text above its head (SDK 191). -1 when the
+    /// game has not drawn it lately.
+    int32_t entityModelHeight(const Npc& npc) const { return entityModelHeight(npc.entityPtr()); }
+    int32_t entityModelHeight(const Player& player) const { return entityModelHeight(player.entityPtr()); }
+    int32_t entityModelHeight(uint64_t entityPtr) const {
+        auto* b = detail::backend();
+        return b && entityPtr ? b->getEntityModelHeight(entityPtr) : -1;
+    }
 
     void textAtWorld(int32_t worldX, int32_t worldY, int32_t worldZ,
                      const char* text, uint32_t color, bool centered = true) const {

@@ -92,7 +92,7 @@ inline bool textMime(std::string_view m) noexcept {
 }
 inline bool supportedMime(std::string_view m) noexcept {
     return textMime(m) || m == "image/png" || m == "image/jpeg" ||
-        m == "image/webp" || m == "font/woff" || m == "font/woff2";
+        m == "image/webp" || m == "font/woff" || m == "font/woff2" || m == "font/ttf";
 }
 inline bool validateBundle(const Bundle& b, std::string& error) {
     auto fail = [&](const char* reason) { error = reason; return false; };

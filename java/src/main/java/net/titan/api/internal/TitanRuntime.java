@@ -42,6 +42,18 @@ public final class TitanRuntime {
         }
     }
     private static volatile OverlayBackend overlayBackend;
+    private static volatile Graphics2DBackend graphics2DBackend;
+
+    public static Graphics2DBackend getGraphics2DBackend() {
+        Graphics2DBackend value = graphics2DBackend;
+        if (value == null) throw new IllegalStateException("Titan Graphics2D overlays are unavailable in this host");
+        return value;
+    }
+
+    public static void setGraphics2DBackend(Graphics2DBackend backend) { graphics2DBackend = backend; }
+    public static void clearGraphics2DBackend(Graphics2DBackend backend) {
+        if (graphics2DBackend == backend) graphics2DBackend = null;
+    }
     private static volatile ActorResolver actorResolver;
     private static volatile InteractionBackend interactionBackend;
     private static volatile MouseBackend mouseBackend;
@@ -53,10 +65,23 @@ public final class TitanRuntime {
     private static volatile ScreenshotBackend screenshotBackend;
     private static volatile ItemPricesBackend itemPricesBackend;
     private static volatile ItemSpritesBackend itemSpritesBackend;
+    private static volatile UiAssetsBackend uiAssetsBackend;
+    private static volatile CacheFilesBackend cacheFilesBackend;
+    private static volatile GameDataBackend gameDataBackend;
     private static volatile CrossTabBackend crossTabBackend;
     private static volatile PreviewPillBackend previewPillBackend;
     private static volatile HtmlUiBackend htmlUiBackend;
     private static volatile PanelBackend panelBackend;
+    private static volatile SwingPanelBackend swingPanelBackend;
+
+    public static SwingPanelBackend getSwingPanelBackend() {
+        SwingPanelBackend value = swingPanelBackend;
+        return value == null ? SwingPanelBackend.UNAVAILABLE : value;
+    }
+    public static void setSwingPanelBackend(SwingPanelBackend backend) { swingPanelBackend = backend; }
+    public static void clearSwingPanelBackend(SwingPanelBackend backend) {
+        if (swingPanelBackend == backend) swingPanelBackend = null;
+    }
     private static final ThreadLocal<Deque<String>> CURRENT_PLUGIN_IDS =
         ThreadLocal.withInitial(ArrayDeque::new);
     private static final Object OVERLAY_PANEL_LOCK = new Object();
@@ -215,6 +240,30 @@ public final class TitanRuntime {
     public static void clearItemSpritesBackend(ItemSpritesBackend backend) {
         if (itemSpritesBackend == backend) itemSpritesBackend = null;
     }
+    public static CacheFilesBackend getCacheFilesBackend() {
+        CacheFilesBackend value = cacheFilesBackend;
+        return value == null ? CacheFilesBackend.UNAVAILABLE : value;
+    }
+    public static void setCacheFilesBackend(CacheFilesBackend backend) { cacheFilesBackend = backend; }
+    public static void clearCacheFilesBackend(CacheFilesBackend backend) {
+        if (cacheFilesBackend == backend) cacheFilesBackend = null;
+    }
+    public static GameDataBackend getGameDataBackend() {
+        GameDataBackend value = gameDataBackend;
+        return value == null ? GameDataBackend.UNAVAILABLE : value;
+    }
+    public static void setGameDataBackend(GameDataBackend backend) { gameDataBackend = backend; }
+    public static void clearGameDataBackend(GameDataBackend backend) {
+        if (gameDataBackend == backend) gameDataBackend = null;
+    }
+    public static UiAssetsBackend getUiAssetsBackend() {
+        UiAssetsBackend value = uiAssetsBackend;
+        return value == null ? UiAssetsBackend.UNAVAILABLE : value;
+    }
+    public static void setUiAssetsBackend(UiAssetsBackend backend) { uiAssetsBackend = backend; }
+    public static void clearUiAssetsBackend(UiAssetsBackend backend) {
+        if (uiAssetsBackend == backend) uiAssetsBackend = null;
+    }
     public static void setItemPricesBackend(ItemPricesBackend backend) { itemPricesBackend = backend; }
     public static void clearItemPricesBackend(ItemPricesBackend backend) {
         if (itemPricesBackend == backend) itemPricesBackend = null;
@@ -250,9 +299,29 @@ public final class TitanRuntime {
         LiveStateBackend backend = liveStateBackend;
         return backend == null || address == null ? null : backend.widgetName(address);
     }
+    public static String widgetPrimaryText(net.titan.api.WidgetAddress address) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null || address == null ? null : backend.widgetPrimaryText(address);
+    }
     public static String[] widgetActions(net.titan.api.WidgetAddress address) {
         LiveStateBackend backend = liveStateBackend;
         return backend == null || address == null ? null : backend.widgetActions(address);
+    }
+    public static java.util.OptionalInt widgetScrollHeight(net.titan.api.WidgetAddress address) {
+        LiveStateBackend backend = liveStateBackend;
+        return backend == null || address == null ? java.util.OptionalInt.empty() : backend.widgetScrollHeight(address);
+    }
+    public static Object[] widgetInventoryTransmitListener(net.titan.api.WidgetAddress address) {
+        LiveStateBackend backend = liveStateBackend;
+        if (backend == null || address == null)
+            throw new UnsupportedOperationException("Widget inventory-transmit reads require an active host and widget address");
+        return backend.widgetInventoryTransmitListener(address);
+    }
+    public static Object[] widgetKeyListener(net.titan.api.WidgetAddress address) {
+        LiveStateBackend backend = liveStateBackend;
+        if (backend == null || address == null)
+            throw new UnsupportedOperationException("Widget key reads require an active host and widget address");
+        return backend.widgetKeyListener(address);
     }
 
     /** SDK 162 camera controls live on the Client, so snapshots read them live too. */

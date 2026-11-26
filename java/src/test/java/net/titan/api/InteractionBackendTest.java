@@ -110,6 +110,48 @@ class InteractionBackendTest {
     }
 
     @Test
+    void widgetEditsAreMadeOneByOneAtTheExactAddress() {
+        useBackend(new RecordingBackend());
+        Widget staticWidget = widget(1234, -1, 0);
+        Widget dynamicWidget = widget(2000, 3, 1000);
+
+        assertTrue(dynamicWidget.edit().text("a b").textColor(0xFF0000).hidden(true).name("Big bones").action(0, "Bury").ok());
+        assertEquals(java.util.List.of("1112 [] a b", "1101 [16711680]", "1003 [1]", "1305 [] Big\u00a0bones", "1300 [1] Bury"), backend.writes);
+        WidgetAddress address = (WidgetAddress) backend.args[0];
+        assertEquals(1000, address.rootPackedId());
+        assertEquals(java.util.List.of(3), address.dynamicPath());
+
+        backend.writes.clear();
+        assertTrue(staticWidget.edit().textShadowed(true).textAlignment(1, 2).lineHeight(3).fontId(4).opacity(5).filled(true).spriteId(6)
+            .spriteTiled(true).flipped(true, false).borderType(7).modelId(8).item(995, 20).item(995, 20, WidgetEdit.ItemQuantity.ALWAYS).ok());
+        assertEquals(java.util.List.of("1115 [1]", "10008 [1]", "10009 [2]", "10010 [3]", "1113 [4]", "1103 [5]", "1102 [1]", "1105 [6]", "1107 [1]",
+            "1119 [1]", "1118 [0]", "1116 [7]", "1108 [8]", "10011 [995]", "10012 [20]", "1213 [995, 20, 3]"), backend.writes);
+        assertEquals(1234, ((WidgetAddress) backend.args[0]).rootPackedId());
+        backend.writes.clear();
+        assertTrue(staticWidget.edit().position(1, 2).positionModes(3, 4).size(5, 6).sizeModes(7, 8).scroll(9, 10).scrollSize(11, 12)
+            .revalidate().revalidateScroll().clearActions().targetVerb(null).dragDeadZone(13).dragDeadTime(14).stopsClicks(true)
+            .stopsScrolling(false).hasListener(true).deleteChildren().ok());
+        assertEquals(java.util.List.of("10000 [1]", "10001 [2]", "10004 [3]", "10005 [4]", "10002 [5]", "10003 [6]", "10006 [7]", "10007 [8]",
+            "10020 [9]", "10021 [10]", "10018 [11]", "10019 [12]", "20000 []", "20001 []", "1307 []", "1306 [] ", "1303 [13]", "1304 [14]",
+            "1005 [1]", "1006 [0]", "10013 [1]", "20003 []"), backend.writes);
+
+        backend.writes.clear(); backend.writeResult = 7;
+        assertEquals(java.util.OptionalInt.of(7), staticWidget.edit().createChild(4));
+        assertEquals(java.util.OptionalInt.of(7), staticWidget.edit().createChild(5, 2));
+        assertEquals(java.util.List.of("20002 [4, -1]", "20002 [5, 2]"), backend.writes);
+
+        backend.writeResult = -1;
+        WidgetEdit edit = staticWidget.edit();
+        edit.hidden(true);
+        backend.writeResult = 0;
+        assertFalse(edit.hidden(false).ok());
+        assertEquals(4, backend.writes.size());
+        assertFalse(staticWidget.edit().action(32, "Use").ok());
+        assertFalse(staticWidget.edit().action(-1, "Use").ok());
+        assertEquals(4, backend.writes.size());
+    }
+
+    @Test
     void namedWidgetActionsQueueTheAddressAndOrderedLabels() {
         useBackend(new RecordingBackend());
         Widget widget = widget(2000, 7, 1000);
@@ -222,6 +264,15 @@ class InteractionBackendTest {
         boolean slotResult = true;
         boolean itemResult = true;
         boolean widgetQueueAccepted = true;
+        final java.util.List<String> writes = new java.util.ArrayList<>();
+        int writeResult;
+
+        @Override
+        public int writeWidget(WidgetAddress address, int write, int[] integers, String text) {
+            record("writeWidget", address, write, integers, text);
+            writes.add(write + " " + java.util.Arrays.toString(integers) + (text == null ? "" : " " + text));
+            return writeResult;
+        }
 
         private boolean record(String name, Object... values) {
             call = name;

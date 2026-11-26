@@ -13,7 +13,6 @@ struct DBTableID final {
     static constexpr std::string_view sourceCatalog = "tabletypes";
 
     static constexpr int32_t QUEST = 0;
-    static constexpr int32_t EVENTS = 1;
     static constexpr int32_t CR_MODULE = 2;
     static constexpr int32_t CLUEHELPER_CLUETYPE = 3;
     static constexpr int32_t CLUEHELPER_CLUE_ANAGRAM = 4;
@@ -41,7 +40,6 @@ struct DBTableID final {
     static constexpr int32_t CLUEHELPER_CHALLENGE_BOX = 26;
     static constexpr int32_t CLUEHELPER_COMBAT_ENCOUNTER = 27;
     static constexpr int32_t CLUEHELPER_OUTFIT = 28;
-    static constexpr int32_t DBG_DUMMY_TABLE = 29;
     static constexpr int32_t FSW_INFO_FRESH_TABLE = 30;
     static constexpr int32_t FSW_INFO_NORMAL_TABLE = 31;
     static constexpr int32_t FSW_POINTS_INFO_TABLE = 32;
@@ -54,40 +52,16 @@ struct DBTableID final {
     static constexpr int32_t OMNISHOP_SHOP_DATA = 39;
     static constexpr int32_t OMNISHOP_STOCK_DATA = 40;
     static constexpr int32_t OMNISHOP_CURRENCY_DATA = 41;
-    static constexpr int32_t OMNISHOP_PURSE_DATA = 42;
-    static constexpr int32_t WHISPERER_SEED_SPAWNS = 43;
     static constexpr int32_t MUSIC = 44;
-    static constexpr int32_t WOODCUTTING_RESOURCE = 45;
-    static constexpr int32_t WOODCUTTING_BASIC_RESOURCE_DATA = 46;
-    static constexpr int32_t GATHERING_EVENT_SAPLING_LOC = 47;
-    static constexpr int32_t GROUP_GATHERING_RESOURCE = 48;
-    static constexpr int32_t GATHERING_EVENT_CHANCE_DATA = 49;
-    static constexpr int32_t GATHERING_EVENT_EVENTS_LIST = 50;
-    static constexpr int32_t MISC_WOODCUTTING_RESOURCE_DATA = 51;
-    static constexpr int32_t DT2_LASSAR_BARRIER = 52;
-    static constexpr int32_t DT2_LASSAR_REMNANT = 53;
-    static constexpr int32_t DT2_LASSAR_DOOR = 54;
-    static constexpr int32_t DT2_LASSAR_CHEST = 55;
-    static constexpr int32_t DT2_LASSAR_GHOSTS = 56;
-    static constexpr int32_t DT2_LASSAR_NPCS = 57;
-    static constexpr int32_t DT2_LASSAR_ITEMS = 58;
-    static constexpr int32_t DT2_LASSAR_BRAZIERS = 59;
-    static constexpr int32_t DT2_SCAR_MAZE = 60;
     static constexpr int32_t SPEEDRUN = 61;
     static constexpr int32_t CLAN_SETTING_OPTIONS_LIST = 62;
-    static constexpr int32_t VARLAMORE_THIEVING_HOUSE = 63;
     static constexpr int32_t QUETZAL = 64;
     static constexpr int32_t TORSO_STYLES = 65;
     static constexpr int32_t SLEEVE_STYLES = 66;
     static constexpr int32_t LEGGING_STYLES = 67;
     static constexpr int32_t SHOE_STYLES = 68;
     static constexpr int32_t HAND_STYLES = 69;
-    static constexpr int32_t VMQ3_TOWER_TRIAL_3 = 70;
-    static constexpr int32_t VMQ3_TOWER_TRIAL_4_CONE = 71;
     static constexpr int32_t PENDANT_OF_ATES_TELEPORTS = 72;
-    static constexpr int32_t EAA_SHAME_GAME = 73;
-    static constexpr int32_t VARLAMORE_WYRM_AGILITY_ROUTE = 74;
-    static constexpr int32_t HUEY_SPECIAL_ATTACK = 75;
     static constexpr int32_t DYNAMIC_BUILDERS_DEMO_SETS = 76;
     static constexpr int32_t PREPOT_DEVICE_LOADOUT_UI = 77;
     static constexpr int32_t COMBAT_INTERFACE_WEAPON_CATEGORY = 78;
@@ -97,30 +71,11 @@ struct DBTableID final {
     static constexpr int32_t REGION_DATA = 82;
     static constexpr int32_t TOGGLE_LIST_INTERFACE = 83;
     static constexpr int32_t LEAGUES_ECHO_BOSSES = 85;
-    static constexpr int32_t MAGIC_ENCHANT = 86;
-    static constexpr int32_t CHARGES = 87;
     static constexpr int32_t SYNTH = 88;
     static constexpr int32_t FAIRYRING = 89;
-    static constexpr int32_t DIDYOUKNOW = 90;
     static constexpr int32_t MULTIRUNES = 91;
-    static constexpr int32_t COMBORUNE_RECIPE = 92;
-    static constexpr int32_t VMQ4_METZLI_BOSS_SPECIAL_TELEPORT = 93;
-    static constexpr int32_t VMQ4_TELEPORTERS = 94;
-    static constexpr int32_t VMQ4_ZEMA_TAHT_TRANSLATIONS = 95;
-    static constexpr int32_t VMQ4_SUN_PUZZLE_ALTARS = 96;
-    static constexpr int32_t VMQ4_MOON_PUZZLE_ROOTS = 97;
-    static constexpr int32_t VMQ4_MOON_PUZZLE_BRAZIERS = 98;
-    static constexpr int32_t VMQ4_CRYPT_WAVES = 99;
-    static constexpr int32_t POH_HERALDIC_DECOR_VARIANT = 100;
     static constexpr int32_t JIGSAW = 101;
-    static constexpr int32_t FLETCH_GREENMAN_DATA = 102;
     static constexpr int32_t GREENMAN_MASK = 103;
-    static constexpr int32_t ENT_TOTEMS_BASE_DATA = 104;
-    static constexpr int32_t ENT_TOTEMS_ANIMAL_DATA = 105;
-    static constexpr int32_t ENT_TOTEMS_SITE_DATA = 106;
-    static constexpr int32_t ENT_TOTEMS_DECORATION_DATA = 107;
-    static constexpr int32_t DOM_DROPTABLE = 108;
-    static constexpr int32_t DOM_DELVE_LEVEL = 109;
     static constexpr int32_t FURNITURE = 110;
     static constexpr int32_t POH_ROOM = 111;
     static constexpr int32_t POH_HOTSPOT = 112;
@@ -138,7 +93,6 @@ struct DBTableID final {
     static constexpr int32_t POLL_FILTERS = 124;
     static constexpr int32_t UI_HIGHLIGHTING_FX_PULSE = 125;
     static constexpr int32_t UI_HIGHLIGHTING_STYLE_BORDER = 126;
-    static constexpr int32_t RESTRICT_CONTENT_OBJ = 127;
     static constexpr int32_t MUSIC_AREA_GROUP = 128;
     static constexpr int32_t AMENITY = 129;
     static constexpr int32_t NPC_CONTACT = 130;
@@ -146,25 +100,11 @@ struct DBTableID final {
     static constexpr int32_t PUPPY_COLOURS = 132;
     static constexpr int32_t PVP_TUTORIAL = 133;
     static constexpr int32_t DYNAMIC_TABLE_THEME = 134;
-    static constexpr int32_t DROP_INSTANT_REVEAL = 135;
-    static constexpr int32_t TFA_EZEKIEL_SWORD_GRID = 136;
-    static constexpr int32_t TFA_EZEKIEL_STAR = 137;
-    static constexpr int32_t TFA_EZEKIEL_FINALE_ROTATION = 138;
-    static constexpr int32_t TFA_EZEKIEL_FINALE_COMBO = 139;
-    static constexpr int32_t TFA_EZEKIEL_FINALE_ATTACK = 140;
-    static constexpr int32_t TFA_OCELLUS_BARRAGE = 141;
     static constexpr int32_t FLETCHING_BLOWPIPE_CRAFTING = 142;
     static constexpr int32_t SAILING_BT_TRIAL_CORE = 143;
-    static constexpr int32_t SAILING_BT_GWENITH_GLIDE_CRYSTAL_DATA = 144;
-    static constexpr int32_t SAILING_BT_GWENITH_GLIDE_PORTALS = 145;
-    static constexpr int32_t SAILING_BT_JUBBLY_JIVE_PILLARS = 146;
     static constexpr int32_t BOAT_LOCATION_SPRITE_DATA = 147;
     static constexpr int32_t BOAT_FACILITIES_DEFAULT_SPRITE_DATA = 148;
     static constexpr int32_t BOAT_SELECTION_TYPE = 149;
-    static constexpr int32_t SAILING_CHANCE_ENCOUNTERS = 150;
-    static constexpr int32_t SAILING_CHANCE_ENCOUNTER_RESCUE_NPCS = 151;
-    static constexpr int32_t SAILING_CHANCE_ENCOUNTERS_LOST_GOODS = 152;
-    static constexpr int32_t SAILING_CHANCE_ENCOUNTERS_LOST_GOODS_RESOURCE = 153;
     static constexpr int32_t SAILING_CHARTING_CORE = 154;
     static constexpr int32_t SAILING_CHARTING_GENERIC = 155;
     static constexpr int32_t SAILING_CHARTING_SPYGLASS = 156;
@@ -174,7 +114,6 @@ struct DBTableID final {
     static constexpr int32_t SAILING_CHARTING_MERMAID_GUIDE = 160;
     static constexpr int32_t SAILING_CHARTING_TOOL_RECOVERY = 161;
     static constexpr int32_t SAILING_COMBAT_FACILITY = 162;
-    static constexpr int32_t SAILING_COMBAT_SUPPORT_FACILITY = 163;
     static constexpr int32_t SAILING_BOAT_FACILITY_STATS = 164;
     static constexpr int32_t SAILING_COMBAT_FACILITY_AMMUNITION = 165;
     static constexpr int32_t SAILING_BOAT = 166;
@@ -185,15 +124,12 @@ struct DBTableID final {
     static constexpr int32_t SAILING_SIDEPANEL_WIDGET_OBJECT = 171;
     static constexpr int32_t SAILING_SIDEPANEL_WIDGET_TEXT = 172;
     static constexpr int32_t SAILING_CREW = 173;
-    static constexpr int32_t SAILING_SHIPYARD = 174;
     static constexpr int32_t SAILING_BOAT_HOTSPOT = 175;
     static constexpr int32_t SAILING_BOAT_FACILITY = 176;
     static constexpr int32_t SAILING_BOAT_KEEL = 177;
     static constexpr int32_t SAILING_BOAT_HULL = 178;
     static constexpr int32_t SAILING_BOAT_SAIL = 179;
-    static constexpr int32_t SAILING_BOAT_SAIL_FX = 180;
     static constexpr int32_t SAILING_BOAT_STEERING = 181;
-    static constexpr int32_t SAILING_BOAT_STEERING_FX = 182;
     static constexpr int32_t SAILING_BOAT_HULL_ORNAMENT = 183;
     static constexpr int32_t SAILING_BOAT_FLAG = 184;
     static constexpr int32_t SAILING_BOAT_BRAZIER = 185;
@@ -201,89 +137,37 @@ struct DBTableID final {
     static constexpr int32_t SAILING_BOAT_NAME_OPTIONS = 187;
     static constexpr int32_t SAILING_CUSTOMISATION_LOC_ANGLES = 188;
     static constexpr int32_t SAILING_CUSTOMISATION_TAB = 189;
-    static constexpr int32_t SAILING_SHOAL = 190;
-    static constexpr int32_t SAILING_SHOAL_SPECIFIC = 191;
-    static constexpr int32_t SAILING_SHOAL_DROPTABLE = 192;
-    static constexpr int32_t SAILING_TRAWLING_ANIMATIONS = 193;
     static constexpr int32_t SAILING_DOCK = 194;
-    static constexpr int32_t SAILING_NPC_BOAT = 195;
     static constexpr int32_t SAILING_BOAT_CARGOHOLD_WHITELIST_OBJ = 196;
     static constexpr int32_t PORT_TASK = 197;
     static constexpr int32_t TASK_BOARD_LAYOUT = 198;
-    static constexpr int32_t SAILING_ANCHOR_ANIMS = 199;
     static constexpr int32_t SAILING_SEA_HAZARD = 200;
     static constexpr int32_t SAILING_SEA = 201;
-    static constexpr int32_t SAILING_SHIPWRECK_CLUSTER = 202;
-    static constexpr int32_t SAILING_SHIPWRECK = 203;
-    static constexpr int32_t SAILING_SALVAGING_HOOK_ANIMATIONS = 204;
-    static constexpr int32_t THIEVING_CHEST = 205;
     static constexpr int32_t CHARTERING_DESTINATIONS = 206;
-    static constexpr int32_t CHARTERING_COSTS = 207;
     static constexpr int32_t PATCHY_DATA = 208;
     static constexpr int32_t SKILL_GUIDE_V2_INLINE_ICON = 209;
     static constexpr int32_t DEADMANSKULL_INTERFACE_TAB = 210;
-    static constexpr int32_t COWBOSS_SCENERYNPCS = 211;
     static constexpr int32_t SKILL_GUIDE_SUBSECTIONS = 212;
     static constexpr int32_t SKILL_FEATURES = 213;
     static constexpr int32_t MINIGAME_TELEPORT = 214;
-    static constexpr int32_t SAILING_GUN_PORTS = 215;
     static constexpr int32_t TALENT_TREE = 216;
-    static constexpr int32_t TALENT_DEBUG = 217;
     static constexpr int32_t LEAGUE_RELIC_TELEPORT_ITEM = 218;
     static constexpr int32_t LEAGUE_RELIC_CLUE_DIRECT_TELEPORT_ITEM = 219;
     static constexpr int32_t LEAGUE_RELIC_EFFECT_TOGGLE_LIST = 220;
     static constexpr int32_t LEAGUE_RELIC_EFFECT_TOGGLE = 221;
-    static constexpr int32_t LEAGUE_GUARDIAN_DATA = 222;
-    static constexpr int32_t LEAGUE_GUARDIAN_BODY_DATA = 223;
-    static constexpr int32_t LEAGUE_GUARDIAN_ANIM_DATA = 224;
     static constexpr int32_t TRANSMUTATION = 225;
     static constexpr int32_t BUTLERS_BELL_ACTIONS = 226;
     static constexpr int32_t SPELL_OVERRIDE_LIST = 227;
     static constexpr int32_t SPELL_OVERRIDE = 228;
     static constexpr int32_t SAILING_SIDEPANEL_WIDGET_OBJBUTTON = 229;
     static constexpr int32_t SAILING_BOAT_SAIL_PATTERN = 230;
-    static constexpr int32_t SAILING_NPC_BOAT_BASE_STATS = 231;
-    static constexpr int32_t SAILING_NPC_BOAT_WEAPON = 232;
-    static constexpr int32_t SAILING_NPC_BOAT_STEERING = 233;
-    static constexpr int32_t AMBIENT_SFX = 234;
-    static constexpr int32_t DRAKAN_ATTACK_LIST = 235;
-    static constexpr int32_t DRAKAN_ATTACK_SEQUENCE_LIST = 236;
-    static constexpr int32_t DRAKAN_ATTACK_SEQUENCE = 237;
-    static constexpr int32_t DRAKAN_TILE_ATTACK = 238;
-    static constexpr int32_t DRAKAN_TRACKING_ATTACK = 239;
-    static constexpr int32_t DRAKAN_UNIQUE_ATTACK = 240;
-    static constexpr int32_t DRAKAN_VISUALS = 241;
-    static constexpr int32_t DRAKAN_ANIMS = 242;
-    static constexpr int32_t DRAKAN_SPOTANIMS = 243;
-    static constexpr int32_t DRAKAN_SPOTANIM_PROJANIM_PAIRS = 244;
-    static constexpr int32_t DRAKAN_FIGHT_ALLY = 245;
     static constexpr int32_t CASTLE_DRAKAN_ROOM = 246;
     static constexpr int32_t CASTLE_DRAKAN_DOOR = 247;
-    static constexpr int32_t CASTLE_DRAKAN_STAIRS = 248;
-    static constexpr int32_t SANGVESTI_DRAKAN_PATROL = 249;
-    static constexpr int32_t SANGVESTI_SPAWN = 250;
-    static constexpr int32_t SOTFA_FOREST_VARIANT = 251;
     static constexpr int32_t SOTFA_FOREST_ENCOUNTER = 252;
-    static constexpr int32_t SOTFA_FOREST_MAXILLA_BEAST_PATROL = 253;
-    static constexpr int32_t COORDINATE_SET_LIST = 254;
-    static constexpr int32_t COORDINATE_SET = 255;
-    static constexpr int32_t PREPARATION_RECIPE = 256;
-    static constexpr int32_t RIVER_FISHING = 257;
-    static constexpr int32_t ARROW_FLETCHING = 258;
-    static constexpr int32_t TFA_ROOM_ENCOUNTER_ENTRY_CONFIG = 259;
-    static constexpr int32_t TFA_NEXUS_DOORS = 260;
-    static constexpr int32_t TFA_DROPTABLE = 261;
-    static constexpr int32_t TFA_DROPTABLE_ENTRY_TABLE = 262;
-    static constexpr int32_t TFA_DROPTABLE_ENTRY_ITEM = 263;
     static constexpr int32_t TFA_STATS_CATEGORY = 264;
     static constexpr int32_t TFA_STATS_ROW = 265;
-    static constexpr int32_t COMBAT_DYNAMIC_ANIMS = 266;
-    static constexpr int32_t COMBAT_DYNAMIC_ANIM_SEQUENCED = 267;
-    static constexpr int32_t COMBAT_DYNAMIC_ANIM_RANDOM = 268;
-    static constexpr int32_t COMBAT_ANIM = 269;
     static constexpr int32_t ALTERNATE_PRAYERS = 270;
     static constexpr int32_t UI_HIGHLIGHTING_FX_SINGLE_PULSE = 271;
-    static constexpr int32_t SNAILQUEST_OBJECTS = 272;
 
     struct Quest final {
         Quest() = delete;
@@ -553,6 +437,8 @@ struct DBTableID final {
             static constexpr int32_t QUEST_FALLENFROMGRACE = 7133;
             static constexpr int32_t QUEST_LEARNINGTHEROPES = 9643;
             static constexpr int32_t QUEST_IDESOFMILK = 9645;
+            static constexpr int32_t QUEST_NEWLEAF = 13708;
+            static constexpr int32_t QUEST_RAGANDBONEMAN3 = 13730;
             static constexpr int32_t QUEST_BLOODMOONRISES = 16414;
             static constexpr int32_t QUEST_RUFFSITUATION = 16971;
             static constexpr int32_t QUEST_CRABQUEST = 16972;
@@ -562,42 +448,7 @@ struct DBTableID final {
             static constexpr int32_t QUEST_WRITINGSONTHEWALL = 17231;
             static constexpr int32_t QUEST_SHELLOFAFRIEND = 17315;
             static constexpr int32_t QUEST_BIRDSANDTHEWASPS = 17316;
-        };
-    };
-
-    struct Events final {
-        Events() = delete;
-        static constexpr int32_t ID = 1;
-        static constexpr int32_t COL_NAME = 0;
-        static constexpr int32_t COL_YEAR_OF_RELEASE = 1;
-        static constexpr int32_t COL_TYPE = 2;
-        static constexpr int32_t COL_IDENTIFIER_OBJ = 3;
-        static constexpr int32_t COL_REWARD_NAME = 4;
-        static constexpr int32_t COL_REWARD_OBJ = 5;
-        static constexpr int32_t COL_FINISHED_STATE = 6;
-        static constexpr int32_t COL_FAREWELL_MESSAGE = 7;
-        static constexpr int32_t COL_REWARD_USESYSTEM = 8;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t XMAS_2022 = 2331;
-            static constexpr int32_t BIRTHDAY_2023 = 2341;
-            static constexpr int32_t EASTER_2023 = 2342;
-            static constexpr int32_t PRIDE_2023 = 2506;
-            static constexpr int32_t BIRTHDAY_2024 = 3288;
-            static constexpr int32_t HALLOWEEN_2023 = 3431;
-            static constexpr int32_t XMAS_2023 = 3446;
-            static constexpr int32_t EASTER_2024 = 3528;
-            static constexpr int32_t PRIDE_2024 = 3594;
-            static constexpr int32_t HALLOWEEN_2024 = 3935;
-            static constexpr int32_t XMAS_2024 = 4228;
-            static constexpr int32_t BIRTHDAY_2025 = 4318;
-            static constexpr int32_t XMAS_2025 = 4968;
-            static constexpr int32_t EASTER_2025 = 5107;
-            static constexpr int32_t HALLOWEEN_2025 = 6989;
-            static constexpr int32_t BIRTHDAY_2026 = 7033;
-            static constexpr int32_t EASTER_2026 = 13319;
-            static constexpr int32_t HALLOWEEN_2026 = 17178;
+            static constexpr int32_t QUEST_GRAVEYARD = 17328;
         };
     };
 
@@ -615,11 +466,6 @@ struct DBTableID final {
             static constexpr int32_t CR_MODULE_SKILLS = 4144;
             static constexpr int32_t CR_MODULE_UTILITY = 4145;
             static constexpr int32_t CR_MODULE_MISC = 4146;
-            static constexpr int32_t UNCOOKED_BERRY_PIE_RECIPE = 16915;
-            static constexpr int32_t PIE_SHELL_RECIPE = 16916;
-            static constexpr int32_t BREAD_RECIPE = 16917;
-            static constexpr int32_t PASTRY_DOUGH_RECIPE = 16918;
-            static constexpr int32_t BREAD_DOUGH_RECIPE = 16919;
         };
     };
 
@@ -2920,18 +2766,6 @@ struct DBTableID final {
         };
     };
 
-    struct DbgDummyTable final {
-        DbgDummyTable() = delete;
-        static constexpr int32_t ID = 29;
-        static constexpr int32_t COL_ID = 0;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DBG_DUMMY_ROW1 = 672;
-            static constexpr int32_t DBG_DUMMY_ROW0 = 2199;
-        };
-    };
-
     struct FswInfoFreshTable final {
         FswInfoFreshTable() = delete;
         static constexpr int32_t ID = 30;
@@ -3351,6 +3185,8 @@ struct DBTableID final {
             static constexpr int32_t TEMPOROSS_SHOP_DATA = 16951;
             static constexpr int32_t TFA_MIDRAID_SUPPLIES_SHOP = 17150;
             static constexpr int32_t TFA_MIDRAID_SUPPLIES_SHOP_FAILURE = 17151;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA = 17332;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_COINS = 17333;
         };
     };
 
@@ -3710,6 +3546,19 @@ struct DBTableID final {
             static constexpr int32_t TFA_MIDRAID_SUPPLIES_SHOP_4DOSE2RESTORE = 17160;
             static constexpr int32_t TFA_MIDRAID_SUPPLIES_SHOP_2DOSERANGERSPOTION = 17161;
             static constexpr int32_t TFA_MIDRAID_SUPPLIES_SHOP_2DOSE2COMBAT = 17162;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_HOOD = 17334;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_TOP = 17335;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_LEGS = 17336;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_GLOVES = 17337;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_BOOTS = 17338;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_CAPE = 17339;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_AMYLASE_PACK = 17340;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_HOOD_COINS = 17342;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_TOP_COINS = 17343;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_LEGS_COINS = 17344;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_GLOVES_COINS = 17345;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_BOOTS_COINS = 17346;
+            static constexpr int32_t ROOFTOPS_SHOP_DATA_GRACEFUL_CAPE_COINS = 17347;
         };
     };
 
@@ -3770,40 +3619,7 @@ struct DBTableID final {
             static constexpr int32_t OMNISHOP_CURRENCY_ABYSSAL_PEARL = 16949;
             static constexpr int32_t OMNISHOP_CURRENCY_SPIRIT_FLAKES = 16954;
             static constexpr int32_t OMNISHOP_CURRENCY_TFA_SUPPLY_POINTS = 17149;
-        };
-    };
-
-    struct OmnishopPurseData final {
-        OmnishopPurseData() = delete;
-        static constexpr int32_t ID = 42;
-        static constexpr int32_t COL_OMNISHOP_PURSE_INV = 0;
-        static constexpr int32_t COL_OMNISHOP_PURSE_OBJ = 1;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t OMNISHOP_PURSE_TEST_1 = 2487;
-            static constexpr int32_t FORESTRY_KIT_PURSE = 3281;
-            static constexpr int32_t FORESTRY_KIT_BASKET_CLOSED_PURSE = 3282;
-            static constexpr int32_t FORESTRY_KIT_BASKET_OPEN_PURSE = 3283;
-            static constexpr int32_t FORESTRY_SHOP_LOG_STORAGE_PURSE = 3354;
-        };
-    };
-
-    struct WhispererSeedSpawns final {
-        WhispererSeedSpawns() = delete;
-        static constexpr int32_t ID = 43;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_TIMELIMIT = 1;
-        static constexpr int32_t COL_TIMELIMIT_AWAKENED = 2;
-        static constexpr int32_t COL_WEAK_SEED = 3;
-        static constexpr int32_t COL_DANGER_SEED = 4;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t WHISPERER_SEED_PATTERN_1 = 3379;
-            static constexpr int32_t WHISPERER_SEED_PATTERN_1_VARIANT = 3380;
-            static constexpr int32_t WHISPERER_SEED_PATTERN_2 = 3381;
-            static constexpr int32_t WHISPERER_SEED_PATTERN_2_VARIANT = 3382;
+            static constexpr int32_t OMNISHOP_CURRENCY_MARKS_OF_GRACE = 17341;
         };
     };
 
@@ -4681,6 +4497,10 @@ struct DBTableID final {
             static constexpr int32_t MUSIC_SCAPE_SAIL = 7096;
             static constexpr int32_t MUSIC_MAD_ANGEL_BOSS = 7132;
             static constexpr int32_t MUSIC_BRUTUS_COW_BOSS = 8662;
+            static constexpr int32_t MUSIC_SEVERED = 13704;
+            static constexpr int32_t MUSIC_HORROR = 13705;
+            static constexpr int32_t MUSIC_THE_GRAVEYARD_AREA = 15238;
+            static constexpr int32_t MUSIC_GRAVEYARD_OLAF_BARD_SONG = 15239;
             static constexpr int32_t MUSIC_SAILING_COMBAT = 16223;
             static constexpr int32_t MUSIC_RED_ROCK_ISLAND = 16224;
             static constexpr int32_t MUSIC_RED_REEFS_UNDERWATER = 16225;
@@ -4716,356 +4536,7 @@ struct DBTableID final {
             static constexpr int32_t MUSIC_TFA_BOSS_OCELLUS = 17009;
             static constexpr int32_t MUSIC_TFA_BOSS_OCELLUS_2 = 17010;
             static constexpr int32_t MUSIC_ELEMENTARY = 17194;
-        };
-    };
-
-    struct WoodcuttingResource final {
-        WoodcuttingResource() = delete;
-        static constexpr int32_t ID = 45;
-        static constexpr int32_t COL_STAT_REQUIREMENT = 0;
-        static constexpr int32_t COL_ACTION_DELAY = 1;
-        static constexpr int32_t COL_BASE_GATHER_CHANCE = 2;
-        static constexpr int32_t COL_AXE_GATHER_CHANCE = 3;
-        static constexpr int32_t COL_CHOP_ANIM_ENUM = 4;
-        static constexpr int32_t COL_GATHER_SOUND = 5;
-        static constexpr int32_t COL_TRACK_LAST_RESOURCE = 6;
-        static constexpr int32_t COL_GROUP_GATHERING_CONFIG = 7;
-        static constexpr int32_t COL_GROUP_LEVEL_BOOST_CAP = 8;
-        static constexpr int32_t COL_GROUP_XP_SCALAR_CAP = 9;
-        static constexpr int32_t COL_BEHAVIOUR_DATA = 10;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ENGORGED_BLOODWOOD_TREE = 510;
-            static constexpr int32_t WOODCUTTING_RESOURCE_YEW_TREE = 3251;
-            static constexpr int32_t WOODCUTTING_RESOURCE_YEW_TREE_FARMING_PATCH = 3252;
-            static constexpr int32_t WOODCUTTING_RESOURCE_TEAK_TREE = 3256;
-            static constexpr int32_t WOODCUTTING_RESOURCE_TEAK_TREE_FARMING_PATCH = 3257;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAHOGANY_TREE = 3261;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAHOGANY_TREE_FARMING_PATCH = 3262;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAPLE_TREE = 3266;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAPLE_TREE_FARMING_PATCH = 3267;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAGIC_TREE = 3271;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAGIC_TREE_FARMING_PATCH = 3272;
-            static constexpr int32_t WOODCUTTING_RESOURCE_REDWOOD_TREE = 3276;
-            static constexpr int32_t WOODCUTTING_RESOURCE_REDWOOD_TREE_FARMING_PATCH = 3277;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ARCTIC_PINE = 3317;
-            static constexpr int32_t WOODCUTTING_RESOURCE_WILLOW_TREE = 3320;
-            static constexpr int32_t WOODCUTTING_RESOURCE_WILLOW_TREE_FARMING_PATCH = 3321;
-            static constexpr int32_t WOODCUTTING_RESOURCE_HOLLOW_TREE = 3325;
-            static constexpr int32_t WOODCUTTING_RESOURCE_OAK_TREE = 3328;
-            static constexpr int32_t WOODCUTTING_RESOURCE_OAK_TREE_FARMING_PATCH = 3329;
-            static constexpr int32_t WOODCUTTING_RESOURCE_RISING_ROOTS_TREE = 3333;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MISC_MAPLE_TREE = 3340;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MISC_TEAK_TREE = 3343;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MISC_MAHOGANY_TREE = 3346;
-            static constexpr int32_t WOODCUTTING_RESOURCE_CAMPHOR_TREE = 9424;
-            static constexpr int32_t WOODCUTTING_RESOURCE_CAMPHOR_TREE_FARMING_PATCH = 9425;
-            static constexpr int32_t WOODCUTTING_RESOURCE_IRONWOOD_TREE = 9430;
-            static constexpr int32_t WOODCUTTING_RESOURCE_IRONWOOD_TREE_FARMING_PATCH = 9431;
-            static constexpr int32_t WOODCUTTING_RESOURCE_JATOBA_TREE = 9436;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ROSEWOOD_TREE = 9440;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ROSEWOOD_TREE_FARMING_PATCH = 9441;
-        };
-    };
-
-    struct WoodcuttingBasicResourceData final {
-        WoodcuttingBasicResourceData() = delete;
-        static constexpr int32_t ID = 46;
-        static constexpr int32_t COL_IS_FARMING_PATCH = 0;
-        static constexpr int32_t COL_GATHER_XP = 1;
-        static constexpr int32_t COL_CLUENEST_CHANCE = 2;
-        static constexpr int32_t COL_BIRDSNEST_CHANCE = 3;
-        static constexpr int32_t COL_SKILLPET = 4;
-        static constexpr int32_t COL_SKILLPET_CHANCE = 5;
-        static constexpr int32_t COL_GATHER_OBJ = 6;
-        static constexpr int32_t COL_LEAVES_OBJ = 7;
-        static constexpr int32_t COL_DEPLETE_CHANCE = 8;
-        static constexpr int32_t COL_RESPAWN_TIME_RANGE = 9;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t WOODCUTTING_RESOURCE_YEW_TREE_DATA = 3253;
-            static constexpr int32_t WOODCUTTING_RESOURCE_YEW_TREE_FARMING_PATCH_DATA = 3254;
-            static constexpr int32_t WOODCUTTING_RESOURCE_TEAK_TREE_DATA = 3258;
-            static constexpr int32_t WOODCUTTING_RESOURCE_TEAK_TREE_FARMING_PATCH_DATA = 3259;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAHOGANY_TREE_DATA = 3263;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAHOGANY_TREE_FARMING_PATCH_DATA = 3264;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAPLE_TREE_DATA = 3268;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAPLE_TREE_FARMING_PATCH_DATA = 3269;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAGIC_TREE_DATA = 3273;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MAGIC_TREE_FARMING_PATCH_DATA = 3274;
-            static constexpr int32_t WOODCUTTING_RESOURCE_REDWOOD_TREE_DATA = 3278;
-            static constexpr int32_t WOODCUTTING_RESOURCE_REDWOOD_TREE_FARMING_PATCH_DATA = 3279;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ARCTIC_PINE_DATA = 3318;
-            static constexpr int32_t WOODCUTTING_RESOURCE_WILLOW_TREE_DATA = 3322;
-            static constexpr int32_t WOODCUTTING_RESOURCE_WILLOW_TREE_FARMING_PATCH_DATA = 3323;
-            static constexpr int32_t WOODCUTTING_RESOURCE_HOLLOW_TREE_DATA = 3326;
-            static constexpr int32_t WOODCUTTING_RESOURCE_OAK_TREE_DATA = 3330;
-            static constexpr int32_t WOODCUTTING_RESOURCE_OAK_TREE_FARMING_PATCH_DATA = 3331;
-            static constexpr int32_t WOODCUTTING_RESOURCE_RISING_ROOTS_TREE_DATA = 3334;
-            static constexpr int32_t WOODCUTTING_RESOURCE_CAMPHOR_TREE_DATA = 9426;
-            static constexpr int32_t WOODCUTTING_RESOURCE_CAMPHOR_TREE_FARMING_PATCH_DATA = 9427;
-            static constexpr int32_t WOODCUTTING_RESOURCE_IRONWOOD_TREE_DATA = 9432;
-            static constexpr int32_t WOODCUTTING_RESOURCE_IRONWOOD_TREE_FARMING_PATCH_DATA = 9433;
-            static constexpr int32_t WOODCUTTING_RESOURCE_JATOBA_TREE_DATA = 9437;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ROSEWOOD_TREE_DATA = 9442;
-            static constexpr int32_t WOODCUTTING_RESOURCE_ROSEWOOD_TREE_FARMING_PATCH_DATA = 9443;
-        };
-    };
-
-    struct GatheringEventSaplingLoc final {
-        GatheringEventSaplingLoc() = delete;
-        static constexpr int32_t ID = 47;
-        static constexpr int32_t COL_LOC = 0;
-        static constexpr int32_t COL_WIDTH = 1;
-        static constexpr int32_t COL_LENGTH = 2;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t GATHERING_EVENT_SAPLING_1X1 = 3336;
-            static constexpr int32_t GATHERING_EVENT_SAPLING_2X2 = 3337;
-            static constexpr int32_t GATHERING_EVENT_SAPLING_3X3 = 3338;
-            static constexpr int32_t GATHERING_EVENT_SAPLING_4X4 = 3469;
-        };
-    };
-
-    struct GroupGatheringResource final {
-        GroupGatheringResource() = delete;
-        static constexpr int32_t ID = 48;
-        static constexpr int32_t COL_LIFETIME_RANGE = 0;
-        static constexpr int32_t COL_RESPAWN_TIME_RANGE = 1;
-        static constexpr int32_t COL_BUFF_PLAYER_CAP = 2;
-        static constexpr int32_t COL_BUFF_ID = 3;
-        static constexpr int32_t COL_GATHERING_STAT = 4;
-        static constexpr int32_t COL_WEAKQUEUE_ACTION_DELAY = 5;
-        static constexpr int32_t COL_GATHERING_EVENT_CHANCE_DATA = 6;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_YEW_TREE = 3255;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_TEAK_TREE = 3260;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_MAHOGANY_TREE = 3265;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_MAPLE_TREE = 3270;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_MAGIC_TREE = 3275;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_REDWOOD_TREE = 3280;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_ARCTIC_PINE = 3319;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_WILLOW_TREE = 3324;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_HOLLOW_TREE = 3327;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_OAK_TREE = 3332;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_RISING_ROOTS_TREE = 3335;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_MISC_MAPLE_TREE = 3342;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_MISC_TEAK_TREE = 3345;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_MISC_MAHOGANY_TREE = 3348;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_CAMPHOR_TREE = 9428;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_IRONWOOD_TREE = 9434;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_JATOBA_TREE = 9438;
-            static constexpr int32_t GROUP_GATHERING_RESOURCE_ROSEWOOD_TREE = 9444;
-        };
-    };
-
-    struct GatheringEventChanceData final {
-        GatheringEventChanceData() = delete;
-        static constexpr int32_t ID = 49;
-        static constexpr int32_t COL_EVENT_LOW_CHANCE = 0;
-        static constexpr int32_t COL_EVENT_HIGH_CHANCE = 1;
-        static constexpr int32_t COL_EVENT_CHANCE_PLAYER_CAP = 2;
-        static constexpr int32_t COL_EVENT_START_TIME_BUFFER = 3;
-        static constexpr int32_t COL_EVENT_END_TIME_BUFFER = 4;
-        static constexpr int32_t COL_EVENTS_LIST = 5;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t GATHERING_EVENTS_TREE_YEW = 2507;
-            static constexpr int32_t GATHERING_EVENTS_TREE_TEAK = 2508;
-            static constexpr int32_t GATHERING_EVENTS_TREE_MAHOGANY = 2509;
-            static constexpr int32_t GATHERING_EVENTS_TREE_MAPLE = 2510;
-            static constexpr int32_t GATHERING_EVENTS_TREE_MAGIC = 3349;
-            static constexpr int32_t GATHERING_EVENTS_TREE_ARCTIC_PINE = 3350;
-            static constexpr int32_t GATHERING_EVENTS_TREE_WILLOW = 3351;
-            static constexpr int32_t GATHERING_EVENTS_TREE_OAK = 3352;
-            static constexpr int32_t GATHERING_EVENTS_TREE_CAMPHOR = 9429;
-            static constexpr int32_t GATHERING_EVENTS_TREE_IRONWOOD = 9435;
-            static constexpr int32_t GATHERING_EVENTS_TREE_JATOBA = 9439;
-            static constexpr int32_t GATHERING_EVENTS_TREE_ROSEWOOD = 9445;
-        };
-    };
-
-    struct GatheringEventEventsList final {
-        GatheringEventEventsList() = delete;
-        static constexpr int32_t ID = 50;
-        static constexpr int32_t COL_EVENT = 0;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t GATHERING_EVENTS_LIST_TREE_GENERAL_PURPOSE = 3339;
-        };
-    };
-
-    struct MiscWoodcuttingResourceData final {
-        MiscWoodcuttingResourceData() = delete;
-        static constexpr int32_t ID = 51;
-        static constexpr int32_t COL_OWNING_NPC = 0;
-        static constexpr int32_t COL_OWNING_NPC_NAME = 1;
-        static constexpr int32_t COL_RESOURCE_NAME = 2;
-        static constexpr int32_t COL_GATHER_XP = 3;
-        static constexpr int32_t COL_MISC_QUEST_VAR_REQUIREMENT = 4;
-        static constexpr int32_t COL_ROYAL_QUEST_VAR_REQUIREMENT = 5;
-        static constexpr int32_t COL_APPROVAL_CHANCE = 6;
-        static constexpr int32_t COL_APPROVAL_AMOUNT = 7;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MISC_MAPLE_TREE_DATA = 3341;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MISC_TEAK_TREE_DATA = 3344;
-            static constexpr int32_t WOODCUTTING_RESOURCE_MISC_MAHOGANY_TREE_DATA = 3347;
-        };
-    };
-
-    struct Dt2LassarBarrier final {
-        Dt2LassarBarrier() = delete;
-        static constexpr int32_t ID = 52;
-        static constexpr int32_t COL_TIER = 0;
-        static constexpr int32_t COL_ID = 1;
-        static constexpr int32_t COL_COORD = 2;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T1_A = 3383;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T1_B = 3384;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T1_C = 3385;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T1_D = 3386;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T2_A = 3387;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T2_B = 3388;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T2_C = 3389;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T2_D = 3390;
-            static constexpr int32_t DT2_LASSAR_BARRIER_T3_A = 3391;
-        };
-    };
-
-    struct Dt2LassarRemnant final {
-        Dt2LassarRemnant() = delete;
-        static constexpr int32_t ID = 53;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_COORD = 1;
-        static constexpr int32_t COL_EMPOWERED = 2;
-        static constexpr int32_t COL_QUEST_STAGE = 3;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_REMNANT_1 = 3392;
-            static constexpr int32_t DT2_LASSAR_REMNANT_2 = 3393;
-            static constexpr int32_t DT2_LASSAR_REMNANT_3 = 3394;
-            static constexpr int32_t DT2_LASSAR_REMNANT_4 = 3395;
-            static constexpr int32_t DT2_LASSAR_REMNANT_5 = 3396;
-            static constexpr int32_t DT2_LASSAR_REMNANT_6 = 3397;
-            static constexpr int32_t DT2_LASSAR_REMNANT_7 = 3398;
-            static constexpr int32_t DT2_LASSAR_REMNANT_8 = 3399;
-            static constexpr int32_t DT2_LASSAR_REMNANT_9 = 3400;
-            static constexpr int32_t DT2_LASSAR_REMNANT_10 = 4233;
-        };
-    };
-
-    struct Dt2LassarDoor final {
-        Dt2LassarDoor() = delete;
-        static constexpr int32_t ID = 54;
-        static constexpr int32_t COL_LOCK_ID = 0;
-        static constexpr int32_t COL_LEFT_COORD = 1;
-        static constexpr int32_t COL_RIGHT_COORD = 2;
-        static constexpr int32_t COL_ROTATION = 3;
-        static constexpr int32_t COL_BRAZIERS_REQUIRED = 4;
-        static constexpr int32_t COL_KEY_OBJ = 5;
-        static constexpr int32_t COL_KEY_NAMEDOBJ = 6;
-        static constexpr int32_t COL_INSTANT_UNLOCK = 7;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_DOOR_1 = 3401;
-            static constexpr int32_t DT2_LASSAR_DOOR_2 = 3402;
-        };
-    };
-
-    struct Dt2LassarChest final {
-        Dt2LassarChest() = delete;
-        static constexpr int32_t ID = 55;
-        static constexpr int32_t COL_LOCK_ID = 0;
-        static constexpr int32_t COL_COORD = 1;
-        static constexpr int32_t COL_BASE_CHEST = 2;
-        static constexpr int32_t COL_ROTATION = 3;
-        static constexpr int32_t COL_LOC_SHAPE = 4;
-        static constexpr int32_t COL_BRAZIERS_REQUIRED = 5;
-        static constexpr int32_t COL_KEY_OBJ = 6;
-        static constexpr int32_t COL_KEY_NAMEDOBJ = 7;
-        static constexpr int32_t COL_ITEM_TO_GIVE = 8;
-        static constexpr int32_t COL_GIVE_STRING = 9;
-        static constexpr int32_t COL_INSTANT_UNLOCK = 10;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_CHEST_1 = 3403;
-            static constexpr int32_t DT2_LASSAR_CHEST_2 = 3404;
-            static constexpr int32_t DT2_LASSAR_CHEST_3 = 3405;
-        };
-    };
-
-    struct Dt2LassarGhosts final {
-        Dt2LassarGhosts() = delete;
-        static constexpr int32_t ID = 56;
-        static constexpr int32_t COL_GHOST = 0;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_GHOSTS = 3406;
-        };
-    };
-
-    struct Dt2LassarNpcs final {
-        Dt2LassarNpcs() = delete;
-        static constexpr int32_t ID = 57;
-        static constexpr int32_t COL_NPC = 0;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_NPCS = 3407;
-        };
-    };
-
-    struct Dt2LassarItems final {
-        Dt2LassarItems() = delete;
-        static constexpr int32_t ID = 58;
-        static constexpr int32_t COL_ITEM = 0;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_ITEMS = 3408;
-        };
-    };
-
-    struct Dt2LassarBraziers final {
-        Dt2LassarBraziers() = delete;
-        static constexpr int32_t ID = 59;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_COORD = 1;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_LASSAR_BRAZIERS_1 = 3409;
-        };
-    };
-
-    struct Dt2ScarMaze final {
-        Dt2ScarMaze() = delete;
-        static constexpr int32_t ID = 60;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_SOURCE = 1;
-        static constexpr int32_t COL_ENTRY_COORD = 2;
-        static constexpr int32_t COL_BOAT_ROOM_COORD = 3;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DT2_SCAR_MAZE_1 = 3410;
-            static constexpr int32_t DT2_SCAR_MAZE_2 = 3411;
-            static constexpr int32_t DT2_SCAR_MAZE_3 = 3412;
+            static constexpr int32_t MUSIC_GRAVEYARD_RAEUN_BOSS = 17196;
         };
     };
 
@@ -5117,30 +4588,6 @@ struct DBTableID final {
             static constexpr int32_t CLAN_SETTING_OPTIONS_COLLECTION_BROADCASTS_EVERY_X_LOGS = 4100;
             static constexpr int32_t CLAN_SETTING_OPTIONS_BROADCASTEVENTS_NOTIFICATION = 4101;
             static constexpr int32_t CLAN_SETTING_OPTIONS_BROADCASTMAINGAME_NOTIFICATION = 4102;
-        };
-    };
-
-    struct VarlamoreThievingHouse final {
-        VarlamoreThievingHouse() = delete;
-        static constexpr int32_t ID = 63;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_HOUSE_COORD = 1;
-        static constexpr int32_t COL_OUTSIDE_DOOR_COORD = 2;
-        static constexpr int32_t COL_INSIDE_DOOR_COORD = 3;
-        static constexpr int32_t COL_WANDER_COORD = 4;
-        static constexpr int32_t COL_WINDOW_OUTSIDE_COORD = 5;
-        static constexpr int32_t COL_HOUSE_NAME = 6;
-        static constexpr int32_t COL_HOUSE_NAME_PRONOUN = 7;
-        static constexpr int32_t COL_HOUSE_AREA = 8;
-        static constexpr int32_t COL_HOUSE_LOOTABLE = 9;
-        static constexpr int32_t COL_HOUSE_DOOR_ROTATION_OPEN = 10;
-        static constexpr int32_t COL_HOUSE_DOOR_ROTATION_CLOSED = 11;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VARLAMORE_THIEVING_HOUSE_1 = 3516;
-            static constexpr int32_t VARLAMORE_THIEVING_HOUSE_2 = 3517;
-            static constexpr int32_t VARLAMORE_THIEVING_HOUSE_3 = 3518;
         };
     };
 
@@ -5229,39 +4676,6 @@ struct DBTableID final {
         static constexpr int32_t COL_HAND_MODEL_TYPE_B = 4;
     };
 
-    struct Vmq3TowerTrial3 final {
-        Vmq3TowerTrial3() = delete;
-        static constexpr int32_t ID = 70;
-        static constexpr int32_t COL_SUSPECT_ID = 0;
-        static constexpr int32_t COL_SUSPECT_NPC = 1;
-        static constexpr int32_t COL_NAME = 2;
-        static constexpr int32_t COL_RESPONSE = 3;
-        static constexpr int32_t COL_RESPONSE_WRONG = 4;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ3_TRIAL_3_SUSPECT_1 = 3702;
-            static constexpr int32_t VMQ3_TRIAL_3_SUSPECT_2 = 3703;
-            static constexpr int32_t VMQ3_TRIAL_3_SUSPECT_3 = 3704;
-            static constexpr int32_t VMQ3_TRIAL_3_SUSPECT_4 = 3705;
-        };
-    };
-
-    struct Vmq3TowerTrial4Cone final {
-        Vmq3TowerTrial4Cone() = delete;
-        static constexpr int32_t ID = 71;
-        static constexpr int32_t COL_DIRECTION = 0;
-        static constexpr int32_t COL_TILE_DATA = 1;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ3_TRIAL_4_CONE_NORTH = 3706;
-            static constexpr int32_t VMQ3_TRIAL_4_CONE_SOUTH = 3707;
-            static constexpr int32_t VMQ3_TRIAL_4_CONE_EAST = 3708;
-            static constexpr int32_t VMQ3_TRIAL_4_CONE_WEST = 3709;
-        };
-    };
-
     struct PendantOfAtesTeleports final {
         PendantOfAtesTeleports() = delete;
         static constexpr int32_t ID = 72;
@@ -5269,71 +4683,6 @@ struct DBTableID final {
         static constexpr int32_t COL_TELEPORT_NAME = 1;
         static constexpr int32_t COL_TELEPORT_COORD = 2;
         static constexpr int32_t COL_TELEPORT_IF_LAYER = 3;
-    };
-
-    struct EaaShameGame final {
-        EaaShameGame() = delete;
-        static constexpr int32_t ID = 73;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_OPTION = 1;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_1 = 3714;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_2 = 3715;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_3 = 3716;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_4 = 3717;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_5 = 3718;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_6 = 3719;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_7 = 3720;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_8 = 3721;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_9 = 3722;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_10 = 3723;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_11 = 3724;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_12 = 3725;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_13 = 3726;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_14 = 3727;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_15 = 3728;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_16 = 3729;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_17 = 3730;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_18 = 3731;
-            static constexpr int32_t EAA_SHAME_GAME_CHOICE_19 = 3732;
-        };
-    };
-
-    struct VarlamoreWyrmAgilityRoute final {
-        VarlamoreWyrmAgilityRoute() = delete;
-        static constexpr int32_t ID = 74;
-        static constexpr int32_t COL_NAME_LOWERCASE = 0;
-        static constexpr int32_t COL_NAME_CAPITALISED = 1;
-        static constexpr int32_t COL_AGILITY_LEVEL = 2;
-        static constexpr int32_t COL_PET_RATE = 3;
-        static constexpr int32_t COL_COMPLETION_XP = 4;
-        static constexpr int32_t COL_ROUTE_LENGTH = 5;
-        static constexpr int32_t COL_OBSTACLES_ENUM = 6;
-        static constexpr int32_t COL_TERMITE_OBSTACLE_IDS = 7;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VARLAMORE_WYRM_AGILITY_ROUTE_BASIC = 3762;
-            static constexpr int32_t VARLAMORE_WYRM_AGILITY_ROUTE_ADVANCED = 3763;
-        };
-    };
-
-    struct HueySpecialAttack final {
-        HueySpecialAttack() = delete;
-        static constexpr int32_t ID = 75;
-        static constexpr int32_t COL_PHASE = 0;
-        static constexpr int32_t COL_CD = 1;
-        static constexpr int32_t COL_ATTACKS = 2;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t HUEY_SPECIAL_ATTACK_P1 = 3776;
-            static constexpr int32_t HUEY_SPECIAL_ATTACK_P2 = 3777;
-            static constexpr int32_t HUEY_SPECIAL_ATTACK_P3 = 3778;
-            static constexpr int32_t HUEY_SPECIAL_ATTACK_P4 = 3779;
-        };
     };
 
     struct DynamicBuildersDemoSets final {
@@ -5453,179 +4802,6 @@ struct DBTableID final {
             static constexpr int32_t LEAGUES_ECHO_HESPORI = 4225;
             static constexpr int32_t LEAGUES_ECHO_SOL_HEREDIT = 4226;
             static constexpr int32_t LEAGUES_ECHO_AMOXLIATL = 16179;
-        };
-    };
-
-    struct MagicEnchant final {
-        MagicEnchant() = delete;
-        static constexpr int32_t ID = 86;
-        static constexpr int32_t COL_BASE = 0;
-        static constexpr int32_t COL_OUTPUT = 1;
-        static constexpr int32_t COL_SPELL = 2;
-        static constexpr int32_t COL_MEMBERS = 3;
-        static constexpr int32_t COL_CASTXP = 4;
-        static constexpr int32_t COL_ANIM = 5;
-        static constexpr int32_t COL_SPOTANIM = 6;
-        static constexpr int32_t COL_SOUND = 7;
-        static constexpr int32_t COL_SPECIAL = 8;
-        static constexpr int32_t COL_FAILMES = 9;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t MAGIC_ENCHANT_SAPPHIRE_AMULET = 4235;
-            static constexpr int32_t MAGIC_ENCHANT_SAPPHIRE_RING = 4236;
-            static constexpr int32_t MAGIC_ENCHANT_SAPPHIRE_NECKLACE = 4237;
-            static constexpr int32_t MAGIC_ENCHANT_SAPPHIRE_BRACELET = 4238;
-            static constexpr int32_t MAGIC_ENCHANT_OPAL_AMULET = 4239;
-            static constexpr int32_t MAGIC_ENCHANT_OPAL_RING = 4240;
-            static constexpr int32_t MAGIC_ENCHANT_OPAL_NECKLACE = 4241;
-            static constexpr int32_t MAGIC_ENCHANT_OPAL_BRACELET = 4242;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_SAPPHIRE_AMULET = 4245;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_OPAL_AMULET = 4246;
-            static constexpr int32_t MAGIC_ENCHANT_EMERALD_AMULET = 4247;
-            static constexpr int32_t MAGIC_ENCHANT_PRENATURE_AMULET = 4248;
-            static constexpr int32_t MAGIC_ENCHANT_EMERALD_RING = 4249;
-            static constexpr int32_t MAGIC_ENCHANT_EMERALD_NECKLACE = 4250;
-            static constexpr int32_t MAGIC_ENCHANT_EMERALD_BRACELET = 4251;
-            static constexpr int32_t MAGIC_ENCHANT_JADE_AMULET = 4252;
-            static constexpr int32_t MAGIC_ENCHANT_JADE_RING = 4253;
-            static constexpr int32_t MAGIC_ENCHANT_JADE_NECKLACE = 4254;
-            static constexpr int32_t MAGIC_ENCHANT_JADE_BRACELET = 4255;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_EMERALD_AMULET = 4256;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_JADE_AMULET = 4257;
-            static constexpr int32_t MAGIC_ENCHANT_SILVER_SICKLE_EMERALD = 4258;
-            static constexpr int32_t MAGIC_ENCHANT_RUBY_AMULET = 4259;
-            static constexpr int32_t MAGIC_ENCHANT_RUBY_RING = 4260;
-            static constexpr int32_t MAGIC_ENCHANT_RUBY_NECKLACE = 4261;
-            static constexpr int32_t MAGIC_ENCHANT_RUBY_BRACELET = 4262;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_RUBY_AMULET = 4263;
-            static constexpr int32_t MAGIC_ENCHANT_TOPAZ_AMULET = 4264;
-            static constexpr int32_t MAGIC_ENCHANT_TOPAZ_RING = 4265;
-            static constexpr int32_t MAGIC_ENCHANT_TOPAZ_NECKLACE = 4266;
-            static constexpr int32_t MAGIC_ENCHANT_TOPAZ_BRACELET = 4267;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_TOPAZ_AMULET = 4268;
-            static constexpr int32_t MAGIC_ENCHANT_SILVER_SICKLE_RUBY = 4269;
-            static constexpr int32_t MAGIC_ENCHANT_DIAMOND_AMULET = 4270;
-            static constexpr int32_t MAGIC_ENCHANT_DIAMOND_RING = 4271;
-            static constexpr int32_t MAGIC_ENCHANT_DIAMOND_BRACELET = 4272;
-            static constexpr int32_t MAGIC_ENCHANT_DIAMOND_NECKLACE = 4273;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_DIAMOND_AMULET = 4274;
-            static constexpr int32_t MAGIC_ENCHANT_DRAGONSTONE_AMULET = 4275;
-            static constexpr int32_t MAGIC_ENCHANT_DRAGONSTONE_RING = 4276;
-            static constexpr int32_t MAGIC_ENCHANT_DRAGONSTONE_NECKLACE = 4277;
-            static constexpr int32_t MAGIC_ENCHANT_DRAGONSTONE_BRACELET = 4278;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_DRAGONSTONE_AMULET = 4279;
-            static constexpr int32_t MAGIC_ENCHANT_ONYX_AMULET = 4280;
-            static constexpr int32_t MAGIC_ENCHANT_ONYX_NECKLACE = 4281;
-            static constexpr int32_t MAGIC_ENCHANT_ONYX_BRACELET = 4282;
-            static constexpr int32_t MAGIC_ENCHANT_ONYX_RING = 4283;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_ONYX_AMULET = 4284;
-            static constexpr int32_t MAGIC_ENCHANT_ZENYTE_AMULET = 4285;
-            static constexpr int32_t MAGIC_ENCHANT_ZENYTE_NECKLACE = 4286;
-            static constexpr int32_t MAGIC_ENCHANT_ZENYTE_BRACELET = 4287;
-            static constexpr int32_t MAGIC_ENCHANT_ZENYTE_RING = 4288;
-            static constexpr int32_t MAGIC_ENCHANT_UNSTRUNG_ZENYTE_AMULET = 4289;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER1 = 4290;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE1 = 4291;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON1 = 4292;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID1 = 4293;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER2 = 4294;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE2 = 4295;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON2 = 4296;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID2 = 4297;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER3 = 4298;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE3 = 4299;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON3 = 4300;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID3 = 4301;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER4 = 4302;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE4 = 4303;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON4 = 4304;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID4 = 4305;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER5 = 4306;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE5 = 4307;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON5 = 4308;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID5 = 4309;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER6 = 4310;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE6 = 4311;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON6 = 4312;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID6 = 4313;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CYLINDER7 = 4314;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_CUBE7 = 4315;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_ICOSAHENDRON7 = 4316;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_PENTAMID7 = 4317;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE1 = 4319;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE2 = 4320;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE3 = 4321;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE4 = 4322;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE5 = 4323;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE6 = 4324;
-            static constexpr int32_t MAGIC_ENCHANT_MAGICTRAINING_DRAGONSTONE7 = 4325;
-            static constexpr int32_t MAGIC_ENCHANT_SILVTHRILL_ROD = 16934;
-            static constexpr int32_t MAGIC_ENCHANT_SILVTHRILL_ROD2 = 16935;
-            static constexpr int32_t MAGIC_ENCHANT_SILVER_SICKLE_DIAMOND = 16936;
-        };
-    };
-
-    struct Charges final {
-        Charges() = delete;
-        static constexpr int32_t ID = 87;
-        static constexpr int32_t COL_MAX_CHARGES = 0;
-        static constexpr int32_t COL_CHARGE_ITEM_AND_QUANTITY = 1;
-        static constexpr int32_t COL_CHARGES_GRANTED = 2;
-        static constexpr int32_t COL_CHARGES_TYPE = 3;
-        static constexpr int32_t COL_CHARGES_QUANTITY_BITS_AND_VARP = 4;
-        static constexpr int32_t COL_CHARGES_ALLOW_ATTACKS_UNCHARGED = 5;
-        static constexpr int32_t COL_UNCHARGING_DISABLED = 6;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t CHARGES_TRIDENT_OF_THE_SEAS = 4326;
-            static constexpr int32_t CHARGES_TRIDENT_OF_THE_SEAS_E = 4327;
-            static constexpr int32_t CHARGES_WARPED_SCEPTRE = 4328;
-            static constexpr int32_t CHARGES_TUMEKENS_SHADOW = 4329;
-            static constexpr int32_t CHARGES_TRIDENT_OF_THE_SWAMP = 4330;
-            static constexpr int32_t CHARGES_TRIDENT_OF_THE_SWAMP_E = 4331;
-            static constexpr int32_t CHARGES_TOXIC_BLOWPIPE = 4332;
-            static constexpr int32_t CHARGES_SERPENTINE_HELM = 4333;
-            static constexpr int32_t CHARGES_TOXIC_STAFF_OF_THE_DEAD = 4334;
-            static constexpr int32_t CHARGES_BOW_OF_FAERDHINEN = 4335;
-            static constexpr int32_t CHARGES_BLADE_OF_SAELDOR = 4336;
-            static constexpr int32_t CHARGES_CRYSTAL_ARMOUR = 4337;
-            static constexpr int32_t CHARGES_CRYSTAL_TOOLS = 4338;
-            static constexpr int32_t CHARGES_ARCLIGHT = 4339;
-            static constexpr int32_t CHARGES_BRYOPHYTAS_STAFF = 4340;
-            static constexpr int32_t CHARGES_BONECRUSHER = 4341;
-            static constexpr int32_t CHARGES_ASH_SANCTIFIER = 4342;
-            static constexpr int32_t CHARGES_CIRCLET_OF_WATER = 4343;
-            static constexpr int32_t CHARGES_SOUL_BEARER = 4344;
-            static constexpr int32_t CHARGES_CELESTIAL_RING = 4345;
-            static constexpr int32_t CHARGES_WILDERNESS_WEAPON = 4346;
-            static constexpr int32_t CHARGES_BRACELET_OF_ETHEREUM = 4347;
-            static constexpr int32_t CHARGES_SANGUINESTI_STAFF = 4348;
-            static constexpr int32_t CHARGES_RING_OF_SUFFERING = 4349;
-            static constexpr int32_t CHARGES_XERICS_TALISMAN = 4350;
-            static constexpr int32_t CHARGES_RING_OF_SHADOWS = 4351;
-            static constexpr int32_t CHARGES_VENATOR_BOW = 4352;
-            static constexpr int32_t CHARGES_TONALZTICS_OF_RALOS = 4353;
-            static constexpr int32_t CHARGES_DIZANAS_QUIVER = 4354;
-            static constexpr int32_t CHARGES_ECHO_BOOTS = 4355;
-            static constexpr int32_t CHARGES_AMULET_OF_BLOOD_FURY = 4356;
-            static constexpr int32_t CHARGES_TOME_OF_WATER = 4357;
-            static constexpr int32_t CHARGES_TOME_OF_FIRE = 4358;
-            static constexpr int32_t CHARGES_TOME_OF_FIRE_SEARING = 4359;
-            static constexpr int32_t CHARGES_TOME_OF_EARTH = 4360;
-            static constexpr int32_t CHARGES_CRYSTAL_WEAK = 4361;
-            static constexpr int32_t CHARGES_ALCHEMIST_AMULET = 4362;
-            static constexpr int32_t CHARGES_GIANTSOUL_AMULET = 4363;
-            static constexpr int32_t CHARGES_PENDANT_OF_ATES = 4364;
-            static constexpr int32_t CHARGES_EYE_OF_AYAK_TEARS = 5187;
-            static constexpr int32_t CHARGES_EYE_OF_AYAK_RUNES = 5188;
-            static constexpr int32_t CHARGES_HORN_OF_PLENTY = 7039;
-            static constexpr int32_t CHARGES_SAILORS_AMULET = 7040;
-            static constexpr int32_t CHARGES_COWBELL_AMULET = 9644;
-            static constexpr int32_t CHARGES_ARCHIVISTS_FOLIO = 17019;
-            static constexpr int32_t CHARGES_OBLIGATOR = 17020;
-            static constexpr int32_t CHARGES_ZORYAS_TOME = 17021;
         };
     };
 
@@ -6353,401 +5529,11 @@ struct DBTableID final {
         };
     };
 
-    struct Didyouknow final {
-        Didyouknow() = delete;
-        static constexpr int32_t ID = 90;
-        static constexpr int32_t COL_ISTIP = 0;
-        static constexpr int32_t COL_TIP = 1;
-        static constexpr int32_t COL_MEMBERSONLY = 2;
-        static constexpr int32_t COL_ALLOWONMOBILE = 3;
-        static constexpr int32_t COL_ALLOWONDESKTOP = 4;
-        static constexpr int32_t COL_ALLOWONJAVA = 5;
-        static constexpr int32_t COL_ALLOWONENHANCEDCLIENT = 6;
-        static constexpr int32_t COL_EXTRAREQ = 7;
-        static constexpr int32_t COL_CATEGORY = 8;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DIDYOUKNOW_BANKHELP = 5108;
-            static constexpr int32_t DIDYOUKNOW_CERTPRODUCE = 5109;
-            static constexpr int32_t DIDYOUKNOW_FAIRYRING_DESKTOP = 5110;
-            static constexpr int32_t DIDYOUKNOW_FAIRYRING_MOBILE = 5111;
-            static constexpr int32_t DIDYOUKNOW_PHIALS_F2P = 5112;
-            static constexpr int32_t DIDYOUKNOW_PHIALS = 5113;
-            static constexpr int32_t DIDYOUKNOW_ROOFS = 5114;
-            static constexpr int32_t DIDYOUKNOW_LOCKSLOT = 5115;
-            static constexpr int32_t DIDYOUKNOW_TICKEAT = 5116;
-            static constexpr int32_t DIDYOUKNOW_VIYELDI_CAVE_BARRELS = 5117;
-            static constexpr int32_t DIDYOUKNOW_VIRTUAL_LEVELLING = 5118;
-            static constexpr int32_t DIDYOUKNOW_PIZZAHALVES = 5119;
-            static constexpr int32_t DIDYOUKNOW_KEBABCOMPOST = 5120;
-            static constexpr int32_t DIDYOUKNOW_POISONCURE2_DESKTOP = 5123;
-            static constexpr int32_t DIDYOUKNOW_POISONCURE2_MOBILE = 5124;
-            static constexpr int32_t DIDYOUKNOW_COMBINE_JEWELLERY = 5125;
-            static constexpr int32_t DIDYOUKNOW_COMBINE_POTIONS = 5126;
-            static constexpr int32_t DIDYOUKNOW_HUMIDIFY = 5127;
-            static constexpr int32_t DIDYOUKNOW_TEMPOROSS_LEAVE_DESKTOP = 5128;
-            static constexpr int32_t DIDYOUKNOW_TEMPOROSS_LEAVE_MOBILE = 5129;
-            static constexpr int32_t DIDYOUKNOW_GLORY_GEMS = 5131;
-            static constexpr int32_t DIDYOUKNOW_SNOWFLAKE_BASALT = 5132;
-            static constexpr int32_t DIDYOUKNOW_FARMINGGEAR = 5133;
-            static constexpr int32_t DIDYOUKNOW_MINIMAP_HIDE = 5134;
-            static constexpr int32_t DIDYOUKNOW_UNKAHFIRE = 5135;
-            static constexpr int32_t DIDYOUKNOW_DORGESH_KALPHITE = 5136;
-            static constexpr int32_t DIDYOUKNOW_SNELMS = 5137;
-            static constexpr int32_t DIDYOUKNOW_STRANGE_FRUIT = 5138;
-            static constexpr int32_t DIDYOUKNOW_TWINFLAME_STAFF = 5139;
-            static constexpr int32_t DIDYOUKNOW_BOXTRAP = 5140;
-            static constexpr int32_t DIDYOUKNOW_HUNTER_FAIL = 5141;
-            static constexpr int32_t DIDYOUKNOW_BOLT_POUCH = 5142;
-            static constexpr int32_t DIDYOUKNOW_SUPERCOMPOST = 5143;
-            static constexpr int32_t DIDYOUKNOW_RUNSETTING = 5144;
-            static constexpr int32_t DIDYOUKNOW_HOUSE_VIEWER = 5145;
-            static constexpr int32_t DIDYOUKNOW_HITSPLAT_THRESHOLD = 5146;
-            static constexpr int32_t DIDYOUKNOW_II_STRENGTH_XP = 5147;
-            static constexpr int32_t DIDYOUKNOW_SMASH_VIALS = 5148;
-            static constexpr int32_t DIDYOUKNOW_SMASH_POTS = 5149;
-            static constexpr int32_t DIDYOUKNOW_ZAMMY_GRAPES = 5150;
-            static constexpr int32_t DIDYOUKNOW_MAKEOVER = 5151;
-            static constexpr int32_t DIDYOUKNOW_PEEK_DESKTOP = 5152;
-            static constexpr int32_t DIDYOUKNOW_PEEK_MOBILE = 5153;
-            static constexpr int32_t DIDYOUKNOW_SAILING_BOAT_BOTTLES = 7098;
-            static constexpr int32_t DIDYOUKNOW_SAILING_BOAT_ESCAPING = 7099;
-            static constexpr int32_t DIDYOUKNOW_SAILING_SHIPWRIGHTS = 7100;
-            static constexpr int32_t DIDYOUKNOW_SAILING_WITH_FRIENDS = 7101;
-            static constexpr int32_t DIDYOUKNOW_SAILING_REPAIR_KITS = 7102;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_GENERAL = 17180;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT1 = 17181;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT3 = 17183;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT4 = 17184;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT5 = 17185;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT6 = 17186;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT7 = 17187;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT8 = 17188;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT9 = 17189;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_MOBILE_BENEFIT10 = 17190;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_DESKTOP_BENEFIT1 = 17191;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_DESKTOP_BENEFIT2 = 17192;
-            static constexpr int32_t DIDYOUKNOW_CROSSPLATPROMO_DESKTOP_BENEFIT3 = 17193;
-        };
-    };
-
     struct Multirunes final {
         Multirunes() = delete;
         static constexpr int32_t ID = 91;
         static constexpr int32_t COL_BASE_RUNE = 0;
         static constexpr int32_t COL_COMBO_AND_ALTERNATIVE_RUNES = 1;
-    };
-
-    struct ComboruneRecipe final {
-        ComboruneRecipe() = delete;
-        static constexpr int32_t ID = 92;
-        static constexpr int32_t COL_LEVELREQ = 0;
-        static constexpr int32_t COL_COMBO_RUNE = 1;
-        static constexpr int32_t COL_FAIL_CHANCE = 2;
-        static constexpr int32_t COL_SCAR_ESSENCE_TYPE_AND_BONUS = 3;
-        static constexpr int32_t COL_ITEM_REQUIRED_PER_CRAFT = 4;
-        static constexpr int32_t COL_ITEM_REQUIRED_PER_ESSENCE = 5;
-        static constexpr int32_t COL_ITEM_REQUIRED_PER_RUNE = 6;
-        static constexpr int32_t COL_MULTIPLE_RUNE_THRESHOLD = 7;
-        static constexpr int32_t COL_MULTIPLE_RUNE_XP_SCALING = 8;
-        static constexpr int32_t COL_GOTR_ESSENCE_GIVEN = 9;
-        static constexpr int32_t COL_GOTR_TALISMAN_GIVEN = 10;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t LAVA_FROM_EARTHALTAR = 5157;
-            static constexpr int32_t LAVA_FROM_FIREALTAR = 5158;
-            static constexpr int32_t SMOKE_FROM_FIREALTAR = 5159;
-            static constexpr int32_t SMOKE_FROM_AIRALTAR = 5160;
-            static constexpr int32_t STEAM_FROM_FIREALTAR = 5161;
-            static constexpr int32_t STEAM_FROM_WATERALTAR = 5162;
-            static constexpr int32_t DUST_FROM_AIRALTAR = 5163;
-            static constexpr int32_t DUST_FROM_EARTHALTAR = 5164;
-            static constexpr int32_t MUD_FROM_EARTHALTAR = 5165;
-            static constexpr int32_t MUD_FROM_WATERALTAR = 5166;
-            static constexpr int32_t MIST_FROM_WATERALTAR = 5167;
-            static constexpr int32_t MIST_FROM_AIRALTAR = 5168;
-            static constexpr int32_t SUNFIRE_FROM_RALOSSHRINE = 5169;
-            static constexpr int32_t COSMICSOUL_FROM_COSMICALTAR = 5170;
-        };
-    };
-
-    struct Vmq4MetzliBossSpecialTeleport final {
-        Vmq4MetzliBossSpecialTeleport() = delete;
-        static constexpr int32_t ID = 93;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_ZONE_ID = 1;
-        static constexpr int32_t COL_START_COORD = 2;
-        static constexpr int32_t COL_END_COORD = 3;
-        static constexpr int32_t COL_ROTATION = 4;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_METZLI_BOSS_SUN_TELEPORT_1 = 5199;
-            static constexpr int32_t VMQ4_METZLI_BOSS_SUN_TELEPORT_2 = 5200;
-            static constexpr int32_t VMQ4_METZLI_BOSS_SUN_TELEPORT_3 = 5201;
-            static constexpr int32_t VMQ4_METZLI_BOSS_SUN_TELEPORT_4 = 5202;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_NE_1 = 5203;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_SE_1 = 5204;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_SW_1 = 5205;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_NW_1 = 5206;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_NE_2 = 5207;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_SE_2 = 5208;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_SW_2 = 5209;
-            static constexpr int32_t VMQ4_METZLI_BOSS_MOON_TELEPORT_NW_2 = 5210;
-        };
-    };
-
-    struct Vmq4Teleporters final {
-        Vmq4Teleporters() = delete;
-        static constexpr int32_t ID = 94;
-        static constexpr int32_t COL_COORD_1 = 0;
-        static constexpr int32_t COL_COORD_2 = 1;
-        static constexpr int32_t COL_TELEPORTER_TYPE = 2;
-        static constexpr int32_t COL_PUZZLE_TELEPORT = 3;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_TELEPORTER_MOON_PUZZLE = 5211;
-            static constexpr int32_t VMQ4_TELEPORTER_SUN_PUZZLE = 5212;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_1 = 5213;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_2 = 5214;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_3 = 5215;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_4 = 5216;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_5 = 5217;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_6 = 5218;
-            static constexpr int32_t CRYPT_OF_TONALI_TELEPORTER_7 = 5219;
-        };
-    };
-
-    struct Vmq4ZemaTahtTranslations final {
-        Vmq4ZemaTahtTranslations() = delete;
-        static constexpr int32_t ID = 95;
-        static constexpr int32_t COL_ZEMA_TAHT_WORD = 0;
-        static constexpr int32_t COL_INPUT_HASH = 1;
-        static constexpr int32_t COL_TRANSLATION = 2;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_TRANSLATION_NORTH = 5220;
-            static constexpr int32_t VMQ4_TRANSLATION_EAST = 5221;
-            static constexpr int32_t VMQ4_TRANSLATION_SOUTH = 5222;
-            static constexpr int32_t VMQ4_TRANSLATION_WEST = 5223;
-            static constexpr int32_t VMQ4_TRANSLATION_0 = 5224;
-            static constexpr int32_t VMQ4_TRANSLATION_1 = 5225;
-            static constexpr int32_t VMQ4_TRANSLATION_2 = 5226;
-            static constexpr int32_t VMQ4_TRANSLATION_3 = 5227;
-            static constexpr int32_t VMQ4_TRANSLATION_4 = 5228;
-            static constexpr int32_t VMQ4_TRANSLATION_5 = 5229;
-            static constexpr int32_t VMQ4_TRANSLATION_6 = 5230;
-            static constexpr int32_t VMQ4_TRANSLATION_7 = 5231;
-            static constexpr int32_t VMQ4_TRANSLATION_8 = 5232;
-            static constexpr int32_t VMQ4_TRANSLATION_9 = 5233;
-            static constexpr int32_t VMQ4_TRANSLATION_10 = 5234;
-            static constexpr int32_t VMQ4_TRANSLATION_20 = 5235;
-            static constexpr int32_t VMQ4_TRANSLATION_20_ALT = 5236;
-            static constexpr int32_t VMQ4_TRANSLATION_30 = 5237;
-            static constexpr int32_t VMQ4_TRANSLATION_30_ALT = 5238;
-            static constexpr int32_t VMQ4_TRANSLATION_40 = 5239;
-            static constexpr int32_t VMQ4_TRANSLATION_40_ALT = 5240;
-            static constexpr int32_t VMQ4_TRANSLATION_50 = 5241;
-            static constexpr int32_t VMQ4_TRANSLATION_50_ALT = 5242;
-            static constexpr int32_t VMQ4_TRANSLATION_60 = 5243;
-            static constexpr int32_t VMQ4_TRANSLATION_60_ALT = 5244;
-            static constexpr int32_t VMQ4_TRANSLATION_70 = 5245;
-            static constexpr int32_t VMQ4_TRANSLATION_70_ALT = 5246;
-            static constexpr int32_t VMQ4_TRANSLATION_80 = 5247;
-            static constexpr int32_t VMQ4_TRANSLATION_80_ALT = 5248;
-            static constexpr int32_t VMQ4_TRANSLATION_90 = 5249;
-            static constexpr int32_t VMQ4_TRANSLATION_90_ALT = 5250;
-            static constexpr int32_t VMQ4_TRANSLATION_FUN_1 = 5251;
-        };
-    };
-
-    struct Vmq4SunPuzzleAltars final {
-        Vmq4SunPuzzleAltars() = delete;
-        static constexpr int32_t ID = 96;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_ALTAR_COORD = 1;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_SUN_ALTAR_NORTH = 5252;
-            static constexpr int32_t VMQ4_SUN_ALTAR_NORTHEAST = 5253;
-            static constexpr int32_t VMQ4_SUN_ALTAR_EAST = 5254;
-            static constexpr int32_t VMQ4_SUN_ALTAR_SOUTHEAST = 5255;
-            static constexpr int32_t VMQ4_SUN_ALTAR_SOUTH = 5256;
-            static constexpr int32_t VMQ4_SUN_ALTAR_SOUTHWEST = 5257;
-            static constexpr int32_t VMQ4_SUN_ALTAR_WEST = 5258;
-            static constexpr int32_t VMQ4_SUN_ALTAR_NORTHWEST = 5259;
-        };
-    };
-
-    struct Vmq4MoonPuzzleRoots final {
-        Vmq4MoonPuzzleRoots() = delete;
-        static constexpr int32_t ID = 97;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_ROOT_COORD = 1;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_MOON_ROOT_0 = 5260;
-            static constexpr int32_t VMQ4_MOON_ROOT_1 = 5261;
-            static constexpr int32_t VMQ4_MOON_ROOT_2 = 5262;
-            static constexpr int32_t VMQ4_MOON_ROOT_3 = 5263;
-            static constexpr int32_t VMQ4_MOON_ROOT_4 = 5264;
-            static constexpr int32_t VMQ4_MOON_ROOT_5 = 5265;
-            static constexpr int32_t VMQ4_MOON_ROOT_6 = 5266;
-        };
-    };
-
-    struct Vmq4MoonPuzzleBraziers final {
-        Vmq4MoonPuzzleBraziers() = delete;
-        static constexpr int32_t ID = 98;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_TYPE = 1;
-        static constexpr int32_t COL_BRAZIER_COORD = 2;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_0 = 5267;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_1 = 5268;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_2 = 5269;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_3 = 5270;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_4 = 5271;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_5 = 5272;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_6 = 5273;
-            static constexpr int32_t VMQ4_MOON_BRAZIER_7 = 5274;
-        };
-    };
-
-    struct Vmq4CryptWaves final {
-        Vmq4CryptWaves() = delete;
-        static constexpr int32_t ID = 99;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_MELEE_1 = 1;
-        static constexpr int32_t COL_MELEE_2 = 2;
-        static constexpr int32_t COL_RANGE = 3;
-        static constexpr int32_t COL_MAGE = 4;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t VMQ4_WAVE1 = 5275;
-            static constexpr int32_t VMQ4_WAVE2 = 5276;
-            static constexpr int32_t VMQ4_WAVE3 = 5277;
-            static constexpr int32_t VMQ4_WAVE4 = 5278;
-            static constexpr int32_t VMQ4_WAVE5 = 5279;
-        };
-    };
-
-    struct PohHeraldicDecorVariant final {
-        PohHeraldicDecorVariant() = delete;
-        static constexpr int32_t ID = 100;
-        static constexpr int32_t COL_FURNITURE = 0;
-        static constexpr int32_t COL_BASE_VARIANT = 1;
-        static constexpr int32_t COL_LOGO = 2;
-        static constexpr int32_t COL_VARIANT = 3;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_ARRAV = 5280;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_ASGARNIA = 5281;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_DORGESHUUN = 5282;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_DRAGON = 5283;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_FAIRY = 5284;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_GUTHIX = 5285;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_HAM = 5286;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_HORSE = 5287;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_JOGRE = 5288;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_KANDARIN = 5289;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_MISTHALIN = 5290;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_MONEY = 5291;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_SARADOMIN = 5292;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_SKULL = 5293;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_VARROCK = 5294;
-            static constexpr int32_t POH_HERALDIC_DECOR_TEAK_ZAMORAK = 5295;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_ARRAV = 5296;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_ASGARNIA = 5297;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_DORGESHUUN = 5298;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_DRAGON = 5299;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_FAIRY = 5300;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_GUTHIX = 5301;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_HAM = 5302;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_HORSE = 5303;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_JOGRE = 5304;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_KANDARIN = 5305;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_MISTHALIN = 5306;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_MONEY = 5307;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_SARADOMIN = 5308;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_SKULL = 5309;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_VARROCK = 5310;
-            static constexpr int32_t POH_HERALDIC_DECOR_OAK_ZAMORAK = 5311;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_ARRAV = 5312;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_ASGARNIA = 5313;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_DORGESHUUN = 5314;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_DRAGON = 5315;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_FAIRY = 5316;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_GUTHIX = 5317;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_HAM = 5318;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_HORSE = 5319;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_JOGRE = 5320;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_KANDARIN = 5321;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_MISTHALIN = 5322;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_MONEY = 5323;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_SARADOMIN = 5324;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_SKULL = 5325;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_VARROCK = 5326;
-            static constexpr int32_t POH_HERALDIC_DECOR_MAHOGANY_ZAMORAK = 5327;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_ARRAV = 5328;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_ASGARNIA = 5329;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_DORGESHUUN = 5330;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_DRAGON = 5331;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_FAIRY = 5332;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_GUTHIX = 5333;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_HAM = 5334;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_HORSE = 5335;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_JOGRE = 5336;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_KANDARIN = 5337;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_MISTHALIN = 5338;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_MONEY = 5339;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_SARADOMIN = 5340;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_SKULL = 5341;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_VARROCK = 5342;
-            static constexpr int32_t POH_HERALDIC_KITE_SHIELD_ZAMORAK = 5343;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_ARRAV = 5344;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_ASGARNIA = 5345;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_DORGESHUUN = 5346;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_DRAGON = 5347;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_FAIRY = 5348;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_GUTHIX = 5349;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_HAM = 5350;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_HORSE = 5351;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_JOGRE = 5352;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_KANDARIN = 5353;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_MISTHALIN = 5354;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_MONEY = 5355;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_SARADOMIN = 5356;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_SKULL = 5357;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_VARROCK = 5358;
-            static constexpr int32_t POH_HERALDIC_SQUARE_SHIELD_ZAMORAK = 5359;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_ARRAV = 5360;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_ASGARNIA = 5361;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_DORGESHUUN = 5362;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_DRAGON = 5363;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_FAIRY = 5364;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_GUTHIX = 5365;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_HAM = 5366;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_HORSE = 5367;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_JOGRE = 5368;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_KANDARIN = 5369;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_MISTHALIN = 5370;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_MONEY = 5371;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_SARADOMIN = 5372;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_SKULL = 5373;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_VARROCK = 5374;
-            static constexpr int32_t POH_HERALDIC_ROUND_SHIELD_ZAMORAK = 5375;
-        };
     };
 
     struct Jigsaw final {
@@ -6769,23 +5555,6 @@ struct DBTableID final {
         };
     };
 
-    struct FletchGreenmanData final {
-        FletchGreenmanData() = delete;
-        static constexpr int32_t ID = 102;
-        static constexpr int32_t COL_PRODUCT = 0;
-        static constexpr int32_t COL_FLETCHING_LEVEL = 1;
-        static constexpr int32_t COL_MATERIALS = 2;
-        static constexpr int32_t COL_CRAFTING_DELAY = 3;
-        static constexpr int32_t COL_CRAFTING_XP = 4;
-        static constexpr int32_t COL_FLETCHING_SIDEEFFECTS_LOG_TYPE = 5;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t FLETCH_GREENMAN_STATUE = 5398;
-            static constexpr int32_t FLETCH_GREENMAN_WALL_DECORATION = 5399;
-        };
-    };
-
     struct GreenmanMask final {
         GreenmanMask() = delete;
         static constexpr int32_t ID = 103;
@@ -6797,193 +5566,6 @@ struct DBTableID final {
         struct Row final {
             Row() = delete;
             static constexpr int32_t GREENMAN_MASK_BASE = 5400;
-        };
-    };
-
-    struct EntTotemsBaseData final {
-        EntTotemsBaseData() = delete;
-        static constexpr int32_t ID = 104;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_ID = 0;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_LOG = 1;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_NAME = 2;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_NAME_WITH_ARTICLE = 3;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_CONSTRUCTION_XP = 4;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_DECAY = 5;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_FLETCHING_LEVEL = 6;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_CARVE_FLETCHING_XP = 7;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_DECORATION_FLETCHING_XP = 8;
-        static constexpr int32_t COL_ENT_TOTEMS_BASE_POINTS_MODIFIER = 9;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t ENT_TOTEMS_BASE_OAK = 5407;
-            static constexpr int32_t ENT_TOTEMS_BASE_WILLOW = 5408;
-            static constexpr int32_t ENT_TOTEMS_BASE_MAPLE = 5409;
-            static constexpr int32_t ENT_TOTEMS_BASE_YEW = 5410;
-            static constexpr int32_t ENT_TOTEMS_BASE_MAGIC = 5411;
-            static constexpr int32_t ENT_TOTEMS_BASE_REDWOOD = 5412;
-        };
-    };
-
-    struct EntTotemsAnimalData final {
-        EntTotemsAnimalData() = delete;
-        static constexpr int32_t ID = 105;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_ID = 0;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_CARVINGID = 1;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_NAME = 2;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_NAME_ARTICLE = 3;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_COLOUR_TAG = 4;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_ICON = 5;
-        static constexpr int32_t COL_ENT_TOTEMS_ANIMAL_DISABLED_ICON = 6;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t ENT_TOTEMS_ANIMAL_A = 5413;
-            static constexpr int32_t ENT_TOTEMS_ANIMAL_B = 5414;
-            static constexpr int32_t ENT_TOTEMS_ANIMAL_C = 5415;
-            static constexpr int32_t ENT_TOTEMS_ANIMAL_D = 5416;
-            static constexpr int32_t ENT_TOTEMS_ANIMAL_E = 5417;
-        };
-    };
-
-    struct EntTotemsSiteData final {
-        EntTotemsSiteData() = delete;
-        static constexpr int32_t ID = 106;
-        static constexpr int32_t COL_ENT_TOTEMS_SITE_ID = 0;
-        static constexpr int32_t COL_ENT_TOTEMS_DESTINATION_NPCCONFIG = 1;
-        static constexpr int32_t COL_ENT_TOTEMS_SITE_TOTEM_COORD = 2;
-        static constexpr int32_t COL_ENT_TOTEMS_SITE_OFFERINGS_COORD = 3;
-        static constexpr int32_t COL_ENT_TOTEMS_SITE_WORSHIP_COORD = 4;
-        static constexpr int32_t COL_ENT_TOTEMS_SITE_TRAIL_BUFFER = 5;
-        static constexpr int32_t COL_ENT_TOTEMS_SITE_PATH = 6;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t ENT_TOTEMS_SITE_1 = 5418;
-            static constexpr int32_t ENT_TOTEMS_SITE_2 = 5419;
-            static constexpr int32_t ENT_TOTEMS_SITE_3 = 5420;
-            static constexpr int32_t ENT_TOTEMS_SITE_4 = 5421;
-            static constexpr int32_t ENT_TOTEMS_SITE_5 = 5422;
-            static constexpr int32_t ENT_TOTEMS_SITE_6 = 5423;
-            static constexpr int32_t ENT_TOTEMS_SITE_7 = 5424;
-            static constexpr int32_t ENT_TOTEMS_SITE_8 = 5425;
-        };
-    };
-
-    struct EntTotemsDecorationData final {
-        EntTotemsDecorationData() = delete;
-        static constexpr int32_t ID = 107;
-        static constexpr int32_t COL_ENT_TOTEMS_DECORATION_OBJ = 0;
-        static constexpr int32_t COL_ENT_TOTEMS_DECORATION_NAME = 1;
-        static constexpr int32_t COL_ENT_TOTEMS_DECORATION_BASE_ID = 2;
-        static constexpr int32_t COL_ENT_TOTEMS_DECORATION_VALUE = 3;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_OAK_SHORTBOW = 5426;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_OAK_SHORTBOW_UNSTRUNG = 5427;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_OAK_LONGBOW = 5428;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_OAK_LONGBOW_UNSTRUNG = 5429;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_OAK_STOCK = 5430;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_OAK_SHIELD = 5431;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_WILLOW_SHORTBOW = 5432;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_WILLOW_SHORTBOW_UNSTRUNG = 5433;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_WILLOW_LONGBOW = 5434;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_WILLOW_LONGBOW_UNSTRUNG = 5435;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_WILLOW_STOCK = 5436;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_WILLOW_SHIELD = 5437;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAPLE_SHORTBOW = 5438;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAPLE_SHORTBOW_UNSTRUNG = 5439;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAPLE_LONGBOW = 5440;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAPLE_LONGBOW_UNSTRUNG = 5441;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAPLE_STOCK = 5442;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAPLE_SHIELD = 5443;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_YEW_SHORTBOW = 5444;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_YEW_SHORTBOW_UNSTRUNG = 5445;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_YEW_LONGBOW = 5446;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_YEW_LONGBOW_UNSTRUNG = 5447;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_YEW_STOCK = 5448;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_YEW_SHIELD = 5449;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAGIC_SHORTBOW = 5450;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAGIC_SHORTBOW_UNSTRUNG = 5451;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAGIC_LONGBOW = 5452;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAGIC_LONGBOW_UNSTRUNG = 5453;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAGIC_STOCK = 5454;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_MAGIC_SHIELD = 5455;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_REDWOOD_HIKING_STAFF = 5456;
-            static constexpr int32_t ENT_TOTEMS_DECORATION_REDWOOD_SHIELD = 5457;
-        };
-    };
-
-    struct DomDroptable final {
-        DomDroptable() = delete;
-        static constexpr int32_t ID = 108;
-        static constexpr int32_t COL_TABLE_CHANCE = 0;
-        static constexpr int32_t COL_MODIFY_DROPRATE_ID = 1;
-        static constexpr int32_t COL_TOTAL_WEIGHT = 2;
-        static constexpr int32_t COL_ITEMS = 3;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DOM_BASIC_DROPTABLE = 5469;
-            static constexpr int32_t DOM_UNIQUE_DROPTABLE_BASIC = 5470;
-            static constexpr int32_t DOM_UNIQUE_DROPTABLE_ENHANCED = 5471;
-            static constexpr int32_t DOM_UNIQUE_DROPTABLE_ULTIMATE = 5472;
-            static constexpr int32_t DOM_UNIQUE_DROPTABLE_FINALE = 5473;
-            static constexpr int32_t DOM_PET_DROPTABLE = 5474;
-        };
-    };
-
-    struct DomDelveLevel final {
-        DomDelveLevel() = delete;
-        static constexpr int32_t ID = 109;
-        static constexpr int32_t COL_HITPOINTS_PERCENT_INCREASE = 0;
-        static constexpr int32_t COL_VISLEVEL_PERCENT_INCREASE = 1;
-        static constexpr int32_t COL_ATTACKSPEED = 2;
-        static constexpr int32_t COL_DAMAGE_PERCENT_INCREASE = 3;
-        static constexpr int32_t COL_DEFENCE_PERCENT_INCREASE = 4;
-        static constexpr int32_t COL_MAX_BLEEDS = 5;
-        static constexpr int32_t COL_BASIC_PROJ_TYPES = 6;
-        static constexpr int32_t COL_BASIC_PROJ_SPEED = 7;
-        static constexpr int32_t COL_SECONDARY_PROJ_TYPES = 8;
-        static constexpr int32_t COL_SECONDARY_PROJ_SPEED = 9;
-        static constexpr int32_t COL_ROCK_PROJ_SPEED = 10;
-        static constexpr int32_t COL_ROCK_SHRAPNEL_QUANTITY = 11;
-        static constexpr int32_t COL_SHIELD_MOVE_SPEED = 12;
-        static constexpr int32_t COL_ORB_MOVE_SPEED = 13;
-        static constexpr int32_t COL_ORB_SPAWN_CHANCE = 14;
-        static constexpr int32_t COL_ORB_SPAWN_QUANITITY = 15;
-        static constexpr int32_t COL_ORB_PRAYER_TYPE = 16;
-        static constexpr int32_t COL_ORB_FREQUENCY_PERCENT = 17;
-        static constexpr int32_t COL_SHIELDPHASE_ORB_SPAWN_BASE_RATE = 18;
-        static constexpr int32_t COL_BEAM_DAMAGE = 19;
-        static constexpr int32_t COL_BURROWPHASE_CHARGES = 20;
-        static constexpr int32_t COL_MAINPHASE_ORBS_SPAWNING = 21;
-        static constexpr int32_t COL_MAINPHASE_BEAM = 22;
-        static constexpr int32_t COL_BURROWPHASE_BEAM = 23;
-        static constexpr int32_t COL_BURROWPHASE_ATTACKS = 24;
-        static constexpr int32_t COL_BURROWPHASE_PRAYERS = 25;
-        static constexpr int32_t COL_BURROWPHASE_FREE_ROCK_GROUPS = 26;
-        static constexpr int32_t COL_BURROWPHASE_RUSH_SPEED = 27;
-        static constexpr int32_t COL_BURROWPHASE_RUSH_DAMAGE = 28;
-        static constexpr int32_t COL_BURROWPHASE_SLAMS = 29;
-        static constexpr int32_t COL_NODE_PHASE_SLAM_COUNT = 30;
-        static constexpr int32_t COL_DOUBLE_SCOOPS = 31;
-        static constexpr int32_t COL_BEAM_INTERRUPT_STRENGTHBONUS_THRESHOLD = 32;
-        static constexpr int32_t COL_EXCLUSIVE_DROPTABLES = 33;
-        static constexpr int32_t COL_DROPTABLES = 34;
-        static constexpr int32_t COL_GUARANTEED_DROPS = 35;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t DOM_DELVE_LEVEL_0 = 5475;
-            static constexpr int32_t DOM_DELVE_LEVEL_1 = 5476;
-            static constexpr int32_t DOM_DELVE_LEVEL_2 = 5477;
-            static constexpr int32_t DOM_DELVE_LEVEL_3 = 5478;
-            static constexpr int32_t DOM_DELVE_LEVEL_4 = 5479;
-            static constexpr int32_t DOM_DELVE_LEVEL_5 = 5480;
-            static constexpr int32_t DOM_DELVE_LEVEL_6 = 5481;
-            static constexpr int32_t DOM_DELVE_LEVEL_7 = 5482;
         };
     };
 
@@ -10866,19 +9448,6 @@ struct DBTableID final {
         };
     };
 
-    struct RestrictContentObj final {
-        RestrictContentObj() = delete;
-        static constexpr int32_t ID = 127;
-        static constexpr int32_t COL_RESTRICTED_CONTENT = 0;
-        static constexpr int32_t COL_CATEGORY = 1;
-        static constexpr int32_t COL_OBJ = 2;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t RESTRICT_CONTENT_SAILING_OBJ_CATEGORIES = 7072;
-        };
-    };
-
     struct MusicAreaGroup final {
         MusicAreaGroup() = delete;
         static constexpr int32_t ID = 128;
@@ -10930,14 +9499,6 @@ struct DBTableID final {
         static constexpr int32_t COL_ALT_HEAD_MODEL = 7;
         static constexpr int32_t COL_ALT_ZOOM = 8;
         static constexpr int32_t COL_ALT_Y_ANGLE = 9;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t PMOON_RIVER1 = 16920;
-            static constexpr int32_t PMOON_RIVER2 = 16921;
-            static constexpr int32_t SOTFA_RIVER1 = 16922;
-            static constexpr int32_t SOTFA_RIVER2 = 16923;
-        };
     };
 
     struct SlayerModifiers final {
@@ -10986,65 +9547,6 @@ struct DBTableID final {
         static constexpr int32_t COL_SCROLLBAR_HORIZONTAL_SPRITES = 4;
     };
 
-    struct DropInstantReveal final {
-        DropInstantReveal() = delete;
-        static constexpr int32_t ID = 135;
-        static constexpr int32_t COL_ALL_FOOD = 0;
-        static constexpr int32_t COL_ALL_POTIONS = 1;
-        static constexpr int32_t COL_WHITELIST_ITEM = 2;
-        static constexpr int32_t COL_WHITELIST_CATEGORY = 3;
-    };
-
-    struct TfaEzekielSwordGrid final {
-        TfaEzekielSwordGrid() = delete;
-        static constexpr int32_t ID = 136;
-        static constexpr int32_t COL_COORDS = 0;
-    };
-
-    struct TfaEzekielStar final {
-        TfaEzekielStar() = delete;
-        static constexpr int32_t ID = 137;
-        static constexpr int32_t COL_OFFSETS = 0;
-        static constexpr int32_t COL_CORNER = 1;
-    };
-
-    struct TfaEzekielFinaleRotation final {
-        TfaEzekielFinaleRotation() = delete;
-        static constexpr int32_t ID = 138;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_COMBO = 1;
-    };
-
-    struct TfaEzekielFinaleCombo final {
-        TfaEzekielFinaleCombo() = delete;
-        static constexpr int32_t ID = 139;
-        static constexpr int32_t COL_ATTACK = 0;
-    };
-
-    struct TfaEzekielFinaleAttack final {
-        TfaEzekielFinaleAttack() = delete;
-        static constexpr int32_t ID = 140;
-        static constexpr int32_t COL_DEBUG_NAME = 0;
-        static constexpr int32_t COL_TELEGRAPH_DIRECTION = 1;
-        static constexpr int32_t COL_ATTACK_ANIM = 2;
-        static constexpr int32_t COL_HIT_DELAY_TICKS = 3;
-        static constexpr int32_t COL_TELEGRAPH_LENGTH = 4;
-        static constexpr int32_t COL_ANIM_DELAY_TICKS = 5;
-        static constexpr int32_t COL_NEXT_ATTACK_DELAY_TICKS = 6;
-        static constexpr int32_t COL_DANGER_TILE_LINE = 7;
-        static constexpr int32_t COL_DAMAGE_TYPE = 8;
-        static constexpr int32_t COL_PRAYER_PROTECTION = 9;
-    };
-
-    struct TfaOcellusBarrage final {
-        TfaOcellusBarrage() = delete;
-        static constexpr int32_t ID = 141;
-        static constexpr int32_t COL_PHASE = 0;
-        static constexpr int32_t COL_SPEED = 1;
-        static constexpr int32_t COL_ATTACK_COLUMN = 2;
-        static constexpr int32_t COL_ATTACK_ROW = 3;
-    };
-
     struct FletchingBlowpipeCrafting final {
         FletchingBlowpipeCrafting() = delete;
         static constexpr int32_t ID = 142;
@@ -11087,36 +9589,6 @@ struct DBTableID final {
         static constexpr int32_t COL_REWARD_MARLIN = 25;
     };
 
-    struct SailingBtGwenithGlideCrystalData final {
-        SailingBtGwenithGlideCrystalData() = delete;
-        static constexpr int32_t ID = 144;
-        static constexpr int32_t COL_CRYSTAL_LOC = 0;
-        static constexpr int32_t COL_CRYSTAL_COORD = 1;
-        static constexpr int32_t COL_FADE_DATA = 2;
-        static constexpr int32_t COL_PORTALS = 3;
-    };
-
-    struct SailingBtGwenithGlidePortals final {
-        SailingBtGwenithGlidePortals() = delete;
-        static constexpr int32_t ID = 145;
-        static constexpr int32_t COL_AREA = 0;
-        static constexpr int32_t COL_DESTINATION = 1;
-        static constexpr int32_t COL_DESTINATION_ALT = 2;
-        static constexpr int32_t COL_FLAG_DESTINATION_ALT = 3;
-        static constexpr int32_t COL_BARRACUDA_OBJECTIVE = 4;
-        static constexpr int32_t COL_BARRACUDA_RANK_MIN = 5;
-        static constexpr int32_t COL_BARRACUDA_RANK_MIN_DESTINATION_OVERRIDE = 6;
-    };
-
-    struct SailingBtJubblyJivePillars final {
-        SailingBtJubblyJivePillars() = delete;
-        static constexpr int32_t ID = 146;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_CLICKBOX_COORD = 1;
-        static constexpr int32_t COL_JUBBLY_SPAWN = 2;
-        static constexpr int32_t COL_PROJANIM_DESTINATION = 3;
-    };
-
     struct BoatLocationSpriteData final {
         BoatLocationSpriteData() = delete;
         static constexpr int32_t ID = 147;
@@ -11151,44 +9623,6 @@ struct DBTableID final {
         static constexpr int32_t COL_REQUIRES_TELEPORT_FOCUS = 13;
         static constexpr int32_t COL_REQUIRES_GREATER_TELEPORT_FOCUS = 14;
         static constexpr int32_t COL_REQUIRES_EMPTY_CARGO_HOLD = 15;
-    };
-
-    struct SailingChanceEncounters final {
-        SailingChanceEncounters() = delete;
-        static constexpr int32_t ID = 150;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_NAME = 1;
-        static constexpr int32_t COL_WEIGHTING = 2;
-    };
-
-    struct SailingChanceEncounterRescueNpcs final {
-        SailingChanceEncounterRescueNpcs() = delete;
-        static constexpr int32_t ID = 151;
-        static constexpr int32_t COL_ADRIFT_NPC = 0;
-        static constexpr int32_t COL_PASSENGER_NPC = 1;
-        static constexpr int32_t COL_DIALOGUE_ADRIFT = 2;
-        static constexpr int32_t COL_DIALOGUE_PASSENGER_NPC = 3;
-        static constexpr int32_t COL_DIALOGUE_PASSENGER_PLAYER = 4;
-        static constexpr int32_t COL_DIALOGUE_COMPLETE = 5;
-        static constexpr int32_t COL_MES_BOARDING = 6;
-        static constexpr int32_t COL_MES_COMPLETE = 7;
-        static constexpr int32_t COL_PICKUP_XP = 8;
-        static constexpr int32_t COL_RESCUE_XP = 9;
-    };
-
-    struct SailingChanceEncountersLostGoods final {
-        SailingChanceEncountersLostGoods() = delete;
-        static constexpr int32_t ID = 152;
-        static constexpr int32_t COL_ADRIFT_NPC = 0;
-        static constexpr int32_t COL_SAILING_LEVEL = 1;
-        static constexpr int32_t COL_XP = 2;
-    };
-
-    struct SailingChanceEncountersLostGoodsResource final {
-        SailingChanceEncountersLostGoodsResource() = delete;
-        static constexpr int32_t ID = 153;
-        static constexpr int32_t COL_REWARD = 0;
-        static constexpr int32_t COL_MES = 1;
     };
 
     struct SailingChartingCore final {
@@ -11299,24 +9733,6 @@ struct DBTableID final {
         static constexpr int32_t COL_ATTACK_SPOTANIM_SOUTH = 22;
         static constexpr int32_t COL_ATTACK_SPOTANIM_WEST = 23;
         static constexpr int32_t COL_ATTACK_SOUND = 24;
-    };
-
-    struct SailingCombatSupportFacility final {
-        SailingCombatSupportFacility() = delete;
-        static constexpr int32_t ID = 163;
-        static constexpr int32_t COL_FACILITY_LOC_INACTIVE = 0;
-        static constexpr int32_t COL_FACILITY_LOC_ACTIVE = 1;
-        static constexpr int32_t COL_LEVEL_REQUIRED = 2;
-        static constexpr int32_t COL_HUMAN_INTERACTION_ANIM = 3;
-        static constexpr int32_t COL_INTERACTION_ANIM = 4;
-        static constexpr int32_t COL_ACTIVATE_SFX = 5;
-        static constexpr int32_t COL_DEACTIVATE_SFX = 6;
-        static constexpr int32_t COL_CHARGE_SFX = 7;
-        static constexpr int32_t COL_INACTIVE_STATS = 8;
-        static constexpr int32_t COL_ACTIVE_STATS = 9;
-        static constexpr int32_t COL_UPKEEP_COST = 10;
-        static constexpr int32_t COL_INTERACT_VERB_ACTIVATE = 11;
-        static constexpr int32_t COL_INTERACT_VERB_DEACTIVATE = 12;
     };
 
     struct SailingBoatFacilityStats final {
@@ -11512,22 +9928,6 @@ struct DBTableID final {
         static constexpr int32_t COL_STAT_DECKHANDINESS = 24;
     };
 
-    struct SailingShipyard final {
-        SailingShipyard() = delete;
-        static constexpr int32_t ID = 174;
-        static constexpr int32_t COL_SHIPYARD_ID = 0;
-        static constexpr int32_t COL_ENTRY = 1;
-        static constexpr int32_t COL_FACECOORD = 2;
-        static constexpr int32_t COL_GANGPLANK = 3;
-        static constexpr int32_t COL_BUILDSPACE_ORIGIN = 4;
-        static constexpr int32_t COL_BUILDSPACE_WIDTH = 5;
-        static constexpr int32_t COL_BUILDSPACE_HEIGHT = 6;
-        static constexpr int32_t COL_BUILDSPACE_ANCHOR = 7;
-        static constexpr int32_t COL_BOAT_ROTATION = 8;
-        static constexpr int32_t COL_NPC = 9;
-        static constexpr int32_t COL_OBJ = 10;
-    };
-
     struct SailingBoatHotspot final {
         SailingBoatHotspot() = delete;
         static constexpr int32_t ID = 175;
@@ -11632,37 +10032,6 @@ struct DBTableID final {
         static constexpr int32_t COL_PATTERN_DEFAULT = 16;
     };
 
-    struct SailingBoatSailFx final {
-        SailingBoatSailFx() = delete;
-        static constexpr int32_t ID = 180;
-        static constexpr int32_t COL_SAIL_REVERSE = 0;
-        static constexpr int32_t COL_SAIL_DOWN = 1;
-        static constexpr int32_t COL_SAIL_HALF = 2;
-        static constexpr int32_t COL_SAIL_FULL = 3;
-        static constexpr int32_t COL_SAIL_TRANSITION_DOWN_TO_HALF = 4;
-        static constexpr int32_t COL_SAIL_TRANSITION_DOWN_TO_FULL = 5;
-        static constexpr int32_t COL_SAIL_TRANSITION_HALF_TO_DOWN = 6;
-        static constexpr int32_t COL_SAIL_TRANSITION_FULL_TO_DOWN = 7;
-        static constexpr int32_t COL_SAIL_TRANSITION_HALF_TO_FULL = 8;
-        static constexpr int32_t COL_SAIL_TRANSITION_FULL_TO_HALF = 9;
-        static constexpr int32_t COL_SAIL_SFX_DOWN_TO_HALF = 10;
-        static constexpr int32_t COL_SAIL_SFX_DOWN_TO_FULL = 11;
-        static constexpr int32_t COL_SAIL_SFX_HALF_TO_DOWN = 12;
-        static constexpr int32_t COL_SAIL_SFX_FULL_TO_DOWN = 13;
-        static constexpr int32_t COL_SAIL_SFX_HALF_TO_FULL = 14;
-        static constexpr int32_t COL_SAIL_SFX_FULL_TO_HALF = 15;
-        static constexpr int32_t COL_SAIL_SFX_LUFFING_DOWN = 16;
-        static constexpr int32_t COL_SAIL_SFX_LUFFING_HALF = 17;
-        static constexpr int32_t COL_SAIL_SFX_LUFFING_FULL = 18;
-        static constexpr int32_t COL_SAIL_SFX_SPEEDBOOST = 19;
-        static constexpr int32_t COL_SAIL_VFX_LUFFING_REVERSE = 20;
-        static constexpr int32_t COL_SAIL_VFX_LUFFING_DOWN = 21;
-        static constexpr int32_t COL_SAIL_VFX_LUFFING_HALF = 22;
-        static constexpr int32_t COL_SAIL_VFX_LUFFING_FULL = 23;
-        static constexpr int32_t COL_SAIL_VFX_SPEEDBOOST = 24;
-        static constexpr int32_t COL_SAIL_TRIM_HUMAN = 25;
-    };
-
     struct SailingBoatSteering final {
         SailingBoatSteering() = delete;
         static constexpr int32_t ID = 181;
@@ -11685,25 +10054,6 @@ struct DBTableID final {
         static constexpr int32_t COL_SIDEPANEL_LAYOUT_DATA = 16;
         static constexpr int32_t COL_CREW_STAT_REQUIREMENT = 17;
         static constexpr int32_t COL_FACILITY_CUSTOMISATION_ORDER = 18;
-    };
-
-    struct SailingBoatSteeringFx final {
-        SailingBoatSteeringFx() = delete;
-        static constexpr int32_t ID = 182;
-        static constexpr int32_t COL_STEERING_TRIM_ANIM = 0;
-        static constexpr int32_t COL_STEERING_TRIM_ANIM_HUMAN = 1;
-        static constexpr int32_t COL_STEERING_SPEEDBOOSTED_ANIM = 2;
-        static constexpr int32_t COL_STEERING_SPEEDBOOSTED_ANIM_HUMAN = 3;
-        static constexpr int32_t COL_STEERING_SPEEDBOOSTED_ANIM_END = 4;
-        static constexpr int32_t COL_STEERING_SPEEDBOOSTED_ANIM_END_HUMAN = 5;
-        static constexpr int32_t COL_STEERING_ANIM_ENGAGE = 6;
-        static constexpr int32_t COL_STEERING_ANIM_ENGAGE_HUMAN = 7;
-        static constexpr int32_t COL_STEERING_ANIM_IN_USE_HUMAN = 8;
-        static constexpr int32_t COL_STEERING_ANIM_IN_USE = 9;
-        static constexpr int32_t COL_STEERING_ANIM_IDLE = 10;
-        static constexpr int32_t COL_STEERING_SFX_TRIM = 11;
-        static constexpr int32_t COL_STEERING_SFX_ENGAGE = 12;
-        static constexpr int32_t COL_STEERING_SFX_DISENGAGE = 13;
     };
 
     struct SailingBoatHullOrnament final {
@@ -11813,69 +10163,6 @@ struct DBTableID final {
         static constexpr int32_t COL_OFFSET = 7;
     };
 
-    struct SailingShoal final {
-        SailingShoal() = delete;
-        static constexpr int32_t ID = 190;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_NAME = 1;
-        static constexpr int32_t COL_ENTITY_DATA = 2;
-        static constexpr int32_t COL_TARGETSPEED = 3;
-        static constexpr int32_t COL_TURNSPEED = 4;
-        static constexpr int32_t COL_ACCELERATION = 5;
-        static constexpr int32_t COL_SHOAL_SPAWN = 6;
-        static constexpr int32_t COL_SHOAL_RARESPAWN_ID = 7;
-        static constexpr int32_t COL_SHOAL_RARESPAWN_LEVEL_REQUIRED = 8;
-        static constexpr int32_t COL_SHOAL_RARESPAWN = 9;
-        static constexpr int32_t COL_SHOAL_RARESPAWN_MODEL = 10;
-        static constexpr int32_t COL_SHOAL_LOOT = 11;
-        static constexpr int32_t COL_SHOAL_LOOT_RARESPAWN = 12;
-        static constexpr int32_t COL_LEVEL_REQUIRED = 13;
-        static constexpr int32_t COL_SHOAL_ACCEPTED_BAIT = 14;
-        static constexpr int32_t COL_SHOAL_MAX_DEPTH = 15;
-        static constexpr int32_t COL_SHOAL_DEPTH_CHANGE_RATE = 16;
-    };
-
-    struct SailingShoalSpecific final {
-        SailingShoalSpecific() = delete;
-        static constexpr int32_t ID = 191;
-        static constexpr int32_t COL_DEBUG_NAME = 0;
-        static constexpr int32_t COL_SHOAL_DATA = 1;
-        static constexpr int32_t COL_ORIGIN = 2;
-        static constexpr int32_t COL_WIDTH = 3;
-        static constexpr int32_t COL_HEIGHT = 4;
-        static constexpr int32_t COL_ANGLE = 5;
-        static constexpr int32_t COL_SPAWN = 6;
-        static constexpr int32_t COL_RESPAWNRATE = 7;
-        static constexpr int32_t COL_PATROL_ROUTE = 8;
-    };
-
-    struct SailingShoalDroptable final {
-        SailingShoalDroptable() = delete;
-        static constexpr int32_t ID = 192;
-        static constexpr int32_t COL_SHOAL_FISH_GIVEN = 0;
-        static constexpr int32_t COL_RARE_FISH_CHANCE = 1;
-        static constexpr int32_t COL_PAINT_ODDS = 2;
-        static constexpr int32_t COL_LOWCHANCE = 3;
-        static constexpr int32_t COL_HIGHCHANCE = 4;
-    };
-
-    struct SailingTrawlingAnimations final {
-        SailingTrawlingAnimations() = delete;
-        static constexpr int32_t ID = 193;
-        static constexpr int32_t COL_HUMAN_IDLE = 0;
-        static constexpr int32_t COL_HUMAN_ENGAGE = 1;
-        static constexpr int32_t COL_HUMAN_LOWER_TO_1 = 2;
-        static constexpr int32_t COL_HUMAN_LOWER_TO_2_OR_3 = 3;
-        static constexpr int32_t COL_HUMAN_RAISE = 4;
-        static constexpr int32_t COL_HUMAN_RESET_TO_IDLE = 5;
-        static constexpr int32_t COL_TRAWLING_NET_LOWER_TO_1 = 6;
-        static constexpr int32_t COL_TRAWLING_NET_LOWER_TO_2 = 7;
-        static constexpr int32_t COL_TRAWLING_NET_LOWER_TO_3 = 8;
-        static constexpr int32_t COL_TRAWLING_NET_RAISE_TO_2 = 9;
-        static constexpr int32_t COL_TRAWLING_NET_RAISE_TO_1 = 10;
-        static constexpr int32_t COL_TRAWLING_NET_RESET_TO_IDLE = 11;
-    };
-
     struct SailingDock final {
         SailingDock() = delete;
         static constexpr int32_t ID = 194;
@@ -11896,41 +10183,6 @@ struct DBTableID final {
         static constexpr int32_t COL_DRINK_CRATE_POS = 14;
         static constexpr int32_t COL_DRINK_CRATE_ANGLE = 15;
         static constexpr int32_t COL_PORT_TASK_GAURANTEED_BOUNTY = 16;
-    };
-
-    struct SailingNpcBoat final {
-        SailingNpcBoat() = delete;
-        static constexpr int32_t ID = 195;
-        static constexpr int32_t COL_NAME = 0;
-        static constexpr int32_t COL_INLINE_NAME = 1;
-        static constexpr int32_t COL_DEBUG_NAME = 2;
-        static constexpr int32_t COL_ORIGIN = 3;
-        static constexpr int32_t COL_ENTRY = 4;
-        static constexpr int32_t COL_WIDTH = 5;
-        static constexpr int32_t COL_HEIGHT = 6;
-        static constexpr int32_t COL_MULTIWAY_DECK = 7;
-        static constexpr int32_t COL_SPAWN = 8;
-        static constexpr int32_t COL_ANGLE = 9;
-        static constexpr int32_t COL_NPC_SPAWN = 10;
-        static constexpr int32_t COL_ENTITY_DATA = 11;
-        static constexpr int32_t COL_RESPAWNRATE = 12;
-        static constexpr int32_t COL_BEHAVIOUR = 13;
-        static constexpr int32_t COL_PATROL = 14;
-        static constexpr int32_t COL_WANDERRANGE = 15;
-        static constexpr int32_t COL_SAIL = 16;
-        static constexpr int32_t COL_STATIC_SPAWN = 17;
-        static constexpr int32_t COL_ALLOW_INSTANCE = 18;
-        static constexpr int32_t COL_SAILING_NPC_BOAT_BASE_STATS = 19;
-        static constexpr int32_t COL_HP_COORD = 20;
-        static constexpr int32_t COL_HP_NPC = 21;
-        static constexpr int32_t COL_WEAPON_DATA = 22;
-        static constexpr int32_t COL_HELM_DATA = 23;
-        static constexpr int32_t COL_HULL_DATA = 24;
-        static constexpr int32_t COL_GUN_PORT = 25;
-        static constexpr int32_t COL_CAPSIZING_ANIM = 26;
-        static constexpr int32_t COL_DROP_NPC = 27;
-        static constexpr int32_t COL_DEATH_DROP = 28;
-        static constexpr int32_t COL_COLLECTED_DROP = 29;
     };
 
     struct SailingBoatCargoholdWhitelistObj final {
@@ -11983,17 +10235,6 @@ struct DBTableID final {
         static constexpr int32_t COL_TASKS_ON_SUBSEQUENT_ROWS = 3;
     };
 
-    struct SailingAnchorAnims final {
-        SailingAnchorAnims() = delete;
-        static constexpr int32_t ID = 199;
-        static constexpr int32_t COL_SAILING_ANCHOR_INACTIVE = 0;
-        static constexpr int32_t COL_SAILING_ANCHOR_ACTIVE = 1;
-        static constexpr int32_t COL_SAILING_ANCHOR_DROP = 2;
-        static constexpr int32_t COL_SAILING_ANCHOR_PULL = 3;
-        static constexpr int32_t COL_SAILING_ANCHOR_HUMAN_DROP = 4;
-        static constexpr int32_t COL_SAILING_ANCHOR_HUMAN_PULL = 5;
-    };
-
     struct SailingSeaHazard final {
         SailingSeaHazard() = delete;
         static constexpr int32_t ID = 200;
@@ -12021,63 +10262,6 @@ struct DBTableID final {
         static constexpr int32_t COL_SFX_EMITTER_LOCS = 9;
     };
 
-    struct SailingShipwreckCluster final {
-        SailingShipwreckCluster() = delete;
-        static constexpr int32_t ID = 202;
-        static constexpr int32_t COL_CONTROLLER_COORD = 0;
-        static constexpr int32_t COL_DEBUG_NAME = 1;
-        static constexpr int32_t COL_ACTIVE_SHIPWRECKS_MAX = 2;
-        static constexpr int32_t COL_SHIPWRECK_DATA = 3;
-        static constexpr int32_t COL_SHIPWRECK_COORD = 4;
-    };
-
-    struct SailingShipwreck final {
-        SailingShipwreck() = delete;
-        static constexpr int32_t ID = 203;
-        static constexpr int32_t COL_DEBUG_NAME = 0;
-        static constexpr int32_t COL_SAILING_SHIPWRECK_DURABILITY = 1;
-        static constexpr int32_t COL_ACTIVE_LOC = 2;
-        static constexpr int32_t COL_INACTIVE_LOC = 3;
-        static constexpr int32_t COL_LEVELREQ = 4;
-        static constexpr int32_t COL_SALVAGE = 5;
-        static constexpr int32_t COL_XP = 6;
-        static constexpr int32_t COL_LOWCHANCE = 7;
-        static constexpr int32_t COL_HIGHCHANCE = 8;
-        static constexpr int32_t COL_SHIPWRECK_FULL_TO_DEPLETED = 9;
-        static constexpr int32_t COL_SHIPWRECK_DEPLETED_TO_FULL = 10;
-        static constexpr int32_t COL_SHIPWRECK_IDLE_ANIM = 11;
-        static constexpr int32_t COL_SHIPWRECK_STUMP_IDLE_ANIM = 12;
-        static constexpr int32_t COL_PET_CHANCE = 13;
-    };
-
-    struct SailingSalvagingHookAnimations final {
-        SailingSalvagingHookAnimations() = delete;
-        static constexpr int32_t ID = 204;
-        static constexpr int32_t COL_SAILING_SALVAGING_LOC_DROP_ANIM = 0;
-        static constexpr int32_t COL_SAILING_SALVAGING_LOC_IDLE02_ANIM = 1;
-        static constexpr int32_t COL_SAILING_SALVAGING_LOC_RESET_ANIM = 2;
-        static constexpr int32_t COL_SAILING_SALVAGING_PLAYER_DROP_ANIM = 3;
-        static constexpr int32_t COL_SAILING_SALVAGING_PLAYER_DROP_ANIM_CREW = 4;
-        static constexpr int32_t COL_SAILING_SALVAGING_PLAYER_INTERACT_ANIM = 5;
-        static constexpr int32_t COL_SAILING_SALVAGING_PLAYER_RESET_ANIM = 6;
-    };
-
-    struct ThievingChest final {
-        ThievingChest() = delete;
-        static constexpr int32_t ID = 205;
-        static constexpr int32_t COL_THIEVING_REQ = 0;
-        static constexpr int32_t COL_THIEVING_XP = 1;
-        static constexpr int32_t COL_STAT_LOW = 2;
-        static constexpr int32_t COL_STAT_HIGH = 3;
-        static constexpr int32_t COL_LOCKPICK_STAT_LOW = 4;
-        static constexpr int32_t COL_LOCKPICK_STAT_HIGH = 5;
-        static constexpr int32_t COL_TELEPORT_STAT_LOW = 6;
-        static constexpr int32_t COL_TELEPORT_STAT_HIGH = 7;
-        static constexpr int32_t COL_OPEN_CHEST = 8;
-        static constexpr int32_t COL_LOOTCONTAINER_DETAILS = 9;
-        static constexpr int32_t COL_GLE_NPC = 10;
-    };
-
     struct CharteringDestinations final {
         CharteringDestinations() = delete;
         static constexpr int32_t ID = 206;
@@ -12090,12 +10274,6 @@ struct DBTableID final {
         static constexpr int32_t COL_CHARTERING_DESTINATION_INZONE = 6;
         static constexpr int32_t COL_CHARTERING_SHOP_INV = 7;
         static constexpr int32_t COL_RESTRICTED_CONTENT = 8;
-    };
-
-    struct CharteringCosts final {
-        CharteringCosts() = delete;
-        static constexpr int32_t ID = 207;
-        static constexpr int32_t COL_CHARTERING_COSTS = 0;
     };
 
     struct PatchyData final {
@@ -12124,12 +10302,6 @@ struct DBTableID final {
         static constexpr int32_t COL_COMBAT_SIGIL = 2;
         static constexpr int32_t COL_SKILLING_SIGIL = 3;
         static constexpr int32_t COL_UTILITY_SIGIL = 4;
-    };
-
-    struct CowbossScenerynpcs final {
-        CowbossScenerynpcs() = delete;
-        static constexpr int32_t ID = 211;
-        static constexpr int32_t COL_ENTRY = 0;
     };
 
     struct SkillGuideSubsections final {
@@ -12167,20 +10339,6 @@ struct DBTableID final {
         static constexpr int32_t COL_MINIGAME_ICON = 3;
     };
 
-    struct SailingGunPorts final {
-        SailingGunPorts() = delete;
-        static constexpr int32_t ID = 215;
-        static constexpr int32_t COL_MATERIAL = 0;
-        static constexpr int32_t COL_PORT_MID_CLOSED = 1;
-        static constexpr int32_t COL_PORT_MID_OPEN = 2;
-        static constexpr int32_t COL_PORT_STERN_CLOSED = 3;
-        static constexpr int32_t COL_PORT_STERN_OPEN = 4;
-        static constexpr int32_t COL_STARBOARD_MID_CLOSED = 5;
-        static constexpr int32_t COL_STARBOARD_MID_OPEN = 6;
-        static constexpr int32_t COL_STARBOARD_STERN_CLOSED = 7;
-        static constexpr int32_t COL_STARBOARD_STERN_OPEN = 8;
-    };
-
     struct TalentTree final {
         TalentTree() = delete;
         static constexpr int32_t ID = 216;
@@ -12192,16 +10350,6 @@ struct DBTableID final {
         static constexpr int32_t COL_NODE_SIZE = 5;
         static constexpr int32_t COL_NODE_SPRITE = 6;
         static constexpr int32_t COL_DEBUG_NAME = 7;
-    };
-
-    struct TalentDebug final {
-        TalentDebug() = delete;
-        static constexpr int32_t ID = 217;
-        static constexpr int32_t COL_BUILD_NAME = 0;
-        static constexpr int32_t COL_POINTS_USED = 1;
-        static constexpr int32_t COL_NODE = 2;
-        static constexpr int32_t COL_BUILD_STYLE = 3;
-        static constexpr int32_t COL_BUILD_STYLE_SUB = 4;
     };
 
     struct LeagueRelicTeleportItem final {
@@ -12237,47 +10385,6 @@ struct DBTableID final {
         static constexpr int32_t COL_TOGGLE_OFF_MESSAGE = 4;
         static constexpr int32_t COL_TOGGLE_INVERT = 5;
         static constexpr int32_t COL_TOGGLE_BIT = 6;
-    };
-
-    struct LeagueGuardianData final {
-        LeagueGuardianData() = delete;
-        static constexpr int32_t ID = 222;
-        static constexpr int32_t COL_NAME = 0;
-        static constexpr int32_t COL_BODY_DATA = 1;
-        static constexpr int32_t COL_ANIM_DATA = 2;
-    };
-
-    struct LeagueGuardianBodyData final {
-        LeagueGuardianBodyData() = delete;
-        static constexpr int32_t ID = 223;
-        static constexpr int32_t COL_HANDS_MODEL = 0;
-        static constexpr int32_t COL_FEET_MODEL = 1;
-        static constexpr int32_t COL_LEGS_MODEL = 2;
-        static constexpr int32_t COL_JAW_MODEL = 3;
-        static constexpr int32_t COL_HEAD_MODEL = 4;
-        static constexpr int32_t COL_HAT_MODEL = 5;
-        static constexpr int32_t COL_BODY_MODEL = 6;
-        static constexpr int32_t COL_SINGLE_BODY_MODEL = 7;
-        static constexpr int32_t COL_SINGLE_BODY_MODEL_EXTRA = 8;
-    };
-
-    struct LeagueGuardianAnimData final {
-        LeagueGuardianAnimData() = delete;
-        static constexpr int32_t ID = 224;
-        static constexpr int32_t COL_READY_ANIM = 0;
-        static constexpr int32_t COL_RUN_ANIM = 1;
-        static constexpr int32_t COL_WALK_ANIM = 2;
-        static constexpr int32_t COL_SPAWN_ANIM = 3;
-        static constexpr int32_t COL_SPAWN_SPOTANIM = 4;
-        static constexpr int32_t COL_DESPAWN_ANIM = 5;
-        static constexpr int32_t COL_DESPAWN_SPOTANIM = 6;
-        static constexpr int32_t COL_WEAPON_MODEL = 7;
-        static constexpr int32_t COL_ATTACK_ANIM = 8;
-        static constexpr int32_t COL_TRAVEL_SPOTANIM = 9;
-        static constexpr int32_t COL_LAUNCH_SPOTANIM = 10;
-        static constexpr int32_t COL_IMPACT_SPOTANIM = 11;
-        static constexpr int32_t COL_ATTACK_SOUND = 12;
-        static constexpr int32_t COL_CHANGE_STYLE_SPOTANIM = 13;
     };
 
     struct Transmutation final {
@@ -12347,175 +10454,6 @@ struct DBTableID final {
         static constexpr int32_t COL_FACILITY_CUSTOMISATION_ORDER = 15;
     };
 
-    struct SailingNpcBoatBaseStats final {
-        SailingNpcBoatBaseStats() = delete;
-        static constexpr int32_t ID = 231;
-        static constexpr int32_t COL_BOAT_HP_MAX = 0;
-        static constexpr int32_t COL_BOAT_DEFENCE = 1;
-        static constexpr int32_t COL_BOAT_STABDEFENCE = 2;
-        static constexpr int32_t COL_BOAT_SLASHDEFENCE = 3;
-        static constexpr int32_t COL_BOAT_CRUSHDEFENCE = 4;
-        static constexpr int32_t COL_BOAT_HEAVYRANGEDDEFENCE = 5;
-        static constexpr int32_t COL_BOAT_STANDARDRANGEDDEFENCE = 6;
-        static constexpr int32_t COL_BOAT_LIGHTRANGEDDEFENCE = 7;
-        static constexpr int32_t COL_BOAT_MAGICDEFENCE = 8;
-        static constexpr int32_t COL_BOAT_MAGICLEVEL = 9;
-        static constexpr int32_t COL_BOAT_ARMOUR = 10;
-        static constexpr int32_t COL_BOAT_AIRMAGICARMOUR = 11;
-        static constexpr int32_t COL_BOAT_EARTHMAGICARMOUR = 12;
-        static constexpr int32_t COL_BOAT_FIREMAGICARMOUR = 13;
-        static constexpr int32_t COL_BOAT_WATERMAGICARMOUR = 14;
-        static constexpr int32_t COL_BOAT_LIGHTRANGEDARMOUR = 15;
-        static constexpr int32_t COL_BOAT_STANDARDRANGEDARMOUR = 16;
-        static constexpr int32_t COL_BOAT_HEAVYRANGEDARMOUR = 17;
-        static constexpr int32_t COL_BOAT_STABARMOUR = 18;
-        static constexpr int32_t COL_BOAT_SLASHARMOUR = 19;
-        static constexpr int32_t COL_BOAT_CRUSHARMOUR = 20;
-        static constexpr int32_t COL_BOAT_TARGETSPEED = 21;
-        static constexpr int32_t COL_BOAT_TURNSPEED = 22;
-        static constexpr int32_t COL_BOAT_ACCELERATION = 23;
-    };
-
-    struct SailingNpcBoatWeapon final {
-        SailingNpcBoatWeapon() = delete;
-        static constexpr int32_t ID = 232;
-        static constexpr int32_t COL_FACILITY_LOC = 0;
-        static constexpr int32_t COL_ACCURACY = 1;
-        static constexpr int32_t COL_DAMAGE = 2;
-        static constexpr int32_t COL_ATTACK_RATE = 3;
-        static constexpr int32_t COL_DAMAGE_TYPE = 4;
-        static constexpr int32_t COL_ATTACK_RANGE = 5;
-        static constexpr int32_t COL_AMMUNITION_DATA = 6;
-        static constexpr int32_t COL_HUMAN_ATTACK_ANIM = 7;
-        static constexpr int32_t COL_HUMAN_IDLE_ANIM = 8;
-        static constexpr int32_t COL_HUMAN_ENGAGE_ANIM = 9;
-        static constexpr int32_t COL_IDLE_ANIM_DISENGAGED = 10;
-        static constexpr int32_t COL_IDLE_ANIM_ENGAGED = 11;
-        static constexpr int32_t COL_ENGAGE_ANIM = 12;
-        static constexpr int32_t COL_ATTACK_ANIM = 13;
-        static constexpr int32_t COL_ATTACK_SPOTANIM_NORTH = 14;
-        static constexpr int32_t COL_ATTACK_SPOTANIM_EAST = 15;
-        static constexpr int32_t COL_ATTACK_SPOTANIM_SOUTH = 16;
-        static constexpr int32_t COL_ATTACK_SPOTANIM_WEST = 17;
-    };
-
-    struct SailingNpcBoatSteering final {
-        SailingNpcBoatSteering() = delete;
-        static constexpr int32_t ID = 233;
-        static constexpr int32_t COL_LOC = 0;
-        static constexpr int32_t COL_ANIMATION_DATA = 1;
-    };
-
-    struct AmbientSfx final {
-        AmbientSfx() = delete;
-        static constexpr int32_t ID = 234;
-        static constexpr int32_t COL_AMBIENTSOUND = 0;
-        static constexpr int32_t COL_AREA = 1;
-        static constexpr int32_t COL_AREA_EXCLUDE = 2;
-        static constexpr int32_t COL_INZONE = 3;
-        static constexpr int32_t COL_INZONE_EXCLUDE = 4;
-    };
-
-    struct DrakanAttackList final {
-        DrakanAttackList() = delete;
-        static constexpr int32_t ID = 235;
-        static constexpr int32_t COL_ATTACK = 0;
-    };
-
-    struct DrakanAttackSequenceList final {
-        DrakanAttackSequenceList() = delete;
-        static constexpr int32_t ID = 236;
-        static constexpr int32_t COL_ATTACK_INSTRUCTION = 0;
-        static constexpr int32_t COL_ATTACK_WEIGHT_OVERRIDE = 1;
-    };
-
-    struct DrakanAttackSequence final {
-        DrakanAttackSequence() = delete;
-        static constexpr int32_t ID = 237;
-        static constexpr int32_t COL_ATTACK = 0;
-        static constexpr int32_t COL_ACTION_DELAY = 1;
-        static constexpr int32_t COL_TELEGRAPH = 2;
-        static constexpr int32_t COL_FACING_START_END = 3;
-        static constexpr int32_t COL_FREEZE_START_DURATION = 4;
-    };
-
-    struct DrakanTileAttack final {
-        DrakanTileAttack() = delete;
-        static constexpr int32_t ID = 238;
-        static constexpr int32_t COL_TELEGRAPH = 0;
-        static constexpr int32_t COL_HIT_VISUALS = 1;
-        static constexpr int32_t COL_DODGE_VISUALS = 2;
-        static constexpr int32_t COL_PAIRED_VISUALS = 3;
-        static constexpr int32_t COL_HIT_TILE_OFFSETS = 4;
-        static constexpr int32_t COL_DODGE_TILE_OFFSETS = 5;
-        static constexpr int32_t COL_FACE_TARGET = 6;
-        static constexpr int32_t COL_DYNAMIC_TRACKING = 7;
-        static constexpr int32_t COL_OFFSET_RANDOMISATION = 8;
-        static constexpr int32_t COL_DAMAGE_STYLE = 9;
-        static constexpr int32_t COL_PRAYER_REDUCTION = 10;
-        static constexpr int32_t COL_DAMAGE_RANGE = 11;
-    };
-
-    struct DrakanTrackingAttack final {
-        DrakanTrackingAttack() = delete;
-        static constexpr int32_t ID = 239;
-        static constexpr int32_t COL_TELEGRAPH = 0;
-        static constexpr int32_t COL_HIT_VISUALS = 1;
-        static constexpr int32_t COL_PAIRED_VISUALS = 2;
-        static constexpr int32_t COL_DAMAGE_STYLE = 3;
-        static constexpr int32_t COL_PRAYER_REDUCTION = 4;
-        static constexpr int32_t COL_DAMAGE_RANGE = 5;
-    };
-
-    struct DrakanUniqueAttack final {
-        DrakanUniqueAttack() = delete;
-        static constexpr int32_t ID = 240;
-        static constexpr int32_t COL_TELEGRAPH = 0;
-    };
-
-    struct DrakanVisuals final {
-        DrakanVisuals() = delete;
-        static constexpr int32_t ID = 241;
-        static constexpr int32_t COL_ANIM = 0;
-        static constexpr int32_t COL_SPOTANIM = 1;
-        static constexpr int32_t COL_SPOTANIM_TARGET = 2;
-        static constexpr int32_t COL_TILE_NPC_DURATION = 3;
-        static constexpr int32_t COL_TILE_SPOTANIM = 4;
-        static constexpr int32_t COL_SPOTANIM_HEIGHT = 5;
-        static constexpr int32_t COL_SOUND_AREA = 6;
-    };
-
-    struct DrakanAnims final {
-        DrakanAnims() = delete;
-        static constexpr int32_t ID = 242;
-        static constexpr int32_t COL_LAME_WING = 0;
-        static constexpr int32_t COL_BLOOD_WING = 1;
-    };
-
-    struct DrakanSpotanims final {
-        DrakanSpotanims() = delete;
-        static constexpr int32_t ID = 243;
-        static constexpr int32_t COL_LAME_WING = 0;
-        static constexpr int32_t COL_BLOOD_WING = 1;
-        static constexpr int32_t COL_PICKING_MODE = 2;
-    };
-
-    struct DrakanSpotanimProjanimPairs final {
-        DrakanSpotanimProjanimPairs() = delete;
-        static constexpr int32_t ID = 244;
-        static constexpr int32_t COL_PAIR = 0;
-    };
-
-    struct DrakanFightAlly final {
-        DrakanFightAlly() = delete;
-        static constexpr int32_t ID = 245;
-        static constexpr int32_t COL_DODGE_CHANCE = 0;
-        static constexpr int32_t COL_DODGE_ANIM_SHORT = 1;
-        static constexpr int32_t COL_DODGE_ANIM_LONG = 2;
-        static constexpr int32_t COL_PRAY_SWITCH_CHANCE = 3;
-        static constexpr int32_t COL_DODGE_BYPASS_CHANCE = 4;
-    };
-
     struct CastleDrakanRoom final {
         CastleDrakanRoom() = delete;
         static constexpr int32_t ID = 246;
@@ -12552,40 +10490,6 @@ struct DBTableID final {
         static constexpr int32_t COL_SFX = 13;
     };
 
-    struct CastleDrakanStairs final {
-        CastleDrakanStairs() = delete;
-        static constexpr int32_t ID = 248;
-        static constexpr int32_t COL_STAIRS_COORD = 0;
-        static constexpr int32_t COL_DESTINATION_ROOM = 1;
-        static constexpr int32_t COL_DESTINATION_COORD = 2;
-        static constexpr int32_t COL_DESTINATION_FACING = 3;
-        static constexpr int32_t COL_SFX = 4;
-    };
-
-    struct SangvestiDrakanPatrol final {
-        SangvestiDrakanPatrol() = delete;
-        static constexpr int32_t ID = 249;
-        static constexpr int32_t COL_DESTINATION = 0;
-        static constexpr int32_t COL_DEBUG_ID = 1;
-        static constexpr int32_t COL_CONNECTED_NODES = 2;
-    };
-
-    struct SangvestiSpawn final {
-        SangvestiSpawn() = delete;
-        static constexpr int32_t ID = 250;
-        static constexpr int32_t COL_ID = 0;
-        static constexpr int32_t COL_COORD = 1;
-        static constexpr int32_t COL_NPC = 2;
-        static constexpr int32_t COL_OBJ = 3;
-    };
-
-    struct SotfaForestVariant final {
-        SotfaForestVariant() = delete;
-        static constexpr int32_t ID = 251;
-        static constexpr int32_t COL_RANDOM_ORDER = 0;
-        static constexpr int32_t COL_ENCOUNTER = 1;
-    };
-
     struct SotfaForestEncounter final {
         SotfaForestEncounter() = delete;
         static constexpr int32_t ID = 252;
@@ -12595,172 +10499,6 @@ struct DBTableID final {
         static constexpr int32_t COL_WIDTH = 3;
         static constexpr int32_t COL_HEIGHT = 4;
         static constexpr int32_t COL_ENTRY = 5;
-    };
-
-    struct SotfaForestMaxillaBeastPatrol final {
-        SotfaForestMaxillaBeastPatrol() = delete;
-        static constexpr int32_t ID = 253;
-        static constexpr int32_t COL_PATROL = 0;
-    };
-
-    struct CoordinateSetList final {
-        CoordinateSetList() = delete;
-        static constexpr int32_t ID = 254;
-        static constexpr int32_t COL_SET = 0;
-    };
-
-    struct CoordinateSet final {
-        CoordinateSet() = delete;
-        static constexpr int32_t ID = 255;
-        static constexpr int32_t COL_OFFSET = 0;
-        static constexpr int32_t COL_MAX_SEARCH_RANGE = 1;
-    };
-
-    struct PreparationRecipe final {
-        PreparationRecipe() = delete;
-        static constexpr int32_t ID = 256;
-        static constexpr int32_t COL_INGREDIENT = 0;
-        static constexpr int32_t COL_COOKING_LEVEL_REQUIRED = 1;
-        static constexpr int32_t COL_OUTPUT = 2;
-        static constexpr int32_t COL_COOKING_TIME = 3;
-        static constexpr int32_t COL_MESSAGE = 4;
-        static constexpr int32_t COL_XP = 5;
-        static constexpr int32_t COL_BUYABLE_COST = 6;
-        static constexpr int32_t COL_ANIM = 7;
-        static constexpr int32_t COL_HIDDEN_IN_LIST = 8;
-    };
-
-    struct RiverFishing final {
-        RiverFishing() = delete;
-        static constexpr int32_t ID = 257;
-        static constexpr int32_t COL_SPOT = 0;
-        static constexpr int32_t COL_QUEST_REQUIREMENTS = 1;
-        static constexpr int32_t COL_STAT_REQUIREMENTS = 2;
-        static constexpr int32_t COL_EQUIPMENT_REQUIREMENTS = 3;
-        static constexpr int32_t COL_FISH_SPAWN_PATTERN_OFFSET_ORDERED = 4;
-        static constexpr int32_t COL_FISH_TRAVEL = 5;
-        static constexpr int32_t COL_STATRANDOM_FAILURE = 6;
-        static constexpr int32_t COL_STATRANDOM_SUCCESS = 7;
-        static constexpr int32_t COL_STATRANDOM_LOW_HIGH = 8;
-        static constexpr int32_t COL_XP_PER_LEVEL_NUMERATOR = 9;
-        static constexpr int32_t COL_XP_FLAT = 10;
-        static constexpr int32_t COL_XP_MIN = 11;
-        static constexpr int32_t COL_STREAM_FACING = 12;
-        static constexpr int32_t COL_SUCCESS_AUDIO = 13;
-        static constexpr int32_t COL_FAILURE_AUDIO = 14;
-        static constexpr int32_t COL_PET_RATE_SOURCE = 15;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t NPC_CONTACT_HONEST_JIMMY = 7146;
-            static constexpr int32_t NPC_CONTACT_BERT = 7147;
-            static constexpr int32_t NPC_CONTACT_ADVISOR_GHRIM = 7148;
-            static constexpr int32_t NPC_CONTACT_DARK_MAGE = 7149;
-            static constexpr int32_t NPC_CONTACT_LANTHUS = 7150;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_DRAYNOR = 7151;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_BURTHORPE = 7152;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_CANIFIS = 7153;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_EDGEVILLE = 7154;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_ZANARIS = 7155;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_GNOME_STRONGHOLD = 7156;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_SHILO_VILLAGE = 7157;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_WILDERNESS = 7158;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_MOUNT_KARUULM = 7159;
-            static constexpr int32_t NPC_CONTACT_SLAYER_MASTER_WYRMSCRAIG = 7160;
-            static constexpr int32_t NPC_CONTACT_MURPHY = 7161;
-            static constexpr int32_t NPC_CONTACT_CYRISUS = 7162;
-            static constexpr int32_t NPC_CONTACT_SMOGGY = 7163;
-            static constexpr int32_t NPC_CONTACT_CAPTAIN_GINEA = 7164;
-            static constexpr int32_t NPC_CONTACT_WATSON = 7165;
-            static constexpr int32_t NPC_CONTACT_BARBARIAN_GUARD = 7166;
-            static constexpr int32_t NPC_CONTACT_AMY = 7167;
-            static constexpr int32_t NPC_CONTACT_RANDOM = 7168;
-        };
-    };
-
-    struct ArrowFletching final {
-        ArrowFletching() = delete;
-        static constexpr int32_t ID = 258;
-        static constexpr int32_t COL_ARROWHEAD = 0;
-        static constexpr int32_t COL_REGULAR_PRODUCT = 1;
-        static constexpr int32_t COL_SEEKING_PRODUCT = 2;
-        static constexpr int32_t COL_BATCH_SIZE = 3;
-        static constexpr int32_t COL_LEVELREQ = 4;
-        static constexpr int32_t COL_HEADLESSNAME_SINGLE = 5;
-        static constexpr int32_t COL_HEADLESSNAME_PLURAL = 6;
-        static constexpr int32_t COL_ARROWNAME_PLURAL = 7;
-        static constexpr int32_t COL_TIPNAME_SINGLE = 8;
-        static constexpr int32_t COL_TIPNAME_PLURAL = 9;
-        static constexpr int32_t COL_XP = 10;
-
-        struct Row final {
-            Row() = delete;
-            static constexpr int32_t BRONZE_ARROWS = 16924;
-            static constexpr int32_t IRON_ARROWS = 16925;
-            static constexpr int32_t STEEL_ARROWS = 16926;
-            static constexpr int32_t MITHRIL_ARROWS = 16927;
-            static constexpr int32_t ADAMANT_ARROWS = 16928;
-            static constexpr int32_t RUNE_ARROWS = 16929;
-            static constexpr int32_t AMETHYST_ARROWS = 16930;
-            static constexpr int32_t DRAGON_ARROWS = 16931;
-            static constexpr int32_t SLAYER_BROAD_ARROWS = 16932;
-            static constexpr int32_t ATLATL_DART = 16933;
-        };
-    };
-
-    struct TfaRoomEncounterEntryConfig final {
-        TfaRoomEncounterEntryConfig() = delete;
-        static constexpr int32_t ID = 259;
-        static constexpr int32_t COL_ENTRY_COORD = 0;
-        static constexpr int32_t COL_ENTRY_FACING = 1;
-        static constexpr int32_t COL_AVOID_CATEGORIES = 2;
-        static constexpr int32_t COL_AVOID_LOCS = 3;
-        static constexpr int32_t COL_AVOID_NPCS = 4;
-        static constexpr int32_t COL_AVOID_CONTROLLERS = 5;
-    };
-
-    struct TfaNexusDoors final {
-        TfaNexusDoors() = delete;
-        static constexpr int32_t ID = 260;
-        static constexpr int32_t COL_WEST_DOOR_COORD = 0;
-        static constexpr int32_t COL_WEST_DOOR_LOC_CLOSED = 1;
-        static constexpr int32_t COL_WEST_DOOR_LOC_OPEN = 2;
-        static constexpr int32_t COL_WEST_DOOR_LOC_OPEN_SLIGHTLY = 3;
-        static constexpr int32_t COL_WEST_DOOR_LOC_OPEN_SLIGHTLY_IDLE = 4;
-        static constexpr int32_t COL_EAST_DOOR_COORD = 5;
-        static constexpr int32_t COL_EAST_DOOR_LOC_CLOSED = 6;
-        static constexpr int32_t COL_EAST_DOOR_LOC_OPEN = 7;
-        static constexpr int32_t COL_EAST_DOOR_LOC_OPEN_SLIGHTLY = 8;
-        static constexpr int32_t COL_EAST_DOOR_LOC_OPEN_SLIGHTLY_IDLE = 9;
-        static constexpr int32_t COL_DOOR_OPEN_ANIM = 10;
-    };
-
-    struct TfaDroptable final {
-        TfaDroptable() = delete;
-        static constexpr int32_t ID = 261;
-        static constexpr int32_t COL_TABLE_CHANCE = 0;
-        static constexpr int32_t COL_DEBUG_GUARANTEE_GOD_ROLL = 1;
-        static constexpr int32_t COL_DEBUG_NAME = 2;
-        static constexpr int32_t COL_MODIFY_DROPRATE_ID = 3;
-        static constexpr int32_t COL_ENTRIES = 4;
-    };
-
-    struct TfaDroptableEntryTable final {
-        TfaDroptableEntryTable() = delete;
-        static constexpr int32_t ID = 262;
-        static constexpr int32_t COL_DEBUG_NAME = 0;
-        static constexpr int32_t COL_ENTRIES = 1;
-    };
-
-    struct TfaDroptableEntryItem final {
-        TfaDroptableEntryItem() = delete;
-        static constexpr int32_t ID = 263;
-        static constexpr int32_t COL_ITEM = 0;
-        static constexpr int32_t COL_QUANTITY_RANGE = 1;
-        static constexpr int32_t COL_SCALING_MODE = 2;
-        static constexpr int32_t COL_MAX_OWNED = 3;
-        static constexpr int32_t COL_RARE_QUANTITY_CHANCE = 4;
-        static constexpr int32_t COL_RARE_QUANTITY_MULTIPLIER = 5;
     };
 
     struct TfaStatsCategory final {
@@ -12787,51 +10525,6 @@ struct DBTableID final {
         static constexpr int32_t COL_PERSISTENT_MODE_VARIANTS_ENUM = 8;
     };
 
-    struct CombatDynamicAnims final {
-        CombatDynamicAnims() = delete;
-        static constexpr int32_t ID = 266;
-        static constexpr int32_t COL_COM_MODE_OVERRIDE_ANIM = 0;
-        static constexpr int32_t COL_STAB_ANIM = 1;
-        static constexpr int32_t COL_SLASH_ANIM = 2;
-        static constexpr int32_t COL_CRUSH_ANIM = 3;
-        static constexpr int32_t COL_RANGED_ANIM = 4;
-        static constexpr int32_t COL_COM_MODE_OVERRIDE_ANIM_B = 5;
-        static constexpr int32_t COL_STAB_ANIM_B = 6;
-        static constexpr int32_t COL_SLASH_ANIM_B = 7;
-        static constexpr int32_t COL_CRUSH_ANIM_B = 8;
-        static constexpr int32_t COL_RANGED_ANIM_B = 9;
-    };
-
-    struct CombatDynamicAnimSequenced final {
-        CombatDynamicAnimSequenced() = delete;
-        static constexpr int32_t ID = 267;
-        static constexpr int32_t COL_TIMEOUT = 0;
-        static constexpr int32_t COL_ANIMS = 1;
-    };
-
-    struct CombatDynamicAnimRandom final {
-        CombatDynamicAnimRandom() = delete;
-        static constexpr int32_t ID = 268;
-        static constexpr int32_t COL_PICK_UNIQUE = 0;
-        static constexpr int32_t COL_ANIMS = 1;
-    };
-
-    struct CombatAnim final {
-        CombatAnim() = delete;
-        static constexpr int32_t ID = 269;
-        static constexpr int32_t COL_PLAYERANIM_PVN = 0;
-        static constexpr int32_t COL_PLAYERANIM_PVP = 1;
-        static constexpr int32_t COL_SPOTANIM = 2;
-        static constexpr int32_t COL_PROJANIM_PVN = 3;
-        static constexpr int32_t COL_PROJANIM_PVP = 4;
-        static constexpr int32_t COL_PROJANIM_ADV_PVN = 5;
-        static constexpr int32_t COL_PROJANIM_ADV_PVP = 6;
-        static constexpr int32_t COL_PROJANIM_TILES_PER_CYCLE = 7;
-        static constexpr int32_t COL_SOUND_SYNTH = 8;
-        static constexpr int32_t COL_SOUND_SYNTH_TARGET = 9;
-        static constexpr int32_t COL_SOUND_AREA = 10;
-    };
-
     struct AlternatePrayers final {
         AlternatePrayers() = delete;
         static constexpr int32_t ID = 270;
@@ -12846,13 +10539,6 @@ struct DBTableID final {
         static constexpr int32_t COL_USE_GLOBAL_TIME = 1;
         static constexpr int32_t COL_START_DURATION = 2;
         static constexpr int32_t COL_END_DURATION = 3;
-    };
-
-    struct SnailquestObjects final {
-        SnailquestObjects() = delete;
-        static constexpr int32_t ID = 272;
-        static constexpr int32_t COL_QUESTSTATE = 0;
-        static constexpr int32_t COL_ENTRY = 1;
     };
 
     template <typename Self = DBTableID>

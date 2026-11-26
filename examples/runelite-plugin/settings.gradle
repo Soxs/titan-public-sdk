@@ -1,0 +1,12 @@
+pluginManagement {
+    repositories {
+        maven {
+            name = 'titan'
+            url = providers.gradleProperty('titanMavenRepositoryUrl')
+                .orElse('https://raw.githubusercontent.com/Soxs/titan-public-sdk/main/maven/releases').get()
+        }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'example-plugin'

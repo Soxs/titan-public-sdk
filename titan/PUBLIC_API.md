@@ -1,4 +1,94 @@
-# Titan Plugin SDK -- public symbol inventory (v176)
+# Titan Plugin SDK -- public symbol inventory (v194)
+
+`Client.lookupWorldEntity(index, expectedParent, expectedEntity)` reads one
+top-level world-entity slot on the game thread in C++, Java and JavaScript.
+The result distinguishes unavailable, absent, present and stale. A present
+entry reports the observed definition ID. The optional child world requires
+the entity's child link to match the registered world. Pass zero tokens for a
+fresh read, or reuse a previous result's opaque tokens to guard a later read.
+
+SDK 184 adds `Client.lookupWorldEntityDefinition(index, parent, entity, definition)`
+to the three SDKs. It observes the definition through that top-level entity on
+the game thread. A present observation carries its numeric ID and opaque
+incarnation. Entities observed with the same definition object and ID share
+the token. Equal IDs on distinct objects remain distinct. Caller-supplied
+nonzero tokens guard the observed parent, entity and definition. A missing
+or unreadable definition on a present entity is unavailable.
+
+## Widget primary text
+
+On the game thread, `widget.primaryText()` reads the current primary text at a
+root or direct-child widget address. It preserves empty text, embedded NULs,
+markup and non-breaking spaces. C++ returns an optional UTF-8 string. Java
+and JavaScript return a string or `null`. An unreadable or missing widget,
+an unsupported address, and an older host all produce an unavailable result.
+The optional `HostGameV1.copyWidgetPrimaryText` copy includes one trailing
+terminator in its required size. Use the returned byte count to preserve
+embedded NULs. The stored text can contain up to 65,536 UTF-8 bytes.
+
+## Widget scroll height
+
+On the game thread, `widget.scrollHeight()` reads the signed scroll content height of the
+addressed flat widget or its direct child. A successful read preserves zero. A deeper path,
+missing widget, unreadable field or older host yields an empty optional in C++ and Java
+and `null` in JavaScript. The native ABI exposes this through the optional `HostGameV1` tail.
+
+## Live base object action slots
+
+On the game thread, use `titan::state::cache().objectActionSlotCount(id)` in
+C++, `Cache.objectActionSlotCount(id)` in Java, or
+`titan.state.cache.objectActionSlotCount(id)` in JavaScript. The result counts
+the slots on the current live base definition, including empty action labels.
+Zero means the definition has no slots. A missing source, an unsupported host
+or a call from another thread returns an empty optional in C++ and Java or
+`null` in JavaScript.
+
+## Selected game-frame focus
+
+All three SDKs expose the same optional, any-thread observation:
+
+```cpp
+std::optional<bool> focused = titan::state::client().frameFocused();
+```
+
+```java
+Optional<Boolean> focused = client.frameFocused();
+```
+
+```typescript
+const focused: boolean | null = titan.state.client.frameFocused();
+```
+
+True means this game is selected in its controller and the associated game,
+controller, or owned sidebar frame has foreground focus. A healthy observation
+of another selected game, Home, or another foreground application is false.
+This differs from focus on the game Canvas: editing the selected game's sidebar
+can leave frame focus true while Canvas focus is false.
+
+An older host, detached window, Wine host, unqualified controller association,
+or association/foreground change during the read returns unavailable (`nullopt`,
+`Optional.empty()`, or `null`). Do not turn unavailable into a claim that the game
+is unfocused. The value is an instantaneous observation and may change as soon as
+the call returns; it does not activate a window, direct input, or grant authority.
+There is no game-memory read, event subscription, or cached-focus fallback.
+
+Native ABI v1 exposes this through optional `HostWindowFocusV1` (`0x100C`). Its
+single `int32_t frameFocus()` returns `-1` unavailable, `0` false, or `1` true.
+Missing, short, and incompatible optional tables remain unavailable. Existing
+tables and payload records are unchanged. The Java JNI entry is independently
+optional, and its public interface default preserves older implementations.
+
+## Widget script listeners
+
+`Widget.inventoryTransmitListener()` and `Widget.keyListener()` read the inventory-transmit and keyboard scripts of a flat widget or direct child on the game thread. RuneLite plugins use `Widget.getOnInvTransmitListener()` and `Widget.getOnKeyListener()`. The first argument is the script ID. The remaining arguments preserve their order and type, including signed 64-bit values and UTF-8 strings. Each call returns an owned copy. The current host qualifies the 242.3 Windows executable and its matching analyzer export.
+
+| SDK | Populated listener | Unset listener | Unavailable |
+|---|---|---|---|
+| C++ (`Widget` or `WidgetSnapshot`) | `std::optional<titan::WidgetListenerArguments>` with `int32_t`, `std::string` and `int64_t` variants | Empty vector | `std::nullopt` |
+| Java | `Object[]` containing `Integer`, `String` and `Long` | `null` | `UnsupportedOperationException` |
+| JavaScript / TypeScript | Array containing `number`, `string` and `bigint` | `null` | Exception |
+
+Native plugins discover the read through the optional `HostWidgetListenersV1` table. Changing the returned arguments affects only that copy.
 
 ## Named widget interaction (SDK 176)
 
@@ -65,6 +155,145 @@ the same two Client methods, returning `null` for an absent widget.
 The getters use the existing offset-derived source state and append optional
 operations to `HostGameV1`. Older hosts return false/absent through negotiation;
 existing payload layouts and the minimum supported SDK version 154 are unchanged.
+
+## Built-in fonts and skill icons (SDK 177)
+
+Include `<titan/ui_assets.h>` to retrieve artwork and fonts through the
+optional `HostUiAssetsV1` capability. For example,
+`titan::skillIcons::get(titan::Skill::SAILING, true)` returns the original
+small Sailing icon as an owned `SpriteImage`. Cache the result and draw it
+from an overlay callback with `titan::sprites::draw(*icon, x, y)`.
+`titan::fonts::data(titan::fonts::Face::Regular)` supplies owned TrueType
+bytes for a packaged HTML panel's `font/ttf` resource. Either lookup can
+return an empty optional on an older host. [Cross-SDK examples](../docs/sdk_ui_assets.md)
+
+## Widget edits (SDK 188)
+
+`widget.edit()` on a root or a direct dynamic child changes its own fields on the game thread.
+Each change is made before its call returns, as the game's own scripts make it, and the widget
+is drawn anew:
+
+```cpp
+if (auto title = titan::state::widgets().find((160 << 16) | 5))
+    title->edit().text("99").textColor(0x00FF00).hidden(false);
+```
+
+A change which cannot be made leaves the others to be made, and the edit is false from then on:
+the widget is gone, the thread is another, or the host is older. A handle's own fields show a
+change when it is next read anew.
+
+- Content: `text`, `textColor`, `textShadowed`, `textAlignment`, `lineHeight`, `fontId`, `opacity`
+  (0 is opaque), `filled`, `spriteId`, `spriteTiled`, `flipped`, `borderType`, `modelId`, `item`
+  and `hidden`.
+- Place and size: `position`, `positionModes`, `size` and `sizeModes` are what they come from, and
+  `revalidate` applies them. `revalidateScroll` applies them to everything in a layer. `scroll` and
+  `scrollSize`.
+- Actions: `name`, `action` (0 to 31), `clearActions`, `targetVerb`, `dragDeadZone`, `dragDeadTime`,
+  `stopsClicks`, `stopsScrolling` and `hasListener`.
+- `createChild(type, index)` makes a child of a layer which is no child itself and returns its index.
+  `deleteChildren()` removes them.
+
+Text is UTF-8 of at most 4,096 bytes. The game may undo a change whenever its own scripts build that
+widget again: listen for the script which does (`onScriptMoment`) to make it again.
+
+Java: `widget.edit()` and `ok()`. JavaScript: the same. `setText` stays as it is: it may wait for the
+game thread and takes 256 bytes.
+
+## The game's scripts (SDK 187)
+
+`watchScripts({.before = {505}, .after = {505}})` in `onEnable` names scripts of the game's
+by id, and `onScriptMoment` hears of each before it runs and before it returns, whether the
+game started it or another script called it. A later watch replaces an earlier one, an empty
+one forgets it and disabling the plugin does too. Ids are 0 to 65535, at most 1,024 of each.
+The game runs tens of thousands of scripts in a frame, and only named ones cost anything. It
+is false when this game's scripts cannot be followed.
+
+The callback is synchronous, on the game thread and inside the interpreter, which waits.
+Widgets and variables read as at any other time. The interpreter can start no other script
+meanwhile: menu actions from the callback wait for the next client tick, and a script run from
+it does not run.
+
+- `scriptId()`, `before()`, `after()`, `nested()`.
+- `arguments()`: what the game started the script with, before it runs, when all of it is
+  integers. `setArgument` replaces one before the script starts.
+- `integers()`: the interpreter's integer stack. A called script's arguments are on top of it
+  before it runs, and a returning script's results. `setInteger` replaces one.
+
+`onScriptFired` stays as it is: every script the game starts, after it has run.
+
+Java: `Titan.client().watchScripts(this, before, after)` and a subscriber of
+`net.titan.api.events.ScriptMoment`. JavaScript: `titan.watchScripts(this, {before, after})`
+and `onScriptMoment(event)`.
+
+## Chat insertion (SDK 186)
+
+`titan::insertChatMessage(type, name, message, sender, notify)` adds a line to this
+client's chat on the game thread and returns its UID, or nothing when the game did not
+take it. Nothing is sent. `addChatMessage` queues its line instead. Text is UTF-8, and a
+character which the game cannot show becomes a question mark. With `notify` false, plugin
+chat callbacks do not hear of the line.
+
+## Loot (SDK 194)
+
+`onLootReceived(const LootReceivedEvent&)` tells of what a monster or a player left for the account: the
+items which came onto the ground where it died, on the server tick in which it went and before `onGameTick`.
+`event.loot()`, or `gameData::loot(event.number)`, has whose it was, its name, NPC ID, index, combat level
+and south-west tile, and the items with their quantities. The last 64 can be read. `LootSource::Server` is
+what the server itself says was looted, as it does of some bosses, and has no tile.
+
+The host compares the items, the NPCs and the players of the top-level scene on each server tick, and only
+while a plugin overrides it. A monster died when its health bar was empty as it was last seen, or when it is
+one of those which die with health left. Where the items of a monster come is its own tiles, except for the
+bosses which are known to leave them elsewhere or later. These rules are those of RuneLite's `LootManager`.
+Items which an account sees because another player's became visible come without a death, and are not told of.
+Neither the account's own death nor what it picks up is loot.
+
+Java: `net.titan.api.events.LootReceived` with `loot()`. JavaScript: `onLootReceived(event)` with `event.loot`.
+
+## Game data (SDK 192, 193, 194)
+
+`<titan/game_data.h>` reads what the game's own scripts know, each in one call on the game thread
+through the optional `HostActionsV1` function `runGameOperation`.
+
+| Function | Answer |
+|---|---|
+| `gameData::friends()` | Friends with their previous names, worlds and ranks, and ignored players |
+| `gameData::friendsChat()` | The channel's name, owner, ranks and users. An empty name is no channel |
+| `gameData::clanChannel(which)`, `clanSettings(which)` | Those present and the members of the account's clan, its ironman group or the one it visits |
+| `gameData::groundItems(worldViewId)` | Every pile with its scene tile, quantity, owner and the server ticks at which others see it and it goes |
+| `gameData::input()` | Which keys and mouse button the game's window was last told are down, and how long both have been idle |
+| `gameData::playSound(id, loops, delay)` | Plays a sound effect as the game's scripts do |
+| `gameData::run(name, numbers, texts)` | Any named operation, as little-endian bytes |
+| `gameData::menuBounds()` | Where the open menu is drawn, in the pixels which widgets have. SDK 194. `Menu::bounds()` also has the game's own submenus |
+| `gameData::loot(number)` | What `onLootReceived` told of. SDK 194 |
+| `gameData::hoveredTile()` | The tile which the game's own "Walk here" goes to. SDK 193, as are the rest |
+| `gameData::minimap()` | The heading the minimap is turned by and its pixels to a tile |
+| `gameData::worldEntity(worldViewId)` | Where a boat stands in the top-level world, how it is turned, and the point of its own world which is there |
+| `gameData::worldMapArea()` | The area which the world map shows, and the tile in the middle |
+| `gameData::chatLines(channel)`, `chatLine(number)`, `setChatLine(number, part, text)` | A channel's lines, one of them, and a change of its name, message or sender |
+| `gameData::widgetFields(packedId, childIndex)` | Position and size modes, text alignments, line height, whether it has a listener, scroll width and transparency |
+| `gameData::widgetChildren(packedId, which, childIndex)` | The children which scripts made, those of its interface, or those of the interface opened in it |
+| `gameData::widgetSlots(packedId)` | Every slot of a flat widget's script-made children, the empty ones too, with each child's incarnation, item, type, quantity, sprite, model, position, size and scroll, in one read. SDK 195 |
+| `gameData::widgetListener(packedId, opcode, childIndex)`, `setWidgetListener(...)` | A listener's script and arguments, by the opcode which sets it in the game's scripts |
+| `gameData::scriptStacks()`, `scriptComponents()`, `setScriptText(place, text)` | Inside `onScriptMoment`: the interpreter's integers and texts, the script's components, and another text |
+| `gameData::setOverheadText(actor, text)` | What an actor says, for as long as the game shows it |
+| `gameData::openWorldSwitcher()` | One click nearer to the open world switcher |
+| `gameData::reloadScene()`, `dropConnection()` | Of a player in the game, as the game's next cycle begins |
+
+Each is empty where it cannot be read now. A `GameDataStatus` says why for `run`: `NotReady`, `Invalid`,
+`Unsupported`, `WrongThread` or `BufferTooSmall`. Clans are not read inside `onScriptMoment`, where the
+game's own scripts are using those lists. Lists of friends and clans ask the game once for every row, so
+keep what you reuse. Java has `GameData` and JavaScript `titan.gameData` with the same names.
+
+## Cache files (SDK 185)
+
+`<titan/cache_files.h>` copies files of the running game's own local cache through
+optional `HostCacheFilesV1` (`0x100F`). `cacheFiles::read(index, group, file)` returns
+a `CacheFileResult` with `status` and owned `bytes`, and `cacheFiles::fileIds(index, group)`
+the IDs in a group. Index 8 holds sprites, 12 client scripts and 2 configuration. Every
+copy was checked against the cache's reference table when it was read. Any thread may
+call these. They read the disk, so keep what you reuse. `Absent` means that the table
+lists no such file. `NotReady` and `Failed` may succeed later.
 
 ## Item sprites and alpha-mask outlines (SDK 167)
 
@@ -148,6 +377,9 @@ generation; stale or out-of-callback mutations throw. Custom opcodes accept the
 full unsigned 32-bit range. See [menu callback support](../../docs/menu-callback-support.md)
 for callback consumption and ownership rules across runtimes.
 
+`onMenuEntryAdded` comes after a rebuild, for the game's own entries in the order in which
+the game inserted them, and for each entry a plugin creates.
+
 Entries are ordered bottom-to-top, so `back()` is the top/default entry and
 `createMenuEntry(-1)` appends. `MenuEntry` offers option/target, opcode/type,
 identifier, parameters, item ID, world-view ID, force-left-click and deprioritized
@@ -163,16 +395,32 @@ Callback storage belongs to its registering plugin and is cleaned up exactly
 once after replacement, expiry, disable or unload, including failed registration.
 
 `setMenuEntries` accepts a duplicate-free subset of the current siblings;
-omitted leaves are removed atomically. Existing submenus must remain, can be
-reordered within their parent, and are readable through `getSubMenu()`. Custom
-creation currently targets the root; reparenting and deleting groups are
-unsupported, as is removing the last child of an existing submenu. Existing
-native callback identities stay intact: changing their
+omitted leaves are removed atomically. The game's own submenus must remain, can be
+reordered within their parent, and are readable through `getSubMenu()`. Creating in
+them, reparenting and deleting them are unsupported, as is removing the last child
+of one.
+
+From SDK 194 an ordinary entry of the menu itself can have a submenu of plugins' own.
+`createSubMenu()` returns its `Menu`, whose `createMenuEntry` adds to it, and
+`deleteSubMenu()` removes all of it. `hasSubMenu()` is true of both kinds, and
+`isSubmenu()` of the game's own alone. The game's menu has no place for such a submenu:
+its entries are drawn in the menu, right under their heading, with the heading's option
+before their own, such as `Tag > Red`. Their `getOption()` is what the plugin set. They
+are none of the root's `getMenuEntries()`, and go with their heading. There is none
+within another. On an older host `createMenuEntry` in one is refused.
+
+`Menu::bounds()` (SDK 194) is where the game draws the menu or one of its own submenus,
+in the pixels which widgets have, with `open` false while it is closed. The menu is not
+open before `onMenuOpened` has been told of. A plugin's submenu is in the menu itself.
+
+Existing native callback identities stay intact: changing their
 opcode, identifier, parameters, item ID or world-view ID returns `Unsupported`.
 Their option and target display labels remain editable. Custom entries accept
 all of these fields.
 Text must fit within 255 UTF-8 bytes plus NUL; overflow is rejected, never
-silently truncated. Deprioritization is a host ordering policy, not the native
+silently truncated. What the game's own rows say is UTF-8 too, such as the U+00A0 in a
+player's name, and a character which the game's text has not becomes a question mark
+in it. Deprioritization is a host ordering policy, not the native
 client's internal priority byte or a `+2000` write into it.
 
 ```cpp
@@ -564,6 +812,13 @@ are distinct states. Coordinate arrows expose tile/subtile coordinates and raw
 height without an inferred plane. NPC/player arrows expose the target index and
 an actor only after matching its complete identity and owning WorldView.
 World-entity arrows expose their index without an Actor.
+
+SDK v181 adds `setHintArrowTarget(actor)` on the C++, Java and JavaScript
+client facades. Call it on the game thread with a retained NPC or player
+to change slot zero's actor while preserving its display flag and blink timing.
+The native resolver must select the same actor in its owning world view.
+A stale or shadowed target returns `TargetUnavailable`. Hosts without the
+optional `HostActionsV1::setHintArrowTarget` function return `Unavailable`.
 
 Coordinate locations also expose a cached optional `worldPoint()` in C++ and
 Java, or `location.worldPoint` in JavaScript/TypeScript. It contains the tile,
@@ -1303,6 +1558,7 @@ headers below; publishing native contracts does not expose private client IPC.
 | `titan::log(msg)` | Write to the client log | any |
 | `titan::logf(fmt, ...)` | Printf-style log (bounded 1 KB buffer) | any |
 | `titan::addChatMessage(type, name, msg, sender)` | Inject a local chat line (client-only, no packet). See `<titan/client.h>`. | any -- dispatched to game thread |
+| `titan::refreshChat()` | Request a local chatbox rebuild. Returns true after the game's refresh function completes. Java exposes `Client.refreshChat()`. JS exposes `titan.refreshChat()` and `titan.chat.refresh()`. Missing support or an off-thread call returns false. | game thread |
 | `titan::runOnClientTick(fn)` | Queue a callback onto the next client-tick drain (SDK 116+: the callback thunk is freed exactly once even when the queued task is dropped) | any |
 | `titan::runOnRender(fn)` | Queue a callback onto the next SwapBuffers frame (SDK 116+: same drop-safe cleanup guarantee) | any |
 
@@ -1510,7 +1766,7 @@ facades; they live at the top level of `namespace titan`:
 
 | Factory | Returns | Highlights |
 | --- | --- | --- |
-| `titan::overlay()` | `OverlayDraw` | `tileQuad`, `tileRegion`, WorldView-aware tile/text/projection/height helpers, `entityBox`, `entityClickbox`, `entityHull`, `tileObjectClickbox`, `tileObjectHull`, `textAtWorld`, `screenText`, `screenRect`, `screenLine`, `worldToScreen`, `tileToScreen`, `tileHeight` |
+| `titan::overlay()` | `OverlayDraw` | `tileQuad`, `tileRegion`, WorldView-aware tile/text/projection/height helpers, `entityBox`, `entityClickbox`, `entityHull`, `tileObjectClickbox`, `tileObjectHull`, `tileObjectOutlinePoints` (SDK 190), `entityOutlinePoints` and `entityModelHeight` (SDK 191), `textAtWorld`, `screenText`, `screenRect`, `screenLine`, `worldToScreen`, `tileToScreen`, `tileHeight` |
 | `titan::plugins()` | `PluginsFacade` | `all()`, `get(id)`, `find(id)`, `self()` returning `PluginHandle` |
 | `titan::service<T>(id)` | `ServiceRef<T>` | Leased lookup using the current plugin callback context. Keep the move-only service reference for one operation; its destruction releases the lease. Publication always requires an explicit owner. |
 | `titan::registerService(owner, id, ptr)` / `titan::service<T>(owner, id)` | `bool` / `ServiceRef<T>` | Explicit-owner publication and leased lookup. Publication is tied to the native instance and load generation, survives ordinary UI disable, and is withdrawn on unload. `nullptr` unregisters that owner's entry. |
@@ -1921,11 +2177,20 @@ class.
 | `MenuClickEvent` | `void onMenuOptionClicked(MenuClickEvent&)` (`consume()` blocks; `replaceWith(...)` or replacement setters change the DoAction that reaches the game). Wraps `MenuOptionClickedEvent` / RuneLite-style menu fields. |
 | `KeyInputEvent` | `void onKeyEvent(KeyInputEvent&)` -- real keydown, keyup and typed character input before game processing. `consume()` suppresses input; `replaceWith(vk, optionalMods)` replaces a key pair. Runs synchronously on the input thread; see the keyboard contract below. Added in SDK 157. |
 | `ScriptEvent` | `void onScriptFired(const ScriptEvent&)` |
+| `ScriptMomentEvent` | `void onScriptMoment(const ScriptMomentEvent&)` -- the scripts `watchScripts` named, before they run and before they return. Inside the interpreter. [The game's scripts](#the-games-scripts-sdk-187) |
 | `VarbitChangedEvent` | `void onVarbitChanged(const VarbitChangedEvent&)` |
+| `StatChangedEvent` | `void onStatChanged(const StatChangedEvent&)` receives `skill`, `xp`, `level` and `boostedLevel` on the client thread. Java plugins subscribe to `net.titan.api.events.StatChanged` and use the four corresponding accessors. JavaScript plugins implement `onStatChanged(event)` with the numeric skill ID and the same field names. |
+| `WorldChangedEvent` | `void onWorldChanged(const WorldChangedEvent&)` reports each observed, completed world selection, including repeated selections of the same world. The event has no fields. |
+| `CanvasSizeChangedEvent` | `void onCanvasSizeChanged(const CanvasSizeChangedEvent&)` supplies the new game drawable `width` and `height` in physical pixels. Callbacks run on the game thread in resize order. Equal consecutive sizes are suppressed. |
+| `VarClientIntChangedEvent` | `void onVarClientIntChanged(const VarClientIntChangedEvent&)` supplies the `index` after each observed integer client-variable write, including repeated writes of the same value. |
+| `VarClientStrChangedEvent` | `void onVarClientStrChanged(const VarClientStrChangedEvent&)` supplies the `index` after each observed string client-variable write, including repeated writes of the same value. |
+| `WidgetLoadedEvent` | `void onWidgetLoaded(const WidgetLoadedEvent&)` gives the `groupId` of an interface whose own load scripts have run, the top-level one included. Game thread. Added in SDK 189. |
+| `WidgetClosedEvent` | `void onWidgetClosed(const WidgetClosedEvent&)` gives the `groupId` of an interface about to close, whose widgets are still there, with the `modalMode` the server opened it with and whether its widgets `unload`. Game thread. Added in SDK 189. |
+| `LootReceivedEvent` | `void onLootReceived(const LootReceivedEvent&)` gives the `number` of what a monster or a player left for the account, and `loot()` the rest of it. [Loot](#loot-sdk-194). Added in SDK 194. |
 | `GameStateChangedEvent` | `void onGameStateChanged(const GameStateChangedEvent&)` -- native `Client.GameState` transitions from `SetGameState`. Values use native `LoginGameState` numbers; `Loading` (25) is mapped in SDK v126+. Added in SDK 91. |
-| `ChatMessageEvent` | `void onChatMessage(const ChatMessageEvent&)` |
+| `ChatMessageEvent` | `onChatMessage` supplies the existing fixed-capacity preview fields. C++ and Java `insertion()`, or the optional JavaScript `insertion` property, additionally supply complete `name`, `message`, `sender` and Unix-second `timestamp` for qualified game-thread calls. These details require a nonempty ASCII message, three complete NUL-free strings within 65,536 bytes combined, and an insertion observed within one Unix second. |
 | `SoundPlayedEvent` | `void onSoundPlayed(SoundPlayedEvent&)` (`consume()` marks the event handled for handler ordering; use `state::audio()` for playback suppression). Fires when the client plays a synth sound effect or a MIDI jingle (`event.kind()`). Added in SDK 69. |
-| `HitsplatAppliedEvent` | `void onHitsplatApplied(const HitsplatAppliedEvent&)` -- applied hitsplats with `actor()` resolving to a `Player`, `Npc`, or empty actor when unresolved. Added in SDK 74; native signature corrected in SDK 76. |
+| `HitsplatAppliedEvent` | `onHitsplatApplied` reports a completed native hitsplat-adder call with its type, value, limit, delay and cycle arguments. The actor can be a player, NPC or unresolved. C++ and Java expose `outcome()`; JS exposes optional `event.outcome`. A qualified game-thread capture supplies the type, amount and disappearance cycle of the written or detached hitsplat. Suppression, unavailable captures and older hosts leave the detail absent. A detached outcome can exist even when every display slot is full. |
 | `ActorSpotAnimEvent` | `void onActorSpotAnim(const ActorSpotAnimEvent&)` -- actor-attached spot animations with `actor()` resolving to a `Player`, `Npc`, or empty actor when unresolved. Clear/removal ids are filtered. Added in SDK 76. |
 | `AnimationChangedEvent` | `void onAnimationChanged(const AnimationChangedEvent&)` -- primary sequence assignments, including natural completion, equal-ID installer calls, and repeated clears (`-1` to `-1`). With validated `ActorAnimationEvents` offsets, NPC/player packet writes coalesce once per surviving actor in active-index order and expose its final animation; other assignments emit individually. Ordinary same-positive-ID frame/loop request restarts and rejected requests stay silent. Older bundles retain logged request-only coverage. Added in SDK 78; payload layout unchanged. |
 | `ItemContainerChangedEvent` | `void onItemContainerChanged(const ItemContainerChangedEvent&)` -- tick-level diff of mapped containers. Added in SDK 26. |
@@ -2034,6 +2299,102 @@ to load plugins but do not deliver the absent optional callback.
 ---
 
 ## Writing your own settings (SDK 140)
+
+The common renderer also accepts `ColorAlphaSetting`, `Int64Setting`,
+`DoubleSetting`, `MultiSelectSetting`, `KeybindSetting`,
+`ModifierlessKeybindSetting`, `DimensionSetting`, `NullableDimensionSetting`, `PointSetting` and
+`FontSetting`. These are ordinary self-registering settings: `set()` reports
+authored changes, controller replay uses silent `apply()`, and `reset()` restores
+the declared default. `ColorSetting` remains RGB; `ColorAlphaSetting` preserves
+the full signed ARGB bit pattern. Unsupported older controllers must be upgraded
+to edit these controls; the native payload layout and compatibility floor do not
+change.
+
+`ColorSetting` and `ColorAlphaSetting` use Titan's shared swatch and hex
+preview. Clicking the swatch opens the channel editor. The preview for an
+alpha color uses `#RRGGBBAA`, while the plugin receives packed `0xAARRGGBB`.
+The shortcut editor starts capture when clicked and provides a separate
+**Clear** button. Leaving capture without pressing a key preserves the binding.
+
+```cpp
+titan::Int64Setting limit{this, "limit", "Limit", INT64_MAX};
+titan::MultiSelectSetting modes{this, "modes", "Modes", {42},
+    {{42, "First"}, {-9, "Second"}}};
+titan::KeybindSetting toggle{this, "toggle", "Toggle", {65, 128}}; // Ctrl+A
+titan::DimensionSetting size{this, "size", "Size", {200, 30}};
+titan::NullableDimensionSetting optionalSize{this, "optionalSize", "Optional size", std::nullopt};
+titan::PointSetting point{this, "point", "Position", std::nullopt};
+titan::FontSetting font{this, "font", "Font", {"Dialog", 12, false, false}};
+```
+
+JavaScript/TypeScript has `colorAlphaSetting`, `int64Setting`, `doubleSetting`,
+`multiSelectSetting`, `keybindSetting`, `modifierlessKeybindSetting`,
+`dimensionSetting`, `pointSetting` and `fontSetting`. `intInputSetting` selects
+numeric entry instead of an integer slider. Use an exact decimal **string** for
+int64; doubles use finite JavaScript numbers. Composite values are copied and
+frozen: replace `.value` to persist an edit, rather than mutating one member.
+
+Numeric sliders, integer inputs, int64 and double settings accept a literal
+`units` suffix, such as `SettingMeta{.units = "ms"}` in C++ or `units: "ms"`
+in a JavaScript/TypeScript declaration. The suffix is display metadata; it is
+never appended to the stored number or interpreted as a formatting expression.
+Native C++ declarations allow 63 UTF-8 bytes, carried in a tagged unused option
+slot without changing the native ABI. JavaScript/TypeScript allows 256 bytes in
+its owned metadata. Both reject malformed Unicode, control characters, line
+separators and bidi formatting instead of truncating them. Units apply only to
+these numeric controls; omitted or empty units preserve existing behavior.
+Older hosts may ignore the optional suffix while retaining the numeric value.
+
+```ts
+const limit = this.int64Setting({key: "limit", name: "Limit", default: "9223372036854775807"});
+const modes = this.multiSelectSetting({key: "modes", name: "Modes", default: [42],
+    choices: [{value: 42, label: "First"}, {value: -9, label: "Second"}]});
+const size = this.dimensionSetting({key: "size", name: "Size", default: {width: 200, height: 30}});
+const optionalSize = this.dimensionSetting({key: "optionalSize", name: "Optional size", default: null});
+const flexibleSize = this.dimensionSetting({key: "flexibleSize", name: "Flexible size",
+    default: {width: 200, height: 30}, nullable: true});
+modes.value = [-9]; // Stable choice ID, never the index in choices.
+size.value = {width: 320, height: 40};
+optionalSize.value = {width: 0, height: 0}; // An actual empty size, distinct from null.
+optionalSize.reset(); // Restores null; no implicit zero-size default.
+flexibleSize.value = null; // Explicit opt-in also permits this with a concrete default.
+flexibleSize.reset(); // Restores {width: 200, height: 30}.
+```
+
+Multi-select declarations accept at most 32 distinct signed int32 option IDs.
+New typed declarations reject oversized UTF-8 keys/names/option labels instead of
+truncating the fixed wire fields (31/63/63 bytes). Dimensions are nonnegative
+int32 pairs. Existing C++ `DimensionSetting` and JavaScript concrete defaults
+remain nonnullable. C++ `NullableDimensionSetting` uses
+`std::optional<SettingDimension>`; JavaScript opts in with a null default or
+explicit `nullable: true`. Both retain the same dimension control and existing
+string wire field (`"null"` for absence). Reset always restores the declared
+default, and the normal assignment/controller-replay paths validate every edit.
+No new ABI record layout or compatibility-floor change is required. A null
+default gives the desktop editor its existing **Set size** affordance; right-click
+Reset returns to that default. An absent size is not an empty `{width:0,height:0}`
+size. Points are signed int32 pairs or `null`/`std::nullopt`. Fonts contain
+`family`, positive int32 `size`, `bold` and `italic`; families are nonempty UTF-8
+up to 1024 bytes. Keybinds use AWT key codes and extended modifier masks
+SHIFT=64, CTRL=128, META=256, ALT=512. Modifierless controls require zero modifiers
+for a nonmodifier key, and use keyCode=0 for modifier-only bindings. These values
+describe configuration, not input interception or automatic font loading.
+
+The desktop settings page gives compound controls, multiline text and masked
+text the full sidebar width. A single-choice picker also uses the full width
+when its declared labels would be clipped in the inline value column.
+Single- and multiple-choice pickers display selected labels.
+Lists with more than eight choices support search. Multiple-choice lists stay
+open for successive selections. Filtering preserves the stored option IDs.
+All desktop plugin types use a searchable font family picker. For SDK font
+settings, the picker suggests installed Windows families and accepts a typed
+name for a font supplied by the plugin. Searching leaves the saved value intact
+until the user selects a family or accepts a typed name.
+
+Control IDs 10–18 retain the existing integer or string value representation.
+Typed string values use decimal scalars or bounded JSON objects/arrays; invalid
+values, duplicate IDs/fields, overflow and nonfinite doubles are rejected before
+applying an edit. Ordinary text settings retain their existing uncapped storage.
 
 A plugin changing one of its own settings used to be invisible to the
 controller: the value lived only in the plugin's member, nothing was
@@ -2198,6 +2559,39 @@ Mirrored as `Plugin.overlayPanel({ name, anchor?, priority?, style?, render })`
 and `titan.OverlayAnchor` enum. The `render` callback receives an
 `OverlayPanelInstance` with the same builder + style methods.
 
+### Infobox groups
+
+C++, Java and JavaScript plugins can show icon counters and timers on an
+existing overlay panel. Call `setInfoBoxIcon(key, width, height, pixels)` from
+an owning callback when the artwork changes. Pixels are straight ARGB in a
+C++ span, a Java `int[]` or a JavaScript `Uint32Array`. Keys are local to
+the panel. Key zero on a tile displays text alone.
+
+Call `infoBoxes` in the panel's Above Widgets render callback with the visible
+tiles in order. Each tile has an icon key, text, text and background colors,
+and a plain-text tooltip. The default tile is 35 physical pixels square. The
+group wraps after four tiles along its selected axis. The player can Alt-drag
+the whole group and Titan remembers its position under the plugin and panel
+names. Omit the submission for a frame to hide it.
+
+| SDK | Vertical group with 35-pixel tiles |
+| --- | --- |
+| C++ | `panel.infoBoxes(tiles, true, 35)` with a span of `titan::InfoBoxTile` |
+| Java | `panel.infoBoxes(tiles, true, 35)` with a list of `net.titan.api.overlay.InfoBoxTile` |
+| JavaScript | `panel.infoBoxes(tiles, { vertical: true, size: 35 })` |
+
+Each group accepts up to 128 tiles and 128 distinct icon keys. Artwork can
+be up to 128 × 128 pixels. Tile sizes range from 8 to 128 pixels. Labels and
+tooltips allow up to 128 and 1,024 UTF-8 bytes respectively. Check the boolean
+return value to detect an unavailable host capability or a rejected submission.
+
+Native C++ plugins should register their icons in `onEnable` or when first
+rendering. Disabling the plugin clears its icons and hover targets and preserves
+the panel position. During a DLL hot reload, two generations that construct an
+`OverlayPanel` with the same plugin ID and panel name can receive the same
+handle. Destruction of the old panel then removes the replacement's registration.
+Start a fresh game tab to test a replacement DLL with that panel.
+
 ### ABI surface (private)
 
 Eight new `HostApi` function pointers + `AnchorAbi` namespace +
@@ -2219,6 +2613,7 @@ versions.
 | `onProjectileSpawned/Despawned/Moved` | Game thread | Yes | No |
 | `onGraphicsObjectSpawned/Despawned/Moved` | Game thread | Yes | No |
 | `onMenuOptionClicked`, `onChatMessage`, `onSoundPlayed`, `onHitsplatApplied`, `onActorSpotAnim`, `onAnimationChanged`, `onGameStateChanged`, `onVarbitChanged`, `onScriptFired` | Game thread (inside the detour or main-loop marshal) | Yes for queries; avoid heavy work | Dispatch heavy work via `runOnClientTick` |
+| `onScriptMoment` | Game thread, inside the script interpreter | Yes for queries; no other script runs and menu actions wait for the next client tick; do little | Dispatch work via `runOnClientTick` |
 | `onMousePressed`, `onMouseReleased`, `onKeyEvent` | **Input (message-pump) thread** -- may NOT be the game thread | **No** -- do not read game state or call `titan::*` queries/actions; copy the event fields out and return quickly | Hand off to a game-thread callback (e.g. store a pending value and act in `onClientTick`) |
 | `onRender` overlay callback | Render thread (SwapBuffers hook) | Yes for queries; mutation APIs must be dispatched | Dispatch mutations via `runOnClientTick` |
 | `titan::screenshot()` `submit` / `poll` / `copyPng` / `release` | Any plugin callback thread | N/A -- a mutex-guarded host table; the capture itself rides the render thread and encoding a worker, so none of the work lands on the caller | No |

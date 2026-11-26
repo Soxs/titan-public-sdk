@@ -1,0 +1,310 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.titan",
+    "module": "titan-runelite",
+    "version": "1.13.6-titan.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "net.titan",
+          "module": "titan-runelite-api",
+          "version": {
+            "requires": "1.13.6-titan.3"
+          }
+        },
+        {
+          "group": "com.google.inject",
+          "module": "guice",
+          "version": {
+            "requires": "4.1.0"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "guice",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "no_aop"
+            }
+          }
+        },
+        {
+          "group": "javax.inject",
+          "module": "javax.inject",
+          "version": {
+            "requires": "1"
+          }
+        },
+        {
+          "group": "aopalliance",
+          "module": "aopalliance",
+          "version": {
+            "requires": "1.0"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "23.2-jre"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.8.5"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "3.14.9"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "1.7.25"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-text",
+          "version": {
+            "requires": "1.2"
+          }
+        },
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-javalite",
+          "version": {
+            "requires": "3.21.12"
+          }
+        },
+        {
+          "group": "net.java.dev.jna",
+          "module": "jna",
+          "version": {
+            "requires": "5.9.0"
+          }
+        },
+        {
+          "group": "net.java.dev.jna",
+          "module": "jna-platform",
+          "version": {
+            "requires": "5.9.0"
+          }
+        },
+        {
+          "group": "com.formdev",
+          "module": "flatlaf",
+          "version": {
+            "requires": "3.2.5"
+          }
+        },
+        {
+          "group": "com.google.code.findbugs",
+          "module": "jsr305",
+          "version": {
+            "requires": "3.0.2"
+          }
+        },
+        {
+          "group": "org.jetbrains",
+          "module": "annotations",
+          "version": {
+            "requires": "23.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "titan-runelite-1.13.6-titan.1.jar",
+          "url": "titan-runelite-1.13.6-titan.1.jar",
+          "size": 4095916,
+          "sha512": "0d87eb860eea466a5c4cde650713512a9d95e33a49597b84a016a6a35b5a6e2cb56d590ba1cbe7083fab3acf096f1baba59d22fad8d3c9ba510b4e6cbd37150d",
+          "sha256": "e4dded9e21b78c82c4d7f1ab556b32282b6bad53f08878159c53a215fb5a04a2",
+          "sha1": "a7a969e5876ecb8f950b59b2bf3c5f5944dbd6b2",
+          "md5": "12c69bbdadb6f6c6688d9b97998b7121"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "net.titan",
+          "module": "titan-runelite-api",
+          "version": {
+            "requires": "1.13.6-titan.3"
+          }
+        },
+        {
+          "group": "com.google.inject",
+          "module": "guice",
+          "version": {
+            "requires": "4.1.0"
+          },
+          "thirdPartyCompatibility": {
+            "artifactSelector": {
+              "name": "guice",
+              "type": "jar",
+              "extension": "jar",
+              "classifier": "no_aop"
+            }
+          }
+        },
+        {
+          "group": "javax.inject",
+          "module": "javax.inject",
+          "version": {
+            "requires": "1"
+          }
+        },
+        {
+          "group": "aopalliance",
+          "module": "aopalliance",
+          "version": {
+            "requires": "1.0"
+          }
+        },
+        {
+          "group": "com.google.guava",
+          "module": "guava",
+          "version": {
+            "requires": "23.2-jre"
+          }
+        },
+        {
+          "group": "com.google.code.gson",
+          "module": "gson",
+          "version": {
+            "requires": "2.8.5"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "3.14.9"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "1.7.25"
+          }
+        },
+        {
+          "group": "org.apache.commons",
+          "module": "commons-text",
+          "version": {
+            "requires": "1.2"
+          }
+        },
+        {
+          "group": "com.google.protobuf",
+          "module": "protobuf-javalite",
+          "version": {
+            "requires": "3.21.12"
+          }
+        },
+        {
+          "group": "net.java.dev.jna",
+          "module": "jna",
+          "version": {
+            "requires": "5.9.0"
+          }
+        },
+        {
+          "group": "net.java.dev.jna",
+          "module": "jna-platform",
+          "version": {
+            "requires": "5.9.0"
+          }
+        },
+        {
+          "group": "com.formdev",
+          "module": "flatlaf",
+          "version": {
+            "requires": "3.2.5"
+          }
+        },
+        {
+          "group": "com.google.code.findbugs",
+          "module": "jsr305",
+          "version": {
+            "requires": "3.0.2"
+          }
+        },
+        {
+          "group": "org.jetbrains",
+          "module": "annotations",
+          "version": {
+            "requires": "23.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "titan-runelite-1.13.6-titan.1.jar",
+          "url": "titan-runelite-1.13.6-titan.1.jar",
+          "size": 4095916,
+          "sha512": "0d87eb860eea466a5c4cde650713512a9d95e33a49597b84a016a6a35b5a6e2cb56d590ba1cbe7083fab3acf096f1baba59d22fad8d3c9ba510b4e6cbd37150d",
+          "sha256": "e4dded9e21b78c82c4d7f1ab556b32282b6bad53f08878159c53a215fb5a04a2",
+          "sha1": "a7a969e5876ecb8f950b59b2bf3c5f5944dbd6b2",
+          "md5": "12c69bbdadb6f6c6688d9b97998b7121"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-runelite-1.13.6-titan.1-sources.jar",
+          "url": "titan-runelite-1.13.6-titan.1-sources.jar",
+          "size": 2737938,
+          "sha512": "3b3563b5035df8b80d4a4f92dace233d0984465238b1b9f28999bbae3ba2aef6f246d181f1e70160d2c60a4a0e2a392c1a0874b20b0a6e026206219f3b140390",
+          "sha256": "244c686beccccfdaa4c10b09bbd7e526a47a59d77140ff94d92abfa4471a71ca",
+          "sha1": "031135e896a7b4d0db673105333ebb835ffe2748",
+          "md5": "4c8f9765fde13518ec6bb02890ed0d65"
+        }
+      ]
+    }
+  ]
+}

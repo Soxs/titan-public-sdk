@@ -4,6 +4,7 @@
 
 #include "detail/host.h"
 #include "detail/plugin_context.h"
+#include "game_data.h"
 #include "menu_action.h"
 #include <algorithm>
 #include <cstring>
@@ -75,6 +76,14 @@ public:
     bool isSubmenu() const { return flag(TitanPluginSdk::MenuEntryFlags::Submenu); }
     MenuEntry getParent() const { auto s = snapshot(); return MenuEntry{s ? s->parent : MenuEntryHandle{}}; }
     Menu getSubMenu() const;
+    /// SDK 194. A submenu of a plugin's own, under an ordinary entry of the menu itself: no other has one, and it is there
+    /// once an entry is created in it. The game draws it in the menu, right under its heading, with the heading's option
+    /// before each. It goes with its heading.
+    Menu createSubMenu() const;
+    /// Whether it is one of the game's own submenus, or has plugins' entries under it.
+    bool hasSubMenu() const;
+    /// Every plugin's entries under it. The game's own submenus stay.
+    bool deleteSubMenu();
 
     MenuEntry& setOption(std::string_view text) { return setText(text, true); }
     MenuEntry& setTarget(std::string_view text) { return setText(text, false); }
@@ -206,19 +215,26 @@ public:
         }
         return entries;
     }
+    /// In a submenu of a plugin's own from SDK 194. The game's own submenus take none.
     MenuEntry createMenuEntry(int32_t index = -1) const {
-        if (submenu_) { result_ = MenuEditResult::Unsupported; return MenuEntry{{}, result_}; }
         auto s = state(); if (!s) return MenuEntry{{}, result_};
         const auto* h = detail::host(); const auto* owner = detail::currentPlugin();
         MenuEntrySnapshot initial{}, created{};
+        if (submenu_) initial.parent = parent_;
         result_ = !h || !h->menuCreateEntry ? MenuEditResult::Unavailable : !owner ? MenuEditResult::OwnerUnavailable
             : h->menuCreateEntry(owner, s->generation, index, &initial, &created);
         if (result_ == MenuEditResult::Ok && (!created.handle.id || created.handle.generation != s->generation))
             result_ = MenuEditResult::InvalidArgument;
         return MenuEntry{result_ == MenuEditResult::Ok ? created.handle : MenuEntryHandle{}, result_};
     }
-    /// Reorder these siblings; omitted leaves are removed. Every existing
-    /// submenu must remain, and entries cannot be moved between parents.
+    /// SDK 194. Where the game draws it, in the pixels which widgets have, of the menu itself or of one of the game's own
+    /// submenus. A plugin's submenu has no place of its own. Not open before MenuOpened has been told of.
+    std::optional<gameData::MenuBounds> bounds() const {
+        if (!state()) return std::nullopt;
+        return submenu_ ? gameData::menuBounds(detail::host(), parent_.generation, parent_.id) : gameData::menuBounds();
+    }
+    /// Reorder these siblings; omitted leaves are removed. Every one of the game's own
+    /// submenus must remain, and entries cannot be moved between parents.
     bool setMenuEntries(const std::vector<MenuEntry>& entries) const {
         auto s = state(); if (!s) return false;
         const auto* h = detail::host(); const auto* owner = detail::currentPlugin();
@@ -244,6 +260,15 @@ private:
 };
 
 inline Menu MenuEntry::getSubMenu() const { return Menu{handle_}; }
+inline Menu MenuEntry::createSubMenu() const { return Menu{handle_}; }
+inline bool MenuEntry::hasSubMenu() const { return isSubmenu() || !getSubMenu().getMenuEntries().empty(); }
+inline bool MenuEntry::deleteSubMenu() {
+    if (isSubmenu()) { result_ = MenuEditResult::Unsupported; return false; }
+    const auto menu = getSubMenu();
+    const bool done = menu.setMenuEntries({});
+    result_ = menu.lastResult();
+    return done;
+}
 inline MenuEntry MenuEntryClick::getMenuEntry() const { return MenuEntry{entry_}; }
 
 /// Owned event snapshot. Its Menu/Entry views still obey generation validity.

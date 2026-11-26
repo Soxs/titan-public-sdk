@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.titan.runelite</groupId>
+  <artifactId>net.titan.runelite.gradle.plugin</artifactId>
+  <version>0.2.0</version>
+  <packaging>pom</packaging>
+  <name>Titan plugins with the RuneLite API</name>
+  <description>Everything a Titan plugin written with the RuneLite API needs: RuneLite, Titan's SDK, Lombok and the Titan dev loop.</description>
+  <dependencies>
+    <dependency>
+      <groupId>net.titan</groupId>
+      <artifactId>titan-dev-gradle-plugin</artifactId>
+      <version>0.2.0</version>
+    </dependency>
+  </dependencies>
+</project>

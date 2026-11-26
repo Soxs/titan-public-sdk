@@ -41,4 +41,6 @@ public interface InteractionBackend {
     }
     boolean setWidgetText(int packedId, String text);
     boolean setWidgetTextAtPath(WidgetAddress address, String text);
+    /** SDK 188. The index of a created child or 0; -1 where the change was not made. A null text is none. */
+    default int writeWidget(WidgetAddress address, int write, int[] integers, String text) { return -1; }
 }

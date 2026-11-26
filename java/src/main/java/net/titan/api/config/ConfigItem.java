@@ -24,6 +24,15 @@ public @interface ConfigItem {
     /// When true, an {@code int}-returning item is rendered as a color picker
     /// (the value is a packed 0xRRGGBB / 0xAARRGGBB color) instead of a slider.
     boolean color() default false;
+    /// An integer number box instead of a slider; uses the same min/max.
+    boolean numberInput() default false;
+    /// Optional display suffix for int, long and double values (for example
+    /// "ms", "tiles" or "%"). It does not change storage or numeric range.
+    /// At most 256 UTF-8 bytes; controls, line separators and bidi formatting
+    /// characters are rejected.
+    String units() default "";
+    /// Preserve/edit the alpha channel of a color item. Requires color=true.
+    boolean alpha() default false;
     /// When true, a {@code String}-returning item is stored as a DPAPI-protected
     /// string and rendered as a masked text field.
     boolean secret() default false;

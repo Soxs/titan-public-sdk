@@ -634,6 +634,192 @@ interface ItemSpritesFacade {
     draw(image: SpriteImage, x: number, y: number, scale?: number): boolean;
 }
 
+interface TextFacade {
+    /** Removes each span from '<' through the next '>', including nested-looking
+     * text/newlines. Unmatched brackets and entities are unchanged. This is not
+     * HTML parsing or escaping. TypeError for any nonstring, including null. */
+    removeTags(text: string): string;
+}
+
+/** Pure experience calculations, independent of game/cache readiness. */
+interface ExperienceFacade {
+    readonly maxRealLevel: 99;
+    readonly maxVirtualLevel: 126;
+    /** Informational skill cap; levelForXp accepts XP above this value. */
+    readonly maxSkillXp: 200000000;
+    /** Level 1..126. TypeError for noninteger/nonnumber; RangeError outside range. */
+    xpForLevel(level: number): number;
+    /** XP 0..2147483647; returns 1..126. No live client reads. Same error policy. */
+    levelForXp(xp: number): number;
+}
+
+/** Pinned bundled icons, independent of game/cache readiness. */
+interface SkillIconsFacade {
+    /** Titan skill ID 0..23 (including Sailing), not a RuneLite enum ordinal.
+     * Returns a fresh owned image. `small` defaults to false; invalid IDs or
+     * unavailable bundled data return null. Draw with sprites.draw/overlay.sprite
+     * during an overlay callback. */
+    get(skill: number, small?: boolean): SpriteImage | null;
+}
+
+type FontFace = 'regular' | 'bold' | 'small';
+interface FontsFacade {
+    /** Fresh owned copy of the exact bundled TrueType file; null for an invalid
+     * face or unavailable data. This does not select a font for native overlay
+     * text or install a font globally. */
+    data(face: FontFace): Uint8Array | null;
+}
+
+enum CacheFileStatus {
+    Ready = 0, Absent = 1, NotReady = 2, Invalid = 3,
+    Unsupported = 4, Failed = 5, BufferTooSmall = 6,
+}
+interface CacheFileResult {
+    readonly status: CacheFileStatus;
+    /** Non-null only for Ready. Owned by the caller. */
+    readonly bytes: Uint8Array | null;
+}
+interface CacheFileIdsResult {
+    readonly status: CacheFileStatus;
+    /** Ascending. Non-null only for Ready. */
+    readonly ids: Int32Array | null;
+}
+enum GameDataStatus {
+    Ready = 0,
+    /** Nothing to answer with now, such as before the account is logged in. */
+    NotReady = 1,
+    Invalid = 2,
+    /** This client or this build of the game has no such operation. */
+    Unsupported = 3,
+    WrongThread = 4,
+    BufferTooSmall = 5,
+}
+interface GameDataResult {
+    readonly status: GameDataStatus;
+    /** Little-endian. Non-null only for Ready. */
+    readonly bytes: Uint8Array | null;
+}
+interface ChatUser { readonly name: string; readonly world: number; readonly rank: number; }
+interface GroundPile {
+    readonly plane: number; readonly sceneX: number; readonly sceneY: number;
+    /** Of this pile while it lies there. */
+    readonly identity: bigint;
+    readonly id: number; readonly quantity: number;
+    /** Server ticks, as the list's `tick` counts them. */
+    readonly visibleTick: number; readonly despawnTick: number;
+    /** 0 nobody's, 1 the account's, 2 another player's, 3 the group's. */
+    readonly ownership: number;
+    readonly neverVisible: boolean;
+}
+/** What a widget's definition and scripts set of it. null where this game's is not known. SDK 193+. */
+interface WidgetFields {
+    readonly xMode: number | null; readonly yMode: number | null; readonly widthMode: number | null; readonly heightMode: number | null;
+    readonly textAlignX: number | null; readonly textAlignY: number | null; readonly lineHeight: number | null;
+    readonly hasListener: boolean | null; readonly scrollWidth: number | null; readonly opacity: number | null;
+}
+/** A slot of a flat widget's script-made children: the child there, with the fields a read of it has. SDK 195+. */
+interface WidgetSlot {
+    readonly incarnation: bigint;
+    readonly itemId: number | null; readonly type: number | null; readonly itemQuantity: number | null; readonly spriteId: number | null;
+    readonly modelType: number | null; readonly modelId: number | null; readonly relativeX: number | null; readonly relativeY: number | null;
+    readonly width: number | null; readonly height: number | null; readonly originalX: number | null; readonly originalY: number | null;
+    readonly originalWidth: number | null; readonly originalHeight: number | null; readonly scrollX: number | null;
+    readonly scrollY: number | null; readonly scrollHeight: number | null;
+}
+/** Friends, clans, items on the ground, held keys, sounds, and what the game's widgets, chat, scripts and scene have, each
+ * in one call on the game thread. null where it cannot be read now. SDK 192+, and later where it says so. */
+interface GameDataFacade {
+    readonly Clan: { readonly Visited: -1; readonly Own: 0; readonly IronmanGroup: 1 };
+    readonly ChatLinePart: { readonly Name: 0; readonly Message: 1; readonly Sender: 2 };
+    /** Those which scripts made, those of the widget's interface, and those of the interface opened in it. */
+    readonly WidgetChildren: { readonly Dynamic: 0; readonly Static: 1; readonly Nested: 2 };
+    readonly LootSource: { readonly Npc: 0; readonly Player: 1; readonly Server: 2 };
+    /** Where the open menu is drawn, in the pixels which widgets have. `menu.bounds()` also has the game's own submenus.
+     * SDK 194+. */
+    menuBounds(): MenuBounds | null;
+    /** By the number which onLootReceived tells of. SDK 194+. */
+    loot(number: number): Loot | null;
+    /** The tile of the top-level scene which the game's own "Walk here" goes to. It stays while the menu is open, and is
+     * none over an interface or with an item selected. SDK 193+. */
+    hoveredTile(): { readonly present: boolean; readonly plane: number; readonly sceneX: number; readonly sceneY: number } | null;
+    /** The heading the minimap is turned by, in 2048 to a turn, and its pixels to a tile. SDK 193+. */
+    minimap(): { readonly heading: number | null; readonly pixelsToATile: number | null } | null;
+    /** Where a world entity, such as a boat, stands in the top-level scene in 1/128 of a tile, how it is turned in 2048 to
+     * a turn, and the point of its own world which is there. By the ID of its own world view. SDK 193+. */
+    worldEntity(worldViewId: number): { readonly present: boolean; readonly x: number; readonly y: number; readonly orientation: number;
+        readonly ownX: number; readonly ownY: number } | null;
+    /** The area which the world map shows, or -1, and the tile in the middle of it. SDK 193+. */
+    worldMapArea(): { readonly area: number; readonly tileX: number; readonly tileY: number } | null;
+    /** A line of the game's chat, by its number. SDK 193+. */
+    chatLine(number: number): { readonly present: boolean; readonly channel: number; readonly name: string; readonly message: string;
+        readonly sender: string } | null;
+    /** The numbers of a channel's lines, the newest first. SDK 193+. */
+    chatLines(channel: number): readonly number[] | null;
+    /** The chat shows it when it is next built. SDK 193+. */
+    setChatLine(number: number, part: 0 | 1 | 2, text: string): boolean;
+    /** Of a widget, or of its direct child at an index. SDK 193+. */
+    widgetFields(packedId: number, childIndex?: number): WidgetFields | null;
+    /** SDK 193+. */
+    widgetChildren(packedId: number, which: 0 | 1 | 2, childIndex?: number): readonly { readonly packedId: number; readonly childIndex: number;
+        readonly incarnation: bigint }[] | null;
+    /** Every slot of a flat widget's script-made children, the empty ones too (incarnation 0n), with each child's fields: a
+     * container such as the bank's items in one read. null when one of them cannot be read now. SDK 195+. */
+    widgetSlots(packedId: number): readonly WidgetSlot[] | null;
+    /** A listener by the opcode which sets it in the game's scripts, such as 1400 on click or 1409 on an option, and the
+     * load listener by 0: its script and then its arguments. Empty for none. SDK 193+. */
+    widgetListener(packedId: number, opcode: number, childIndex?: number): readonly (number | string | bigint)[] | null;
+    /** A script of -1 takes it away. SDK 193+. */
+    setWidgetListener(packedId: number, opcode: number, script: number, args?: readonly (number | string)[], childIndex?: number): boolean;
+    /** The interpreter's integers and texts. Inside onScriptMoment those of the script, and elsewhere what the last one
+     * left. SDK 193+. */
+    scriptStacks(): { readonly integers: readonly number[]; readonly texts: readonly (string | null)[] } | null;
+    /** Inside onScriptMoment: the script's component and its second one. A packed ID of -1 is none. SDK 193+. */
+    scriptComponents(): { readonly packedId: number; readonly childIndex: number; readonly secondPackedId: number;
+        readonly secondChildIndex: number } | null;
+    /** Inside onScriptMoment: replaces the text at a place of the stack. SDK 193+. */
+    setScriptText(place: number, text: string): boolean;
+    /** What a player or an NPC says above its head, for as long as the game shows it. SDK 193+. */
+    setOverheadText(actor: { readonly entityPtr: number }, text: string): boolean;
+    /** One click nearer to the game's open world switcher, once in a tick until it is open. SDK 193+. */
+    openWorldSwitcher(): boolean;
+    /** Loads the scene of a player in the game anew, as the game's next cycle begins. false when there is none. SDK 193+. */
+    reloadScene(): boolean;
+    /** Drops the connection of a player in the game, which the game then makes again. false when there is none. SDK 193+. */
+    dropConnection(): boolean;
+    /** Any operation by its name, with whole numbers and texts. */
+    run(name: string, numbers?: (number | bigint)[], texts?: string[]): GameDataResult;
+    friends(): { readonly loaded: boolean;
+        /** `world` is 0 for a friend who is offline. */
+        readonly friends: readonly { readonly name: string; readonly previousName: string; readonly world: number; readonly rank: number }[];
+        readonly ignored: readonly { readonly name: string; readonly previousName: string }[] } | null;
+    /** An empty name is no channel. */
+    friendsChat(): { readonly name: string; readonly owner: string; readonly rank: number; readonly kickRank: number;
+        readonly users: readonly ChatUser[] } | null;
+    /** The account's own clan by default. Not inside onScriptMoment, where the game's own scripts use these lists. */
+    clanChannel(which?: -1 | 0 | 1): { readonly present: boolean; readonly name: string; readonly talkRank: number;
+        readonly kickRank: number; readonly users: readonly ChatUser[] } | null;
+    clanSettings(which?: -1 | 0 | 1): { readonly present: boolean; readonly name: string;
+        readonly members: readonly { readonly name: string; readonly rank: number; readonly joinedDay: number }[] } | null;
+    /** Every pile in a loaded world. They change with the server's ticks, so read them once in each. */
+    groundItems(worldViewId?: number): { readonly tick: number; readonly piles: readonly GroundPile[] } | null;
+    /** Which keys (Windows virtual key codes) and mouse button (0, 1 left, 2 right, 4 middle) the game's window was
+     * last told are down. */
+    input(): { readonly mouseButton: number; readonly mouseIdleMillis: number; readonly keyIdleMillis: number;
+        /** Milliseconds since 1970. */
+        readonly mousePressedAt: number; held(virtualKey: number): boolean } | null;
+    /** As the game's scripts play a sound effect, at the volume the account has set. */
+    playSound(id: number, loops?: number, delay?: number): boolean;
+}
+/** Files of the game's own local cache, checked against its reference table. SDK 185+. */
+interface CacheFilesFacade {
+    /** The decompressed bytes of one file, such as index 8 for sprites, 12 for client
+     * scripts or 2 for configuration. `file` defaults to 0. It reads the disk, so keep what
+     * you reuse. NotReady and Failed may succeed later; Absent means that the reference
+     * table lists no such file. */
+    read(index: number, group: number, file?: number): CacheFileResult;
+    fileIds(index: number, group: number): CacheFileIdsResult;
+}
+
 /** Lifecycle state of an asynchronous screenshot request. SDK 131+. */
 enum ScreenshotPhase {
     None = 0,
@@ -1567,6 +1753,8 @@ interface IntSettingInit extends SettingMetaBase {
     default: number;
     min: number;
     max: number;
+    /** Single-line numeric suffix, at most 256 UTF-8 bytes (for example "ms" or "%"). */
+    units?: string;
 }
 
   /** Loaded widget handles with retained slot-aware dynamic paths. SDK 64+. */
@@ -1615,6 +1803,21 @@ interface StringSettingInit extends SettingMetaBase {
     key: string;
     name: string;
     default: string;
+}
+
+/** Typed controls share the native settings renderer and normal persistence. */
+interface TypedSettingInit<T> extends SettingMetaBase { key: string; name: string; default: T; }
+interface NumericTypedSettingInit<T> extends TypedSettingInit<T> {
+    /** Single-line numeric suffix, at most 256 UTF-8 bytes; not a formatting expression. */
+    units?: string;
+}
+interface SettingKeybind { readonly keyCode: number; readonly modifiers: number; }
+interface SettingDimension { readonly width: number; readonly height: number; }
+interface SettingPoint { readonly x: number; readonly y: number; }
+interface SettingFont { readonly family: string; readonly size: number; readonly bold: boolean; readonly italic: boolean; }
+interface MultiSelectSettingInit extends TypedSettingInit<readonly number[]> {
+    /** At most 32 unique signed int32 IDs; selected values are IDs, not offsets. */
+    choices: readonly ComboChoice[];
 }
 
 interface ProtectedStringSettingInit extends SettingMetaBase {
@@ -1768,12 +1971,21 @@ interface MenuEntry {
     isDeprioritized(): boolean;
     setDeprioritized(value: boolean): this;
     isCustom(): boolean;
+    /** One of the game's own submenus. */
     isSubmenu(): boolean;
     isValid(): boolean;
     getParent(): MenuEntry | null;
     getChildren(): MenuEntry[];
     setChildren(entries: readonly MenuEntry[]): this;
     getSubMenu(): Menu;
+    /** Whether it is one of the game's own submenus, or has plugins' entries under it. SDK 194+. */
+    hasSubMenu(): boolean;
+    /** A submenu of a plugin's own, under an ordinary entry of the menu itself: no other has one, and it is there once an
+     * entry is created in it. The game draws it in the menu, right under its heading, with the heading's option before
+     * each. It goes with its heading. SDK 194+. */
+    createSubMenu(): Menu;
+    /** Every plugin's entries under it. Throws for one of the game's own. SDK 194+. */
+    deleteSubMenu(): void;
     remove(): void;
     /** Synchronous and owner-scoped. Native actions continue after a successful
      * callback; custom opcodes never reach native DoAction. Global
@@ -1782,6 +1994,22 @@ interface MenuEntry {
     getOnClick(): ((entry: MenuEntry) => void) | null;
 }
 
+interface MenuBounds {
+    readonly open: boolean;
+    readonly x: number; readonly y: number; readonly width: number; readonly height: number;
+}
+/** What a monster or a player left for the account. SDK 194+. */
+interface Loot {
+    /** Whether the number is one of the last 64. */
+    readonly present: boolean;
+    /** `gameData.LootSource`. The server says it itself of some bosses, and that has no place. */
+    readonly source: 0 | 1 | 2;
+    readonly npcId: number; readonly index: number; readonly combatLevel: number;
+    /** Its south-west tile. */
+    readonly worldX: number; readonly worldY: number; readonly plane: number;
+    readonly name: string;
+    readonly items: readonly { readonly id: number; readonly quantity: number }[];
+}
 interface MenuState {
     readonly available: boolean;
     readonly editable: boolean;
@@ -1803,8 +2031,13 @@ interface Menu {
     isEditable(): boolean;
     isOpen(): boolean;
     getMenuEntries(): MenuEntry[];
-    /** Root-only. -1 appends, 0 inserts at the bottom; negative indices count from the end. */
+    /** -1 appends, 0 inserts at the bottom; negative indices count from the end. In the menu itself, and from SDK 194 in
+     * a submenu of a plugin's own. The game's own submenus take none. */
     createMenuEntry(index?: number): MenuEntry;
+    /** Where the game draws it, in the pixels which widgets have, of the menu itself or of one of the game's own submenus.
+     * A plugin's submenu has no place of its own. Not open before onMenuOpened has been told of. null where it cannot be
+     * read. SDK 194+. */
+    bounds(): MenuBounds | null;
     /** Reorder siblings; omitted leaves are removed. Submenus must remain,
      * cannot be emptied, and entries cannot move between parents. */
     setMenuEntries(entries: readonly MenuEntry[]): void;
@@ -1919,11 +2152,81 @@ interface GameStateChangedEvent {
     readonly tickCount: number;
 }
 
+/** Notification after the native world-change operation completes. */
+type WorldChangedEvent = Readonly<Record<string, never>>;
+
+/** Physical drawable dimensions captured together at the window notification. */
+interface CanvasSizeChangedEvent {
+    readonly width: number;
+    readonly height: number;
+}
+
+/** Index written by the native integer VarClient setter, including repeated writes. */
+/** An interface whose load listeners have run: its widgets are there. SDK 189+. */
+interface WidgetLoadedEvent {
+    readonly groupId: number;
+}
+/** An interface about to close, whose widgets are still there. SDK 189+. */
+interface WidgetClosedEvent {
+    readonly groupId: number;
+    /** How the server opened it. */
+    readonly modalMode: number;
+    /** Whether its widgets go. */
+    readonly unload: boolean;
+}
+/** What a monster or a player left for the account. SDK 194+. */
+interface LootReceivedEvent {
+    /** By which `gameData.loot` reads it again, while it is one of the last 64. */
+    readonly number: number;
+    readonly loot: Loot | null;
+}
+interface VarClientIntChangedEvent {
+    readonly index: number;
+}
+
+/** Index written by the native string VarClient setter, including repeated writes. */
+interface VarClientStrChangedEvent {
+    readonly index: number;
+}
+
+/** Scripts of the game's by id, 0 to 65535 and at most 1024 of each, for `titan.watchScripts`. SDK 187+. */
+interface ScriptWatch {
+    /** About to run. */
+    readonly before?: readonly number[];
+    /** About to return. */
+    readonly after?: readonly number[];
+}
+
+/** A script of the game's about to run or about to return, inside the interpreter. Read its values in the handler.
+ * The interpreter can start no other script meanwhile: those wait, as menu actions do, for the next client tick. */
+interface ScriptMomentEvent {
+    readonly scriptId: number;
+    readonly phase: "before" | "after";
+    /** Another script called this one. Its arguments are on top of the integers before it runs. */
+    readonly nested: boolean;
+    /** What the game started the script with, before it runs, when all of it is integers. Otherwise null. */
+    arguments(): number[] | null;
+    /** The interpreter's integer stack: a called script's arguments, or a returning script's results, are on top. */
+    integers(): number[] | null;
+    /** Replaces an argument before the script starts. False when there is none such. */
+    setArgument(index: number, value: number): boolean;
+    /** Replaces a value on the interpreter's stack. False when there is none such. */
+    setInteger(index: number, value: number): boolean;
+}
+
+/** Named skill values captured together on the client thread. */
+interface StatChangedEvent {
+    readonly skill: number;
+    readonly xp: number;
+    readonly level: number;
+    readonly boostedLevel: number;
+}
+
 /** Delivered to `onChatMessage` for every native chat line added to the
  * chatbox: server-delivered text, local system messages, and plugin-injected
  * lines via `titan.addChatMessage`. Added in SDK 22. */
 interface ChatMessageEvent {
-    /** Chat type (0=PUBLIC, 2=SERVER, 3=CLAN, 4=TRADE, 99=BROADCAST, ...). */
+    /** Native chat type, including 0 for a game message and 2 for public chat. */
     readonly type: number;
     /** Sender display name. Empty on system / server messages. */
     readonly name: string;
@@ -1933,6 +2236,8 @@ interface ChatMessageEvent {
     readonly sender: string;
     /** Current game tick captured at dispatch, or 0 if unavailable. */
     readonly gameTick: number;
+    /** Complete observed strings and Unix insertion second, when all are available. */
+    readonly insertion?: Readonly<{ name: string; message: string; sender: string; timestamp: number }>;
 }
 
 /** Discriminates the source of a `SoundPlayedEvent`. */
@@ -1966,10 +2271,11 @@ interface SoundPlayedEvent {
     consumed: boolean;
 }
 
-/** Delivered to `onHitsplatApplied` when the native client applies a visible
- * hitsplat to a player or NPC. Added in SDK 74; native signature corrected in
- * SDK 76. */
+/** Delivered after the native hitsplat adder returns. Its arguments describe
+ * the attempt. Visibility and the final expiry cycle require the resolved hitmark. */
 interface HitsplatAppliedEvent {
+    /** Qualified written or detached hitsplat, when available on this game-thread observation. */
+    readonly outcome?: { readonly type: number; readonly amount: number; readonly disappearsOnGameCycle: number };
     /** Resolved actor object, or null if the actor no longer resolves. */
     readonly actor: Actor | null;
     /** Entity type code: titan.ENTITY_TYPE_PLAYER, NPC, or NONE. */
@@ -2306,12 +2612,23 @@ interface OverlayPanelStyle {
     barBgColor?: number;
 }
 
-/**
- * The panel object passed to `render` in `Plugin.overlayPanel`. Provides
- * builder methods that emit components into the host, plus styling
- * setters that update the panel's sticky style.
- */
+/** One tile in an ordered HUD group. Colors use straight ARGB. */
+interface InfoBoxTile {
+    /** Positive key registered on this panel. Zero or omitted displays text alone. */
+    iconKey?: number;
+    text?: string;
+    tooltip?: string;
+    textArgb?: number;
+    backgroundArgb?: number;
+}
+
+/** HUD builder passed to the render callback of Plugin.overlayPanel. */
 interface OverlayPanelInstance {
+    /** Copy straight ARGB pixels into this panel's icon cache from an owned callback. */
+    setInfoBoxIcon(key: number, width: number, height: number, pixels: Uint32Array): boolean;
+    clearInfoBoxIcon(key: number): boolean;
+    /** Present ordered tiles inside render(). Defaults to horizontal, 35 px. */
+    infoBoxes(tiles: readonly InfoBoxTile[], options?: { vertical?: boolean; size?: number }): boolean;
     /** Append a title row. */
     title(text: string, color?: number): OverlayPanelInstance;
     /** Append a label/value line (right text right-aligned). */
@@ -2718,7 +3035,29 @@ class Plugin {
     // Setting helpers — each returns a Setting<T> that auto-registers.
     boolSetting(init: BoolSettingInit): Setting<boolean>;
     intSetting(init: IntSettingInit): Setting<number>;
+    /** Exact numeric entry using the same range and persistence as intSetting. */
+    intInputSetting(init: IntSettingInit): Setting<number>;
     colorSetting(init: ColorSettingInit): Setting<number>;
+    /** Full signed ARGB int32, including the alpha byte. */
+    colorAlphaSetting(init: TypedSettingInit<number>): Setting<number>;
+    /** Exact signed int64. Decimal strings are required; JS Number is not lossless. */
+    int64Setting(init: NumericTypedSettingInit<string>): Setting<string>;
+    /** Finite binary64 numbers; NaN and infinities are rejected. */
+    doubleSetting(init: NumericTypedSettingInit<number>): Setting<number>;
+    multiSelectSetting(init: MultiSelectSettingInit): Setting<readonly number[]>;
+    /** AWT key codes with extended SHIFT=64, CTRL=128, META=256, ALT=512 masks. */
+    keybindSetting(init: TypedSettingInit<SettingKeybind>): Setting<SettingKeybind>;
+    /** Modifiers must be zero for a nonmodifier key; modifier-only uses keyCode=0. */
+    modifierlessKeybindSetting(init: TypedSettingInit<SettingKeybind>): Setting<SettingKeybind>;
+    /** Nonnegative int32 size. Concrete defaults remain nonnullable unless opted in. */
+    dimensionSetting(init: TypedSettingInit<SettingDimension> & { nullable?: false }): Setting<SettingDimension>;
+    /** A null default opts into no explicit size; reset restores null. */
+    dimensionSetting(init: TypedSettingInit<null> & { nullable?: true }): Setting<SettingDimension | null>;
+    /** Allows programmatic null even with a concrete default; reset restores that default. */
+    dimensionSetting(init: TypedSettingInit<SettingDimension | null> & { nullable: true }): Setting<SettingDimension | null>;
+    /** null means no explicit point; coordinates otherwise preserve signed int32. */
+    pointSetting(init: TypedSettingInit<SettingPoint | null>): Setting<SettingPoint | null>;
+    fontSetting(init: TypedSettingInit<SettingFont>): Setting<SettingFont>;
     comboSetting(init: ComboSettingInit): Setting<number>;
     stringSetting(init: StringSettingInit): Setting<string>;
     protectedStringSetting(init: ProtectedStringSettingInit): Setting<string>;
@@ -2783,6 +3122,20 @@ class Plugin {
     onVarbitChanged?(event: VarbitChangedEvent): void;
     /** Fired when native Client.GameState changes. Added in SDK 91. */
     onGameStateChanged?(event: GameStateChangedEvent): void;
+    onWorldChanged?(event: WorldChangedEvent): void;
+    /** Delivered in observation order on the game thread. */
+    onCanvasSizeChanged?(event: CanvasSizeChangedEvent): void;
+    onVarClientIntChanged?(event: VarClientIntChangedEvent): void;
+    /** Right after the interface's own load scripts. SDK 189+. */
+    onWidgetLoaded?(event: WidgetLoadedEvent): void;
+    /** Before the interface closes. SDK 189+. */
+    onWidgetClosed?(event: WidgetClosedEvent): void;
+    /** Before onGameTick of the server tick in which the items came onto the ground or the server said itself what was
+     * looted. SDK 194+. */
+    onLootReceived?(event: LootReceivedEvent): void;
+    onVarClientStrChanged?(event: VarClientStrChangedEvent): void;
+    /** The scripts `titan.watchScripts` named, synchronously and inside the interpreter. SDK 187+. */
+    onScriptMoment?(event: ScriptMomentEvent): void;
     /** Fired for every chat line added to the chatbox (server + local + injected). Added in SDK 22. */
     onChatMessage?(event: ChatMessageEvent): void;
     /** Fired when the native client plays a sound (synth effect or jingle; see
@@ -2790,7 +3143,7 @@ class Plugin {
      * use `titan.state.audio.playbackDisabled` for playback suppression. Added
      * in SDK 69. */
     onSoundPlayed?(event: SoundPlayedEvent): void;
-    /** Fired when a visible hitsplat is applied to a resolved actor. Added in SDK 74. */
+    /** Fired after a native hitsplat-adder call. The actor can be unresolved. */
     onHitsplatApplied?(event: HitsplatAppliedEvent): void;
     /** Fired when an actor-attached spot animation is applied. Added in SDK 76. */
     onActorSpotAnim?(event: ActorSpotAnimEvent): void;
@@ -2800,6 +3153,8 @@ class Plugin {
     /** Fired when a mapped item container's slot contents differ from the
      * previous tick. Detection is tick-level diff. Added in SDK 26. */
     onItemContainerChanged?(event: ItemContainerChangedEvent): void;
+    /** One changed named skill per client tick. Skill is the numeric SDK skill ID. */
+    onStatChanged?(event: StatChangedEvent): void;
     /** RuneLite-style personal Grand Exchange offer update. SDK 136+. */
     onGrandExchangeOfferChanged?(event: GrandExchangeOfferChangedEvent): void;
     /**
@@ -2875,7 +3230,7 @@ type PanelDef = NativePanelDef | HtmlPanelDef;
 type HtmlJsonValue = null | boolean | number | string | HtmlJsonValue[] | { [key: string]: HtmlJsonValue };
 interface HtmlResource {
     mime: "text/html" | "text/css" | "text/javascript" | "application/javascript" | "application/json" | "text/plain"
-        | "image/png" | "image/jpeg" | "image/webp" | "font/woff" | "font/woff2";
+        | "image/png" | "image/jpeg" | "image/webp" | "font/woff" | "font/woff2" | "font/ttf";
     /** Text is encoded as UTF-8. Binary bytes remain in this script artifact. */
     content: string | readonly number[] | Uint8Array;
 }
@@ -3219,6 +3574,18 @@ interface PanelElement {
     const screenshot: ScreenshotFacade;
     /** Owned native item icons, CPU outline masks, and overlay images. SDK 167+. */
     const sprites: ItemSpritesFacade;
+    /** Owned bundled skill images, using Titan numeric skill IDs. */
+    const skillIcons: SkillIconsFacade;
+    /** Files of the game's own local cache. SDK 185+. */
+    const cacheFiles: CacheFilesFacade;
+    /** Friends, clans, items on the ground, held keys, sounds, and what widgets, chat, scripts and the scene have. SDK 192+. */
+    const gameData: GameDataFacade;
+    /** Exact bundled TTF files; resource access, not a text-rendering API. */
+    const fonts: FontsFacade;
+    /** Pure RuneLite-compatible XP thresholds and virtual levels. */
+    const experience: ExperienceFacade;
+    /** Detached pure game-text helper, with no live client access. */
+    const text: TextFacade;
 
     // --- Geometry helpers (SDK 39) ---
     // Mirror the inline methods on `titan::WorldPos` in C++. Operate
@@ -3238,8 +3605,13 @@ interface PanelElement {
      */
     function distance(a: WorldPoint | Tile, b: WorldPoint | Tile): number;
 
-    // Class-based registration.
+    /** Register a class instance or an object with lifecycle callbacks. */
     function register(plugin: Plugin): void;
+    type ObjectPluginDefinition = Pick<Plugin, "id" | "enabled" | "dependencies"
+        | "description" | "version" | "author" | "panels" | "htmlOverlays"
+        | Extract<keyof Plugin, `on${string}`>> & { name?: string };
+    function register<T extends ObjectPluginDefinition>(plugin: T): void;
+    function registerPlugin<T extends ObjectPluginDefinition>(definition: T): void;
 
     /** Cross-runtime coordinated break utility. SDK 97+. */
     const breakHandler: BreakHandlerUtility;
@@ -3293,6 +3665,8 @@ interface PanelElement {
      */
     namespace state {
         const client: {
+            /** Any-thread selected game-frame (including sidebar) focus snapshot. Null for unsupported, detached, Wine, or changing hosts; distinct from Canvas focus. */
+            frameFocused(): boolean | null;
             /** SDK 174: -1 selects current, 0 selects top-level. Null when unavailable. */
             getWorldView(id: number): WorldView | null;
             getTopLevelWorldView(): WorldView | null;
@@ -3399,6 +3773,18 @@ interface PanelElement {
             setHintArrow(point: WorldPoint, options?: HintArrowCoordinateOptions): HintArrowUpdateResult;
             /** Revalidate the actor's captured index, pointer and WorldView before applying. */
             setHintArrow(actor: Npc | Player): HintArrowUpdateResult;
+            /** Retarget server slot zero on the game thread, preserving its display and blink settings. */
+            setHintArrowTarget(actor: Npc | Player): HintArrowUpdateResult;
+            /** Top-level entity table on the game thread. Status 0 unavailable, 1 absent, 2 present, 3 stale. */
+            lookupWorldEntity(index: number, expectedParent?: bigint, expectedEntity?: bigint): {
+                status: 0 | 1 | 2 | 3; index: number; definitionId: number; childWorldId: number;
+                parentIncarnation: bigint; entityIncarnation: bigint; childWorldIncarnation: bigint;
+            };
+            /** Observe the shared definition through a current top-level entity. Zero tokens are unguarded. */
+            lookupWorldEntityDefinition(index: number, expectedParent?: bigint, expectedEntity?: bigint, expectedDefinition?: bigint): {
+                status: 0 | 1 | 2 | 3; index: number; definitionId: number;
+                parentIncarnation: bigint; entityIncarnation: bigint; definitionIncarnation: bigint;
+            };
             /** Deactivate server slot zero. A subsequent server update can replace local changes. */
             clearHintArrow(): HintArrowUpdateResult;
             /** Personal offer snapshot, or null for an invalid slot/unavailable data. SDK 136+. */
@@ -3634,6 +4020,8 @@ interface PanelElement {
             item(id: number): ItemDef | null;
             npc(id: number): NpcDef | null;
             obj(id: number): ObjDef | null;
+            /** SDK 179+. Game-thread read of the live base definition's slots, including empty slots. Null when unavailable. */
+            objectActionSlotCount(id: number): number | null;
             varbit(id: number): VarbitDef | null;
         };
 
@@ -4505,6 +4893,14 @@ interface PanelElement {
         actions(): (string | null)[] | null;
         /** Whether the host can read this widget's name and actions now. SDK v159+. */
         opsAvailable(): boolean;
+        /** Ordered script and arguments. Returns null when unset. Throws when the host cannot read this address on the current thread. */
+        inventoryTransmitListener(): (number | string | bigint)[] | null;
+        /** SDK 178+. Current key-listener script and ordered arguments, or null when unset. Requires a supported host and the game thread. */
+        keyListener(): (number | string | bigint)[] | null;
+        /** Live scroll content height of a root or direct child on the game thread. Null when unavailable. */
+        scrollHeight(): number | null;
+        /** Live primary text on the game thread. Preserves markup, embedded NULs and non-breaking spaces. */
+        primaryText(): string | null;
         /**
          * Dispatch a widget-family DoAction against this exact widget. With
          * two arguments the handle itself is targeted. A third argument
@@ -4537,6 +4933,64 @@ interface PanelElement {
         interact(...actions: string[]): boolean;
         /** Cast `spell` on this widget. */
         castOn(spell: MagicSpell): boolean;
+        /** Changes of this widget's own fields, on the game thread. SDK 188+. */
+        edit(): WidgetEdit;
+    }
+
+    /**
+     * Changes of one root or direct dynamic child's own fields. Game thread. Each is made before its call returns, as
+     * the game's own scripts make it, and the widget is drawn anew. One which cannot be made leaves the others to be
+     * made, and `ok()` is false from then on: the widget is gone, the thread is another, or the host is older. A
+     * handle's own fields show a change when it is next read anew. SDK 188+.
+     */
+    interface WidgetEdit {
+        /** Every change so far was made. */
+        ok(): boolean;
+        hidden(value?: boolean): WidgetEdit;
+        /** The text as it is, up to 4096 bytes of UTF-8. */
+        text(value: string): WidgetEdit;
+        textColor(rgb: number): WidgetEdit;
+        textShadowed(value?: boolean): WidgetEdit;
+        /** Each 0 left or top, 1 centre, 2 right or bottom. */
+        textAlignment(x: number, y: number): WidgetEdit;
+        lineHeight(pixels: number): WidgetEdit;
+        fontId(id: number): WidgetEdit;
+        /** 0 is opaque and 255 cannot be seen. */
+        opacity(transparency: number): WidgetEdit;
+        filled(value?: boolean): WidgetEdit;
+        spriteId(id: number): WidgetEdit;
+        spriteTiled(value?: boolean): WidgetEdit;
+        flipped(horizontally: boolean, vertically: boolean): WidgetEdit;
+        borderType(type: number): WidgetEdit;
+        modelId(id: number): WidgetEdit;
+        /** With `shown`, also how the quantity is shown. */
+        item(id: number, quantity: number, shown?: "never" | "stackable" | "always"): WidgetEdit;
+        /** What the widget's place comes from. `revalidate` applies it. */
+        position(x: number, y: number): WidgetEdit;
+        positionModes(x: number, y: number): WidgetEdit;
+        /** What the widget's size comes from. `revalidate` applies it. */
+        size(width: number, height: number): WidgetEdit;
+        sizeModes(width: number, height: number): WidgetEdit;
+        scroll(x: number, y: number): WidgetEdit;
+        scrollSize(width: number, height: number): WidgetEdit;
+        revalidate(): WidgetEdit;
+        /** And everything in a layer. */
+        revalidateScroll(): WidgetEdit;
+        /** The text beside its actions. Spaces do not break, as the game's own. */
+        name(value: string): WidgetEdit;
+        /** An action by its index, 0 to 31. */
+        action(index: number, value: string): WidgetEdit;
+        clearActions(): WidgetEdit;
+        targetVerb(value: string): WidgetEdit;
+        dragDeadZone(pixels: number): WidgetEdit;
+        dragDeadTime(ticks: number): WidgetEdit;
+        stopsClicks(value?: boolean): WidgetEdit;
+        stopsScrolling(value?: boolean): WidgetEdit;
+        hasListener(value?: boolean): WidgetEdit;
+        /** A new child of a layer which is no child itself, in place of the one which has that index; by default after
+         * the last. Its index, or null. */
+        createChild(type: number, index?: number): number | null;
+        deleteChildren(): WidgetEdit;
     }
     namespace state {
         const widgets: {
@@ -4801,6 +5255,25 @@ interface PanelElement {
                           mode?: 0 | 1): void;
         tileObjectOutlineRaw(locPtr: number | bigint, typecode: number | bigint,
                              outline: number, fill?: number, mode?: 0 | 1): void;
+        /**
+         * The convex outline of an object on the canvas, in order, for a plugin
+         * which tests or draws it by itself (SDK 190). Asking makes the host
+         * capture the model: the first answers are its bounding box's, or empty.
+         * Empty too for an object which is gone or out of view.
+         */
+        tileObjectOutlinePoints(obj: TileObject): ScreenPoint[];
+        /**
+         * The convex outline of a player or NPC on the canvas, in order, as
+         * `tileObjectOutlinePoints` gives an object's (SDK 191). Empty for one
+         * which is out of view, and for the first frame in which it is asked for.
+         */
+        entityOutlinePoints(entity: Player | Npc): ScreenPoint[];
+        /**
+         * How far a player's or NPC's model rises above the ground it stands on,
+         * in the units of `preciseX`, for a text above its head (SDK 191). -1
+         * when the game has not drawn it lately.
+         */
+        entityModelHeight(entity: Player | Npc): number;
         textAtWorld(worldX: number, worldY: number, worldZ: number,
                     text: string, color: number, centered?: boolean): void;
         textAtWorldInWorldView(worldViewId: number,
@@ -4837,9 +5310,24 @@ interface PanelElement {
     // Chat injection (SDK 22). `name` and `sender` accept empty strings.
     // No packet is sent -- the line appears only on this client.
     function addChatMessage(type: number, name: string, message: string, sender: string): void;
+    /** Synchronously refresh local chat on the game thread. False when unavailable. */
+    /** Names the game's scripts which the plugin's `onScriptMoment` hears of, in place of those named before:
+     * before they run and before they return, those called by other scripts included. While the plugin is enabled,
+     * so in `onEnable` at the earliest; disabling forgets them. The game runs tens of thousands of scripts in a
+     * frame and only named ones cost anything. False when this game's scripts cannot be followed, an id is no id,
+     * or `plugin` is not the object registered with `titan.register`. SDK 187+. */
+    function watchScripts(plugin: Plugin, scripts: ScriptWatch): boolean;
+    function refreshChat(): boolean;
+    /** Add a line to this client's chat on the game thread and return its UID, or null when the game did
+     * not take it. Nothing is sent. A character which the game cannot show becomes a question mark. With
+     * `notify` false, plugin chat callbacks do not hear of it. SDK 186+. */
+    function insertChatMessage(type: number, name: string, message: string, sender?: string, notify?: boolean): number | null;
 
     /** Fluent chat facade; also see the free function `titan.addChatMessage`. */
     const chat: {
+        refresh(): boolean;
+        /** See `titan.insertChatMessage`. */
+        insert(type: number, name: string, message: string, sender?: string, notify?: boolean): number | null;
         /** Inject a line into the local chatbox. */
         add(type: number, name: string, message: string, sender?: string): void;
         /** Convenience: post a SERVER-type system line (no sender). */

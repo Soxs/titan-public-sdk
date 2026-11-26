@@ -1,0 +1,7 @@
+// This one line brings RuneLite's API and plugin framework, Titan's SDK, Lombok, and the run and reload tasks.
+plugins {
+    id 'net.titan.runelite' version '0.2.0'
+}
+
+group = 'com.example'
+version = '1.0.0'

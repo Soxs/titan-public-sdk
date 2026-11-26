@@ -245,7 +245,7 @@ final class NpcIDEntries_2 {
             new GamevalEntry(1256, "EYEGLO_FLUFFIE_EVIL_6", "Evil Creature", "npctypes"),
             new GamevalEntry(1257, "EYEGLO_FLUFFIE", "fluffie", "npctypes"),
             new GamevalEntry(1258, "EYEGLO_FLUFFIE_REVEALED", "fluffie", "npctypes"),
-            new GamevalEntry(1259, "RAG_ODD_OLD_MAN", "Odd Old Man", "npctypes"),
+            new GamevalEntry(1259, "RAG_ODD_OLD_MAN", "rag_odd_old_man", "npctypes"),
             new GamevalEntry(1260, "RAG_WINE_MERCHANT", "Fortunato", "npctypes"),
             new GamevalEntry(1261, "RAMSHEERED", "Ram", "npctypes"),
             new GamevalEntry(1262, "RAMUNSHEERED", "Ram", "npctypes"),

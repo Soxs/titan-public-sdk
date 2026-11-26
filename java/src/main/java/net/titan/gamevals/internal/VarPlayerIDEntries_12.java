@@ -110,6 +110,21 @@ final class VarPlayerIDEntries_12 {
             new GamevalEntry(6247, "HC_TRACKING_5", "hc_tracking_5", "varptypes"),
             new GamevalEntry(6248, "BAW_PRIMARY", "baw_primary", "varptypes"),
             new GamevalEntry(6250, "SNAILQUEST_PRIMARY", "snailquest_primary", "varptypes"),
+            new GamevalEntry(6251, "ANL_PRIMARY", "anl_primary", "varptypes"),
+            new GamevalEntry(6252, "ANL_FIGHTERS_KILLED", "anl_fighters_killed", "varptypes"),
+            new GamevalEntry(6253, "RAG_QUEST_2_PRIMARY", "rag_quest_2_primary", "varptypes"),
+            new GamevalEntry(6254, "RAG_QUEST_3_PRIMARY", "rag_quest_3_primary", "varptypes"),
+            new GamevalEntry(6255, "RAG_QUEST_3_SECONDARY", "rag_quest_3_secondary", "varptypes"),
+            new GamevalEntry(6258, "POR_GENERAL_TRANSMIT", "por_general_transmit", "varptypes"),
+            new GamevalEntry(6260, "TOTAL_POR_COMPLETIONS", "total_por_completions", "varptypes"),
+            new GamevalEntry(6262, "POR_ADVANCED_STEPPINGSTONES_1", "por_advanced_steppingstones_1", "varptypes"),
+            new GamevalEntry(6263, "POR_ADVANCED_STEPPINGSTONES_2", "por_advanced_steppingstones_2", "varptypes"),
+            new GamevalEntry(6265, "RAEUN_PLAYER_CHAINED", "raeun_player_chained", "varptypes"),
+            new GamevalEntry(6266, "RAEUN_CHAIN_DAMAGE_1", "raeun_chain_damage_1", "varptypes"),
+            new GamevalEntry(6267, "RAEUN_CHAIN_DAMAGE_2", "raeun_chain_damage_2", "varptypes"),
+            new GamevalEntry(6268, "GRAVEYARD_PRIMARY", "graveyard_primary", "varptypes"),
+            new GamevalEntry(6269, "GRAVEYARD_SECONDARY", "graveyard_secondary", "varptypes"),
+            new GamevalEntry(6270, "ROOFTOP_GENERAL", "rooftop_general", "varptypes"),
         };
     }
 

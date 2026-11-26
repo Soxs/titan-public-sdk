@@ -1,0 +1,29 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+group = 'net.titan'
+version = providers.gradleProperty('titanJavaSdkVersion').get()
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+    withSourcesJar()
+    withJavadocJar()
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8'; options.release = 11 }
+publishing {
+    publications { mavenJava(MavenPublication) { from components.java } }
+    repositories {
+        def repositoryUrl = providers.environmentVariable('TITAN_MAVEN_REPOSITORY_URL').orNull
+        if (repositoryUrl) {
+            maven {
+                name = 'titan'; url = uri(repositoryUrl)
+                def user = providers.environmentVariable('TITAN_MAVEN_USERNAME').orNull
+                def repositoryPassword = providers.environmentVariable('TITAN_MAVEN_PASSWORD').orNull
+                if (user != null || repositoryPassword != null) {
+                    credentials { username = user ?: ''; password = repositoryPassword ?: '' }
+                }
+            }
+        }
+    }
+}

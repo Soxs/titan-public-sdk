@@ -370,7 +370,6 @@ final class DbRowIDEntries_9 {
             new GamevalEntry(4965, "DYNAMIC_BUILDERS_DEMO", "dynamic_builders_demo", "rowtypes"),
             new GamevalEntry(4966, "PORT_TASK_RELLEKKA_COURIER_19", "port_task_rellekka_courier_19", "rowtypes"),
             new GamevalEntry(4967, "PORT_TASK_RELLEKKA_COURIER_20", "port_task_rellekka_courier_20", "rowtypes"),
-            new GamevalEntry(4968, "XMAS_2025", "xmas_2025", "rowtypes"),
             new GamevalEntry(4969, "MUSIC_CHRISTMAS_2025", "music_christmas_2025", "rowtypes"),
             new GamevalEntry(4970, "PATCHY_DATA_BIG_HAT_EYEPATCH", "patchy_data_big_hat_eyepatch", "rowtypes"),
             new GamevalEntry(4971, "SYNTH_SALVAGING", "synth_salvaging", "rowtypes"),
@@ -445,19 +444,6 @@ final class DbRowIDEntries_9 {
             new GamevalEntry(5104, "OMNISHOP_CURRENCY_CW_TICKETS", "omnishop_currency_cw_tickets", "rowtypes"),
             new GamevalEntry(5105, "OMNISHOP_CURRENCY_CW_PLAUDITS", "omnishop_currency_cw_plaudits", "rowtypes"),
             new GamevalEntry(5106, "HISCORES_ACTIVITY_COLLECTIONS_LOGGED", "hiscores_activity_collections_logged", "rowtypes"),
-            new GamevalEntry(5107, "EASTER_2025", "easter_2025", "rowtypes"),
-            new GamevalEntry(5108, "DIDYOUKNOW_BANKHELP", "didyouknow_bankhelp", "rowtypes"),
-            new GamevalEntry(5109, "DIDYOUKNOW_CERTPRODUCE", "didyouknow_certproduce", "rowtypes"),
-            new GamevalEntry(5110, "DIDYOUKNOW_FAIRYRING_DESKTOP", "didyouknow_fairyring_desktop", "rowtypes"),
-            new GamevalEntry(5111, "DIDYOUKNOW_FAIRYRING_MOBILE", "didyouknow_fairyring_mobile", "rowtypes"),
-            new GamevalEntry(5112, "DIDYOUKNOW_PHIALS_F2P", "didyouknow_phials_f2p", "rowtypes"),
-            new GamevalEntry(5113, "DIDYOUKNOW_PHIALS", "didyouknow_phials", "rowtypes"),
-            new GamevalEntry(5114, "DIDYOUKNOW_ROOFS", "didyouknow_roofs", "rowtypes"),
-            new GamevalEntry(5115, "DIDYOUKNOW_LOCKSLOT", "didyouknow_lockslot", "rowtypes"),
-            new GamevalEntry(5116, "DIDYOUKNOW_TICKEAT", "didyouknow_tickeat", "rowtypes"),
-            new GamevalEntry(5117, "DIDYOUKNOW_VIYELDI_CAVE_BARRELS", "didyouknow_viyeldi_cave_barrels", "rowtypes"),
-            new GamevalEntry(5118, "DIDYOUKNOW_VIRTUAL_LEVELLING", "didyouknow_virtual_levelling", "rowtypes"),
-            new GamevalEntry(5119, "DIDYOUKNOW_PIZZAHALVES", "didyouknow_pizzahalves", "rowtypes"),
         };
     }
 

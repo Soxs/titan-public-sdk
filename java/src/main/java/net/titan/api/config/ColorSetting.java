@@ -9,12 +9,19 @@ public final class ColorSetting implements ConfigSetting {
     private final String description;
     private final int position;
     private volatile boolean hidden;
+    private final boolean alpha;
     private final int defaultValue;
     private volatile int value;
 
     public ColorSetting(String key, String name, String section,
                         String description, int position, boolean hidden,
                         int defaultValue) {
+        this(key, name, section, description, position, hidden, defaultValue, false);
+    }
+
+    public ColorSetting(String key, String name, String section, String description, int position, boolean hidden,
+                         int defaultValue, boolean alpha) {
+        this.alpha = alpha;
         this.key = key;
         this.name = name;
         this.section = section;
@@ -32,6 +39,7 @@ public final class ColorSetting implements ConfigSetting {
     public int position() { return position; }
     public boolean hidden() { return hidden; }
     public void setHidden(boolean hidden) { this.hidden = hidden; }
+    public boolean alpha() { return alpha; }
     public int defaultValue() { return defaultValue; }
     public int get() { return value; }
     public void set(int value) { this.value = value; }

@@ -232,6 +232,24 @@ public:
     /// synthetic input bypasses this event. Added in SDK 157.
     virtual void onKeyEvent(KeyInputEvent&) {}
     virtual void onScriptFired(const ScriptEvent&) {}
+    /// The scripts watchScripts named, before they run and before they return, those called by others included.
+    /// Game thread, inside the interpreter, while the script waits. SDK 187.
+    virtual void onScriptMoment(const ScriptMomentEvent&) {}
+    /// Names the scripts onScriptMoment hears of, in place of those named before. While enabled, so in onEnable at
+    /// the earliest; disabling forgets them. The game runs tens of thousands of scripts in a frame and only named
+    /// ones cost anything. False when this game's scripts cannot be followed, or an id is not 0 to 65535. SDK 187.
+    bool watchScripts(const ScriptWatch& watch) {
+        auto* backend = detail::backend();
+        const char* own = id();
+        if (!backend || !own || !own[0] || watch.before.size() > TitanPluginSdk::kMaxWatchedScripts
+                || watch.after.size() > TitanPluginSdk::kMaxWatchedScripts) return false;
+        TitanPluginSdk::ScriptWatch raw;
+        raw.before = watch.before.data();
+        raw.beforeCount = static_cast<uint32_t>(watch.before.size());
+        raw.after = watch.after.data();
+        raw.afterCount = static_cast<uint32_t>(watch.after.size());
+        return backend->watchScripts(static_cast<const void*>(this), own, &raw) != 0;
+    }
 
     /// Called when the native client requests a discrete sound effect.
     /// Call `event.consume()` to stop later sound handlers in this dispatch,
@@ -240,11 +258,9 @@ public:
     /// (`event.kind()`). Fires on the game thread. Added in SDK 69.
     virtual void onSoundPlayed(SoundPlayedEvent&) {}
 
-    /// Called when the native client applies a visible hitsplat to an actor.
-    /// The host resolves the actor before dispatch; `event.actor()` is a
-    /// Player/Npc variant or empty when resolution failed. Clear/removal
-    /// writes from the old false hook are not part of this event. Added in
-    /// SDK 74; native signature corrected in SDK 76.
+    /// Called after the native hitsplat adder returns. The host resolves
+    /// `event.actor()` to a Player/Npc variant or an empty actor. The captured
+    /// arguments describe the attempt. Visibility depends on the resolved hitmark.
     virtual void onHitsplatApplied(const HitsplatAppliedEvent&) {}
 
     /// Called when the native client applies an actor-attached spotanim to an
@@ -261,6 +277,17 @@ public:
     virtual void onOverheadTextChanged(const OverheadTextChangedEvent&) {}
     virtual void onGrandExchangeOfferChanged(const GrandExchangeOfferChangedEvent&) {}
     virtual void onAnimationChanged(const AnimationChangedEvent&) {}
+    virtual void onStatChanged(const StatChangedEvent&) {}
+    virtual void onWorldChanged(const WorldChangedEvent&) {}
+    virtual void onCanvasSizeChanged(const CanvasSizeChangedEvent&) {}
+    virtual void onVarClientIntChanged(const VarClientIntChangedEvent&) {}
+    virtual void onVarClientStrChanged(const VarClientStrChangedEvent&) {}
+    /// Game thread, right after the interface's own load scripts, or before it closes. SDK 189.
+    virtual void onWidgetLoaded(const WidgetLoadedEvent&) {}
+    virtual void onWidgetClosed(const WidgetClosedEvent&) {}
+    /// Game thread, before onGameTick of the server tick in which the items came onto the ground or the server said itself
+    /// what was looted. SDK 194.
+    virtual void onLootReceived(const LootReceivedEvent&) {}
 
     /// Called when a varbit's resolved value changes. Fires only when the
     /// new value actually differs from the old value (no-op writes are
@@ -788,6 +815,11 @@ inline void thunkOnChatMessage(void* ud, const TitanPluginSdk::ChatMessageEvent*
     ChatMessageEvent wrapper{e};
     self(ud)->onChatMessage(wrapper);
 }
+
+inline void thunkOnChatMessageWithInsertion(void* ud, const TitanPluginSdk::ChatMessageEvent* e,
+        const TitanPluginSdk::ChatMessageInsertion* insertion) {
+    self(ud)->onChatMessage(ChatMessageEvent{e, insertion});
+}
 inline void thunkOnGameStateChanged(
         void* ud, const TitanPluginSdk::GameStateChangedEvent* e) {
     if (!e) return;
@@ -810,6 +842,10 @@ inline void thunkOnActorSpotAnim(void* ud,
     if (!e) return;
     ActorSpotAnimEvent wrapper{e};
     self(ud)->onActorSpotAnim(wrapper);
+}
+inline void thunkOnHitsplatAppliedWithOutcome(void* ud, const TitanPluginSdk::HitsplatAppliedEvent* event,
+                                              const TitanPluginSdk::HitsplatOutcome* outcome) {
+    if (event) self(ud)->onHitsplatApplied(HitsplatAppliedEvent{event, outcome});
 }
 inline void thunkOnOverheadTextChanged(void* ud, const TitanPluginSdk::OverheadTextChangedEvent* e) {
     if (!e) return;
@@ -1058,7 +1094,38 @@ inline TitanPluginSdk::HtmlUiCallbacks htmlCallbacks() {
         &GuardedPluginCallback<&thunkHtmlIcon<Kind>>::invoke};
 }
 
-inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outApi) {
+inline void thunkOnStatChanged(void* ud, const TitanPluginSdk::StatChangedEvent* event) {
+    if (event) self(ud)->onStatChanged({static_cast<Skill>(event->skillId), event->xp, event->level, event->boostedLevel});
+}
+
+inline void thunkOnWorldChanged(void* ud) {
+    self(ud)->onWorldChanged({});
+}
+inline void thunkOnCanvasSizeChanged(void* ud, const TitanPluginSdk::CanvasSizeChangedEvent* event) {
+    if (event) self(ud)->onCanvasSizeChanged({event->width, event->height});
+}
+inline void thunkOnVarClientIntChanged(void* ud, const TitanPluginSdk::VarClientIntChangedEvent* event) {
+    if (event) self(ud)->onVarClientIntChanged({event->index});
+}
+inline void thunkOnVarClientStrChanged(void* ud, const TitanPluginSdk::VarClientStrChangedEvent* event) {
+    if (event) self(ud)->onVarClientStrChanged({event->index});
+}
+inline void thunkOnWidgetLoaded(void* ud, const TitanPluginSdk::WidgetLoadedEvent* event) {
+    if (event) self(ud)->onWidgetLoaded({event->groupId});
+}
+inline void thunkOnWidgetClosed(void* ud, const TitanPluginSdk::WidgetClosedEvent* event) {
+    if (event) self(ud)->onWidgetClosed({event->groupId, event->modalMode, event->unload != 0});
+}
+inline void thunkOnLootReceived(void* ud, const TitanPluginSdk::LootReceivedEvent* event) {
+    if (event) self(ud)->onLootReceived({event->number});
+}
+inline void thunkOnScriptMoment(void* ud, const TitanPluginSdk::ScriptMomentEvent* event) {
+    if (event) self(ud)->onScriptMoment(ScriptMomentEvent(*event));
+}
+
+template<class PluginT>
+inline void populatePluginApi(PluginT* concrete, TitanPluginSdk::PluginApi* outApi) {
+    Plugin* instance = concrete;
     *outApi = {};
     outApi->sdkVersion = TitanPluginSdk::kSdkVersion;
     outApi->userData = instance;
@@ -1117,14 +1184,36 @@ inline void populatePluginApi(Plugin* instance, TitanPluginSdk::PluginApi* outAp
     outApi->onScriptFired = &GuardedPluginCallback<&thunkOnScriptFired>::invoke;
     outApi->onVarbitChanged = &GuardedPluginCallback<&thunkOnVarbitChanged>::invoke;
     outApi->onChatMessage = &GuardedPluginCallback<&thunkOnChatMessage>::invoke;
+    outApi->onChatMessageWithInsertion = &GuardedPluginCallback<&thunkOnChatMessageWithInsertion>::invoke;
     outApi->onSoundPlayed = &GuardedPluginCallback<&thunkOnSoundPlayed>::invoke;
-    outApi->onHitsplatApplied = &GuardedPluginCallback<&thunkOnHitsplatApplied>::invoke;
     outApi->onActorSpotAnim = &GuardedPluginCallback<&thunkOnActorSpotAnim>::invoke;
     outApi->onOverheadTextChanged = &GuardedPluginCallback<&thunkOnOverheadTextChanged>::invoke;
     outApi->onGrandExchangeOfferChanged = &GuardedPluginCallback<&thunkOnGrandExchangeOfferChanged>::invoke;
     outApi->onAnimationChanged = &GuardedPluginCallback<&thunkOnAnimationChanged>::invoke;
     outApi->onGameStateChanged = &GuardedPluginCallback<&thunkOnGameStateChanged>::invoke;
-    outApi->onItemContainerChanged = &GuardedPluginCallback<&thunkOnItemContainerChanged>::invoke;
+    // An inherited no-op leaves its slot empty. Private overrides dispatch through
+    // the public Plugin virtual even though taking the concrete member is inaccessible.
+#define TITAN_REGISTER_OPTIONAL_EVENT(name, thunk) \
+    if constexpr (requires { &PluginT::name; }) { \
+        if constexpr (!std::is_same_v<decltype(&PluginT::name), decltype(&Plugin::name)>) \
+            outApi->name = &GuardedPluginCallback<&thunk>::invoke; \
+    } else { \
+        outApi->name = &GuardedPluginCallback<&thunk>::invoke; \
+    }
+    TITAN_REGISTER_OPTIONAL_EVENT(onItemContainerChanged, thunkOnItemContainerChanged)
+    TITAN_REGISTER_OPTIONAL_EVENT(onHitsplatApplied, thunkOnHitsplatApplied)
+    if (outApi->onHitsplatApplied)
+        outApi->onHitsplatAppliedWithOutcome = &GuardedPluginCallback<&thunkOnHitsplatAppliedWithOutcome>::invoke;
+    TITAN_REGISTER_OPTIONAL_EVENT(onStatChanged, thunkOnStatChanged)
+    TITAN_REGISTER_OPTIONAL_EVENT(onWorldChanged, thunkOnWorldChanged)
+    TITAN_REGISTER_OPTIONAL_EVENT(onCanvasSizeChanged, thunkOnCanvasSizeChanged)
+    TITAN_REGISTER_OPTIONAL_EVENT(onVarClientIntChanged, thunkOnVarClientIntChanged)
+    TITAN_REGISTER_OPTIONAL_EVENT(onVarClientStrChanged, thunkOnVarClientStrChanged)
+    TITAN_REGISTER_OPTIONAL_EVENT(onScriptMoment, thunkOnScriptMoment)
+    TITAN_REGISTER_OPTIONAL_EVENT(onWidgetLoaded, thunkOnWidgetLoaded)
+    TITAN_REGISTER_OPTIONAL_EVENT(onWidgetClosed, thunkOnWidgetClosed)
+    TITAN_REGISTER_OPTIONAL_EVENT(onLootReceived, thunkOnLootReceived)
+#undef TITAN_REGISTER_OPTIONAL_EVENT
     outApi->onMousePressed = &GuardedPluginCallback<&thunkOnMousePressed>::invoke;
     outApi->onMouseReleased = &GuardedPluginCallback<&thunkOnMouseReleased>::invoke;
     outApi->getDependencies = &GuardedPluginCallback<&thunkGetDependencies>::invoke;
@@ -1220,7 +1309,7 @@ uint8_t createNativePlugin(const TitanPluginSdk::NativeAbi::InterfaceProviderV1*
         TitanPluginSdk::PluginApi api{};
         storage->instance = std::make_unique<PluginT>();
         storage->instance->_bindSdkBackend(&storage->backend);
-        populatePluginApi(storage->instance.get(), &api);
+        populatePluginApi(static_cast<PluginT*>(storage->instance.get()), &api);
         storage->callbacks = std::make_unique<PluginInterfaceSet>(api);
         storage->interfaces = storage->callbacks->provider();
         storage->userData = storage->instance.get();

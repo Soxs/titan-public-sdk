@@ -22,6 +22,7 @@ final class InventoryIDEntries_2 {
             new GamevalEntry(1033, "RENDER_WORN", "render_worn", "invtypes"),
             new GamevalEntry(1034, "PUB_LUMBRIDGE", "pub_lumbridge", "invtypes"),
             new GamevalEntry(1035, "BAW_BEA_POST_QUEST_SHOP", "baw_bea_post_quest_shop", "invtypes"),
+            new GamevalEntry(1036, "BONESACK_INV", "bonesack_inv", "invtypes"),
         };
     }
 

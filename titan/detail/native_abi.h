@@ -150,6 +150,11 @@ inline constexpr uint64_t kHostHtmlUiId = 0x1007;
 inline constexpr uint64_t kHostSceneRendererId = 0x1008;
 inline constexpr uint64_t kHostMenuEditingId = 0x1009;
 inline constexpr uint64_t kHostItemSpritesId = 0x100A;
+inline constexpr uint64_t kHostUiAssetsId = 0x100B;
+inline constexpr uint64_t kHostWindowFocusId = 0x100C;
+inline constexpr uint64_t kHostInfoBoxesId = 0x100D;
+inline constexpr uint64_t kHostWidgetListenersId = 0x100E;
+inline constexpr uint64_t kHostCacheFilesId = 0x100F;
 inline constexpr uint64_t kPluginCoreId = 0x2001;
 inline constexpr uint64_t kPluginUiId = 0x2002;
 inline constexpr uint64_t kPluginEventsId = 0x2003;
@@ -159,6 +164,50 @@ inline constexpr uint64_t kPluginMenuEventsId = 0x2006;
 inline constexpr uint64_t kPluginManagedLifecycleId = 0x2007;
 
 // New optional v1 tables. Existing tables and payload layouts remain frozen.
+struct HostWidgetListenersV1 {
+    InterfaceHeader header{sizeof(HostWidgetListenersV1), 1};
+    decltype(HostApi::copyWidgetInventoryListener) copyInventoryListener = nullptr;
+    decltype(HostApi::copyWidgetKeyListener) copyKeyListener = nullptr;
+};
+static_assert(sizeof(HostWidgetListenersV1) == 24 && offsetof(HostWidgetListenersV1, copyInventoryListener) == 8
+    && offsetof(HostWidgetListenersV1, copyKeyListener) == 16);
+
+struct HostInfoBoxesV1 {
+    InterfaceHeader header{sizeof(HostInfoBoxesV1), 1};
+    decltype(HostApi::infoBoxSetIconOwned) setIcon = nullptr;
+    decltype(HostApi::infoBoxPresentOwned) present = nullptr;
+};
+static_assert(sizeof(HostInfoBoxesV1) == 24 && offsetof(HostInfoBoxesV1, setIcon) == 8
+    && offsetof(HostInfoBoxesV1, present) == 16);
+
+struct HostWindowFocusV1 {
+    InterfaceHeader header{sizeof(HostWindowFocusV1), 1};
+    // -1 unavailable, 0 false, 1 true. Owned scalar; no window handle escapes.
+    int32_t (*frameFocus)() = nullptr;
+};
+static_assert(std::is_standard_layout_v<HostWindowFocusV1>);
+static_assert(sizeof(HostWindowFocusV1) == 16);
+static_assert(offsetof(HostWindowFocusV1, frameFocus) == 8);
+
+struct HostUiAssetsV1 {
+    InterfaceHeader header{sizeof(HostUiAssetsV1), 1};
+    UiAssetStatus (*copySkillIcon)(int32_t, uint8_t, SpriteImageInfo*, uint32_t*, uint32_t) = nullptr;
+    UiAssetStatus (*copyFontData)(uint32_t, uint8_t*, uint32_t, uint32_t*) = nullptr;
+};
+static_assert(std::is_standard_layout_v<HostUiAssetsV1>);
+static_assert(sizeof(HostUiAssetsV1) == 24);
+static_assert(offsetof(HostUiAssetsV1, copySkillIcon) == 8);
+static_assert(offsetof(HostUiAssetsV1, copyFontData) == 16);
+
+struct HostCacheFilesV1 {
+    InterfaceHeader header{sizeof(HostCacheFilesV1), 1};
+    decltype(HostApi::copyCacheFile) copyFile = nullptr;
+    decltype(HostApi::copyCacheFileIds) copyFileIds = nullptr;
+};
+static_assert(std::is_standard_layout_v<HostCacheFilesV1>);
+static_assert(sizeof(HostCacheFilesV1) == 24 && offsetof(HostCacheFilesV1, copyFile) == 8
+    && offsetof(HostCacheFilesV1, copyFileIds) == 16);
+
 struct HostItemSpritesV1 {
     InterfaceHeader header{sizeof(HostItemSpritesV1), 1};
     ItemSpriteStatus (*getItemSprite)(const ItemSpriteRequest*, SpriteImageInfo*, uint32_t*, uint32_t) = nullptr;
@@ -382,6 +431,11 @@ struct HostGameV1 {
         SceneTileState* tiles, uint32_t tileCapacity,
         TileObjectState* objects, uint32_t objectCapacity,
         uint32_t* objectIndices, uint32_t indexCapacity) = nullptr;
+    int32_t (*getObjectActionSlotCount)(int32_t objectId) = nullptr;
+    decltype(HostApi::getWidgetScrollHeight) getWidgetScrollHeight = nullptr;
+    decltype(HostApi::copyWidgetPrimaryText) copyWidgetPrimaryText = nullptr;
+    decltype(HostApi::lookupWorldEntity) lookupWorldEntity = nullptr;
+    decltype(HostApi::lookupWorldEntityDefinition) lookupWorldEntityDefinition = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostGameV1>);
 static_assert(offsetof(HostGameV1, header) == 0);
@@ -467,6 +521,16 @@ struct HostActionsV1 {
     // SDK 176 optional tail. Inputs are borrowed only for the call.
     uint8_t (*widgetInteractByActions)(const WidgetAddressState* address,
         const WidgetActionLabel* labels, uint32_t count) = nullptr;
+    uint8_t (*refreshChat)() = nullptr;
+    decltype(HostApi::setHintArrowTarget) setHintArrowTarget = nullptr;
+    decltype(HostApi::insertChatMessage) insertChatMessage = nullptr;
+    decltype(HostApi::watchScripts) watchScripts = nullptr;
+    decltype(HostApi::scriptMomentArguments) scriptMomentArguments = nullptr;
+    decltype(HostApi::scriptMomentIntegers) scriptMomentIntegers = nullptr;
+    decltype(HostApi::setScriptMomentArgument) setScriptMomentArgument = nullptr;
+    decltype(HostApi::setScriptMomentInteger) setScriptMomentInteger = nullptr;
+    decltype(HostApi::writeWidget) writeWidget = nullptr;
+    decltype(HostApi::runGameOperation) runGameOperation = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostActionsV1>);
 static_assert(offsetof(HostActionsV1, header) == 0);
@@ -548,6 +612,11 @@ struct HostRenderV1 {
     // layout; a negative index returns 0. Any thread.
     uint64_t (*packTargetTag)(int32_t tileX, int32_t tileY, int32_t plane, int32_t kind,
                               int32_t index, int32_t worldViewId) = nullptr;
+    // SDK 190 optional tail.
+    decltype(HostApi::getTileObjectOutline) getTileObjectOutline = nullptr;
+    // SDK 191 optional tail.
+    decltype(HostApi::getEntityOutline) getEntityOutline = nullptr;
+    decltype(HostApi::getEntityModelHeight) getEntityModelHeight = nullptr;
 };
 static_assert(std::is_standard_layout_v<HostRenderV1>);
 static_assert(offsetof(HostRenderV1, header) == 0);
@@ -679,6 +748,18 @@ struct PluginEventsV1 {
     void (*onGrandExchangeOfferChanged)(void* userData, const GrandExchangeOfferChangedEvent* event) = nullptr;
     void (*onCrossTabChanged)(void* userData, const CrossTabChangeEvent* event) = nullptr;
     void (*onKeyEvent)(void* userData, KeyInputEvent* event) = nullptr;
+    void (*onStatChanged)(void* userData, const StatChangedEvent*) = nullptr;
+    void (*onWorldChanged)(void* userData) = nullptr;
+    void (*onCanvasSizeChanged)(void* userData, const CanvasSizeChangedEvent*) = nullptr;
+    void (*onVarClientIntChanged)(void* userData, const VarClientIntChangedEvent*) = nullptr;
+    void (*onVarClientStrChanged)(void* userData, const VarClientStrChangedEvent*) = nullptr;
+    // Alternative to onChatMessage. A host invokes exactly one of these entries per line.
+    void (*onChatMessageWithInsertion)(void* userData, const ChatMessageEvent*, const ChatMessageInsertion*) = nullptr;
+    void (*onHitsplatAppliedWithOutcome)(void* userData, const HitsplatAppliedEvent*, const HitsplatOutcome*) = nullptr;
+    void (*onScriptMoment)(void* userData, const ScriptMomentEvent*) = nullptr;
+    void (*onWidgetLoaded)(void* userData, const WidgetLoadedEvent*) = nullptr;
+    void (*onWidgetClosed)(void* userData, const WidgetClosedEvent*) = nullptr;
+    void (*onLootReceived)(void* userData, const LootReceivedEvent*) = nullptr;
 };
 static_assert(std::is_standard_layout_v<PluginEventsV1>);
 static_assert(offsetof(PluginEventsV1, header) == 0);
@@ -725,7 +806,7 @@ static_assert(offsetof(HostCoreV1, sdkRelease) == 192);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostGameV1) == 616);
+static_assert(sizeof(HostGameV1) == 656);
 static_assert(offsetof(HostGameV1, isPrayerActive) == 8);
 static_assert(offsetof(HostGameV1, findNearestNpc) == 16);
 static_assert(offsetof(HostGameV1, findNearestObject) == 24);
@@ -802,6 +883,12 @@ static_assert(offsetof(HostGameV1, isWidgetSelected) == 584);
 static_assert(offsetof(HostGameV1, getSelectedWidget) == 592);
 static_assert(offsetof(HostGameV1, getSceneSnapshotGeneration) == 600);
 static_assert(offsetof(HostGameV1, getSceneSnapshot) == 608);
+static_assert(offsetof(HostGameV1, getObjectActionSlotCount) == 616);
+static_assert(offsetof(HostGameV1, getWidgetScrollHeight) == 624);
+static_assert(offsetof(HostGameV1, copyWidgetPrimaryText) == 632);
+static_assert(offsetof(HostGameV1, lookupWorldEntity) == 640);
+static_assert(offsetof(HostGameV1, lookupWorldEntityDefinition) == 648);
+static_assert(sizeof(WorldEntityDefinitionState) == 32);
 static_assert(sizeof(HintArrowState) == 72);
 static_assert(offsetof(HintArrowState, actorWorldViewId) == 48);
 static_assert(offsetof(HintArrowState, actorEntityPtr) == 56);
@@ -810,7 +897,7 @@ static_assert(offsetof(HintArrowState, actorWorldViewPtr) == 64);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostActionsV1) == 592);
+static_assert(sizeof(HostActionsV1) == 672);
 static_assert(offsetof(HostActionsV1, executeSyntheticAction) == 8);
 static_assert(offsetof(HostActionsV1, executeSyntheticEntry) == 16);
 static_assert(offsetof(HostActionsV1, interactNpc) == 24);
@@ -884,6 +971,16 @@ static_assert(offsetof(HostActionsV1, setHintArrowActor) == 560);
 static_assert(offsetof(HostActionsV1, clearHintArrow) == 568);
 static_assert(offsetof(HostActionsV1, geSubmitBuyWithPriceSteps) == 576);
 static_assert(offsetof(HostActionsV1, widgetInteractByActions) == 584);
+static_assert(offsetof(HostActionsV1, refreshChat) == 592);
+static_assert(offsetof(HostActionsV1, setHintArrowTarget) == 600);
+static_assert(offsetof(HostActionsV1, insertChatMessage) == 608);
+static_assert(offsetof(HostActionsV1, watchScripts) == 616);
+static_assert(offsetof(HostActionsV1, scriptMomentArguments) == 624);
+static_assert(offsetof(HostActionsV1, scriptMomentIntegers) == 632);
+static_assert(offsetof(HostActionsV1, setScriptMomentArgument) == 640);
+static_assert(offsetof(HostActionsV1, setScriptMomentInteger) == 648);
+static_assert(offsetof(HostActionsV1, writeWidget) == 656);
+static_assert(offsetof(HostActionsV1, runGameOperation) == 664);
 static_assert(std::is_standard_layout_v<WidgetActionLabel>);
 static_assert(sizeof(WidgetActionLabel) == 16);
 static_assert(offsetof(WidgetActionLabel, utf8) == 0);
@@ -896,7 +993,7 @@ static_assert(offsetof(HintArrowActorTarget, worldViewPtr) == 24);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(HostRenderV1) == 496);
+static_assert(sizeof(HostRenderV1) == 520);
 static_assert(offsetof(HostRenderV1, getCameraPitchUnlocked) == 424);
 static_assert(offsetof(HostRenderV1, setCameraPitchUnlocked) == 432);
 static_assert(offsetof(HostRenderV1, getViewportFov) == 440);
@@ -906,6 +1003,9 @@ static_assert(offsetof(HostRenderV1, setViewportFovClamp) == 464);
 static_assert(offsetof(HostRenderV1, getCameraPitchTarget) == 472);
 static_assert(offsetof(HostRenderV1, setCameraPitchTarget) == 480);
 static_assert(offsetof(HostRenderV1, packTargetTag) == 488);
+static_assert(offsetof(HostRenderV1, getTileObjectOutline) == 496);
+static_assert(offsetof(HostRenderV1, getEntityOutline) == 504);
+static_assert(offsetof(HostRenderV1, getEntityModelHeight) == 512);
 static_assert(sizeof(ViewportFovState) == 8);
 static_assert(sizeof(ViewportFovClampState) == 16);
 static_assert(offsetof(ViewportFovClampState, zoomMin) == 8);
@@ -1025,7 +1125,7 @@ static_assert(offsetof(PluginUiV1, panelOpenRequest) == 48);
 
 // ABI v1 golden offsets: append only; never update an existing offset.
 #if INTPTR_MAX == INT64_MAX
-static_assert(sizeof(PluginEventsV1) == 264);
+static_assert(sizeof(PluginEventsV1) == 352);
 static_assert(offsetof(PluginEventsV1, onGameTick) == 8);
 static_assert(offsetof(PluginEventsV1, onClientTick) == 16);
 static_assert(offsetof(PluginEventsV1, onProjectileSpawned) == 24);
@@ -1058,6 +1158,17 @@ static_assert(offsetof(PluginEventsV1, onOverheadTextChanged) == 232);
 static_assert(offsetof(PluginEventsV1, onGrandExchangeOfferChanged) == 240);
 static_assert(offsetof(PluginEventsV1, onCrossTabChanged) == 248);
 static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
+static_assert(offsetof(PluginEventsV1, onStatChanged) == 264);
+static_assert(offsetof(PluginEventsV1, onWorldChanged) == 272);
+static_assert(offsetof(PluginEventsV1, onCanvasSizeChanged) == 280);
+static_assert(offsetof(PluginEventsV1, onVarClientIntChanged) == 288);
+static_assert(offsetof(PluginEventsV1, onVarClientStrChanged) == 296);
+static_assert(offsetof(PluginEventsV1, onChatMessageWithInsertion) == 304);
+static_assert(offsetof(PluginEventsV1, onHitsplatAppliedWithOutcome) == 312);
+static_assert(offsetof(PluginEventsV1, onScriptMoment) == 320);
+static_assert(offsetof(PluginEventsV1, onWidgetLoaded) == 328);
+static_assert(offsetof(PluginEventsV1, onWidgetClosed) == 336);
+static_assert(offsetof(PluginEventsV1, onLootReceived) == 344);
 #endif
 
 #define TITAN_NATIVE_HOSTCOREV1_MEMBERS(X) \
@@ -1161,7 +1272,12 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(isWidgetSelected) \
     X(getSelectedWidget) \
     X(getSceneSnapshotGeneration) \
-    X(getSceneSnapshot)
+    X(getSceneSnapshot) \
+    X(getObjectActionSlotCount) \
+    X(getWidgetScrollHeight) \
+    X(copyWidgetPrimaryText) \
+    X(lookupWorldEntity) \
+    X(lookupWorldEntityDefinition)
 
 #define TITAN_NATIVE_HOSTACTIONSV1_MEMBERS(X) \
     X(executeSyntheticAction) \
@@ -1236,7 +1352,17 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(setHintArrowActor) \
     X(clearHintArrow) \
     X(geSubmitBuyWithPriceSteps) \
-    X(widgetInteractByActions)
+    X(widgetInteractByActions) \
+    X(refreshChat) \
+    X(setHintArrowTarget) \
+    X(insertChatMessage) \
+    X(watchScripts) \
+    X(scriptMomentArguments) \
+    X(scriptMomentIntegers) \
+    X(setScriptMomentArgument) \
+    X(setScriptMomentInteger) \
+    X(writeWidget) \
+    X(runGameOperation)
 
 #define TITAN_NATIVE_HOSTRENDERV1_MEMBERS(X) \
     X(setImGuiContext) \
@@ -1299,7 +1425,10 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(setViewportFovClamp) \
     X(getCameraPitchTarget) \
     X(setCameraPitchTarget) \
-    X(packTargetTag)
+    X(packTargetTag) \
+    X(getTileObjectOutline) \
+    X(getEntityOutline) \
+    X(getEntityModelHeight)
 
 #define TITAN_NATIVE_HOSTNAVIGATIONV1_MEMBERS(X) \
     X(getCollisionFlag) \
@@ -1382,7 +1511,18 @@ static_assert(offsetof(PluginEventsV1, onKeyEvent) == 256);
     X(onOverheadTextChanged) \
     X(onGrandExchangeOfferChanged) \
     X(onCrossTabChanged) \
-    X(onKeyEvent)
+    X(onKeyEvent) \
+    X(onStatChanged) \
+    X(onWorldChanged) \
+    X(onCanvasSizeChanged) \
+    X(onVarClientIntChanged) \
+    X(onVarClientStrChanged) \
+    X(onChatMessageWithInsertion) \
+    X(onHitsplatAppliedWithOutcome) \
+    X(onScriptMoment) \
+    X(onWidgetLoaded) \
+    X(onWidgetClosed) \
+    X(onLootReceived)
 
 // Owns immutable capability tables. The provider contains this object's
 // address, so keep the object alive and stationary while anyone can call it.
@@ -1398,6 +1538,11 @@ public:
     HostSceneRendererV1 sceneRenderer{};
     HostMenuEditingV1 menuEditing{};
     HostItemSpritesV1 itemSprites{};
+    HostUiAssetsV1 uiAssets{};
+    HostWindowFocusV1 windowFocus{};
+    HostInfoBoxesV1 infoBoxes{};
+    HostWidgetListenersV1 widgetListeners{};
+    HostCacheFilesV1 cacheFiles{};
 
     explicit HostInterfaceSet(const HostApi& api,
                               const void* extensionContext = nullptr,
@@ -1439,6 +1584,15 @@ public:
 #undef TITAN_NATIVE_ASSIGN
         itemSprites.getItemSprite = api.getItemSprite;
         itemSprites.drawSpriteImage = api.drawSpriteImage;
+        uiAssets.copySkillIcon = api.copySkillIcon;
+        uiAssets.copyFontData = api.copyFontData;
+        cacheFiles.copyFile = api.copyCacheFile;
+        cacheFiles.copyFileIds = api.copyCacheFileIds;
+        windowFocus.frameFocus = api.frameFocus;
+        infoBoxes.setIcon = api.infoBoxSetIconOwned;
+        widgetListeners.copyInventoryListener = api.copyWidgetInventoryListener;
+        widgetListeners.copyKeyListener = api.copyWidgetKeyListener;
+        infoBoxes.present = api.infoBoxPresentOwned;
     }
     HostInterfaceSet(const HostInterfaceSet&) = delete;
     HostInterfaceSet& operator=(const HostInterfaceSet&) = delete;
@@ -1475,6 +1629,17 @@ private:
             case kHostItemSpritesId:
                 return self.itemSprites.getItemSprite || self.itemSprites.drawSpriteImage
                     ? &self.itemSprites.header : nullptr;
+            case kHostWindowFocusId:
+                return self.windowFocus.frameFocus ? &self.windowFocus.header : nullptr;
+            case kHostInfoBoxesId:
+                return self.infoBoxes.setIcon && self.infoBoxes.present ? &self.infoBoxes.header : nullptr;
+            case kHostWidgetListenersId:
+                return self.widgetListeners.copyInventoryListener || self.widgetListeners.copyKeyListener ? &self.widgetListeners.header : nullptr;
+            case kHostUiAssetsId:
+                return self.uiAssets.copySkillIcon || self.uiAssets.copyFontData
+                    ? &self.uiAssets.header : nullptr;
+            case kHostCacheFilesId:
+                return self.cacheFiles.copyFile && self.cacheFiles.copyFileIds ? &self.cacheFiles.header : nullptr;
             default: break;
             }
         }
@@ -1629,6 +1794,32 @@ inline bool importHostApi(const InterfaceProviderV1* provider, HostApi& out) {
         const auto* table = queryInterface(provider, kHostItemSpritesId);
         out.getItemSprite = readMember<decltype(out.getItemSprite)>(table, offsetof(HostItemSpritesV1, getItemSprite));
         out.drawSpriteImage = readMember<decltype(out.drawSpriteImage)>(table, offsetof(HostItemSpritesV1, drawSpriteImage));
+    }
+    {
+        const auto* table = queryInterface(provider, kHostUiAssetsId);
+        out.copySkillIcon = readMember<decltype(out.copySkillIcon)>(table, offsetof(HostUiAssetsV1, copySkillIcon));
+        out.copyFontData = readMember<decltype(out.copyFontData)>(table, offsetof(HostUiAssetsV1, copyFontData));
+    }
+    {
+        const auto* table = queryInterface(provider, kHostCacheFilesId);
+        out.copyCacheFile = readMember<decltype(out.copyCacheFile)>(table, offsetof(HostCacheFilesV1, copyFile));
+        out.copyCacheFileIds = readMember<decltype(out.copyCacheFileIds)>(table, offsetof(HostCacheFilesV1, copyFileIds));
+    }
+    {
+        const auto* table = queryInterface(provider, kHostWindowFocusId);
+        out.frameFocus = readMember<decltype(out.frameFocus)>(table, offsetof(HostWindowFocusV1, frameFocus));
+    }
+    {
+        const auto* table = queryInterface(provider, kHostInfoBoxesId);
+        out.infoBoxSetIconOwned = readMember<decltype(out.infoBoxSetIconOwned)>(table, offsetof(HostInfoBoxesV1, setIcon));
+        out.infoBoxPresentOwned = readMember<decltype(out.infoBoxPresentOwned)>(table, offsetof(HostInfoBoxesV1, present));
+    }
+    {
+        const auto* table = queryInterface(provider, kHostWidgetListenersId);
+        out.copyWidgetInventoryListener = readMember<decltype(out.copyWidgetInventoryListener)>(table,
+            offsetof(HostWidgetListenersV1, copyInventoryListener));
+        out.copyWidgetKeyListener = readMember<decltype(out.copyWidgetKeyListener)>(table,
+            offsetof(HostWidgetListenersV1, copyKeyListener));
     }
     return true;
 }

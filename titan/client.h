@@ -18,7 +18,10 @@
 #include "detail/abi.h"
 #include "detail/account_mode.h"
 #include "detail/backend.h"
+#include "detail/host.h"
+#include "detail/frame_focus.h"
 #include "detail/widget_ops.h"
+#include "detail/widget_listener.h"
 #include "menu_action.h"
 #include "menu.h"
 #include "prayer.h"
@@ -103,6 +106,22 @@ inline void addChatMessage(int32_t type, const std::string& name,
     addChatMessage(type, name.c_str(), message.c_str(), sender.c_str());
 }
 
+/// Game thread. Adds a line to this client's chat and returns its UID, or nullopt when the game did not take it.
+/// Nothing is sent. Unlike addChatMessage, the line exists when this returns. A character which the game cannot
+/// show becomes a question mark. With notify false, plugin chat callbacks do not hear of it. SDK 186.
+inline std::optional<int32_t> insertChatMessage(int32_t type, const std::string& name, const std::string& message,
+                                                const std::string& sender = {}, bool notify = true) {
+    auto* backend = detail::backend();
+    const int32_t uid = backend ? backend->insertChatMessage(type, name.c_str(), message.c_str(), sender.c_str(), notify) : -1;
+    return uid >= 0 ? std::optional<int32_t>(uid) : std::nullopt;
+}
+
+/// True when the game's local chat refresh completed on the calling game thread.
+inline bool refreshChat() {
+    auto* backend = detail::backend();
+    return backend && backend->refreshChat();
+}
+
 // ---------------------------------------------------------------------------
 // Client
 // ---------------------------------------------------------------------------
@@ -143,6 +162,37 @@ class Widget;
 
 class ClientFacade {
 public:
+    struct WorldEntityLookup {
+        TitanPluginSdk::WorldEntityLookupStatus status = TitanPluginSdk::WorldEntityLookupStatus::Unavailable;
+        TitanPluginSdk::WorldEntityLookupState observation;
+    };
+    /// Lookup an entity in the top-level world on the game thread. Pass a prior
+    /// observation's tokens to guard a retained reference against replacement.
+    WorldEntityLookup lookupWorldEntity(int32_t index, uint64_t parent = 0, uint64_t entity = 0) const {
+        WorldEntityLookup result;
+        result.observation.index = index;
+        if (auto* backend = detail::backend())
+            result.status = backend->lookupWorldEntity(index, parent, entity, &result.observation);
+        return result;
+    }
+    struct WorldEntityDefinitionLookup {
+        TitanPluginSdk::WorldEntityLookupStatus status = TitanPluginSdk::WorldEntityLookupStatus::Unavailable;
+        TitanPluginSdk::WorldEntityDefinitionState observation;
+    };
+    /// Game-thread definition observation through one current, optionally guarded world entity.
+    WorldEntityDefinitionLookup lookupWorldEntityDefinition(int32_t index, uint64_t parent = 0,
+        uint64_t entity = 0, uint64_t definition = 0) const {
+        WorldEntityDefinitionLookup result;
+        result.observation.index = index;
+        if (auto* backend = detail::backend())
+            result.status = backend->lookupWorldEntityDefinition(index, parent, entity, definition, &result.observation);
+        return result;
+    }
+    /// Any-thread selected game-frame focus snapshot, including its sidebar.
+    /// Nullopt for unsupported/detached hosts, Wine, or a changing association.
+    /// This is not Canvas focus and does not authorize or redirect input.
+    std::optional<bool> frameFocused() const { return detail::readFrameFocus(detail::host()); }
+
     /// Whether a spell or an item selected with Use is currently targeting.
     /// This may remain true when the selected widget is no longer resolvable.
     /// False when selection state is unavailable on this host.
@@ -371,20 +421,14 @@ public:
         return static_cast<HintArrowUpdateResult>(backend->setHintArrowCoordinate(&target));
     }
     HintArrowUpdateResult setHintArrow(const Actor& actor) const {
-        auto* backend = detail::backend();
-        if (!backend) return HintArrowUpdateResult::Unavailable;
-        if (actor.isEmpty()) return HintArrowUpdateResult::InvalidArgument;
-        TitanPluginSdk::HintArrowActorTarget target{};
-        const auto copyIdentity = [&target](HintArrowKind kind, const auto& retained) {
-            target = {kind, retained.hashIndex, retained.worldViewId, 0,
-                      retained.entityPtr, retained.worldViewPtr};
-        };
-        if (const auto* npc = actor.asNpc()) copyIdentity(HintArrowKind::Npc, npc->state_);
-        else if (const auto* player = actor.asPlayer()) copyIdentity(HintArrowKind::Player, player->state_);
-        return static_cast<HintArrowUpdateResult>(backend->setHintArrowActor(&target));
+        return updateActorHint(actor, false);
     }
     HintArrowUpdateResult setHintArrow(const Npc& npc) const { return setHintArrow(Actor{npc}); }
     HintArrowUpdateResult setHintArrow(const Player& player) const { return setHintArrow(Actor{player}); }
+    /// Change slot zero's actor while retaining its display and blink settings. Game thread only.
+    HintArrowUpdateResult setHintArrowTarget(const Actor& actor) const { return updateActorHint(actor, true); }
+    HintArrowUpdateResult setHintArrowTarget(const Npc& npc) const { return setHintArrowTarget(Actor{npc}); }
+    HintArrowUpdateResult setHintArrowTarget(const Player& player) const { return setHintArrowTarget(Actor{player}); }
     HintArrowUpdateResult clearHintArrow() const {
         auto* backend = detail::backend();
         return backend ? static_cast<HintArrowUpdateResult>(backend->clearHintArrow())
@@ -486,6 +530,22 @@ public:
         entry.targetPackedId = e.targetPackedId;
         auto* b = detail::backend();
         return b && b->executeSyntheticEntry(&entry) != 0;
+    }
+
+private:
+    static HintArrowUpdateResult updateActorHint(const Actor& actor, bool preserveDisplay) {
+        auto* backend = detail::backend();
+        if (!backend) return HintArrowUpdateResult::Unavailable;
+        if (actor.isEmpty()) return HintArrowUpdateResult::InvalidArgument;
+        TitanPluginSdk::HintArrowActorTarget target{};
+        const auto copyIdentity = [&target](HintArrowKind kind, const auto& retained) {
+            target = {kind, retained.hashIndex, retained.worldViewId, 0,
+                      retained.entityPtr, retained.worldViewPtr};
+        };
+        if (const auto* npc = actor.asNpc()) copyIdentity(HintArrowKind::Npc, npc->state_);
+        else if (const auto* player = actor.asPlayer()) copyIdentity(HintArrowKind::Player, player->state_);
+        return static_cast<HintArrowUpdateResult>(preserveDisplay
+            ? backend->setHintArrowTarget(&target) : backend->setHintArrowActor(&target));
     }
 };
 
@@ -848,6 +908,14 @@ public:
         return d;
     }
 
+    /// Number of action slots on the current live base definition, including empty slots.
+    /// Requires the game thread and a supported source. An empty definition returns zero.
+    std::optional<int32_t> objectActionSlotCount(int32_t id) const {
+        auto* b = detail::backend();
+        const int32_t count = b ? b->getObjectActionSlotCount(id) : -1;
+        return count >= 0 ? std::optional<int32_t>(count) : std::nullopt;
+    }
+
     std::optional<ObjDef> obj(int32_t id) const {
         auto* b = detail::backend();
         if (!b) return std::nullopt;
@@ -1141,6 +1209,8 @@ struct WidgetSnapshot {
     /// assignment. Older offset bundles retain the <= 22-byte inline fallback.
     bool setText(const char* text) const;
     bool setText(const std::string& text) const { return setText(text.c_str()); }
+    /// Changes of this widget's own fields, on the game thread. See WidgetEdit. SDK 188.
+    class WidgetEdit edit() const;
     template <typename SpellT>
     bool castOn(SpellT spell) const;
 
@@ -1155,12 +1225,29 @@ struct WidgetSnapshot {
     /// vector means the widget has no op array (RuneLite returns null);
     /// nullopt means the host cannot read it.
     std::optional<std::vector<std::string>> actions() const;
+    /// Live, game-thread read. An empty vector means unset, nullopt unavailable.
+    /// A configured listener starts with an int32 script id.
+    std::optional<WidgetListenerArguments> inventoryTransmitListener() const;
+    std::optional<WidgetListenerArguments> keyListener() const;
+    /// Current scroll content height of this root or direct child, on the game thread.
+    std::optional<int32_t> scrollHeight() const;
+    /// Owned primary UTF-8 text on the game thread, including empty text and embedded NULs.
+    std::optional<std::string> primaryText() const;
 
     TitanPluginSdk::WidgetAddressState addressState() const {
         TitanPluginSdk::WidgetAddressState address = {};
-        address.rootPackedId = rootPackedId != 0
-            ? static_cast<uint32_t>(rootPackedId)
-            : static_cast<uint32_t>(packedId);
+        // A retained path has an explicit root. Legacy direct children can
+        // instead carry the parent and slot; the child's own packed ID is not
+        // its root and can be a synthetic ID when the slot was empty.
+        address.rootPackedId = static_cast<uint32_t>(rootPackedId);
+        if (dynamicPath.empty()) {
+            if (dynamicChildSlot >= 0) {
+                if (!rootPackedId) address.rootPackedId = static_cast<uint32_t>(dynamicParentPackedId);
+                address.depth = 1;
+                address.slots[0] = dynamicChildSlot;
+            } else if (!rootPackedId) address.rootPackedId = static_cast<uint32_t>(packedId);
+            return address;
+        }
         address.depth = dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth
             ? TitanPluginSdk::kMaxWidgetAddressDepth + 1
             : static_cast<uint32_t>(dynamicPath.size());
@@ -1171,6 +1258,99 @@ struct WidgetSnapshot {
         }
         return address;
     }
+};
+
+/// How an item widget shows its quantity.
+enum class WidgetItemQuantity : int32_t { Never = 0, Stackable = 1, Always = 3 };
+
+/// Changes of one root or direct dynamic child's own fields, from Widget::edit(). Game thread. Each is made before its
+/// call returns, as the game's own scripts make it, and the widget is drawn anew. One which cannot be made leaves the
+/// others to be made, and the edit is false from then on: the widget is gone, the thread is another, or the host is
+/// older. A handle's own fields show a change when it is next read anew. SDK 188.
+class WidgetEdit {
+public:
+    explicit WidgetEdit(const TitanPluginSdk::WidgetAddressState& address) : address_(address) {}
+    /// Every change so far was made.
+    explicit operator bool() const { return ok_; }
+
+    WidgetEdit& hidden(bool value = true) { return set(Write::Hidden, {value}); }
+    /// The text as it is, up to 4096 bytes of UTF-8.
+    WidgetEdit& text(std::string_view value) { return set(Write::Text, {}, value); }
+    WidgetEdit& textColor(int32_t rgb) { return set(Write::TextColor, {rgb}); }
+    WidgetEdit& textShadowed(bool value = true) { return set(Write::TextShadowed, {value}); }
+    /// Each 0 left or top, 1 centre, 2 right or bottom.
+    WidgetEdit& textAlignment(int32_t x, int32_t y) { return set(Write::TextAlignX, {x}).set(Write::TextAlignY, {y}); }
+    WidgetEdit& lineHeight(int32_t pixels) { return set(Write::LineHeight, {pixels}); }
+    WidgetEdit& fontId(int32_t id) { return set(Write::Font, {id}); }
+    /// 0 is opaque and 255 cannot be seen.
+    WidgetEdit& opacity(int32_t transparency) { return set(Write::Opacity, {transparency}); }
+    WidgetEdit& filled(bool value = true) { return set(Write::Filled, {value}); }
+    WidgetEdit& spriteId(int32_t id) { return set(Write::Sprite, {id}); }
+    WidgetEdit& spriteTiled(bool value = true) { return set(Write::SpriteTiled, {value}); }
+    WidgetEdit& flipped(bool horizontally, bool vertically) {
+        return set(Write::FlippedHorizontally, {horizontally}).set(Write::FlippedVertically, {vertically});
+    }
+    WidgetEdit& borderType(int32_t type) { return set(Write::Border, {type}); }
+    WidgetEdit& modelId(int32_t id) { return set(Write::Model, {id}); }
+    WidgetEdit& item(int32_t id, int32_t quantity) { return set(Write::ItemId, {id}).set(Write::ItemQuantity, {quantity}); }
+    WidgetEdit& item(int32_t id, int32_t quantity, WidgetItemQuantity shown) {
+        return set(Write::Item, {id, quantity, static_cast<int32_t>(shown)});
+    }
+
+    /// What the widget's place and size come from. revalidate applies them.
+    WidgetEdit& position(int32_t x, int32_t y) { return set(Write::OriginalX, {x}).set(Write::OriginalY, {y}); }
+    WidgetEdit& positionModes(int32_t x, int32_t y) { return set(Write::XMode, {x}).set(Write::YMode, {y}); }
+    WidgetEdit& size(int32_t width, int32_t height) { return set(Write::OriginalWidth, {width}).set(Write::OriginalHeight, {height}); }
+    WidgetEdit& sizeModes(int32_t width, int32_t height) { return set(Write::WidthMode, {width}).set(Write::HeightMode, {height}); }
+    WidgetEdit& scroll(int32_t x, int32_t y) { return set(Write::ScrollX, {x}).set(Write::ScrollY, {y}); }
+    WidgetEdit& scrollSize(int32_t width, int32_t height) { return set(Write::ScrollWidth, {width}).set(Write::ScrollHeight, {height}); }
+    WidgetEdit& revalidate() { return set(Write::Revalidate, {}); }
+    /// And everything in a layer.
+    WidgetEdit& revalidateScroll() { return set(Write::RevalidateScroll, {}); }
+
+    /// The text beside its actions. Spaces do not break, as the game's own.
+    WidgetEdit& name(std::string_view value) {
+        std::string kept;
+        for (const char c : value) if (c == ' ') kept += "\xC2\xA0"; else kept += c;
+        return set(Write::Name, {}, kept);
+    }
+    /// An action by its index, 0 to 31.
+    WidgetEdit& action(int32_t index, std::string_view value) {
+        if (index < 0 || index > 31) { ok_ = false; return *this; }
+        return set(Write::Action, {index + 1}, value);
+    }
+    WidgetEdit& clearActions() { return set(Write::ClearActions, {}); }
+    WidgetEdit& targetVerb(std::string_view value) { return set(Write::TargetVerb, {}, value); }
+    WidgetEdit& dragDeadZone(int32_t pixels) { return set(Write::DragDeadZone, {pixels}); }
+    WidgetEdit& dragDeadTime(int32_t ticks) { return set(Write::DragDeadTime, {ticks}); }
+    WidgetEdit& stopsClicks(bool value = true) { return set(Write::StopsClicks, {value}); }
+    WidgetEdit& stopsScrolling(bool value = true) { return set(Write::StopsScrolling, {value}); }
+    WidgetEdit& hasListener(bool value = true) { return set(Write::HasListener, {value}); }
+
+    /// A new child of a layer which is no child itself, in place of the one which has that index; -1 for the index
+    /// after the last. Its index, or nullopt.
+    std::optional<int32_t> createChild(int32_t type, int32_t index = -1) {
+        const int32_t created = make(Write::CreateChild, {type, index}, std::nullopt);
+        return created < 0 ? std::nullopt : std::optional(created);
+    }
+    WidgetEdit& deleteChildren() { return set(Write::DeleteChildren, {}); }
+
+private:
+    using Write = TitanPluginSdk::WidgetWrite;
+    WidgetEdit& set(Write write, std::initializer_list<int32_t> values, std::optional<std::string_view> text = std::nullopt) {
+        make(write, values, text);
+        return *this;
+    }
+    int32_t make(Write write, std::initializer_list<int32_t> values, std::optional<std::string_view> text) {
+        auto* b = detail::backend();
+        const int32_t made = !b || address_.depth > 1 || (text && text->size() > TitanPluginSdk::kMaxWidgetWriteText) ? -1
+            : b->writeWidget(&address_, static_cast<int32_t>(write), values.begin(), static_cast<uint32_t>(values.size()),
+                !text ? nullptr : text->empty() ? "" : text->data(), text ? static_cast<uint32_t>(text->size()) : 0);
+        if (made < 0) ok_ = false;
+        return made;
+    }
+    TitanPluginSdk::WidgetAddressState address_;
+    bool ok_ = true;
 };
 
 namespace detail {
@@ -1211,57 +1391,40 @@ inline WidgetSnapshot widgetSnapshotFromQueryState(
 }
 
 inline bool sameWidgetAddress(const WidgetSnapshot& a, const WidgetSnapshot& b) {
-    const int32_t aRoot = a.rootPackedId != 0 ? a.rootPackedId : a.packedId;
-    const int32_t bRoot = b.rootPackedId != 0 ? b.rootPackedId : b.packedId;
-    return aRoot == bRoot && a.dynamicPath == b.dynamicPath;
+    const auto left = a.addressState(), right = b.addressState();
+    if (left.rootPackedId != right.rootPackedId || left.depth != right.depth) return false;
+    if (left.depth > TitanPluginSdk::kMaxWidgetAddressDepth) return a.dynamicPath == b.dynamicPath;
+    return std::equal(left.slots, left.slots + left.depth, right.slots);
 }
 
 inline bool readCurrentWidgetSnapshot(WidgetSnapshot& widget) {
     auto* b = backend();
     if (!b) return false;
 
-    const uint32_t root = static_cast<uint32_t>(
-        widget.rootPackedId != 0 ? widget.rootPackedId : widget.packedId);
-    if (root == 0) return false;
-
-    TitanPluginSdk::WidgetAddressState address = {};
-    address.rootPackedId = root;
-    if (widget.dynamicPath.size() <= TitanPluginSdk::kMaxWidgetAddressDepth) {
-        address.depth = static_cast<uint32_t>(widget.dynamicPath.size());
-        for (uint32_t i = 0; i < address.depth; ++i) {
-            address.slots[i] = widget.dynamicPath[i];
-        }
-        TitanPluginSdk::WidgetState raw = {};
-        if (b->getWidgetAtPath(&address, &raw)) {
-            WidgetSnapshot fresh = widgetSnapshotFromState(raw, root);
-            fresh.rootPackedId = static_cast<int32_t>(root);
-            fresh.dynamicPath = widget.dynamicPath;
-            fresh.dynamicChildSlot = fresh.dynamicPath.empty()
-                ? -1 : fresh.dynamicPath.back();
-            fresh.dynamicParentPackedId = fresh.dynamicPath.size() == 1
-                ? static_cast<int32_t>(root) : 0;
-            widget = std::move(fresh);
-            return true;
-        }
+    const auto address = widget.addressState();
+    if (address.depth > TitanPluginSdk::kMaxWidgetAddressDepth) return false;
+    const uint32_t root = address.rootPackedId;
+    TitanPluginSdk::WidgetState rawState = {};
+    if (b->getWidgetAtPath(&address, &rawState)) {
+        WidgetSnapshot fresh = widgetSnapshotFromState(rawState, root);
+        fresh.rootPackedId = static_cast<int32_t>(root);
+        fresh.dynamicPath.assign(address.slots, address.slots + address.depth);
+        fresh.dynamicChildSlot = fresh.dynamicPath.empty() ? -1 : fresh.dynamicPath.back();
+        fresh.dynamicParentPackedId = address.depth == 1 ? static_cast<int32_t>(root) : 0;
+        widget = std::move(fresh);
+        return true;
     }
 
-    if (widget.dynamicPath.empty()) {
-        TitanPluginSdk::WidgetState raw = {};
-        if (!b->getWidget(root, &raw)) return false;
-        WidgetSnapshot fresh = widgetSnapshotFromState(raw, root);
+    if (address.depth == 0) {
+        if (!b->getWidget(root, &rawState)) return false;
+        WidgetSnapshot fresh = widgetSnapshotFromState(rawState, root);
         fresh.rootPackedId = fresh.packedId;
         widget = std::move(fresh);
         return true;
     }
 
-    if (widget.dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth) return false;
-
-    TitanPluginSdk::WidgetAddressState parent = {};
-    parent.rootPackedId = root;
-    parent.depth = static_cast<uint32_t>(widget.dynamicPath.size() - 1);
-    for (uint32_t i = 0; i < parent.depth; ++i) {
-        parent.slots[i] = widget.dynamicPath[i];
-    }
+    auto parent = address;
+    --parent.depth;
 
     const uint32_t reported = b->getWidgetChildrenAtPath(&parent, nullptr, 0);
     const uint32_t count = (std::min)(reported, TitanPluginSdk::kMaxWidgetDynamicChildren);
@@ -1294,9 +1457,10 @@ inline const WidgetSnapshot& liveWidgetState(WidgetSnapshot& state,
 }
 
 inline std::size_t widgetAddressHash(const WidgetSnapshot& state) {
-    std::size_t h = std::hash<int32_t>{}(
-        state.rootPackedId != 0 ? state.rootPackedId : state.packedId);
-    for (int32_t slot : state.dynamicPath) {
+    const auto address = state.addressState();
+    std::size_t h = std::hash<uint32_t>{}(address.rootPackedId);
+    for (uint32_t i = 0; i < (std::min)(address.depth, TitanPluginSdk::kMaxWidgetAddressDepth); ++i) {
+        const int32_t slot = address.slots[i];
         h ^= std::hash<int32_t>{}(slot) + 0x9e3779b9u + (h << 6) + (h >> 2);
     }
     return h;
@@ -1343,6 +1507,10 @@ public:
     std::optional<std::string> name() const { return state_.name(); }
     /// See WidgetSnapshot::actions(); always a live read at the retained address.
     std::optional<std::vector<std::string>> actions() const { return state_.actions(); }
+    std::optional<WidgetListenerArguments> inventoryTransmitListener() const { return state_.inventoryTransmitListener(); }
+    std::optional<WidgetListenerArguments> keyListener() const { return state_.keyListener(); }
+    std::optional<int32_t> scrollHeight() const { return state_.scrollHeight(); }
+    std::optional<std::string> primaryText() const { return state_.primaryText(); }
 
     bool exists() const {
         (void)state();
@@ -1389,6 +1557,8 @@ public:
         return ok;
     }
     bool setText(const std::string& text) const { return setText(text.c_str()); }
+    /// See WidgetSnapshot::edit().
+    WidgetEdit edit() const { return state_.edit(); }
     template <typename SpellT>
     bool castOn(SpellT spell) const;
 
@@ -1602,6 +1772,8 @@ inline bool WidgetSnapshot::interact(uint32_t opcode, int32_t identifier) const 
     return b->widgetInteractAtPath(&address, opcode, identifier, childSlot) != 0;
 }
 
+inline WidgetEdit WidgetSnapshot::edit() const { return WidgetEdit(addressState()); }
+
 inline bool WidgetSnapshot::setText(const char* text) const {
     auto* b = detail::backend();
     if (!b || dynamicPath.size() > TitanPluginSdk::kMaxWidgetAddressDepth) return false;
@@ -1615,6 +1787,41 @@ inline std::optional<std::string> WidgetSnapshot::name() const {
     const auto address = addressState();
     return detail::readWidgetName([&](char* out, uint32_t capacity, uint32_t* required) {
         return b->copyWidgetName(&address, out, capacity, required);
+    });
+}
+
+inline std::optional<WidgetListenerArguments> WidgetSnapshot::inventoryTransmitListener() const {
+    auto* backend = detail::backend();
+    if (!backend || dynamicPath.size() > 1) return std::nullopt;
+    const auto address = addressState();
+    return detail::readWidgetListener([&](void* context, TitanPluginSdk::WidgetListenerArgSink sink) {
+        return backend->copyWidgetInventoryListener(&address, context, sink);
+    });
+}
+inline std::optional<std::string> WidgetSnapshot::primaryText() const {
+    auto* backend = detail::backend();
+    if (!backend || dynamicPath.size() > 1) return std::nullopt;
+    const auto address = addressState();
+    return detail::readWidgetPrimaryText([&](char* out, uint32_t capacity, uint32_t* required) {
+        return backend->copyWidgetPrimaryText(&address, out, capacity, required);
+    });
+}
+
+inline std::optional<int32_t> WidgetSnapshot::scrollHeight() const {
+    auto* backend = detail::backend();
+    if (!backend || dynamicPath.size() > 1) return std::nullopt;
+    const auto address = addressState();
+    int32_t height;
+    if (!backend->getWidgetScrollHeight(&address, &height)) return std::nullopt;
+    return height;
+}
+
+inline std::optional<WidgetListenerArguments> WidgetSnapshot::keyListener() const {
+    auto* backend = detail::backend();
+    if (!backend || dynamicPath.size() > 1) return std::nullopt;
+    const auto address = addressState();
+    return detail::readWidgetListener([&](void* context, TitanPluginSdk::WidgetListenerArgSink sink) {
+        return backend->copyWidgetKeyListener(&address, context, sink);
     });
 }
 

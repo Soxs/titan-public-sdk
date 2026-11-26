@@ -11,7 +11,9 @@
 #include "actor.h"
 #include "client.h"
 #include "detail/abi.h"
+#include "game_data.h"
 #include "menu_action.h"
+#include "skill.h"
 
 #include <algorithm>
 #include <cstring>
@@ -21,6 +23,86 @@
 #include <vector>
 
 namespace titan {
+
+/// Values observed together in the same client tick.
+struct StatChangedEvent {
+    Skill skill;
+    int32_t xp, level, boostedLevel;
+};
+
+struct WorldChangedEvent {};
+struct CanvasSizeChangedEvent {
+    int32_t width, height;
+};
+struct VarClientIntChangedEvent {
+    int32_t index;
+};
+struct VarClientStrChangedEvent {
+    int32_t index;
+};
+
+/// An interface whose load listeners have run: its widgets are there. SDK 189.
+struct WidgetLoadedEvent {
+    int32_t groupId;
+};
+/// An interface about to close, whose widgets are still there. modalMode is how the server opened it, and unload says
+/// whether its widgets go. SDK 189.
+struct WidgetClosedEvent {
+    int32_t groupId, modalMode;
+    bool unload;
+};
+/// What a monster or a player left for the account. SDK 194.
+struct LootReceivedEvent {
+    int32_t number;
+    /// Of the last 64. Nothing for one which is longer ago.
+    std::optional<gameData::Loot> loot() const { return gameData::loot(number); }
+};
+
+/// The scripts of the game's which Plugin::onScriptMoment hears of, by id. At most 1024 of each. SDK 187.
+struct ScriptWatch {
+    std::vector<int32_t> before{};  ///< about to run
+    std::vector<int32_t> after{};   ///< about to return
+};
+
+/// A script of the game's, about to run or about to return, inside the interpreter. Read widgets and variables as at
+/// any other time. The interpreter can start no other script meanwhile: those wait, as menu actions do, for the next
+/// client tick. Do little here. Do not keep the event. SDK 187.
+class ScriptMomentEvent {
+public:
+    explicit ScriptMomentEvent(const TitanPluginSdk::ScriptMomentEvent& raw) : raw_(raw) {}
+    int32_t scriptId() const { return raw_.scriptId; }
+    bool before() const { return !after(); }
+    bool after() const { return (raw_.flags & TitanPluginSdk::ScriptMomentFlagAbi::SCRIPT_MOMENT_AFTER) != 0; }
+    /// Another script called this one. Its arguments are on top of the integers before it runs.
+    bool nested() const { return (raw_.flags & TitanPluginSdk::ScriptMomentFlagAbi::SCRIPT_MOMENT_NESTED) != 0; }
+    /// What the game started the script with, before it runs, when all of it is integers. Nothing otherwise.
+    std::optional<std::vector<int32_t>> arguments() const { return values(true); }
+    /// The interpreter's integer stack: a called script's arguments, or a returning script's results, are on top.
+    std::optional<std::vector<int32_t>> integers() const { return values(false); }
+    /// Replaces an argument before the script starts. False when there is none such.
+    bool setArgument(int32_t index, int32_t value) const { return set(true, index, value); }
+    /// Replaces a value on the interpreter's stack. False when there is none such.
+    bool setInteger(int32_t index, int32_t value) const { return set(false, index, value); }
+
+private:
+    static std::optional<std::vector<int32_t>> values(bool arguments) {
+        auto* backend = detail::backend();
+        std::vector<int32_t> result(64);
+        for (int attempt = 0; backend && attempt < 2; ++attempt) {
+            const int32_t count = backend->scriptMomentValues(arguments, result.data(), static_cast<uint32_t>(result.size()));
+            if (count < 0) return std::nullopt;
+            const bool whole = static_cast<size_t>(count) <= result.size();
+            result.resize(static_cast<size_t>(count));
+            if (whole) return result;
+        }
+        return std::nullopt;
+    }
+    static bool set(bool argument, int32_t index, int32_t value) {
+        auto* backend = detail::backend();
+        return backend && backend->setScriptMomentValue(argument, index, value) != 0;
+    }
+    TitanPluginSdk::ScriptMomentEvent raw_;
+};
 
 namespace KeyInputType = TitanPluginSdk::KeyInputType;
 
@@ -202,13 +284,18 @@ private:
     TitanPluginSdk::MenuOptionClickedEvent* raw_ = nullptr;
 };
 
-/// Chat-message event. Read-only view over the raw ABI struct. Delivered
-/// for every native `AddChat` call (server chat, local system messages, and
-/// plugin-injected lines via `HostApi::addChatMessage`).
-/// Added in SDK 22.
+/// Owned full strings and Unix insertion second.
+struct ChatMessageInsertion {
+    std::string name, message, sender;
+    int32_t timestamp;
+};
+
+/// A chat line reported by the native game. The optional insertion metadata
+/// carries complete strings when the host qualified the original call.
 class ChatMessageEvent {
 public:
-    explicit ChatMessageEvent(const TitanPluginSdk::ChatMessageEvent* raw) : raw_(raw) {}
+    explicit ChatMessageEvent(const TitanPluginSdk::ChatMessageEvent* raw,
+        const TitanPluginSdk::ChatMessageInsertion* insertion = nullptr) : raw_(raw), insertion_(insertion) {}
 
     int32_t      type() const     { return raw_ ? raw_->type : 0; }
     std::string  name() const     { return raw_ ? raw_->name : ""; }
@@ -216,10 +303,16 @@ public:
     std::string  sender() const   { return raw_ ? raw_->sender : ""; }
     int32_t      gameTick() const { return raw_ ? raw_->gameTick : 0; }
 
+    std::optional<ChatMessageInsertion> insertion() const {
+        if (!insertion_ || !insertion_->name || !insertion_->message || !insertion_->sender) return std::nullopt;
+        return ChatMessageInsertion{insertion_->name, insertion_->message, insertion_->sender, insertion_->timestamp};
+    }
+
     const TitanPluginSdk::ChatMessageEvent* raw() const { return raw_; }
 
 private:
     const TitanPluginSdk::ChatMessageEvent* raw_ = nullptr;
+    const TitanPluginSdk::ChatMessageInsertion* insertion_ = nullptr;
 };
 
 /// Sound-played event. Mutable so handlers can `consume()` to mark the event
@@ -305,13 +398,17 @@ private:
     TitanPluginSdk::MouseButtonEvent* raw_ = nullptr;
 };
 
-/// Hitsplat-applied event. Read-only view over the raw ABI struct. Delivered
-/// for visible applied hitsplats. The actor is resolved by the host before
-/// dispatch. Added in SDK 74; native signature corrected in SDK 76.
+/// Arguments of a completed native hitsplat-adder call. The host resolves
+/// the actor before dispatch. Visibility and expiry depend on the resolved hitmark.
 class HitsplatAppliedEvent {
 public:
-    explicit HitsplatAppliedEvent(const TitanPluginSdk::HitsplatAppliedEvent* raw)
-        : raw_(raw) {}
+    explicit HitsplatAppliedEvent(const TitanPluginSdk::HitsplatAppliedEvent* raw,
+                                  const TitanPluginSdk::HitsplatOutcome* outcome = nullptr)
+        : raw_(raw), outcome_(outcome) {}
+    std::optional<TitanPluginSdk::HitsplatOutcome> outcome() const {
+        if (outcome_) return *outcome_;
+        return std::nullopt;
+    }
 
     uint8_t actorType() const {
         return raw_ ? raw_->actorType : TitanPluginSdk::EntityType::NONE;
@@ -370,6 +467,7 @@ public:
 
 private:
     const TitanPluginSdk::HitsplatAppliedEvent* raw_ = nullptr;
+    const TitanPluginSdk::HitsplatOutcome* outcome_ = nullptr;
 };
 
 /// Actor-attached spot animation event. Read-only view over the raw ABI

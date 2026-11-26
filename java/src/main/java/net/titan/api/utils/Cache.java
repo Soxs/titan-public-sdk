@@ -7,6 +7,7 @@ import net.titan.api.Titan;
 import net.titan.api.VarbitDefinition;
 
 import java.util.Optional;
+import java.util.OptionalInt;
 
 /// Cache definition lookups. Mirrors the C++ {@code titan::state::cache()} facade.
 public final class Cache {
@@ -22,6 +23,11 @@ public final class Cache {
 
     public static Optional<ObjectDefinition> obj(int objectId) {
         return Titan.client().objectDefinition(objectId);
+    }
+
+    /** Returns empty when the current game thread cannot observe the live base object definition. */
+    public static OptionalInt objectActionSlotCount(int objectId) {
+        return Titan.client().objectActionSlotCount(objectId);
     }
 
     public static Optional<VarbitDefinition> varbit(int varbitId) {

@@ -4456,7 +4456,7 @@ struct SpotanimID final {
     static constexpr int32_t CURSE_IMPACT_SHORT = 4441;
     static constexpr int32_t GARGBOSS_DEBRIS_SHADOW_120_SMALL = 4442;
     static constexpr int32_t GARBOSS_DEBRIS_SHADOW_RED_60 = 4443;
-    static constexpr int32_t HW26_TUMBLEWEED = 4444;
+    static constexpr int32_t SKELETON_TAXE_TRAVEL01 = 4444;
     static constexpr int32_t VFX_TFA_TELEPORT_START = 4445;
     static constexpr int32_t VFX_TFA_TELEPORT_END = 4446;
     static constexpr int32_t THROWN_ROCK = 4447;
@@ -4464,6 +4464,33 @@ struct SpotanimID final {
     static constexpr int32_t KILLER_WASP_DART_TRAVEL = 4449;
     static constexpr int32_t WASP_DART_LAUNCH = 4450;
     static constexpr int32_t KILLER_WASP_DART_LAUNCH = 4451;
+    static constexpr int32_t RAG2_TELEPORT_SPOTANIM = 4452;
+    static constexpr int32_t RAG2_APPEAR_SPOTANIM = 4453;
+    static constexpr int32_t RAG2_SKELETAL_BEAST_MAGIC_ATTACK_SPOTANIM_A = 4454;
+    static constexpr int32_t RAG2_SKELETAL_BEAST_MAGIC_ATTACK_SPOTANIM_B = 4455;
+    static constexpr int32_t RAG2_SKELETAL_BEAST_MAGIC_ATTACK_PROJANIM_A = 4456;
+    static constexpr int32_t RAG2_SKELETAL_BEAST_MAGIC_ATTACK_PROJANIM_B = 4457;
+    static constexpr int32_t RAG2_SKELETAL_BEAST_MAGIC_ATTACK_IMPACT_A = 4458;
+    static constexpr int32_t RAG2_RIGHT_HAND_PROJ = 4459;
+    static constexpr int32_t RAG2_LEFT_HAND_PROJ = 4460;
+    static constexpr int32_t RAG2_TAIL_PROJ = 4461;
+    static constexpr int32_t SKELETON_TAXE_TRAVEL02 = 4462;
+    static constexpr int32_t SKELETON_TAXE_LAUNCH01 = 4463;
+    static constexpr int32_t SKELETON_TAXE_LAUNCH02 = 4464;
+    static constexpr int32_t SKELETON_BAS_ARROW_SPOTANIM = 4465;
+    static constexpr int32_t SKELETON_BAS_ARROW_PROJECTILE = 4466;
+    static constexpr int32_t VFX_RAEUN_SPAWN = 4467;
+    static constexpr int32_t VFX_RAEUN_SPECIAL_ATTACK_MAGIC = 4468;
+    static constexpr int32_t VFX_RAEUN_SPECIAL_ATTACK_MAGIC_CHAIN_HITANIM_01 = 4469;
+    static constexpr int32_t VFX_RAEUN_CHAIN_ATTACK_HITANIM_02 = 4470;
+    static constexpr int32_t VFX_RAEUN_CHAIN_ATTACK_HITANIM_03 = 4471;
+    static constexpr int32_t VFX_RAEUN_SOUL_PRISON_SPAWN_01 = 4472;
+    static constexpr int32_t VFX_RAEUN_SOUL_PRISON_CHAIN_DESPAWN_01 = 4473;
+    static constexpr int32_t VFX_RAEUN_SOUL_PRISON_CHAIN_RESPAWN_01 = 4474;
+    static constexpr int32_t VFX_RAEUN_SOUL_PRISON_DESPAWN_01 = 4475;
+    static constexpr int32_t VFX_RAEUN_SOUL_PRISON_CHAIN_IDLE_01 = 4476;
+    static constexpr int32_t VFX_RAEUN_SOUL_PRISON_DEATH_01 = 4477;
+    static constexpr int32_t VFX_RAEUN_DEATH_WIND = 4478;
 
     template <typename Self = SpotanimID>
     static constexpr std::span<const Entry> entries() {

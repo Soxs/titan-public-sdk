@@ -2,6 +2,20 @@
 
 Public Java SDK for TitanClient plugins.
 
+Plugins can subscribe on the game thread to these observations in
+`net.titan.api.events`. `WorldChanged` fires after each completed world
+selection. `CanvasSizeChanged.width()` and `height()` give the physical
+pixel dimensions of the game drawable, in resize order. `VarClientIntChanged`
+and `VarClientStrChanged` expose `index()` after each observed write,
+including repeated writes of the same value. `WidgetLoaded` gives the group of
+an interface whose load scripts have run, and `WidgetClosed` the group of one
+about to close, with how it was opened and whether its widgets go. `LootReceived`
+tells of what a monster or a player left for the account; `loot()` has whose it was
+and the items ([rules](../titan/PUBLIC_API.md#loot-sdk-194)).
+
+Use [Swing panels and Java2D overlays](../docs/java_swing_and_graphics.md)
+for a real sidebar component and a HUD with Titan's native Alt-drag placement.
+
 For `WorldView -> Scene -> Tile[][][]` access, live-handle freshness and RuneLite
 adapter migration, see the [scene API guide](../../docs/scene_api.md) (SDK 174 /
 Java 0.2.03). Repeated tile reads use complete cached scene captures instead of
@@ -39,6 +53,166 @@ import com.google.inject.Inject;
 ```
 
 TitanClient's embedded runtime provides the Guice runtime.
+
+## RuneLite plugins
+
+A plugin written with RuneLite's API and framework needs one line of Gradle:
+
+```gradle
+plugins { id 'net.titan.runelite' version '0.2.0' }
+```
+
+It brings `net.titan:titan-runelite` (RuneLite's plugin framework, HTTP types and game
+API, with the libraries they use), Titan's SDK and Lombok, all compile-only, and the
+tasks of the Titan loop. No RuneLite repository or dependency is needed.
+
+| Task | |
+|---|---|
+| `run` | Build, and open Titan with the plugin. Hot reload it when that tab is already open. |
+| `reload` | Build, and hot reload it in the open tab. `reload -t` does it on every save. |
+| `runDebug` | `run` with a Java debugger port. |
+| `build` | Build, check the JAR, and list the RuneLite calls and events Titan does not supply yet. |
+
+Start with the [template](https://github.com/Soxs/titan-runelite-plugin-template), or copy the same
+[starter project](../examples/runelite-plugin). It has IntelliJ and VS Code
+configurations and instructions for coding agents.
+
+The plugin extends `net.runelite.client.plugins.Plugin`. Titan's SDK is there beside
+RuneLite's: `@Inject private net.titan.api.Client titan`, or the static `net.titan.api.Titan`.
+Events, overlays, panels, settings and scheduling are RuneLite's. Titan's event bus, `Plugin`,
+configuration, panels, `Titan.getInjector()` and managed instances belong to Titan-style plugins.
+
+[What Titan supplies of RuneLite](../README.md#runelite-support), in numbers.
+
+Titan gives its SDK to a developer's own RuneLite plugin, from a JAR it loads itself. A
+plugin installed from RuneLite's Plugin Hub does not see it.
+
+## Using the RuneLite game API from a Titan plugin
+
+A Titan-style plugin can use RuneLite's game API too. Add the extended RuneLite API
+alongside the ordinary Titan plugin SDK. The
+matching client supplies both dependencies at runtime. Keep them out of your
+plugin JAR.
+
+```gradle
+dependencies {
+    compileOnly 'net.titan:titan-plugin-api:0.2.20'
+    compileOnly 'net.titan:titan-runelite-api:1.13.6-titan.3'
+}
+```
+
+In a private client checkout you can try these coordinates before SDK
+publication by adding `includeBuild("<path to the checkout>/shared/java")`
+in your plugin's Gradle settings. Use the Java 11 target.
+
+Use Guice's `@Inject` on a `net.runelite.api.Client` field or constructor
+parameter in an ordinary Titan plugin. The client belongs to the current game
+tab. The attached sources follow RuneLite's packages, including
+`net.runelite.api.coords`, `net.runelite.api.events` and `net.runelite.api.widgets`.
+
+```java
+import com.google.inject.Inject;
+import net.runelite.api.Client;
+import net.runelite.api.NPC;
+import net.runelite.api.WorldView;
+
+// Inside your Titan Plugin. Call from its game-thread callback for a selected NPC.
+@Inject private Client client;
+
+private boolean talkTo(int worldViewId, int npcIndex) {
+    WorldView world = client.getWorldView(worldViewId);
+    if (world == null) return false;
+    NPC npc = world.npcs().byIndex(npcIndex);
+    return npc != null && npc.interact("Talk-to");
+}
+```
+
+`NPC.interact(String)`, `Player.interact(int)` and `net.runelite.api.widgets.Widget.interact(String)`
+are Titan extensions. A true result means Titan accepted the request. For players,
+pass the one-based slot (1–8) of an action currently offered on the top-level
+player's menu. Titan checks the player and option again at dispatch. Widget
+actions use the visible menu label and support Titan's
+submenu syntax, such as `widget.interact("Op/Subop")`. Observe subsequent
+game state to determine the outcome.
+Use the usual Titan event bus and lifecycle for ordinary Titan plugins. RuneLite
+game API coverage depends on which methods the installed compatibility provider
+implements. Plugins using this extension require the matching Titan runtime.
+
+## Swing side panels
+
+Ordinary Titan Java plugins can host real Swing components in the same native
+sidebar as other plugin panels. Register once in each `onEnable()`:
+
+```java
+import net.titan.api.swing.SwingPanel;
+import net.titan.api.swing.SwingPanels;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+private SwingPanel sidebar;
+
+@Override public void onEnable() {
+    sidebar = SwingPanels.of(this).register("tools", "My tools", () -> {
+        JPanel panel = new JPanel(); // Factory runs on the EDT when selected.
+        panel.add(new JButton("Example"));
+        return panel;
+    });
+}
+
+@Override public void onDisable() {
+    if (sidebar != null) sidebar.close(); // Optional; host also revokes on disable.
+}
+```
+
+The full registration overload accepts priority and optional owned PNG icon
+bytes. The factory must return an unparented component tree exclusive to this
+plugin. The entry is published after successful enablement; `ready()` reports
+registration errors. Older or unsupported hosts fail explicitly without opening
+a standalone window. No RuneLite classes are required.
+
+Command-capable hosts also support action-only toolbar buttons and ordered
+right-click menus on either buttons or content panels:
+
+```java
+import java.util.List;
+import net.titan.api.swing.SwingCommand;
+
+// In onEnable; both callbacks and menu suppliers execute on the owning EDT.
+SwingPanel action = SwingPanels.of(this).action("reset", "Reset counter",
+    () -> resetCounter(),
+    () -> List.of(new SwingCommand("Reset counter", () -> resetCounter()),
+                  new SwingCommand("Show tools", () -> sidebar.requestOpen())));
+
+// The additional last argument on register(...) attaches a dynamic popup menu.
+// The component factory stays lazy even when its toolbar popup is opened.
+```
+
+The menu supplier runs for each popup request and returns at most 32 commands
+in display order. Titles contain 1–256 UTF-8 bytes without ASCII controls.
+Selecting a command invokes the callback captured for that popup once, even
+if a later supplier result uses the same title for a different action. Opening
+a menu invokes no command. A normal content-panel click opens its panel;
+an action-only click invokes its action and creates no Swing frame. Its
+`requestOpen()` returns false. These additive methods report unavailable on
+older hosts; existing content registrations keep their original contract.
+
+Disable, close, reload and re-registration invalidate old commands and queued
+EDT work. Accepted actions are not automatically retried after an uncertain
+completion. Callback-posted Swing events retain the exact registration context;
+retirement prevents them from acquiring a later enable cycle.
+
+Swing listeners run on the EDT with the exact owning plugin context. They are
+not game-thread callbacks. Use the SDK's explicit scheduling APIs for game-thread
+work. Arbitrary worker threads and completion-stage continuations do not gain
+Swing callback attribution. Closing a registration revokes queued callbacks
+immediately and asynchronously disposes its embedded peer and owned popups;
+`closeAsync()` completes after disposal and admitted callbacks unwind. Never
+wait on either future from the EDT or a lifecycle hook. Re-enable must create a
+new registration; old handles cannot select or remove its replacement. Native
+sidebar hide/reopen preserves the panel tree within the same enable cycle.
+
+Use the [Swing Counter example](../docs/java_swing_and_graphics.md) to test
+sidebar editing alongside an anchored Java2D HUD.
 
 ## Plugin injection (0.2.04+)
 
@@ -200,8 +374,15 @@ ID is rejected. Custom entries support those logical fields.
 
 `setMenuEntries` atomically reorders siblings and can omit leaf entries to remove
 them. It operates on roots; use a submenu entry's `getChildren()` and
-`setChildren(...)` for its existing children. Submenu parents remain attached and
-cannot be removed or reassigned; new custom entries are roots. Entry text must fit in 255 UTF-8 bytes and contain no
+`setChildren(...)` for its existing children. The game's own submenus remain attached and
+cannot be removed, reassigned or added to.
+
+From SDK 194 an ordinary root entry can have a submenu of plugins' own.
+`createSubMenuEntry(index)` adds to it, `getChildren()` and `setChildren(...)` read and
+change it, and `deleteSubMenu()` removes it. The game's menu has no place for one, so its
+entries are drawn right under their heading, with the heading's option before their own.
+`getSubMenuBounds()` is where the game draws one of its own submenus, and
+`GameData.menuBounds()` where it draws the menu. Entry text must fit in 255 UTF-8 bytes and contain no
 NUL. Rejected operations throw `IllegalStateException`, and invalid Java
 arguments throw `IllegalArgumentException`.
 
@@ -593,6 +774,50 @@ editing the API itself.
 - `net.titan.api.overlay`: in-game overlay draw and panel helpers, including
   WorldView-aware projection/draw methods.
 
+## Native settings controls
+
+Titan chooses the Plugin List editor from the return type of a `@ConfigItem`.
+For example, this declaration adds a width and height editor. The getter
+returns an owned copy for the plugin to use.
+
+```java
+@ConfigItem(keyName = "panelSize", name = "Panel size", description = "Size in pixels")
+default java.awt.Dimension panelSize() {
+    return new java.awt.Dimension(180, 64);
+}
+```
+
+`Dimension` can also return `null`, like the optional `Point` control. The editor
+shows **Default size** with an explicit **Set size** action; opening it does not
+change the setting. `ConfigManager.setDimension(..., null)` persists a null size
+as the string value `"null"`; it does not remove the config key. The plugin receives
+Java `null` and decides its default sizing. Reset restores the declared getter's
+default, whether null or a concrete size. Concrete dimensions remain nonnegative
+and are copied on read and write.
+
+Use `long` for exact signed 64-bit values, `double` for finite numbers,
+`Set<MyEnum>` for multi-select, `java.awt.Point` for an optional position,
+and `java.awt.Font` for family, size and style. The SDK also provides
+`net.titan.api.config.Keybind` and `ModifierlessKeybind` for key capture.
+For an `int`, `numberInput = true` selects a number field. Combining
+`color = true` and `alpha = true` selects an RGBA picker.
+
+Numeric getters can add a display-only suffix with `units = "ms"`, `"tiles"`
+or `"%"`. This works for integer sliders/number fields, `long` and `double`;
+it does not change the stored number, range, reset value or programmatic writes.
+Units are optional literal text, at most 256 UTF-8 bytes, with control characters,
+line separators and bidi formatting rejected. They are invalid on other controls.
+
+```java
+@ConfigItem(keyName = "delay", name = "Delay", description = "Wait between checks",
+    numberInput = true, min = 0, max = 5000, units = "ms")
+default int delay() { return 250; }
+```
+
+Directly constructed `IntSetting` and `ValueSetting<Long/Double>` holders also
+accept a trailing `String units` constructor argument. Existing constructors
+retain empty units, and hosts predating this metadata retain the numeric value.
+
 ## Checkbox Matrix Config Items (0.1.59+)
 
 A `boolean[][]`-returning `@ConfigItem` with `columns()` and `rows()` renders as
@@ -786,3 +1011,23 @@ cmake --build build --config Release --target controller
 
 Changes that require new embedded runtime behavior or native bridge methods
 still need a TitanClient maintainer to update and distribute the runtime.
+
+## Host fonts and skill icons
+
+`Fonts.data(Fonts.Face.REGULAR)` returns an owned copy of the running host's
+TrueType bytes. `Fonts.font(face)` returns an optional size-16 AWT `Font`, using
+the actual regular, bold or small face; retain it or use `deriveFont` for other
+sizes. It does not install fonts globally or substitute a system font when the
+host asset is unavailable.
+
+`SkillIcons.get(Skill.SAILING, false)` returns an optional immutable
+`SpriteImage`. The `small` flag selects the original small artwork. The integer
+overload uses the SDK's skill IDs, including Sailing at 23; invalid IDs and
+unavailable hosts return an empty optional. Pixel arrays and font bytes are
+owned copies. These local resource reads work on workers without game-state,
+game-thread or RuneLite compatibility initialization.
+
+The public SDK contains the API and no third-party font or icon files. Assets
+are supplied by the installed Titan host, whose resource notices apply. Older
+hosts return empty results. A derived font or image already returned to a plugin
+remains a Java value after runtime shutdown; a new query requires a live backend.

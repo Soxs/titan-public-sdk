@@ -58,6 +58,39 @@ public class OverlayPanel implements AutoCloseable {
         return this;
     }
 
+    /** Store up to 128 x 128 straight ARGB pixels under a positive panel-local key. */
+    public boolean setInfoBoxIcon(int key, int width, int height, int[] argb) {
+        if (key <= 0 || width < 1 || height < 1 || width > 128 || height > 128
+                || argb == null || argb.length != width * height)
+            throw new IllegalArgumentException("Invalid infobox icon dimensions, key, or pixel count");
+        requireInfoBoxOwner();
+        return backend().infoBoxSetIcon(pluginId, handle, key, width, height, argb);
+    }
+
+    public boolean clearInfoBoxIcon(int key) {
+        if (key <= 0) throw new IllegalArgumentException("Infobox icon keys must be positive");
+        requireInfoBoxOwner();
+        return backend().infoBoxSetIcon(pluginId, handle, key, 0, 0, new int[0]);
+    }
+
+    /** Present a horizontal group of 35-pixel tiles during ABOVE_WIDGETS. */
+    public boolean infoBoxes(java.util.List<InfoBoxTile> tiles) {
+        return infoBoxes(tiles, false, 35);
+    }
+
+    /** Call once per visible ABOVE_WIDGETS frame. Drag placement is managed by the host. */
+    public boolean infoBoxes(java.util.List<InfoBoxTile> tiles, boolean vertical, int size) {
+        if (tiles == null || tiles.size() > 128 || size < 8 || size > 128)
+            throw new IllegalArgumentException("Invalid infobox group size");
+        requireInfoBoxOwner();
+        return backend().infoBoxPresent(pluginId, handle, vertical, size, java.util.List.copyOf(tiles));
+    }
+
+    private void requireInfoBoxOwner() {
+        if (closed || handle < 0 || !pluginId.equals(TitanRuntime.currentPluginId()))
+            throw new IllegalStateException("Infobox panel is unavailable to this plugin");
+    }
+
     public OverlayPanel title(String text) {
         return title(text, OverlayPanelStyle.DEFAULT_TITLE_COLOR);
     }

@@ -87,7 +87,7 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(586, "KR_ADDRESS_FORM", "kr_address_form", "iftypes"),
             new GamevalEntry(587, "KR_SCRAP_PAPER", "kr_scrap_paper", "iftypes"),
             new GamevalEntry(588, "KR_PICKLOCK", "kr_picklock", "iftypes"),
-            new GamevalEntry(589, "DISPLAYNAME", "displayname", "iftypes"),
+            new GamevalEntry(589, "RAG3_BOSS_OVERLAY", "rag3_boss_overlay", "iftypes"),
             new GamevalEntry(590, "POH_JEWELLERY_BOX", "poh_jewellery_box", "iftypes"),
             new GamevalEntry(591, "ARAXXOR_SCOREBOARD", "araxxor_scoreboard", "iftypes"),
             new GamevalEntry(592, "DIZANAS_QUIVER", "dizanas_quiver", "iftypes"),
@@ -491,6 +491,7 @@ final class InterfaceIDEntries_1 {
             new GamevalEntry(990, "WOTW_WALL_LANDS_END", "wotw_wall_lands_end", "iftypes"),
             new GamevalEntry(991, "WOTW_WALL_PISCARILIUS", "wotw_wall_piscarilius", "iftypes"),
             new GamevalEntry(992, "WOTW_WALL_SHAYZIEN", "wotw_wall_shayzien", "iftypes"),
+            new GamevalEntry(993, "POR_STATISTICS", "por_statistics", "iftypes"),
         };
     }
 

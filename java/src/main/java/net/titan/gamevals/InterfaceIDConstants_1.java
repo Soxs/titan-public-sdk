@@ -78,7 +78,7 @@ public interface InterfaceIDConstants_1 {
     int KR_ADDRESS_FORM = 586;
     int KR_SCRAP_PAPER = 587;
     int KR_PICKLOCK = 588;
-    int DISPLAYNAME = 589;
+    int RAG3_BOSS_OVERLAY = 589;
     int POH_JEWELLERY_BOX = 590;
     int ARAXXOR_SCOREBOARD = 591;
     int DIZANAS_QUIVER = 592;
@@ -482,4 +482,5 @@ public interface InterfaceIDConstants_1 {
     int WOTW_WALL_LANDS_END = 990;
     int WOTW_WALL_PISCARILIUS = 991;
     int WOTW_WALL_SHAYZIEN = 992;
+    int POR_STATISTICS = 993;
 }

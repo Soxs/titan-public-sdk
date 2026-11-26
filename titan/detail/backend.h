@@ -51,6 +51,9 @@ struct IBackend {
     virtual uint8_t setHintArrowActor(const TitanPluginSdk::HintArrowActorTarget*) {
         return static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
     }
+    virtual uint8_t setHintArrowTarget(const TitanPluginSdk::HintArrowActorTarget*) {
+        return static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
+    }
     virtual uint8_t clearHintArrow() {
         return static_cast<uint8_t>(TitanPluginSdk::HintArrowUpdateResult::Unavailable);
     }
@@ -414,6 +417,12 @@ struct IBackend {
         TitanPluginSdk::ProxyRouteStatusState* outStatus) = 0;
 
     // --- Chat injection ---
+    virtual uint8_t refreshChat() { return 0; }
+    virtual int32_t insertChatMessage(int32_t, const char*, const char*, const char*, bool) { return -1; }
+    virtual uint8_t watchScripts(const void*, const char*, const TitanPluginSdk::ScriptWatch*) { return 0; }
+    virtual int32_t scriptMomentValues(bool, int32_t*, uint32_t) { return -1; }
+    virtual uint8_t setScriptMomentValue(bool, int32_t, int32_t) { return 0; }
+    virtual int32_t writeWidget(const TitanPluginSdk::WidgetAddressState*, int32_t, const int32_t*, uint32_t, const char*, uint32_t) { return -1; }
     virtual void addChatMessage(int32_t type, const char* name,
                                 const char* message, const char* sender) = 0;
 
@@ -459,6 +468,11 @@ struct IBackend {
     virtual void drawTileObjectOutline(uint64_t locPtr, uint64_t typecode,
                                        uint32_t outline, uint32_t fill,
                                        uint32_t mode) = 0;
+    /// The convex outline as x, y pairs (SDK 190). The number of points, or 0.
+    virtual uint32_t getTileObjectOutline(uint64_t, uint64_t, int32_t*, uint32_t) { return 0; }
+    /// The same of a player or NPC, and the height of its model or -1 (SDK 191).
+    virtual uint32_t getEntityOutline(uint64_t, int32_t*, uint32_t) { return 0; }
+    virtual int32_t getEntityModelHeight(uint64_t) { return -1; }
 
     // --- Target tags (SDK 172) ---
     /// Pack a target tag with the host's layout for the running revision.
@@ -841,6 +855,17 @@ struct IBackend {
         (void)pluginInstance; (void)pluginId; (void)outCommand;
         return 0;
     }
+    virtual int32_t copyWidgetInventoryListener(const TitanPluginSdk::WidgetAddressState*, void*,
+            TitanPluginSdk::WidgetListenerArgSink) { return -1; }
+    virtual int32_t copyWidgetKeyListener(const TitanPluginSdk::WidgetAddressState*, void*,
+            TitanPluginSdk::WidgetListenerArgSink) { return -1; }
+    virtual int32_t getObjectActionSlotCount(int32_t) { return -1; }
+    virtual uint8_t getWidgetScrollHeight(const TitanPluginSdk::WidgetAddressState*, int32_t*) { return 0; }
+    virtual uint8_t copyWidgetPrimaryText(const TitanPluginSdk::WidgetAddressState*, char*, uint32_t, uint32_t*) { return 0; }
+    virtual TitanPluginSdk::WorldEntityLookupStatus lookupWorldEntity(int32_t, uint64_t, uint64_t,
+        TitanPluginSdk::WorldEntityLookupState*) { return TitanPluginSdk::WorldEntityLookupStatus::Unavailable; }
+    virtual TitanPluginSdk::WorldEntityLookupStatus lookupWorldEntityDefinition(int32_t, uint64_t, uint64_t,
+        uint64_t, TitanPluginSdk::WorldEntityDefinitionState*) { return TitanPluginSdk::WorldEntityLookupStatus::Unavailable; }
 };
 
 /// Per-DLL static slot. Each plugin DLL and `client.dll` has its own copy;

@@ -94,6 +94,29 @@ inline std::optional<std::string> readWidgetName(Copy copy) {
     return std::string(buffer.data(), required - 1);
 }
 
+/// Most widget labels fit in one native observation. Retry with the exact size
+/// for longer text; return bytes only from a single complete observation.
+template <typename Copy>
+inline std::optional<std::string> readWidgetPrimaryText(Copy copy) {
+    char local[256]{};
+    char* destination = local;
+    uint32_t capacity = sizeof(local);
+    std::vector<char> longText;
+    for (int attempt = 0; attempt < 4; ++attempt) {
+        uint32_t required = 0;
+        if (copy(destination, capacity, &required) != static_cast<uint8_t>(TitanPluginSdk::WidgetOpsStatus::Present)
+            || required == 0 || required > 65536u + 1) return std::nullopt;
+        if (required <= capacity) {
+            if (destination[required - 1] != '\0') return std::nullopt;
+            return std::string(destination, required - 1);
+        }
+        longText.resize(required);
+        destination = longText.data();
+        capacity = required;
+    }
+    return std::nullopt;
+}
+
 /// nullopt when the host cannot read the slots; empty when the widget has no
 /// op array; otherwise one string per native slot, empty where unset.
 template <typename Copy>

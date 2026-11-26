@@ -32,4 +32,7 @@ abstract class TitanDevExtension {
     abstract Property<String> getClientRoot()
     abstract Property<String> getSessionSlug()
     abstract Property<Integer> getJavaDebugPort()
+
+    /** Finds controller.exe, or fails saying how to set it. For this plugin's own tasks. */
+    Closure<File> locateController
 }

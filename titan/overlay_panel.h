@@ -48,15 +48,19 @@
 
 #include "detail/abi.h"
 #include "detail/backend.h"
+#include "detail/host.h"
 #include "detail/registrable.h"
 #include "render.h"
 #include "plugin.h"
 
 #include <cstdint>
 #include <functional>
+#include <span>
 #include <utility>
 
 namespace titan {
+
+using InfoBoxTile = TitanPluginSdk::InfoBoxTile;
 
 /// Anchor positions for an OverlayPanel. Mirrored by
 /// TitanPluginSdk::AnchorAbi. Only the values with semantics that free
@@ -157,6 +161,26 @@ public:
     /// empty; the lambda-factory wrapper overrides it.
     void render() override {}
 
+    /// Upload straight ARGB artwork once per change. Keys belong to this panel.
+    /// A zero-sized image with no pixels releases the key.
+    /// Register artwork on enable or on demand. Disable retires all icons.
+    bool setInfoBoxIcon(int32_t key, int32_t width, int32_t height,
+                        std::span<const uint32_t> pixels) {
+        const auto* host = detail::host();
+        return host && host->infoBoxSetIconOwned && pixels.size() <= 128u * 128u &&
+            host->infoBoxSetIconOwned(owner_, handle_, key, width, height,
+                pixels.empty() ? nullptr : pixels.data(), static_cast<uint32_t>(pixels.size()));
+    }
+
+    /// Present these boxes in order from the panel's AboveWidgets render callback.
+    /// Omit this call to hide the group for a frame. The host owns its Alt-drag
+    /// handling and saved layout. A zero icon key draws a text-only box.
+    bool infoBoxes(std::span<const InfoBoxTile> tiles, bool vertical = false, int32_t boxSize = 35) {
+        const auto* host = detail::host();
+        return host && host->infoBoxPresentOwned && tiles.size() <= 128 &&
+            host->infoBoxPresentOwned(owner_, handle_, vertical, boxSize, tiles.data(), static_cast<uint32_t>(tiles.size()));
+    }
+
     // --- Builder methods (call from inside render()) -----------------
 
     /// Bold title row (~22 px). Default colour matches a soft cyan
@@ -216,6 +240,7 @@ public:
 private:
     void publishStyle();
 
+    Plugin* owner_ = nullptr;
     int32_t handle_ = -1;
     int32_t preferredWidth_ = overlay_panel_defaults::kPreferredWidth;
     OverlayPanelStyle cachedStyle_{};
@@ -249,7 +274,7 @@ inline Plugin* reserveOverlayPanelName(Plugin* owner, const char* name) {
 
 inline OverlayPanel::OverlayPanel(Plugin* owner, const char* name,
                                   Anchor defaultAnchor, int32_t defaultPriority)
-    : Overlay(reserveOverlayPanelName(owner, name), Layer::AboveWidgets) {
+    : Overlay(reserveOverlayPanelName(owner, name), Layer::AboveWidgets), owner_(owner) {
     if (auto* b = detail::backend()) {
         const char* pid = (owner ? owner->id() : "");
         const char* n   = (name ? name : "");

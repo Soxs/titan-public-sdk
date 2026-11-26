@@ -29,6 +29,8 @@ import java.security.MessageDigest
  *   writeTitanDevSessionDebug stage + write session.json with JDWP enabled
  *   runTitanClient            stage + write manifest + launch/recycle the DEV tab
  *   runViaTitan               alias for runTitanClient
+ *   reloadTitanClient         stage + write manifest + hot reload the open DEV tab
+ *   reloadViaTitan            alias for reloadTitanClient; add -t to reload on every save
  *   runViaTitanDebug          runTitanClient with JDWP on (default port 5005)
  *   stagePlugin               legacy: stage into ~/.titanclient/plugins
  */
@@ -250,6 +252,8 @@ class TitanDevPlugin implements Plugin<Project> {
             throw new GradleException(titanClientRootHelp(null))
         }
 
+        ext.locateController = resolveTitanController
+
         def titanEmbeddedJarFromEnvironment = {
             def value = providers.environmentVariable('TITAN_JAVA_EMBEDDED_JAR').orNull
             if (value == null || value.trim().isEmpty()) {
@@ -443,19 +447,21 @@ class TitanDevPlugin implements Plugin<Project> {
         // Tasks need the `jar`/`build` tasks, so register once the java plugin
         // is applied. Works for both `java` and `java-library`.
         project.pluginManager.withPlugin('java') {
-            def authorization = project.configurations.create('titanAuthorization') {
-                canBeConsumed = false
-                transitive = false
-            }
-            def authorizationVersion = providers.gradleProperty('titanAuthorizationVersion').orElse('0.1.92').get()
-            project.dependencies.add('titanAuthorization', "net.titan:titan-authorization:${authorizationVersion}")
-            project.configurations.named('implementation') { extendsFrom authorization }
-            project.tasks.named('jar') {
-                dependsOn authorization
-                from { authorization.collect { project.zipTree(it) } }
-                exclude 'META-INF/MANIFEST.MF'
-                duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
-                doLast { AuthorizationRelocator.relocate(archiveFile.get().asFile) }
+            if (project.findProperty('titanBundleAuthorization') != 'false') {
+                def authorization = project.configurations.create('titanAuthorization') {
+                    canBeConsumed = false
+                    transitive = false
+                }
+                def authorizationVersion = providers.gradleProperty('titanAuthorizationVersion').orElse('0.1.92').get()
+                project.dependencies.add('titanAuthorization', "net.titan:titan-authorization:${authorizationVersion}")
+                project.configurations.named('implementation') { extendsFrom authorization }
+                project.tasks.named('jar') {
+                    dependsOn authorization
+                    from { authorization.collect { project.zipTree(it) } }
+                    exclude 'META-INF/MANIFEST.MF'
+                    duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.EXCLUDE
+                    doLast { AuthorizationRelocator.relocate(archiveFile.get().asFile) }
+                }
             }
             def titanPluginDir = project.file(providers.gradleProperty('titanPluginDir')
                 .orElse(providers.environmentVariable('TITAN_PLUGIN_DIR'))
@@ -489,7 +495,7 @@ class TitanDevPlugin implements Plugin<Project> {
                     try {
                         stageTitanDevGeneration()
                         writeDevSessionManifest(null)
-                        logger.lifecycle("Refreshed active Titan dev session after build; click the in-tab refresh button to reload.")
+                        logger.lifecycle("Refreshed active Titan dev session after build; run reloadViaTitan or click the in-tab refresh button to reload.")
                     } catch (Exception ex) {
                         logger.lifecycle("Skipped Titan dev-session refresh after build: ${ex.message}")
                     }
@@ -518,7 +524,7 @@ class TitanDevPlugin implements Plugin<Project> {
 
             project.tasks.register('runTitanClient', Exec) {
                 group = 'titan dev'
-                description = 'Stage this plugin and launch/recycle its dedicated TitanClient DEV tab.'
+                description = 'Stage this plugin and open its dedicated TitanClient DEV tab, or hot reload it there when it is open.'
                 dependsOn project.tasks.named('writeTitanDevSession')
                 doFirst {
                     def controller = resolveTitanController()
@@ -535,6 +541,25 @@ class TitanDevPlugin implements Plugin<Project> {
                 group = 'titan dev'
                 description = 'Alias for runTitanClient.'
                 dependsOn project.tasks.named('runTitanClient')
+            }
+
+            project.tasks.register('reloadTitanClient', Exec) {
+                group = 'titan dev'
+                description = 'Stage this plugin and hot reload it in its open TitanClient DEV tab. Add -t to do it on every save.'
+                dependsOn project.tasks.named('writeTitanDevSession')
+                doFirst {
+                    def controller = resolveTitanController()
+                    workingDir controller.parentFile
+                    commandLine controller, '--dev-mode',
+                        '--dev-manifest', titanDevSessionFile(),
+                        '--reload-dev-plugin'
+                }
+            }
+
+            project.tasks.register('reloadViaTitan') {
+                group = 'titan dev'
+                description = 'Alias for reloadTitanClient.'
+                dependsOn project.tasks.named('reloadTitanClient')
             }
 
             project.tasks.register('runViaTitanDebug', Exec) {

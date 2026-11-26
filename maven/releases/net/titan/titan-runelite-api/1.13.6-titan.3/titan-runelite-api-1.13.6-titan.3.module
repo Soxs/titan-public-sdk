@@ -1,0 +1,89 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.titan",
+    "module": "titan-runelite-api",
+    "version": "1.13.6-titan.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "titan-runelite-api-1.13.6-titan.3.jar",
+          "url": "titan-runelite-api-1.13.6-titan.3.jar",
+          "size": 5459953,
+          "sha512": "42760f95b378686c6ba5343bb033931b04251c33ec356e1cb5477a47cdb2f2b6f2a20d7d3fcac864daaf998009b19e847e47871a675b23250c9e55962948c2ba",
+          "sha256": "0e3bd71916b4910f095871b7b0addff5cd21e93764a7b98a0d3b7b9ce7ed92cd",
+          "sha1": "97e46264ad19e649e8562642e183aefbffa67708",
+          "md5": "647d6e24a112741b986ac676a50c2132"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "1.7.25"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "titan-runelite-api-1.13.6-titan.3.jar",
+          "url": "titan-runelite-api-1.13.6-titan.3.jar",
+          "size": 5459953,
+          "sha512": "42760f95b378686c6ba5343bb033931b04251c33ec356e1cb5477a47cdb2f2b6f2a20d7d3fcac864daaf998009b19e847e47871a675b23250c9e55962948c2ba",
+          "sha256": "0e3bd71916b4910f095871b7b0addff5cd21e93764a7b98a0d3b7b9ce7ed92cd",
+          "sha1": "97e46264ad19e649e8562642e183aefbffa67708",
+          "md5": "647d6e24a112741b986ac676a50c2132"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "titan-runelite-api-1.13.6-titan.3-sources.jar",
+          "url": "titan-runelite-api-1.13.6-titan.3-sources.jar",
+          "size": 3310929,
+          "sha512": "250e72f0aa8edcc63dd39ed6af5582d27da3bc99d7ceebe27656db4b263db9b700b00fa02526f5b91400f3d531059450b337b373ff75d9872b98226e79655753",
+          "sha256": "1e7a7861a9fa415a182d9d8eeca43ea71707a32f067ee502ea77b9d540a58318",
+          "sha1": "73d4a272cf97efebe9928d517fbdbfd48e4e21f4",
+          "md5": "9b790bba706616039bcc9970467f025a"
+        }
+      ]
+    }
+  ]
+}

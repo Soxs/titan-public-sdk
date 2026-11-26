@@ -4,10 +4,10 @@ import net.titan.api.internal.InteractionBackend;
 import net.titan.api.internal.TitanRuntime;
 import net.titan.api.utils.Magic;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.OptionalInt;
 
 public final class Widget {
     private boolean liveHandle = true;
@@ -48,6 +48,10 @@ public final class Widget {
     public int relativeY() { return live().relativeY; }
     public int scrollX() { return live().scrollX; }
     public int scrollY() { return live().scrollY; }
+    /** Current scroll content height of a root or direct child on the game thread. */
+    public OptionalInt scrollHeight() { return TitanRuntime.widgetScrollHeight(address()); }
+    /** Primary text on the game thread, or null when unavailable. Empty text and all characters are preserved. */
+    public String primaryText() { return TitanRuntime.widgetPrimaryText(address()); }
     public int type() { return live().type; }
     public int contentType() { return live().contentType; }
     public int spriteId() { return live().spriteId; }
@@ -88,6 +92,18 @@ public final class Widget {
     }
     /** Whether the host can read this widget's name and actions now. SDK 159. */
     public boolean opsAvailable() { return name() != null; }
+    /**
+     * Reads the inventory-transmit script and its arguments in native order.
+     * Values are Integer, String or Long. An unset listener returns null.
+     * @throws UnsupportedOperationException when this address, thread or host cannot supply the listener
+     */
+    public Object[] inventoryTransmitListener() {
+        return TitanRuntime.widgetInventoryTransmitListener(address());
+    }
+    /** Reads an owned copy of the keypress script and arguments with the same contract as {@link #inventoryTransmitListener()}. */
+    public Object[] keyListener() {
+        return TitanRuntime.widgetKeyListener(address());
+    }
     public int packedId() { return live().packedId; }
     public int dynamicParentPackedId() { return live().dynamicParentPackedId; }
     public int dynamicChildSlot() { return live().dynamicChildSlot; }
@@ -100,16 +116,14 @@ public final class Widget {
     }
 
     public WidgetAddress address() {
-        Widget w = live();
-        int root = w.rootPackedId != 0
-            ? w.rootPackedId
-            : w.dynamicParentPackedId != 0 ? w.dynamicParentPackedId : w.packedId;
-        List<Integer> path = dynamicPath();
-        if (path.isEmpty() && w.dynamicChildSlot >= 0) {
-            path = new ArrayList<>();
-            path.add(w.dynamicChildSlot);
-        }
-        return new WidgetAddress(root, path);
+        // The wire carries a retained address, including zero as a valid root.
+        // These identity fields do not need a live content refresh.
+        if (dynamicPath != null && !dynamicPath.isEmpty())
+            return new WidgetAddress(rootPackedId, dynamicPath);
+        if (dynamicChildSlot >= 0)
+            return new WidgetAddress(rootPackedId != 0 ? rootPackedId : dynamicParentPackedId,
+                Collections.singletonList(dynamicChildSlot));
+        return new WidgetAddress(rootPackedId != 0 ? rootPackedId : packedId, Collections.emptyList());
     }
 
     public boolean isDynamic() {
@@ -181,6 +195,9 @@ public final class Widget {
         if (ok) text = value == null ? "" : value;
         return ok;
     }
+
+    /** Changes of this widget's own fields, on the game thread. SDK 188. */
+    public WidgetEdit edit() { return new WidgetEdit(address()); }
 
     public boolean castOn(Magic.SpellInfo spell) { return Magic.castOn(spell, this); }
     public boolean castOn(Magic.Standard spell) { return Magic.castOn(spell, this); }

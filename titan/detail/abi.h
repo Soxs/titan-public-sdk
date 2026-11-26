@@ -38,6 +38,46 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v195 -- gameData.widgetSlots: every slot of a flat widget's script-made children with each child's fields, in one read.
+/// v194 -- What monsters and players leave for the account, in an optional PluginEventsV1 tail; submenus of plugins' own,
+///         for which menuCreateEntry takes a parent; and where the open menu is drawn.
+/// v193 -- More of what runGameOperation reaches has a type of its own in game_data.h: the hovered tile, the
+///         minimap, world entities, the world map's area, chat lines, widgets' fields, families and listeners, script
+///         stacks, overhead text, the world switcher, a reload of the scene and a dropped connection. No table changes.
+/// v192 -- The optional HostActionsV1 tail runs the game's named reads and changes: friends, clans,
+///         items on the ground, held keys and sounds.
+/// v190 -- The optional HostRenderV1 tail gives a tile object's outline as points.
+/// v191 -- The optional HostRenderV1 tail gives an actor's outline as points and the height of its model.
+/// v189 -- Hear of interfaces which load and which close: an optional PluginEventsV1 tail.
+/// v188 -- The optional HostActionsV1 tail changes one widget's own fields on the game thread.
+/// v187 -- Hear of the game's scripts by id, before they run and before they return, with their
+///         integer arguments and the interpreter's integers: optional HostActionsV1 and
+///         PluginEventsV1 tails.
+/// v186 -- The optional HostActionsV1 tail inserts a local chat line and returns its UID.
+/// v185 -- The optional HostCacheFilesV1 copies files of the game's own local cache.
+/// v184 -- Observe a shared definition incarnation through a current world entity.
+/// v183 -- Game-thread top-level world entity and verified child-world lookup.
+/// v182 -- The optional HostGameV1 tail copies the widget's primary UTF-8 text.
+/// v181 -- Optional actor hint-arrow retargeting preserves the slot's display settings.
+/// v180 -- The optional HostGameV1 tail reads the live widget scroll height.
+/// v179 -- The optional HostGameV1 tail reads the live base object definition's action slot count.
+/// v178 -- The optional HostWidgetListenersV1 tail copies a widget's key listener and ordered arguments.
+///
+/// v177 -- Built-in UI assets.
+///   + Optional PluginEventsV1::onStatChanged delivers client-tick skill differences.
+///   + Optional world, canvas size and client int/string variable events.
+///   + Optional complete chat insertion strings and Unix second on ordinary chat callbacks.
+///   + Optional owned hitsplat type, amount and expiry on ordinary hitsplat callbacks.
+///   + Optional HostActionsV1 tail refreshes the local chat display on the game thread.
+///   + Optional HostInfoBoxesV1 submits owner-bound HUD tiles with cached icons,
+///     hover text and saved Alt-drag placement.
+///   + Common typed settings use appended ControlType IDs10..18 over existing
+///     int32/string values: ARGB, int64, double, multi-select, keybind,
+///     modifierless keybind, dimension, point and font. Payloads/floor unchanged.
+///   + Optional HostUiAssetsV1 copies owned skill-icon ARGB and exact font
+///     bytes, without game/cache/JVM state. Existing payloads and floor154
+///     are unchanged; older hosts report the optional operations absent.
+///
 /// v176 -- Named widget interactions.
 ///   + Optional HostActionsV1 tail queues ordered UTF-8 action labels for
 ///     resolution by the native widget menu builder.
@@ -2003,6 +2043,9 @@
 #include "actor_data_abi.h"
 #include "menu_editing_abi.h"
 #include "item_sprite_abi.h"
+#include "ui_assets_abi.h"
+#include "cache_file_abi.h"
+#include "game_data_abi.h"
 #include "scene_snapshot_abi.h"
 #include "html_ui_abi.h"
 #include "../scene_renderer_types.h"
@@ -2013,7 +2056,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 176;
+constexpr uint32_t kSdkVersion = 195;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together
@@ -2730,6 +2773,23 @@ constexpr uint32_t OTHER_PLAYER = 2;
 constexpr uint32_t GROUP_IRONMAN = 3;
 }
 
+/// An observation of one entry in the top-level world's world-entity table.
+/// Tokens identify observed incarnations in this game session. Native addresses
+/// are never returned. A zero childWorldIncarnation means its link was unreadable.
+struct WorldEntityLookupState {
+    uint64_t parentIncarnation = 0;
+    uint64_t entityIncarnation = 0;
+    uint64_t childWorldIncarnation = 0;
+    int32_t index = -1;
+    int32_t definitionId = -1;
+    int32_t childWorldId = -1;
+};
+enum class WorldEntityLookupStatus : uint8_t { Unavailable = 0, Absent = 1, Present = 2, Stale = 3 };
+struct WorldEntityDefinitionState {
+    uint64_t parentIncarnation = 0, entityIncarnation = 0, definitionIncarnation = 0;
+    int32_t index = -1, definitionId = -1;
+};
+
 /// Ground item visible on a tile.
 struct GroundItemState {
     int32_t tileX = 0;
@@ -3106,12 +3166,33 @@ struct WidgetAddressState {
     int32_t slots[kMaxWidgetAddressDepth] = {};
 };
 
+/// Invoked synchronously once per argument. Tag 1 carries a signed int32,
+/// 2 carries borrowed UTF-8 bytes (length may be zero), and 5 a signed int64.
+using WidgetListenerArgSink = void (*)(void* context, uint8_t tag, int64_t number,
+                                       const char* text, uint32_t length);
+
 /// SDK 176. UTF-8 bytes borrowed for the duration of widgetInteractByActions.
 /// An empty label may have a null pointer. No NUL terminator is required.
 struct WidgetActionLabel {
     const char* utf8 = nullptr;
     uint32_t length = 0;
 };
+
+/// SDK 188. What HostApi::writeWidget changes. Below 10000 these are the game's own component opcodes, with the
+/// values its scripts give them.
+enum class WidgetWrite : int32_t {
+    Hidden = 1003, StopsClicks = 1005, StopsScrolling = 1006, TextColor = 1101, Filled = 1102, Opacity = 1103,
+    Sprite = 1105, SpriteTiled = 1107, Model = 1108, Text = 1112, Font = 1113, TextShadowed = 1115, Border = 1116,
+    FlippedVertically = 1118, FlippedHorizontally = 1119, Item = 1213, Action = 1300, DragDeadZone = 1303,
+    DragDeadTime = 1304, Name = 1305, TargetVerb = 1306, ClearActions = 1307,
+    // One field by itself.
+    OriginalX = 10000, OriginalY, OriginalWidth, OriginalHeight, XMode, YMode, WidthMode, HeightMode,
+    TextAlignX, TextAlignY, LineHeight, ItemId, ItemQuantity, HasListener, RelativeX, RelativeY,
+    ComputedWidth, ComputedHeight, ScrollWidth, ScrollHeight, ScrollX, ScrollY,
+    // Nothing, nothing, [type, index or -1], nothing.
+    Revalidate = 20000, RevalidateScroll, CreateChild, DeleteChildren
+};
+constexpr uint32_t kMaxWidgetWriteText = 4096;
 
 /// Widget query snapshot: normal widget fields plus an exact retained address.
 struct WidgetQueryState {
@@ -3364,6 +3445,57 @@ struct ScriptFiredEvent {
     int32_t intResults[kMaxCs2IntResults] = {};
 };
 
+/// SDK 187. The scripts onScriptMoment hears of. Ids are 0 to 65535, at most kMaxWatchedScripts of each.
+constexpr uint32_t kMaxWatchedScripts = 1024;
+struct ScriptWatch {
+    uint32_t structSize = sizeof(ScriptWatch);
+    uint32_t beforeCount = 0;
+    const int32_t* before = nullptr;
+    const int32_t* after = nullptr;
+    uint32_t afterCount = 0;
+    uint32_t reserved = 0;
+};
+namespace ScriptMomentFlagAbi {
+    /// The script is about to return; otherwise it is about to run.
+    constexpr uint32_t SCRIPT_MOMENT_AFTER = 1;
+    /// Another script called it; otherwise the game started it.
+    constexpr uint32_t SCRIPT_MOMENT_NESTED = 2;
+    /// Every argument is an integer and readable.
+    constexpr uint32_t SCRIPT_MOMENT_ARGUMENTS = 4;
+}
+struct ScriptMomentEvent {
+    int32_t scriptId = 0;
+    uint32_t flags = 0;
+};
+
+/// Changed named skill and its three client-tick values.
+struct StatChangedEvent {
+    int32_t skillId, xp, level, boostedLevel;
+};
+
+struct CanvasSizeChangedEvent {
+    int32_t width, height;
+};
+struct VarClientIntChangedEvent {
+    int32_t index;
+};
+struct VarClientStrChangedEvent {
+    int32_t index;
+};
+
+/// SDK 189. An interface whose load listeners have run.
+struct WidgetLoadedEvent {
+    int32_t groupId;
+};
+/// SDK 189. An interface about to close. modalMode is how it was opened, and unload is nonzero where its widgets go.
+struct WidgetClosedEvent {
+    int32_t groupId, modalMode, unload;
+};
+/// SDK 194. What a monster or a player left for the account, by the number which titan.game.read.loot.v1 takes.
+struct LootReceivedEvent {
+    int32_t number;
+};
+
 /// Event payload delivered to plugins when a varbit's resolved value changes.
 /// Fires only after SET_VARBIT has been observed to actually change the
 /// extracted bit-field (no-op writes are filtered out by the host).
@@ -3420,6 +3552,14 @@ struct ChatMessageEvent {
     char sender[kMaxLabelLen] = {};
     /// Current game tick captured at dispatch time; 0 when unavailable.
     int32_t gameTick = 0;
+};
+
+/// Optional complete strings and Unix insertion second, borrowed for one callback.
+struct ChatMessageInsertion {
+    const char* name = nullptr;
+    const char* message = nullptr;
+    const char* sender = nullptr;
+    int32_t timestamp = 0;
 };
 
 /// Event payload delivered to plugins when the player activates a menu option.
@@ -3544,8 +3684,14 @@ struct KeyInputEvent {
     int32_t replacementMods = 0;
 };
 
-/// Event payload delivered to plugins when the native client applies a
-/// hitsplat/hitmark to a player or NPC. The hook's raw actor pointer is used
+/// Owned values from a qualified written or detached hitsplat.
+struct HitsplatOutcome {
+    int32_t type, amount, disappearsOnGameCycle;
+};
+
+/// Event payload delivered when the native hitsplat adder returns. The timing
+/// fields are adder arguments. Visibility and the final expiry cycle require
+/// the resolved hitmark. The hook's raw actor pointer is used
 /// only inside the host to resolve `actorType` plus the matching entity
 /// snapshot; public JS/Java wrappers expose `actor` as a typed Player/NPC
 /// object or null when the actor cannot be resolved. Added in SDK 74;
@@ -4095,6 +4241,20 @@ struct PreviewPillWrite {
     uint64_t countdownMs = 0;    ///< PREVIEW_PILL_COUNTDOWN only: time left from now
 };
 static_assert(sizeof(PreviewPillWrite) == 40, "PreviewPillWrite ABI size changed");
+
+// HostInfoBoxesV1 borrows these UTF-8 strings during present(). Image keys
+// refer to straight-ARGB icons owned by the same HUD panel registration.
+struct InfoBoxTile {
+    int32_t iconKey = 0;
+    uint32_t textArgb = 0xffffffff;
+    uint32_t backgroundArgb = 0xaa282828;
+    const char* text = nullptr;
+    const char* tooltip = nullptr;
+};
+static_assert(std::is_standard_layout_v<InfoBoxTile> && sizeof(InfoBoxTile) == 32 &&
+    alignof(InfoBoxTile) == 8 && offsetof(InfoBoxTile, iconKey) == 0 &&
+    offsetof(InfoBoxTile, textArgb) == 4 && offsetof(InfoBoxTile, backgroundArgb) == 8 &&
+    offsetof(InfoBoxTile, text) == 16 && offsetof(InfoBoxTile, tooltip) == 24);
 
 // Consumer-local dispatch view. Native ABI v1 imports negotiated functions
 // into this allocation; this structure itself is not a cross-DLL contract.
@@ -5444,6 +5604,93 @@ struct HostApi {
     uint8_t (*widgetInteractByActions)(const WidgetAddressState* address,
         const WidgetActionLabel* labels, uint32_t count) = nullptr;
 
+    // Optional HostUiAssetsV1. Immutable host resources, any thread. Pointers
+    // are caller-owned and borrowed only for this call. Null/short output
+    // returns BufferTooSmall with complete metadata/size and copies nothing.
+    // Other failures clear metadata/size. No allocator crosses the ABI.
+    UiAssetStatus (*copySkillIcon)(int32_t skillId, uint8_t smallIcon, SpriteImageInfo* out,
+        uint32_t* pixels, uint32_t capacity) = nullptr;
+    UiAssetStatus (*copyFontData)(uint32_t face, uint8_t* bytes,
+        uint32_t capacity, uint32_t* outSize) = nullptr;
+
+    // Optional HostWindowFocusV1. Any thread; -1 unavailable, 0 false, 1 true.
+    int32_t (*frameFocus)() = nullptr;
+
+    // Internal managed bridges validate owner identity before forwarding.
+    // These two operations are never published in the native ABI.
+    uint8_t (*infoBoxSetIcon)(int32_t panel, int32_t key, int32_t width, int32_t height,
+        const uint32_t* argb, uint32_t count) = nullptr;
+    uint8_t (*infoBoxPresent)(int32_t panel, uint8_t vertical, int32_t boxSize,
+        const InfoBoxTile* tiles, uint32_t count) = nullptr;
+    // HostInfoBoxesV1 validates native descriptor identity and panel ownership.
+    uint8_t (*infoBoxSetIconOwned)(const void* instance, int32_t panel, int32_t key,
+        int32_t width, int32_t height, const uint32_t* argb, uint32_t count) = nullptr;
+    uint8_t (*infoBoxPresentOwned)(const void* instance, int32_t panel, uint8_t vertical,
+        int32_t boxSize, const InfoBoxTile* tiles, uint32_t count) = nullptr;
+
+    /// Optional HostActionsV1 tail. Synchronous local chatbox refresh on the game thread.
+    uint8_t (*refreshChat)() = nullptr;
+
+    /// Optional HostWidgetListenersV1. Returns -1 unavailable, 0 unset, or
+    /// 1 after delivering a complete listener from an owned game-thread read.
+    int32_t (*copyWidgetInventoryListener)(const WidgetAddressState*, void*, WidgetListenerArgSink) = nullptr;
+    int32_t (*copyWidgetKeyListener)(const WidgetAddressState*, void*, WidgetListenerArgSink) = nullptr;
+    /// Game-thread base definition lookup by ID. Zero is a valid slot count, -1 means unavailable.
+    int32_t (*getObjectActionSlotCount)(int32_t objectId) = nullptr;
+    uint8_t (*getWidgetScrollHeight)(const WidgetAddressState* address, int32_t* height) = nullptr;
+    /// Optional HostActionsV1 tail. Only slot zero's actor kind and index change.
+    uint8_t (*setHintArrowTarget)(const HintArrowActorTarget* target) = nullptr;
+    /// Game-thread primary text. Present sets required to the UTF-8 byte count plus one
+    /// terminator, including any embedded NULs in that count. Empty text requires one byte.
+    uint8_t (*copyWidgetPrimaryText)(const WidgetAddressState* address, char* outUtf8,
+                                     uint32_t capacity, uint32_t* required) = nullptr;
+    /// SDK 183. Game-thread lookup. Nonzero tokens guard the original parent
+    /// and entity. Absent requires a complete, stable read of the indexed bucket.
+    WorldEntityLookupStatus (*lookupWorldEntity)(int32_t index, uint64_t expectedParent,
+        uint64_t expectedEntity, WorldEntityLookupState* out) = nullptr;
+    WorldEntityLookupStatus (*lookupWorldEntityDefinition)(int32_t index, uint64_t expectedParent,
+        uint64_t expectedEntity, uint64_t expectedDefinition, WorldEntityDefinitionState* out) = nullptr;
+    /// SDK 185. Any thread; a read of another group reads the disk. Each copy was checked against
+    /// the cache's reference table. A null or short buffer answers BufferTooSmall with the size.
+    CacheFileStatus (*copyCacheFile)(int32_t index, int32_t group, int32_t file,
+        uint8_t* bytes, uint32_t capacity, uint32_t* size) = nullptr;
+    CacheFileStatus (*copyCacheFileIds)(int32_t index, int32_t group,
+        int32_t* ids, uint32_t capacity, uint32_t* count) = nullptr;
+    /// SDK 186. Game thread. Adds a line to this client's chat before it returns the line's UID, or -1.
+    /// UTF-8 text; a character which the game cannot show becomes a question mark. notify says whether
+    /// plugin chat callbacks hear of it. Optional HostActionsV1 tail.
+    int32_t (*insertChatMessage)(int32_t type, const char* name, const char* message,
+                                 const char* sender, uint8_t notify) = nullptr;
+    /// SDK 187. Names the scripts this enabled plugin hears of, in place of those before. Any thread.
+    /// 0 when it cannot: scripts are not followed in this game, or the watch is malformed. Optional
+    /// HostActionsV1 tail, like the four after it.
+    uint8_t (*watchScripts)(const void* pluginInstance, const char* pluginId, const ScriptWatch* watch) = nullptr;
+    /// SDK 187. Inside onScriptMoment, on its thread: how many there are, with the first of them copied to
+    /// out; -1 elsewhere, or when they are not known.
+    int32_t (*scriptMomentArguments)(int32_t* out, uint32_t capacity) = nullptr;
+    int32_t (*scriptMomentIntegers)(int32_t* out, uint32_t capacity) = nullptr;
+    /// SDK 187. Inside onScriptMoment: replaces one of them. 0 when there is no such one.
+    uint8_t (*setScriptMomentArgument)(int32_t index, int32_t value) = nullptr;
+    uint8_t (*setScriptMomentInteger)(int32_t index, int32_t value) = nullptr;
+    /// SDK 188. Game thread. Makes one change of the root or direct child now at the address, before it returns.
+    /// The index of a created child or 0; -1 where there is no such widget or it cannot be made. text is UTF-8
+    /// without a terminator, and null where the change takes none. Optional HostActionsV1 tail.
+    int32_t (*writeWidget)(const WidgetAddressState* address, int32_t write, const int32_t* integers,
+                           uint32_t integerCount, const char* text, uint32_t textLength) = nullptr;
+    /// SDK 190. The convex outline of a tile object on the canvas as x, y pairs, in order. The number of points, or 0
+    /// when it has none now or more than the capacity, which is in points. Optional HostRenderV1 tail.
+    uint32_t (*getTileObjectOutline)(uint64_t locPtr, uint64_t typecode, int32_t* points, uint32_t capacity) = nullptr;
+    /// SDK 191. The convex outline of a player or NPC on the canvas, as getTileObjectOutline gives an object's. Optional
+    /// HostRenderV1 tail.
+    uint32_t (*getEntityOutline)(uint64_t entityPtr, int32_t* points, uint32_t capacity) = nullptr;
+    /// SDK 191. How far a player's or NPC's model rises above the ground it stands on, or -1 when the game has not drawn
+    /// it lately. Optional HostRenderV1 tail.
+    int32_t (*getEntityModelHeight)(uint64_t entityPtr) = nullptr;
+    /// SDK 192. Game thread. Runs the operation of this name with whole numbers and UTF-8 texts, and copies its
+    /// little-endian answer. A short buffer answers BufferTooSmall with the size. Optional HostActionsV1 tail.
+    GameDataStatus (*runGameOperation)(const char* name, const int64_t* numbers, uint32_t numberCount,
+                                       const char* const* texts, uint32_t textCount,
+                                       uint8_t* bytes, uint32_t capacity, uint32_t* size) = nullptr;
 };
 
 /// Consumer-local callback view, populated from the negotiated native tables.
@@ -5583,7 +5830,7 @@ struct PluginApi {
     /// Covers both synth sound effects and MIDI jingles (see `event->kind`).
     void (*onSoundPlayed)(void* userData, SoundPlayedEvent* event) = nullptr;
 
-    /// SDK 74+. Called when the native client applies a hitsplat to a
+    /// SDK 74+. Called after the native client processes a hitsplat for a
     /// resolved player or NPC. The event embeds PlayerState/NpcState
     /// snapshots and sets actorType to PLAYER, NPC, or NONE when the host
     /// could not resolve the actor. SDK 76 corrected the native signature and
@@ -5679,6 +5926,20 @@ struct PluginApi {
     // may run while disabled, without invoking the plugin's onMainLoop.
     void (*pumpManagedLifecycle)(void* userData) = nullptr;
     uint8_t (*managedLifecycleStopping)(void* userData) = nullptr;
+    void (*onStatChanged)(void* userData, const StatChangedEvent*) = nullptr;
+    void (*onWorldChanged)(void* userData) = nullptr;
+    void (*onCanvasSizeChanged)(void* userData, const CanvasSizeChangedEvent*) = nullptr;
+    void (*onVarClientIntChanged)(void* userData, const VarClientIntChangedEvent*) = nullptr;
+    void (*onVarClientStrChanged)(void* userData, const VarClientStrChangedEvent*) = nullptr;
+    void (*onChatMessageWithInsertion)(void* userData, const ChatMessageEvent*, const ChatMessageInsertion*) = nullptr;
+    void (*onHitsplatAppliedWithOutcome)(void* userData, const HitsplatAppliedEvent*, const HitsplatOutcome*) = nullptr;
+    // SDK 187 optional tail. The scripts watchScripts named, synchronously and inside the interpreter.
+    void (*onScriptMoment)(void* userData, const ScriptMomentEvent*) = nullptr;
+    // SDK 189 optional tail, on the game thread.
+    void (*onWidgetLoaded)(void* userData, const WidgetLoadedEvent*) = nullptr;
+    void (*onWidgetClosed)(void* userData, const WidgetClosedEvent*) = nullptr;
+    // SDK 194 optional tail, on the game thread.
+    void (*onLootReceived)(void* userData, const LootReceivedEvent*) = nullptr;
 };
 
 /// Historical local embedding signatures. These tables must never cross a

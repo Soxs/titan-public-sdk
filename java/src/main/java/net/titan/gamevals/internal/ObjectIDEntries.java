@@ -134,6 +134,7 @@ public final class ObjectIDEntries {
             ObjectIDEntries_121.entries(),
             ObjectIDEntries_122.entries(),
             ObjectIDEntries_123.entries(),
+            ObjectIDEntries_124.entries(),
         };
         int size = 0;
         for (GamevalEntry[] part : parts) size += part.length;
@@ -395,6 +396,8 @@ public final class ObjectIDEntries {
         hit = ObjectIDEntries_122.byId(id);
         if (hit.isPresent()) return hit;
         hit = ObjectIDEntries_123.byId(id);
+        if (hit.isPresent()) return hit;
+        hit = ObjectIDEntries_124.byId(id);
         if (hit.isPresent()) return hit;
         return Optional.empty();
     }

@@ -601,7 +601,7 @@ struct InterfaceID final {
     static constexpr int32_t KR_ADDRESS_FORM = 586;
     static constexpr int32_t KR_SCRAP_PAPER = 587;
     static constexpr int32_t KR_PICKLOCK = 588;
-    static constexpr int32_t DISPLAYNAME = 589;
+    static constexpr int32_t RAG3_BOSS_OVERLAY = 589;
     static constexpr int32_t POH_JEWELLERY_BOX = 590;
     static constexpr int32_t ARAXXOR_SCOREBOARD = 591;
     static constexpr int32_t DIZANAS_QUIVER = 592;
@@ -1005,6 +1005,7 @@ struct InterfaceID final {
     static constexpr int32_t WOTW_WALL_LANDS_END = 990;
     static constexpr int32_t WOTW_WALL_PISCARILIUS = 991;
     static constexpr int32_t WOTW_WALL_SHAYZIEN = 992;
+    static constexpr int32_t POR_STATISTICS = 993;
 
     static constexpr int32_t pack(int32_t groupId, int32_t childId) {
         return static_cast<int32_t>((static_cast<uint32_t>(groupId) << 16)
@@ -20920,29 +20921,12 @@ struct InterfaceID final {
         static constexpr int32_t KR_KEY_3 = 38535234;
     };
 
-    struct Displayname final {
-        Displayname() = delete;
+    struct Rag3BossOverlay final {
+        Rag3BossOverlay() = delete;
         static constexpr int32_t UNIVERSE = 38600704;
-        static constexpr int32_t COM_1 = 38600705;
-        static constexpr int32_t CLOSE = 38600706;
-        static constexpr int32_t FRAME = 38600707;
-        static constexpr int32_t COM_4 = 38600708;
-        static constexpr int32_t CONTENT = 38600709;
-        static constexpr int32_t COOLDOWNTYPE = 38600710;
-        static constexpr int32_t COOLDOWNTIME = 38600711;
-        static constexpr int32_t EXTRACHANGES = 38600712;
-        static constexpr int32_t WARNING_RELOAD = 38600713;
-        static constexpr int32_t COM_10 = 38600714;
-        static constexpr int32_t STATUS_CONTAINER = 38600715;
-        static constexpr int32_t COM_12 = 38600716;
-        static constexpr int32_t COM_13 = 38600717;
-        static constexpr int32_t COM_14 = 38600718;
-        static constexpr int32_t STATUS = 38600719;
-        static constexpr int32_t WARNING_RESERVATIONS = 38600720;
-        static constexpr int32_t BOTTOM_BUTTONS = 38600721;
-        static constexpr int32_t CHECK = 38600722;
-        static constexpr int32_t CHANGE = 38600723;
-        static constexpr int32_t BONDS = 38600724;
+        static constexpr int32_t CONTENTS = 38600705;
+        static constexpr int32_t TINT_BOX = 38600706;
+        static constexpr int32_t FADER = 38600707;
     };
 
     struct PohJewelleryBox final {
@@ -31800,7 +31784,10 @@ struct InterfaceID final {
         static constexpr int32_t _3 = 64421896;
         static constexpr int32_t _4 = 64421897;
         static constexpr int32_t _5 = 64421898;
-        static constexpr int32_t CLOSE = 64421899;
+        static constexpr int32_t TOGGLE = 64421899;
+        static constexpr int32_t TOGGLE_TEXT = 64421900;
+        static constexpr int32_t TOGGLE_ICON = 64421901;
+        static constexpr int32_t CLOSE = 64421902;
     };
 
     struct WotwCertificateHosidius final {
@@ -32196,6 +32183,25 @@ struct InterfaceID final {
         static constexpr int32_t COM_11 = 65011723;
         static constexpr int32_t COM_12 = 65011724;
         static constexpr int32_t COM_13 = 65011725;
+    };
+
+    struct PorStatistics final {
+        PorStatistics() = delete;
+        static constexpr int32_t COM_0 = 65077248;
+        static constexpr int32_t CLOSE = 65077249;
+        static constexpr int32_t MESSAGESCROLL2_CLOSE = 65077250;
+        static constexpr int32_t CONTENT = 65077251;
+        static constexpr int32_t TITLE = 65077252;
+        static constexpr int32_t TITLE_TEXT = 65077253;
+        static constexpr int32_t STATS = 65077254;
+        static constexpr int32_t MS1 = 65077255;
+        static constexpr int32_t MS2 = 65077256;
+        static constexpr int32_t MS3 = 65077257;
+        static constexpr int32_t MS4 = 65077258;
+        static constexpr int32_t MS5 = 65077259;
+        static constexpr int32_t MS6 = 65077260;
+        static constexpr int32_t MS7 = 65077261;
+        static constexpr int32_t MS8 = 65077262;
     };
 
     template <typename Self = InterfaceID>

@@ -414,7 +414,7 @@ final class NpcIDEntries_16 {
             new GamevalEntry(8593, "FARMING_GUILD_RABBIT3", "Rabbit", "npctypes"),
             new GamevalEntry(8594, "KEBOS_FARMING_GUILD_GAZEBO_CAT_BOX", "Cat", "npctypes"),
             new GamevalEntry(8595, "FARMING_GUILD_ANIMA_GARDENER", "Felfiz Yaryus", "npctypes"),
-            new GamevalEntry(8596, "KEBOS_FARMER_1", "Keith", "npctypes"),
+            new GamevalEntry(8596, "KEBOS_FARMER_1", "kebos_farmer_1", "npctypes"),
             new GamevalEntry(8597, "GA_MARY", "ga_mary", "npctypes"),
             new GamevalEntry(8598, "POH_COMBAT_DUMMY_UPGRADED_NPC", "Ornate combat dummy", "npctypes"),
             new GamevalEntry(8599, "FARMING_GUILD_GUARD_1", "Soldier", "npctypes"),

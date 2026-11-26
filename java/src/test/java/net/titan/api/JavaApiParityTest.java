@@ -8,6 +8,8 @@ import net.titan.api.internal.MouseBackend;
 import net.titan.api.internal.SchedulerBackend;
 import net.titan.api.internal.TitanRuntime;
 import net.titan.api.overlay.OverlayDraw;
+import net.titan.api.overlay.InfoBoxTile;
+import net.titan.api.overlay.OverlayPanel;
 import net.titan.api.overlay.OverlayPanelStyle;
 import net.titan.api.utils.Magic;
 import net.titan.api.utils.Mouse;
@@ -30,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class JavaApiParityTest {
     private Injector injector;
@@ -214,6 +217,30 @@ class JavaApiParityTest {
         state.collisionFlags.put(collisionKey(0, 3, 1), 0x00010000);
         assertFalse(from.hasLineOfSight(new WorldPoint(5, 1, 0, 42)));
         assertFalse(new WorldPoint(1, 1, 0, 1).hasLineOfSight(new WorldPoint(5, 1, 0, 2)));
+    }
+
+    @Test
+    void infoboxesUsePanelOwnershipAndSendArtworkSeparatelyFromFrameMetadata() {
+        overlayBackend = new RecordingOverlayBackend();
+        TitanRuntime.setOverlayBackend(overlayBackend);
+        InfoBoxTile tick = new InfoBoxTile(7, "3", "Beat \ud83c\udfb5");
+        assertEquals(0xffffffff, tick.textArgb());
+        assertEquals(0xaa282828, tick.backgroundArgb());
+        assertThrows(IllegalArgumentException.class, () -> new InfoBoxTile(0, "x", "\ud800"));
+        assertThrows(IllegalArgumentException.class, () -> new InfoBoxTile(0, "\u00e9".repeat(65), ""));
+
+        TitanRuntime.enterPlugin("metronome");
+        try (OverlayPanel group = new OverlayPanel("beats")) {
+            assertTrue(group.setInfoBoxIcon(7, 1, 1, new int[]{0x80ff0000}));
+            assertEquals("metronome/0/7/1x1", overlayBackend.call);
+            assertTrue(group.infoBoxes(java.util.List.of(tick)));
+            assertEquals("metronome/0/false/35/3", overlayBackend.call);
+            assertTrue(group.clearInfoBoxIcon(7));
+            assertEquals("metronome/0/7/0x0", overlayBackend.call);
+            TitanRuntime.enterPlugin("other");
+            try { assertThrows(IllegalStateException.class, () -> group.infoBoxes(java.util.List.of(tick))); }
+            finally { TitanRuntime.leavePlugin(); }
+        } finally { TitanRuntime.leavePlugin(); }
     }
 
     @Test
@@ -694,6 +721,18 @@ class JavaApiParityTest {
 
         @Override
         public void overlayPanelEnd(int handle) {}
+
+        @Override
+        public boolean infoBoxSetIcon(String owner, int panel, int key, int width, int height, int[] pixels) {
+            call = owner + "/" + panel + "/" + key + "/" + width + "x" + height;
+            assertEquals(width * height, pixels.length);
+            return true;
+        }
+        @Override
+        public boolean infoBoxPresent(String owner, int panel, boolean vertical, int size, java.util.List<InfoBoxTile> tiles) {
+            call = owner + "/" + panel + "/" + vertical + "/" + size + "/" + tiles.get(0).text();
+            return true;
+        }
 
         @Override
         public void overlayPanelSetStyle(int handle, OverlayPanelStyle style) {}
