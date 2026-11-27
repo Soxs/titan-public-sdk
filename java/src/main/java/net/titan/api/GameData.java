@@ -449,6 +449,11 @@ public final class GameData {
         return read("titan.game.read.widgetFamily.v1", in -> in.rows(in.i32(), WidgetRef::new), packedId, childIndex, 0, which.ordinal());
     }
     public static Optional<List<WidgetRef>> widgetChildren(int packedId, WidgetChildren which) { return widgetChildren(packedId, which, -1); }
+    /** The widgets of an interface which have no parent, where a walk of it begins: for the top-level interface, what RuneLite
+     * calls the widget roots. Each has child index -1. None for an interface which is not loaded. SDK 196. */
+    public static Optional<List<WidgetRef>> widgetRoots(int interfaceId) {
+        return read("titan.game.read.widgetRoots.v1", in -> in.rows(in.i32(), WidgetRef::new), interfaceId);
+    }
     /** Every slot of a flat widget's script-made children, the empty ones too, with each child's fields: a container such as
      * the bank's items in one read. Empty when one of them cannot be read now. SDK 195. */
     public static Optional<List<WidgetSlot>> widgetSlots(int packedId) {

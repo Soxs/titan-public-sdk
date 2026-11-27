@@ -16,6 +16,11 @@ in `PUBLIC_API.md`.
 
 ---
 
+## v196 -- Where a walk of an interface begins
+
+- Added `gameData.widgetRoots` to C++, Java (`GameData.widgetRoots`) and JavaScript: the widgets of an interface
+  which have no parent. With `widgetChildren` from each of them, the whole of what is on the screen can be walked.
+
 ## v195 -- A container's children in one read
 
 - Added `gameData.widgetSlots` to C++, Java (`GameData.widgetSlots`) and JavaScript: every slot of a flat widget's

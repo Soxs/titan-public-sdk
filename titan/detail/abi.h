@@ -38,6 +38,7 @@
 /// v146 restored only the kMinSupportedSdkVersion floor described above.
 ///
 /// --- Changelog (most recent first) ---
+/// v196 -- gameData.widgetRoots: the widgets of an interface which have no parent, where a walk of it begins.
 /// v195 -- gameData.widgetSlots: every slot of a flat widget's script-made children with each child's fields, in one read.
 /// v194 -- What monsters and players leave for the account, in an optional PluginEventsV1 tail; submenus of plugins' own,
 ///         for which menuCreateEntry takes a parent; and where the open menu is drawn.
@@ -2056,7 +2057,7 @@ namespace TitanPluginSdk {
 /// Current SDK version advertised by this header. Bumped whenever a new
 /// public symbol lands in `shared/titan/`. See the changelog at the top of
 /// this file.
-constexpr uint32_t kSdkVersion = 195;
+constexpr uint32_t kSdkVersion = 196;
 
 /// Cache-definition payload tag for Native ABI v1. SDK source releases do not
 /// change this value; the records carrying it change layout only together

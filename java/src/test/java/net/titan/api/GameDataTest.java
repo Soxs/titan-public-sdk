@@ -149,6 +149,14 @@ class GameDataTest {
         GameData.WidgetRef child = GameData.widgetChildren(9, GameData.WidgetChildren.NESTED).orElseThrow().get(0);
         assertEquals("titan.game.read.widgetFamily.v1 [9, -1, 0, 2] []", asked());
         assertEquals(9, child.packedId()); assertEquals(5, child.childIndex()); assertEquals(1L << 40, child.incarnation());
+        with(2, 548 << 16 | 1, -1, 1L << 40, 548 << 16 | 9, -1, 3L << 40);
+        List<GameData.WidgetRef> roots = GameData.widgetRoots(548).orElseThrow();
+        assertEquals("titan.game.read.widgetRoots.v1 [548] []", asked());
+        assertEquals(2, roots.size());
+        assertEquals(548 << 16 | 1, roots.get(0).packedId()); assertEquals(-1, roots.get(0).childIndex());
+        assertEquals(548 << 16 | 9, roots.get(1).packedId()); assertEquals(3L << 40, roots.get(1).incarnation());
+        with(0);
+        assertTrue(GameData.widgetRoots(548).orElseThrow().isEmpty());
         List<Object> slots = new java.util.ArrayList<>(List.of(1L << 41, 2, 1L << 40, 1 | 1 << 13));
         for (int i = 0; i < 17; i++) slots.add(i == 0 ? 995 : i == 13 ? 32 : 0);
         slots.add(0L); slots.add(0);

@@ -273,6 +273,7 @@ through the optional `HostActionsV1` function `runGameOperation`.
 | `gameData::chatLines(channel)`, `chatLine(number)`, `setChatLine(number, part, text)` | A channel's lines, one of them, and a change of its name, message or sender |
 | `gameData::widgetFields(packedId, childIndex)` | Position and size modes, text alignments, line height, whether it has a listener, scroll width and transparency |
 | `gameData::widgetChildren(packedId, which, childIndex)` | The children which scripts made, those of its interface, or those of the interface opened in it |
+| `gameData::widgetRoots(interfaceId)` | The widgets of an interface which have no parent, where a walk of it begins. SDK 196 |
 | `gameData::widgetSlots(packedId)` | Every slot of a flat widget's script-made children, the empty ones too, with each child's incarnation, item, type, quantity, sprite, model, position, size and scroll, in one read. SDK 195 |
 | `gameData::widgetListener(packedId, opcode, childIndex)`, `setWidgetListener(...)` | A listener's script and arguments, by the opcode which sets it in the game's scripts |
 | `gameData::scriptStacks()`, `scriptComponents()`, `setScriptText(place, text)` | Inside `onScriptMoment`: the interpreter's integers and texts, the script's components, and another text |

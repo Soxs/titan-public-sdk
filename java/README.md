@@ -96,7 +96,7 @@ plugin JAR.
 
 ```gradle
 dependencies {
-    compileOnly 'net.titan:titan-plugin-api:0.2.20'
+    compileOnly 'net.titan:titan-plugin-api:0.2.21'
     compileOnly 'net.titan:titan-runelite-api:1.13.6-titan.3'
 }
 ```

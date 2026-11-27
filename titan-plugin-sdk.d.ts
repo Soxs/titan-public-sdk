@@ -762,6 +762,10 @@ interface GameDataFacade {
     /** SDK 193+. */
     widgetChildren(packedId: number, which: 0 | 1 | 2, childIndex?: number): readonly { readonly packedId: number; readonly childIndex: number;
         readonly incarnation: bigint }[] | null;
+    /** The widgets of an interface which have no parent, where a walk of it begins: for the top-level interface, what RuneLite
+     * calls the widget roots. Each has child index -1. None for an interface which is not loaded. SDK 196+. */
+    widgetRoots(interfaceId: number): readonly { readonly packedId: number; readonly childIndex: number;
+        readonly incarnation: bigint }[] | null;
     /** Every slot of a flat widget's script-made children, the empty ones too (incarnation 0n), with each child's fields: a
      * container such as the bank's items in one read. null when one of them cannot be read now. SDK 195+. */
     widgetSlots(packedId: number): readonly WidgetSlot[] | null;

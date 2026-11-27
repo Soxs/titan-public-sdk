@@ -2,7 +2,7 @@
 /// @brief Friends, clans, items on the ground, held keys, sounds, and what the game's widgets, chat, scripts and scene
 /// have, each read or changed in one call.
 ///
-/// Game thread. SDK 192, and 193, 194 or 195 where it says so.
+/// Game thread. SDK 192, and 193, 194, 195 or 196 where it says so.
 #pragma once
 
 #include "detail/game_data_abi.h"
@@ -433,6 +433,22 @@ inline std::optional<std::vector<WidgetRef>> widgetChildren(const TitanPluginSdk
     }
     return in.complete() ? std::optional(std::move(out)) : std::nullopt;
 }
+/// The widgets of an interface which have no parent, where a walk of it begins: for the top-level interface, what
+/// RuneLite calls the widget roots. Each has child index -1. None for an interface which is not loaded. SDK 196.
+inline std::optional<std::vector<WidgetRef>> widgetRoots(const TitanPluginSdk::HostApi* host, int32_t interfaceId) {
+    auto answer = run(host, "titan.game.read.widgetRoots.v1", {interfaceId});
+    if (!answer.ready()) return std::nullopt;
+    Reader in(std::move(answer.bytes));
+    std::vector<WidgetRef> out;
+    for (int32_t i = 0, count = in.count(16); i < count; ++i) {
+        WidgetRef each;
+        each.packedId = in.i32();
+        each.childIndex = in.i32();
+        each.incarnation = static_cast<uint64_t>(in.i64());
+        out.push_back(each);
+    }
+    return in.complete() ? std::optional(std::move(out)) : std::nullopt;
+}
 /// Every slot of a flat widget's script-made children, the empty ones too, with each child's fields: a container such
 /// as the bank's items in one read. Nothing when one of them cannot be read now. SDK 195.
 inline std::optional<std::vector<WidgetSlot>> widgetSlots(const TitanPluginSdk::HostApi* host, int32_t packedId) {
@@ -589,6 +605,8 @@ inline std::optional<WidgetFields> widgetFields(int32_t packedId, int32_t childI
 inline std::optional<std::vector<WidgetRef>> widgetChildren(int32_t packedId, WidgetChildren which, int32_t childIndex = -1) {
     return widgetChildren(detail::host(), packedId, which, childIndex);
 }
+/// The widgets of an interface which have no parent, where a walk of it begins. SDK 196.
+inline std::optional<std::vector<WidgetRef>> widgetRoots(int32_t interfaceId) { return widgetRoots(detail::host(), interfaceId); }
 /// Every slot of a flat widget's script-made children with each child's fields, in one read. SDK 195.
 inline std::optional<std::vector<WidgetSlot>> widgetSlots(int32_t packedId) { return widgetSlots(detail::host(), packedId); }
 /// A listener by the opcode which sets it in the game's scripts, such as 1400 on click or 1409 on an option, and the load
