@@ -6,7 +6,8 @@ Start one with **Use this template** on
 A complete project. Nothing else needs to be set up: `build.gradle` is one line, and Titan's artifact brings
 RuneLite's API, RuneLite's plugin framework, Titan's SDK and Lombok.
 
-You need Java 11 or newer, and Titan: run TitanLauncher once and sign in with an account that has developer mode.
+You need Java 11 or newer, and Titan: run TitanLauncher once and sign in with a developer account (Free, Semi or
+Premium Developer). Titan loads a RuneLite plugin from your own computer for those accounts only.
 
 ## Run it
 

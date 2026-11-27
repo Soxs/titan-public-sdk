@@ -77,6 +77,11 @@ Start with the [template](https://github.com/Soxs/titan-runelite-plugin-template
 [starter project](../examples/runelite-plugin). It has IntelliJ and VS Code
 configurations and instructions for coding agents.
 
+Titan loads a RuneLite plugin of your own, from the plugins folder or from `run`, in DEV mode and
+for a developer account only: Free, Semi or Premium Developer. On any other account the tab
+opens without the plugin and the client's log says why. RuneLite's own plugins and the Plugin Hub
+need neither DEV mode nor a developer account.
+
 The plugin extends `net.runelite.client.plugins.Plugin`. Titan's SDK is there beside
 RuneLite's: `@Inject private net.titan.api.Client titan`, or the static `net.titan.api.Titan`.
 Events, overlays, panels, settings and scheduling are RuneLite's. Titan's event bus, `Plugin`,
@@ -96,7 +101,7 @@ plugin JAR.
 
 ```gradle
 dependencies {
-    compileOnly 'net.titan:titan-plugin-api:0.2.21'
+    compileOnly 'net.titan:titan-plugin-api:0.2.22'
     compileOnly 'net.titan:titan-runelite-api:1.13.6-titan.3'
 }
 ```
